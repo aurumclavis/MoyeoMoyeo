@@ -2,33 +2,29 @@ import styled from "@emotion/styled";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import DateRangeIcon from "@mui/icons-material/DateRange";
+import SearchIcon from "@mui/icons-material/Search";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-// 레이아웃 들어오면 날릴 부분
-export const Layout = styled.div`
-  width: 100vw;
-`;
-export const Body = styled.div`
-  width: 1200px;
-  margin: auto;
-`;
-
-// 내 영역
-// 반응형일 때 플렉스 컬럼, flex-wrap : nowrap
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 3.5rem;
-  padding: 4rem 2rem;
-  border: 1px solid black;
+  padding: 4rem 0;
+`;
+// 반응형일 때 flex-direction : column
+export const TopWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 3.5rem;
+  padding: 0 2rem;
 `;
 // 반응형일 때 width : calc(100% + 2rem * 2)
 export const ImageWrapper = styled.div`
-  width: 31.25rem;
-  height: 31.25rem;
+  width: 50%;
+  height: 34rem;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
@@ -54,7 +50,7 @@ export const EventImage = styled.img`
   object-fit: cover;
 `;
 export const InfoWrapper = styled.div`
-  width: 35rem;
+  width: 50%;
   display: flex;
   flex-direction: column;
   gap: 2.87rem;
@@ -85,6 +81,33 @@ export const SubmitButton = styled.button`
   font-size: 1.4rem;
   color: white;
   font-weight: 600;
+`;
+export const EventSearchWrapper = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  padding: 1px;
+  border-radius: 5px;
+  border: 1px solid #d2d2d2;
+`;
+export const MySearchIcon = styled(SearchIcon)`
+  width: 2rem;
+  border-right: 1px solid #d2d2d2;
+  color: #d2d2d2;
+`;
+export const EventSearchInput = styled.input`
+  width: 100%;
+  height: 2.188rem;
+  padding-left: 0.5rem;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  color: #323232;
+  ::placeholder {
+    color: #d2d2d2;
+    font-size: 1.1rem;
+  }
 `;
 export const ItemsWrapper = styled.div`
   width: 100%;
@@ -225,11 +248,12 @@ export const TransportationImg = styled.img`
   width: 3.813rem;
   height: auto;
 `;
-export const TitleContentsLocationWrapper = styled.div`
+export const BottomWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2.87rem;
+  padding: 0 2rem;
 `;
 export const TitleInput = styled.input`
   width: 31rem;

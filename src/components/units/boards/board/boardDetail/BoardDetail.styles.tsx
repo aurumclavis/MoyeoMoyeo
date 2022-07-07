@@ -1,14 +1,6 @@
 import styled from "@emotion/styled";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 
-export const Layout = styled.div`
-  width: 100vw;
-`;
-export const LayoutBody = styled.div`
-  width: 1200px;
-  margin: auto;
-  border: 1px solid gray;
-`;
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

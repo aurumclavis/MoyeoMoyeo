@@ -1,14 +1,10 @@
 import { useEffect } from "react";
-// import { useRecoilState } from "recoil";
-// import { isEditState } from "../../../common/store";
 
 declare const window: typeof globalThis & {
   kakao: any;
 };
 
 export default function KaKaoMap(props: any) {
-  //   const [isEdit] = useRecoilState(isEditState);
-
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -89,7 +85,7 @@ export default function KaKaoMap(props: any) {
         );
       });
     };
-  }, [props.isEdit]);
+  }, [props]);
 
   return (
     <>
