@@ -20,57 +20,23 @@ export const Wrapper = styled.div`
 export const HeaderTitle = styled.h1`
   width: 100%;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
+  & span {
+    color: #42c2ff;
+  }
 `;
 export const CommonTitle = styled.div`
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
 `;
+
 export const CommonSubTitle = styled.div`
   width: 100%;
   text-align: left;
   margin-bottom: 5px;
   font-size: 0.875rem;
 `;
-// 관계자
-export const SubWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #edf0f5;
-  padding-bottom: 40px;
-`;
-export const SubTitle = styled.span`
-  font-size: 0.875rem;
-  margin-right: 5px;
-  color: #bdbdbd;
-`;
-export const SubBtn = styled.div`
-  font-size: 0.875rem;
-  color: #42c2ff;
-  cursor: pointer;
-`;
-
-// sns
-export const SnsWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 90px 20px 90px;
-  border-bottom: 1px solid #edf0f5;
-  margin-bottom: 40px;
-`;
-
-export const SnsLogo = styled.img`
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 1px solid #edf0f5;
-  cursor: pointer;
-`;
-
 //submit
 export const SubmitBtn = styled.button`
   width: 100%;
@@ -81,6 +47,7 @@ export const SubmitBtn = styled.button`
   cursor: pointer;
   margin-top: 20px;
 `;
+
 //findpw
 export const findPassword = styled.div`
   width: 100%;
