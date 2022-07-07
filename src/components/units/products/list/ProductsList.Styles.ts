@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin: 3.125rem 0;
 `;
 
 // 검색바를 포함한 상단바 영역

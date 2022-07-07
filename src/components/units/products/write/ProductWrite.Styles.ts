@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  margin: 3.125rem 0;
+`;
 
 // 상품 등록(수정) 타이틀
 export const WriteTitle = styled.h1`

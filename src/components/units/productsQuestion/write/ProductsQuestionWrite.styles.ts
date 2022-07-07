@@ -20,14 +20,14 @@ export const WriteInput = styled.textarea`
   font-size: 1rem;
 `;
 export const WriteBtnWrapper = styled.div`
-  width: 100%;
   height: 45px;
   display: flex;
   justify-content: flex-end;
 `;
+
 export const WriteBtn = styled.button`
   width: auto;
-  padding: 0.625rem;
+  padding: 1rem;
   border: none;
   border-radius: 5px;
   background-color: #ffd24c;
