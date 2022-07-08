@@ -35,15 +35,15 @@ export default function MyPageUserSidebar() {
           <S.PeopleIcon />
           <S.TabText>동행 내역</S.TabText>
         </S.TabItemWrapper>
-        <S.TabItemWrapper>
+        <S.TabItemWrapper onClick={onClickMoveToPage("/mypage/products")}>
           <S.FavoriteIcon />
           <S.TabText>관심 상품</S.TabText>
         </S.TabItemWrapper>
-        <S.TabItemWrapper>
+        <S.TabItemWrapper onClick={onClickMoveToPage("/mypage/buy")}>
           <S.CartIcon />
           <S.TabText>구매 내역</S.TabText>
         </S.TabItemWrapper>
-        <S.TabItemWrapper>
+        <S.TabItemWrapper onClick={onClickMoveToPage("/mypage/point")}>
           <S.PointIcon />
           <S.TabText>내 포인트</S.TabText>
         </S.TabItemWrapper>

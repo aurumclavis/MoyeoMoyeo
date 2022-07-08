@@ -21,11 +21,11 @@ export default function MyPageStaffSidebar() {
 
       {/* 탭 눌러서 각 내역 확인 가능 */}
       <S.TabWrapper>
-        <S.TabItemWrapper>
+        <S.TabItemWrapper onClick={onClickMoveToPage("/mypage/staff/sell")}>
           <S.CartIcon />
           <S.TabText>판매 내역</S.TabText>
         </S.TabItemWrapper>
-        <S.TabItemWrapper>
+        <S.TabItemWrapper onClick={onClickMoveToPage("/mypage/staff/point")}>
           <S.PointIcon />
           <S.TabText>포인트 내역</S.TabText>
         </S.TabItemWrapper>
