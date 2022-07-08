@@ -28,6 +28,7 @@ export const LogoMenuWrapper = styled.div`
 
 export const LogoImg = styled.img`
   height: 2.813rem;
+  cursor: pointer;
 `;
 
 export const NavBarWrapper = styled.div`
@@ -40,7 +41,8 @@ export const NavBarWrapper = styled.div`
 `;
 
 export const Menu = styled.div`
-  height: 1.875rem;
+  width: 80px;
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,7 +50,7 @@ export const Menu = styled.div`
   cursor: pointer;
   :hover {
     color: #ffe69a;
-    font-weight: 700;
+    font-weight: 800;
     border-bottom: 0.063rem solid #ffe69a;
   }
 `;

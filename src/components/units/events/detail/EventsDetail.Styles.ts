@@ -1,23 +1,22 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1200px;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  border: 0.063rem solid #15133c;
+  border-radius: 1.25rem;
 `;
 
 export const HeaderWrapper = styled.div`
   width: 100%;
-  height: 75px;
+  height: 4.688rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  margin: 2% 0%;
-  padding: 0% 2%;
-  border-radius: 20px 20px 0px 0px;
-  border-bottom: 3px solid #d2d2d2;
+  padding: 0.063rem 2%;
+  border-radius: 1.25rem 1.25rem 0 0;
+  border-bottom: 0.188 solid #d2d2d2;
   background-color: #ffe69a;
 `;
 
@@ -29,10 +28,11 @@ export const HeaderTitle = styled.div`
 export const HeaderCalendar = styled.div`
   font-size: 1rem;
 `;
+export const BodyWrapper = styled.div``;
 
 export const MainWrapper = styled.div`
   width: 100%;
-  height: 380px;
+  height: 23.75rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -41,12 +41,12 @@ export const MainWrapper = styled.div`
 `;
 
 export const MainImg = styled.img`
-  width: 460px;
-  height: 345px;
+  width: 28.75rem;
+  height: 21.563rem;
 `;
 export const MainLeftWrapper = styled.div`
   width: 50%;
-  height: 345px;
+  height: 21.563rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -55,16 +55,17 @@ export const MainLeftWrapper = styled.div`
 
 export const MainHeaderWrapper = styled.div`
   width: 100%;
-  height: 10%;
+  height: 15%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  border-bottom: 1px solid #d2d2d2;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #73777b;
 `;
 
 export const MainTitle = styled.div`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
 `;
 
@@ -74,12 +75,12 @@ export const MainHost = styled.div`
 
 export const MainContents = styled.div`
   height: 80%;
-  font-size: 16px;
+  font-size: 1rem;
 `;
 
 export const ContentsWrapper = styled.div`
   width: 100%;
-  height: 760px;
+  height: 47.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,22 +88,24 @@ export const ContentsWrapper = styled.div`
 
 export const MenuBtnWrapper = styled.div`
   width: 100%;
-  height: 70px;
+  height: 4rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 10px;
+  margin-top: 1rem;
   padding: 0px 10%;
 `;
 export const MenuBtn = styled.div`
-  width: 40%;
+  width: 49.9%;
   height: 100%;
   display: flex;
   flex-direction: center;
   justify-content: center;
   align-items: center;
-  border-radius: 20px 20px 0px 0px;
+  border-radius: 0.63rem 0.63rem 0 0;
   background-color: #f4f4f4;
+  font-size: 1.2rem;
+  font-weight: 700;
   cursor: pointer;
   :hover {
     background-color: #42c2ff;
@@ -112,28 +115,29 @@ export const MenuBtn = styled.div`
 
 export const Contents = styled.div`
   width: 80%;
-  padding: 30px;
+  padding: 1.875rem;
   display: flex;
   justify-content: center;
-  border: 1px solid #f4f4f4;
+  border: 1px solid #b8fff9;
+  border-radius: 0 0 0.63rem 0.63rem;
 `;
 export const ContentImg = styled.img`
-  width: 740px;
+  width: 46.25rem;
 `;
 export const ContetsText = styled.div``;
 
 export const Footer = styled.div`
   width: 100%;
-  height: 150px;
-  border-top: 1px solid black;
+  height: 9.375rem;
+  border-top: 0.063px solid #15133c;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 `;
 export const BtnRouter = styled.div`
-  width: 200px;
-  height: 50px;
+  width: 12.5rem;
+  height: 3.125rem;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -143,8 +147,8 @@ export const BtnRouter = styled.div`
   cursor: pointer;
 `;
 export const BtnRouterList = styled.div`
-  width: 100px;
-  height: 50px;
+  width: 6.25rem;
+  height: 3.125rem;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -152,17 +156,3 @@ export const BtnRouterList = styled.div`
   background-color: #d2d2d2;
   cursor: pointer;
 `;
-
-// Width
-// Height
-// Display
-// flex-direction
-//  justify-content
-// Align- item
-// Margin
-// Padding
-// Border
-// Color
-// Background
-// Font-size
-// Font-weight
