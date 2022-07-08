@@ -46,11 +46,12 @@ export const Menu = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 800;
   color: #323232;
   cursor: pointer;
   :hover {
     color: #ffe69a;
-    font-weight: 800;
+
     border-bottom: 0.063rem solid #ffe69a;
   }
 `;

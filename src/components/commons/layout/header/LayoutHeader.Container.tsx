@@ -8,7 +8,7 @@ export default function LayoutHeader() {
     { name: "동행하기", page: "/boards" },
     { name: "축제일정", page: "/events" },
     { name: "모여마켓", page: "/products" },
-    { name: "마이페이지", page: "/mypage" },
+    { name: "마이페이지", page: "/mypage/events" },
   ];
   const onClickMenu = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target instanceof Element) router.push(event.target.id);
