@@ -9,7 +9,8 @@ export const Wrapper = styled.div`
 
 export const InsideWrapper = styled.div`
   width: 75rem;
-  height: 4.375rem;
+  /* height: 4.375rem; */
+  height: 10%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

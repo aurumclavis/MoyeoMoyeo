@@ -5,10 +5,12 @@ export const globalStyles = css`
   * {
     margin: 0;
     box-sizing: border-box;
-    font-size: 1rem;
+    /* font-size: 1rem; */
   }
 
-  html {
+  html,
+  body {
+    height: 100vh;
     font-size: 16px;
     @media ${breakPoints.mobile} {
       font-size: 14px;

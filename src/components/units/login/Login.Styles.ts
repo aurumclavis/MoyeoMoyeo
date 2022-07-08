@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 //전체;
 export const OutWrapper = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   /* background-color: #bdbdbd; */

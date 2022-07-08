@@ -3,6 +3,7 @@ import CommonInput from "../../commons/inputs/infoInputs";
 import CommonMobileInput from "../../commons/inputs/mobileInputs";
 import * as S from "./SignUpNew.Styles";
 import Countdown from "react-countdown";
+import Link from "next/link";
 export default function SignUpNewPageUI(props) {
   const renderer = ({ minutes, seconds }: any) => {
     return (
@@ -19,9 +20,21 @@ export default function SignUpNewPageUI(props) {
           <S.HeaderTitle>회원가입</S.HeaderTitle>
           <S.CommonTitle>소셜 계정으로 1초만에 회원가입</S.CommonTitle>
           <S.SnsWrapper>
-            <S.SnsLogo src="/signUp/kakao.png" />
-            <S.SnsLogo src="/signUp/naver.png" />
-            <S.SnsLogo src="/signUp/googlelogo.png" />
+            <Link href="http://localhost:3000/login/kakao">
+              <a>
+                <S.SnsLogo src="/signUp/kakao.png" />
+              </a>
+            </Link>
+            <Link href="http://localhost:3000/login/kakao">
+              <a>
+                <S.SnsLogo src="/signUp/naver.png" />
+              </a>
+            </Link>
+            <Link href="http://localhost:3000/login/kakao">
+              <a>
+                <S.SnsLogo src="/signUp/googlelogo.png" />
+              </a>
+            </Link>
           </S.SnsWrapper>
           <S.CommonTitle>이메일로 회원가입</S.CommonTitle>
           <S.CommonSubTitle>기본 정보</S.CommonSubTitle>
@@ -67,15 +80,6 @@ export default function SignUpNewPageUI(props) {
               />
             </S.NumberInputs>
             <S.Error>{props.formState.errors.phoneNumber?.message}</S.Error>
-            {/* <S.Error>{props.formState.errors.phoneNumber2?.message}</S.Error> */}
-            {/* <S.MobileAuthBtn
-            disabled={props?.phone3rdNum === "" && props?.phone2ndNum === ""}
-            isActive={props?.phone3rdNum !== "" && props?.phone2ndNum !== ""}
-            onClick={props.onClickGetNumber}
-          >
-            인증번호 요청
-          </S.MobileAuthBtn> */}
-
             {!props.isDone ? (
               props.isReadyForNum ? (
                 <S.NewAuthWrapper>

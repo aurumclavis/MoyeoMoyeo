@@ -5,6 +5,8 @@ import LayoutHeader from "./header/LayoutHeader.Container";
 import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,6 +15,7 @@ const Wrapper = styled.div`
 
 const Body = styled.div`
   width: 100%;
+  height: 80%;
   max-width: 75rem;
 `;
 

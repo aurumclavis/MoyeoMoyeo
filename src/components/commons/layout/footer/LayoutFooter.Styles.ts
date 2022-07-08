@@ -3,13 +3,14 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   width: 100%;
   height: 10rem;
+  /* height: 10%; */
   display: flex;
 
   justify-content: center;
   align-items: center;
   font-weight: 200;
-  margin-bottom: 5%;
-  padding-top: 2%;
+  /* margin-bottom: 5%; */
+  /* padding-top: 2%; */
   border-top: 0.063px solid #d2d2d2;
 `;
 export const InsideWrapper = styled.div`

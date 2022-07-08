@@ -67,6 +67,7 @@ export default function SignUpNewPage() {
   };
 
   const onClickConfirm = () => {
+    // console.log("010")
     setIsReadyForNum(false);
     setIsDone(true);
   };

@@ -3,10 +3,12 @@ import styled from "@emotion/styled";
 //전체
 export const OutWrapper = styled.div`
   width: 100%;
+  height: 100%;
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #bdbdbd; */
+  background-color: #bdbdbd;
 `;
 
 //inner
