@@ -17,16 +17,9 @@ const Input = styled.input`
   :focus {
     outline: none;
     border: 2px solid #ffd24c;
-    transition: 0.5s ease;
   }
 `;
 
 export default function CommonInput(props) {
-  return (
-    <Input
-      {...props.register}
-      placeholder={props?.placeholder}
-      defaultValue={props.defaultValue}
-    />
-  );
+  return <Input {...props.register} placeholder={props?.placeholder} />;
 }

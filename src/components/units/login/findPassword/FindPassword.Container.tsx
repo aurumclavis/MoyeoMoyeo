@@ -1,12 +1,9 @@
-import SignUpNewPageUI from "./SignUpNew.Presenter";
+import FindPwPageUI from "./FindPassword.Presenter";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import { number } from "yup/lib/locale";
-import { useRef, useState } from "react";
-import { max } from "lodash";
-
+import { useState } from "react";
 const schema = yup.object({
   name: yup
     .string()
@@ -37,11 +34,11 @@ const schema = yup.object({
     .required("필수 입력 사항입니다.")
     .typeError("숫자만 입력가능합니다."),
 });
-
-export default function SignUpNewPage() {
+export default function FindPwPage() {
   const router = useRouter();
   const [phone2ndNum, setPhone2ndNum] = useState("");
   const [phone3rdNum, setPhone3rdNum] = useState("");
+  const [emailComfirm, setEmailComfirm] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
@@ -55,6 +52,9 @@ export default function SignUpNewPage() {
   };
   const onChange3ndNum = (event) => {
     setPhone3rdNum(event.target.value);
+  };
+  const onChagneEmail = (event) => {
+    setEmailComfirm(event.target.value);
   };
 
   // const moveFocus2 = () => {
@@ -70,22 +70,21 @@ export default function SignUpNewPage() {
     setIsReadyForNum(false);
     setIsDone(true);
   };
-
   return (
-    <SignUpNewPageUI
-      formState={formState}
-      register={register}
+    <FindPwPageUI
       onChange2ndNum={onChange2ndNum}
       onChange3ndNum={onChange3ndNum}
-      isActive={isActive}
-      // moveFocus2={moveFocus2}
-      phone2ndNum={phone2ndNum}
-      phone3rdNum={phone3rdNum}
       onClickGetNumber={onClickGetNumber}
-      //인증번호인풋 토글오픈
+      onClickConfirm={onClickConfirm}
+      formState={formState}
+      register={register}
       isReadyForNum={isReadyForNum}
       isDone={isDone}
-      onClickConfirm={onClickConfirm}
+      isActive={isActive}
+      phone3rdNum={phone3rdNum}
+      phone2ndNum={phone2ndNum}
+      onChagneEmail={onChagneEmail}
+      emailComfirm={emailComfirm}
     />
   );
 }

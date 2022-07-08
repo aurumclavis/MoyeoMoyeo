@@ -5,6 +5,7 @@ export const OutWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   /* background-color: #bdbdbd; */
 `;
 
@@ -84,12 +85,14 @@ export const BodyCommonSubTitle = styled.span`
 export const BodyCommonButton = styled.button`
   width: 100%;
   height: 50px;
-  background-color: #ffd24c;
+  background-color: #ffffff;
+  border: 2px solid #ffd24c;
   border-radius: 5px;
   cursor: pointer;
   :hover {
-    background-color: #ffffff;
-    border: 2px solid #ffd24c;
+    background-color: #ffd24c;
+    border: 2px solid black;
+    /* color: #ffffff; */
   }
 `;
 

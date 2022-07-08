@@ -23,7 +23,7 @@ export default function Layout(props) {
     <Wrapper>
       <LayoutHeader></LayoutHeader>
       {isShowBanner && <LayoutBanner />}
-      <Body>{props.children}</Body>
+      <div>{props.children}</div>
       <LayoutFooter />
     </Wrapper>
   );

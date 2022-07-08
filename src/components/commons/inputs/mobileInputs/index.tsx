@@ -13,10 +13,18 @@ const Input = styled.input`
   :focus {
     outline: none;
     border: 2px solid #ffd24c;
-    transition: 0.5s ease;
   }
 `;
 
 export default function CommonMobileInput(props) {
-  return <Input defaultValue={props.defaultValue} />;
+  return (
+    <Input
+      type="tel"
+      maxLength={4}
+      {...props?.register}
+      defaultValue={props?.defaultValue}
+      readOnly={props?.readOnly}
+      onChange={props?.onChange}
+    />
+  );
 }

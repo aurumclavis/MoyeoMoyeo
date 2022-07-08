@@ -28,24 +28,6 @@ export const CommonTitle = styled.div`
   margin-bottom: 20px;
 `;
 
-// sns
-export const SnsWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 90px 20px 90px;
-  border-bottom: 1px solid #edf0f5;
-  margin-bottom: 20px;
-`;
-
-export const SnsLogo = styled.img`
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 1px solid #edf0f5;
-  cursor: pointer;
-`;
-
 export const CommonSubTitle = styled.div`
   width: 100%;
   text-align: left;
@@ -137,38 +119,6 @@ export const MobileAuthCheckBtn = styled.button`
     color: black;
     border: 1px solid black;
   }
-`;
-
-//checkbox
-export const CheckBoxWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  font-size: 0.875rem;
-  margin-bottom: 30px;
-`;
-export const CheckedIcon = styled.input`
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-`;
-
-export const CommonCheckBox = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-
-export const SubCommonCheckBox = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  margin-bottom: 10px;
-`;
-export const CheckBoxTitle = styled.span`
-  text-align: center;
 `;
 
 //submit
