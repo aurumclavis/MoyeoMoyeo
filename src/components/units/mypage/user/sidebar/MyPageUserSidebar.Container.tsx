@@ -27,11 +27,11 @@ export default function MyPageUserSidebar() {
 
       {/* 탭 눌러서 각 내역 확인 가능 */}
       <S.TabWrapper>
-        <S.TabItemWrapper>
+        <S.TabItemWrapper onClick={onClickMoveToPage("/mypage/events")}>
           <S.EventsIcon />
           <S.TabText>관심 행사</S.TabText>
         </S.TabItemWrapper>
-        <S.TabItemWrapper>
+        <S.TabItemWrapper onClick={onClickMoveToPage("/mypage/boards")}>
           <S.PeopleIcon />
           <S.TabText>동행 내역</S.TabText>
         </S.TabItemWrapper>
