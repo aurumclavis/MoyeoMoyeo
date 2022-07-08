@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
   padding-bottom: 1.3rem;
   border: 0.063rem solid #15133c;
   border-radius: 1.25rem;
+  margin-top: 1rem;
 `;
 export const LineDiv = styled.div`
   width: 100%;
@@ -82,13 +83,16 @@ export const DateLeftIcon = styled(CaretLeftOutlined)``;
 export const DateRigthIcon = styled(CaretRightOutlined)``;
 
 export const ListWrapper = styled.div`
-  width: 100%;
+  width: 95%;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 0.6rem 0px;
+  margin: 0.6rem;
+  border: 1px solid #d2d2d2;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
 `;
 
 export const ListImg = styled.img`
@@ -145,8 +149,11 @@ export const Btn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
-  background-color: #85f4ff;
+  background-color: #42c2ff;
   border-radius: 20px;
   cursor: pointer;
+  :hover {
+    font-family: 600;
+    border: 1px solid #ffffff;
+  }
 `;
