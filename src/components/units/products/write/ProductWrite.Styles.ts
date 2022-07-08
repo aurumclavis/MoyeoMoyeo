@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
+import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
 
-export const Wrapper = styled.div``;
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
+export const Wrapper = styled.div`
+  margin: 3.125rem 0;
+`;
 
 // 상품 등록(수정) 타이틀
 export const WriteTitle = styled.h1`
@@ -13,7 +19,7 @@ export const WriteWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 1.25rem;
+  padding: 2rem;
   background: #ffffff;
   border: 1px solid #d2d2d2;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
@@ -37,7 +43,12 @@ export const Input = styled.input`
   padding: 0.625rem;
   border-radius: 5px;
   border: 1px solid #73777b;
-  font-size: 1.25rem;
+  font-size: 1rem;
+  :focus {
+    outline: none;
+    border: 2px solid #ffd24c;
+    transition: 0.5s ease;
+  }
 `;
 
 // 이미지 업로드
@@ -72,27 +83,41 @@ export const Editor = styled.div`
   height: 10rem;
   border: 1px solid #73777b;
 `;
+export const MyReactQuill = styled(ReactQuill)`
+  height: 25rem;
+  margin-left: 0.5rem;
+  margin-bottom: 2.2rem;
+`;
 
 // 등록, 취소 버튼 감싸는 Wrapper
 export const SubmitWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  margin: 1.875rem 0;
+  padding: 1.5rem 0;
 `;
 export const SubmitBtn = styled.button`
   width: 10%;
   padding: 1rem;
-  border: none;
+  border: 2px solid #ffd24c;
   border-radius: 0.625rem;
-  background-color: #ffd24c;
+  background-color: #ffffff;
   font-size: 1.25rem;
+  :hover {
+    cursor: pointer;
+    background-color: #ffd24c;
+    outline: none;
+    transition: 0.5s ease;
+  }
 `;
 export const CancelBtn = styled.button`
   width: 10%;
   padding: 1rem;
   border: none;
   border-radius: 0.625rem;
-  background-color: #d2d2d2;
+  background-color: #f4f4f4;
   font-size: 1.25rem;
+  :hover {
+    cursor: pointer;
+  }
 `;

@@ -1,8 +1,8 @@
-import { EyeFilled, HeartOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
-
+import { Visibility, FavoriteBorder } from "@mui/icons-material";
 export const Wrapper = styled.div`
   height: auto;
+  margin-top: 3.125rem;
 `;
 
 // 상세보기 전 상품정보들을 감싸는 Wrapper
@@ -13,6 +13,7 @@ export const SummaryWrapper = styled.div`
 `;
 export const SummaryImage = styled.img`
   width: 100%;
+  max-width: 580px;
   height: 100%;
   padding-left: 1.25rem;
 `;
@@ -49,11 +50,11 @@ export const ViewPickWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const ViewIcon = styled(EyeFilled)`
-  font-size: 1.125rem;
+export const ViewIcon = styled(Visibility)`
+  font-size: 1.25rem;
 `;
-export const PickIcon = styled(HeartOutlined)`
-  font-size: 1.125rem;
+export const PickIcon = styled(FavoriteBorder)`
+  font-size: 1.25rem;
 `;
 
 export const ContentsWrapper = styled.div`
@@ -77,10 +78,10 @@ export const Line = styled.div`
 export const SummaryBtnWrapper = styled.div`
   height: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 `;
 export const SkyblueBtn = styled.button`
-  width: 100%;
+  width: 45%;
   padding: 0.625rem;
   border: none;
   border-radius: 20px;
@@ -92,7 +93,7 @@ export const SkyblueBtn = styled.button`
   }
 `;
 export const WhiteBtn = styled.button`
-  width: 100%;
+  width: 45%;
   padding: 0.625rem;
   border: 1px solid #d2d2d2;
   border-radius: 20px;
@@ -116,10 +117,10 @@ export const NavWrapper = styled.div`
 export const NavItem = styled.button`
   width: 100%;
   padding: 0.625rem;
-  background: ${(props: INavItemProps) =>
-    props.isActive ? "#d2d2d2" : "#ffffff"};
   border: none;
   border-radius: 10px 10px 0px 0px;
+  background: ${(props: INavItemProps) =>
+    props.isActive ? "#d2d2d2" : "#ffffff"};
   font-size: 1.25rem;
   :hover {
     cursor: pointer;

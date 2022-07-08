@@ -1,5 +1,35 @@
+import { useState } from "react";
+import ProductsBuy from "../buy/ProductsBuy.Container";
 import * as S from "./ProductsDetail.Styles";
-export default function ProductDetailUI() {
+import { Modal, Button } from "antd";
+import { v4 as uuid } from "uuid";
+import styled from "@emotion/styled";
+
+const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const SubmitButton = styled.button`
+  background: #42c2ff;
+  border-radius: 1.875rem;
+  color: #ffffff;
+  width: 80%;
+  height: 40px;
+  text-align: center;
+  padding: 0.625rem;
+  border: none;
+  margin: 1.875rem 0;
+  :hover {
+    cursor: pointer;
+  }
+`;
+export default function ProductDetailUI(props) {
+  const [visible, setVisible] = useState(false);
+  const onClickShowBuyModal = () => {
+    setVisible((prev) => !prev);
+  };
+
   return (
     <S.Wrapper>
       <S.SummaryWrapper>
@@ -26,11 +56,23 @@ export default function ProductDetailUI() {
             </S.Label>
           </S.ContentsWrapper>
           <S.SummaryBtnWrapper>
-            <S.SkyblueBtn>수정하기</S.SkyblueBtn>
-            <S.WhiteBtn>삭제하기</S.WhiteBtn>
+            {props.isSeller ? (
+              <>
+                <S.SkyblueBtn>수정하기</S.SkyblueBtn>
+                <S.WhiteBtn>삭제하기</S.WhiteBtn>
+              </>
+            ) : (
+              <>
+                <S.SkyblueBtn onClick={onClickShowBuyModal}>
+                  구매하기
+                </S.SkyblueBtn>
+                <S.WhiteBtn>찜하기</S.WhiteBtn>
+              </>
+            )}
           </S.SummaryBtnWrapper>
         </S.SummaryContentsWrapper>
       </S.SummaryWrapper>
+      {visible && <ProductsBuy setVisible={setVisible} />}
       <S.NavWrapper>
         <S.NavItem isActive={true}>상세보기</S.NavItem>
         <S.NavItem isActive={false}>Q&A</S.NavItem>

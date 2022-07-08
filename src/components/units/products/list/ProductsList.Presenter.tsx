@@ -1,3 +1,4 @@
+import Pagination01 from "../../../commons/pagination/01/Pagination01.Container";
 import * as S from "./ProductsList.Styles";
 
 export default function ProductsListUI() {
@@ -34,13 +35,7 @@ export default function ProductsListUI() {
       </S.GridWrapper>
 
       {/* 페이지네이션 */}
-      <S.PaginationWrapper>
-        <S.LeftIcon>이전</S.LeftIcon>
-        {new Array(10).fill(1).map((_, index) => (
-          <S.PageNumber key={index + 1}>{index + 1}</S.PageNumber>
-        ))}
-        <S.RightIcon>다음</S.RightIcon>
-      </S.PaginationWrapper>
+      <Pagination01 />
     </S.Wrapper>
   );
 }

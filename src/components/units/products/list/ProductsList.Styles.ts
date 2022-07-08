@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin: 3.125rem 0;
 `;
 
 // 검색바를 포함한 상단바 영역
@@ -18,8 +19,8 @@ export const SelectWrapper = styled.select`
   margin-right: 1.25rem;
   border: 1px solid black;
   border-radius: 5px;
-  font-size: 1rem;
   text-align: center;
+  font-size: 1rem;
 `;
 export const SearchBarWrapper = styled.div`
   width: 100%;
@@ -35,9 +36,9 @@ export const SearchBarIcon = styled(SearchOutlined)`
 `;
 export const SearchBarInput = styled.input`
   width: 100%;
-  background-color: transparent;
-  border: none;
   padding: 0 0.625rem;
+  border: none;
+  background-color: transparent;
   font-size: 1rem;
   :focus {
     outline: none;
@@ -93,33 +94,4 @@ export const Text = styled.span`
   display: block;
   margin-top: 0.625rem;
   font-size: 1rem;
-`;
-
-// 페이지네이션
-export const PaginationWrapper = styled.div`
-  width: auto;
-  text-align: center;
-`;
-export const PageNumber = styled.button`
-  padding: 0 0.625rem;
-  font-size: 1rem;
-  border: none;
-  background-color: transparent;
-  :hover {
-    cursor: pointer;
-  }
-`;
-export const LeftIcon = styled(LeftOutlined)`
-  font-size: 1rem;
-  padding: 10px;
-  :hover {
-    cursor: pointer;
-  }
-`;
-export const RightIcon = styled(RightOutlined)`
-  font-size: 1rem;
-  padding: 10px;
-  :hover {
-    cursor: pointer;
-  }
 `;

@@ -1,15 +1,24 @@
+import { Clear, Reply, SubdirectoryArrowRight } from "@mui/icons-material";
 import styled from "@emotion/styled";
-import { Clear, Reply } from "@mui/icons-material";
 
 export const ItemWrapper = styled.div`
   width: 100%;
-  height: 12rem;
+  height: 10.5rem;
   display: flex;
   padding: 1.25rem;
+  background-color: #f4f4f4;
   border-bottom: 1px solid #d2d2d2;
 `;
+export const SubDirectoryWrapper = styled.div`
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+  font-size: 1.5rem;
+`;
+export const SubDirectoryIcon = styled(SubdirectoryArrowRight)``;
 export const ContentsWrapper = styled.div`
-  width: 95%;
+  width: 90%;
   display: flex;
   flex-direction: column;
 `;
