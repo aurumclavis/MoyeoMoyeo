@@ -5,6 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 export default function BoardListPresenter(props: any) {
   return (
     <S.Wrapper>
+      {/* <S.CreateBoardButton onClick={props.onClickAddItem}>
+        +
+      </S.CreateBoardButton> */}
       <S.EventTypeWrapper>
         <S.CarouselWrapper>
           <UnevenSetsFinite eventCategory={props.eventCategory} />
@@ -83,8 +86,8 @@ export default function BoardListPresenter(props: any) {
           </S.ViewTypeMobileWrapper>
           <S.ListWrapper>
             {props.data.map((el: any) => (
-              <S.Item key={uuidv4()}>
-                <S.ItemWrapper>
+              <S.ItemWrapper key={uuidv4()}>
+                <S.Item>
                   <S.EventImage src="/market.jpg" />
                   <S.ItemMain>
                     <S.Header>
@@ -109,7 +112,7 @@ export default function BoardListPresenter(props: any) {
                       </S.AccompanyDate>
                     </S.Footer>
                   </S.ItemMain>
-                </S.ItemWrapper>
+                </S.Item>
                 <S.SendAccompany accompanied={el.accompanied}>
                   {el.accompanied ? (
                     <S.PaperPlaneImage src="/icon/simbollogo2Big.png" />
@@ -117,7 +120,7 @@ export default function BoardListPresenter(props: any) {
                     <S.PaperPlaneImage src="/icon/simbollogo.png" />
                   )}
                 </S.SendAccompany>
-              </S.Item>
+              </S.ItemWrapper>
             ))}
           </S.ListWrapper>
         </S.Main>

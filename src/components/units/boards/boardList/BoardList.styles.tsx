@@ -183,7 +183,7 @@ export const ListWrapper = styled.div`
   flex-direction: column;
   gap: 1rem;
 `;
-export const Item = styled.div`
+export const ItemWrapper = styled.div`
   width: 44rem;
   height: 5.938rem;
   display: flex;
@@ -191,7 +191,7 @@ export const Item = styled.div`
   border-radius: 5px;
   box-shadow: 0px 4px 4px 0px #00000033;
 `;
-export const ItemWrapper = styled.div`
+export const Item = styled.div`
   display: flex;
   gap: 0.5rem;
 `;
@@ -205,8 +205,7 @@ export const EventImage = styled.img`
 export const ItemMain = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  padding: 0.2rem 0;
+  gap: 0.7rem;
 `;
 export const Header = styled.div`
   display: flex;
@@ -266,4 +265,24 @@ export const SendAccompany = styled.div`
 export const PaperPlaneImage = styled.img`
   width: 60%;
 `;
-// export const  = styled.div``
+export const CreateBoardButton = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ffd24c;
+  color: black;
+  box-shadow: 0px 4px 10px 0px #00000033;
+  font-size: 30px;
+  text-align: center;
+  line-height: 55px;
+  position: fixed;
+  bottom: 50px;
+  left: 150px;
+  cursor: pointer;
+  transition: 0.3s;
+  :hover {
+    font-size: 40px;
+    background-color: gray;
+    color: white;
+  }
+`;

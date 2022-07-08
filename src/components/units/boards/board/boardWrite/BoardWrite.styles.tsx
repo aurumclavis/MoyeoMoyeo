@@ -124,7 +124,7 @@ export const AccompanyDateInputWrapper = styled.div`
   gap: 1rem;
 `;
 export const AccompanyDateInput = styled.input`
-  width: 7.125rem;
+  width: 7.5rem;
   height: 2.188rem;
   margin-left: 0.5rem;
   padding: 0.6rem;
@@ -176,6 +176,7 @@ export const MaxHeadCountInput = styled.input`
   ::placeholder {
     color: #d2d2d2;
     font-size: 1.1rem;
+    text-align: center;
   }
 `;
 export const TransportationWrapper = styled.div`
@@ -282,12 +283,13 @@ export const LocationWrapper = styled.div`
 `;
 export const MapWrapper = styled.div`
   width: 100%;
+  height: 24.188rem;
   display: flex;
   gap: 2rem;
 `;
 export const KaKaoMap = styled.div`
   width: 100%;
-  height: 24.188rem;
+
   margin-left: 0.5rem;
   border: 1px solid gray;
 `;

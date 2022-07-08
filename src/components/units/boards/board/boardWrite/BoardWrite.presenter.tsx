@@ -1,5 +1,6 @@
 import * as S from "./BoardWrite.styles";
 import KaKaoMap from "../../KaKaoMap";
+import KaKaoMapFetch from "../../KaKaoMap/FetchMap";
 
 export default function BoardWritePresenter(props: any) {
   return (

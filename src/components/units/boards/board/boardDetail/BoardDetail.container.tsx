@@ -5,9 +5,9 @@ export default function BoardDetailContainer() {
   // 목업을 위한 하드코딩
   const lat = 37.5378;
   const lng = 126.8939;
-  const [isMyBoard] = useState(false);
-  const [isCompleted] = useState(true);
-  const [isAccompanyUser] = useState(true);
+  const [isMyBoard] = useState(true);
+  const [isCompleted] = useState(false);
+  const [isAccompanyUser] = useState(false);
   return (
     <BoardDetailPresenter
       lat={lat}
