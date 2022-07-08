@@ -8,7 +8,7 @@ export default function KaKaoMap(props: any) {
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?appkey=1a262fe0bd0cd3800935712d6538eb49&autoload=false&libraries=services";
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=107c600fa103c3cee537e6a2132c7e72&autoload=false&libraries=services";
     document.head.appendChild(script);
     script.onload = () => {
       window.kakao.maps.load(function () {
@@ -85,7 +85,7 @@ export default function KaKaoMap(props: any) {
         );
       });
     };
-  }, [props]);
+  }, [props.isEdit]);
 
   return (
     <>

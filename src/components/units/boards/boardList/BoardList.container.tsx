@@ -1,7 +1,9 @@
 import { useState } from "react";
 import BoardListPresenter from "./BoardList.presenter";
+import { useRouter } from "next/router";
 
 export default function BoardListContainer() {
+  const router = useRouter();
   const eventCategory = [
     "전체",
     "실외공연",
@@ -61,7 +63,9 @@ export default function BoardListContainer() {
     setSelectRecruit(false);
     setSelectAccompany(true);
   };
-
+  const onClickAddItem = () => {
+    router.push("/boards/new");
+  };
   return (
     <BoardListPresenter
       eventCategory={eventCategory}
@@ -72,6 +76,7 @@ export default function BoardListContainer() {
       onClickViewRecruitment={onClickViewRecruitment}
       onClickViewAccompany={onClickViewAccompany}
       data={data}
+      onClickAddItem={onClickAddItem}
     />
   );
 }
