@@ -20,7 +20,7 @@ export default function LayoutFooterUI() {
             </S.LeftListWrapper>
             <S.RightListWrapper>
               <S.ListContents>
-                <S.ListTitle>capyrigth</S.ListTitle> moyeomoyeo
+                <S.ListTitle>copyright</S.ListTitle> moyeomoyeo
               </S.ListContents>
               <S.ListContents>
                 <S.ListTitle>주소</S.ListTitle> 서울특별시 구로구 구로동 188-25
