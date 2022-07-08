@@ -5,17 +5,23 @@ export default function LayoutHeaderUI(props) {
     <S.Wrapper>
       <S.InsideWrapper>
         <S.LogoMenuWrapper>
-          <S.LogoImg src="/icon/mainlogo.png" />
+          <S.LogoImg
+            src="/icon/mainlogo.png"
+            onClick={props.onClickMoveToMain}
+          />
           <S.NavBarWrapper>
-            <S.Menu>동행하기</S.Menu>
-            <S.Menu>축제일정</S.Menu>
-            <S.Menu>모여마켓</S.Menu>
-            <S.Menu>마이페이지</S.Menu>
+            {props.HEADER_MENUS.map(el => (
+              <div key={el.page}>
+                <S.Menu id={el.page} onClick={props.onClickMenu}>
+                  {el.name}
+                </S.Menu>
+              </div>
+            ))}
           </S.NavBarWrapper>
         </S.LogoMenuWrapper>
         <S.UserMenuWrapper>
-          <S.UserMenu>로그인</S.UserMenu>
-          <S.UserMenu>회원가입</S.UserMenu>
+          <S.UserMenu onClick={props.onClickMoveToLogin}>로그인</S.UserMenu>
+          <S.UserMenu onClick={props.onClickMoveToSignup}>회원가입</S.UserMenu>
         </S.UserMenuWrapper>
       </S.InsideWrapper>
     </S.Wrapper>
