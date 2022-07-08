@@ -25,7 +25,6 @@ export const MainWrapper = styled.div`
   margin-left: 8rem;
 `;
 export const ViewTypeWrapper = styled.div`
-  /* width: 30%; */
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -84,7 +83,6 @@ export const MySearchIcon = styled(SearchIcon)`
 export const EventSearchInput = styled.input`
   width: 100%;
   height: 2.188rem;
-
   border: none;
   outline: none;
   font-size: 1.1rem;
