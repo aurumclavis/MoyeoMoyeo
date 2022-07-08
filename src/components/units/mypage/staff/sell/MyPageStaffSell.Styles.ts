@@ -39,12 +39,12 @@ export const ItemTitle = styled.h2`
 `;
 export const ItemText = styled.span`
   display: block;
-  margin: 0.313rem 0;
+  // margin: 0.313rem 0;
   padding-right: 0.625rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-size: 1rem;
 `;

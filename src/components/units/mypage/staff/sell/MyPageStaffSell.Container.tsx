@@ -12,7 +12,6 @@ export default function MyPageStaffSell() {
             <S.ItemText>10000원</S.ItemText>
             <S.ItemText>2022.07.28 00:00</S.ItemText>
           </S.ItemRowWrapper>
-
           <S.ItemText>
             내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
             내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
@@ -33,7 +32,6 @@ export default function MyPageStaffSell() {
             <S.ItemText>10000원</S.ItemText>
             <S.ItemText>2022.07.28 00:00</S.ItemText>
           </S.ItemRowWrapper>
-
           <S.ItemText>
             내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
             내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다

@@ -24,4 +24,5 @@ export const Column = styled.td`
   width: 20%;
   text-align: center;
   height: 45px;
+  border-top: 1px solid #f4f4f4;
 `;
