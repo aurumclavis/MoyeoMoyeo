@@ -5,10 +5,10 @@ export default function SignUpPage() {
   const router = useRouter();
 
   const onClickToSignNew = () => {
-    router.push("/signUp/new");
+    router.push("/signup/new");
   };
   const onClickToSignNewStaff = () => {
-    router.push("/signUp/newStaff");
+    router.push("/signup/newStaff");
   };
   const onClickToLogin = () => {
     router.push("/login");
