@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 export const ItemWrapper = styled.div`
   width: 100%;
-  height: 10rem;
+  height: 10.5rem;
   display: flex;
   padding: 1.25rem;
   background-color: #f4f4f4;

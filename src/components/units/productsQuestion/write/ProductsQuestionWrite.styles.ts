@@ -3,6 +3,7 @@ export const FormWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  padding: 0 1.25rem;
 `;
 export const WriteTitle = styled.h2`
   margin: 0;
@@ -27,9 +28,15 @@ export const WriteBtnWrapper = styled.div`
 
 export const WriteBtn = styled.button`
   width: auto;
-  padding: 1rem;
-  border: none;
+  padding: 0.625rem 1rem;
+  border: 2px solid #ffd24c;
   border-radius: 5px;
-  background-color: #ffd24c;
   font-size: 1rem;
+  background-color: #ffffff;
+  :hover {
+    cursor: pointer;
+    background-color: #ffd24c;
+    outline: none;
+    transition: 0.5s ease;
+  }
 `;

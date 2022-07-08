@@ -15,7 +15,8 @@ export default function ProductsQuestionListItem() {
             문의 내용입니다. 문의 내용입니다. 문의 내용입니다. 문의 내용입니다.
             문의 내용입니다. 문의 내용입니다. 문의 내용입니다. 문의 내용입니다.
             문의 내용입니다. 문의 내용입니다. 문의 내용입니다. 문의 내용입니다.
-            문의 내용입니다.
+            문의 내용입니다.문의 내용입니다. 문의 내용입니다. 문의 내용입니다.
+            문
           </S.Contents>
         </S.ContentsWrapper>
         <S.IconWrapper>

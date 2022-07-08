@@ -3,7 +3,7 @@ import { Clear, Reply } from "@mui/icons-material";
 
 export const ItemWrapper = styled.div`
   width: 100%;
-  height: 10rem;
+  height: 12rem;
   display: flex;
   padding: 1.25rem;
   border-bottom: 1px solid #d2d2d2;

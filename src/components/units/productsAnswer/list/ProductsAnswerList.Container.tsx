@@ -15,11 +15,11 @@ export default function ProductsAnswerList() {
           답변 내용입니다. 답변 내용입니다. 답변 내용입니다. 답변 내용입니다.
           답변 내용입니다. 답변 내용입니다. 답변 내용입니다. 답변 내용입니다.
           답변 내용입니다. 답변 내용입니다. 답변 내용입니다. 답변 내용입니다.
-          답변 내용입니다. 답변 내용입니다.
+          답변 내용입니다. 답변 내용입니다.답변 내용입니다. 답변 내용입니다. 답
         </S.Contents>
       </S.ContentsWrapper>
       <S.IconWrapper>
-        <S.DeleteIcon />
+        <S.ReplyIcon />
         <S.DeleteIcon />
       </S.IconWrapper>
     </S.ItemWrapper>

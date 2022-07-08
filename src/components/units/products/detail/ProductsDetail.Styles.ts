@@ -13,6 +13,7 @@ export const SummaryWrapper = styled.div`
 `;
 export const SummaryImage = styled.img`
   width: 100%;
+  max-width: 580px;
   height: 100%;
   padding-left: 1.25rem;
 `;
@@ -116,10 +117,10 @@ export const NavWrapper = styled.div`
 export const NavItem = styled.button`
   width: 100%;
   padding: 0.625rem;
-  background: ${(props: INavItemProps) =>
-    props.isActive ? "#d2d2d2" : "#ffffff"};
   border: none;
   border-radius: 10px 10px 0px 0px;
+  background: ${(props: INavItemProps) =>
+    props.isActive ? "#d2d2d2" : "#ffffff"};
   font-size: 1.25rem;
   :hover {
     cursor: pointer;
