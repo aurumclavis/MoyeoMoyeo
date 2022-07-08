@@ -14,7 +14,6 @@ const Wrapper = styled.div`
 const Body = styled.div`
   width: 100%;
   max-width: 75rem;
-  padding: 1.25rem;
 `;
 
 const SHOW_BANNER = ["/", "/events"];
