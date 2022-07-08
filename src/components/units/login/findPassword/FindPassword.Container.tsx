@@ -29,10 +29,6 @@ const schema = yup.object({
     .number()
     .required("핸드폰 번호는 필수 입력 사항입니다.")
     .typeError("숫자만 입력가능합니다."),
-  phoneNumber2: yup
-    .number()
-    .required("필수 입력 사항입니다.")
-    .typeError("숫자만 입력가능합니다."),
 });
 export default function FindPwPage() {
   const router = useRouter();

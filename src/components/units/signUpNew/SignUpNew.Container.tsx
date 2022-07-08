@@ -29,7 +29,7 @@ const schema = yup.object({
     .required("비밀번호는 확인은 필수 입력 사항입니다.")
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다."),
   phoneNumber: yup
-    .number()
+    .string()
     .required("핸드폰 번호는 필수 입력 사항입니다.")
     .typeError("숫자만 입력가능합니다."),
   phoneNumber2: yup
@@ -70,6 +70,23 @@ export default function SignUpNewPage() {
     setIsReadyForNum(false);
     setIsDone(true);
   };
+  const onClickCreateUser = async (data: any) => {
+    try {
+      await createUser({
+        variables: {
+          createUserInput: {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+          },
+        },
+      });
+      alert("회원가입완료");
+      router.push(`/login`);
+    } catch (error) {
+      alert("가입안됨 확인필요");
+    }
+  };
 
   return (
     <SignUpNewPageUI
@@ -86,6 +103,8 @@ export default function SignUpNewPage() {
       isReadyForNum={isReadyForNum}
       isDone={isDone}
       onClickConfirm={onClickConfirm}
+      onClickCreateUser={onClickCreateUser}
+      handleSubmit={handleSubmit}
     />
   );
 }

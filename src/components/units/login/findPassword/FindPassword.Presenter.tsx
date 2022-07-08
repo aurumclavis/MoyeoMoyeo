@@ -58,9 +58,8 @@ export default function FindPwPageUI(props) {
         <S.Error>{props.formState.errors.password?.message}</S.Error>
         <CommonInput
           placeholder={"새 비밀번호를 한번 더 입력해주세요"}
-          register={props.register("password2")}
+          register={props.register("password")}
         />
-        <S.Error>{props.formState.errors.password2?.message}</S.Error>
 
         <S.SubmitBtn>새 비밀번호로 업데이트</S.SubmitBtn>
         <S.FooterWrapper>

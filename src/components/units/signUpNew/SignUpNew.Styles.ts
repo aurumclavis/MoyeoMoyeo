@@ -67,10 +67,11 @@ export const NumberInputs = styled.div`
   justify-content: space-between;
   gap: 10px;
 `;
-export const MobileAuthBtn = styled.button`
+export const MobileAuthBtn = styled.div`
   width: 123px;
   height: 37px;
   text-align: center;
+  padding-top: 5px;
   border: 1px solid #edf0f5;
   border-radius: 5px;
   cursor: pointer;
@@ -108,11 +109,12 @@ export const AuthInput = styled.input`
     border: 2px solid #ffd24c;
   }
 `;
-export const MobileGetNumAgainBtn = styled.button`
+export const MobileGetNumAgainBtn = styled.div`
   width: 120px;
   height: 37px;
   background-color: #ffffff;
   text-align: center;
+  padding-top: 7px;
   border: 1px solid #ffd24c;
   border-radius: 5px;
   font-size: 0.875rem;
@@ -123,11 +125,12 @@ export const MobileGetNumAgainBtn = styled.button`
     border: 1px solid black;
   }
 `;
-export const MobileAuthCheckBtn = styled.button`
+export const MobileAuthCheckBtn = styled.div`
   width: 80px;
   height: 37px;
   background-color: #ffffff;
   text-align: center;
+  padding-top: 7px;
   border: 1px solid #ffd24c;
   border-radius: 5px;
   font-size: 0.875rem;
@@ -180,6 +183,7 @@ export const SubmitBtn = styled.button`
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 20px;
+  background-color: ${(props) => (props.isActive ? "#FFD24C" : "#edf0f5")};
 `;
 
 // footer
