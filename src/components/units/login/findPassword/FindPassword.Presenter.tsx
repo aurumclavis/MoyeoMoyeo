@@ -16,7 +16,6 @@ export default function FindPwPageUI(props) {
     <S.OutWrapper>
       <S.Wrapper>
         <S.HeaderTitle>비밀번호 찾기</S.HeaderTitle>
-
         <S.CommonSubTitle>*이메일 인증이 필요합니다.</S.CommonSubTitle>
         <CommonInput
           placeholder={"이메일(ID)을 입력해주세요"}

@@ -10,7 +10,7 @@ export const OutWrapper = styled.div`
 `;
 
 //내용
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   width: 430px;
   background-color: #ffffff;
   /* border: 1px solid #bdbdbd; */
@@ -126,4 +126,13 @@ export const FooterBtn = styled.div`
     background-color: #ffd24c;
     border: 1px solid black;
   }
+`;
+
+//hook-form error
+export const Error = styled.div`
+  width: 100%;
+  color: red;
+  font-size: 0.563rem;
+  padding-left: 10px;
+  text-align: left;
 `;

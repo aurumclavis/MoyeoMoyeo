@@ -3,9 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import { number } from "yup/lib/locale";
-import { useRef, useState } from "react";
-import { max } from "lodash";
+import { useState } from "react";
 
 const schema = yup.object({
   name: yup
@@ -34,7 +32,7 @@ const schema = yup.object({
     .typeError("숫자만 입력가능합니다."),
   phoneNumber2: yup
     .number()
-    .required("필수 입력 사항입니다.")
+    .required("핸드폰 번호는 필수 입력 사항입니다.")
     .typeError("숫자만 입력가능합니다."),
 });
 
@@ -57,17 +55,11 @@ export default function SignUpNewPage() {
     setPhone3rdNum(event.target.value);
   };
 
-  // const moveFocus2 = () => {
-  //   if (phone.length === 4) {
-  //     // phone[1].focus();
-  //   }
-  // };
   const onClickGetNumber = () => {
     setIsReadyForNum(true);
   };
 
   const onClickConfirm = () => {
-    // console.log("010")
     setIsReadyForNum(false);
     setIsDone(true);
   };

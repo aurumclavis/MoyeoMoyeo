@@ -27,7 +27,7 @@ export default function Layout(props) {
   return (
     <Wrapper>
       <LayoutHeader></LayoutHeader>
-      {isShowBanner && <LayoutBanner />}
+      {/* {isShowBanner && <LayoutBanner />} */}
       <Body>{props.children}</Body>
       <LayoutFooter />
     </Wrapper>
