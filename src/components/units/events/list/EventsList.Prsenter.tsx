@@ -21,12 +21,16 @@ export default function EventsListUI(props) {
           </S.CalendarWrapper>
         </S.DateWrapper>
         <S.LineListDiv />
+        <S.SequenceWrapper>
+          <S.Sequence>조회수 순 정렬</S.Sequence>
+          <S.Sequence>날짜 순 정렬</S.Sequence>
+        </S.SequenceWrapper>
+        <S.LineListDiv />
         <S.ListWrapper>
           <S.ListImg src="/배너이미지_동행1.png" />
           <S.ContentsWrapper>
             <S.ContentsTitle>축제 이름 축제 이름</S.ContentsTitle>
             <S.ContentsPeriod>기간 yyyy-mm-dd - yyyy-mm-dd</S.ContentsPeriod>
-
             <S.Marker>
               요약글 요약글 요약글 요약글 요약글 요약글 요약글 요약글 요약글
               요약글 요약글 요약글 요약글 요약글 요약글 요약글 요약글 요약글
