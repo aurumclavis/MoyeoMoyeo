@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 import ApolloSetting from "../src/components/commons/apollo";
 import { RecoilRoot } from "recoil";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
       <ApolloSetting>
@@ -21,3 +21,5 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
+
+//AppProps
