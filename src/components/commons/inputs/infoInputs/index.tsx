@@ -23,9 +23,10 @@ const Input = styled.input`
 export default function CommonInput(props) {
   return (
     <Input
-      {...props.register}
+      {...props?.register}
       placeholder={props?.placeholder}
-      type={props.type}
+      type={props?.type}
+      onChange={props?.onChange}
     />
   );
 }

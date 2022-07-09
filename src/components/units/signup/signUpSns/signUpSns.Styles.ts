@@ -9,9 +9,10 @@ export const OutWrapper = styled.div`
 `;
 export const Wrapper = styled.div`
   width: 405px;
+  height: auto;
   background-color: #ffffff;
   border-radius: 3px;
-  padding: 50px 15px;
+  padding: 60px 15px;
 `;
 export const HeaderTitle = styled.h1`
   & span {
@@ -21,7 +22,7 @@ export const HeaderTitle = styled.h1`
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 //kakao
 export const KakaoWrapper = styled.div`
@@ -36,6 +37,7 @@ export const KakaoWrapper = styled.div`
 `;
 export const SignUpTitle = styled.span`
   text-align: center;
+  color: black;
 `;
 
 export const SnsIcon = styled.img`
@@ -78,6 +80,7 @@ export const BodyWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const BodyTitle = styled.div`
@@ -85,6 +88,9 @@ export const BodyTitle = styled.div`
   text-align: center;
   font-size: 1.188rem;
   margin-right: 5px;
+  :hover {
+    text-decoration: underline;
+  }
 `;
 export const BodyIcon = styled.img`
   width: 16px;

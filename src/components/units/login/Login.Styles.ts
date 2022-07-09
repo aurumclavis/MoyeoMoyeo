@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   background-color: #ffffff;
   /* border: 1px solid #bdbdbd; */
   border-radius: 3px;
-  padding: 15px;
+  padding: 50px 15px;
 `;
 
 export const HeaderTitle = styled.h1`
@@ -26,7 +26,7 @@ export const HeaderTitle = styled.h1`
 export const CommonTitle = styled.div`
   width: 100%;
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px 0px;
 `;
 export const CommonSubTitle = styled.div`
   width: 100%;
@@ -39,9 +39,9 @@ export const SubWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border-bottom: 1px solid #edf0f5;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
 `;
 export const SubTitle = styled.span`
   font-size: 0.875rem;
@@ -60,8 +60,7 @@ export const SnsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0px 90px 20px 90px;
-  border-bottom: 1px solid #edf0f5;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
 export const SnsLogo = styled.img`
@@ -90,7 +89,11 @@ export const findPassword = styled.div`
   cursor: pointer;
   color: #bdbdbd;
   margin-bottom: 40px;
-  padding-top: 10px;
+  padding: 10px 0px 20px 0px;
+  border-bottom: 1px solid #edf0f5;
+  :hover {
+    color: #42c2ff;
+  }
 `;
 
 // footer
@@ -108,13 +111,19 @@ export const FooterTitle = styled.span`
   margin-right: 5px;
   color: #bdbdbd;
 `;
-export const FooterBtn = styled.button`
+export const FooterBtn = styled.div`
   width: 100%;
   height: 56px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid #ffd24c;
   background-color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0px;
+  :hover {
+    background-color: #ffd24c;
+    border: 1px solid black;
+  }
 `;

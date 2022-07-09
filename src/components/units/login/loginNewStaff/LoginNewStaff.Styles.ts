@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   background-color: #ffffff;
   /* border: 1px solid #bdbdbd; */
   border-radius: 3px;
-  padding: 15px;
+  padding: 50px 15px;
 `;
 
 export const HeaderTitle = styled.h1`
@@ -57,6 +57,9 @@ export const findPassword = styled.div`
   color: #bdbdbd;
   margin-bottom: 40px;
   padding-top: 10px;
+  :hover {
+    color: #42c2ff;
+  }
 `;
 
 // footer
@@ -74,13 +77,19 @@ export const FooterTitle = styled.span`
   margin-right: 5px;
   color: #bdbdbd;
 `;
-export const FooterBtn = styled.button`
+export const FooterBtn = styled.div`
   width: 100%;
   height: 56px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid #ffd24c;
   background-color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0px;
+  :hover {
+    background-color: #ffd24c;
+    border: 1px solid black;
+  }
 `;

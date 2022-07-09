@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   background-color: #ffffff;
   /* border: 1px solid #bdbdbd; */
   border-radius: 3px;
-  padding: 15px;
+  padding: 50px 15px;
 `;
 
 export const HeaderTitle = styled.h1`
@@ -33,6 +33,7 @@ export const CommonSubTitle = styled.div`
   text-align: left;
   margin-bottom: 5px;
   font-size: 0.875rem;
+  padding-left: 5px;
 `;
 
 // mobile
@@ -41,7 +42,7 @@ export const MobileInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin: 30px 0px;
+  margin: 20px 0px;
 `;
 export const NumberInputs = styled.div`
   width: 100%;
@@ -55,7 +56,11 @@ export const MobileAuthBtn = styled.button`
   text-align: center;
   border: 1px solid #edf0f5;
   border-radius: 5px;
+  background-color: #ffd24c;
   cursor: pointer;
+  :disabled {
+    background-color: "#edf0f5";
+  }
   background-color: ${(props) => (props.isActive ? "#FFD24C" : "#edf0f5")};
 `;
 
@@ -124,7 +129,7 @@ export const MobileAuthCheckBtn = styled.button`
 //submit
 export const SubmitBtn = styled.button`
   width: 100%;
-  height: 56px;
+  height: 50px;
   text-align: center;
   border: 1px solid #edf0f5;
   border-radius: 5px;

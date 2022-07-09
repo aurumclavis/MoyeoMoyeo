@@ -3,17 +3,18 @@ import styled from "@emotion/styled";
 //전체
 export const OutWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  /* height: 50rem; */
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #bdbdbd;
+  /* background-color: #bdbdbd; */
 `;
 
 //inner
 export const Wrapper = styled.div`
   max-width: 1200px;
+  height: 100%;
   background-color: #ffffff;
   /* border: 1px solid #bdbdbd; */
   border-radius: 3px;
@@ -69,6 +70,7 @@ export const BodySubCommonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-top: 10px;
 `;
 
 export const BodyCommonTitle = styled.span`

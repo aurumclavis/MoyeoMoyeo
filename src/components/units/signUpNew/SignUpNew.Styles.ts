@@ -14,13 +14,13 @@ export const Wrapper = styled.div`
   background-color: #ffffff;
   /* border: 1px solid #bdbdbd; */
   border-radius: 3px;
-  padding: 15px;
+  padding: 50px 15px;
 `;
 
 export const HeaderTitle = styled.h1`
   width: 100%;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 export const CommonTitle = styled.div`
   width: 100%;
@@ -213,4 +213,12 @@ export const Error = styled.div`
   font-size: 0.563rem;
   padding-left: 10px;
   text-align: left;
+`;
+// 이용약관
+export const Policy = styled.span`
+  color: #42c2ff;
+  cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
 `;

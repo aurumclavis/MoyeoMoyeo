@@ -17,7 +17,7 @@ export default function FindPwPageUI(props) {
       <S.Wrapper>
         <S.HeaderTitle>비밀번호 찾기</S.HeaderTitle>
 
-        <S.CommonSubTitle>기본 정보</S.CommonSubTitle>
+        <S.CommonSubTitle>*이메일 인증이 필요합니다.</S.CommonSubTitle>
         <CommonInput
           placeholder={"이메일(ID)을 입력해주세요"}
           register={props.register("email")}
@@ -39,8 +39,12 @@ export default function FindPwPageUI(props) {
               </S.NewAuthWrapper>
             ) : (
               <S.MobileAuthBtn
-                disabled={props?.emailComfirm === ""}
-                isActive={props.emailComfirm !== ""}
+                disabled={
+                  !/^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+                    props.watch("email")
+                  )
+                }
+                // isActive={props.watch("email")}
                 onClick={props.onClickGetNumber}
               >
                 인증번호 요청
@@ -61,7 +65,7 @@ export default function FindPwPageUI(props) {
           register={props.register("password")}
         />
 
-        <S.SubmitBtn>새 비밀번호로 업데이트</S.SubmitBtn>
+        <S.SubmitBtn>새 비밀번호로 수정</S.SubmitBtn>
         <S.FooterWrapper>
           <S.FooterTitle>앗! 비밀번호가 갑자기 생각나셨나요?</S.FooterTitle>
           <S.FooterBtn>로그인으로 돌아가기</S.FooterBtn>

@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   background-color: #ffffff;
   /* border: 1px solid #bdbdbd; */
   border-radius: 3px;
-  padding: 15px;
+  padding: 50px 15px;
 `;
 
 export const HeaderTitle = styled.h1`
@@ -120,4 +120,13 @@ export const FooterBtn = styled.div`
   font-size: 0.875rem;
   color: #42c2ff;
   cursor: pointer;
+`;
+
+// 이용약관
+export const Policy = styled.span`
+  color: #42c2ff;
+  cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
 `;

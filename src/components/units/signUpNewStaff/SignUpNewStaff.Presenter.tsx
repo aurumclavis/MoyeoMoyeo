@@ -8,7 +8,7 @@ export default function SignUpNewEventPageUI() {
     <S.OutWrapper>
       <S.Wrapper>
         <S.HeaderTitle>
-          <span>관계자회원</span>가입
+          <span>관계자</span> 회원가입
         </S.HeaderTitle>
 
         <S.CommonSubTitle>기본 정보</S.CommonSubTitle>
@@ -46,9 +46,18 @@ export default function SignUpNewEventPageUI() {
           </S.SubCommonCheckBox>
           <S.SubCommonCheckBox>
             <S.CheckedIcon type="checkbox" />
-            <S.CheckBoxTitle>[필수] 이용약관에 동의합니다.</S.CheckBoxTitle>
+            <S.CheckBoxTitle>
+              [필수] <S.Policy>이용약관</S.Policy>에 동의합니다.
+            </S.CheckBoxTitle>
+          </S.SubCommonCheckBox>
+          <S.SubCommonCheckBox>
+            <S.CheckedIcon type="checkbox" />
+            <S.CheckBoxTitle>
+              [선택] 마켓팅 정보이용에 동의합니다.
+            </S.CheckBoxTitle>
           </S.SubCommonCheckBox>
         </S.CheckBoxWrapper>
+
         <S.SubmitBtn>회원가입</S.SubmitBtn>
         <S.FooterWrapper>
           <S.FooterTitle>이미 계정이 있으신가요?</S.FooterTitle>

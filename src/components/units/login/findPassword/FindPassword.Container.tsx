@@ -32,44 +32,29 @@ const schema = yup.object({
 });
 export default function FindPwPage() {
   const router = useRouter();
-  const [phone2ndNum, setPhone2ndNum] = useState("");
-  const [phone3rdNum, setPhone3rdNum] = useState("");
   const [emailComfirm, setEmailComfirm] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
-  const { register, handleSubmit, formState, setValue, trigger, reset } =
+  const { register, handleSubmit, formState, setValue, trigger, reset, watch } =
     useForm({
       resolver: yupResolver(schema),
       mode: "onChange",
     });
-  const onChange2ndNum = (event) => {
-    setPhone2ndNum(event.target.value);
-  };
-  const onChange3ndNum = (event) => {
-    setPhone3rdNum(event.target.value);
-  };
   const onChagneEmail = (event) => {
     setEmailComfirm(event.target.value);
+    setIsActive(true);
   };
 
-  // const moveFocus2 = () => {
-  //   if (phone.length === 4) {
-  //     // phone[1].focus();
-  //   }
-  // };
   const onClickGetNumber = () => {
     setIsReadyForNum(true);
   };
-
   const onClickConfirm = () => {
     setIsReadyForNum(false);
     setIsDone(true);
   };
   return (
     <FindPwPageUI
-      onChange2ndNum={onChange2ndNum}
-      onChange3ndNum={onChange3ndNum}
       onClickGetNumber={onClickGetNumber}
       onClickConfirm={onClickConfirm}
       formState={formState}
@@ -77,10 +62,9 @@ export default function FindPwPage() {
       isReadyForNum={isReadyForNum}
       isDone={isDone}
       isActive={isActive}
-      phone3rdNum={phone3rdNum}
-      phone2ndNum={phone2ndNum}
       onChagneEmail={onChagneEmail}
       emailComfirm={emailComfirm}
+      watch={watch}
     />
   );
 }

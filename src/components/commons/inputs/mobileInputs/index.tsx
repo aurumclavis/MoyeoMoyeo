@@ -19,7 +19,7 @@ const Input = styled.input`
 export default function CommonMobileInput(props) {
   return (
     <Input
-      type={props.type}
+      type={props?.type}
       maxLength={4}
       {...props?.register}
       defaultValue={props?.defaultValue}

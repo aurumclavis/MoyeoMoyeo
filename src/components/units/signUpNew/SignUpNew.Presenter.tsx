@@ -18,25 +18,6 @@ export default function SignUpNewPageUI(props) {
       <S.OutWrapper>
         <S.Wrapper>
           <S.HeaderTitle>회원가입</S.HeaderTitle>
-          <S.CommonTitle>소셜 계정으로 1초만에 회원가입</S.CommonTitle>
-          <S.SnsWrapper>
-            <Link href="http://localhost:3000/login/kakao">
-              <a>
-                <S.SnsLogo src="/signUp/kakao.png" />
-              </a>
-            </Link>
-            <Link href="http://localhost:3000/login/kakao">
-              <a>
-                <S.SnsLogo src="/signUp/naver.png" />
-              </a>
-            </Link>
-            <Link href="http://localhost:3000/login/kakao">
-              <a>
-                <S.SnsLogo src="/signUp/googlelogo.png" />
-              </a>
-            </Link>
-          </S.SnsWrapper>
-          <S.CommonTitle>이메일로 회원가입</S.CommonTitle>
           <S.CommonSubTitle>기본 정보</S.CommonSubTitle>
           <CommonInput
             placeholder={"이메일(ID)을 입력해주세요"}
@@ -126,7 +107,9 @@ export default function SignUpNewPageUI(props) {
             </S.SubCommonCheckBox>
             <S.SubCommonCheckBox>
               <S.CheckedIcon type="checkbox" />
-              <S.CheckBoxTitle>[필수] 이용약관에 동의합니다.</S.CheckBoxTitle>
+              <S.CheckBoxTitle>
+                [필수] <S.Policy>이용약관</S.Policy>에 동의합니다.
+              </S.CheckBoxTitle>
             </S.SubCommonCheckBox>
             <S.SubCommonCheckBox>
               <S.CheckedIcon type="checkbox" />
