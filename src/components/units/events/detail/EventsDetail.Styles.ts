@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { CheckCircleOutlined } from "@ant-design/icons";
+import { LinkOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -34,6 +36,30 @@ export const MainHost = styled.div`
   margin: 1rem;
   font-size: 1rem;
 `;
+export const IconWrapper = styled.div`
+  width: 6%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: 12%;
+  margin-bottom: 1rem;
+  @media (max-width: 767px) {
+    width: 10%;
+    align-items: center;
+    margin-right: 0%;
+    margin-left: 0;
+  }
+`;
+export const PickIcon = styled(CheckCircleOutlined)`
+  font-size: 1.4rem;
+  cursor: pointer;
+`;
+export const LincIcon = styled(LinkOutlined)`
+  font-size: 1.4rem;
+
+  cursor: pointer;
+`;
 
 export const MainWrapper = styled.div`
   width: 100%;
@@ -57,8 +83,12 @@ export const MarkerWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 2.4rem 0;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border: 1px solid #d2d2d2;
+  font-size: 1rem;
+  @media (max-width: 767px) {
+    width: 80%;
+  }
 `;
 
 export const MainTitle = styled.div`
@@ -82,40 +112,41 @@ export const ContentsWrapper = styled.div`
   margin: 2rem 0;
 `;
 
-// export const MenuBtnWrapper = styled.div`
-//   width: 100%;
-//   height: 4rem;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-around;
-//   margin-top: 1rem;
-//   padding: 0px 10%;
-// `;
-// export const MenuBtn = styled.div`
-//   width: 49.9%;
-//   height: 100%;
-//   display: flex;
-//   flex-direction: center;
-//   justify-content: center;
-//   align-items: center;
-//   border-radius: 0.63rem 0.63rem 0 0;
-//   background-color: #f4f4f4;
-//   font-size: 1.2rem;
-//   font-weight: 700;
-//   cursor: pointer;
-//   :hover {
-//     background-color: #42c2ff;
-//     color: #f4f4f4;
-//   }
-// `;
-
 export const ContentImg = styled.img`
   width: 98%;
+  @media (max-width: 767px) {
+    width: 90%;
+  }
 `;
 export const ContetsText = styled.div`
-  width: 70%;
-  margin: 2rem;
+  width: 60%;
+  /* height: 20vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2.4rem 0;
+  padding: 1rem 2rem;
+  border: 1px solid #d2d2d2;
   font-size: 1rem;
+  @media (max-width: 767px) {
+    width: 80%;
+  }
+`;
+
+export const MapWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+`;
+
+export const MapTitle = styled.div`
+  margin-bottom: 2rem;
+  font-size: 1.25rem;
+  font-weight: 500;
 `;
 
 export const Footer = styled.div`
@@ -126,35 +157,48 @@ export const Footer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  @media (max-width: 767px) {
+    width: 80%;
+  }
 `;
 export const BtnRouter = styled.div`
-  width: 15.625rem;
-  height: 4.375rem;
+  width: 12.625rem;
+  height: 3.375rem;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #42c2ff;
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1rem;
   cursor: pointer;
   :hover {
     font-weight: 700;
     box-shadow: rgb(33 37 41 / 10%) 2px 10px 5px 0px;
   }
+  @media (max-width: 767px) {
+    width: 8rem;
+    height: 5rem;
+    font-size: 0.8rem;
+  }
 `;
 export const BtnRouterList = styled.div`
-  width: 15.625rem;
-  height: 4.375rem;
+  width: 10.625rem;
+  height: 3.375rem;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #d2d2d2;
-  font-size: 1.4rem;
+  font-size: 1rem;
   cursor: pointer;
   :hover {
     font-weight: 700;
     box-shadow: rgb(33 37 41 / 10%) 2px 10px 5px 0px;
+  }
+  @media (max-width: 767px) {
+    width: 6rem;
+    height: 5rem;
+    font-size: 0.8rem;
   }
 `;
