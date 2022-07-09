@@ -1,17 +1,22 @@
+// import { AppProps } from "next/app";
 import Layout from "../src/components/commons/layout";
 // import '../styles/globals.css'
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import "antd/dist/antd.css";
+import ApolloSetting from "../src/components/commons/apollo";
+import { RecoilRoot } from "recoil";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Global styles={globalStyles} />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </>
+    <RecoilRoot>
+      <ApolloSetting>
+        <Global styles={globalStyles} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloSetting>
+    </RecoilRoot>
   );
 }
 
