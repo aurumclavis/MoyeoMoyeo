@@ -22,11 +22,7 @@ export const ContentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const Status = styled.span`
-  margin: 0;
-  font-weight: bold;
-  font-size: 1.125rem;
-`;
+
 export const WriterWrapper = styled.div`
   display: flex;
   margin: 0.313rem 0;
@@ -34,6 +30,11 @@ export const WriterWrapper = styled.div`
 export const Text = styled.span`
   font-size: 1rem;
   padding-right: 0.625rem;
+`;
+export const Date = styled.span`
+  padding-right: 0.625rem;
+  color: #73777b;
+  font-size: 0.875rem;
 `;
 export const Contents = styled.p`
   flex-grow: 1;

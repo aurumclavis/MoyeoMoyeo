@@ -1,85 +1,86 @@
-import { useState } from "react";
-import ProductsBuy from "../buy/ProductsBuy.Container";
+import { useEffect, useRef, useState } from "react";
 import * as S from "./ProductsDetail.Styles";
-import { Modal, Button } from "antd";
-import { v4 as uuid } from "uuid";
 import styled from "@emotion/styled";
+import ProductsQuestionList from "../../productsQuestion/list/ProductsQuestionList.Container";
+import ProductsQuestionWrite from "../../productsQuestion/write/ProductsQuestionWrite.Container";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Image } from "antd";
 
-const ModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-export const SubmitButton = styled.button`
-  background: #42c2ff;
-  border-radius: 1.875rem;
-  color: #ffffff;
-  width: 80%;
-  height: 40px;
-  text-align: center;
-  padding: 0.625rem;
-  border: none;
-  margin: 1.875rem 0;
-  :hover {
-    cursor: pointer;
-  }
-`;
 export default function ProductDetailUI(props) {
-  const [visible, setVisible] = useState(false);
-  const onClickShowBuyModal = () => {
-    setVisible((prev) => !prev);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", onScrollNav);
+  }, []);
+
+  const navRef = useRef(null);
+  const qnaRef = useRef(null);
+
+  const onScrollNav = () => {
+    if (navRef.current !== null) {
+      if (
+        document.body.scrollTop > 200 ||
+        document.documentElement.scrollTop > 200
+      ) {
+        navRef.current.style = "top:0";
+      } else {
+        navRef.current.style = "top:-200px";
+      }
+    }
+  };
+  const onClickQna = () => {
+    window.scrollTo({
+      top: qnaRef.current?.offsetTop - 50,
+      behavior: "smooth",
+    });
   };
 
   return (
     <S.Wrapper>
-      <S.SummaryWrapper>
-        <S.SummaryImage src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDN8fGFydHxlbnwwfHx8fDE2NTcxMTM3Mjk&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
-        <S.SummaryContentsWrapper>
-          <S.Title>상품명</S.Title>
-          <S.SubtitleWrapper>
-            <S.Subtitle>00000원</S.Subtitle>
-            <S.ViewPickWrapper>
-              <S.ViewIcon />
-              <S.Label>100</S.Label>
-              <S.PickIcon />
-              <S.Label>11</S.Label>
-            </S.ViewPickWrapper>
-          </S.SubtitleWrapper>
-          <S.Line />
-          <S.ContentsWrapper>
-            <S.Label>
-              상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-              상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-              상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-              상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-              상품요약 상품요약 상품요약 상품요약 상품요약 상품요약{" "}
-            </S.Label>
-          </S.ContentsWrapper>
-          <S.SummaryBtnWrapper>
-            {props.isSeller ? (
-              <>
-                <S.SkyblueBtn>수정하기</S.SkyblueBtn>
-                <S.WhiteBtn>삭제하기</S.WhiteBtn>
-              </>
-            ) : (
-              <>
-                <S.SkyblueBtn onClick={onClickShowBuyModal}>
-                  구매하기
-                </S.SkyblueBtn>
-                <S.WhiteBtn>찜하기</S.WhiteBtn>
-              </>
-            )}
-          </S.SummaryBtnWrapper>
-        </S.SummaryContentsWrapper>
-      </S.SummaryWrapper>
-      {visible && <ProductsBuy setVisible={setVisible} />}
-      <S.NavWrapper>
-        <S.NavItem isActive={true}>상세보기</S.NavItem>
-        <S.NavItem isActive={false}>Q&A</S.NavItem>
+      <S.NavWrapper ref={navRef}>
+        <S.NavItemWrapper>
+          <S.NavItem isActive={true}>상품정보</S.NavItem>
+          <S.NavItem onClick={onClickQna} isActive={false}>
+            상품문의
+          </S.NavItem>
+        </S.NavItemWrapper>
       </S.NavWrapper>
-      <S.DetailWrapper>
-        <S.DetailImage src="https://images.unsplash.com/photo-1544816155-12df9643f363?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDUxfHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
-        <S.DetailImage src="https://images.unsplash.com/photo-1589365278144-c9e705f843ba?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDU0fHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
+      <S.LeftWrapper>
+        <S.Title>상품명</S.Title>
+        <S.ViewPickWrapper>
+          <S.IconWrapper>
+            <S.ViewIcon />
+            <S.Label>100</S.Label>
+          </S.IconWrapper>
+          <S.PickIcon />
+          <S.Label>11</S.Label>
+        </S.ViewPickWrapper>
+        <S.Line />
+        <S.Label>
+          상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
+          상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
+          상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
+          상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
+          상품요약 상품요약 상품요약 상품요약 상품요약 상품요약{" "}
+        </S.Label>
+        <S.Line />
+        <S.Subtitle>상품 정보</S.Subtitle>
+        <Image
+          width="100%"
+          src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDN8fGFydHxlbnwwfHx8fDE2NTcxMTM3Mjk&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450"
+        />{" "}
+        <S.CarouselWrapper>
+          {/* <S.MySlider {...settings}>
+          </S.MySlider> */}
+          <S.CarouselImage src="https://images.unsplash.com/photo-1544816155-12df9643f363?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDUxfHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
+          <S.CarouselImage src="https://images.unsplash.com/photo-1589365278144-c9e705f843ba?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDU0fHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
+        </S.CarouselWrapper>
         <S.DetailContents>
           상품 상세 내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품
           상세 내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
@@ -99,17 +100,35 @@ export default function ProductDetailUI(props) {
           내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
           내용입니다 상품 상세 내용입니다{" "}
         </S.DetailContents>
-        <S.SellerContentsWrapper>
-          판매자 정보
-          <S.Label>담당자 소속 : </S.Label>
-          <S.Label>담당자 이름 :</S.Label>
-          <S.Label>담당자 전화번호 : </S.Label>
-        </S.SellerContentsWrapper>
-      </S.DetailWrapper>
-      <S.NavWrapper>
-        <S.NavItem isActive={false}>상세보기</S.NavItem>
-        <S.NavItem isActive={true}>Q&A</S.NavItem>
-      </S.NavWrapper>
+        <S.Line />
+        <div ref={qnaRef}>
+          <ProductsQuestionWrite />
+          <ProductsQuestionList />
+        </div>
+      </S.LeftWrapper>
+      <S.RightWrapper>
+        <S.SidebarWrapper>
+          <S.Subtitle>00000원</S.Subtitle>
+          <S.BtnWrapper>
+            {props.isSeller ? (
+              <>
+                <S.SkyblueBtn>수정하기</S.SkyblueBtn>
+                <S.WhiteBtn>삭제하기</S.WhiteBtn>
+              </>
+            ) : (
+              <>
+                <S.SkyblueBtn>구매하기</S.SkyblueBtn>
+                <S.WhiteBtn>찜하기</S.WhiteBtn>
+              </>
+            )}
+          </S.BtnWrapper>
+          <S.SellerContentsWrapper>
+            <S.Label>운영자</S.Label>
+            <S.Label>00회사</S.Label>
+            <S.Label>010-0000-0000</S.Label>
+          </S.SellerContentsWrapper>
+        </S.SidebarWrapper>
+      </S.RightWrapper>
     </S.Wrapper>
   );
 }
