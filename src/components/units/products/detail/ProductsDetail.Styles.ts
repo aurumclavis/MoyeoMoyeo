@@ -15,21 +15,23 @@ export const Wrapper = styled.div`
 interface INavItemProps {
   isActive: boolean;
 }
-export const NavWrapper = styled.div`
-  width: 100vw;
+export const NavWrapper = styled.nav`
+  width: 100%;
   height: 50px;
   display: flex;
   justify-content: center;
   position: fixed;
   top: -71px;
+  left: 0;
+  z-index: 1;
   background-color: #ffffff;
   border-bottom: 1px solid #d9d9d9;
   transition: top 0.5s;
-  z-index: 1;
 `;
-export const NavItemWrapper = styled.nav`
-  width: 100%;
+export const NavItemWrapper = styled.div`
+  width: 1200px;
   display: flex;
+  background-color: #ffffff;
 `;
 export const NavItem = styled.div`
   padding: 0.625rem;
@@ -153,7 +155,7 @@ export const SellerContentsWrapper = styled.div`
   flex-direction: column;
 `;
 export const CarouselWrapper = styled.div`
-  width: 70vw;
+  width: 100%;
   height: 300px;
   display: flex;
   justify-content: center;

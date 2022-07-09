@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import * as S from "./ProductsDetail.Styles";
 import styled from "@emotion/styled";
 import ProductsQuestionList from "../../productsQuestion/list/ProductsQuestionList.Container";
@@ -16,37 +16,25 @@ export default function ProductDetailUI(props) {
     slidesToScroll: 1,
   };
   useEffect(() => {
-    window.addEventListener("scroll", onScrollNav);
+    window.addEventListener("scroll", props.onScrollNav);
   }, []);
-
-  const navRef = useRef(null);
-  const qnaRef = useRef(null);
-
-  const onScrollNav = () => {
-    if (navRef.current !== null) {
-      if (
-        document.body.scrollTop > 200 ||
-        document.documentElement.scrollTop > 200
-      ) {
-        navRef.current.style = "top:0";
-      } else {
-        navRef.current.style = "top:-200px";
-      }
-    }
-  };
-  const onClickQna = () => {
-    window.scrollTo({
-      top: qnaRef.current?.offsetTop - 50,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <S.Wrapper>
-      <S.NavWrapper ref={navRef}>
+      <S.NavWrapper ref={props.navRef}>
         <S.NavItemWrapper>
-          <S.NavItem isActive={true}>상품정보</S.NavItem>
-          <S.NavItem onClick={onClickQna} isActive={false}>
+          <S.NavItem
+            id="detail"
+            isActive={props.activedTab === "detail"}
+            onClick={props.onClickDetail}
+          >
+            상품정보
+          </S.NavItem>
+          <S.NavItem
+            id="qna"
+            isActive={props.activedTab === "qna"}
+            onClick={props.onClickQna}
+          >
             상품문의
           </S.NavItem>
         </S.NavItemWrapper>
@@ -70,11 +58,12 @@ export default function ProductDetailUI(props) {
           상품요약 상품요약 상품요약 상품요약 상품요약 상품요약{" "}
         </S.Label>
         <S.Line />
-        <S.Subtitle>상품 정보</S.Subtitle>
+        <S.Subtitle ref={props.detailRef}>상품 정보</S.Subtitle>
         <Image
           width="100%"
+          alt="thumbnail-image"
           src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDN8fGFydHxlbnwwfHx8fDE2NTcxMTM3Mjk&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450"
-        />{" "}
+        />
         <S.CarouselWrapper>
           {/* <S.MySlider {...settings}>
           </S.MySlider> */}
@@ -101,7 +90,7 @@ export default function ProductDetailUI(props) {
           내용입니다 상품 상세 내용입니다{" "}
         </S.DetailContents>
         <S.Line />
-        <div ref={qnaRef}>
+        <div ref={props.qnaRef}>
           <ProductsQuestionWrite />
           <ProductsQuestionList />
         </div>
