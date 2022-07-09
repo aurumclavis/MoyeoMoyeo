@@ -40,12 +40,12 @@ const schema = yup.object({
 export default function SignUpNewPage() {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
-  const [phone2ndNum, setPhone2ndNum] = useState("");
-  const [phone3rdNum, setPhone3rdNum] = useState("");
+  const [phone2ndNum, setPhone2ndNum] = useState<number>();
+  const [phone3rdNum, setPhone3rdNum] = useState<number>();
   const [isActive, setIsActive] = useState(false);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
-  const { register, handleSubmit, formState, setValue, trigger, reset } =
+  const { register, handleSubmit, formState, setValue, trigger, reset, watch } =
     useForm({
       resolver: yupResolver(schema),
       mode: "onChange",
@@ -59,6 +59,10 @@ export default function SignUpNewPage() {
 
   const onClickGetNumber = () => {
     setIsReadyForNum(true);
+    // if (phone2ndNum.length >= 4) {
+    //   phone3rdNum.current.focus();
+    //   return;
+    // }
   };
 
   const onClickConfirm = () => {
@@ -89,6 +93,7 @@ export default function SignUpNewPage() {
       formState={formState}
       register={register}
       handleSubmit={handleSubmit}
+      watch={watch}
       // mobile
       isActive={isActive}
       isReadyForNum={isReadyForNum}

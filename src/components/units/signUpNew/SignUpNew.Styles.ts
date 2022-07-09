@@ -71,11 +71,16 @@ export const MobileAuthBtn = styled.div`
   width: 123px;
   height: 37px;
   text-align: center;
-  padding-top: 5px;
+  padding-top: 7px;
   border: 1px solid #edf0f5;
   border-radius: 5px;
   cursor: pointer;
-  background-color: ${(props) => (props.isActive ? "#FFD24C" : "#edf0f5")};
+  font-size: 0.825rem;
+  :disabled {
+    background-color: #edf0f5;
+  }
+  /* background-color: ${(props) =>
+    props.isActive ? "#FFD24C" : "#edf0f5"}; */
 `;
 
 //인증번호
