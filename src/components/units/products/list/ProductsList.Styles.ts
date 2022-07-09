@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 3.125rem 0;
+  padding: 0 1.125rem;
 `;
 
 // 검색바를 포함한 상단바 영역
@@ -13,17 +14,12 @@ export const SearchWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-export const SelectWrapper = styled.select`
-  width: 7.5rem;
-  height: 45px;
-  margin-right: 1.25rem;
-  border: 1px solid black;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 1rem;
+export const SelectBtnWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 export const SearchBarWrapper = styled.div`
-  width: 100%;
+  width: 25%;
   height: 45px;
   display: flex;
   padding: 0.625rem;
@@ -49,7 +45,7 @@ export const SearchBarInput = styled.input`
 export const CreateBtnWrapper = styled.div`
   width: 7.5rem;
   height: 45px;
-  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 `;
 export const CreateBtn = styled.button`
   width: 100%;
@@ -57,6 +53,14 @@ export const CreateBtn = styled.button`
   border: none;
   border-radius: 5px;
   background-color: #ffd24c;
+  font-size: 1rem;
+`;
+export const Select = styled.select`
+  width: 6.25rem;
+  height: 45px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
   font-size: 1rem;
 `;
 
@@ -84,6 +88,7 @@ export const ImageWrapper = styled.div`
   }
 `;
 export const Image = styled.img`
+  border-radius: 5px;
   position: absolute;
   width: 100%;
   height: 100%;

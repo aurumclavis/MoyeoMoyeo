@@ -6,10 +6,8 @@ export default function ProductsAnswerList() {
         <S.SubDirectoryIcon />
       </S.SubDirectoryWrapper>
       <S.ContentsWrapper>
-        <S.WriterWrapper>
-          <S.Text>작성자</S.Text>
-          <S.Text>{String(new Date())}</S.Text>
-        </S.WriterWrapper>
+        <S.Text>판매자</S.Text>
+        <S.Date>2022-07-02</S.Date>
         <S.Contents>
           답변 내용입니다. 답변 내용입니다. 답변 내용입니다. 답변 내용입니다.
           답변 내용입니다. 답변 내용입니다. 답변 내용입니다. 답변 내용입니다.

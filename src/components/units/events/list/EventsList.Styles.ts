@@ -9,9 +9,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 1.3rem;
+  padding: 1.4rem;
   border-radius: 1.25rem;
-  margin: 1rem 3.25rem 0 3.25rem;
 `;
 export const LineDiv = styled.div`
   width: 100%;
@@ -28,6 +27,11 @@ export const Logo = styled.img`
   height: 3.125rem;
   width: 3.125rem;
   margin-right: 1rem;
+  @media (max-width: 767px) {
+    height: 1.6rem;
+    width: 1.6rem;
+    margin-right: 0.4rem;
+  }
 `;
 
 export const ListTitle = styled.div`
@@ -38,11 +42,14 @@ export const ListTitle = styled.div`
   padding-left: 5.4rem;
   margin-right: auto;
   margin-bottom: 1rem;
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 700;
-  /* border-radius: 1.25rem 1.25rem 0 0; */
-  /* border-bottom: 0.188rem solid #d2d2d2; */
-  /* background-color: #ffe69a; */
+  @media (max-width: 767px) {
+    justify-content: center;
+    padding-left: 0rem;
+    padding-left: 0rem;
+    font-size: 2rem;
+  }
 `;
 
 export const DateWrapper = styled.div`
@@ -82,19 +89,48 @@ export const DatePickIcon = styled(DateRangeIcon)``;
 export const DateLeftIcon = styled(CaretLeftOutlined)``;
 export const DateRigthIcon = styled(CaretRightOutlined)``;
 
+/// 정렬 버튼 부분
+
+export const SequenceWrapper = styled.div`
+  width: 100%;
+  height: 3vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-left: auto;
+`;
+export const Sequence = styled.div`
+  height: 2rem;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  margin-right: 3rem;
+  :hover {
+    color: #ffe69a;
+    border-bottom: 0.063rem solid #ffe69a;
+  }
+`;
+
+/// 행사 리스트 부분
 export const ListWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 16rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0.6rem;
+  margin: 0.6rem auto;
   padding: 0 2rem;
   border: 1px solid #d2d2d2;
   border-radius: 20px;
   :hover {
     box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
+  }
+  @media (max-width: 767px) {
+    height: 9rem;
+    margin: 0.2rem;
+    padding: 0.6rem;
+    justify-content: space-around;
   }
 `;
 
@@ -103,6 +139,10 @@ export const ListImg = styled.img`
   height: 11.25rem;
   margin: 2rem 0;
   border-radius: 10px;
+  @media (max-width: 767px) {
+    width: 7rem;
+    height: 7rem;
+  }
 `;
 
 export const ContentsWrapper = styled.div`
@@ -112,13 +152,21 @@ export const ContentsWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-top: 1rem;
-  padding-left: 2rem 0px;
+  padding-left: 2rem;
+  @media (max-width: 767px) {
+    width: 28rem;
+    height: 8rem;
+    margin-right: auto;
+  }
 `;
 
 export const ContentsTitle = styled.div`
   height: 30%;
   font-style: Bold;
   font-size: 1.8rem;
+  @media (max-width: 767px) {
+    font-size: 1rem;
+  }
 `;
 export const ContentsPeriod = styled.div`
   height: 20%;
@@ -126,10 +174,14 @@ export const ContentsPeriod = styled.div`
 `;
 
 export const Marker = styled.div`
-  width: 500px;
+  width: 98%;
   height: 50%;
   font-size: 1rem;
   overflow: hidden;
+  @media (max-width: 767px) {
+    width: 20rem;
+    height: 8rem;
+  }
 `;
 
 export const Btn = styled.div`
@@ -145,5 +197,9 @@ export const Btn = styled.div`
   :hover {
     font-family: 600;
     border: 1px solid #ffffff;
+  }
+  @media (max-width: 767px) {
+    width: 5rem;
+    font-size: 1rem;
   }
 `;
