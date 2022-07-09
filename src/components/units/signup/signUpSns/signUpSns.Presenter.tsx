@@ -33,7 +33,7 @@ export default function SignUpSnsPageUI(props) {
         </Link>
 
         <S.BodyWrapper>
-          <S.BodyTitle onClick={props.onClickEmailLogin}>
+          <S.BodyTitle onClick={props.onClickMoveToPage("/signup/new")}>
             이메일로 가입
           </S.BodyTitle>
           <S.BodyIcon src="/signUp/arrow.png" />

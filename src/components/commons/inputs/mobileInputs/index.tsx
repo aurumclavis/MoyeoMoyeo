@@ -24,7 +24,7 @@ export default function CommonMobileInput(props) {
       {...props?.register}
       defaultValue={props?.defaultValue}
       readOnly={props?.readOnly}
-      onChange={props?.onChange}
+      // onChange={props?.onChange}
     />
   );
 }

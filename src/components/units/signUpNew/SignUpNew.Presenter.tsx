@@ -61,6 +61,7 @@ export default function SignUpNewPageUI(props) {
               />
             </S.NumberInputs>
             <S.Error>{props.formState.errors.phoneNumber?.message}</S.Error>
+            <S.Error>{props.formState.errors.phoneNumber2?.message}</S.Error>
             {!props.isDone ? (
               props.isReadyForNum ? (
                 <S.NewAuthWrapper>
@@ -123,7 +124,9 @@ export default function SignUpNewPageUI(props) {
           </S.SubmitBtn>
           <S.FooterWrapper>
             <S.FooterTitle>이미 계정이 있으신가요?</S.FooterTitle>
-            <S.FooterBtn>로그인</S.FooterBtn>
+            <S.FooterBtn onClick={props.onClickMoveToPage("/login")}>
+              로그인
+            </S.FooterBtn>
           </S.FooterWrapper>
         </S.Wrapper>
       </S.OutWrapper>

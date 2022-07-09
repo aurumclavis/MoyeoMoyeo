@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 
 const schema = yup.object({
   name: yup
@@ -38,6 +39,7 @@ const schema = yup.object({
 
 export default function SignUpNewPage() {
   const router = useRouter();
+  const { onClickMoveToPage } = useMoveToPage();
   const [phone2ndNum, setPhone2ndNum] = useState("");
   const [phone3rdNum, setPhone3rdNum] = useState("");
   const [isActive, setIsActive] = useState(false);
@@ -83,21 +85,24 @@ export default function SignUpNewPage() {
 
   return (
     <SignUpNewPageUI
+      // hook-form
       formState={formState}
       register={register}
-      onChange2ndNum={onChange2ndNum}
-      onChange3ndNum={onChange3ndNum}
+      handleSubmit={handleSubmit}
+      // mobile
       isActive={isActive}
-      // moveFocus2={moveFocus2}
-      phone2ndNum={phone2ndNum}
-      phone3rdNum={phone3rdNum}
-      onClickGetNumber={onClickGetNumber}
-      //인증번호인풋 토글오픈
       isReadyForNum={isReadyForNum}
       isDone={isDone}
+      phone2ndNum={phone2ndNum}
+      phone3rdNum={phone3rdNum}
+      onChange2ndNum={onChange2ndNum}
+      onChange3ndNum={onChange3ndNum}
+      onClickGetNumber={onClickGetNumber}
       onClickConfirm={onClickConfirm}
+      // signup
       onClickCreateUser={onClickCreateUser}
-      handleSubmit={handleSubmit}
+      //login
+      onClickMoveToPage={onClickMoveToPage}
     />
   );
 }

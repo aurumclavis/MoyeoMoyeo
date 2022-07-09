@@ -1,4 +1,3 @@
-// import * as S from "./SignUp.Styles";
 import * as S from "./SignUp.Styles";
 export default function SignUpPageUI(props) {
   return (
@@ -16,7 +15,9 @@ export default function SignUpPageUI(props) {
             <S.BodySubCommonContainer>
               <S.BodyCommonTitle>여러 이벤트를 즐기고 싶다면</S.BodyCommonTitle>
               <S.BodyCommonSubTitle>일반회원</S.BodyCommonSubTitle>
-              <S.BodyCommonButton onClick={props.onClickToSignNew}>
+              <S.BodyCommonButton
+                onClick={props.onClickMoveToPage("/signup/sns")}
+              >
                 일반회원가입
               </S.BodyCommonButton>
             </S.BodySubCommonContainer>
@@ -28,7 +29,9 @@ export default function SignUpPageUI(props) {
                 우리 이벤트를 홍보하고 싶다면
               </S.BodyCommonTitle>
               <S.BodyCommonSubTitle>관계자회원</S.BodyCommonSubTitle>
-              <S.BodyCommonButton onClick={props.onClickToSignNewStaff}>
+              <S.BodyCommonButton
+                onClick={props.onClickMoveToPage("/signup/newStaff")}
+              >
                 관계자회원가입
               </S.BodyCommonButton>
             </S.BodySubCommonContainer>
@@ -36,7 +39,9 @@ export default function SignUpPageUI(props) {
         </S.BodyWrapper>
         <S.FooterWrapper>
           <S.FooterTitle>이미 계정이 있으신가요?</S.FooterTitle>
-          <S.FooterBtn onClick={props.onClickToLogin}>로그인</S.FooterBtn>
+          <S.FooterBtn onClick={props.onClickMoveToPage("/login")}>
+            로그인
+          </S.FooterBtn>
         </S.FooterWrapper>
       </S.Wrapper>
     </S.OutWrapper>
