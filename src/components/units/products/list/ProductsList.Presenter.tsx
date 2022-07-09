@@ -5,18 +5,20 @@ export default function ProductsListUI() {
   return (
     <S.Wrapper>
       <S.SearchWrapper>
-        <S.SelectWrapper>
-          <option>전체상품</option>
-          <option>판매중</option>
-          <option>판매완료</option>
-        </S.SelectWrapper>
         <S.SearchBarWrapper>
           <S.SearchBarIcon />
-          <S.SearchBarInput />
+          <S.SearchBarInput placeholder="상품을 검색해보세요." />
         </S.SearchBarWrapper>
-        <S.CreateBtnWrapper>
-          <S.CreateBtn>상품등록</S.CreateBtn>
-        </S.CreateBtnWrapper>
+        <S.SelectBtnWrapper>
+          <S.CreateBtnWrapper>
+            <S.CreateBtn>상품등록</S.CreateBtn>
+          </S.CreateBtnWrapper>
+          <S.Select>
+            <option>전체상품</option>
+            <option>판매중</option>
+            <option>판매완료</option>
+          </S.Select>
+        </S.SelectBtnWrapper>
       </S.SearchWrapper>
 
       {/* 상품 그리드 */}

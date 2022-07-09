@@ -6,12 +6,15 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const Wrapper = styled.div`
   margin: 3.125rem 0;
+  padding: 0 1.125rem;
 `;
 
 // 상품 등록(수정) 타이틀
 export const WriteTitle = styled.h1`
-  font-size: 2rem;
-  padding-left: 1.25rem;
+  margin: 0;
+  padding-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
 `;
 
 // 상품 등록(수정) 입력 영역
@@ -22,12 +25,10 @@ export const WriteWrapper = styled.div`
   padding: 2rem;
   background: #ffffff;
   border: 1px solid #d2d2d2;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 1.875rem 1.25rem;
+  border-radius: 10px;
 `;
 
 export const Label = styled.span`
-  min-width: 8.75rem;
   font-size: 1.25rem;
   margin-bottom: 1.25rem;
 `;
@@ -35,6 +36,7 @@ export const Label = styled.span`
 // Input 감싸는 Wrapper
 export const InputWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   margin: 0.625rem 0;
 `;
 export const Input = styled.input`
@@ -84,24 +86,29 @@ export const Editor = styled.div`
   border: 1px solid #73777b;
 `;
 export const MyReactQuill = styled(ReactQuill)`
-  height: 25rem;
-  margin-left: 0.5rem;
-  margin-bottom: 2.2rem;
+  height: 20rem;
+  margin-bottom: 2rem;
 `;
 
 // 등록, 취소 버튼 감싸는 Wrapper
-export const SubmitWrapper = styled.div`
+export const BtnWrapper = styled.div`
   width: 100%;
+  height: 45px;
   display: flex;
-  justify-content: space-evenly;
-  padding: 1.5rem 0;
+  justify-content: center;
+  margin: 1.5rem 0;
+`;
+export const SubmitWrapper = styled.div`
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
 `;
 export const SubmitBtn = styled.button`
-  width: 10%;
-  padding: 1rem;
-  border: 2px solid #ffd24c;
+  height: 100%;
+  padding: 0 10%;
   border-radius: 0.625rem;
-  background-color: #ffffff;
+  border: none;
+  background: rgba(255, 210, 76, 0.5);
   font-size: 1.25rem;
   :hover {
     cursor: pointer;
@@ -111,8 +118,8 @@ export const SubmitBtn = styled.button`
   }
 `;
 export const CancelBtn = styled.button`
-  width: 10%;
-  padding: 1rem;
+  height: 100%;
+  padding: 0 10%;
   border: none;
   border-radius: 0.625rem;
   background-color: #f4f4f4;
@@ -120,4 +127,9 @@ export const CancelBtn = styled.button`
   :hover {
     cursor: pointer;
   }
+`;
+export const Error = styled.div`
+  color: red;
+  font-size: 0.875rem;
+  padding-top: 0.625rem;
 `;
