@@ -31,17 +31,17 @@ export default function LoginNewStaffPage() {
       mode: "onChange",
     });
 
-  // 회원가입
+  // 관계자회원가입
   const onClickToSignUp = () => {
-    router.push("./signup");
+    router.push("/signup/newStaff");
   };
-  // 관계자회원 로그인
+  // 일반 로그인
   const onClickToLoginNewStaff = () => {
-    router.push("./login/newStaff");
+    router.push("/login");
   };
   // 비밀번호 찾기
   const onClickToFindPw = () => {
-    router.push("./login/findpw");
+    router.push("/login/findpw");
   };
   // 로그인
   const onClickToLogin = async (data: any) => {

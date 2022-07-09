@@ -76,11 +76,18 @@ export const SubmitBtn = styled.button`
   width: 100%;
   height: 56px;
   text-align: center;
-  border: 1px solid #edf0f5;
+  margin-top: 20px;
+  border: 1px solid #ffd24c;
+  background-color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 10px 0px;
+  :hover {
+    background-color: #ffd24c;
+    border: 1px solid black;
+  }
 `;
+
 //findpw
 export const findPassword = styled.div`
   width: 100%;

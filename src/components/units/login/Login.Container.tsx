@@ -45,6 +45,7 @@ export default function LoginPage() {
   };
   // 로그인
   const onClickToLogin = async (data: any) => {
+    console.log(data);
     try {
       const result = await loginUser({
         variables: {
