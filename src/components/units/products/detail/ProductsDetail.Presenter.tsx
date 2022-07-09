@@ -95,6 +95,8 @@ export default function ProductDetailUI(props) {
           <ProductsQuestionList />
         </div>
       </S.LeftWrapper>
+
+      {/* 오른쪽 사이드바 Wrapper */}
       <S.RightWrapper>
         <S.SidebarWrapper>
           <S.Subtitle>00000원</S.Subtitle>

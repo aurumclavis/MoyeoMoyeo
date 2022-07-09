@@ -1,13 +1,18 @@
 import styled from "@emotion/styled";
-
-export const SidebarWrapper = styled.div`
+export const Wrapper = styled.div`
   min-width: 12.5rem;
+`;
+export const SidebarWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
 `;
 
 export const Title = styled.h2`
   margin: 0;
+  font-weight: bold;
 `;
 export const ProfileWrapper = styled.div`
   width: 100%;
@@ -61,7 +66,6 @@ export const TabWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 1.25rem;
-
   background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 4px;

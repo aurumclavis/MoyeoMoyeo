@@ -25,61 +25,61 @@ export default function MyPageUserSidebar() {
   }, []);
 
   return (
-    <S.SidebarWrapper>
-      <S.Title>마이페이지</S.Title>
-      <S.ProfileWrapper>
-        <S.ProfileImg src="../../icon/simbollogo2Big.png" />
-        <S.ProfileContentsWrapper>
-          <S.ProfileText>김철수님</S.ProfileText>
-          <S.ProfileText>kim1234@gmail.com</S.ProfileText>
-          {/* <S.PointWrapper>
+    <S.Wrapper>
+      <S.SidebarWrapper>
+        <S.Title>마이페이지</S.Title>
+        <S.ProfileWrapper>
+          <S.ProfileImg src="../../icon/simbollogo2Big.png" />
+          <S.ProfileContentsWrapper>
+            <S.ProfileText>김철수님</S.ProfileText>
+            <S.ProfileText>kim1234@gmail.com</S.ProfileText>
+            {/* <S.PointWrapper>
             <S.ProfileText>6800P</S.ProfileText>
             <S.PointBtnWrapper>
               <S.PointBtn onClick={onClickShowPointModal}>충전</S.PointBtn>
             </S.PointBtnWrapper>
           </S.PointWrapper> */}
-        </S.ProfileContentsWrapper>
-      </S.ProfileWrapper>
+          </S.ProfileContentsWrapper>
+        </S.ProfileWrapper>
 
-      <S.TabWrapper>
-        <S.TabItemWrapper
-          isActive={activedTab === "events"}
-          id="events"
-          onClick={onClickTab}
-        >
-          <S.TabText>관심 행사</S.TabText>
-        </S.TabItemWrapper>
-
-        <S.TabItemWrapper
-          isActive={activedTab === "boards"}
-          id="boards"
-          onClick={onClickTab}
-        >
-          <S.TabText>동행 내역</S.TabText>
-        </S.TabItemWrapper>
-
-        <S.TabItemWrapper
-          isActive={activedTab === "products"}
-          id="products"
-          onClick={onClickTab}
-        >
-          <S.TabText>관심 상품</S.TabText>
-        </S.TabItemWrapper>
-
-        <S.TabItemWrapper
-          isActive={activedTab === "buy"}
-          id="buy"
-          onClick={onClickTab}
-        >
-          <S.TabText>구매 내역</S.TabText>
-        </S.TabItemWrapper>
-        {/* <S.TabItemWrapper onClick={onClickMoveToPage("/mypage/point")}>
+        {/* 각 페이지 이동하는 탭 */}
+        <S.TabWrapper>
+          <S.TabItemWrapper
+            isActive={activedTab === "events"}
+            id="events"
+            onClick={onClickTab}
+          >
+            <S.TabText>관심 행사</S.TabText>
+          </S.TabItemWrapper>
+          <S.TabItemWrapper
+            isActive={activedTab === "boards"}
+            id="boards"
+            onClick={onClickTab}
+          >
+            <S.TabText>동행 내역</S.TabText>
+          </S.TabItemWrapper>
+          <S.TabItemWrapper
+            isActive={activedTab === "products"}
+            id="products"
+            onClick={onClickTab}
+          >
+            <S.TabText>관심 상품</S.TabText>
+          </S.TabItemWrapper>
+          <S.TabItemWrapper
+            isActive={activedTab === "buy"}
+            id="buy"
+            onClick={onClickTab}
+          >
+            <S.TabText>구매 내역</S.TabText>
+          </S.TabItemWrapper>
+          {/* <S.TabItemWrapper onClick={onClickMoveToPage("/mypage/point")}>
           <S.PointIcon />
           <S.TabText>내 포인트</S.TabText>
         </S.TabItemWrapper> */}
-      </S.TabWrapper>
+        </S.TabWrapper>
 
-      {/* {visible && <Point setVisible={setVisible} />} */}
-    </S.SidebarWrapper>
+        {/* {visible && <Point setVisible={setVisible} />} */}
+      </S.SidebarWrapper>
+    </S.Wrapper>
   );
 }
