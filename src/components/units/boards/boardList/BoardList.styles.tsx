@@ -3,72 +3,76 @@ import SearchIcon from "@mui/icons-material/Search";
 import FestivalIcon from "@mui/icons-material/Festival";
 import GroupsIcon from "@mui/icons-material/Groups";
 import DateRangeIcon from "@mui/icons-material/DateRange";
+import ListIcon from "@mui/icons-material/List";
 
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-  padding: 4rem 0;
+  gap: 3rem;
+  padding-bottom: 4rem;
 `;
-export const EventTypeWrapper = styled.div`
-  width: 100%;
-  margin-left: 20rem;
-`;
-export const CarouselWrapper = styled.div`
-  width: 60%;
-`;
-export const MainWrapper = styled.div`
+export const SubHeader = styled.div`
   width: 100%;
   display: flex;
-  gap: 4.4rem;
-  margin-left: 8rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6rem;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  ${(props: any) =>
+    props.isSubHeaderOnTop && "border-bottom: 1px solid #d2d2d2;"}
 `;
 export const ViewTypeWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  padding-top: 0.5rem;
+  gap: 1.5rem;
 `;
-export const ViewTotal = styled.div`
-  width: 7.688rem;
-  height: 4.188rem;
+export const ViewTotal = styled.span`
+  height: 3.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-  border: 1px solid #d2d2d2;
-  ${(props: any) => props.selectTotal && "background-color: #f1eee9;"}
+  border-bottom: 3px solid white;
+  ${(props: any) =>
+    props.selectTotal && "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
 `;
-export const ViewRecruitment = styled.div`
-  width: 7.688rem;
-  height: 4.188rem;
+export const ViewRecruitment = styled.span`
+  height: 3.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-  border: 1px solid #d2d2d2;
-  ${(props: any) => props.selectRecruit && "background-color: #f1eee9;"}
+  border-bottom: 3px solid white;
+  ${(props: any) =>
+    props.selectRecruit &&
+    "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
 `;
-export const ViewAccompany = styled.div`
-  width: 7.688rem;
-  height: 4.188rem;
+export const ViewAccompany = styled.span`
+  height: 3.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-  border: 1px solid #d2d2d2;
-  ${(props: any) => props.selectAccompany && "background-color: #f1eee9;"}
+  border-bottom: 3px solid white;
+  ${(props: any) =>
+    props.selectAccompany &&
+    "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
 `;
-export const ViewBySearch = styled.div`
-  width: 7.688rem;
-  height: 4.188rem;
+export const SearchAndCreateWrapper = styled.div`
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+`;
+export const ViewAsSearch = styled.div`
+  width: 16rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 25px;
   border: 1px solid #d2d2d2;
 `;
 export const EventSearchWrapper = styled.div`
@@ -89,17 +93,38 @@ export const EventSearchInput = styled.input`
   color: #323232;
   ::placeholder {
     color: #d2d2d2;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
+`;
+export const CreateBoard = styled.button`
+  width: 4rem;
+  height: 2.8rem;
+  border-radius: 5px;
+  background-color: #15133c;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+`;
+export const EventTypeWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 6rem;
+`;
+export const CarouselWrapper = styled.div`
+  width: 80%;
 `;
 export const Main = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2.5rem;
 `;
 export const DateWrapper = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   gap: 2.5rem;
@@ -110,23 +135,27 @@ export const DateChangerWrapper = styled.div`
   gap: 2rem;
 `;
 export const ArrowButton = styled.div`
-  width: 2.438rem;
-  height: 2.438rem;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #d2d2d2;
+  border: 1px solid #f1eee9;
   border-radius: 50%;
   cursor: pointer;
 `;
 export const ArrowLeft = styled.img``;
-export const ArrowRight = styled.img``;
+export const ArrowRight = styled.img`
+  padding-left: 3px;
+`;
 export const DateView = styled.div`
   width: 23.125rem;
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 1.9rem;
-  background-color: #d2d2d2;
+  border-radius: 5px;
+  border: 1px solid #f1eee9;
+  background-color: white;
 `;
 export const DateStart = styled.div`
   letter-spacing: 0.06rem;
@@ -158,16 +187,6 @@ export const MonthlyViewButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
 `;
-
-// 모바일일 때 이 부분 display:none -> flex 활용
-export const ViewTypeMobileWrapper = styled.div`
-  display: none;
-  gap: 2.5rem;
-`;
-export const ViewTypeMobile = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
 export const MySearchIconWrapper = styled.div`
   width: 2rem;
   height: 2rem;
@@ -181,30 +200,36 @@ export const ListWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.5rem;
 `;
-export const ItemWrapper = styled.div`
-  width: 44rem;
-  height: 5.938rem;
+export const Item = styled.div`
+  width: 70%;
+  height: 8rem;
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
-  box-shadow: 0px 4px 4px 0px #00000033;
+  transition: 0.2s;
+  box-shadow: 0px 2px 4px 0px #00000033;
+  :hover {
+    box-shadow: 0px 2px 4px 2px #00000033;
+    transform: translateY(-5px);
+  }
 `;
-export const Item = styled.div`
+export const ItemLeft = styled.div`
   display: flex;
-  gap: 0.5rem;
+  gap: 0.7rem;
+  padding: 10px;
 `;
 export const EventImage = styled.img`
   width: 5.938rem;
-  height: 5.938rem;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  object-fit: fill;
+  border-radius: 5px;
+  object-fit: cover;
 `;
 export const ItemMain = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.7rem;
 `;
 export const Header = styled.div`
@@ -223,7 +248,7 @@ export const Remark = styled.div`
 `;
 export const Footer = styled.div`
   display: flex;
-  gap: 1.5rem;
+  gap: 1.1rem;
   font-size: 0.8rem;
   color: #d2d2d2;
   line-height: 25px;
@@ -233,6 +258,14 @@ export const Event = styled.div`
   align-items: flex-end;
 `;
 export const EventIcon = styled(FestivalIcon)`
+  width: 1rem;
+  margin-right: 5px;
+`;
+export const Category = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+export const CategoryIcon = styled(ListIcon)`
   width: 1rem;
   margin-right: 5px;
 `;
@@ -252,7 +285,7 @@ export const CalendarIcon = styled(DateRangeIcon)`
   width: 1rem;
   margin-right: 5px;
 `;
-export const SendAccompany = styled.div`
+export const ItemRight = styled.div`
   width: 4.625rem;
   height: 100%;
   display: flex;
@@ -264,25 +297,4 @@ export const SendAccompany = styled.div`
 `;
 export const PaperPlaneImage = styled.img`
   width: 60%;
-`;
-export const CreateBoardButton = styled.div`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #ffd24c;
-  color: black;
-  box-shadow: 0px 4px 10px 0px #00000033;
-  font-size: 30px;
-  text-align: center;
-  line-height: 55px;
-  position: fixed;
-  bottom: 50px;
-  left: 150px;
-  cursor: pointer;
-  transition: 0.3s;
-  :hover {
-    font-size: 40px;
-    background-color: gray;
-    color: white;
-  }
 `;
