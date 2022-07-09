@@ -5,11 +5,11 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.5rem;
+  gap: 1rem;
 `;
 export const CommentInput = styled.textarea`
   width: 100%;
-  height: 6rem;
+  height: 7rem;
   padding: 0.5rem;
   border: 1px solid #d2d2d2;
   border-radius: 5px;
@@ -17,12 +17,11 @@ export const CommentInput = styled.textarea`
   font-size: 1.1rem;
 `;
 export const SubmitButton = styled.button`
-  width: 4.4rem;
   height: 2.5rem;
   border-radius: 10px;
   border: none;
   outline: none;
-  background-color: #ffd24c;
+  background-color: #ffe69a;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;

@@ -53,7 +53,10 @@ export default function KaKaoMapFetch(props: any) {
 
   return (
     <>
-      <div id="map" style={{ width: "100%", height: "100%" }}></div>
+      <div
+        id="map"
+        style={{ width: "100%", height: "100%", borderRadius: "10px" }}
+      ></div>
     </>
   );
 }
