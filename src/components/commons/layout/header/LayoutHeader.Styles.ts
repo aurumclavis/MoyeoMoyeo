@@ -120,11 +120,15 @@ export const MobileMenuWrapper = styled.div`
   width: 80%;
   height: 100vh;
   display: none;
+
   background-color: aqua;
   margin-right: auto;
   @media (max-width: 767px) {
-    display: ${(props: any) => (props.isOpen ? "none" : "block")};
+    display: ${(props: any) => (props.isOpen ? "none" : "flex")};
     flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: -61px;
   }
 `;
 export const Flex = styled.div`

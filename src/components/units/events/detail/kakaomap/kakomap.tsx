@@ -68,10 +68,7 @@ export default function KakakomapPage(props) {
   }, []);
   return (
     <div>
-      <div
-        id="map"
-        style={{ width: 500, height: 400, backgroundColor: "red" }}
-      ></div>
+      <div id="map" style={{ width: 500, height: 400 }}></div>
     </div>
   );
 }

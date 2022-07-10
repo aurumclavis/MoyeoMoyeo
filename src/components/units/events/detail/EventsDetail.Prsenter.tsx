@@ -22,7 +22,13 @@ export default function EventsDetailUI(props) {
           </Tooltip>
         </S.IconWrapper>
         <S.LineDiv />
-
+        <S.NavWrapper ref={props.navRef}>
+          <S.NavWrapper>
+            <S.NavMenu>이벤트타입 요약</S.NavMenu>
+            <S.NavMenu>상세 설명</S.NavMenu>
+            <S.NavMenu>행사 위치</S.NavMenu>
+          </S.NavWrapper>
+        </S.NavWrapper>
         <S.MainTitle>이벤트타입 요약</S.MainTitle>
         <S.MainImg src="/배너이미지_행사1.png" />
         <S.MarkerWrapper>
@@ -35,6 +41,7 @@ export default function EventsDetailUI(props) {
         <S.LineDiv />
 
         <S.ContentsWrapper>
+          <S.ContentsTitle id="contents">상세 설명</S.ContentsTitle>
           <S.ContentImg src="/배너이미지_행사1.png" />
           <S.ContetsText>
             상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세
@@ -46,10 +53,9 @@ export default function EventsDetailUI(props) {
 
         <S.LineDiv />
         <S.MapWrapper>
-          <S.MapTitle>행사 위치</S.MapTitle>
-          <KakakomapPage />
-          {/* props로 위치 보내기 */}
+          <S.MapTitle id="maptitle">행사 위치</S.MapTitle>
         </S.MapWrapper>
+        <KakakomapPage />
 
         <S.LineDiv />
         <S.Footer>
