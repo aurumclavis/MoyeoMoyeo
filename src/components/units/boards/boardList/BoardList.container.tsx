@@ -6,66 +6,6 @@ import _ from "lodash";
 export default function BoardListContainer() {
   const router = useRouter();
   const [rawData] = useState([
-    // {
-    //   recruited: true,
-    //   title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-    //   remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-    //   eventName: "동탄고양이플리마켓",
-    //   maxHeadCount: 2,
-    //   accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-    //   accompanied: false,
-    //   category: "실외공연",
-    // },
-    // {
-    //   recruited: false,
-    //   title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-    //   remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-    //   eventName: "동탄고양이플리마켓",
-    //   maxHeadCount: 2,
-    //   accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-    //   accompanied: false,
-    //   category: "플리마켓",
-    // },
-    // {
-    //   recruited: false,
-    //   title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-    //   remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-    //   eventName: "동탄고양이플리마켓",
-    //   maxHeadCount: 2,
-    //   accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-    //   accompanied: true,
-    //   category: "뮤지컬",
-    // },
-    // {
-    //   recruited: true,
-    //   title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-    //   remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-    //   eventName: "동탄고양이플리마켓",
-    //   maxHeadCount: 2,
-    //   accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-    //   accompanied: false,
-    //   category: "미술전시",
-    // },
-    // {
-    //   recruited: false,
-    //   title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-    //   remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-    //   eventName: "동탄고양이플리마켓",
-    //   maxHeadCount: 2,
-    //   accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-    //   accompanied: false,
-    //   category: "굿즈행사",
-    // },
-    // {
-    //   recruited: false,
-    //   title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-    //   remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-    //   eventName: "동탄고양이플리마켓",
-    //   maxHeadCount: 2,
-    //   accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-    //   accompanied: true,
-    //   category: "굿즈행사",
-    // },
     {
       recruited: true,
       title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
@@ -73,7 +13,7 @@ export default function BoardListContainer() {
       eventName: "동탄고양이플리마켓",
       maxHeadCount: 2,
       accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-      accompanied: false,
+      requested: false,
       category: "실외공연",
     },
     {
@@ -83,8 +23,8 @@ export default function BoardListContainer() {
       eventName: "동탄고양이플리마켓",
       maxHeadCount: 2,
       accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-      accompanied: false,
-      category: "실내공연",
+      requested: false,
+      category: "플리마켓",
     },
     {
       recruited: false,
@@ -93,8 +33,8 @@ export default function BoardListContainer() {
       eventName: "동탄고양이플리마켓",
       maxHeadCount: 2,
       accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-      accompanied: true,
-      category: "마당놀이",
+      requested: true,
+      category: "뮤지컬",
     },
     {
       recruited: true,
@@ -103,17 +43,7 @@ export default function BoardListContainer() {
       eventName: "동탄고양이플리마켓",
       maxHeadCount: 2,
       accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-      accompanied: false,
-      category: "기타",
-    },
-    {
-      recruited: false,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-      accompanied: false,
+      requested: false,
       category: "미술전시",
     },
     {
@@ -123,7 +53,77 @@ export default function BoardListContainer() {
       eventName: "동탄고양이플리마켓",
       maxHeadCount: 2,
       accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
-      accompanied: true,
+      requested: false,
+      category: "굿즈행사",
+    },
+    {
+      recruited: false,
+      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
+      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
+      eventName: "동탄고양이플리마켓",
+      maxHeadCount: 2,
+      accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
+      requested: true,
+      category: "굿즈행사",
+    },
+    {
+      recruited: true,
+      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
+      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
+      eventName: "동탄고양이플리마켓",
+      maxHeadCount: 2,
+      accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
+      requested: false,
+      category: "실외공연",
+    },
+    {
+      recruited: false,
+      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
+      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
+      eventName: "동탄고양이플리마켓",
+      maxHeadCount: 2,
+      accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
+      requested: false,
+      category: "실내공연",
+    },
+    {
+      recruited: false,
+      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
+      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
+      eventName: "동탄고양이플리마켓",
+      maxHeadCount: 2,
+      accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
+      requested: true,
+      category: "마당놀이",
+    },
+    {
+      recruited: true,
+      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
+      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
+      eventName: "동탄고양이플리마켓",
+      maxHeadCount: 2,
+      accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
+      requested: false,
+      category: "기타",
+    },
+    {
+      recruited: false,
+      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
+      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
+      eventName: "동탄고양이플리마켓",
+      maxHeadCount: 2,
+      accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
+      requested: false,
+      category: "미술전시",
+    },
+    {
+      recruited: false,
+      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
+      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
+      eventName: "동탄고양이플리마켓",
+      maxHeadCount: 2,
+      accompanyDate: { start: "2022.07.10", end: "2022.07.10" },
+      requested: true,
       category: "실외공연",
     },
   ]);
@@ -158,7 +158,9 @@ export default function BoardListContainer() {
     setSelectTotal(false);
     setSelectRecruit(false);
     setSelectAccompany(true);
+    setViewTypeData([...rawData.filter((el) => el.requested)]);
   };
+
   const onClickCreateBoard = () => {
     router.push("/boards/new");
   };
@@ -189,6 +191,10 @@ export default function BoardListContainer() {
     .map((el) => el.category)
     .reduce((acc, cur) => (acc.includes(cur) ? acc : [...acc, cur]), ["전체"]);
 
+  // 게시글 상세로 이동
+  const onClickGoDetail = (eventName: any) => () => {
+    router.push(`/boards/${eventName}`);
+  };
   return (
     <BoardListPresenter
       eventCategory={eventCategory}
@@ -207,6 +213,7 @@ export default function BoardListContainer() {
       onClickCreateBoard={onClickCreateBoard}
       subHeader={subHeader}
       isSubHeaderOnTop={isSubHeaderOnTop}
+      onClickGoDetail={onClickGoDetail}
     />
   );
 }
