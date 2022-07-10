@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { breakPoints } from "../../../styles/media";
+import { breakPoints } from "./media";
 
 export const globalStyles = css`
   * {
