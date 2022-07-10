@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import * as S from "./ProductsDetail.Styles";
-import styled from "@emotion/styled";
 import ProductsQuestionList from "../../productsQuestion/list/ProductsQuestionList.Container";
 import ProductsQuestionWrite from "../../productsQuestion/write/ProductsQuestionWrite.Container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Image } from "antd";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import { useRouter } from "next/router";
 
 export default function ProductDetailUI(props) {
+  const router = useRouter();
+  const { onClickMoveToPage } = useMoveToPage();
   const settings = {
     dots: true,
     infinite: true,
@@ -108,7 +111,13 @@ export default function ProductDetailUI(props) {
               </>
             ) : (
               <>
-                <S.SkyblueBtn>구매하기</S.SkyblueBtn>
+                <S.SkyblueBtn
+                  onClick={onClickMoveToPage(
+                    `/products/${router.query.productId}/payment`
+                  )}
+                >
+                  구매하기
+                </S.SkyblueBtn>
                 <S.WhiteBtn>찜하기</S.WhiteBtn>
               </>
             )}
