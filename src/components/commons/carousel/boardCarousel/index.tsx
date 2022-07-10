@@ -3,9 +3,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 
-const Wrapper = styled.div`
+const OutWrapper = styled.div`
   width: 1000px;
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
 `;
 const Title = styled.div`
   width: 100%;
@@ -19,15 +20,28 @@ const More = styled.div`
     text-decoration: underline;
   }
 `;
+const Wrapper = styled.div`
+  width: 100%;
+  margin-bottom: 30px;
+  /* background-color: gray; */
+`;
+
+const MySlider = styled(Slider)`
+  width: 100%;
+  /* display: flex;
+  flex-direction: column; */
+  margin-right: 30px;
+`;
 const BoardList = styled.div`
-  width: 500px;
+  width: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 20px solid #ffe69a;
+  border: 15px solid #ffe69a;
   border-radius: 5px;
   margin-right: 30px;
+  /* padding: 0px 50px; */
 `;
 const BoardTitleWrapper = styled.div`
   width: 100%;
@@ -86,129 +100,50 @@ export default function BoardCarousel() {
     slidesToScroll: 2,
     initialSlide: 1,
     autoplay: true,
-    autoplaySpeed: 10000,
+    autoplaySpeed: 1000,
     pauseOnHover: true,
     vertical: false,
-
-    responsive: [
-      // 반응형
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
+    // responsive: [
+    //   // 반응형
+    //   {
+    //     breakpoint: 767,
+    //     settings: {
+    //       slidesToShow: 1,
+    //     },
+    //   },
+    // ],
   };
 
   return (
-    <Wrapper>
+    <OutWrapper>
       <Title>
         <h3> 같이 즐길 동행구하기 </h3>
         <More>더보기</More>
       </Title>
-      <Slider {...settings}>
-        <BoardList>
-          <BoardTitleWrapper>
-            <BoardCategory>[모집중]</BoardCategory>
-            <BoardTitle>
-              이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
-            </BoardTitle>
-          </BoardTitleWrapper>
-          <BoardContents>
-            20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도 드실분
-            연락주세요! 남녀 상관 없습니다.{" "}
-          </BoardContents>
-          <BoardInfo>
-            <Icon src="/example3.png" />
-            <BoardEvents>지브리전시회</BoardEvents>
-            <Icon src="/example4.png" />
-            <BoardPeople>2~3명</BoardPeople>
-            <Icon src="/example5.png" />
-            <BoardDate>2022.07.06~2022.07.06</BoardDate>
-          </BoardInfo>
-        </BoardList>
-        <BoardList>
-          <BoardTitleWrapper>
-            <BoardCategory>[모집중]</BoardCategory>
-            <BoardTitle>
-              이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
-            </BoardTitle>
-          </BoardTitleWrapper>
-          <BoardContents>
-            20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도 드실분
-            연락주세요! 남녀 상관 없습니다.{" "}
-          </BoardContents>
-          <BoardInfo>
-            <Icon src="/example3.png" />
-            <BoardEvents>지브리전시회</BoardEvents>
-            <Icon src="/example4.png" />
-            <BoardPeople>2~3명</BoardPeople>
-            <Icon src="/example5.png" />
-            <BoardDate>2022.07.06~2022.07.06</BoardDate>
-          </BoardInfo>
-        </BoardList>
-        <BoardList>
-          <BoardTitleWrapper>
-            <BoardCategory>[모집중]</BoardCategory>
-            <BoardTitle>
-              이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
-            </BoardTitle>
-          </BoardTitleWrapper>
-          <BoardContents>
-            20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도 드실분
-            연락주세요! 남녀 상관 없습니다.{" "}
-          </BoardContents>
-          <BoardInfo>
-            <Icon src="/example3.png" />
-            <BoardEvents>지브리전시회</BoardEvents>
-            <Icon src="/example4.png" />
-            <BoardPeople>2~3명</BoardPeople>
-            <Icon src="/example5.png" />
-            <BoardDate>2022.07.06~2022.07.06</BoardDate>
-          </BoardInfo>
-        </BoardList>
-        <BoardList>
-          <BoardTitleWrapper>
-            <BoardCategory>[모집중]</BoardCategory>
-            <BoardTitle>
-              이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
-            </BoardTitle>
-          </BoardTitleWrapper>
-          <BoardContents>
-            20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도 드실분
-            연락주세요! 남녀 상관 없습니다.{" "}
-          </BoardContents>
-          <BoardInfo>
-            <Icon src="/example3.png" />
-            <BoardEvents>지브리전시회</BoardEvents>
-            <Icon src="/example4.png" />
-            <BoardPeople>2~3명</BoardPeople>
-            <Icon src="/example5.png" />
-            <BoardDate>2022.07.06~2022.07.06</BoardDate>
-          </BoardInfo>
-        </BoardList>
-        <BoardList>
-          <BoardTitleWrapper>
-            <BoardCategory>[모집중]</BoardCategory>
-            <BoardTitle>
-              이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
-            </BoardTitle>
-          </BoardTitleWrapper>
-          <BoardContents>
-            20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도 드실분
-            연락주세요! 남녀 상관 없습니다.{" "}
-          </BoardContents>
-          <BoardInfo>
-            <Icon src="/example3.png" />
-            <BoardEvents>지브리전시회</BoardEvents>
-            <Icon src="/example4.png" />
-            <BoardPeople>2~3명</BoardPeople>
-            <Icon src="/example5.png" />
-            <BoardDate>2022.07.06~2022.07.06</BoardDate>
-          </BoardInfo>
-        </BoardList>
-      </Slider>
-    </Wrapper>
+      <Wrapper>
+        <MySlider {...settings}>
+          <BoardList>
+            <BoardTitleWrapper>
+              <BoardCategory>[모집중]</BoardCategory>
+              <BoardTitle>
+                이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
+              </BoardTitle>
+            </BoardTitleWrapper>
+            <BoardContents>
+              20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도 드실분
+              연락주세요! 남녀 상관 없습니다.{" "}
+            </BoardContents>
+            <BoardInfo>
+              <Icon src="/example3.png" />
+              <BoardEvents>지브리전시회</BoardEvents>
+              <Icon src="/example4.png" />
+              <BoardPeople>2~3명</BoardPeople>
+              <Icon src="/example5.png" />
+              <BoardDate>2022.07.06~2022.07.06</BoardDate>
+            </BoardInfo>
+          </BoardList>
+        </MySlider>
+      </Wrapper>
+    </OutWrapper>
   );
 }

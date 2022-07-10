@@ -1,4 +1,4 @@
-import * as S from "../events/MyPageUserEvents.Styles";
+import * as S from "../../listItem/MyPageListItem.Styles";
 
 export default function MyPageUserBuy() {
   return (
@@ -23,6 +23,7 @@ export default function MyPageUserBuy() {
               내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
               내용입니다 내용입니다 내용입니다 내용입니다
             </S.ItemText>
+            <S.MoreText>상품 정보 더 보기</S.MoreText>
           </S.ItemContentsWrapper>
         </S.ItemWrapper>
       ))}

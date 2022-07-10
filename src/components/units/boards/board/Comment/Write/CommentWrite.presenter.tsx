@@ -4,7 +4,7 @@ export default function CommentWritePresenter() {
   return (
     <S.Wrapper>
       <S.CommentInput />
-      <S.SubmitButton>등록</S.SubmitButton>
+      <S.SubmitButton>댓글 등록하기</S.SubmitButton>
     </S.Wrapper>
   );
 }

@@ -5,21 +5,48 @@ import KaKaoMapFetch from "../../KaKaoMap/FetchMap";
 export default function BoardWritePresenter(props: any) {
   return (
     <S.Wrapper>
-      <S.TopWrapper>
-        <S.ImageWrapper>
-          <S.DateAndUploadWrapper>
-            <S.EventDate>
-              행사기간 2022년 7월 15일 ~ 2022년 7월 31일
-            </S.EventDate>
-            <S.MyImageUpload>대표이미지 직접 등록</S.MyImageUpload>
-          </S.DateAndUploadWrapper>
-          <S.EventImage src="/market.jpg" />
-        </S.ImageWrapper>
+      <S.CoverImageWrapper>
+        <S.CoverImage src="/market.jpg" />
+        <S.MyCoverImageUpload>커버 이미지 직접 등록</S.MyCoverImageUpload>
+      </S.CoverImageWrapper>
+      <S.UpperWrapper>
+        <S.EventInfoAndUploadWrapper>
+          <S.ImageWrapper>
+            <S.MyImageUpload>이벤트 이미지 직접 등록</S.MyImageUpload>
+            <S.EventImage src="/cat_goods.jpg" />
+          </S.ImageWrapper>
+          <S.EventInfoWrapper>
+            <S.EventInfoDetailWrapper>
+              <S.EventInfoDetail>
+                <S.EventFestivalIcon />
+                <S.EventInfoItem>행사이름</S.EventInfoItem>
+                <S.EventInfoContents>동탄고양이플리마켓</S.EventInfoContents>
+              </S.EventInfoDetail>
+              <S.EventInfoDetail>
+                <S.EventMapIcon />
+                <S.EventInfoItem>지역</S.EventInfoItem>
+                <S.EventInfoContents>경기도 동탄</S.EventInfoContents>
+              </S.EventInfoDetail>
+              <S.EventInfoDetail>
+                <S.EventDateRangeIcon />
+                <S.EventInfoItem>기간</S.EventInfoItem>
+                <S.EventInfoContents>2022년 7월 15일</S.EventInfoContents>
+              </S.EventInfoDetail>
+              <S.EventInfoDetail>
+                <S.EventInfoItem>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </S.EventInfoItem>
+                <S.EventInfoContents>~ 2022년 7월 31일</S.EventInfoContents>
+              </S.EventInfoDetail>
+              <S.EventInfoDetail>
+                <S.EventListIcon />
+                <S.EventInfoItem>카테고리</S.EventInfoItem>
+                <S.EventInfoContents>플리마켓</S.EventInfoContents>
+              </S.EventInfoDetail>
+            </S.EventInfoDetailWrapper>
+          </S.EventInfoWrapper>
+        </S.EventInfoAndUploadWrapper>
         <S.InfoWrapper>
-          <S.ButtonWrapper>
-            <S.CancelButton>취소</S.CancelButton>
-            <S.SubmitButton>등록</S.SubmitButton>
-          </S.ButtonWrapper>
           <S.ItemsWrapper>
             <S.ItemText>동행일자</S.ItemText>
             <S.EventSearchWrapper>
@@ -57,6 +84,8 @@ export default function BoardWritePresenter(props: any) {
               <S.Train>
                 <S.TransportationImg src="/icon/train.png" />
               </S.Train>
+            </S.TransportationWrapper>
+            <S.TransportationWrapper>
               <S.Car>
                 <S.TransportationImg src="/icon/car.png" />
               </S.Car>
@@ -69,12 +98,13 @@ export default function BoardWritePresenter(props: any) {
             </S.TransportationWrapper>
           </S.ItemsWrapper>
         </S.InfoWrapper>
-      </S.TopWrapper>
-      <S.BottomWrapper>
+      </S.UpperWrapper>
+      <S.UnderWrapper>
         <S.ItemsWrapper>
           <S.ItemText>글 제목</S.ItemText>
           <S.TitleInput placeholder="제목을 입력해주세요.(100자 이내)"></S.TitleInput>
         </S.ItemsWrapper>
+
         <S.ItemsWrapper>
           <S.ItemText>글 내용</S.ItemText>
           <S.MyReactQuill placeholder="내용을 입력해주세요.(1000자 이내)" />
@@ -103,7 +133,11 @@ export default function BoardWritePresenter(props: any) {
             </S.AddressExplainWrapper>
           </S.MapWrapper>
         </S.LocationWrapper>
-      </S.BottomWrapper>
+        <S.ButtonWrapper>
+          <S.CancelButton>취소</S.CancelButton>
+          <S.SubmitButton>등록</S.SubmitButton>
+        </S.ButtonWrapper>
+      </S.UnderWrapper>
     </S.Wrapper>
   );
 }

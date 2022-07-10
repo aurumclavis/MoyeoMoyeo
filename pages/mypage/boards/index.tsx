@@ -2,8 +2,9 @@ import styled from "@emotion/styled";
 import MyPageUserBoards from "../../../src/components/units/mypage/user/boards/MyPageUserBoards.Container";
 import MyPageUserSidebar from "../../../src/components/units/mypage/user/sidebar/MyPageUserSidebar.Container";
 const Wrapper = styled.div`
-  margin: 3.125rem 0;
+  width: 100%;
   display: flex;
+  margin: 3.125rem 0;
 `;
 
 export default function MyPageBoardsPage() {

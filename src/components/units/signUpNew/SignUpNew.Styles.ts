@@ -9,7 +9,7 @@ export const OutWrapper = styled.div`
 `;
 
 //내용
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   width: 430px;
   background-color: #ffffff;
   /* border: 1px solid #bdbdbd; */

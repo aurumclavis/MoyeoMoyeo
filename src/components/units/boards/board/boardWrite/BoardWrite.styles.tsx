@@ -2,6 +2,9 @@ import styled from "@emotion/styled";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import DateRangeIcon from "@mui/icons-material/DateRange";
+import FestivalIcon from "@mui/icons-material/Festival";
+import MapIcon from "@mui/icons-material/Map";
+import ListIcon from "@mui/icons-material/List";
 import SearchIcon from "@mui/icons-material/Search";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -11,76 +14,102 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
-  padding: 4rem 0;
+  padding: 4rem 2rem;
+`;
+export const CoverImageWrapper = styled.div`
+  width: calc(100% + 2rem * 2);
+  height: 20.625rem;
+  position: relative;
+`;
+export const CoverImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+export const MyCoverImageUpload = styled.div`
+  padding: 2px 5px;
+  background-color: #d9d9d9;
+  font-size: 0.813rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
 `;
 // 반응형일 때 flex-direction : column
-export const TopWrapper = styled.div`
+export const UpperWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 3.5rem;
+  gap: 10%;
   padding: 0 2rem;
 `;
-// 반응형일 때 width : calc(100% + 2rem * 2)
-export const ImageWrapper = styled.div`
-  width: 50%;
-  height: 34rem;
+export const EventInfoAndUploadWrapper = styled.div`
+  width: 30%;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-  margin-top: 4rem;
+  border-radius: 5px;
+  border: 1px solid #f1eee9;
+  transition: 0.2s;
+  :hover {
+    box-shadow: 0px 2px 4px 2px #00000033;
+    transform: translateY(-5px);
+  }
 `;
-export const DateAndUploadWrapper = styled.div`
+export const ImageWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-export const EventDate = styled.div`
-  padding: 5px;
-  background-color: #ffe69a;
-  font-size: 0.813rem;
+  position: relative;
 `;
 export const MyImageUpload = styled.div`
-  padding: 5px;
+  padding: 2px 5px;
   background-color: #d9d9d9;
   font-size: 0.813rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 `;
 export const EventImage = styled.img`
   width: 100%;
-  height: 31.25rem;
+  height: auto;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   object-fit: cover;
 `;
-export const InfoWrapper = styled.div`
-  width: 50%;
+export const EventInfoWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 2.87rem;
+  padding: 1.5rem;
 `;
-export const ButtonWrapper = styled.div`
-  align-self: flex-end;
+export const EventInfoDetailWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+export const EventInfoDetail = styled.div`
   display: flex;
   gap: 1rem;
 `;
-export const CancelButton = styled.button`
-  width: 4.625rem;
-  height: 3.238rem;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  background-color: #d2d2d2;
-  font-size: 1.4rem;
-  color: #323232;
+export const EventFestivalIcon = styled(FestivalIcon)``;
+export const EventMapIcon = styled(MapIcon)``;
+export const EventDateRangeIcon = styled(DateRangeIcon)``;
+export const EventListIcon = styled(ListIcon)``;
+export const EventInfoItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 500;
 `;
-export const SubmitButton = styled.button`
-  width: 4.625rem;
-  height: 3.238rem;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  background-color: #15133c;
-  font-size: 1.4rem;
-  color: white;
-  font-weight: 600;
+export const EventInfoContents = styled.div`
+  padding-left: 3rem;
+  color: #73777b;
+`;
+export const InfoWrapper = styled.div`
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.87rem;
 `;
 export const EventSearchWrapper = styled.div`
   width: 50%;
@@ -119,12 +148,13 @@ export const ItemText = styled.div`
   font-size: 1.25rem;
 `;
 export const AccompanyDateInputWrapper = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 1rem;
 `;
 export const AccompanyDateInput = styled.input`
-  width: 7.5rem;
+  width: 20%;
   height: 2.188rem;
   margin-left: 0.5rem;
   padding: 0.6rem;
@@ -146,10 +176,13 @@ export const CalendarWrapper = styled.div`
 `;
 export const MyDateRangeIcon = styled(DateRangeIcon)``;
 export const RemarkInput = styled.input`
-  height: 2.188rem;
+  width: 100%;
+  height: 2.5rem;
   margin-left: 0.5rem;
+  padding: 10px;
   border: none;
-  border-bottom: 1px solid black;
+  border: 1px solid #d2d2d2;
+  border-radius: 5px;
   outline: none;
   font-size: 1.1rem;
   color: #323232;
@@ -169,7 +202,7 @@ export const MaxHeadCountInput = styled.input`
   width: 2rem;
   height: 1.5rem;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #d2d2d2;
   outline: none;
   font-size: 1.2rem;
   color: #323232;
@@ -248,8 +281,9 @@ export const Ship = styled.div`
 export const TransportationImg = styled.img`
   width: 3.813rem;
   height: auto;
+  cursor: pointer;
 `;
-export const BottomWrapper = styled.div`
+export const UnderWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -257,11 +291,13 @@ export const BottomWrapper = styled.div`
   padding: 0 2rem;
 `;
 export const TitleInput = styled.input`
-  width: 31rem;
-  height: 2.188rem;
+  width: 65%;
+  height: 2.5rem;
   margin-left: 0.5rem;
+  padding: 10px;
   border: none;
-  border-bottom: 1px solid black;
+  border: 1px solid #d2d2d2;
+  border-radius: 5px;
   outline: none;
   font-size: 1.1rem;
   color: #323232;
@@ -288,16 +324,18 @@ export const MapWrapper = styled.div`
   gap: 2rem;
 `;
 export const KaKaoMap = styled.div`
-  width: 100%;
-
+  width: 60%;
   margin-left: 0.5rem;
   border: 1px solid gray;
 `;
 export const AddressExplainWrapper = styled.div`
-  width: 26rem;
+  width: 40%;
   display: flex;
   flex-direction: column;
   gap: 2.87rem;
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
 `;
 export const AddressInput = styled.input`
   height: 2.188rem;
@@ -308,7 +346,7 @@ export const AddressInput = styled.input`
   color: #323232;
 `;
 export const LocationExplainInput = styled.textarea`
-  height: 9.25rem;
+  height: 12rem;
   margin-left: 0.5rem;
   border: none;
   outline: none;
@@ -318,4 +356,36 @@ export const LocationExplainInput = styled.textarea`
     color: #d2d2d2;
     font-size: 1.1rem;
   }
+`;
+export const ButtonWrapper = styled.div`
+  width: 100%;
+  padding-top: 4rem;
+  display: flex;
+  gap: 3rem;
+`;
+export const CancelButton = styled.button`
+  width: 50%;
+  height: 3.238rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #f1eee9;
+  font-size: 1.4rem;
+  color: #323232;
+  font-weight: 500;
+  letter-spacing: 0.5rem;
+  cursor: pointer;
+`;
+export const SubmitButton = styled.button`
+  width: 50%;
+  height: 3.238rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #15133c;
+  font-size: 1.4rem;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.5rem;
+  cursor: pointer;
 `;

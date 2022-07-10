@@ -54,6 +54,9 @@ export const CreateBtn = styled.button`
   border-radius: 5px;
   background-color: #ffd24c;
   font-size: 1rem;
+  :hover {
+    cursor: pointer;
+  }
 `;
 export const Select = styled.select`
   width: 6.25rem;
@@ -85,6 +88,9 @@ export const ImageWrapper = styled.div`
     display: block;
     content: "";
     padding-bottom: 100%;
+  }
+  :hover {
+    cursor: pointer;
   }
 `;
 export const Image = styled.img`

@@ -1,3 +1,4 @@
+import FAQ from "../../commons/\bquestion/FAQ";
 import BoardCarousel from "../../commons/carousel/boardCarousel";
 import EventCarousel from "../../commons/carousel/eventCarousel";
 import ProductCarousel from "../../commons/carousel/productCarousel";
@@ -9,6 +10,7 @@ export default function MainPageUI() {
       <EventCarousel />
       <BoardCarousel />
       <ProductCarousel />
+      <FAQ />
     </S.Wrapper>
   );
 }

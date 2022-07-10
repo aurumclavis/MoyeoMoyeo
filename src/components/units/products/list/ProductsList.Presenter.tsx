@@ -1,7 +1,9 @@
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import Pagination01 from "../../../commons/pagination/01/Pagination01.Container";
 import * as S from "./ProductsList.Styles";
 
 export default function ProductsListUI() {
+  const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.Wrapper>
       <S.SearchWrapper>
@@ -11,7 +13,9 @@ export default function ProductsListUI() {
         </S.SearchBarWrapper>
         <S.SelectBtnWrapper>
           <S.CreateBtnWrapper>
-            <S.CreateBtn>상품등록</S.CreateBtn>
+            <S.CreateBtn onClick={onClickMoveToPage("products/new")}>
+              상품등록
+            </S.CreateBtn>
           </S.CreateBtnWrapper>
           <S.Select>
             <option>전체상품</option>
@@ -25,7 +29,7 @@ export default function ProductsListUI() {
       <S.GridWrapper>
         {new Array(12).fill(1).map((el, index) => (
           <S.GridItemWrapper key={index + 1}>
-            <S.ImageWrapper>
+            <S.ImageWrapper onClick={onClickMoveToPage("products/id")}>
               <S.Image src="https://images.unsplash.com/photo-1568150491977-b06e2fdf84cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" />
             </S.ImageWrapper>
             <S.TextWrapper>
