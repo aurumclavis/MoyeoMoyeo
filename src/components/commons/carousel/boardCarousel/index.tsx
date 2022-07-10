@@ -92,27 +92,27 @@ const Icon = styled.img`
 `;
 
 export default function BoardCarousel() {
-  // const settings = {
-  //   slide: "div",
-  //   infinite: false,
-  //   speed: 100,
-  //   slidesToShow: 2,
-  //   slidesToScroll: 2,
-  //   initialSlide: 1,
-  //   autoplay: true,
-  //   autoplaySpeed: 1000,
-  //   pauseOnHover: true,
-  //   vertical: false,
-  //   // responsive: [
-  //   //   // 반응형
-  //   //   {
-  //   //     breakpoint: 767,
-  //   //     settings: {
-  //   //       slidesToShow: 1,
-  //   //     },
-  //   //   },
-  //   // ],
-  // };
+  const settings = {
+    slide: "div",
+    infinite: false,
+    speed: 100,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    initialSlide: 1,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    pauseOnHover: true,
+    vertical: false,
+    // responsive: [
+    //   // 반응형
+    //   {
+    //     breakpoint: 767,
+    //     settings: {
+    //       slidesToShow: 1,
+    //     },
+    //   },
+    // ],
+  };
 
   return (
     <OutWrapper>
@@ -121,28 +121,28 @@ export default function BoardCarousel() {
         <More>더보기</More>
       </Title>
       <Wrapper>
-        {/* <MySlider {...settings}> */}
-        <BoardList>
-          <BoardTitleWrapper>
-            <BoardCategory>[모집중]</BoardCategory>
-            <BoardTitle>
-              이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
-            </BoardTitle>
-          </BoardTitleWrapper>
-          <BoardContents>
-            20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도 드실분
-            연락주세요! 남녀 상관 없습니다.{" "}
-          </BoardContents>
-          <BoardInfo>
-            <Icon src="/example3.png" />
-            <BoardEvents>지브리전시회</BoardEvents>
-            <Icon src="/example4.png" />
-            <BoardPeople>2~3명</BoardPeople>
-            <Icon src="/example5.png" />
-            <BoardDate>2022.07.06~2022.07.06</BoardDate>
-          </BoardInfo>
-        </BoardList>
-        {/* </MySlider> */}
+        <MySlider {...settings}>
+          <BoardList>
+            <BoardTitleWrapper>
+              <BoardCategory>[모집중]</BoardCategory>
+              <BoardTitle>
+                이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
+              </BoardTitle>
+            </BoardTitleWrapper>
+            <BoardContents>
+              20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도 드실분
+              연락주세요! 남녀 상관 없습니다.{" "}
+            </BoardContents>
+            <BoardInfo>
+              <Icon src="/example3.png" />
+              <BoardEvents>지브리전시회</BoardEvents>
+              <Icon src="/example4.png" />
+              <BoardPeople>2~3명</BoardPeople>
+              <Icon src="/example5.png" />
+              <BoardDate>2022.07.06~2022.07.06</BoardDate>
+            </BoardInfo>
+          </BoardList>
+        </MySlider>
       </Wrapper>
     </OutWrapper>
   );
