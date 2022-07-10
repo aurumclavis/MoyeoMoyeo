@@ -4,6 +4,7 @@ import { Image } from "antd";
 import Slider from "react-slick";
 
 export const Wrapper = styled.div`
+  width: 100%;
   height: auto;
   display: flex;
   justify-content: space-between;

@@ -20,8 +20,8 @@ export default function MyPageStaffSidebar() {
 
   return (
     <S.Wrapper>
+      {/* <S.Title>관리자페이지</S.Title> */}
       <S.SidebarWrapper>
-        <S.Title>관리자페이지</S.Title>
         <S.ProfileWrapper>
           <S.ProfileImg src="../../icon/simbollogo2Big.png" />
           <S.ProfileContentsWrapper>

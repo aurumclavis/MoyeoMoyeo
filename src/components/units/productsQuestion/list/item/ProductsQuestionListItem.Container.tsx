@@ -1,6 +1,13 @@
+import { useState } from "react";
 import ProductsAnswerList from "../../../productsAnswer/list/ProductsAnswerList.Container";
+import ProductsAnswerWrite from "../../../productsAnswer/write/ProductsAnswerWrite.Container";
 import * as S from "./ProductsQuestionListItem.Style";
+
 export default function ProductsQuestionListItem() {
+  const [isActiveAnswer, setIsActiveAnswer] = useState(false);
+  const onClickActiveAnswer = () => {
+    setIsActiveAnswer((prev) => !prev);
+  };
   return (
     <>
       <S.ItemWrapper>
@@ -17,11 +24,12 @@ export default function ProductsQuestionListItem() {
           </S.Contents>
         </S.ContentsWrapper>
         <S.IconWrapper>
-          <S.ReplyIcon />
+          <S.ReplyIcon onClick={onClickActiveAnswer} />
           <S.DeleteIcon />
         </S.IconWrapper>
       </S.ItemWrapper>
-      <ProductsAnswerList />
+      {isActiveAnswer && <ProductsAnswerWrite />}
+      <ProductsAnswerList onClickActiveAnswer={onClickActiveAnswer} />
     </>
   );
 }
