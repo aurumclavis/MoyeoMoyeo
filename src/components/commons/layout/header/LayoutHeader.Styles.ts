@@ -3,7 +3,6 @@ import { MenuOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 10%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -18,7 +17,6 @@ export const Wrapper = styled.div`
 export const InsideWrapper = styled.div`
   width: 100%;
   max-width: 1200px;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -37,6 +35,7 @@ export const LogoMenuWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin-left: 0.625rem;
   @media (max-width: 767px) {
     width: 100%;
@@ -46,34 +45,37 @@ export const LogoMenuWrapper = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  height: 2.813rem;
+  height: 2.4rem;
   cursor: pointer;
-  @media() {
-    /* display: none; */
-    height: 4rem;
-    margin-right: 35%;
-  }
 `;
 
 export const NavBarWrapper = styled.div`
-  width: 20rem;
+  width: 51%;
   height: 3.75rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-right: auto;
+  padding-left: 5%;
   @media (max-width: 767px) {
     display: none;
   }
 `;
+interface IMenuProps {
+  isActive: boolean;
+}
 
 export const Menu = styled.div`
   height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 800;
-  color: #323232;
+  font-weight: ${(props: IMenuProps) => (props.isActive ? "700" : "400")};
+  /* color: ${(props: IMenuProps) =>
+    props.isActive ? "#ffe69a" : "#000000"}; */
+  border-bottom: ${(props: IMenuProps) =>
+    props.isActive ? "3px solid #ffe69a;" : "none"};
   cursor: pointer;
   :hover {
     color: #ffe69a;
@@ -109,8 +111,14 @@ export const MenuIconWrapper = styled.div`
 `;
 
 export const MenuIcon = styled(MenuOutlined)`
-  font-size: 3rem;
+  display: none;
+  margin-left: 1rem;
+  font-size: 2rem;
+
   cursor: pointer;
+  @media (max-width: 767px) {
+    display: block;
+  }
 `;
 // export const LogoImgMobile = styled.img`
 //   height: 2.813rem;

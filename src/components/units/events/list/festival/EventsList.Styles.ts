@@ -89,32 +89,10 @@ export const DatePickIcon = styled(DateRangeIcon)``;
 export const DateLeftIcon = styled(CaretLeftOutlined)``;
 export const DateRigthIcon = styled(CaretRightOutlined)``;
 
-/// 정렬 버튼 부분
-
-export const SequenceWrapper = styled.div`
-  width: 100%;
-  height: 3vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-left: auto;
-`;
-export const Sequence = styled.div`
-  height: 2rem;
-  font-size: 0.8rem;
-  display: flex;
-  justify-content: center;
-  margin-right: 3rem;
-  :hover {
-    color: #ffe69a;
-    border-bottom: 0.063rem solid #ffe69a;
-  }
-`;
-
 /// 행사 리스트 부분
 export const ListWrapper = styled.div`
-  width: 100%;
-  height: 16rem;
+  width: 80%;
+  height: 8rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -127,7 +105,7 @@ export const ListWrapper = styled.div`
     box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
   }
   @media (max-width: 767px) {
-    height: 9rem;
+    height: 5rem;
     margin: 0.2rem;
     padding: 0.6rem;
     justify-content: space-around;
@@ -135,23 +113,23 @@ export const ListWrapper = styled.div`
 `;
 
 export const ListImg = styled.img`
-  width: 11.25rem;
-  height: 11.25rem;
-  margin: 2rem 0;
+  width: 6rem;
+  height: 6rem;
   border-radius: 10px;
   @media (max-width: 767px) {
-    width: 7rem;
-    height: 7rem;
+    width: 4rem;
+    height: 4rem;
   }
 `;
 
 export const ContentsWrapper = styled.div`
-  width: 40rem;
-  height: 11.25rem;
+  width: 60%;
+  height: 6rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 1rem;
+  margin-right: auto;
   padding-left: 2rem;
   @media (max-width: 767px) {
     width: 10%;
@@ -159,28 +137,34 @@ export const ContentsWrapper = styled.div`
     margin-right: auto;
   }
 `;
+export const constTitleWrapper = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 export const ContentsTitle = styled.div`
   height: 30%;
   font-style: Bold;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   @media (max-width: 767px) {
-    font-size: 1rem;
+    font-size: 0.6rem;
   }
 `;
 export const ContentsPeriod = styled.div`
   height: 20%;
-  font-size: 0.8rem;
+  font-size: 0.4rem;
 `;
 
 export const Marker = styled.div`
   width: 98%;
   height: 50%;
-  font-size: 1rem;
+  font-size: 0.6rem;
   overflow: hidden;
+
   @media (max-width: 767px) {
-    width: 20rem;
-    height: 8rem;
   }
 `;
 
