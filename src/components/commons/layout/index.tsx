@@ -15,7 +15,6 @@ const Wrapper = styled.div`
 
 const Body = styled.div`
   width: 100%;
-  height: 80%;
   max-width: 75rem;
   display: flex;
 `;

@@ -3,24 +3,25 @@ import { MenuOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 100%;
+  height: 10%;
   position: relative;
   display: flex;
   flex-direction: column;
   border-bottom: 0.063rem solid #cccccc;
   @media (max-width: 767px) {
+    width: 100%;
     border-bottom: 0.12rem solid #d2d2d2;
   }
 `;
 
 export const InsideWrapper = styled.div`
-  width: 75rem;
+  width: 100%;
   /* height: 4.375rem; */
-  height: 10%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: auto;
+
   padding: 0px 1.875rem;
   margin-top: 0.625rem;
 `;
