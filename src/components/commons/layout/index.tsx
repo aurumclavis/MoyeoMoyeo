@@ -17,6 +17,7 @@ const Body = styled.div`
   width: 100%;
   max-width: 75rem;
   display: flex;
+  margin: auto;
 `;
 
 const SHOW_BANNER = ["/", "/events"];

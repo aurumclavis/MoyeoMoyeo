@@ -62,7 +62,7 @@ export const DateWrapper = styled.div`
   align-items: center;
 `;
 export const CalendarWrapper = styled.div`
-  width: 35rem;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,7 +96,7 @@ export const SequenceWrapper = styled.div`
   height: 3vh;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-left: auto;
 `;
 export const Sequence = styled.div`
@@ -154,7 +154,7 @@ export const ContentsWrapper = styled.div`
   margin-top: 1rem;
   padding-left: 2rem;
   @media (max-width: 767px) {
-    width: 28rem;
+    width: 10%;
     height: 8rem;
     margin-right: auto;
   }

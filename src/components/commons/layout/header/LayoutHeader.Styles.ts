@@ -11,19 +11,25 @@ export const Wrapper = styled.div`
   @media (max-width: 767px) {
     width: 100%;
     border-bottom: 0.12rem solid #d2d2d2;
+    justify-content: center;
   }
 `;
 
 export const InsideWrapper = styled.div`
   width: 100%;
-  /* height: 4.375rem; */
+  max-width: 1200px;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
   padding: 0px 1.875rem;
+  margin: auto;
   margin-top: 0.625rem;
+  @media (max-width: 767px) {
+    padding: 0rem;
+    margin-top: 0rem;
+  }
 `;
 
 export const LogoMenuWrapper = styled.div`
@@ -42,7 +48,7 @@ export const LogoMenuWrapper = styled.div`
 export const LogoImg = styled.img`
   height: 2.813rem;
   cursor: pointer;
-  @media (max-width: 767px) {
+  @media() {
     /* display: none; */
     height: 4rem;
     margin-right: 35%;

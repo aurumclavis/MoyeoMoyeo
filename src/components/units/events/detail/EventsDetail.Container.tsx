@@ -11,17 +11,17 @@ export default function EventsDetail() {
   };
   const currentUrl = `localhost:3000/events/${router.query._id}`;
 
-  useEffect(() => {
-    const location = document.querySelector(".contents");
-    const locationHeight = document.querySelector("#contents");
-
-    // window.scrollTo({ top: location - locationHeight, behavior: "smooth" });
-    window.addEventListener("scroll", onScrollNavbar);
-  }, []);
   const navRef = useRef(null);
   const markerRef = useRef(null);
   const contentsRef = useRef(null);
 
+  useEffect(() => {
+    const location = document.querySelector(".contents");
+    const locationHeight = document.querySelector("#contents");
+
+    window.scrollTo({ top: location - locationHeight, behavior: "smooth" });
+    window.addEventListener("scroll", onScrollNavbar);
+  }, []);
   const onScrollNavbar = () => {
     if (navRef.current !== null) {
       if (
