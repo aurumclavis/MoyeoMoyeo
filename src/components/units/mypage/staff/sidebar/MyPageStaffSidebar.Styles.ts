@@ -18,7 +18,6 @@ export const Title = styled.h2`
 export const ProfileWrapper = styled.div`
   width: 100%;
   height: 250px;
-  margin-top: 1.25rem;
   padding: 50px 0;
   display: flex;
   flex-direction: column;

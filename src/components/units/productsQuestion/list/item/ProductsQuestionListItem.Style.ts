@@ -36,7 +36,13 @@ export const Contents = styled.p`
 // 답글, 삭제 아이콘
 export const DeleteIcon = styled(Clear)`
   font-size: 1.5rem;
+  :hover {
+    cursor: pointer;
+  }
 `;
 export const ReplyIcon = styled(Reply)`
   font-size: 1.5rem;
+  :hover {
+    cursor: pointer;
+  }
 `;

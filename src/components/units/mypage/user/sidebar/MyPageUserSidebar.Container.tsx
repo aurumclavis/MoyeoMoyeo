@@ -27,7 +27,7 @@ export default function MyPageUserSidebar() {
   return (
     <S.Wrapper>
       <S.SidebarWrapper>
-        <S.Title>마이페이지</S.Title>
+        {/* <S.Title>마이페이지</S.Title> */}
         <S.ProfileWrapper>
           <S.ProfileImg src="../../icon/simbollogo2Big.png" />
           <S.ProfileContentsWrapper>

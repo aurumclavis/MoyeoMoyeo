@@ -4,9 +4,21 @@ import ProductsQuestionList from "../../productsQuestion/list/ProductsQuestionLi
 import ProductsQuestionWrite from "../../productsQuestion/write/ProductsQuestionWrite.Container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Image } from "antd";
+import { BackTop, Image } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useRouter } from "next/router";
+import { ArrowUpOutlined } from "@ant-design/icons";
+
+const style: React.CSSProperties = {
+  height: 40,
+  width: 40,
+  lineHeight: "40px",
+  borderRadius: 4,
+  backgroundColor: "#FFD24C",
+  color: "black",
+  textAlign: "center",
+  fontSize: 14,
+};
 
 export default function ProductDetailUI(props) {
   const router = useRouter();
@@ -127,6 +139,13 @@ export default function ProductDetailUI(props) {
             <S.Label>00회사</S.Label>
             <S.Label>010-0000-0000</S.Label>
           </S.SellerContentsWrapper>
+
+          {/* BackTop(맨 위로 가기) 추가 */}
+          <BackTop>
+            <div style={style}>
+              <ArrowUpOutlined />
+            </div>
+          </BackTop>
         </S.SidebarWrapper>
       </S.RightWrapper>
     </S.Wrapper>
