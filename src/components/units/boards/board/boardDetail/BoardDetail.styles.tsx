@@ -79,7 +79,7 @@ export const TransportationWrapper = styled.div`
   gap: 1.5rem;
 `;
 export const TransPortImage = styled.img`
-  width: 3rem;
+  width: 2.5rem;
   height: auto;
   cursor: pointer;
 `;
@@ -266,7 +266,7 @@ export const EventInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding: 1.5rem;
   border-radius: 5px;
   border: 1px solid #f1eee9;
@@ -325,7 +325,7 @@ export const CommentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-top: 3rem;
+  margin: 1rem 0 5rem 0;
 `;
 export const CommentText = styled.span`
   padding: 2px 5px;

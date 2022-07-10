@@ -1,3 +1,4 @@
+import ToolTip from "../../../../commons/tooltip";
 import KaKaoMapFetch from "../../KaKaoMap/FetchMap";
 import CommentListContainer from "../Comment/List/CommentList.container";
 import CommentWriteContainer from "../Comment/Write/CommentWrite.container";
@@ -21,7 +22,9 @@ export default function BoardDetailPresenter(props: any) {
               <S.InfoUpper>
                 <S.TransportationWrapper>
                   <S.ItemsText>이동수단</S.ItemsText>
-                  <S.TransPortImage src="/icon/car.png" />
+                  <ToolTip promptText={"자동차"} placement={"top"}>
+                    <S.TransPortImage src="/icon/car.png" />
+                  </ToolTip>
                 </S.TransportationWrapper>
                 <S.HeadCountWrapper>
                   <S.ItemsText>모집인원</S.ItemsText>
@@ -158,7 +161,7 @@ export default function BoardDetailPresenter(props: any) {
           <S.EventInfoText>행사 정보</S.EventInfoText>
           <S.EventInfo>
             <S.EventImage
-              src="/cat_goods.jpg"
+              src="/catGoodsMarketExample.jpeg"
               onClick={props.onClickGoEventDetail}
             />
             <S.EventInfoDetailWrapper>
