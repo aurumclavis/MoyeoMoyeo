@@ -27,7 +27,7 @@ export default function BoardListPresenter(props: any) {
             onClick={props.onClickViewAccompany}
             selectAccompany={props.selectAccompany}
           >
-            <div>행사Q&A</div>
+            <div>신청보기</div>
           </S.ViewAccompany>
         </S.ViewTypeWrapper>
         <S.SearchAndCreateWrapper>
@@ -85,7 +85,10 @@ export default function BoardListPresenter(props: any) {
         </S.DateWrapper>
         <S.ListWrapper>
           {props.data.map((el: any) => (
-            <S.Item key={uuidv4()}>
+            <S.Item
+              key={uuidv4()}
+              onClick={props.onClickGoDetail(el.eventName)}
+            >
               <S.ItemLeft>
                 <S.EventImage src="/market.jpg" />
                 <S.ItemMain>
@@ -116,8 +119,8 @@ export default function BoardListPresenter(props: any) {
                   </S.Footer>
                 </S.ItemMain>
               </S.ItemLeft>
-              <S.ItemRight accompanied={el.accompanied}>
-                {el.accompanied ? (
+              <S.ItemRight requested={el.requested}>
+                {el.requested ? (
                   <S.PaperPlaneImage src="/icon/symbollogo_removebg.png" />
                 ) : (
                   <S.PaperPlaneImage src="/icon/simbollogo.png" />

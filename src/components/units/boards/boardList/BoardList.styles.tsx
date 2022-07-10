@@ -202,6 +202,7 @@ export const ListWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  cursor: pointer;
 `;
 export const Item = styled.div`
   width: 70%;
@@ -217,6 +218,7 @@ export const Item = styled.div`
   }
 `;
 export const ItemLeft = styled.div`
+  width: 90%;
   display: flex;
   gap: 0.7rem;
   padding: 10px;
@@ -227,6 +229,7 @@ export const EventImage = styled.img`
   object-fit: cover;
 `;
 export const ItemMain = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -240,6 +243,7 @@ export const Recruitment = styled.div`
   ${(props: any) => (props.recruited ? "color : #FFD24C;" : "color : #00AD07;")}
 `;
 export const Title = styled.div`
+  width: 80%;
   font-size: 1rem;
   font-weight: 500;
 `;
@@ -286,14 +290,14 @@ export const CalendarIcon = styled(DateRangeIcon)`
   margin-right: 5px;
 `;
 export const ItemRight = styled.div`
-  width: 4.625rem;
+  width: 10%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  ${(props: any) => props.accompanied && "background-color: #FFD24C"}
+  ${(props: any) => props.requested && "background-color: #FFD24C"}
 `;
 export const PaperPlaneImage = styled.img`
   width: 60%;
