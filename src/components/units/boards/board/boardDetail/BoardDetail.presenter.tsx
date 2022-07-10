@@ -6,22 +6,23 @@ import * as S from "./BoardDetail.styles";
 export default function BoardDetailPresenter(props: any) {
   return (
     <S.Wrapper>
-      <S.ImageWrapper>
-        <S.EventImage src="/market.jpg" />
-        <S.EventDate>행사기간 2022년 7월 15일 ~ 2022년 7월 31일</S.EventDate>
-      </S.ImageWrapper>
+      <S.CoverImage src="/market.jpg" />
       <S.BodyWrapper>
         <S.Body>
           <S.Title isCompleted={props.isCompleted}>
-            이번 주 토요일 동탄 플리마켓 같이 구경하실 동행 구합니다!!
+            이번 주 토요일 동탄 고양이플리마켓 같이 구경할 동행 구합니다!!
           </S.Title>
+          <S.CreatedAtAndViewWrapper>
+            <S.CreatedAt>2022년 7월 11일 19:31 작성</S.CreatedAt> ・
+            <S.View>조회수 {10}</S.View> ・ <S.Report>신고하기</S.Report>
+          </S.CreatedAtAndViewWrapper>
           <S.Main>
             <S.InfoWrapper>
               <S.InfoUpper>
-                <S.WriterWrapper>
-                  <S.ItemsText>작성자</S.ItemsText>
-                  <S.Writer>최인호</S.Writer>
-                </S.WriterWrapper>
+                <S.TransportationWrapper>
+                  <S.ItemsText>이동수단</S.ItemsText>
+                  <S.TransPortImage src="/icon/car.png" />
+                </S.TransportationWrapper>
                 <S.HeadCountWrapper>
                   <S.ItemsText>모집인원</S.ItemsText>
                   <S.MaxHeadCount>3명</S.MaxHeadCount>
@@ -50,74 +51,156 @@ export default function BoardDetailPresenter(props: any) {
               내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
               내용입니다. 게시글 내용입니다. 게시글 내용입니다.
             </S.Contents>
-            <S.TransportAndLocationWrapper>
-              <S.TransportationWrapper>
-                <S.ItemsText>이동수단</S.ItemsText>
-                <S.TransPortImage src="/icon/car.png" />
-              </S.TransportationWrapper>
-              <S.LocationWrapper>
-                <S.LocationExplainWrapper>
-                  <S.ItemsText>장소 설명</S.ItemsText>
-                  <S.LocationExplain>
-                    한남오피스 빌딩 1층 커피숍에서 만나요~!
-                  </S.LocationExplain>
-                </S.LocationExplainWrapper>
-                <S.MapWrapper>
-                  <KaKaoMapFetch lat={props.lat} lng={props.lng} />
-                </S.MapWrapper>
-              </S.LocationWrapper>
-            </S.TransportAndLocationWrapper>
+            <S.LocationWrapper>
+              <S.MapWrapper>
+                <KaKaoMapFetch lat={props.lat} lng={props.lng} />
+              </S.MapWrapper>
+              <S.LocationExplainWrapper>
+                <S.ItemsText>모임장소 설명</S.ItemsText>
+                <S.LocationExplain>
+                  선유도역 9호선 1번출구 스타벅스에서 만나요~! 플리마켓까지 제
+                  차로 이동해드립니다!
+                </S.LocationExplain>
+              </S.LocationExplainWrapper>
+            </S.LocationWrapper>
           </S.Main>
-          <S.CreatedAtAndViewWrapper>
-            <S.CreatedAt>2022년 7월 11일 19:31</S.CreatedAt> ・
-            <S.View>조회수 {10}</S.View> ・ <S.Report>신고하기</S.Report>
-          </S.CreatedAtAndViewWrapper>
         </S.Body>
         <S.AccompanyWrapper>
-          {props.isMyBoard ? (
+          {props.isMyBoard && (
             <>
-              <S.AccompanyItemsWrapper isMyBoard={props.isMyBoard}>
-                <S.AccompanyAmountIcon src="/icon/groups.png" />
-                <S.AccompanyAmountText>2/3</S.AccompanyAmountText>
-              </S.AccompanyItemsWrapper>
-              <S.AccompanyItemsWrapper isMyBoard={props.isMyBoard}>
-                <S.AccompanyChangeMaxIcon src="/icon/group_add.png" />
-                <S.AccompanyChangeMaxText>인원 변경</S.AccompanyChangeMaxText>
-              </S.AccompanyItemsWrapper>
-              <S.AccompanyItemsWrapper isMyBoard={props.isMyBoard}>
+              <S.AccompanyUpperWrapper>
+                <S.AccompanyUpperItemsWrapper>
+                  <S.AccompanyItems isMyBoard={props.isMyBoard}>
+                    <S.AccompanyAmountIcon src="/icon/groups.png" />
+                    <S.AccompanyAmountText>인원 2/3</S.AccompanyAmountText>
+                  </S.AccompanyItems>
+                  <S.AccompanyItems isMyBoard={props.isMyBoard}>
+                    <S.AccompanyChangeMaxIcon src="/icon/group_add.png" />
+                    <S.AccompanyChangeMaxText>
+                      인원 변경
+                    </S.AccompanyChangeMaxText>
+                  </S.AccompanyItems>
+                </S.AccompanyUpperItemsWrapper>
+              </S.AccompanyUpperWrapper>
+              <S.AccompanyItems isMyBoard={props.isMyBoard}>
                 {props.isCompleted ? (
                   <>
-                    <S.AccompanyCompleteCancelIcon src="/icon/cancel.png" />
-                    <S.AccompanyCompleteCancelText>
-                      완료취소
-                    </S.AccompanyCompleteCancelText>
+                    <S.AccompanyRequestButton isCompleted={props.isCompleted}>
+                      <S.AccompanyCompleteCancelIcon src="/icon/cancel.png" />
+                      <S.AccompanyCompleteCancelText>
+                        모집완료 취소
+                      </S.AccompanyCompleteCancelText>
+                    </S.AccompanyRequestButton>
+                    <S.AccompanyInfo>
+                      <S.AccompanyInfoIcon />
+                      완료 취소하면 동행에게 이메일이 보내집니다.
+                    </S.AccompanyInfo>
                   </>
                 ) : (
                   <>
-                    <S.AccompanyCompleteIcon src="/icon/done.png" />
-                    <S.AccompanyCompleteText>모집완료</S.AccompanyCompleteText>
+                    <S.AccompanyRequestButton>
+                      <S.AccompanyCompleteIcon src="/icon/done.png" />
+                      <S.AccompanyCompleteText>
+                        모집완료
+                      </S.AccompanyCompleteText>
+                    </S.AccompanyRequestButton>
+                    <S.AccompanyInfo>
+                      <S.AccompanyInfoIcon />
+                      완료를 누르면 동행에게 이메일이 보내집니다.
+                    </S.AccompanyInfo>
                   </>
                 )}
-              </S.AccompanyItemsWrapper>
+              </S.AccompanyItems>
             </>
-          ) : props.isAccompanyUser ? (
-            <S.AccompanyItemsWrapper>
-              <S.AccompanyCancelIcon src="/icon/simbollogo2Big.png" />
-              <S.AccompanyCancelText>동행중</S.AccompanyCancelText>
-            </S.AccompanyItemsWrapper>
-          ) : (
-            <S.AccompanyItemsWrapper>
-              <S.AccompanyRequestIcon src="/icon/simbollogo.png" />
-              <S.AccompanyRequestText>동행요청</S.AccompanyRequestText>
-            </S.AccompanyItemsWrapper>
           )}
+          {!props.isMyBoard &&
+            (props.isSendRequestUser ? (
+              <>
+                <S.AccompanyUpperWrapper>
+                  <S.WriterImg src="/배너이미지_동행1.png" />
+                  <S.WriterInfoWrapper>
+                    <S.WriterName>최인호</S.WriterName>
+                    <S.WriterEtc>20대 ・ 남성 ・ 서울거주</S.WriterEtc>
+                  </S.WriterInfoWrapper>
+                </S.AccompanyUpperWrapper>
+                <S.AccompanyRequestButton
+                  isSendRequestUser={props.isSendRequestUser}
+                >
+                  <S.AccompanyCancelText>동행요청보냄</S.AccompanyCancelText>
+                  <S.AccompanyCancelIcon src="/icon/symbollogo_removebg.png" />
+                </S.AccompanyRequestButton>
+                <S.AccompanyInfo>
+                  <S.AccompanyInfoIcon />
+                  동행을 요청하면 상대방의 수락을 거쳐 맺어집니다.
+                </S.AccompanyInfo>
+              </>
+            ) : (
+              <>
+                <S.AccompanyUpperWrapper>
+                  <S.WriterImg src="/배너이미지_동행1.png" />
+                  <S.WriterInfoWrapper>
+                    <S.WriterName>최인호</S.WriterName>
+                    <S.WriterEtc>20대 ・ 남성 ・ 서울거주</S.WriterEtc>
+                  </S.WriterInfoWrapper>
+                </S.AccompanyUpperWrapper>
+                <S.AccompanyRequestButton>
+                  <S.AccompanyRequestText>동행 요청하기</S.AccompanyRequestText>
+                  <S.AccompanyRequestIcon src="/icon/simbollogo.png" />
+                </S.AccompanyRequestButton>
+                <S.AccompanyInfo>
+                  <S.AccompanyInfoIcon />
+                  동행을 요청하면 상대방의 수락을 거쳐 맺어집니다.
+                </S.AccompanyInfo>
+              </>
+            ))}
         </S.AccompanyWrapper>
+        <S.EventInfoWrapper>
+          <S.EventInfoText>행사 정보</S.EventInfoText>
+          <S.EventInfo>
+            <S.EventImage
+              src="/cat_goods.jpg"
+              onClick={props.onClickGoEventDetail}
+            />
+            <S.EventInfoDetailWrapper>
+              <S.EventInfoDetail>
+                <S.EventInfoItem>
+                  <S.EventFestivalIcon />
+                  행사이름
+                </S.EventInfoItem>
+                <S.EventInfoContents>동탄고양이플리마켓</S.EventInfoContents>
+              </S.EventInfoDetail>
+              <S.EventInfoDetail>
+                <S.EventInfoItem>
+                  <S.EventMapIcon />
+                  지역
+                </S.EventInfoItem>
+                <S.EventInfoContents>경기도 동탄</S.EventInfoContents>
+              </S.EventInfoDetail>
+              <S.EventInfoDetail>
+                <S.EventInfoItem>
+                  <S.EventDateRangeIcon />
+                  기간
+                </S.EventInfoItem>
+                <S.EventInfoContents>
+                  2022년 7월 15일 ~ 2022년 7월 31일
+                </S.EventInfoContents>
+              </S.EventInfoDetail>
+              <S.EventInfoDetail>
+                <S.EventInfoItem>
+                  <S.EventListIcon />
+                  카테고리
+                </S.EventInfoItem>
+                <S.EventInfoContents>플리마켓</S.EventInfoContents>
+              </S.EventInfoDetail>
+            </S.EventInfoDetailWrapper>
+          </S.EventInfo>
+        </S.EventInfoWrapper>
+        <S.CommentWrapper>
+          <S.CommentText>댓글로 질문하기</S.CommentText>
+          <CommentWriteContainer />
+          <CommentListContainer />
+        </S.CommentWrapper>
       </S.BodyWrapper>
-      <S.CommentWrapper>
-        <S.CommentText>질문 댓글란</S.CommentText>
-        <CommentWriteContainer />
-        <CommentListContainer />
-      </S.CommentWrapper>
     </S.Wrapper>
   );
 }

@@ -1,25 +1,40 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Item = styled.div`
-  width: 6.5rem;
+  width: 90%;
   height: 3.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   border: 1px solid #d2d2d2;
+  background-color: white;
+  ${(props: any) => props.isViewTotal && "background-color : #F1EEE9;"}
   ${(props: any) => props.clicked && "background-color : #F1EEE9;"}
   cursor: pointer;
 `;
 
 export default function EachItem(props: any) {
-  const [clicked, setClicked] = useState(false);
+  const [isViewTotal] = useState(props.isTotal === "전체");
   const onClickItem = () => {
-    setClicked((prev) => !prev);
+    props.setClickedIndex(props.index);
+    props.setIsTotal(props.el);
+    if (props.el === "전체") {
+      props.setCategoryData(props.viewTypeData);
+    } else {
+      props.setCategoryData(
+        props.viewTypeData.filter((el: any) => el.category === props.el)
+      );
+    }
   };
+
   return (
-    <Item clicked={clicked} onClick={onClickItem}>
+    <Item
+      clicked={props.index === props.clickedIndex}
+      isViewTotal={isViewTotal}
+      onClick={onClickItem}
+    >
       <div>{props.el}</div>
     </Item>
   );

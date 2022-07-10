@@ -14,8 +14,8 @@ export const CommentsWrapper = styled.div`
   flex-direction: column;
   gap: 1rem;
   padding: 0.5rem;
-  border-bottom: 1px solid gray;
-  border-radius: 5px;
+  border-top: 1px solid #f1eee9;
+  border-bottom: 1px solid #f1eee9;
 `;
 export const UpperWrapper = styled.div`
   display: flex;
@@ -24,8 +24,8 @@ export const UpperWrapper = styled.div`
 `;
 export const UpperLeft = styled.div`
   display: flex;
-  gap: 1rem;
-  align-items: flex-end;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
 export const CommentsWriter = styled.div`
   font-weight: 600;
