@@ -3,11 +3,6 @@ import LayoutBanner from "./banner/LayoutBanner.Container";
 import LayoutFooter from "./footer/LayoutFooter.Container";
 import LayoutHeader from "./header/LayoutHeader.Container";
 import { useRouter } from "next/router";
-import { ReactNode } from "react";
-
-interface ILayoutProps {
-  children: ReactNode;
-}
 
 const Wrapper = styled.div`
   width: 100%;
@@ -20,14 +15,14 @@ const Wrapper = styled.div`
 
 const Body = styled.div`
   width: 100%;
-  height: 80%;
   max-width: 75rem;
   display: flex;
+  margin: auto;
 `;
 
 const SHOW_BANNER = ["/", "/events"];
 
-export default function Layout(props: ILayoutProps) {
+export default function Layout(props) {
   const router = useRouter();
   const isShowBanner = SHOW_BANNER.includes(router.asPath);
   return (

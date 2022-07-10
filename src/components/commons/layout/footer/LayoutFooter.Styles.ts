@@ -14,7 +14,8 @@ export const Wrapper = styled.div`
   border-top: 0.063px solid #d2d2d2;
 `;
 export const InsideWrapper = styled.div`
-  width: 50rem;
+  width: 100%;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
 `;

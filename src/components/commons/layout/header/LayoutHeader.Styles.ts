@@ -3,26 +3,33 @@ import { MenuOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 100%;
+  height: 10%;
   position: relative;
   display: flex;
   flex-direction: column;
   border-bottom: 0.063rem solid #cccccc;
   @media (max-width: 767px) {
+    width: 100%;
     border-bottom: 0.12rem solid #d2d2d2;
+    justify-content: center;
   }
 `;
 
 export const InsideWrapper = styled.div`
-  width: 75rem;
-  /* height: 4.375rem; */
-  height: 10%;
+  width: 100%;
+  max-width: 1200px;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: auto;
   padding: 0px 1.875rem;
+  margin: auto;
   margin-top: 0.625rem;
+  @media (max-width: 767px) {
+    padding: 0rem;
+    margin-top: 0rem;
+  }
 `;
 
 export const LogoMenuWrapper = styled.div`
@@ -41,7 +48,7 @@ export const LogoMenuWrapper = styled.div`
 export const LogoImg = styled.img`
   height: 2.813rem;
   cursor: pointer;
-  @media (max-width: 767px) {
+  @media() {
     /* display: none; */
     height: 4rem;
     margin-right: 35%;
@@ -120,11 +127,15 @@ export const MobileMenuWrapper = styled.div`
   width: 80%;
   height: 100vh;
   display: none;
+
   background-color: aqua;
   margin-right: auto;
   @media (max-width: 767px) {
-    display: ${(props: any) => (props.isOpen ? "none" : "block")};
+    display: ${(props: any) => (props.isOpen ? "none" : "flex")};
     flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: -61px;
   }
 `;
 export const Flex = styled.div`

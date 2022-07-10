@@ -6,8 +6,10 @@ export default function EventsListUI(props) {
     <>
       <S.Wrapper>
         <S.ListTitle>
-          <S.Logo src="/icon/simbollogo.png" />
-          행사 일정
+          <S.SequenceWrapper>
+            <S.Sequence>조회수 순 정렬</S.Sequence>
+            <S.Sequence>날짜 순 정렬</S.Sequence>
+          </S.SequenceWrapper>
         </S.ListTitle>
         <S.LineDiv />
         <S.DateWrapper>
@@ -21,10 +23,7 @@ export default function EventsListUI(props) {
           </S.CalendarWrapper>
         </S.DateWrapper>
         <S.LineListDiv />
-        <S.SequenceWrapper>
-          <S.Sequence>조회수 순 정렬</S.Sequence>
-          <S.Sequence>날짜 순 정렬</S.Sequence>
-        </S.SequenceWrapper>
+
         <S.LineListDiv />
         <S.ListWrapper>
           <S.ListImg src="/배너이미지_동행1.png" />
