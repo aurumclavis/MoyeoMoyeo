@@ -19,6 +19,10 @@ export default function LayoutHeader() {
   const onClickMobileMenu = () => {
     setOpen(prev => !prev);
   };
+  const onClickMobileTab = e => {
+    setOpen(prev => !prev);
+    onClickMoveToPage(e.currentTarget.id)();
+  };
 
   useEffect(() => {
     setActivedTab(router.asPath);
@@ -31,7 +35,8 @@ export default function LayoutHeader() {
       activedTab={activedTab}
       prevClick={prevClick}
       onClickTab={onClickTab}
-      // isOpen={isOpen}
+      onClickMobileTab={onClickMobileTab}
+      isOpen={isOpen}
     />
   );
 }
