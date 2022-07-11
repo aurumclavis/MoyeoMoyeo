@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ProductDetailUI from "./ProductsDetail.Presenter";
 
 export default function ProductDetail() {
@@ -26,6 +26,8 @@ export default function ProductDetail() {
       behavior: "smooth",
     });
     setActivedTab(event.currentTarget.id);
+    console.log(detailRef.current?.offsetTop);
+    console.log(qnaRef.current?.offsetTop);
   };
 
   const onClickQna = (event) => {

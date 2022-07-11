@@ -87,7 +87,7 @@ export default function ProductsWriteUI(props: ProductsWriteUIProps) {
               isActive={props.formState.isValid}
               title="등록"
             />
-            <S.CancelBtn>취소</S.CancelBtn>
+            <S.CancelBtn type="button">취소</S.CancelBtn>
           </S.SubmitWrapper>
         </S.BtnWrapper>
       </S.WriteForm>
