@@ -1,6 +1,8 @@
 import * as S from "./BoardWrite.styles";
 import KaKaoMap from "../../KaKaoMap";
 import ToolTip from "../../../../commons/tooltip";
+import { v4 as uuidv4 } from "uuid";
+import DateRangePicker from "./dateRangePicker";
 
 export default function BoardWritePresenter(props: any) {
   return (
@@ -31,7 +33,8 @@ export default function BoardWritePresenter(props: any) {
                 <S.EventDateRangeIcon />
                 <S.EventInfoItem>기간</S.EventInfoItem>
                 <S.EventInfoContents>
-                  2022년 7월 15일 <br />~ 2022년 7월 31일
+                  {props.eventData.date.start} <br />~{" "}
+                  {props.eventData.date.end}
                 </S.EventInfoContents>
               </S.EventInfoDetail>
               <S.EventInfoDetail>
@@ -49,79 +52,101 @@ export default function BoardWritePresenter(props: any) {
         <S.MainWrapper>
           <S.ItemsWrapper>
             <S.ItemText>모여글 제목</S.ItemText>
-            <S.TitleInput placeholder="제목을 입력해주세요.(100자 이내)" />
+            <S.TitleInput
+              placeholder="제목을 입력해주세요.(100자 이내)"
+              {...props.register("title")}
+            />
           </S.ItemsWrapper>
           <S.DateAndMaxHeadCountWrapper>
             <S.DateWrapper>
               <S.ItemText>동행일자</S.ItemText>
               <S.AccompanyDateInputWrapper>
-                <S.AccompanyDateInput placeholder="2022년 7월 16일" />
-                ~
-                <S.AccompanyDateInput placeholder="2022년 7월 16일" />
-                <S.CalendarWrapper>
-                  <S.MyDateRangeIcon />
-                </S.CalendarWrapper>
+                <ToolTip
+                  promptText={"행사일정이 노란색으로 표시됩니다."}
+                  placement={"bottom"}
+                >
+                  <S.MyHelpOutlineIcon />
+                </ToolTip>
+                <DateRangePicker
+                  eventDate={props.eventData.date}
+                  onChangeDatePicker={props.onChangeDatePicker}
+                />
               </S.AccompanyDateInputWrapper>
             </S.DateWrapper>
             <S.MaxHeadCountWrapper>
               <S.ItemText>모집 인원</S.ItemText>
               <S.MaxHeadCount>
-                <S.MaxHeadCountInput placeholder="0" />명
+                <S.CountMinus id="-" onClick={props.onClickCount}>
+                  -
+                </S.CountMinus>
+                <S.MaxHeadCountInput
+                  defaultValue={0}
+                  value={props.maxHeadCount}
+                />
+                명
+                <S.CountPlus id="+" onClick={props.onClickCount}>
+                  +
+                </S.CountPlus>
               </S.MaxHeadCount>
             </S.MaxHeadCountWrapper>
           </S.DateAndMaxHeadCountWrapper>
           <S.ItemsWrapper>
             <S.ItemText>글 내용</S.ItemText>
-            <S.MyReactQuill placeholder="내용을 입력해주세요.(1000자 이내)" />
+            <S.MyReactQuill
+              placeholder="내용을 입력해주세요.(1000자 이내)"
+              onChange={props.onChangeQuill}
+            />
           </S.ItemsWrapper>
         </S.MainWrapper>
       </S.UpperWrapper>
       <S.UnderWrapper>
         <S.ItemsWrapper>
           <S.ItemText>한 줄 설명</S.ItemText>
-          <S.RemarkInput placeholder="동행 게시글 목록에 노출되는 한 줄 설명을 적어주세요!" />
+          <S.RemarkInput
+            placeholder="동행 게시글 목록에 노출되는 한 줄 설명을 적어주세요!"
+            {...props.register("remark")}
+          />
         </S.ItemsWrapper>
         <S.EventLocationWrapper>
           <S.ItemText>행사 위치</S.ItemText>
           <S.MapWrapper>
             <S.TransportationWrapper>
               <S.TransportationSelect onClick={props.onClickTransportSelect}>
-                <S.MyArrowRightIcon
-                  isTransportSelect={props.isTransportSelect}
-                />
+                <S.MyArrowRightIcon isDropTransport={props.isDropTransport} />
                 이동수단선택
               </S.TransportationSelect>
-              <S.Transportation isTransportSelect={props.isTransportSelect}>
-                <S.Bicycle>
-                  <ToolTip promptText={"자전거"} placement={"right"}>
-                    <S.TransportationImg src="/icon/bicycle.png" />
-                  </ToolTip>
-                </S.Bicycle>
-                <S.Bus>
-                  <ToolTip promptText={"버스"} placement={"right"}>
-                    <S.TransportationImg src="/icon/bus.png" />
-                  </ToolTip>
-                </S.Bus>
-                <S.Train>
-                  <ToolTip promptText={"기차"} placement={"right"}>
-                    <S.TransportationImg src="/icon/train.png" />
-                  </ToolTip>
-                </S.Train>
-                <S.Car>
-                  <ToolTip promptText={"자동차"} placement={"right"}>
-                    <S.TransportationImg src="/icon/car.png" />
-                  </ToolTip>
-                </S.Car>
-                <S.Airplane>
-                  <ToolTip promptText={"비행기"} placement={"right"}>
-                    <S.TransportationImg src="/icon/airplane.png" />
-                  </ToolTip>
-                </S.Airplane>
-                <S.Ship>
-                  <ToolTip promptText={"배"} placement={"right"}>
-                    <S.TransportationImg src="/icon/ship.png" />
-                  </ToolTip>
-                </S.Ship>
+              <S.Transportation isDropTransport={props.isDropTransport}>
+                {props.transportation.map((el: any) =>
+                  props.selectedTransport.includes(el.transportName) ? (
+                    <S.TransportationItemSelected
+                      key={uuidv4()}
+                      onClick={props.onClickSelectTransportation(
+                        el.transportName
+                      )}
+                    >
+                      <ToolTip
+                        promptText={el.transportName}
+                        placement={"right"}
+                      >
+                        <S.TransportationImg src={el.src} />
+                      </ToolTip>
+                    </S.TransportationItemSelected>
+                  ) : (
+                    <S.TransportationItem
+                      key={uuidv4()}
+                      onClick={props.onClickSelectTransportation(
+                        el.transportName
+                      )}
+                    >
+                      <ToolTip
+                        promptText={el.transportName}
+                        placement={"right"}
+                      >
+                        <S.TransportationImg src={el.src} />
+                      </ToolTip>
+                    </S.TransportationItem>
+                  )
+                )}
               </S.Transportation>
             </S.TransportationWrapper>
             <KaKaoMap
@@ -140,7 +165,10 @@ export default function BoardWritePresenter(props: any) {
               </S.ItemsWrapper>
               <S.ItemsWrapper>
                 <S.ItemText>모임장소 설명</S.ItemText>
-                <S.LocationExplainInput placeholder="모임장소에 관해 설명해주세요!" />
+                <S.LocationExplainInput
+                  placeholder="모임장소에 관해 설명해주세요!"
+                  {...props.register("accompanyLocation")}
+                />
               </S.ItemsWrapper>
             </S.AddressExplainWrapper>
           </S.MapWrapper>

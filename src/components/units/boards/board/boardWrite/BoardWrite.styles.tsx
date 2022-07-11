@@ -7,6 +7,7 @@ import MapIcon from "@mui/icons-material/Map";
 import ListIcon from "@mui/icons-material/List";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -141,11 +142,11 @@ export const EventSearchInput = styled.input`
   padding: 10px;
   border: none;
   outline: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #323232;
   ::placeholder {
     color: #d2d2d2;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 `;
 
@@ -174,11 +175,11 @@ export const TitleInput = styled.input`
   border: 1px solid #d2d2d2;
   border-radius: 5px;
   outline: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #323232;
   ::placeholder {
     color: #d2d2d2;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 `;
 export const DateAndMaxHeadCountWrapper = styled.div`
@@ -186,43 +187,31 @@ export const DateAndMaxHeadCountWrapper = styled.div`
   display: flex;
 `;
 export const DateWrapper = styled.div`
-  width: 63%;
+  width: 60%;
   display: flex;
   flex-direction: column;
+  justify-items: flex-end;
   gap: 1rem;
 `;
 export const AccompanyDateInputWrapper = styled.div`
   width: 100%;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-`;
-export const AccompanyDateInput = styled.input`
-  width: 28%;
-  height: 2.188rem;
   margin-left: 0.5rem;
-  padding: 10px;
-  border: 1px solid #d2d2d2;
-  border-radius: 5px;
-  font-size: 0.813rem;
-  ::placeholder {
-    color: black;
-  }
+  padding-top: 10px;
 `;
-export const CalendarWrapper = styled.div`
-  width: 2.188rem;
-  height: 2.188rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #d2d2d2;
-  border-radius: 5px;
+export const MyHelpOutlineIcon = styled(HelpOutlineIcon)`
+  width: 1.2rem;
+  color: #d2d2d2;
   cursor: pointer;
 `;
 export const MaxHeadCountWrapper = styled.div`
   width: 20%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   gap: 1rem;
 `;
 export const MaxHeadCount = styled.div`
@@ -232,17 +221,50 @@ export const MaxHeadCount = styled.div`
   padding-top: 0.7rem;
   margin-left: 0.5rem;
 `;
+export const CountPlus = styled.div`
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2.5px;
+  border: 1px solid #d2d2d2;
+  border-radius: 50%;
+  color: #73777b;
+  cursor: pointer;
+  transition: 0.2s;
+  :active {
+    background-color: #ffe69a;
+  }
+`;
+export const CountMinus = styled.div`
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2.5px;
+  border: 1px solid #d2d2d2;
+  border-radius: 50%;
+  color: #73777b;
+  cursor: pointer;
+  transition: 0.2s;
+  :active {
+    background-color: #ffe69a;
+  }
+`;
 export const MaxHeadCountInput = styled.input`
   width: 2rem;
   height: 1.5rem;
   border: none;
   border-bottom: 1px solid #d2d2d2;
   outline: none;
-  font-size: 1.2rem;
   color: #323232;
+  font-size: 1rem;
+  text-align: center;
   ::placeholder {
     color: #d2d2d2;
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-align: center;
   }
 `;
@@ -269,11 +291,11 @@ export const RemarkInput = styled.input`
   border: 1px solid #d2d2d2;
   border-radius: 5px;
   outline: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #323232;
   ::placeholder {
     color: #d2d2d2;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 `;
 export const EventLocationWrapper = styled.div`
@@ -309,17 +331,18 @@ export const TransportationSelect = styled.div`
   border: 1px solid #d2d2d2;
   background-color: white;
   color: #73777b;
+  font-size: 0.8rem;
   cursor: pointer;
   transition: 0.2s;
 `;
 export const MyArrowRightIcon = styled(ArrowRightIcon)`
-  ${(props: any) => props.isTransportSelect && "transform: rotate(90deg);"}
+  ${(props: any) => props.isDropTransport && "transform: rotate(90deg);"}
   transition: 0.3s;
 `;
 export const Transportation = styled.div`
   width: 3.5rem;
   ${(props: any) =>
-    props.isTransportSelect ? "display: flex;" : "display: none;"}
+    props.isDropTransport ? "display: flex;" : "display: none;"}
   flex-direction: column;
   align-items: center;
   gap: 1rem;
@@ -333,7 +356,7 @@ export const Transportation = styled.div`
     transform: translateY(-5px);
   }
 `;
-export const Bicycle = styled.div`
+export const TransportationItem = styled.div`
   width: 100%;
   height: auto;
   display: flex;
@@ -341,9 +364,8 @@ export const Bicycle = styled.div`
   align-items: center;
   padding: 5px;
   border-radius: 5px;
-  /* background-color: #d9d9d9; */
 `;
-export const Bus = styled.div`
+export const TransportationItemSelected = styled.div`
   width: 100%;
   height: auto;
   display: flex;
@@ -351,47 +373,7 @@ export const Bus = styled.div`
   align-items: center;
   padding: 5px;
   border-radius: 5px;
-  /* background-color: #d9d9d9; */
-`;
-export const Train = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  border-radius: 5px;
-  /* background-color: #d9d9d9; */
-`;
-export const Car = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: #d9d9d9;
-`;
-export const Airplane = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  border-radius: 5px;
-  /* background-color: #d9d9d9; */
-`;
-export const Ship = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  border-radius: 5px;
-  /* background-color: #d9d9d9; */
+  background-color: #ffe69a;
 `;
 export const TransportationImg = styled.img`
   width: 2.5rem;
@@ -407,30 +389,32 @@ export const AddressExplainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.87rem;
-  padding: 10px;
+  padding: 1rem;
+  border: 1px solid #d9d9d9;
   border-radius: 5px;
 `;
 export const AddressInput = styled.input`
   height: 2.188rem;
-  margin-left: 0.5rem;
   padding: 10px;
   border: none;
   outline: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #323232;
+  ::placeholder {
+    color: #d2d2d2;
+    font-size: 1rem;
+  }
 `;
 export const LocationExplainInput = styled.textarea`
   height: 12rem;
-  margin-left: 0.5rem;
   padding: 10px;
-  border: 1px solid #d9d9d9;
-  border-radius: 5px;
+  border: none;
   outline: none;
   color: #323232;
-  font-size: 1.1rem;
+  font-size: 1rem;
   ::placeholder {
     color: #d2d2d2;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 `;
 
