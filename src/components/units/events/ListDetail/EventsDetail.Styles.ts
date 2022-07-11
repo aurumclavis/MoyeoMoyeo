@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
-import { CheckCircleOutlined } from "@ant-design/icons";
-import { LinkOutlined } from "@ant-design/icons";
+
+import {
+  CheckCircleOutlined,
+  LinkOutlined,
+  EyeOutlined,
+} from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -22,7 +26,7 @@ export const HeaderTitle = styled.div`
   width: 100%;
   height: 5rem;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
 `;
 
@@ -30,14 +34,25 @@ export const HeaderCalendar = styled.div`
   width: 100%;
   height: 3rem;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 0.8rem;
 `;
 export const MainHost = styled.div`
   margin: 1rem;
-  font-size: 1rem;
+  font-size: 0.6rem;
 `;
+export const CountWrapper = styled.div`
+  color: #d2d2d2;
+`;
+export const CountIcon = styled(EyeOutlined)`
+  margin-right: 0.4rem;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+`;
+
 export const IconWrapper = styled.div`
-  width: 6%;
+  width: 7%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -92,8 +107,9 @@ export const MarkerWrapper = styled.div`
 `;
 
 export const MainTitle = styled.div`
+  margin-top: 2rem;
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 export const MainContents = styled.div`
@@ -108,13 +124,14 @@ export const ContentsWrapper = styled.div`
   /* height: 47.5rem; */
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin: 2rem 0;
 `;
 export const ContentsTitle = styled.div`
   margin-bottom: 2rem;
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 export const ContentImg = styled.img`
@@ -145,13 +162,13 @@ export const MapWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0;
+  margin: 2rem 0rem;
 `;
 
 export const MapTitle = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 export const Footer = styled.div`
@@ -210,26 +227,48 @@ export const BtnRouterList = styled.div`
 
 /// 네브바
 export const NavWrapper = styled.div`
-  width: 100vw;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: -71px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #d9d9d9;
-  transition: top 0.5s;
-  z-index: 1;
-`;
-export const NavMenuWrapper = styled.nav`
   width: 100%;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  @media (max-width: 767px) {
+    justify-content: center;
+  }
 `;
 
+export const NavMenuWrapper = styled.div`
+  width: 50%;
+  display: flex;
+  margin-left: 8%;
+  background-color: #ffffff;
+  @media (max-width: 767px) {
+    justify-content: space-around;
+  }
+`;
+
+interface IMenuProps {
+  isActive: boolean;
+}
 export const NavMenu = styled.div`
-  padding: 0.625rem;
+  padding: 0.4rem;
+  margin-bottom: 0.2rem;
+  margin-left: 2rem;
+  /* color: ${(props: IMenuProps) =>
+    props.isActive ? "#ffe69a" : "#000000"}; */
+  border-bottom: ${(props: IMenuProps) =>
+    props.isActive ? "3px solid #ffe69a;" : "none"};
   font-size: 1rem;
+  font-weight: ${(props: IMenuProps) => (props.isActive ? "700;" : "500")};
+
   :hover {
     cursor: pointer;
+  }
+  @media (max-width: 767px) {
+    margin-left: 0rem;
   }
 `;

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import styled from "@emotion/styled";
 declare const window: typeof globalThis & {
   kakao: any;
 };

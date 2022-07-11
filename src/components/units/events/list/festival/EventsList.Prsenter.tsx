@@ -5,14 +5,8 @@ export default function EventsListUI(props) {
   return (
     <>
       <S.Wrapper>
-        <S.ListTitle>
-          <S.SequenceWrapper>
-            <S.Sequence>조회수 순 정렬</S.Sequence>
-            <S.Sequence>날짜 순 정렬</S.Sequence>
-          </S.SequenceWrapper>
-        </S.ListTitle>
-        <S.LineDiv />
-        <S.DateWrapper>
+        {/* <S.LineDiv /> */}
+        {/* <S.DateWrapper>
           <S.DatePickWrapper>
             <S.DateLeftIcon />
             <S.DatePick>2022-07-08</S.DatePick>
@@ -21,9 +15,7 @@ export default function EventsListUI(props) {
           <S.CalendarWrapper>
             <Calendar fullscreen={false} />
           </S.CalendarWrapper>
-        </S.DateWrapper>
-        <S.LineListDiv />
-
+        </S.DateWrapper> */}
         <S.LineListDiv />
         <S.ListWrapper>
           <S.ListImg src="/배너이미지_동행1.png" />
@@ -32,8 +24,7 @@ export default function EventsListUI(props) {
             <S.ContentsPeriod>기간 yyyy-mm-dd - yyyy-mm-dd</S.ContentsPeriod>
             <S.Marker>
               요약글 요약글 요약글 요약글 요약글 요약글 요약글 요약글 요약글
-              요약글 요약글 요약글 요약글 요약글 요약글 요약글 요약글 요약글
-              요약글 요약글
+              요약글
             </S.Marker>
           </S.ContentsWrapper>
           <S.Btn>정보 더보기</S.Btn>

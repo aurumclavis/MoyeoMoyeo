@@ -45,6 +45,9 @@ export const BodyWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 export const BodyCommonContainer = styled.div`
   width: 300px;
@@ -57,12 +60,23 @@ export const BodyCommonContainer = styled.div`
   border-radius: 10px;
   margin: 15px;
   padding: 30px;
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 20%;
+    padding: 10px 15px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 export const BodyCommonIcon = styled.img`
   width: 120px;
   height: 120px;
   border: 1px solid #bdbdbd;
   border-radius: 50%;
+  @media (max-width: 767px) {
+    width: 25%;
+    height: 25%;
+  }
 `;
 
 export const BodySubCommonContainer = styled.div`
@@ -71,6 +85,10 @@ export const BodySubCommonContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding-top: 10px;
+  @media (max-width: 767px) {
+    margin-left: 5%;
+    height: 25%;
+  }
 `;
 
 export const BodyCommonTitle = styled.span`
@@ -78,6 +96,10 @@ export const BodyCommonTitle = styled.span`
   text-align: center;
   color: #bdbdbd;
   font-weight: 500;
+  @media (max-width: 767px) {
+    display: flex;
+    font-size: 0.8rem;
+  }
 `;
 export const BodyCommonSubTitle = styled.span`
   width: 100%;
@@ -85,6 +107,10 @@ export const BodyCommonSubTitle = styled.span`
   color: #42c2ff;
   font-weight: 700;
   margin-bottom: 10px;
+  @media (max-width: 767px) {
+    display: flex;
+    font-size: 1rem;
+  }
 `;
 export const BodyCommonButton = styled.button`
   width: 100%;
@@ -97,6 +123,10 @@ export const BodyCommonButton = styled.button`
     background-color: #ffd24c;
     border: 2px solid black;
     /* color: #ffffff; */
+  }
+  @media (max-width: 767px) {
+    height: 35px;
+    font-size: 1rem;
   }
 `;
 
