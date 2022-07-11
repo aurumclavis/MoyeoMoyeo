@@ -1,3 +1,4 @@
+import CommonInput from "../../../commons/inputs/infoInputs";
 import * as S from "./ProductsPayment.Styles";
 declare const window: typeof globalThis & {
   IMP: any;
@@ -32,21 +33,21 @@ export default function ProductsPayment(props: IPointProps) {
         <S.ShipInfoWrapper>
           <S.InputWrapper>
             <S.Label>수령인</S.Label>
-            <S.Input placeholder="받는 사람 이름을 입력해주세요." />
+            <CommonInput placeholder="받는 사람 이름을 입력해주세요." />
           </S.InputWrapper>
           <S.InputWrapper>
             <S.Label>주소</S.Label>
             <S.ZipcodeWrapper>
-              <S.Input placeholder="12345" />
+              <CommonInput placeholder="12345" />
               <S.ZipcodeBtnWrapper>
                 <S.WhiteSmallBtn>우편번호 검색</S.WhiteSmallBtn>
               </S.ZipcodeBtnWrapper>
             </S.ZipcodeWrapper>
             <S.AddressWrapper>
-              <S.Input />
+              <CommonInput />
             </S.AddressWrapper>
             <S.AddressWrapper>
-              <S.Input />
+              <CommonInput />
             </S.AddressWrapper>
           </S.InputWrapper>
         </S.ShipInfoWrapper>

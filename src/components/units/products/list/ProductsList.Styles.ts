@@ -19,7 +19,10 @@ export const SelectBtnWrapper = styled.div`
   justify-content: space-between;
 `;
 export const SearchBarWrapper = styled.div`
-  width: 25%;
+  width: 30%;
+  @media screen and (max-width: 767px) {
+    width: 40%;
+  }
   height: 45px;
   display: flex;
   padding: 0.625rem;
@@ -43,9 +46,9 @@ export const SearchBarInput = styled.input`
 
 // 상품 등록 버튼
 export const CreateBtnWrapper = styled.div`
-  width: 7.5rem;
+  width: 100%;
   height: 45px;
-  padding-right: 1.25rem;
+  padding-right: 5%;
 `;
 export const CreateBtn = styled.button`
   width: 100%;
@@ -73,6 +76,7 @@ export const GridWrapper = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 1.25rem;
   @media screen and (max-width: 767px) {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     grid-gap: 0.625rem;
   }
   margin: 3.125rem 0;

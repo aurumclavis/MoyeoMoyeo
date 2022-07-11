@@ -1,11 +1,21 @@
-import * as S from "./ProductsAnswerWrite.Styles";
+import ProductsAnswerWriteUI from "./ProductsAnswerWrite.Presenter";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+const schema = yup.object({
+  contents: yup.string().required(),
+});
+
 export default function ProductsAnswerWrite() {
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
   return (
-    <S.FormWrapper>
-      <S.WriteInput maxLength={200} placeholder="200자 이내로 입력해주세요." />
-      <S.WriteBtnWrapper>
-        <S.WriteBtn>등록</S.WriteBtn>
-      </S.WriteBtnWrapper>
-    </S.FormWrapper>
+    <ProductsAnswerWriteUI
+      register={register}
+      handleSubmit={handleSubmit}
+      formState={formState}
+    />
   );
 }
