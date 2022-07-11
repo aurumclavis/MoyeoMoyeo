@@ -1,5 +1,5 @@
 import EventsPlusUI from "./EventsPlus.Prsenter";
 
-export default function EventsPlus() {
+export default function EventPlus() {
   return <EventsPlusUI />;
 }
