@@ -11,7 +11,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;

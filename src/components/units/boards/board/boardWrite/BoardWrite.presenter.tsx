@@ -6,7 +6,7 @@ import DateRangePicker from "./dateRangePicker";
 
 export default function BoardWritePresenter(props: any) {
   return (
-    <S.Wrapper>
+    <S.Wrapper onSubmit={props.handleSubmit(props.onClickSubmit)}>
       <S.CoverImageWrapper>
         <S.CoverImage src="/market.jpg" />
         <S.MyImageUpload>커버 이미지 직접 등록</S.MyImageUpload>
@@ -174,8 +174,8 @@ export default function BoardWritePresenter(props: any) {
           </S.MapWrapper>
         </S.EventLocationWrapper>
         <S.ButtonWrapper>
-          <S.CancelButton>취소</S.CancelButton>
-          <S.SubmitButton>등록</S.SubmitButton>
+          <S.CancelButton type="button">취소</S.CancelButton>
+          <S.SubmitButton type="submit">등록</S.SubmitButton>
         </S.ButtonWrapper>
       </S.UnderWrapper>
     </S.Wrapper>

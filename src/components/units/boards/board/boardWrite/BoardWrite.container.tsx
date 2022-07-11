@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import BoardWritePresenter from "./BoardWrite.presenter";
 
 export default function BoardWriteContainer(props: any) {
+  const { onClickMoveToPage } = useMoveToPage();
   const { register, handleSubmit, setValue, getValues, trigger } = useForm();
   const [address, setAddress] = useState("");
 
@@ -66,10 +68,17 @@ export default function BoardWriteContainer(props: any) {
   };
   const eventData = { date: { start: "2022-07-15", end: "2022-07-26" } };
 
+  // 등록 부분
+  const onClickSubmit = (data: any) => {
+    console.log(data);
+    //왜 페이지이동이 안되지
+    onClickMoveToPage(`/boards/${111}`);
+  };
   return (
     <BoardWritePresenter
       setValue={setValue}
       register={register}
+      handleSubmit={handleSubmit}
       isEdit={props.isEdit}
       eventData={eventData}
       onChangeDatePicker={onChangeDatePicker}
@@ -83,6 +92,8 @@ export default function BoardWriteContainer(props: any) {
       selectedTransport={selectedTransport}
       address={address}
       setAddress={setAddress}
+      onClickSubmit={onClickSubmit}
+      onClickMoveToPage={onClickMoveToPage}
     />
   );
 }
