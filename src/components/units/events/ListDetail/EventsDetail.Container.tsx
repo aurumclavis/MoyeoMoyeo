@@ -50,6 +50,9 @@ export default function EventsDetail() {
     });
     setActivedTab(e.currentTarget.id);
   };
+  const onClickLink = () => {
+    alert("링크가 복사되었습니다");
+  };
 
   return (
     <>
@@ -65,6 +68,7 @@ export default function EventsDetail() {
         onClickContents={onClickContents}
         onClickMaps={onClickMaps}
         onScrollNav={onScrollNav}
+        onClickLink={onClickLink}
       />
     </>
   );

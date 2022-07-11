@@ -15,16 +15,7 @@ export default function EventsDetailUI(props: any) {
           <S.CountIcon />
           조회수
         </S.CountWrapper>
-        <S.IconWrapper>
-          <Tooltip placement="topRight" title={`행사 찜하기`}>
-            <S.PickIcon />
-          </Tooltip>
-          <Tooltip placement="topRight" title={`링크 복사하기`}>
-            <CopyToClipboard text={props.currentUrl}>
-              <S.LincIcon />
-            </CopyToClipboard>
-          </Tooltip>
-        </S.IconWrapper>
+
         <S.LineDiv />
         <S.NavWrapper ref={props.navRef}>
           <S.NavMenuWrapper>
@@ -50,6 +41,14 @@ export default function EventsDetailUI(props: any) {
               지도
             </S.NavMenu>
           </S.NavMenuWrapper>
+          <S.IconWrapper>
+            <S.IconTitle>행사 찜하기</S.IconTitle>
+            <S.PickIcon isActive={props.isActive} />
+            <S.IconTitle>링크 복사하기</S.IconTitle>
+            <CopyToClipboard text={props.currentUrl}>
+              <S.LincIcon onClick={props.onClickLink} />
+            </CopyToClipboard>
+          </S.IconWrapper>
         </S.NavWrapper>
         <S.MainTitle ref={props.makerRef}>이벤트타입 요약</S.MainTitle>
         <S.MainImg src="/배너이미지_행사1.png" />

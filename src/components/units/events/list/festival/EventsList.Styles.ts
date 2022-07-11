@@ -18,11 +18,6 @@ export const LineDiv = styled.div`
   border-top: 0.063rem solid #15133c;
 `;
 
-export const LineListDiv = styled.div`
-  width: 100%;
-  height: 1rem;
-  border-top: 0.1rem solid #f4f4f4;
-`;
 export const Logo = styled.img`
   height: 3.125rem;
   width: 3.125rem;
@@ -109,6 +104,7 @@ export const ListWrapper = styled.div`
     margin: 0.2rem;
     padding: 0.6rem;
     justify-content: space-around;
+    border-radius: 6px;
   }
 `;
 
@@ -124,29 +120,23 @@ export const ListImg = styled.img`
 
 export const ContentsWrapper = styled.div`
   width: 60%;
-  height: 6rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin-top: 1rem;
-  margin-right: auto;
+  justify-content: flex-start;
+  margin-top: 2rem;
   padding-left: 2rem;
   @media (max-width: 767px) {
-    width: 10%;
-    height: 8rem;
+    width: 55%;
+    height: 100%;
+    margin-top: 0rem;
+    padding-left: 1rem;
+
     margin-right: auto;
   }
 `;
-export const constTitleWrapper = styled.div`
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-`;
 
 export const ContentsTitle = styled.div`
-  height: 30%;
   font-style: Bold;
   font-size: 1.2rem;
   @media (max-width: 767px) {
@@ -154,17 +144,19 @@ export const ContentsTitle = styled.div`
   }
 `;
 export const ContentsPeriod = styled.div`
-  height: 20%;
   font-size: 0.4rem;
+  @media (max-width: 767px) {
+    font-size: 0.2rem;
+  }
 `;
 
 export const Marker = styled.div`
-  width: 98%;
+  width: 100%;
   height: 50%;
   font-size: 0.6rem;
   overflow: hidden;
-
-  @media (max-width: 767px) {
+  @media (min-wmax-width: 767px) {
+    font-size: 0.4rem;
   }
 `;
 
@@ -172,18 +164,18 @@ export const Btn = styled.div`
   width: 10rem;
   height: 2.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   color: #42c2ff;
   border-radius: 20px;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   cursor: pointer;
   :hover {
     font-family: 600;
     border: 1px solid #ffffff;
   }
   @media (max-width: 767px) {
-    width: 5rem;
-    font-size: 1rem;
+    width: 2rem;
+    font-size: 0.6rem;
   }
 `;
