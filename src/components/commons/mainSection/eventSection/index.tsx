@@ -8,6 +8,7 @@ const OutWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const Title = styled.div`
   width: 100%;
   display: flex;
@@ -27,35 +28,43 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
 `;
-const ProductList = styled.div`
+const EventsList = styled.div`
   width: 240px;
-  height: 300px;
+  height: 340px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
   border: 1px solid #bdbdbd;
-  margin-right: 10px;
+  border-radius: 5px;
+  margin-right: 10px; ;
 `;
-const ProductImages = styled.img`
+const EventsImages = styled.img`
   width: 100%;
-  height: 240px;
+  height: 250px;
+  /* margin-bottom: 10px; */
+`;
+const InnderWrapper = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-`;
-const ProductName = styled.div`
-  width: 100%;
-  font-size: 0.875rem;
-  text-align: left;
+  flex-direction: column;
 `;
 
-const ProductPrice = styled.div`
+const EventsName = styled.div`
   width: 100%;
   font-size: 0.875rem;
-  text-align: left;
-  margin-bottom: 30px;
+  text-align: center;
 `;
-export default function ProductCarousel() {
+const EventsPlaces = styled.div`
+  width: 100%;
+  font-size: 0.875rem;
+  text-align: center;
+`;
+const EventsDate = styled.div`
+  width: 100%;
+  font-size: 0.875rem;
+  text-align: center;
+`;
+export default function EventSection() {
   // const settings = {
   //   slide: "div",
   //   infinite: false,
@@ -88,18 +97,20 @@ export default function ProductCarousel() {
   return (
     <OutWrapper>
       <Title>
-        <h3> 취향저격 나만의 행사굿즈찾기 </h3>
+        <h3> 취향저격 행사찾기 </h3>
         <More>더보기</More>
       </Title>
-
       <Wrapper>
         {/* <Slider {...settings}> */}
         {new Array(5).fill(1).map((el: any, index: number) => (
-          <ProductList key={el}>
-            <ProductImages src="/example2.png" />
-            <ProductName>행사굿즈 노트세트</ProductName>
-            <ProductPrice>2022.07.05~2022.07.05</ProductPrice>
-          </ProductList>
+          <EventsList key={el}>
+            <EventsImages src="/example1.png" />
+            <InnderWrapper>
+              <EventsName>뮤지컬 아이다</EventsName>
+              <EventsPlaces>블루스퀘어 신한카드홀</EventsPlaces>
+              <EventsDate>2022.07.05~2022.07.05</EventsDate>
+            </InnderWrapper>
+          </EventsList>
         ))}
         {/* </Slider> */}
       </Wrapper>

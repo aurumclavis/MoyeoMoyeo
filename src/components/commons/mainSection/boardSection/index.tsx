@@ -94,28 +94,28 @@ const Icon = styled.img`
   align-items: center;
 `;
 
-export default function BoardCarousel() {
-  const settings = {
-    slide: "div",
-    infinite: false,
-    speed: 100,
-    slidesToShow: 2,
-    slidesToScroll: 2,
-    initialSlide: 1,
-    autoplay: true,
-    autoplaySpeed: 1000,
-    pauseOnHover: true,
-    vertical: false,
-    // responsive: [
-    //   // 반응형
-    //   {
-    //     breakpoint: 767,
-    //     settings: {
-    //       slidesToShow: 1,
-    //     },
-    //   },
-    // ],
-  };
+export default function BoardSession() {
+  // const settings = {
+  //   slide: "div",
+  //   infinite: false,
+  //   speed: 100,
+  //   slidesToShow: 2,
+  //   slidesToScroll: 2,
+  //   initialSlide: 1,
+  //   autoplay: true,
+  //   autoplaySpeed: 1000,
+  //   pauseOnHover: true,
+  //   vertical: false,
+  // responsive: [
+  //   // 반응형
+  //   {
+  //     breakpoint: 767,
+  //     settings: {
+  //       slidesToShow: 1,
+  //     },
+  //   },
+  // ],
+  // };
 
   return (
     <OutWrapper>
