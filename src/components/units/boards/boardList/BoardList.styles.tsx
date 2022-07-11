@@ -12,6 +12,8 @@ export const Wrapper = styled.div`
   gap: 3rem;
   padding-bottom: 4rem;
 `;
+
+// 게시글viewType변경 탭이 있는 서브헤더
 export const SubHeader = styled.div`
   width: 100%;
   display: flex;
@@ -108,6 +110,8 @@ export const CreateBoard = styled.button`
   font-size: 1rem;
   cursor: pointer;
 `;
+
+// 행사카테고리 type을 선택하는 캐러샐
 export const EventTypeWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -117,6 +121,8 @@ export const EventTypeWrapper = styled.div`
 export const CarouselWrapper = styled.div`
   width: 80%;
 `;
+
+// 날짜선택과 리스트 무한스크롤을 감싸는 wrap
 export const Main = styled.div`
   width: 100%;
   display: flex;
@@ -124,6 +130,7 @@ export const Main = styled.div`
   align-items: center;
   gap: 2.5rem;
 `;
+// 날짜선택 wrap
 export const DateWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -196,6 +203,8 @@ export const MySearchIconWrapper = styled.div`
   border: 1px solid #d2d2d2;
   border-radius: 5px;
 `;
+
+// 리스트 무한스크롤 wrap
 export const ListWrapper = styled.div`
   width: 100%;
   display: flex;

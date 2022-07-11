@@ -12,12 +12,16 @@ export const Wrapper = styled.div`
   gap: 4rem;
   padding: 4rem 2rem;
 `;
+
+// 최상단 커버이미지
 export const CoverImage = styled.img`
   width: calc(100% + 2rem * 2);
   height: 20.625rem;
   border-radius: 10px;
   object-fit: cover;
 `;
+
+// 좌측 바디와 우측 프로필날개를 감싸는 wrap
 export const BodyWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -25,6 +29,8 @@ export const BodyWrapper = styled.div`
   gap: 2%;
   position: relative;
 `;
+
+// 좌측 바디
 export const Body = styled.div`
   width: 68%;
   display: flex;
@@ -48,6 +54,8 @@ export const Report = styled.div`
   text-decoration: underline;
   cursor: pointer;
 `;
+
+// 제목 아래 본문
 export const Main = styled.div`
   width: 100%;
   display: flex;
@@ -55,6 +63,8 @@ export const Main = styled.div`
   gap: 3rem;
   padding-left: 1%;
 `;
+
+// 인포박스
 export const InfoWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -102,10 +112,14 @@ export const AccompanyDate = styled.div`
   font-size: 1.5rem;
   letter-spacing: 0.05rem;
 `;
+
+// 게시글 본문 내용
 export const Contents = styled.div`
   width: 100%;
   font-size: 1.3rem;
 `;
+
+// 지도wrap
 export const LocationWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -121,11 +135,13 @@ export const LocationExplain = styled.div`
   padding-left: 1%;
   font-size: 1.5rem;
 `;
+// 카카오맵 감싸는 wrap
 export const MapWrapper = styled.div`
   width: 100%;
   height: 24rem;
 `;
 
+// 바디 우측 프로필 날개 wrap
 export const AccompanyWrapper = styled.div`
   width: 30%;
   height: auto;
@@ -261,6 +277,8 @@ export const AccompanyCompleteCancelText = styled.div`
   font-size: 1rem;
   letter-spacing: 1px;
 `;
+
+// 바디 하단 이벤트정보 wrap
 export const EventInfoWrapper = styled.div`
   width: 68%;
   display: flex;
@@ -320,6 +338,7 @@ export const EventInfoContents = styled.div`
   color: #73777b;
 `;
 
+// 댓글 wrap
 export const CommentWrapper = styled.div`
   width: 68%;
   display: flex;

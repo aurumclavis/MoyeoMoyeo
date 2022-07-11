@@ -7,7 +7,6 @@ import MapIcon from "@mui/icons-material/Map";
 import ListIcon from "@mui/icons-material/List";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -19,6 +18,8 @@ export const Wrapper = styled.div`
   gap: 3.5rem;
   padding: 4rem 2rem;
 `;
+
+// 최상단 커버이미지 wrap
 export const CoverImageWrapper = styled.div`
   width: calc(100% + 2rem * 2);
   height: 20.625rem;
@@ -29,6 +30,8 @@ export const CoverImage = styled.img`
   height: 100%;
   object-fit: cover;
 `;
+
+// 이벤트정보와 제목-내용을 감싸는 상단 wrap
 // 반응형일 때 flex-direction : column
 export const UpperWrapper = styled.div`
   width: 100%;
@@ -37,39 +40,13 @@ export const UpperWrapper = styled.div`
   padding-top: 2rem;
   gap: 5%;
 `;
+
+// 이벤트정보 wrap
 export const EventWrapper = styled.div`
   width: 30%;
   height: auto;
   display: flex;
   flex-direction: column;
-`;
-export const EventSearchWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 1px;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: 1px solid #d2d2d2;
-`;
-export const MySearchIcon = styled(SearchIcon)`
-  width: 2rem;
-  border-right: 1px solid #d2d2d2;
-  color: #d2d2d2;
-`;
-export const EventSearchInput = styled.input`
-  width: 100%;
-  height: 2.188rem;
-  padding: 10px;
-  border: none;
-  outline: none;
-  font-size: 1.1rem;
-  color: #323232;
-  ::placeholder {
-    color: #d2d2d2;
-    font-size: 1.1rem;
-  }
 `;
 export const EventInfoWrapper = styled.div`
   display: flex;
@@ -142,6 +119,37 @@ export const EventInfoContents = styled.div`
   padding-left: 1rem;
   color: #73777b;
 `;
+// 이벤트 검색바
+export const EventSearchWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #d2d2d2;
+`;
+export const MySearchIcon = styled(SearchIcon)`
+  width: 2rem;
+  border-right: 1px solid #d2d2d2;
+  color: #d2d2d2;
+`;
+export const EventSearchInput = styled.input`
+  width: 100%;
+  height: 2.188rem;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  color: #323232;
+  ::placeholder {
+    color: #d2d2d2;
+    font-size: 1.1rem;
+  }
+`;
+
+// 우측 제목-내용쓰기 wrap
 export const MainWrapper = styled.div`
   width: 65%;
   display: flex;
@@ -244,6 +252,14 @@ export const MyReactQuill = styled(ReactQuill)`
   margin-left: 0.5rem;
   margin-bottom: 2.2rem;
 `;
+
+// 하단 게시글요약/행사위치정보 wrap
+export const UnderWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.87rem;
+`;
 export const RemarkInput = styled.input`
   width: 100%;
   height: 2.5rem;
@@ -259,12 +275,6 @@ export const RemarkInput = styled.input`
     color: #d2d2d2;
     font-size: 1.1rem;
   }
-`;
-export const UnderWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2.87rem;
 `;
 export const EventLocationWrapper = styled.div`
   width: 100%;
@@ -423,6 +433,8 @@ export const LocationExplainInput = styled.textarea`
     font-size: 1.1rem;
   }
 `;
+
+// 최하단 취소/등록버튼 wrap
 export const ButtonWrapper = styled.div`
   width: 100%;
   padding-top: 4rem;
