@@ -1,13 +1,13 @@
 import ButtonSubmit from "../../../commons/buttons/submit";
-import * as S from "./ProductsQuestionWrite.styles";
-export default function ProductsQuestionWriteUI(props) {
+
+import * as S from "./ProductsAnswerWrite.Styles";
+export default function ProductsAnswerWriteUI(props) {
   return (
     <S.FormWrapper
       onSubmit={props.handleSubmit(() => {
         console.log("submit test");
       })}
     >
-      <S.WriteTitle>상품 문의</S.WriteTitle>
       <S.WriteInput
         {...props.register("contents")}
         maxLength={200}

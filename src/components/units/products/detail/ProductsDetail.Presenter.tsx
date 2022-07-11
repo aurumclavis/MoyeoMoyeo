@@ -8,6 +8,7 @@ import { BackTop, Image } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useRouter } from "next/router";
 import { ArrowUpOutlined } from "@ant-design/icons";
+import BackTopAnt from "../../../commons/backTop";
 
 const style: React.CSSProperties = {
   height: 40,
@@ -141,11 +142,12 @@ export default function ProductDetailUI(props) {
           </S.SellerContentsWrapper>
 
           {/* BackTop(맨 위로 가기) 추가 */}
-          <BackTop>
+          {/* <BackTop>
             <div style={style}>
               <ArrowUpOutlined />
             </div>
-          </BackTop>
+          </BackTop> */}
+          <BackTopAnt />
         </S.SidebarWrapper>
       </S.RightWrapper>
     </S.Wrapper>

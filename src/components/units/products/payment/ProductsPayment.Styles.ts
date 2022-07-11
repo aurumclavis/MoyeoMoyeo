@@ -70,18 +70,7 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   padding-bottom: 1.25rem;
 `;
-export const Input = styled.input`
-  width: 100%;
-  padding: 0.625rem;
-  border-radius: 5px;
-  border: 1px solid #73777b;
-  font-size: 1rem;
-  :focus {
-    outline: none;
-    border: 2px solid #ffd24c;
-    transition: 0.5s ease;
-  }
-`;
+
 export const ZipcodeWrapper = styled.div`
   width: 40%;
   display: flex;
@@ -146,6 +135,7 @@ export const WhiteBtn = styled.button`
 `;
 export const WhiteSmallBtn = styled.button`
   width: 100%;
+  height: 100%;
   padding: 0.625rem;
   border: 1px solid #d2d2d2;
   border-radius: 10px;

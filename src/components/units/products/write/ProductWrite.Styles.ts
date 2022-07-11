@@ -19,7 +19,7 @@ export const WriteTitle = styled.h1`
 `;
 
 // 상품 등록(수정) 입력 영역
-export const WriteWrapper = styled.div`
+export const WriteForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,6 @@ export const Input = styled.input`
   :focus {
     outline: none;
     border: 2px solid #ffd24c;
-    transition: 0.5s ease;
   }
 `;
 
@@ -87,8 +86,9 @@ export const Editor = styled.div`
   border: 1px solid #73777b;
 `;
 export const MyReactQuill = styled(ReactQuill)`
-  height: 20rem;
-  margin-bottom: 2rem;
+  .ql-container {
+    height: 20rem;
+  }
 `;
 
 // 등록, 취소 버튼 감싸는 Wrapper
@@ -103,20 +103,6 @@ export const SubmitWrapper = styled.div`
   width: 20%;
   display: flex;
   justify-content: space-between;
-`;
-export const SubmitBtn = styled.button`
-  height: 100%;
-  padding: 0 10%;
-  border-radius: 0.625rem;
-  border: none;
-  background: rgba(255, 210, 76, 0.5);
-  font-size: 1.25rem;
-  :hover {
-    cursor: pointer;
-    background-color: #ffd24c;
-    outline: none;
-    transition: 0.5s ease;
-  }
 `;
 export const CancelBtn = styled.button`
   height: 100%;
