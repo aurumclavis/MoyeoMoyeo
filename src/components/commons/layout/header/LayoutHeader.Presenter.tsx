@@ -4,7 +4,7 @@ export default function LayoutHeaderUI(props) {
   return (
     <S.Wrapper>
       <S.InsideWrapper>
-        <S.MenuIcon />
+        {/* <S.MenuIcon /> */}
         <S.LogoMenuWrapper>
           <S.LogoImg
             src="/icon/mainlogo.png"

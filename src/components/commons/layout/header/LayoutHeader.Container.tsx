@@ -20,6 +20,10 @@ export default function LayoutHeader() {
     setOpen(prev => !prev);
   };
 
+  useEffect(() => {
+    setActivedTab(router.asPath);
+  }, []);
+
   return (
     <LayoutHeaderUI
       onClickMobileMenu={onClickMobileMenu}
