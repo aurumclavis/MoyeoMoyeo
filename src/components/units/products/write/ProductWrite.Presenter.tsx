@@ -2,27 +2,48 @@ import { Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import * as S from "./ProductWrite.Styles";
 import { CameraAlt } from "@mui/icons-material";
+import { ProductsWriteUIProps } from "./ProductWrite.Types";
+import ButtonSubmit from "../../../commons/buttons/submit";
+import CommonInput from "../../../commons/inputs/infoInputs";
 
-export default function ProductsWriteUI() {
+export default function ProductsWriteUI(props: ProductsWriteUIProps) {
   return (
     <S.Wrapper>
       <S.WriteTitle>상품 등록</S.WriteTitle>
-      <S.WriteWrapper>
+      <S.WriteForm
+        onSubmit={props.handleSubmit(() => {
+          console.log("submit test");
+        })}
+      >
         {/* 이름, 가격, 요약 입력 */}
         <S.InputWrapper>
           <S.Label>상품 이름 *</S.Label>
-          <S.Input placeholder="상품의 특성이 잘 드러나도록 입력해주세요." />
-          <S.Error>50자 이내</S.Error>
+          {/* <S.Input
+            {...props.register("name")}
+            placeholder="상품의 특성이 잘 드러나도록 입력해주세요."
+          /> */}
+          <CommonInput
+            register={props.register("name")}
+            placeholder="상품의 특성이 잘 드러나도록 입력해주세요."
+          />
+          <S.Error>{props.formState.errors.name?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>상품 가격 *</S.Label>
-          <S.Input type="number" placeholder="가격을 입력해주세요." />
-          <S.Error></S.Error>
+          <CommonInput
+            register={props.register("price")}
+            type="number"
+            placeholder="가격을 입력해주세요."
+          />
+          <S.Error>{props.formState.errors.price?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>상품 요약 *</S.Label>
-          <S.Input placeholder="상품에 대해 간단하게 요약해주세요." />
-          <S.Error></S.Error>
+          <CommonInput
+            register={props.register("summary")}
+            placeholder="상품에 대해 간단하게 요약해주세요."
+          />
+          <S.Error>{props.formState.errors.summary?.message}</S.Error>
         </S.InputWrapper>
 
         {/* 이미지 업로드 UI */}
@@ -51,17 +72,25 @@ export default function ProductsWriteUI() {
         {/* 웹에디터 UI */}
         <S.EditorWrapper>
           <S.Label>상세 내용 *</S.Label>
-          <S.MyReactQuill placeholder="상품에 대한 설명을 입력해주세요." />
-          <S.Error></S.Error>
+          <S.MyReactQuill
+            onChange={props.onChangeContents}
+            placeholder="상품에 대한 설명을 입력해주세요."
+          />
+          <S.Error>{props.formState.errors.contents?.message}</S.Error>
         </S.EditorWrapper>
 
+        {/* 등록,취소 버튼 */}
         <S.BtnWrapper>
           <S.SubmitWrapper>
-            <S.SubmitBtn>등록</S.SubmitBtn>
+            <ButtonSubmit
+              fontSize="1.25rem"
+              isActive={props.formState.isValid}
+              title="등록"
+            />
             <S.CancelBtn>취소</S.CancelBtn>
           </S.SubmitWrapper>
         </S.BtnWrapper>
-      </S.WriteWrapper>
+      </S.WriteForm>
     </S.Wrapper>
   );
 }
