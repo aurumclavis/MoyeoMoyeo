@@ -1,11 +1,11 @@
 // import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import CommonInput from "../../commons/inputs/infoInputs";
-import CommonMobileInput from "../../commons/inputs/mobileInputs";
+import CommonInput from "../../../commons/inputs/infoInputs";
+import CommonMobileInput from "../../../commons/inputs/mobileInputs";
 import * as S from "./SignUpNew.Styles";
 import Countdown from "react-countdown";
 import Link from "next/link";
 import { useRef } from "react";
-import Checkbox from "../../commons/checkbox";
+import Checkbox from "../../../commons/checkbox";
 export default function SignUpNewPageUI(props) {
   const renderer = ({ minutes, seconds }: any) => {
     return (

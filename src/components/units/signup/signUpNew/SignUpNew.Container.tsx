@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
 const schema = yup.object({
   name: yup

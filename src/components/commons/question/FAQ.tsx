@@ -13,43 +13,72 @@ export default function FAQ() {
 
   return (
     <OutWrapper>
-      <MainTitle>자주하는 질문 ~~ </MainTitle>
-      <Wrapper defaultActiveKey={["1"]} onChange={onChange}>
-        <Title header="자주하는 질문1 " key="1">
-          <p>{text}</p>
-        </Title>
-        <Title header="자주하는 질문2" key="2">
-          <p>{text}</p>
-        </Title>
-        <Title header="자주하는 질문3" key="3">
-          <p>{text}</p>
-        </Title>
-      </Wrapper>
+      <InnerWrapper>
+        <MainTitle>자주하는 질문 일반회원 </MainTitle>
+        <Wrapper defaultActiveKey={["1"]} onChange={onChange}>
+          <Title header="자주하는 질문1 " key="1">
+            <p>{text}</p>
+          </Title>
+          <Title header="자주하는 질문2" key="2">
+            <p>{text}</p>
+          </Title>
+          <Title header="자주하는 질문3" key="3">
+            <p>{text}</p>
+          </Title>
+        </Wrapper>
+      </InnerWrapper>
+      <InnerWrapper>
+        <MainTitle>자주하는 질문 관계자회원</MainTitle>
+        <Wrapper defaultActiveKey={["1"]} onChange={onChange}>
+          <Titles header="자주하는 질문1 " key="1">
+            <p>{text}</p>
+          </Titles>
+          <Titles header="자주하는 질문2" key="2">
+            <p>{text}</p>
+          </Titles>
+          <Titles header="자주하는 질문3" key="3">
+            <p>{text}</p>
+          </Titles>
+        </Wrapper>
+      </InnerWrapper>
     </OutWrapper>
   );
 }
 
 const OutWrapper = styled.div`
-  width: 1005px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const InnerWrapper = styled.div`
+  width: 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 30px;
+  margin-right: 10px;
 `;
 const MainTitle = styled.h3`
   width: 100%;
   text-align: left;
   margin: 20px;
+  position: relative;
 `;
 const Wrapper = styled(Collapse)`
-  width: 1005px;
+  width: 100%;
   /* border: 1px solid #bdbdbd; */
   border-radius: 7px;
   border: none;
 `;
 const Title = styled(Panel)`
-  width: 1003px;
+  width: 100%;
   /* border: 1px solid #bdbdbd; */
   border-radius: 7px;
   background-color: #ffe69a;
+`;
+const Titles = styled(Panel)`
+  width: 100%;
+  /* border: 1px solid #bdbdbd; */
+  border-radius: 7px;
+  background-color: lavender;
+  color: white;
 `;

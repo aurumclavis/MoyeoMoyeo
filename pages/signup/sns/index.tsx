@@ -1,4 +1,4 @@
-import SignUpSnsPage from "../../../src/components/units/signUp/signUpSns/signUpSns.Container";
+import SignUpSnsPage from "../../../src/components/units/signup/signUpSns/signUpSns.Container";
 
 export default function SignUpSns() {
   return <SignUpSnsPage />;

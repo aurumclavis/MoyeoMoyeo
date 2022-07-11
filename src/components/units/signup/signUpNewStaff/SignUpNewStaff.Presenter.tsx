@@ -1,9 +1,9 @@
 import * as S from "./SignUpNewStaff.Styles";
 // import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import CommonInput from "../../commons/inputs/infoInputs";
-import CommonMobileInput from "../../commons/inputs/mobileInputs";
+import CommonInput from "../../../commons/inputs/infoInputs";
+import CommonMobileInput from "../../../commons/inputs/mobileInputs";
 
-export default function SignUpNewEventPageUI() {
+export default function SignUpNewEventPageUI(props) {
   return (
     <S.OutWrapper>
       <S.Wrapper>

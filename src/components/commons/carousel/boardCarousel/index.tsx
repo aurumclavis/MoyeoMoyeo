@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 
 const OutWrapper = styled.div`
-  width: 1000px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -19,29 +19,32 @@ const More = styled.div`
   :hover {
     text-decoration: underline;
   }
+  padding-right: 30px;
 `;
 const Wrapper = styled.div`
   width: 100%;
   margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
   /* background-color: gray; */
 `;
 
-const MySlider = styled(Slider)`
-  width: 100%;
-  /* display: flex;
-  flex-direction: column; */
-  margin-right: 30px;
-`;
+// const MySlider = styled(Slider)`
+//   width: 100%;
+//   /* display: flex;
+//   flex-direction: column; */
+//   margin-right: 30px;
+// `;
 const BoardList = styled.div`
-  width: 100px;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 15px solid #ffe69a;
   border-radius: 5px;
-  margin-right: 30px;
-  /* padding: 0px 50px; */
+  margin-right: 10px;
+  /* padding: 10px 10px; */
 `;
 const BoardTitleWrapper = styled.div`
   width: 100%;
@@ -121,8 +124,9 @@ export default function BoardCarousel() {
         <More>더보기</More>
       </Title>
       <Wrapper>
-        <MySlider {...settings}>
-          <BoardList>
+        {/* <MySlider {...settings}> */}
+        {new Array(2).fill(1).map((el: any, index: number) => (
+          <BoardList key={el}>
             <BoardTitleWrapper>
               <BoardCategory>[모집중]</BoardCategory>
               <BoardTitle>
@@ -142,7 +146,8 @@ export default function BoardCarousel() {
               <BoardDate>2022.07.06~2022.07.06</BoardDate>
             </BoardInfo>
           </BoardList>
-        </MySlider>
+        ))}
+        {/* </MySlider> */}
       </Wrapper>
     </OutWrapper>
   );
