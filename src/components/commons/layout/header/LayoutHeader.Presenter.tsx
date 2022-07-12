@@ -21,8 +21,8 @@ export default function LayoutHeaderUI(props) {
               동행하기
             </S.Menu>
             <S.Menu
-              isActive={props.activedTab === "/events/list"}
-              id="/events/list"
+              isActive={props.activedTab === "/events"}
+              id="/events"
               onClick={props.onClickTab}
             >
               행사일정
