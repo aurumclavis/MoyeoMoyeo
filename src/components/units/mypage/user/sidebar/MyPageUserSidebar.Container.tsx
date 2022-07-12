@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import * as S from "./MyPageUserSidebar.Styles";
 
 // 포인트 충전 부분 주석 처리
-export default function MyPageUserSidebar() {
+function MyPageUserSidebar() {
   // const [visible, setVisible] = useState(false);
   // const onClickShowPointModal = () => {
   //   setVisible(true);
@@ -29,7 +29,7 @@ export default function MyPageUserSidebar() {
       <S.SidebarWrapper>
         {/* <S.Title>마이페이지</S.Title> */}
         <S.ProfileWrapper>
-          <S.ProfileImg src="../../icon/simbollogo2Big.png" />
+          <S.ProfileImg src="../../icon/user2.png" />
           <S.ProfileContentsWrapper>
             <S.ProfileText>김철수님</S.ProfileText>
             <S.ProfileText>kim1234@gmail.com</S.ProfileText>
@@ -83,3 +83,5 @@ export default function MyPageUserSidebar() {
     </S.Wrapper>
   );
 }
+
+export default memo(MyPageUserSidebar);

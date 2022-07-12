@@ -7,6 +7,10 @@ export const Wrapper = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+  flex-direction: row;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
   justify-content: space-between;
   margin-top: 3.125rem;
   padding: 0 1.125rem;
@@ -30,7 +34,7 @@ export const NavWrapper = styled.nav`
   transition: top 0.5s;
 `;
 export const NavItemWrapper = styled.div`
-  width: 1200px;
+  width: 75rem;
   display: flex;
   background-color: #ffffff;
 `;
@@ -68,6 +72,9 @@ export const SmallText = styled.span``;
 
 export const LeftWrapper = styled.div`
   width: 70%;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,6 +112,9 @@ export const DetailContents = styled.p`
 
 export const RightWrapper = styled.div`
   width: 28%;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 export const SidebarWrapper = styled.div`
   position: -webkit-sticky;

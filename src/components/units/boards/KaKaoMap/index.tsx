@@ -50,6 +50,7 @@ export default function KaKaoMap(props: any) {
         // 지도에 마커를 표시하는 함수
         marker.setMap(map);
 
+        // 좌표 -> 주소 부분
         const callback = function (result: any, status: any) {
           if (status === window.kakao.maps.services.Status.OK) {
             props.setAddress(result[0].address.address_name);

@@ -23,7 +23,7 @@ export default function MyPageStaffSidebar() {
       {/* <S.Title>관리자페이지</S.Title> */}
       <S.SidebarWrapper>
         <S.ProfileWrapper>
-          <S.ProfileImg src="../../icon/simbollogo2Big.png" />
+          <S.ProfileImg src="../../icon/staff2.png" />
           <S.ProfileContentsWrapper>
             <S.ProfileText>김철수님</S.ProfileText>
             <S.ProfileText>aaa@company.com</S.ProfileText>

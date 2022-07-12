@@ -5,12 +5,16 @@ export const Wrapper = styled.div`
   width: 100%;
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   border-bottom: 0.063rem solid #cccccc;
   @media (max-width: 767px) {
-    width: 100%;
-    border-bottom: 0.12rem solid #d2d2d2;
-    justify-content: center;
+    height: 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #ffffff;
   }
 `;
 
@@ -24,40 +28,27 @@ export const InsideWrapper = styled.div`
   padding: 0px 1.875rem;
   margin: auto;
   margin-top: 0.625rem;
-  @media (max-width: 767px) {
-    padding: 0rem;
-    margin-top: 0rem;
-  }
-`;
-
-export const LogoMenuWrapper = styled.div`
-  width: 37.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: 0.625rem;
-  @media (max-width: 767px) {
-    width: 100%;
-    margin: 1rem 0;
-    justify-content: center;
-  }
 `;
 
 export const LogoImg = styled.img`
   height: 2.4rem;
+  margin-left: 1rem;
   cursor: pointer;
+  @media (max-width: 767px) {
+    height: 2rem;
+    margin: auto;
+  }
 `;
 
 export const NavBarWrapper = styled.div`
-  width: 51%;
+  width: 28%;
   height: 3.75rem;
   display: flex;
+  justify-content: space-around;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   margin-right: auto;
-  padding-left: 5%;
+  padding-left: 2%;
   @media (max-width: 767px) {
     display: none;
   }
@@ -67,10 +58,11 @@ interface IMenuProps {
 }
 
 export const Menu = styled.div`
-  height: 2rem;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: auto;
   font-weight: ${(props: IMenuProps) => (props.isActive ? "700" : "400")};
   /* color: ${(props: IMenuProps) =>
     props.isActive ? "#ffe69a" : "#000000"}; */
@@ -104,22 +96,17 @@ export const UserMenu = styled.div`
 `;
 export const MenuIconWrapper = styled.div`
   display: none;
-  margin-right: auto;
   @media (max-width: 767px) {
     display: block;
   }
 `;
 
 export const MenuIcon = styled(MenuOutlined)`
-  display: none;
-  margin-left: 1rem;
-  font-size: 2rem;
-
+  padding-left: 1rem;
+  font-size: 1.6rem;
   cursor: pointer;
-  @media (max-width: 767px) {
-    display: block;
-  }
 `;
+
 // export const LogoImgMobile = styled.img`
 //   height: 2.813rem;
 //   cursor: pointer;
@@ -130,26 +117,47 @@ export const MenuIcon = styled(MenuOutlined)`
 //     margin-right: auto;
 //   }
 // `;
+export const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-right: auto;
+`;
 
 export const MobileMenuWrapper = styled.div`
-  width: 80%;
-  height: 100vh;
+  width: 40%;
+  height: 100%;
   display: none;
-
-  background-color: aqua;
+  background-color: #ffe69a;
   margin-right: auto;
+  z-index: 10;
   @media (max-width: 767px) {
-    display: ${(props: any) => (props.isOpen ? "none" : "flex")};
+    display: ${(props: IMenuProps) => (props.isActive ? "none" : "block")};
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     position: fixed;
-    top: -61px;
+    top: 3rem;
+    transition: left 0.2s;
   }
 `;
-export const Flex = styled.div`
-  width: 80%;
-  height: 100vh;
+export const MobileMenuIistWrapper = styled.div`
+  height: 60%;
+`;
+
+export const MobileMenu = styled.div`
+  height: 10%;
   display: flex;
-  justify-content: flex-start;
-  position: absolute;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+  padding-right: 20%;
+  cursor: pointer;
+  :hover {
+    color: #ffe69a;
+    border-bottom: 0.063rem solid #ffe69a;
+  }
+`;
+
+export const MobileMenuFooterWrapper = styled.div`
+  height: 40%;
+  background-color: ;
 `;

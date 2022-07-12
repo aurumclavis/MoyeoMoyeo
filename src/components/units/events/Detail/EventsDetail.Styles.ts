@@ -5,6 +5,9 @@ import {
   LinkOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
+interface IMenuProps {
+  isActive: boolean;
+}
 
 export const Wrapper = styled.div`
   display: flex;
@@ -45,34 +48,7 @@ export const CountWrapper = styled.div`
 `;
 export const CountIcon = styled(EyeOutlined)`
   margin-right: 0.4rem;
-
   font-size: 1rem;
-
-  cursor: pointer;
-`;
-
-export const IconWrapper = styled.div`
-  width: 7%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: 12%;
-  margin-bottom: 1rem;
-  @media (max-width: 767px) {
-    width: 10%;
-    align-items: center;
-    margin-right: 0%;
-    margin-left: 0;
-  }
-`;
-export const PickIcon = styled(CheckCircleOutlined)`
-  font-size: 1.4rem;
-  cursor: pointer;
-`;
-export const LincIcon = styled(LinkOutlined)`
-  font-size: 1.4rem;
-
   cursor: pointer;
 `;
 
@@ -229,7 +205,7 @@ export const BtnRouterList = styled.div`
 export const NavWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   background-color: white;
   position: sticky;
@@ -237,7 +213,6 @@ export const NavWrapper = styled.div`
   z-index: 10;
 
   @media (max-width: 767px) {
-    justify-content: center;
   }
 `;
 
@@ -246,14 +221,11 @@ export const NavMenuWrapper = styled.div`
   display: flex;
   margin-left: 8%;
   background-color: #ffffff;
+
   @media (max-width: 767px) {
-    justify-content: space-around;
   }
 `;
 
-interface IMenuProps {
-  isActive: boolean;
-}
 export const NavMenu = styled.div`
   padding: 0.4rem;
   margin-bottom: 0.2rem;
@@ -270,5 +242,44 @@ export const NavMenu = styled.div`
   }
   @media (max-width: 767px) {
     margin-left: 0rem;
+  }
+`;
+export const IconWrapper = styled.div`
+  width: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 12%;
+  font-size: 10px;
+  color: #d2d2d2;
+  @media (max-width: 767px) {
+    width: 10%;
+    justify-content: space-around;
+  }
+`;
+export const IconTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: 5px;
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+export const PickIcon = styled(CheckCircleOutlined)`
+  font-size: 1.4rem;
+  color: ${(props: IMenuProps) => (props.isActive ? "red" : "#000000")};
+  cursor: pointer;
+  @media (max-width: 767px) {
+    font-size: 1.2rem;
+  }
+`;
+export const LincIcon = styled(LinkOutlined)`
+  font-size: 1.4rem;
+  color: #ffd24c;
+  cursor: pointer;
+  @media (max-width: 767px) {
+    font-size: 1.2rem;
   }
 `;
