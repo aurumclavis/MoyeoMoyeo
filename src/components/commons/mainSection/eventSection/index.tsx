@@ -64,6 +64,7 @@ const EventsDate = styled.div`
   font-size: 0.875rem;
   text-align: center;
 `;
+
 export default function EventSection() {
   // const settings = {
   //   slide: "div",
