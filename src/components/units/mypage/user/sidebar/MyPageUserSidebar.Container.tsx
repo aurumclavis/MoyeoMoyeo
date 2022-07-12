@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import * as S from "./MyPageUserSidebar.Styles";
 
 // 포인트 충전 부분 주석 처리
-export default function MyPageUserSidebar() {
+function MyPageUserSidebar() {
   // const [visible, setVisible] = useState(false);
   // const onClickShowPointModal = () => {
   //   setVisible(true);
@@ -83,3 +83,5 @@ export default function MyPageUserSidebar() {
     </S.Wrapper>
   );
 }
+
+export default memo(MyPageUserSidebar);

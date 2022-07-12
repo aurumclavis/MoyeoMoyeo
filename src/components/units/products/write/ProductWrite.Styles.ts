@@ -89,6 +89,14 @@ export const MyReactQuill = styled(ReactQuill)`
   .ql-container {
     height: 20rem;
   }
+  .ql-container > .ql-editor.ql-blank::before {
+    font-size: 1rem;
+    color: rgba(198, 211, 230, 1);
+    font-style: normal;
+  }
+  p {
+    font-size: 1rem;
+  }
 `;
 
 // 등록, 취소 버튼 감싸는 Wrapper
@@ -100,7 +108,10 @@ export const BtnWrapper = styled.div`
   margin: 1.5rem 0;
 `;
 export const SubmitWrapper = styled.div`
-  width: 20%;
+  width: 30%;
+  @media screen and (max-width: 767px) {
+    width: 60%;
+  }
   display: flex;
   justify-content: space-between;
 `;

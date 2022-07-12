@@ -1,25 +1,12 @@
-import { useEffect } from "react";
 import * as S from "./ProductsDetail.Styles";
 import ProductsQuestionList from "../../productsQuestion/list/ProductsQuestionList.Container";
 import ProductsQuestionWrite from "../../productsQuestion/write/ProductsQuestionWrite.Container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { BackTop, Image } from "antd";
+import { Image } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useRouter } from "next/router";
-import { ArrowUpOutlined } from "@ant-design/icons";
 import BackTopAnt from "../../../commons/backTop";
-
-const style: React.CSSProperties = {
-  height: 40,
-  width: 40,
-  lineHeight: "40px",
-  borderRadius: 4,
-  backgroundColor: "#FFD24C",
-  color: "black",
-  textAlign: "center",
-  fontSize: 14,
-};
 
 export default function ProductDetailUI(props) {
   const router = useRouter();
@@ -31,9 +18,6 @@ export default function ProductDetailUI(props) {
     slidesToShow: 2,
     slidesToScroll: 1,
   };
-  useEffect(() => {
-    window.addEventListener("scroll", props.onScrollNav);
-  }, []);
 
   return (
     <S.Wrapper>
@@ -142,11 +126,6 @@ export default function ProductDetailUI(props) {
           </S.SellerContentsWrapper>
 
           {/* BackTop(맨 위로 가기) 추가 */}
-          {/* <BackTop>
-            <div style={style}>
-              <ArrowUpOutlined />
-            </div>
-          </BackTop> */}
           <BackTopAnt />
         </S.SidebarWrapper>
       </S.RightWrapper>
