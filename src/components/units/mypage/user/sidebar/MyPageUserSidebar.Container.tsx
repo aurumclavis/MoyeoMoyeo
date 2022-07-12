@@ -1,28 +1,18 @@
 import { useRouter } from "next/router";
 import { useState, useEffect, memo } from "react";
-import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import * as S from "./MyPageUserSidebar.Styles";
 
 // 포인트 충전 부분 주석 처리
-function MyPageUserSidebar() {
+function MyPageUserSidebar(props) {
+  const MENU_NAME = ["관심 행사", "동행 내역", "관심 상품", "구매 내역"];
   // const [visible, setVisible] = useState(false);
   // const onClickShowPointModal = () => {
   //   setVisible(true);
   // };
-  const router = useRouter();
-  const { onClickMoveToPage } = useMoveToPage();
-  const [activedTab, setActivedTab] = useState(null);
-  const [prevClick, setPrevClick] = useState(null);
 
-  const onClickTab = (event) => {
-    setActivedTab(event.currentTarget.id);
-    onClickMoveToPage(event.currentTarget.id)();
+  const onClickTab = (index: number) => () => {
+    props.setActivedIndex(index);
   };
-
-  useEffect(() => {
-    // console.log(router.asPath.slice(8));
-    setActivedTab(router.asPath.slice(8));
-  }, []);
 
   return (
     <S.Wrapper>
@@ -44,38 +34,17 @@ function MyPageUserSidebar() {
 
         {/* 각 페이지 이동하는 탭 */}
         <S.TabWrapper>
-          <S.TabItemWrapper
-            isActive={activedTab === "events"}
-            id="events"
-            onClick={onClickTab}
-          >
-            <S.TabText>관심 행사</S.TabText>
-          </S.TabItemWrapper>
-          <S.TabItemWrapper
-            isActive={activedTab === "boards"}
-            id="boards"
-            onClick={onClickTab}
-          >
-            <S.TabText>동행 내역</S.TabText>
-          </S.TabItemWrapper>
-          <S.TabItemWrapper
-            isActive={activedTab === "products"}
-            id="products"
-            onClick={onClickTab}
-          >
-            <S.TabText>관심 상품</S.TabText>
-          </S.TabItemWrapper>
-          <S.TabItemWrapper
-            isActive={activedTab === "buy"}
-            id="buy"
-            onClick={onClickTab}
-          >
-            <S.TabText>구매 내역</S.TabText>
-          </S.TabItemWrapper>
-          {/* <S.TabItemWrapper onClick={onClickMoveToPage("/mypage/point")}>
-          <S.PointIcon />
-          <S.TabText>내 포인트</S.TabText>
-        </S.TabItemWrapper> */}
+          {MENU_NAME.map((el, index) => {
+            return (
+              <S.TabItemWrapper
+                key={index}
+                isActive={props.activedIndex === index}
+                onClick={onClickTab(index)}
+              >
+                <S.TabText>{el}</S.TabText>
+              </S.TabItemWrapper>
+            );
+          })}
         </S.TabWrapper>
 
         {/* {visible && <Point setVisible={setVisible} />} */}

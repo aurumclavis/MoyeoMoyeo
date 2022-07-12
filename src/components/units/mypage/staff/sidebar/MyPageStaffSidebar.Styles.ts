@@ -97,4 +97,7 @@ export const TabItemWrapper = styled.div`
 `;
 export const TabText = styled.span`
   font-size: 1.25rem;
+  @media screen and (max-width: 767px) {
+    font-size: 1rem;
+  }
 `;

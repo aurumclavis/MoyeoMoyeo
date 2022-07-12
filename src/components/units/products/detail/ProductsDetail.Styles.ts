@@ -26,9 +26,9 @@ export const NavWrapper = styled.nav`
   display: flex;
   justify-content: center;
   position: fixed;
-  top: -71px;
+  top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 10;
   background-color: #ffffff;
   border-bottom: 1px solid #d9d9d9;
   transition: top 0.5s;

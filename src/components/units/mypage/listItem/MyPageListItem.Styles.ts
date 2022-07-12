@@ -20,18 +20,20 @@ export const Wrapper = styled.div`
 `;
 export const ItemWrapper = styled.div`
   width: 100%;
-  height: 10rem;
+  height: fit-content;
   display: flex;
-  padding: 1.25rem;
+  padding: 1.25rem 3%;
   background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 `;
 export const ItemImageWrapper = styled.div`
-  min-width: 7.5rem;
   max-width: 7.5rem;
-  height: 7.5rem;
+  max-height: 7.5rem;
+  @media screen and (max-width: 767px) {
+    max-width: 6rem;
+  }
 `;
 export const ItemImage = styled.img`
   width: 100%;
@@ -39,17 +41,26 @@ export const ItemImage = styled.img`
   border-radius: 5px;
 `;
 export const ItemContentsWrapper = styled.div`
-  padding-left: 1.25rem;
+  padding-left: 3%;
 `;
 export const ItemRowWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   margin: 0.313rem 0;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
 `;
 export const ItemTitle = styled.h2`
   font-size: 1.25rem;
   font-weight: bold;
   margin: 0;
+  @media screen and (max-width: 767px) {
+    font-size: 1rem;
+  }
 `;
 
 export const ItemFinished = styled.span`
@@ -58,6 +69,9 @@ export const ItemFinished = styled.span`
   color: ${(props: ItemFinishedProps) =>
     props.isFinished ? "#d2d2d2" : "#FFD24C"};
   margin: 0;
+  @media screen and (max-width: 767px) {
+    font-size: 1rem;
+  }
 `;
 export const ItemText = styled.span`
   display: block;
@@ -69,11 +83,14 @@ export const ItemText = styled.span`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   font-size: 1rem;
+  @media screen and (max-width: 767px) {
+    font-size: 0.75rem;
+  }
 `;
 export const IconWrapper = styled.div`
   display: flex;
-  align-items: center;
-  padding-right: 0.625rem;
+  align-items: flex-start;
+  padding-right: 0.313rem;
 `;
 export const PeopleIcon = styled(People)``;
 export const CalendarIcon = styled(Today)`
@@ -85,8 +102,11 @@ export const MoreText = styled.span`
     props.type === "staff" ? "#15133C" : "#ffd24c"};
   font-size: 1rem;
   font-weight: bold;
+  cursor: pointer;
   :hover {
-    cursor: pointer;
     text-decoration: underline;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 0.75rem;
   }
 `;
