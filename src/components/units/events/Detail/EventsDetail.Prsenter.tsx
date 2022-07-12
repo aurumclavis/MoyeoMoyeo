@@ -17,7 +17,7 @@ export default function EventsDetailUI(props: any) {
         </S.CountWrapper>
 
         <S.LineDiv />
-        <S.NavWrapper ref={props.navRef}>
+        <S.NavWrapper ref={props.makerRef}>
           <S.NavMenuWrapper>
             <S.NavMenu
               isActive={props.activedTab === "maker"}
@@ -50,17 +50,28 @@ export default function EventsDetailUI(props: any) {
             </CopyToClipboard>
           </S.IconWrapper>
         </S.NavWrapper>
-        <S.MainTitle ref={props.makerRef}>이벤트타입 요약</S.MainTitle>
+        <S.MainTitle>이벤트타입 요약</S.MainTitle>
         <S.MainImg src="/배너이미지_행사1.png" />
         <S.MarkerWrapper>
           요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
           내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용
           요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
-          내용 요약글 내용 요약글 내용 요약글 내용 요약글
+          내용 요약글 내용 요약글 내용 요약글 내용 요약글 요약글 내용 요약글
+          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용
+          요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
+          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용
+          요약글 내용 요약글 내용 요약글 요약글 내용 요약글 내용 요약글 내용
+          요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
+          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용
+          요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
+          내용 요약글 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
+          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용
+          요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
+          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
         </S.MarkerWrapper>
         <S.LineDiv />
-        <S.ContentsWrapper>
-          <S.ContentsTitle ref={props.contentsRef}>상세 설명</S.ContentsTitle>
+        <S.ContentsWrapper ref={props.contentsRef}>
+          <S.ContentsTitle>상세 설명</S.ContentsTitle>
           <S.ContentImg src="/배너이미지_행사1.png" />
           <S.ContetsText>
             상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세
@@ -71,8 +82,8 @@ export default function EventsDetailUI(props: any) {
         </S.ContentsWrapper>
 
         <S.LineDiv />
-        <S.MapWrapper>
-          <S.MapTitle ref={props.mapsRef}>행사 위치</S.MapTitle>
+        <S.MapWrapper ref={props.mapsRef}>
+          <S.MapTitle>행사 위치</S.MapTitle>
           <KakakomapPage />
         </S.MapWrapper>
         <S.LineDiv />
