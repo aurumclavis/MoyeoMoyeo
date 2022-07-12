@@ -29,7 +29,7 @@ function MyPageUserSidebar() {
       <S.SidebarWrapper>
         {/* <S.Title>마이페이지</S.Title> */}
         <S.ProfileWrapper>
-          <S.ProfileImg src="../../icon/simbollogo2Big.png" />
+          <S.ProfileImg src="../../icon/user2.png" />
           <S.ProfileContentsWrapper>
             <S.ProfileText>김철수님</S.ProfileText>
             <S.ProfileText>kim1234@gmail.com</S.ProfileText>

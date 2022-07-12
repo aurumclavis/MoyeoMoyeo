@@ -34,7 +34,7 @@ export const NavWrapper = styled.nav`
   transition: top 0.5s;
 `;
 export const NavItemWrapper = styled.div`
-  width: 1200px;
+  width: 75rem;
   display: flex;
   background-color: #ffffff;
 `;
