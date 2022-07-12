@@ -1,6 +1,6 @@
 import * as S from "./ProductsDetail.Styles";
-import ProductsQuestionList from "../../productsQuestion/list/ProductsQuestionList.Container";
-import ProductsQuestionWrite from "../../productsQuestion/write/ProductsQuestionWrite.Container";
+import ProductsQuestionList from "../question/list/ProductsQuestionList.Container";
+import ProductsQuestionWrite from "../question/write/ProductsQuestionWrite.Container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Image } from "antd";
@@ -90,6 +90,8 @@ export default function ProductDetailUI(props) {
           내용입니다 상품 상세 내용입니다{" "}
         </S.DetailContents>
         <S.Line />
+
+        {/* 상품 문의(Q&A) 작성, 조회*/}
         <div ref={props.qnaRef}>
           <ProductsQuestionWrite />
           <ProductsQuestionList />
