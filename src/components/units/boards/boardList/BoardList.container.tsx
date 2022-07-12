@@ -1,10 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BoardListPresenter from "./BoardList.presenter";
 import { useRouter } from "next/router";
 import _ from "lodash";
+import { useQuery } from "@apollo/client";
 
 export default function BoardListContainer() {
   const router = useRouter();
+  // const { data: RawData, fetchMore } = useQuery({});
   const [rawData] = useState([
     {
       recruited: true,
@@ -171,18 +173,19 @@ export default function BoardListContainer() {
 
   // 서브헤더 스크롤 부분
   const subHeader = useRef(null);
-  const myThrottle = _.throttle(() => {
+  const [isSubHeaderOnTop, setIsSubHeaderOnTop] = useState(false);
+
+  const subHeaderThrottle = _.throttle(() => {
     if (!subHeader.current) return;
     subHeader.current.getBoundingClientRect().top <= 0
       ? setIsSubHeaderOnTop(true)
       : setIsSubHeaderOnTop(false);
-    console.log("aaa");
   }, 50);
-  const [isSubHeaderOnTop, setIsSubHeaderOnTop] = useState(false);
+
   useEffect(() => {
-    window.addEventListener("scroll", myThrottle);
+    window.addEventListener("scroll", subHeaderThrottle);
     return () => {
-      window.removeEventListener("scroll", () => myThrottle);
+      window.removeEventListener("scroll", () => subHeaderThrottle);
     };
   });
 
@@ -195,6 +198,29 @@ export default function BoardListContainer() {
   const onClickGoDetail = (eventName: any) => () => {
     router.push(`/boards/${eventName}`);
   };
+
+  // 리스트 무한스크롤 부분
+  // const loadFunc = () => {
+  //   if (!data) return;
+  //   fetchMore({
+  //     variables: {
+  //       page: Math.ceil(data.fetchBoardComments.length / 10) + 1, // 현재페이지+다음페이지 구하는 공식
+  //     },
+  //     updateQuery: (prev, { fetchMoreResult }) => {
+  //       if (!fetchMoreResult.fetchBoardComments)
+  //         return {
+  //           fetchBoardComments: [...prev.fetchBoardComments],
+  //         };
+  //       return {
+  //         fetchBoardComments: [
+  //           ...prev.fetchBoardComments,
+  //           ...fetchMoreResult.fetchBoardComments,
+  //         ],
+  //       };
+  //     },
+  //   });
+  // };
+
   return (
     <BoardListPresenter
       eventCategory={eventCategory}
