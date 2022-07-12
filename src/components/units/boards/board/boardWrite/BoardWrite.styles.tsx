@@ -73,6 +73,12 @@ export const MyImageUpload = styled.div`
   right: 0;
   cursor: pointer;
 `;
+export const ImageInput = styled.input`
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: none;
+`;
 export const EventImage = styled.img`
   width: 100%;
   height: auto;
