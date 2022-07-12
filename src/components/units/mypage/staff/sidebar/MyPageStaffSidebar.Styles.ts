@@ -2,6 +2,10 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   min-width: 12.5rem;
+  padding-left: 1.5rem;
+  @media screen and (max-width: 767px) {
+    padding: 0 1rem;
+  }
 `;
 export const SidebarWrapper = styled.div`
   display: flex;
@@ -26,12 +30,18 @@ export const ProfileWrapper = styled.div`
   background-color: #15133c;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: row;
+    height: 120px;
+    padding: 1.25rem 0;
+  }
 `;
 export const ProfileImg = styled.img`
   width: 5em;
 `;
 export const ProfileContentsWrapper = styled.div`
-  padding: 0.625rem 0;
+  padding: 0.625rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,6 +64,15 @@ export const TabWrapper = styled.div`
   background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
+
+  /* 모바일 화면일 때 탭 가로 배치 */
+  @media screen and (max-width: 767px) {
+    flex-direction: row;
+    justify-content: space-around;
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 1.25rem;
+  }
 `;
 
 export const TabItemWrapper = styled.div`
@@ -66,6 +85,15 @@ export const TabItemWrapper = styled.div`
     props.isActive ? "#f4f4f4" : "#ffffff"};
   border-left: ${(props: ITabItemProps) =>
     props.isActive ? "3px solid #15133C" : "none"};
+
+  /* 모바일 화면일 때 각각의 탭은 클릭했을 때 밑줄, 배경색 없음 */
+  @media screen and (max-width: 767px) {
+    padding: 0.625rem 0.313rem;
+    background-color: #ffffff;
+    border-left: none;
+    border-bottom: ${(props) =>
+      props.isActive ? "3px solid #15133C" : "none"};
+  }
 `;
 export const TabText = styled.span`
   font-size: 1.25rem;

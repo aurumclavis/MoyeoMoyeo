@@ -13,6 +13,9 @@ export const Wrapper = styled.div`
   height: fit-content;
   display: grid;
   padding: 0 1.5rem;
+  @media screen and (max-width: 767px) {
+    padding: 0 1rem;
+  }
   grid-gap: 1.25rem;
 `;
 export const ItemWrapper = styled.div`

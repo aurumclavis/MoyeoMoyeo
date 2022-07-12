@@ -18,7 +18,7 @@ export default function ProductDetail() {
         document.body.scrollTop > 200 ||
         document.documentElement.scrollTop > 200
       ) {
-        navRef.current.style = "top:0";
+        navRef.current.style = "top:0px";
       } else {
         navRef.current.style = "top:-200px";
       }
