@@ -1,15 +1,22 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 45%;
+  width: 35%;
+  @media screen and (max-width: 767px) {
+    padding-left: auto;
+  }
+`;
+
+export const InsideWrapper = styled.div`
+  width: 100%;
   display: grid;
   justify-content: start;
-  grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   grid-gap: 0.63rem;
   padding: 1.4rem;
   border-radius: 1.25rem;
   @media screen and (max-width: 767px) {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
     padding: 0.2rem;
     grid-gap: 0.034em;
   }
@@ -38,8 +45,9 @@ export const ListWrapper = styled.div`
     box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
   }
   @media (max-width: 767px) {
-    width: 130px;
-    height: 75px;
+    width: 75px;
+    height: 130px;
+    flex-direction: column;
     flex-wrap: wrap;
     margin-top: 0.2rem;
     /* margin-right: 0.4rem; */
@@ -66,8 +74,8 @@ export const ContentsOutsideWrapper = styled.div`
   justify-content: flex-start;
   padding-left: 1rem;
   @media (max-width: 767px) {
-    width: 50%;
-    height: 85%;
+    width: 100%;
+    height: 45%;
     flex-direction: column;
     justify-content: space-between;
     padding-left: 0.2rem;
