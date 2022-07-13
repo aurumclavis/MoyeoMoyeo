@@ -14,7 +14,7 @@ export const LineDiv = styled.div`
   border-left: 0.63rem solid #d2d2d2;
 `;
 
-export const TabWrapper = styled.div`
+export const Date = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -26,7 +26,7 @@ interface ITabProps {
   isActive: boolean;
 }
 export const Tab = styled.div`
-  width: 62px;
+  width: 80px;
   height: 3.25rem;
   display: flex;
   justify-content: center;
@@ -45,25 +45,43 @@ export const Tab = styled.div`
   }
 `;
 
+export const TabWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  margin-bottom: 1rem;
+`;
+
 export const FlexWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+`;
+export const DateWrapper = styled.div`
+  width: ${(props: ITabProps) => (props.isActive ? "100%" : "316px")};
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
 `;
 export const FestivalWrapper = styled.div`
-  width: ${(props: ITabProps) => (props.isActive ? "45%" : "15%")};
-  display: flex;
+  width: ${(props: ITabProps) => (props.isActive ? "30%" : "15%")};
+  display: ${(props: ITabProps) => (props.isActive ? "flex" : "none")};
   flex-direction: column;
 `;
 export const EventsWrapper = styled.div`
-  width: ${(props: ITabProps) => (props.isActive ? "85%" : "52%")};
-  display: flex;
+  width: ${(props: ITabProps) => (props.isActive ? "40%" : "20%")};
+  display: ${(props: ITabProps) => (props.isActive ? "flex" : "none")};
   flex-direction: column;
   @media (max-width: 767px) {
     margin-left: 1rem;
   }
 `;
+
 export const EventsBtnWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -72,11 +90,12 @@ export const EventsBtnWrapper = styled.div`
 `;
 
 export const EventWriteBtn = styled.div`
-  width: 200px;
-  height: 50px;
+  width: 150px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
   border-radius: 10px;
   background-color: #ffd24c;
 `;

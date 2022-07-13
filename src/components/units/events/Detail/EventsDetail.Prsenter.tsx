@@ -42,43 +42,30 @@ export default function EventsDetailUI(props: any) {
             </S.NavMenu>
           </S.NavMenuWrapper>
           <S.IconWrapper>
-            <S.IconTitle>행사 찜하기</S.IconTitle>
-            <S.PickIcon isActive={props.isActive} />
-            <S.IconTitle>링크 복사하기</S.IconTitle>
+            <S.PickWraepper>
+              <S.IconTitle>행사 찜하기</S.IconTitle>
+              <S.PickIcon isActive={props.isActive} />
+            </S.PickWraepper>
             <CopyToClipboard text={props.currentUrl}>
-              <S.LincIcon onClick={props.onClickLink} />
+              <S.Linkraepper onClick={props.onClickLink}>
+                <S.IconTitle>링크 복사</S.IconTitle>
+                <S.LincIcon />
+              </S.Linkraepper>
             </CopyToClipboard>
           </S.IconWrapper>
         </S.NavWrapper>
         <S.MainTitle>이벤트타입 요약</S.MainTitle>
         <S.MainImg src="/배너이미지_행사1.png" />
-        <S.MarkerWrapper>
-          요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
-          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용
-          요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
-          내용 요약글 내용 요약글 내용 요약글 내용 요약글 요약글 내용 요약글
-          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용
-          요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
-          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용
-          요약글 내용 요약글 내용 요약글 요약글 내용 요약글 내용 요약글 내용
-          요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
-          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용
-          요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
-          내용 요약글 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
-          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용
-          요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
-          내용 요약글 내용 요약글 내용 요약글 내용 요약글 내용 요약글
-        </S.MarkerWrapper>
+        <S.ContetsText>
+          상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세 설명이
+          들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳
+          입니다.상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세
+          설명이 들어갈 곳 입니다.
+        </S.ContetsText>
         <S.LineDiv />
         <S.ContentsWrapper ref={props.contentsRef}>
           <S.ContentsTitle>상세 설명</S.ContentsTitle>
           <S.ContentImg src="/배너이미지_행사1.png" />
-          <S.ContetsText>
-            상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세
-            설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세 설명이
-            들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳
-            입니다.상세 설명이 들어갈 곳 입니다.
-          </S.ContetsText>
         </S.ContentsWrapper>
 
         <S.LineDiv />

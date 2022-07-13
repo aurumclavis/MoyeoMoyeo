@@ -13,24 +13,24 @@ export const Wrapper = styled.div`
 `;
 
 export const ListWrapper = styled.div`
-  width: 100%;
+  width: 90%;
   height: 150px;
   display: flex;
   flex-direction: row;
-  padding: ${(props: ITabProps) => (props.isActive ? "1rem" : "0.4rem")};
-  margin: 0.4rem;
-  margin-left: 1rem;
-  flex-direction: row;
   justify-content: ${(props: ITabProps) =>
-    props.isActive ? "flex-start" : "flex-end"};
+    props.isActive ? "space-between" : "flex-end"};
   align-items: center;
+  padding: ${(props: ITabProps) => (props.isActive ? "1rem" : "0.4rem")};
+  margin-top: 0.4rem;
+  margin-left: 1rem;
   border: ${(props: ITabProps) =>
     props.isActive ? "1px solid #d2d2d2" : "none"};
   border-left: ${(props: ITabProps) =>
     props.isActive ? "1px solid #d2d2d2" : "3px solid #FFD24C"};
   border-radius: ${(props: ITabProps) =>
-    props.isActive ? "1.25rem;" : "none"};
+    props.isActive ? "0.63rem;" : "none"};
   @media (max-width: 767px) {
+    width: 100%;
     height: 65px;
     margin: 2px;
     margin-left: 0px;
@@ -39,20 +39,23 @@ export const ListWrapper = styled.div`
   }
 `;
 export const ListImg = styled.img`
-  width: ${(props: ITabProps) => (props.isActive ? "110px" : "0")};
-  height: ${(props: ITabProps) => (props.isActive ? "110px" : "0")};
+  width: ${(props: ITabProps) => (props.isActive ? "100px" : "0")};
+  height: ${(props: ITabProps) => (props.isActive ? "100px" : "0")};
   @media (max-width: 767px) {
     width: ${(props: ITabProps) => (props.isActive ? "50px" : "0")};
     height: ${(props: ITabProps) => (props.isActive ? "50px" : "0")};
   }
 `;
 export const FlexWrapper = styled.div`
-  width: 100%;
+  width: 140px;
+  height: 100px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-left: auto;
-  padding-left: 1rem;
+  @media (max-width: 767px) {
+    height: 100%;
+  }
 `;
 
 export const Title = styled.div`
@@ -61,12 +64,14 @@ export const Title = styled.div`
   font-size: 1rem;
   font-weight: 700;
   @media (max-width: 767px) {
+    height: 50%;
+    font-size: 0.6rem;
     text-align: center;
   }
 `;
 
 export const ContentsWrapper = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   @media (max-width: 767px) {
     font-size: 0rem;
   }
@@ -85,6 +90,7 @@ export const Btn = styled.div`
   height: 12%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding-right: 1rem;
   color: #42c2ff;
   margin-top: auto;
@@ -96,9 +102,10 @@ export const Btn = styled.div`
     border: 1px solid #ffffff;
   }
   @media (max-width: 767px) {
+    height: 50%;
     justify-content: center;
     text-align: center;
     padding-right: 0rem;
-    font-size: 0.8rem;
+    font-size: 0.4rem;
   }
 `;

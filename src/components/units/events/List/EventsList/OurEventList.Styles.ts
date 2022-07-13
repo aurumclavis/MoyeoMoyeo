@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(85%, 1fr));
   margin-top: 0.4rem;
   padding-left: 1rem;
-  border-left: 1px solid #d2d2d2;
+
   @media (max-width: 767px) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -19,15 +19,19 @@ export const Wrapper = styled.div`
 `;
 
 export const ListWrapper = styled.div`
-  width: 90%;
+  width: 95%;
   height: 150px;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 1rem;
   margin-top: 0.4rem;
-  border: 1px solid #d2d2d2;
-  border-radius: 1.25rem;
+  border: ${(props: ITabProps) =>
+    props.isActive ? "1px solid #d2d2d2" : "none"};
+  border-left: ${(props: ITabProps) =>
+    props.isActive ? "1px solid #d2d2d2" : "3px solid #FFD24C"};
+  border-radius: ${(props: ITabProps) =>
+    props.isActive ? "0.63rem;" : "none"};
   @media (max-width: 767px) {
     width: 150px;
     height: 200px;
@@ -37,8 +41,8 @@ export const ListWrapper = styled.div`
   }
 `;
 export const ListImg = styled.img`
-  width: 110px;
-  height: 110px;
+  width: ${(props: ITabProps) => (props.isActive ? "100px" : "0")};
+  height: ${(props: ITabProps) => (props.isActive ? "100px" : "0")};
 `;
 export const FlexWrapper = styled.div`
   width: 100%;
@@ -84,9 +88,8 @@ export const ContentsWrapper = styled.div`
 `;
 
 export const Period = styled.div`
-  width: 65%;
+  width: 100%;
   font-size: 0.6rem;
-  text-align: end;
   @media (max-width: 767px) {
     width: 100%;
     height: 60%;
@@ -110,8 +113,9 @@ export const FooterWrapper = styled.div`
   }
 `;
 export const Counter = styled.div`
-  width: 20%;
+  width: 30%;
   color: #d2d2d2;
+  font-size: 8px;
   @media (max-width: 767px) {
     width: 100%;
     height: 30%;
@@ -122,10 +126,11 @@ export const Counter = styled.div`
 `;
 
 export const Btn = styled.div`
-  width: 40%;
+  width: ${(props: ITabProps) => (props.isActive ? "40%" : "100%")};
   height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: ${(props: ITabProps) =>
+    props.isActive ? "flex-end" : "center"};
   padding-right: 1rem;
   color: #42c2ff;
   border-radius: 20px;
