@@ -2,6 +2,7 @@ import * as S from "./BoardList.styles";
 import UnevenSetsFinite from "../boardList/carousel/BoardListCarousel";
 import { v4 as uuidv4 } from "uuid";
 import BackTopAnt from "../../../commons/backTop";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function BoardListPresenter(props: any) {
   return (
@@ -83,53 +84,55 @@ export default function BoardListPresenter(props: any) {
             </S.MonthlyViewButton>
           )}
         </S.DateWrapper>
-        <S.ListWrapper>
-          {props.data.map((el: any) => (
-            <S.Item
-              key={uuidv4()}
-              onClick={props.onClickGoDetail(el.eventName)}
-            >
-              <S.ItemLeft>
-                <S.EventImage src="/market.jpg" />
-                <S.ItemMain>
-                  <S.Header>
-                    <S.Recruitment recruited={el.recruited}>
-                      {el.recruited ? "[모집완료]" : "[모집중]"}
-                    </S.Recruitment>
-                    <S.Title>{el.title}</S.Title>
-                  </S.Header>
-                  <S.Remark>{el.remark}</S.Remark>
-                  <S.Footer>
-                    <S.Event>
-                      <S.EventIcon />
-                      {el.eventName}
-                    </S.Event>
-                    <S.Category>
-                      <S.CategoryIcon />
-                      {el.category}
-                    </S.Category>
-                    <S.MaxHeadCount>
-                      <S.MaxHeadCountIcon />
-                      {el.maxHeadCount}명
-                    </S.MaxHeadCount>
-                    <S.AccompanyDate>
-                      <S.CalendarIcon />
-                      {el.accompanyDate.start} ~ {el.accompanyDate.end}
-                    </S.AccompanyDate>
-                  </S.Footer>
-                </S.ItemMain>
-              </S.ItemLeft>
-              <S.ItemRight requested={el.requested}>
-                {el.requested ? (
-                  <S.PaperPlaneImage src="/icon/symbollogo_removebg.png" />
-                ) : (
-                  <S.PaperPlaneImage src="/icon/simbollogo.png" />
-                )}
-              </S.ItemRight>
-            </S.Item>
-          ))}
-          <BackTopAnt />
-        </S.ListWrapper>
+        <InfiniteScroll pageStart={0} loadMore={props.loadFunc} hasMore={true}>
+          <S.ListWrapper>
+            {props.data.map((el: any) => (
+              <S.Item
+                key={uuidv4()}
+                onClick={props.onClickGoDetail(el.eventName)}
+              >
+                <S.ItemLeft>
+                  <S.EventImage src="/market.jpg" />
+                  <S.ItemMain>
+                    <S.Header>
+                      <S.Recruitment recruited={el.recruited}>
+                        {el.recruited ? "[모집완료]" : "[모집중]"}
+                      </S.Recruitment>
+                      <S.Title>{el.title}</S.Title>
+                    </S.Header>
+                    <S.Remark>{el.remark}</S.Remark>
+                    <S.Footer>
+                      <S.Event>
+                        <S.EventIcon />
+                        {el.eventName}
+                      </S.Event>
+                      <S.Category>
+                        <S.CategoryIcon />
+                        {el.category}
+                      </S.Category>
+                      <S.MaxHeadCount>
+                        <S.MaxHeadCountIcon />
+                        {el.maxHeadCount}명
+                      </S.MaxHeadCount>
+                      <S.AccompanyDate>
+                        <S.CalendarIcon />
+                        {el.accompanyDate.start} ~ {el.accompanyDate.end}
+                      </S.AccompanyDate>
+                    </S.Footer>
+                  </S.ItemMain>
+                </S.ItemLeft>
+                <S.ItemRight requested={el.requested}>
+                  {el.requested ? (
+                    <S.PaperPlaneImage src="/icon/symbollogo_removebg.png" />
+                  ) : (
+                    <S.PaperPlaneImage src="/icon/simbollogo.png" />
+                  )}
+                </S.ItemRight>
+              </S.Item>
+            ))}
+          </S.ListWrapper>
+        </InfiniteScroll>
+        <BackTopAnt />
       </S.Main>
     </S.Wrapper>
   );

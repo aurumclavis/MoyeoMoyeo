@@ -13,6 +13,41 @@ export const Wrapper = styled.div`
   padding: 4rem 2rem;
 `;
 
+// 스크롤 내리면 나타나는 서브헤더(네비)
+interface INavItemProps {
+  isActive: boolean;
+}
+export const NavWrapper = styled.nav`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: -71px;
+  left: 0;
+  z-index: 2;
+  background-color: #ffffff;
+  border-bottom: 1px solid #d9d9d9;
+  transition: top 0.5s;
+`;
+export const NavItemWrapper = styled.div`
+  width: 1200px;
+  display: flex;
+  background-color: #ffffff;
+`;
+export const NavItem = styled.div`
+  padding: 0.625rem;
+  transition: 0.2s;
+  color: ${(props: INavItemProps) => (props.isActive ? "#000000" : "#d2d2d2")};
+  font-weight: ${(props: INavItemProps) =>
+    props.isActive ? "bold" : "normal"};
+  border-bottom: ${(props) => (props.isActive ? "4px solid #FFD24C" : "none")};
+  font-size: 1rem;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 // 최상단 커버이미지
 export const CoverImage = styled.img`
   width: calc(100% + 2rem * 2);
@@ -344,10 +379,10 @@ export const CommentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin: 1rem 0 5rem 0;
+  margin-bottom: 5rem;
 `;
 export const CommentText = styled.span`
-  padding: 2px 5px;
+  padding: 0 5px;
   border-radius: 10px;
   font-size: 1.6rem;
   font-weight: 700;
