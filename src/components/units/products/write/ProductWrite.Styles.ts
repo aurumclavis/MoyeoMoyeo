@@ -108,23 +108,23 @@ export const BtnWrapper = styled.div`
   margin: 1.5rem 0;
 `;
 export const SubmitWrapper = styled.div`
-  width: 30%;
-  @media screen and (max-width: 767px) {
-    width: 60%;
-  }
+  width: 10%;
   display: flex;
   justify-content: space-between;
+  margin-right: 0.625rem;
+  @media screen and (max-width: 767px) {
+    width: 20%;
+  }
 `;
 export const CancelBtn = styled.button`
+  width: 100%;
   height: 100%;
   padding: 0 10%;
-  border: none;
   border-radius: 0.625rem;
+  border: none;
   background-color: #f4f4f4;
   font-size: 1.25rem;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 export const Error = styled.div`
   color: red;

@@ -26,28 +26,16 @@ export const WriteInput = styled.textarea`
   }
 `;
 export const WriteBtnWrapper = styled.div`
-  height: 45px;
-`;
-export const SubmitWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 45px;
   display: flex;
   justify-content: flex-end;
-  /* @media screen and (max-width: 767px) {
-    width: 20%;
-  } */
 `;
-// export const WriteBtn = styled.button`
-//   width: auto;
-//   padding: 0.625rem 3%;
-//   border: none;
-//   border-radius: 10px;
-//   font-size: 1rem;
-//   background: rgba(255, 210, 76, 0.3);
-//   :hover {
-//     cursor: pointer;
-//     background-color: #ffd24c;
-//     outline: none;
-//     transition: 0.5s ease;
-//   }
-// `;
+export const SubmitWrapper = styled.div`
+  width: 10%;
+  height: 100%;
+
+  @media screen and (max-width: 767px) {
+    width: 20%;
+  }
+`;

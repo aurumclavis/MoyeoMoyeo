@@ -20,7 +20,7 @@ export default function ApolloSetting(props: any) {
   }, []);
 
   const uploadLink = createUploadLink({
-    uri: "https://backend07.codebootcamp.co.kr/graphql",
+    uri: "https://a2af-61-43-54-3.jp.ngrok.io/graphql",
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
@@ -45,9 +45,11 @@ export default function ApolloSetting(props: any) {
     }
   });
   const client = new ApolloClient({
-    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
+    //accessToken 넣기 전까지만 여기에 uri 삽입
+    uri: "https://a2af-61-43-54-3.jp.ngrok.io/graphql",
+    // link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
-    connectToDevTools: true,
+    //connectToDevTools: true,
   });
   return (
     <>
