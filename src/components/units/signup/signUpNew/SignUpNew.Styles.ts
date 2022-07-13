@@ -180,9 +180,14 @@ export const CheckBoxTitle = styled.span`
 `;
 
 //submit
-export const SubmitBtn = styled.button`
+
+export const ButtonWrapper = styled.div`
   width: 100%;
   height: 56px;
+`;
+export const SubmitBtn = styled.button`
+  /* width: 100%;
+  height: 56px; */
   text-align: center;
   border: 1px solid #edf0f5;
   border-radius: 5px;

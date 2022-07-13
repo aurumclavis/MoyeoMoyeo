@@ -6,6 +6,7 @@ import Countdown from "react-countdown";
 import Link from "next/link";
 import { useRef } from "react";
 import Checkbox from "../../../commons/checkbox";
+import ButtonSubmit from "../../../commons/buttons/submit";
 export default function SignUpNewPageUI(props) {
   const renderer = ({ minutes, seconds }: any) => {
     return (
@@ -126,9 +127,18 @@ export default function SignUpNewPageUI(props) {
           })}
         />
         <S.Error>{props.formState.errors.checkbox?.message}</S.Error>
-        <S.SubmitBtn type="submit" isActive={props.formState.isValid}>
+        {/* <S.SubmitBtn type="submit" isActive={props.formState.isValid}>
           회원가입
-        </S.SubmitBtn>
+        </S.SubmitBtn> */}
+        {/* submit btn  */}
+        <S.ButtonWrapper>
+          <ButtonSubmit
+            fontSize="1.25rem"
+            isActive={props.formState.isValid}
+            title="회원가입"
+          />
+        </S.ButtonWrapper>
+
         <S.FooterWrapper>
           <S.FooterTitle>이미 계정이 있으신가요?</S.FooterTitle>
           <S.FooterBtn onClick={props.onClickMoveToPage("/login")}>
