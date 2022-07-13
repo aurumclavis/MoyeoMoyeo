@@ -14,44 +14,34 @@ export default function EventsWriteUI(props) {
         </Modal>
       )} */}
       <S.Wrapper>
-        <S.Title>이벤트 등록</S.Title>
+        <S.HeaderTitle>행사 등록</S.HeaderTitle>
         <S.InputWrapper>
-          <S.Label>제목</S.Label>
+          <S.SubTitle>행사 제목</S.SubTitle>
           <CommonInput type="text" placeholder="제목을 작성해주세요." />
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <S.Label>내용</S.Label>
-          <S.Quill />
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <S.Label>주소</S.Label>
-          <S.ZipcodeWrapper>
-            <S.Zipcode
-              placeholder="07250"
-              readOnly
-              value={
-                props.zipcode || props.data?.fetchBoard.boardAddress?.zipcode
-              }
-            />
-            <S.SearchButton onClick={props.onClickAddressSearch}>
-              우편번호 검색
-            </S.SearchButton>
-          </S.ZipcodeWrapper>
+          <S.SubTitle>행사 주소</S.SubTitle>
+          {/* <S.ZipcodeWrapper></S.ZipcodeWrapper> */}
           {/* <S.Address
             readOnly
           /> */}
+          <S.SearchButton onClick={props.onClickAddressSearch}>
+            주소 검색
+          </S.SearchButton>
           <S.Address onChange={props.onChangeAddressDetail} />
-        </S.InputWrapper>
-        <S.ImageWrapper>
-          <S.Label>사진첨부</S.Label>
+          <S.SubTitle>요약글 입력</S.SubTitle>
+          <S.Quill />
+          <S.SubTitle>상세 설명</S.SubTitle>
+          <S.ContentQuill />
+          <S.ImageWrapper>
+            <S.SubTitle>상세 사진</S.SubTitle>
 
-          <div>dds</div>
-        </S.ImageWrapper>
+            <div>dds</div>
+          </S.ImageWrapper>
+        </S.InputWrapper>
         <S.ButtonWrapper>
           <ButtonSubmit
             fontSize="1.25rem"
             isActive={props.formState.isValid}
-            title="등록"
+            title="등록하기"
           />
         </S.ButtonWrapper>
       </S.Wrapper>

@@ -10,22 +10,32 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 50px 10%;
 `;
 
-export const Title = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 36px;
+export const HeaderTitle = styled.div`
+  width: 100%;
+  height: 30px;
+  margin-right: auto;
+  font-size: 24px;
   font-weight: bold;
 `;
-
-export const Label = styled.div`
+export const InputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 2rem;
+  padding: 2rem 2.4rem;
+  border: 1px solid #d2d2d2;
+  border-radius: 10px;
+`;
+export const SubTitle = styled.div`
+  margin-top: 10px;
+  padding-left: 5px;
   padding-bottom: 16px;
   font-size: 16px;
   font-weight: 500;
-`;
-
-export const InputWrapper = styled.div`
-  padding-top: 40px;
 `;
 
 export const Subject = styled.input`
@@ -36,8 +46,18 @@ export const Subject = styled.input`
 `;
 
 export const Quill = styled(ReactQuill)`
+  width: 100%;
   .ql-container {
-    width: 800px;
+    height: 200px;
+  }
+  p {
+    font-size: 1rem;
+  }
+`;
+
+export const ContentQuill = styled(ReactQuill)`
+  width: 100%;
+  .ql-container {
     height: 30rem;
   }
   p {
@@ -57,20 +77,30 @@ export const Zipcode = styled.input`
 `;
 
 export const SearchButton = styled.button`
-  width: 124px;
+  width: 100px;
   height: 52px;
-  margin-left: 16px;
-  background-color: black;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffd24c;
   cursor: pointer;
-  color: white;
+  :hover {
+  }
 `;
 
 export const Address = styled.input`
-  width: 996px;
+  width: 100%;
   height: 52px;
   margin-top: 16px;
   padding-left: 16px;
-  border: 1px solid #bdbdbd;
+  border: 1px solid rgba(198, 211, 230, 1);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 0.875rem;
+  margin-bottom: 5px;
+  :focus {
+    outline: none;
+    border: 2px solid #ffd24c;
+  }
 `;
 
 export const ImageWrapper = styled.div`
@@ -89,32 +119,10 @@ export const UploadButton = styled.button`
 `;
 
 export const ButtonWrapper = styled.div`
-  width: 100px;
+  width: 300px;
+  height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 80px;
-`;
-
-export const CancelButton = styled.button`
-  width: 179px;
-  height: 52px;
-  background-color: #bdbdbd;
-  border: none;
-  font-size: 16px;
-  font-weight: 500;
-  margin-left: 12px;
-  margin-right: 12px;
-  cursor: pointer;
-`;
-
-export const SubmitButton = styled.button`
-  width: 179px;
-  height: 52px;
-  border: none;
-  font-size: 16px;
-  font-weight: 500;
-  margin-left: 12px;
-  margin-right: 12px;
-  cursor: pointer;
+  margin-top: 2rem;
 `;
