@@ -52,15 +52,31 @@ export const FlexWrapper = styled.div`
   justify-content: space-between;
 `;
 export const FestivalWrapper = styled.div`
+  width: ${(props: ITabProps) => (props.isActive ? "45%" : "15%")};
   display: flex;
   flex-direction: column;
-  width: ${(props: ITabProps) => (props.isActive ? "40%" : "15%")};
 `;
 export const EventsWrapper = styled.div`
+  width: ${(props: ITabProps) => (props.isActive ? "85%" : "52%")};
   display: flex;
   flex-direction: column;
-  width: ${(props: ITabProps) => (props.isActive ? "85%" : "58%")};
   @media (max-width: 767px) {
     margin-left: 1rem;
   }
+`;
+export const EventsBtnWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const EventWriteBtn = styled.div`
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #ffd24c;
 `;

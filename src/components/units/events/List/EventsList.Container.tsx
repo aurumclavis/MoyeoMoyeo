@@ -15,6 +15,7 @@ export default function EventList() {
 
   return (
     <EventsListUI
+      onClickMoveToPage={onClickMoveToPage}
       onClickEventTap={onClickEventTap}
       activedTab={activedTab}
       openEvents={openEvents}
