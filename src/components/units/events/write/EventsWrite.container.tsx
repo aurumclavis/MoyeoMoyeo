@@ -3,6 +3,8 @@ import EventsWriteUI from "./EventsWrite.presenter";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { getDate } from "./date/getdate";
+
 const schema = yup.object({
   title: yup
     .string()
@@ -12,19 +14,35 @@ const schema = yup.object({
     .string()
     .max(100, "100자 이내로 입력해주세요.")
     .required("필수 입력 사항입니다."),
-  marker: yup.string().max(400, "400자 이내로 입력해주세요."),
   contents: yup.string().required("필수 입력 사항입니다."),
 });
 export default function EventsWrite(props) {
   const [isOpen, setIsOpen] = useState(false);
-  const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
-  const [addressDetail, setAddressDetail] = useState("");
-  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  const [date, setDate] = useState({ start: "", end: "" });
+  // 날짜 선택
+  let today = new Date();
 
-  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
-    setAddressDetail(event.target.value);
+  // const [fileUrls, setFileUrls] = useState(["", "", ""]);
+
+  const onChangeDate = (e: any) => {
+    const startMonth = e?.[0].month() + 1;
+    const endMonth = e?.[1].month() + 1;
+    const accompanyStartDate =
+      e?.[0].year().toString() +
+      "-" +
+      startMonth.toString().padStart(2, "0") +
+      "-" +
+      e?.[0].date().toString().padStart(2, "0");
+    const accompanyEndDate =
+      e?.[1].year().toString() +
+      "-" +
+      endMonth.toString().padStart(2, "0") +
+      "-" +
+      e?.[1].date().toString().padStart(2, "0");
+    setDate({ start: accompanyStartDate, end: accompanyEndDate });
   };
+  const defaultDate = { start: getDate(today), end: getDate(today) };
 
   const onClickAddressSearch = () => {
     setIsOpen(true);
@@ -32,15 +50,14 @@ export default function EventsWrite(props) {
 
   const onCompleteAddressSearch = (data: any) => {
     setAddress(data.address);
-    setZipcode(data.zonecode);
     setIsOpen(false);
   };
 
-  const onChangeFileUrls = (fileUrl: string, index: number) => {
-    const newFileUrls = [...fileUrls];
-    newFileUrls[index] = fileUrl;
-    setFileUrls(newFileUrls);
-  };
+  // const onChangeFileUrls = (fileUrl: string, index: number) => {
+  //   const newFileUrls = [...fileUrls];
+  //   newFileUrls[index] = fileUrl;
+  //   setFileUrls(newFileUrls);
+  // };
 
   const { register, handleSubmit, formState, setValue, trigger } = useForm({
     resolver: yupResolver(schema),
@@ -53,17 +70,15 @@ export default function EventsWrite(props) {
 
   return (
     <EventsWriteUI
-      onChangeAddressDetail={onChangeAddressDetail}
+      onChangeDate={onChangeDate}
+      date={date}
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
-      onChangeFileUrls={onChangeFileUrls}
       isEdit={props.isEdit}
+      defaultDate={defaultDate}
       data={props.data}
       isOpen={isOpen}
-      zipcode={zipcode}
       address={address}
-      addressDetail={addressDetail}
-      fileUrls={fileUrls}
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}

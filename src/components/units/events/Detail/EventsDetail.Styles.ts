@@ -5,6 +5,7 @@ import {
   LinkOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
+import styledEngine from "@mui/styled-engine";
 interface IMenuProps {
   isActive: boolean;
 }
@@ -65,21 +66,6 @@ export const MainWrapper = styled.div`
 export const MainImg = styled.img`
   width: 80%;
   margin: 2rem 0;
-`;
-export const MarkerWrapper = styled.div`
-  width: 60%;
-  /* height: 20vh; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 2.4rem 0;
-  padding: 1rem 2rem;
-  border: 1px solid #d2d2d2;
-  font-size: 1rem;
-  @media (max-width: 767px) {
-    width: 80%;
-  }
 `;
 
 export const MainTitle = styled.div`
@@ -230,8 +216,7 @@ export const NavMenu = styled.div`
   padding: 0.4rem;
   margin-bottom: 0.2rem;
   margin-left: 2rem;
-  /* color: ${(props: IMenuProps) =>
-    props.isActive ? "#ffe69a" : "#000000"}; */
+
   border-bottom: ${(props: IMenuProps) =>
     props.isActive ? "3px solid #ffe69a;" : "none"};
   font-size: 1rem;
@@ -245,24 +230,53 @@ export const NavMenu = styled.div`
   }
 `;
 export const IconWrapper = styled.div`
-  width: 15%;
+  width: 20%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-right: 12%;
   font-size: 10px;
-  color: #d2d2d2;
   @media (max-width: 767px) {
-    width: 10%;
+    width: 20%;
     justify-content: space-around;
   }
 `;
+
+export const PickWraepper = styled.div`
+  width: 50%;
+  height: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6%;
+  border-radius: 10px;
+  background-color: #ffd24c;
+  @media (max-width: 767px) {
+    width: 40%;
+  }
+`;
+
+export const Linkraepper = styled.div`
+  width: 40%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  border-radius: 10px;
+  background-color: #ffd24c;
+  @media (max-width: 767px) {
+    width: 40%;
+  }
+`;
+
 export const IconTitle = styled.div`
   display: flex;
   flex-direction: row;
-  margin-left: auto;
-  margin-right: 5px;
   @media (max-width: 767px) {
     display: none;
   }
@@ -275,9 +289,9 @@ export const PickIcon = styled(CheckCircleOutlined)`
     font-size: 1.2rem;
   }
 `;
+
 export const LincIcon = styled(LinkOutlined)`
-  font-size: 1.4rem;
-  color: #ffd24c;
+  font-size: 1.2rem;
   cursor: pointer;
   @media (max-width: 767px) {
     font-size: 1.2rem;
