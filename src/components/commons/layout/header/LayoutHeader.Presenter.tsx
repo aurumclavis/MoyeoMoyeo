@@ -35,8 +35,8 @@ export default function LayoutHeaderUI(props) {
               모여마켓
             </S.Menu>
             <S.Menu
-              isActive={props.activedTab === "/mypage/events"}
-              id="/mypage/events"
+              isActive={props.activedTab === "/mypage"}
+              id="/mypage"
               onClick={props.onClickTab}
             >
               마이페이지
@@ -58,17 +58,30 @@ export default function LayoutHeaderUI(props) {
             <S.MobileMenu id="/boards" onClick={props.onClickMobileTab}>
               동행하기
             </S.MobileMenu>
-            <S.MobileMenu id="/events/list" onClick={props.onClickMobileTab}>
+            <S.MobileMenu id="/events" onClick={props.onClickMobileTab}>
               행사일정
             </S.MobileMenu>
             <S.MobileMenu id="/products" onClick={props.onClickMobileTab}>
               모여마켓
             </S.MobileMenu>
-            <S.MobileMenu id="/mypage/events" onClick={props.onClickMobileTab}>
+            <S.MobileMenu id="/mypage" onClick={props.onClickMobileTab}>
               마이페이지
             </S.MobileMenu>
           </S.MobileMenuIistWrapper>
-          <S.MobileMenuFooterWrapper>로그인</S.MobileMenuFooterWrapper>
+          <S.MobileMenuFooterWrapper>
+            <S.MobileMenuIconWrapper>
+              <S.MobileLoginIcon />
+              <S.MobileFooterMenu onClick={props.onClickMoveToPage("/login")}>
+                로그인
+              </S.MobileFooterMenu>
+            </S.MobileMenuIconWrapper>
+            <S.MobileMenuIconWrapper>
+              <S.MobileSignUpIcon />
+              <S.MobileFooterMenu onClick={props.onClickMoveToPage("/signup")}>
+                회원가입
+              </S.MobileFooterMenu>
+            </S.MobileMenuIconWrapper>
+          </S.MobileMenuFooterWrapper>
         </S.MobileMenuWrapper>
       </S.Flex>
     </>

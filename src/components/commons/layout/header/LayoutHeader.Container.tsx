@@ -14,19 +14,19 @@ export default function LayoutHeader() {
     onClickMoveToPage(e.currentTarget.id)();
   };
 
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const onClickMobileMenu = () => {
-    setOpen(prev => !prev);
+    setIsOpen(prev => !prev);
   };
   const onClickMobileTab = e => {
-    setOpen(prev => !prev);
+    setIsOpen(false);
     onClickMoveToPage(e.currentTarget.id)();
   };
 
   useEffect(() => {
-    setActivedTab(router.asPath);
-  }, []);
+    setActivedTab(`/${router.asPath.split("/")[1]}`);
+  });
 
   return (
     <LayoutHeaderUI
