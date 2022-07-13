@@ -1,12 +1,13 @@
 import * as S from "./ProductsDetail.Styles";
-import ProductsQuestionList from "../../productsQuestion/list/ProductsQuestionList.Container";
-import ProductsQuestionWrite from "../../productsQuestion/write/ProductsQuestionWrite.Container";
+import ProductsQuestionList from "../question/list/ProductsQuestionList.Container";
+import ProductsQuestionWrite from "../question/write/ProductsQuestionWrite.Container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Image } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useRouter } from "next/router";
 import BackTopAnt from "../../../commons/backTop";
+import { FavoriteBorder } from "@mui/icons-material";
 
 export default function ProductDetailUI(props) {
   const router = useRouter();
@@ -21,6 +22,7 @@ export default function ProductDetailUI(props) {
 
   return (
     <S.Wrapper>
+      {/* 스크롤 할 때 생기는 네비게이션바 */}
       <S.NavWrapper ref={props.navRef}>
         <S.NavItemWrapper>
           <S.NavItem
@@ -39,17 +41,23 @@ export default function ProductDetailUI(props) {
           </S.NavItem>
         </S.NavItemWrapper>
       </S.NavWrapper>
+
       <S.LeftWrapper>
         <S.Title>상품명</S.Title>
+
         <S.ViewPickWrapper>
+          <S.MobilePrice>00000원</S.MobilePrice>
           <S.IconWrapper>
             <S.ViewIcon />
             <S.Label>100</S.Label>
           </S.IconWrapper>
-          <S.PickIcon />
-          <S.Label>11</S.Label>
+          <S.IconWrapper>
+            <S.PickIcon />
+            <S.Label>11</S.Label>
+          </S.IconWrapper>
         </S.ViewPickWrapper>
         <S.Line />
+
         <S.Label>
           상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
           상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
@@ -90,6 +98,14 @@ export default function ProductDetailUI(props) {
           내용입니다 상품 상세 내용입니다{" "}
         </S.DetailContents>
         <S.Line />
+        <S.SellerContentsWrapper>
+          <S.Label>운영자</S.Label>
+          <S.Label>00회사</S.Label>
+          <S.Label>010-0000-0000</S.Label>
+        </S.SellerContentsWrapper>
+        <S.Line />
+
+        {/* 상품 문의(Q&A) 작성, 조회*/}
         <div ref={props.qnaRef}>
           <ProductsQuestionWrite />
           <ProductsQuestionList />
@@ -119,16 +135,34 @@ export default function ProductDetailUI(props) {
               </>
             )}
           </S.BtnWrapper>
-          <S.SellerContentsWrapper>
-            <S.Label>운영자</S.Label>
-            <S.Label>00회사</S.Label>
-            <S.Label>010-0000-0000</S.Label>
-          </S.SellerContentsWrapper>
 
           {/* BackTop(맨 위로 가기) 추가 */}
           <BackTopAnt />
         </S.SidebarWrapper>
       </S.RightWrapper>
+
+      {/* 모바일 화면일때는 찜하기,구매하기가 하단에 고정 */}
+      <S.MobilePaymentBar>
+        {props.isSeller ? (
+          <>
+            <S.WhiteBtn>삭제하기</S.WhiteBtn>
+            <S.SkyblueBtn>수정하기</S.SkyblueBtn>
+          </>
+        ) : (
+          <>
+            <S.WhiteBtn style={{ width: "20%" }}>
+              <FavoriteBorder />
+            </S.WhiteBtn>
+            <S.SkyblueBtn
+              onClick={onClickMoveToPage(
+                `/products/${router.query.productId}/payment`
+              )}
+            >
+              구매하기
+            </S.SkyblueBtn>
+          </>
+        )}
+      </S.MobilePaymentBar>
     </S.Wrapper>
   );
 }
