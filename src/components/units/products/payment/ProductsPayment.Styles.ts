@@ -35,6 +35,9 @@ export const SmallLabel = styled.span`
 
 export const LeftWrapper = styled.div`
   width: 70%;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,6 +78,9 @@ export const ZipcodeWrapper = styled.div`
   width: 40%;
   display: flex;
   margin: 0.625rem 0;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 export const AddressWrapper = styled.div`
   width: 100%;
@@ -88,6 +94,9 @@ export const ZipcodeBtnWrapper = styled.div`
 // 오른쪽 사이드바
 export const RightWrapper = styled.div`
   width: 28%;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 export const SidebarWrapper = styled.div`
   position: -webkit-sticky;
@@ -104,11 +113,15 @@ export const SidebarWrapper = styled.div`
 
 // 결제하기, 취소하기 버튼
 export const BtnWrapper = styled.div`
+  width: 100%;
   height: 140px;
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media screen and (max-width: 767px) {
+    flex-direction: row;
+  }
 `;
 export const SkyblueBtn = styled.button`
   width: 100%;
@@ -118,9 +131,7 @@ export const SkyblueBtn = styled.button`
   color: #ffffff;
   background-color: #42c2ff;
   font-size: 1.25rem;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 export const WhiteBtn = styled.button`
   width: 100%;
@@ -129,9 +140,7 @@ export const WhiteBtn = styled.button`
   border-radius: 10px;
   background-color: #ffffff;
   font-size: 1.25rem;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 export const WhiteSmallBtn = styled.button`
   width: 100%;
@@ -141,7 +150,33 @@ export const WhiteSmallBtn = styled.button`
   border-radius: 10px;
   background-color: #ffffff;
   font-size: 1rem;
-  :hover {
-    cursor: pointer;
+  cursor: pointer;
+`;
+// 모바일 화면일 때 하단에 고정되는 바
+export const MobilePaymentBar = styled.div`
+  display: none;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    height: 85px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0.625rem 1%;
+    background-color: #ffffff;
+  }
+`;
+export const MobilePrice = styled.h2`
+  display: none;
+  @media screen and (max-width: 767px) {
+    display: block;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 `;

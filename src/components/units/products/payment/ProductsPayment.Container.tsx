@@ -18,6 +18,7 @@ export default function ProductsPayment(props: IPointProps) {
           <S.ProductInfoImage src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDN8fGFydHxlbnwwfHx8fDE2NTcxMTM3Mjk&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
           <S.ProductInfoTextWrapper>
             <S.Label>상품이름</S.Label>
+
             <S.SmallLabel>
               상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
               상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
@@ -64,6 +65,14 @@ export default function ProductsPayment(props: IPointProps) {
           </S.BtnWrapper>
         </S.SidebarWrapper>
       </S.RightWrapper>
+
+      <S.MobilePaymentBar>
+        <S.MobilePrice>결제금액 00000원</S.MobilePrice>
+        <S.BtnWrapper>
+          <S.SkyblueBtn>결제하기</S.SkyblueBtn>
+          <S.WhiteBtn>취소하기</S.WhiteBtn>
+        </S.BtnWrapper>
+      </S.MobilePaymentBar>
     </S.Wrapper>
   );
 }
