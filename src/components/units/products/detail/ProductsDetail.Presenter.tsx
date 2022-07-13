@@ -135,12 +135,10 @@ export default function ProductDetailUI(props) {
               </>
             )}
           </S.BtnWrapper>
-
-          {/* BackTop(맨 위로 가기) 추가 */}
-          <BackTopAnt />
         </S.SidebarWrapper>
       </S.RightWrapper>
-
+      {/* BackTop(맨 위로 가기) 추가 */}
+      <BackTopAnt />
       {/* 모바일 화면일때는 찜하기,구매하기가 하단에 고정 */}
       <S.MobilePaymentBar>
         {props.isSeller ? (

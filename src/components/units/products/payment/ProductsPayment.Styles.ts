@@ -108,7 +108,12 @@ export const SidebarWrapper = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 4px;
   background-color: #ffffff;
+  transition: 0.2s;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  :hover {
+    box-shadow: 0px 2px 4px 2px #00000033;
+    transform: translateY(-5px);
+  }
 `;
 
 // 결제하기, 취소하기 버튼

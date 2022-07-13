@@ -1,9 +1,13 @@
 import { useRouter } from "next/router";
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, Dispatch, SetStateAction } from "react";
 import * as S from "./MyPageUserSidebar.Styles";
+interface IMyPageUserSidebarProps {
+  activedIndex: number;
+  setActivedIndex: Dispatch<SetStateAction<number>>;
+}
 
 // 포인트 충전 부분 주석 처리
-function MyPageUserSidebar(props) {
+function MyPageUserSidebar(props: IMyPageUserSidebarProps) {
   const MENU_NAME = ["관심 행사", "동행 내역", "관심 상품", "구매 내역"];
   // const [visible, setVisible] = useState(false);
   // const onClickShowPointModal = () => {

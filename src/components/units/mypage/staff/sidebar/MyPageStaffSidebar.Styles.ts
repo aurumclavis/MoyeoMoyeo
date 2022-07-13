@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-
+interface ITabItemProps {
+  isActive: boolean;
+}
 export const Wrapper = styled.div`
   min-width: 12.5rem;
   padding-left: 1.5rem;
@@ -53,9 +55,7 @@ export const ProfileText = styled.span`
 `;
 
 // 탭 감싸는 Wrapper
-interface ITabItemProps {
-  isActive: boolean;
-}
+
 export const TabWrapper = styled.div`
   width: 100%;
   display: flex;
