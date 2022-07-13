@@ -12,13 +12,15 @@ interface IButtonSubmitProps {
   fontSize: string;
 }
 const ButtonStyled = styled.button`
-  width: auto;
+  width: 100%;
   height: 100%;
   padding: 0 10%;
   border-radius: 0.625rem;
   border: none;
   background-color: ${(props: IButtonStyledProps) =>
     props.isActive ? "#ffd24c" : "rgba(255, 210, 76, 0.3)"};
+  color: ${(props: IButtonStyledProps) =>
+    props.isActive ? "black" : "rgba(87, 84, 77, 0.3)"};
   font-size: ${(props) => props.fontSize};
   :hover {
     cursor: pointer;

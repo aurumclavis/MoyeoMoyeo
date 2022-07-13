@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 //전체
 export const OutWrapper = styled.div`
   width: 100%;
-  /* height: 50rem; */
+  /* height: 50vh; */
   margin: auto;
   display: flex;
   justify-content: center;
@@ -14,7 +14,7 @@ export const OutWrapper = styled.div`
 //inner
 export const Wrapper = styled.div`
   max-width: 1200px;
-  height: 100%;
+  /* height: 50%; */
   background-color: #ffffff;
   /* border: 1px solid #bdbdbd; */
   border-radius: 3px;

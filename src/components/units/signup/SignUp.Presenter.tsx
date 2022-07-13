@@ -1,3 +1,4 @@
+import ButtonSubmit from "../../commons/buttons/submit";
 import * as S from "./SignUp.Styles";
 export default function SignUpPageUI(props) {
   return (
@@ -11,7 +12,7 @@ export default function SignUpPageUI(props) {
         </S.HeaderWrapper>
         <S.BodyWrapper>
           <S.BodyCommonContainer>
-            <S.BodyCommonIcon src="/icon/simbollogo.png" />
+            <S.BodyCommonIcon src="/icon/user1.png" />
             <S.BodySubCommonContainer>
               <S.BodyCommonTitle>여러 이벤트를 즐기고 싶다면</S.BodyCommonTitle>
               <S.BodyCommonSubTitle>일반회원</S.BodyCommonSubTitle>
@@ -23,7 +24,7 @@ export default function SignUpPageUI(props) {
             </S.BodySubCommonContainer>
           </S.BodyCommonContainer>
           <S.BodyCommonContainer>
-            <S.BodyCommonIcon src="/icon/simbollogo.png" />
+            <S.BodyCommonIcon src="/icon/staff1.png" />
             <S.BodySubCommonContainer>
               <S.BodyCommonTitle>
                 우리 이벤트를 홍보하고 싶다면

@@ -13,10 +13,10 @@ export const Wrapper = styled.div`
   height: fit-content;
   display: grid;
   padding: 0 1.5rem;
+  grid-gap: 1.25rem;
   @media screen and (max-width: 767px) {
     padding: 0 1rem;
   }
-  grid-gap: 1.25rem;
 `;
 export const ItemWrapper = styled.div`
   width: 100%;
@@ -89,11 +89,14 @@ export const ItemText = styled.span`
 `;
 export const IconWrapper = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   padding-right: 0.313rem;
 `;
-export const PeopleIcon = styled(People)``;
+export const PeopleIcon = styled(People)`
+  font-size: 1.5rem;
+`;
 export const CalendarIcon = styled(Today)`
+  font-size: 1.5rem;
   margin-right: 0.313rem;
 `;
 

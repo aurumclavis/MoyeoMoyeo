@@ -210,7 +210,7 @@ export const NavWrapper = styled.div`
   background-color: white;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 5;
 
   @media (max-width: 767px) {
   }

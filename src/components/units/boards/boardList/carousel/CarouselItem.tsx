@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Item = styled.div`
   width: 90%;
@@ -16,10 +16,10 @@ const Item = styled.div`
 `;
 
 export default function EachItem(props: any) {
-  const [isViewTotal] = useState(props.isTotal === "전체");
+  const [isViewTotal] = useState(props.categoryName === "전체");
   const onClickItem = () => {
     props.setClickedIndex(props.index);
-    props.setIsTotal(props.el);
+    props.setCategoryName(props.el);
     if (props.el === "전체") {
       props.setCategoryData(props.viewTypeData);
     } else {
