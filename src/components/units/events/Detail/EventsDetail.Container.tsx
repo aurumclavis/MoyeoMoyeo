@@ -2,6 +2,7 @@ import EventsDetailUI from "./EventsDetail.Prsenter";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import _, { throttle } from "lodash";
 
 // import { useLocation } from 'react-router-dom';
 
@@ -11,30 +12,50 @@ export default function EventsDetail() {
 
   const currentUrl = `localhost:3000/events/list/${router.query._id}`;
 
-  const [activedTab, setActivedTab] = useState("marker");
-  const navRef = useRef(null);
+  const [activedTab, setActivedTab] = useState("maker");
   const makerRef = useRef(null);
   const contentsRef = useRef<HTMLDivElement>(null);
   const mapsRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    window.addEventListener("scroll", onScrollNav);
+  }, []);
+
   const onScrollNav = () => {
-    if (navRef.current !== null) {
+    if (makerRef.current !== null) {
       if (
-        document.body.scrollTop > 200 ||
-        document.documentElement.scrollTop > 200
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 50
       ) {
-        navRef.current.style = "top:0";
+        makerRef.current.style = "top:0";
       } else {
-        navRef.current.style = "top:-200px";
+        makerRef.current.style = "top: -100px";
       }
     }
+    if (
+      document.documentElement.scrollTop >
+      mapsRef.current?.offsetTop - contentsRef.current?.clientHeight
+    ) {
+      setActivedTab("maps");
+    } else if (
+      document.documentElement.scrollTop >
+      contentsRef.current?.offsetTop - makerRef.current?.clientHeight
+    ) {
+      setActivedTab("contents");
+    } else {
+      setActivedTab("maker");
+    }
   };
+
   const onClickMarker = e => {
     window.scrollTo({
       top: makerRef.current?.offsetTop - 50,
       behavior: "smooth",
     });
     setActivedTab(e.currentTarget.id);
+    throttle(() => {
+      setActivedTab(e.currentTarget.id);
+    }, 500);
   };
   const onClickContents = e => {
     window.scrollTo({
@@ -42,6 +63,9 @@ export default function EventsDetail() {
       behavior: "smooth",
     });
     setActivedTab(e.currentTarget.id);
+    throttle(() => {
+      setActivedTab(e.currentTarget.id);
+    }, 500);
   };
   const onClickMaps = e => {
     window.scrollTo({
@@ -49,6 +73,9 @@ export default function EventsDetail() {
       behavior: "smooth",
     });
     setActivedTab(e.currentTarget.id);
+    throttle(() => {
+      setActivedTab(e.currentTarget.id);
+    }, 500);
   };
   const onClickLink = () => {
     alert("링크가 복사되었습니다");
@@ -62,7 +89,6 @@ export default function EventsDetail() {
         makerRef={makerRef}
         contentsRef={contentsRef}
         mapsRef={mapsRef}
-        navRef={navRef}
         onClickMoveToPage={onClickMoveToPage}
         onClickMarker={onClickMarker}
         onClickContents={onClickContents}

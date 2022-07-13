@@ -28,7 +28,7 @@ export const NavWrapper = styled.nav`
   position: fixed;
   top: -71px;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   background-color: #ffffff;
   border-bottom: 1px solid #d9d9d9;
   transition: top 0.5s;
@@ -64,7 +64,7 @@ export const Subtitle = styled.h2`
   font-weight: 600;
 `;
 export const Label = styled.span`
-  height: 100%;
+  height: auto;
   overflow: scroll;
   font-size: 1rem;
 `;
@@ -113,7 +113,7 @@ export const DetailContents = styled.p`
 export const RightWrapper = styled.div`
   width: 28%;
   @media screen and (max-width: 767px) {
-    width: 100%;
+    display: none;
   }
 `;
 export const SidebarWrapper = styled.div`
@@ -160,8 +160,7 @@ export const WhiteBtn = styled.button`
   }
 `;
 export const SellerContentsWrapper = styled.div`
-  border-top: 1px solid #d9d9d9;
-  padding-top: 20px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -218,4 +217,31 @@ export const DetailImageWrapper = styled.div`
   width: 100%;
   height: 300px;
   display: flex;
+`;
+
+// 모바일 화면일 때 하단에 고정되는 바
+export const MobilePaymentBar = styled.div`
+  display: none;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0.625rem 1%;
+    background-color: #ffffff;
+  }
+`;
+export const MobilePrice = styled.h2`
+  display: none;
+  @media screen and (max-width: 767px) {
+    display: block;
+    width: 100%;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
 `;

@@ -1,3 +1,4 @@
+import BackTopAnt from "../../../../commons/backTop";
 import ToolTip from "../../../../commons/tooltip";
 import KaKaoMapFetch from "../../KaKaoMap/FetchMap";
 import CommentListContainer from "../Comment/List/CommentList.container";
@@ -7,10 +8,35 @@ import * as S from "./BoardDetail.styles";
 export default function BoardDetailPresenter(props: any) {
   return (
     <S.Wrapper>
+      <S.NavWrapper ref={props.navRef}>
+        <S.NavItemWrapper>
+          <S.NavItem
+            id="detail"
+            isActive={props.activeTab === "detail"}
+            onClick={props.onClickDetail}
+          >
+            동행정보
+          </S.NavItem>
+          <S.NavItem
+            id="event"
+            isActive={props.activeTab === "event"}
+            onClick={props.onClickEvent}
+          >
+            행사정보
+          </S.NavItem>
+          <S.NavItem
+            id="comment"
+            isActive={props.activeTab === "comment"}
+            onClick={props.onClickComment}
+          >
+            댓글
+          </S.NavItem>
+        </S.NavItemWrapper>
+      </S.NavWrapper>
       <S.CoverImage src="/market.jpg" />
       <S.BodyWrapper>
         <S.Body>
-          <S.Title isCompleted={props.isCompleted}>
+          <S.Title isCompleted={props.isCompleted} ref={props.detailRef}>
             이번 주 토요일 동탄 고양이플리마켓 같이 구경할 동행 구합니다!!
           </S.Title>
           <S.CreatedAtAndViewWrapper>
@@ -157,7 +183,7 @@ export default function BoardDetailPresenter(props: any) {
               </>
             ))}
         </S.AccompanyWrapper>
-        <S.EventInfoWrapper>
+        <S.EventInfoWrapper ref={props.eventRef}>
           <S.EventInfoText>행사 정보</S.EventInfoText>
           <S.EventInfo>
             <S.EventImage
@@ -198,11 +224,12 @@ export default function BoardDetailPresenter(props: any) {
             </S.EventInfoDetailWrapper>
           </S.EventInfo>
         </S.EventInfoWrapper>
-        <S.CommentWrapper>
+        <S.CommentWrapper ref={props.commentRef}>
           <S.CommentText>댓글로 질문하기</S.CommentText>
           <CommentWriteContainer />
           <CommentListContainer />
         </S.CommentWrapper>
+        <BackTopAnt />
       </S.BodyWrapper>
     </S.Wrapper>
   );

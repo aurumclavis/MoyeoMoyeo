@@ -1,4 +1,4 @@
-import ButtonSubmit from "../../../commons/buttons/submit";
+import ButtonSubmit from "../../../../commons/buttons/submit";
 import * as S from "./ProductsQuestionWrite.styles";
 export default function ProductsQuestionWriteUI(props) {
   return (

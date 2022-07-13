@@ -89,7 +89,7 @@ export const TabWrapper = styled.div`
 `;
 
 interface ITabItemProps {
-  isActive: boolean;
+  isActive?: boolean;
 }
 export const TabItemWrapper = styled.div`
   display: flex;
@@ -111,4 +111,7 @@ export const TabItemWrapper = styled.div`
 `;
 export const TabText = styled.span`
   font-size: 1.25rem;
+  @media screen and (max-width: 767px) {
+    font-size: 1rem;
+  }
 `;

@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
-import { MenuOutlined } from "@ant-design/icons";
+import {
+  MenuOutlined,
+  ExportOutlined,
+  DownloadOutlined,
+} from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -10,10 +14,10 @@ export const Wrapper = styled.div`
   align-items: center;
   border-bottom: 0.063rem solid #cccccc;
   @media (max-width: 767px) {
-    height: 3rem;
+    height: 4rem;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 20;
     background-color: #ffffff;
   }
 `;
@@ -107,16 +111,6 @@ export const MenuIcon = styled(MenuOutlined)`
   cursor: pointer;
 `;
 
-// export const LogoImgMobile = styled.img`
-//   height: 2.813rem;
-//   cursor: pointer;
-//   display: none;
-//   @media (max-width: 767px) {
-//     height: 4rem;
-//     display: block;
-//     margin-right: auto;
-//   }
-// `;
 export const Flex = styled.div`
   display: flex;
   justify-content: space-between;
@@ -129,27 +123,35 @@ export const MobileMenuWrapper = styled.div`
   display: none;
   background-color: #ffe69a;
   margin-right: auto;
-  z-index: 10;
+  z-index: 100;
   @media (max-width: 767px) {
-    display: ${(props: IMenuProps) => (props.isActive ? "none" : "block")};
+    display: ${(props: IMenuProps) => (props.isActive ? "flex" : "none")};
     flex-direction: column;
+    justify-content: space-between;
     justify-content: flex-start;
     position: fixed;
-    top: 3rem;
+    top: 4rem;
     transition: left 0.2s;
   }
 `;
 export const MobileMenuIistWrapper = styled.div`
-  height: 60%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10%;
+  padding-right: 20%;
 `;
 
 export const MobileMenu = styled.div`
-  height: 10%;
+  height: 7%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   margin-left: auto;
-  padding-right: 20%;
+  margin-top: 15%;
+  margin-bottom: 5%;
+  font-size: large;
+  font-weight: 600;
+  border-bottom: 1px solid black;
   cursor: pointer;
   :hover {
     color: #ffe69a;
@@ -158,6 +160,42 @@ export const MobileMenu = styled.div`
 `;
 
 export const MobileMenuFooterWrapper = styled.div`
-  height: 40%;
-  background-color: ;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10%;
+  margin-left: auto;
+  padding-right: 20%;
+  background-color: #ffd24c;
+`;
+
+export const MobileFooterMenu = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: large;
+  font-weight: 600;
+  cursor: pointer;
+  :hover {
+    color: #ffe69a;
+    border-bottom: 0.063rem solid #ffe69a;
+  }
+`;
+
+export const MobileLoginIcon = styled(ExportOutlined)`
+  margin-right: 0.6rem;
+  font-size: 16px;
+`;
+
+export const MobileSignUpIcon = styled(DownloadOutlined)`
+  margin-right: 0.6rem;
+  font-size: 16px;
+`;
+export const MobileMenuIconWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1rem;
 `;

@@ -214,7 +214,7 @@ export const ListWrapper = styled.div`
   cursor: pointer;
 `;
 export const Item = styled.div`
-  width: 70%;
+  width: 100%;
   height: 8rem;
   display: flex;
   justify-content: space-between;

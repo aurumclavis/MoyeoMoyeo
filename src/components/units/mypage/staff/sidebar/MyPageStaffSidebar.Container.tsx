@@ -1,22 +1,17 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import * as S from "./MyPageStaffSidebar.Styles";
 
 // 포인트 내역 부분 주석 처리
-export default function MyPageStaffSidebar() {
+function MyPageStaffSidebar(props) {
+  const MENU_NAME = ["판매 내역"];
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
-  const [activedTab, setActivedTab] = useState(null);
-  const onClickTab = (event) => {
-    setActivedTab(event.currentTarget.id);
-    onClickMoveToPage(event.currentTarget.id)();
-  };
 
-  useEffect(() => {
-    // console.log(router.asPath.slice(8));
-    setActivedTab(router.asPath.slice(14));
-  }, []);
+  const onClickTab = (index: number) => () => {
+    props.setActivedIndex(index);
+  };
 
   return (
     <S.Wrapper>
@@ -32,22 +27,20 @@ export default function MyPageStaffSidebar() {
 
         {/* 각 페이지 이동하는 탭 */}
         <S.TabWrapper>
-          <S.TabItemWrapper
-            isActive={activedTab === "sell"}
-            id="sell"
-            onClick={onClickTab}
-          >
-            <S.TabText>판매 내역</S.TabText>
-          </S.TabItemWrapper>
-          <S.TabItemWrapper
-            isActive={activedTab === "point"}
-            id="point"
-            onClick={onClickTab}
-          >
-            <S.TabText>포인트 내역</S.TabText>
-          </S.TabItemWrapper>
+          {MENU_NAME.map((el, index) => {
+            return (
+              <S.TabItemWrapper
+                key={index}
+                isActive={props.activedIndex === index}
+                onClick={onClickTab(index)}
+              >
+                <S.TabText>{el}</S.TabText>
+              </S.TabItemWrapper>
+            );
+          })}
         </S.TabWrapper>
       </S.SidebarWrapper>
     </S.Wrapper>
   );
 }
+export default memo(MyPageStaffSidebar);
