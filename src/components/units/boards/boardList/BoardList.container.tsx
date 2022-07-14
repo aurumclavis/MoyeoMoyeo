@@ -44,7 +44,7 @@ export default function BoardListContainer() {
       eventName: "동탄고양이플리마켓",
       maxHeadCount: 2,
       accompanyDate: { start: "2022-07-20", end: "2022-07-20" },
-      requested: true,
+      requested: false,
       category: "뮤지컬",
     },
     {
@@ -74,7 +74,7 @@ export default function BoardListContainer() {
       eventName: "동탄고양이플리마켓",
       maxHeadCount: 2,
       accompanyDate: { start: "2022-07-28", end: "2022-07-28" },
-      requested: true,
+      requested: false,
       category: "굿즈행사",
     },
     {

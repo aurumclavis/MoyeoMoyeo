@@ -15,8 +15,8 @@ export const Wrapper = styled.div`
 
 // 게시글viewType변경 탭이 있는 서브헤더
 export const SubHeaderWrapper = styled.div`
-  /* width: calc(100vw - (100vw * 1.01 / 100)); */
-  width: 100vw;
+  width: calc(100vw - (100vw * 1.01 / 100));
+  /* width: 100vw; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,7 +135,7 @@ export const Main = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  padding: 3rem 6rem 0rem 6rem;
+  padding: 2rem 6rem 0rem 6rem;
 `;
 
 // 카테고리, 날짜선택, 모집여부 필터 wrap
@@ -144,12 +144,13 @@ export const DetailViewTypeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 3.5rem;
+  gap: 2.5rem;
 `;
 export const EventAndDateTypeWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
   padding: 1rem;
   border: 1px solid #d2d2d2;
@@ -174,6 +175,10 @@ export const ArrowRightString = styled.div`
   z-index: 1;
 `;
 // 날짜선택 wrap
+export const SeparateLine = styled.div`
+  width: 93%;
+  border-top: 1px solid #d2d2d2;
+`;
 export const DateWrapper = styled.div`
   width: 100%;
   display: flex;

@@ -56,47 +56,50 @@ export default function BoardListPresenter(props: any) {
               </S.CarouselWrapper>
             </S.EventTypeWrapper>
             {props.isUseDateChanger && (
-              <S.DateWrapper>
-                <S.DetailViewTypeTitle>날짜선택</S.DetailViewTypeTitle>
-                <S.DateChangerWrapper>
-                  <S.ArrowButton onClick={props.onClickArrowLeft}>
-                    {!props.isWeekly ? (
-                      <S.ArrowLeft src="/icon/double_arrow_left.png" />
-                    ) : (
-                      <S.ArrowLeft src="/icon/arrow_left.png" />
-                    )}
-                  </S.ArrowButton>
-                  <S.DateView>
-                    <S.DateStart>
-                      {props.fromToDate.from
-                        .replace("-", "년 ")
-                        .replace("-", "월 ") + "일"}
-                    </S.DateStart>
-                    ~
-                    <S.DateEnd>
-                      {props.fromToDate.to
-                        .replace("-", "년 ")
-                        .replace("-", "월 ") + "일"}
-                    </S.DateEnd>
-                  </S.DateView>
-                  <S.ArrowButton onClick={props.onClickArrowRight}>
-                    {!props.isWeekly ? (
-                      <S.ArrowRight src="/icon/double_arrow_right.png" />
-                    ) : (
-                      <S.ArrowRight src="/icon/arrow_right.png" />
-                    )}
-                  </S.ArrowButton>
-                </S.DateChangerWrapper>
-                {!props.isWeekly ? (
-                  <S.WeeklyViewButton onClick={props.onClickWeeklyMonthly}>
-                    주별 이동
-                  </S.WeeklyViewButton>
-                ) : (
-                  <S.MonthlyViewButton onClick={props.onClickWeeklyMonthly}>
-                    월별 이동
-                  </S.MonthlyViewButton>
-                )}
-              </S.DateWrapper>
+              <>
+                <S.SeparateLine />
+                <S.DateWrapper>
+                  <S.DetailViewTypeTitle>날짜선택</S.DetailViewTypeTitle>
+                  <S.DateChangerWrapper>
+                    <S.ArrowButton onClick={props.onClickArrowLeft}>
+                      {!props.isWeekly ? (
+                        <S.ArrowLeft src="/icon/double_arrow_left.png" />
+                      ) : (
+                        <S.ArrowLeft src="/icon/arrow_left.png" />
+                      )}
+                    </S.ArrowButton>
+                    <S.DateView>
+                      <S.DateStart>
+                        {props.fromToDate.from
+                          .replace("-", "년 ")
+                          .replace("-", "월 ") + "일"}
+                      </S.DateStart>
+                      ~
+                      <S.DateEnd>
+                        {props.fromToDate.to
+                          .replace("-", "년 ")
+                          .replace("-", "월 ") + "일"}
+                      </S.DateEnd>
+                    </S.DateView>
+                    <S.ArrowButton onClick={props.onClickArrowRight}>
+                      {!props.isWeekly ? (
+                        <S.ArrowRight src="/icon/double_arrow_right.png" />
+                      ) : (
+                        <S.ArrowRight src="/icon/arrow_right.png" />
+                      )}
+                    </S.ArrowButton>
+                  </S.DateChangerWrapper>
+                  {!props.isWeekly ? (
+                    <S.WeeklyViewButton onClick={props.onClickWeeklyMonthly}>
+                      주별 이동
+                    </S.WeeklyViewButton>
+                  ) : (
+                    <S.MonthlyViewButton onClick={props.onClickWeeklyMonthly}>
+                      월별 이동
+                    </S.MonthlyViewButton>
+                  )}
+                </S.DateWrapper>
+              </>
             )}
           </S.EventAndDateTypeWrapper>
           <S.RecruitmentViewTypeButton
