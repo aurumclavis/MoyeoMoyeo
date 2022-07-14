@@ -13,22 +13,22 @@ export default function BoardListPresenter(props: any) {
       >
         <S.ViewTypeWrapper>
           <S.ViewTotal
-            onClick={props.onClickViewTotal}
-            selectTotal={props.selectTotal}
+            onClick={props.onClickViewAccompanyDate}
+            selectAccompanyDate={props.selectAccompanyDate}
           >
-            <div>전체보기</div>
+            날짜로 보기
           </S.ViewTotal>
-          <S.ViewRecruitment
-            onClick={props.onClickViewRecruitment}
-            selectRecruit={props.selectRecruit}
+          <S.ViewLatest
+            onClick={props.onClickViewLatest}
+            selectLatest={props.selectLatest}
           >
-            <div>모집중보기</div>
-          </S.ViewRecruitment>
+            최신글 보기
+          </S.ViewLatest>
           <S.ViewAccompany
-            onClick={props.onClickViewAccompany}
-            selectAccompany={props.selectAccompany}
+            onClick={props.onClickViewRequested}
+            selectRequested={props.selectRequested}
           >
-            <div>신청보기</div>
+            신청리스트
           </S.ViewAccompany>
         </S.ViewTypeWrapper>
         <S.SearchAndCreateWrapper>
@@ -43,95 +43,115 @@ export default function BoardListPresenter(props: any) {
           </S.CreateBoard>
         </S.SearchAndCreateWrapper>
       </S.SubHeader>
-      <S.EventTypeWrapper>
-        <S.CarouselWrapper>
-          <UnevenSetsFinite
-            eventCategory={props.eventCategory}
-            viewTypeData={props.viewTypeData}
-            setCategoryData={props.setCategoryData}
-          />
-        </S.CarouselWrapper>
-      </S.EventTypeWrapper>
       <S.Main>
-        <S.DateWrapper>
-          <S.DateChangerWrapper>
-            <S.ArrowButton>
-              {!props.isWeekly ? (
-                <S.ArrowLeft src="/icon/double_arrow_left.png" />
-              ) : (
-                <S.ArrowLeft src="/icon/arrow_left.png" />
-              )}
-            </S.ArrowButton>
-            <S.DateView>
-              <S.DateStart>2022년 7월 1일</S.DateStart>~
-              <S.DateEnd>2022년 7월 31일</S.DateEnd>
-            </S.DateView>
-            <S.ArrowButton>
-              {!props.isWeekly ? (
-                <S.ArrowRight src="/icon/double_arrow_right.png" />
-              ) : (
-                <S.ArrowRight src="/icon/arrow_right.png" />
-              )}
-            </S.ArrowButton>
-          </S.DateChangerWrapper>
-          {!props.isWeekly ? (
-            <S.WeeklyViewButton onClick={props.onClickWeeklyMonthly}>
-              주 단위 이동
-            </S.WeeklyViewButton>
-          ) : (
-            <S.MonthlyViewButton onClick={props.onClickWeeklyMonthly}>
-              월 단위 이동
-            </S.MonthlyViewButton>
-          )}
-        </S.DateWrapper>
-        <InfiniteScroll pageStart={0} loadMore={props.loadFunc} hasMore={true}>
-          <S.ListWrapper>
-            {props.data.map((el: any) => (
-              <S.Item
-                key={uuidv4()}
-                onClick={props.onClickGoDetail(el.eventName)}
-              >
-                <S.ItemLeft>
-                  <S.EventImage src="/market.jpg" />
-                  <S.ItemMain>
-                    <S.Header>
-                      <S.Recruitment recruited={el.recruited}>
-                        {el.recruited ? "[모집완료]" : "[모집중]"}
-                      </S.Recruitment>
-                      <S.Title>{el.title}</S.Title>
-                    </S.Header>
-                    <S.Remark>{el.remark}</S.Remark>
-                    <S.Footer>
-                      <S.Event>
-                        <S.EventIcon />
-                        {el.eventName}
-                      </S.Event>
-                      <S.Category>
-                        <S.CategoryIcon />
-                        {el.category}
-                      </S.Category>
-                      <S.MaxHeadCount>
-                        <S.MaxHeadCountIcon />
-                        {el.maxHeadCount}명
-                      </S.MaxHeadCount>
-                      <S.AccompanyDate>
-                        <S.CalendarIcon />
-                        {el.accompanyDate.start} ~ {el.accompanyDate.end}
-                      </S.AccompanyDate>
-                    </S.Footer>
-                  </S.ItemMain>
-                </S.ItemLeft>
-                <S.ItemRight requested={el.requested}>
-                  {el.requested ? (
-                    <S.PaperPlaneImage src="/icon/symbollogo_removebg.png" />
-                  ) : (
-                    <S.PaperPlaneImage src="/icon/simbollogo.png" />
-                  )}
-                </S.ItemRight>
-              </S.Item>
-            ))}
-          </S.ListWrapper>
-        </InfiniteScroll>
+        <S.DetailViewTypeWrapper>
+          <S.EventAndDateTypeWrapper>
+            <S.EventTypeWrapper>
+              <S.DetailViewTypeTitle>카테고리</S.DetailViewTypeTitle>
+              <S.CarouselWrapper>
+                <UnevenSetsFinite
+                  eventCategory={props.eventCategory}
+                  viewTypeData={props.viewTypeData}
+                  setCategoryData={props.setCategoryData}
+                />
+              </S.CarouselWrapper>
+            </S.EventTypeWrapper>
+            {props.isUseDateChanger && (
+              <S.DateWrapper>
+                <S.DetailViewTypeTitle>날짜선택</S.DetailViewTypeTitle>
+                <S.DateChangerWrapper>
+                  <S.ArrowButton onClick={props.onClickArrowLeft}>
+                    {!props.isWeekly ? (
+                      <S.ArrowLeft src="/icon/double_arrow_left.png" />
+                    ) : (
+                      <S.ArrowLeft src="/icon/arrow_left.png" />
+                    )}
+                  </S.ArrowButton>
+                  <S.DateView>
+                    <S.DateStart>
+                      {props.fromToDate.from
+                        .replace("-", "년 ")
+                        .replace("-", "월 ") + "일"}
+                    </S.DateStart>
+                    ~
+                    <S.DateEnd>
+                      {props.fromToDate.to
+                        .replace("-", "년 ")
+                        .replace("-", "월 ") + "일"}
+                    </S.DateEnd>
+                  </S.DateView>
+                  <S.ArrowButton onClick={props.onClickArrowRight}>
+                    {!props.isWeekly ? (
+                      <S.ArrowRight src="/icon/double_arrow_right.png" />
+                    ) : (
+                      <S.ArrowRight src="/icon/arrow_right.png" />
+                    )}
+                  </S.ArrowButton>
+                </S.DateChangerWrapper>
+                {!props.isWeekly ? (
+                  <S.WeeklyViewButton onClick={props.onClickWeeklyMonthly}>
+                    주 단위 이동
+                  </S.WeeklyViewButton>
+                ) : (
+                  <S.MonthlyViewButton onClick={props.onClickWeeklyMonthly}>
+                    월 단위 이동
+                  </S.MonthlyViewButton>
+                )}
+              </S.DateWrapper>
+            )}
+          </S.EventAndDateTypeWrapper>
+          <S.RecruitmentViewTypeButton>
+            모집중인 글만 보기
+          </S.RecruitmentViewTypeButton>
+        </S.DetailViewTypeWrapper>
+        {/* <InfiniteScroll pageStart={0} loadMore={props.loadFunc} hasMore={true}> */}
+        <S.ListWrapper>
+          {props.data.map((el: any) => (
+            <S.Item
+              key={uuidv4()}
+              onClick={props.onClickGoDetail(el.eventName)}
+            >
+              <S.ItemLeft>
+                <S.EventImage src="/market.jpg" />
+                <S.ItemMain>
+                  <S.Header>
+                    <S.Recruitment recruited={el.recruited}>
+                      {el.recruited ? "[모집완료]" : "[모집중]"}
+                    </S.Recruitment>
+                    <S.Title>{el.title}</S.Title>
+                  </S.Header>
+                  <S.Remark>{el.remark}</S.Remark>
+                  <S.Footer>
+                    <S.Event>
+                      <S.EventIcon />
+                      {el.eventName}
+                    </S.Event>
+                    <S.Category>
+                      <S.CategoryIcon />
+                      {el.category}
+                    </S.Category>
+                    <S.MaxHeadCount>
+                      <S.MaxHeadCountIcon />
+                      {el.maxHeadCount}명
+                    </S.MaxHeadCount>
+                    <S.AccompanyDate>
+                      <S.CalendarIcon />
+                      {el.accompanyDate.start} ~ {el.accompanyDate.end}
+                    </S.AccompanyDate>
+                  </S.Footer>
+                </S.ItemMain>
+              </S.ItemLeft>
+              <S.ItemRight requested={el.requested}>
+                {el.requested ? (
+                  <S.PaperPlaneImage src="/icon/symbollogo_removebg.png" />
+                ) : (
+                  <S.PaperPlaneImage src="/icon/simbollogo.png" />
+                )}
+              </S.ItemRight>
+            </S.Item>
+          ))}
+        </S.ListWrapper>
+        {/* </InfiniteScroll> */}
         <BackTopAnt />
       </S.Main>
     </S.Wrapper>

@@ -8,15 +8,39 @@ export default function BoardWritePresenter(props: any) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickSubmit)}>
       <S.CoverImageWrapper>
-        <S.CoverImage src="/market.jpg" />
-        <S.MyImageUpload>커버 이미지 직접 등록</S.MyImageUpload>
+        <S.CoverImage
+          src={
+            props.previewUrls[0] ? props.previewUrls[0] : props.randomCoverUrl
+          }
+        />
+        <S.MyImageUpload onClick={props.onClickMyCoverImg}>
+          커버 이미지 직접 등록
+          <S.ImageInput
+            type="file"
+            ref={props.coverImgRef}
+            onChange={props.onChangeImgInput(0)}
+          />
+        </S.MyImageUpload>
       </S.CoverImageWrapper>
       <S.UpperWrapper>
         <S.EventWrapper>
           <S.EventInfoWrapper>
             <S.ImageWrapper>
-              <S.MyImageUpload>이벤트 대표이미지 직접 등록</S.MyImageUpload>
-              <S.EventImage src="/catGoodsMarketExample.jpeg" />
+              <S.MyImageUpload onClick={props.onClickMyEventImg}>
+                이벤트 대표이미지 직접 등록
+                <S.ImageInput
+                  type="file"
+                  ref={props.eventImgRef}
+                  onChange={props.onChangeImgInput(1)}
+                />
+              </S.MyImageUpload>
+              <S.EventImage
+                src={
+                  props.previewUrls[1]
+                    ? props.previewUrls[1]
+                    : "/catGoodsMarketExample.jpeg"
+                }
+              />
             </S.ImageWrapper>
             <S.EventInfo>
               <S.EventInfoDetail>
@@ -82,6 +106,7 @@ export default function BoardWritePresenter(props: any) {
                 <S.MaxHeadCountInput
                   defaultValue={0}
                   value={props.maxHeadCount}
+                  readOnly
                 />
                 명
                 <S.CountPlus id="+" onClick={props.onClickCount}>

@@ -1,12 +1,49 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import BoardWritePresenter from "./BoardWrite.presenter";
+import RandomCoverImg from "./randomCoverImg";
 
 export default function BoardWriteContainer(props: any) {
   const { onClickMoveToPage } = useMoveToPage();
   const { register, handleSubmit, setValue, getValues, trigger } = useForm();
   const [address, setAddress] = useState("");
+
+  // 이미지 등록부분
+  const coverImgRef = useRef(null);
+  const eventImgRef = useRef(null);
+  const [previewUrls, setPreviewUrls] = useState(["", ""]);
+  const [files, setFiles] = useState([undefined, undefined]);
+  const onChangeImgInput = (number: string) => async (event: any) => {
+    const file = event.target.files?.[0];
+    if (!file) {
+      alert("파일이 없습니다!!");
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = (data) => {
+      if (typeof data.target?.result === "string") {
+        const tempUrls = [...previewUrls];
+        tempUrls[number] = data.target?.result;
+        setPreviewUrls(tempUrls);
+
+        const tempFiles = [...files];
+        tempFiles[number] = file;
+        setFiles(tempFiles);
+      }
+    };
+  };
+  const onClickMyCoverImg = () => {
+    coverImgRef.current.click();
+  };
+  const onClickMyEventImg = () => {
+    eventImgRef.current.click();
+  };
+
+  // 랜덤커버이미지 부분
+  const dataCategory = "축제";
+  const randomCoverUrl = RandomCoverImg(dataCategory);
 
   // 동행일자 데이트피커 부분
   const [accompanyDate, setAccompanyDate] = useState({ start: "", end: "" });
@@ -72,15 +109,22 @@ export default function BoardWriteContainer(props: any) {
   const onClickSubmit = (data: any) => {
     console.log(data);
     //왜 페이지이동이 안되지
-    onClickMoveToPage(`/boards/${111}`);
+    onClickMoveToPage(`/boards/${111}`)();
   };
   return (
     <BoardWritePresenter
+      isEdit={props.isEdit}
       setValue={setValue}
       register={register}
       handleSubmit={handleSubmit}
-      isEdit={props.isEdit}
       eventData={eventData}
+      randomCoverUrl={randomCoverUrl}
+      coverImgRef={coverImgRef}
+      eventImgRef={eventImgRef}
+      onClickMyCoverImg={onClickMyCoverImg}
+      onClickMyEventImg={onClickMyEventImg}
+      onChangeImgInput={onChangeImgInput}
+      previewUrls={previewUrls}
       onChangeDatePicker={onChangeDatePicker}
       onClickCount={onClickCount}
       maxHeadCount={maxHeadCount}
