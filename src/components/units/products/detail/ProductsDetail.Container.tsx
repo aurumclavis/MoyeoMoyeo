@@ -10,28 +10,30 @@ export default function ProductDetail() {
 
   useEffect(() => {
     window.addEventListener("scroll", onScrollNav);
-  }, []);
+    return window.removeEventListener("scroll", () => {
+      onScrollNav;
+    });
+  });
 
-  const onScrollNav = () => {
-    if (navRef.current !== null) {
-      if (
-        document.body.scrollTop > 200 ||
-        document.documentElement.scrollTop > 200
-      ) {
-        navRef.current.style = "top:0px";
-      } else {
-        navRef.current.style = "top:-200px";
-      }
+  const onScrollNav = _.throttle(() => {
+    if (!navRef.current) return;
+    if (
+      document.body.scrollTop > 200 ||
+      document.documentElement.scrollTop > 200
+    ) {
+      navRef.current.style = "top:0px";
+    } else {
+      navRef.current.style = "top:-200px";
     }
     if (
-      document.documentElement.scrollTop >
+      document.documentElement.scrollTop >=
       qnaRef.current?.offsetTop - navRef.current?.clientHeight
     ) {
       setActivedTab("qna");
     } else {
       setActivedTab("detail");
     }
-  };
+  }, 100);
 
   const onClickDetail = (event) => {
     window.scrollTo({
@@ -45,7 +47,7 @@ export default function ProductDetail() {
 
   const onClickQna = (event) => {
     window.scrollTo({
-      top: qnaRef.current?.offsetTop,
+      top: qnaRef.current?.offsetTop - navRef.current?.clientHeight,
       behavior: "smooth",
     });
     throttle(() => {

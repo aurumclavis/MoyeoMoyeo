@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
   padding-bottom: 4rem;
 `;
 
@@ -39,17 +38,18 @@ export const ViewTotal = styled.span`
   align-items: center;
   border-bottom: 3px solid white;
   ${(props: any) =>
-    props.selectTotal && "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
+    props.selectAccompanyDate &&
+    "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
 `;
-export const ViewRecruitment = styled.span`
+export const ViewLatest = styled.span`
   height: 3.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 3px solid white;
   ${(props: any) =>
-    props.selectRecruit &&
+    props.selectLatest &&
     "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
 `;
@@ -60,7 +60,7 @@ export const ViewAccompany = styled.span`
   align-items: center;
   border-bottom: 3px solid white;
   ${(props: any) =>
-    props.selectAccompany &&
+    props.selectRequested &&
     "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
 `;
@@ -98,6 +98,15 @@ export const EventSearchInput = styled.input`
     font-size: 1rem;
   }
 `;
+export const MySearchIconWrapper = styled.div`
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #d2d2d2;
+  border-radius: 5px;
+`;
 export const CreateBoard = styled.button`
   width: 4rem;
   height: 2.8rem;
@@ -111,30 +120,58 @@ export const CreateBoard = styled.button`
   cursor: pointer;
 `;
 
-// 행사카테고리 type을 선택하는 캐러샐
-export const EventTypeWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 0 6rem;
-`;
-export const CarouselWrapper = styled.div`
-  width: 80%;
-`;
-
-// 날짜선택과 리스트 무한스크롤을 감싸는 wrap
+// 필터와 리스트 무한스크롤을 감싸는 wrap
 export const Main = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
+  gap: 1.5rem;
+  padding: 3rem 6rem 0rem 6rem;
+`;
+
+// 카테고리, 날짜선택, 모집여부 필터 wrap
+export const DetailViewTypeWrapper = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3.5rem;
+`;
+export const EventAndDateTypeWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #d2d2d2;
+  border-radius: 5px;
+`;
+// 행사카테고리 type을 선택하는 캐러샐row
+export const EventTypeWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem 1rem 2rem;
+`;
+export const DetailViewTypeTitle = styled.div`
+  width: 10%;
+  font-weight: 600;
+`;
+export const CarouselWrapper = styled.div`
+  width: 85%;
+`;
+export const ArrowRightString = styled.div`
+  z-index: 1;
 `;
 // 날짜선택 wrap
 export const DateWrapper = styled.div`
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 2.5rem;
+  padding: 1rem 2rem 1rem 2rem;
 `;
 export const DateChangerWrapper = styled.div`
   display: flex;
@@ -170,7 +207,7 @@ export const DateStart = styled.div`
 export const DateEnd = styled.div`
   letter-spacing: 0.06rem;
 `;
-export const WeeklyViewButton = styled.button`
+export const MonthlyViewButton = styled.button`
   width: 6.4rem;
   height: 3rem;
   border: none;
@@ -182,7 +219,7 @@ export const WeeklyViewButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
 `;
-export const MonthlyViewButton = styled.button`
+export const WeeklyViewButton = styled.button`
   width: 6.4rem;
   height: 3rem;
   border: none;
@@ -194,14 +231,20 @@ export const MonthlyViewButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
 `;
-export const MySearchIconWrapper = styled.div`
-  width: 2rem;
+// 모집중 보기 토글버튼
+export const RecruitmentViewTypeButton = styled.button`
+  width: 15%;
   height: 2rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  border: 1px solid #d2d2d2;
-  border-radius: 5px;
+  justify-content: center;
+  padding: 0.5rem;
+  margin-right: 1.5rem;
+  border: 2px solid gray;
+  border-radius: 15px;
+  font-weight: 600;
+  background-color: white;
+  cursor: pointer;
 `;
 
 // 리스트 무한스크롤 wrap
@@ -214,11 +257,12 @@ export const ListWrapper = styled.div`
   cursor: pointer;
 `;
 export const Item = styled.div`
-  width: 100%;
+  width: 90%;
   height: 8rem;
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
+  background-color: white;
   transition: 0.2s;
   box-shadow: 0px 2px 4px 0px #00000033;
   :hover {

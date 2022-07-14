@@ -20,6 +20,20 @@ export const HeaderTitle = styled.div`
   font-size: 24px;
   font-weight: bold;
 `;
+export const RowWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+`;
+// export const ColumnWrapper = styled.div`
+//   width: 50%;
+//   display: flex;
+//   flex-direction: column;
+//   margin: 0 auto;
+// `;
 export const InputWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -37,7 +51,30 @@ export const SubTitle = styled.div`
   font-size: 16px;
   font-weight: 500;
 `;
+export const TitleWrapper = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;
 
+export const DateWrapper = styled.div`
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;
+
+export const AddressWrapper = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 export const Subject = styled.input`
   width: 996px;
   height: 52px;
@@ -58,7 +95,7 @@ export const Quill = styled(ReactQuill)`
 export const ContentQuill = styled(ReactQuill)`
   width: 100%;
   .ql-container {
-    height: 30rem;
+    height: 10rem;
   }
   p {
     font-size: 1rem;
@@ -79,19 +116,23 @@ export const Zipcode = styled.input`
 export const SearchButton = styled.button`
   width: 100px;
   height: 52px;
+  margin-left: 10%;
+  margin-right: auto;
   border: none;
   border-radius: 5px;
   background-color: #ffd24c;
+
   cursor: pointer;
   :hover {
+  }
+  @media (max-width: 767px) {
+    margin-left: 0;
   }
 `;
 
 export const Address = styled.input`
-  width: 100%;
+  width: 50%;
   height: 52px;
-  margin-top: 16px;
-  padding-left: 16px;
   border: 1px solid rgba(198, 211, 230, 1);
   border-radius: 5px;
   padding: 10px;
@@ -101,28 +142,43 @@ export const Address = styled.input`
     outline: none;
     border: 2px solid #ffd24c;
   }
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const ImageWrapper = styled.div`
-  width: 996px;
-  padding-top: 40px;
+  width: 100%;
 `;
 
-export const UploadButton = styled.button`
-  width: 78px;
-  height: 78px;
-  background-color: #bdbdbd;
-  margin-right: 24px;
-  outline: none;
-  border: none;
-  cursor: pointer;
+export const ButtonOutWrapper = styled.div`
+  width: 50%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2rem;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
-  width: 300px;
+  width: 40%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+export const CancleBtn = styled.div`
+  width: 40%;
   height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 2rem;
+  align-items: center;
+  border-radius: 0.625rem;
+  border: none;
+  background-color: #d2d2d2;
+  font-size: 1.25rem;
 `;

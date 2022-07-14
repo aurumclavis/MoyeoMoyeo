@@ -21,7 +21,6 @@ export default function BoardDetailContainer() {
 
   const myThrottle = _.throttle(() => {
     if (!navRef.current) return;
-
     document.documentElement.scrollTop > 130
       ? (navRef.current.style = "top:0")
       : (navRef.current.style = "top:-200px");

@@ -2,7 +2,9 @@ import styled from "@emotion/styled";
 import { Visibility, FavoriteBorder } from "@mui/icons-material";
 import { Image } from "antd";
 import Slider from "react-slick";
-
+interface INavItemProps {
+  isActive: boolean;
+}
 export const Wrapper = styled.div`
   width: 100%;
   height: auto;
@@ -17,9 +19,7 @@ export const Wrapper = styled.div`
 `;
 
 // 네비게이션 탭 스타일: 상품정보,Q&A
-interface INavItemProps {
-  isActive: boolean;
-}
+
 export const NavWrapper = styled.nav`
   width: 100%;
   height: 50px;
@@ -126,7 +126,12 @@ export const SidebarWrapper = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 4px;
   background-color: #ffffff;
+  transition: 0.2s;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  :hover {
+    box-shadow: 0px 2px 4px 2px #00000033;
+    transform: translateY(-5px);
+  }
 `;
 export const BtnWrapper = styled.div`
   height: 140px;
