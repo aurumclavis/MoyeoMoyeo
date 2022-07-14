@@ -105,7 +105,7 @@ export const Line = styled.div`
   border-bottom: 1px solid #d9d9d9;
 `;
 
-export const DetailContents = styled.p`
+export const DetailContents = styled.div`
   width: 100%;
   padding-top: 50px;
 `;

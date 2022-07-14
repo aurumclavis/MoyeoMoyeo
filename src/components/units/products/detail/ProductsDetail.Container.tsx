@@ -1,12 +1,20 @@
 import { useState, useRef, useEffect } from "react";
 import ProductDetailUI from "./ProductsDetail.Presenter";
 import _, { throttle } from "lodash";
+import { useQuery } from "@apollo/client";
+import { FETCH_PRODUCT } from "./ProductsDetail.Queries";
+import { useRouter } from "next/router";
 
 export default function ProductDetail() {
   const [activedTab, setActivedTab] = useState("detail");
   const navRef = useRef(null);
   const detailRef = useRef(null);
   const qnaRef = useRef(null);
+  const router = useRouter();
+
+  const { data } = useQuery(FETCH_PRODUCT, {
+    variables: { productId: router.query.productId },
+  });
 
   useEffect(() => {
     window.addEventListener("scroll", onScrollNav);
@@ -57,6 +65,7 @@ export default function ProductDetail() {
 
   return (
     <ProductDetailUI
+      data={data}
       navRef={navRef}
       detailRef={detailRef}
       qnaRef={qnaRef}
@@ -64,7 +73,7 @@ export default function ProductDetail() {
       onScrollNav={onScrollNav}
       onClickDetail={onClickDetail}
       onClickQna={onClickQna}
-      isSeller={false}
+      isSeller={true}
     />
   );
 }

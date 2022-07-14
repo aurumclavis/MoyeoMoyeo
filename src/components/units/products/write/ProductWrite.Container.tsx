@@ -1,8 +1,8 @@
-import ProductsWriteUI from "./ProductWrite.Presenter";
+import ProductWriteUI from "./ProductWrite.Presenter";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { IProductsWriteProps } from "./ProductWrite.Types";
+import { IProductWriteProps } from "./ProductWrite.Types";
 import { CREATE_PRODUCT } from "./ProductWrite.Queries";
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
@@ -25,7 +25,7 @@ const schema = yup.object({
   contents: yup.string().required("필수 입력 사항입니다."),
 });
 
-export default function ProductsWrite(props: IProductsWriteProps) {
+export default function ProductWrite(props: IProductWriteProps) {
   const { onClickMoveToPage } = useMoveToPage();
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const { register, handleSubmit, formState, setValue, trigger } = useForm({
@@ -52,7 +52,7 @@ export default function ProductsWrite(props: IProductsWriteProps) {
           },
         },
       });
-      console.log(result);
+      // console.log(result);
       Modal.success({
         content: "상품이 성공적으로 등록되었습니다.",
       });
@@ -65,7 +65,7 @@ export default function ProductsWrite(props: IProductsWriteProps) {
   };
 
   return (
-    <ProductsWriteUI
+    <ProductWriteUI
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
