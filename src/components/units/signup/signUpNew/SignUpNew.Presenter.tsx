@@ -14,8 +14,8 @@ export default function SignUpNewPageUI(props) {
       </S.Timer>
     );
   };
-  const mobileInput = useRef();
-  const mobile2ndInput = useRef();
+  const mobileInput = useRef(null);
+  const mobile2ndInput = useRef(null);
   return (
     <S.OutWrapper>
       <S.Wrapper onSubmit={props.handleSubmit(props.onClickCreateUser)}>

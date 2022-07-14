@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
-import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
+import useScrollClipPath from "../../../../commons/hooks/useScrollClipPath";
 
 const OutWrapper = styled.div`
   width: 100%;
@@ -16,36 +16,85 @@ const Title = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const More = styled.div`
+const TitleRightWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
   :hover {
     text-decoration: underline;
+    color: #42c2ff;
   }
-  padding-right: 30px;
+  gap: 5px;
 `;
+const More = styled.span``;
 const Wrapper = styled.div`
   width: 100%;
-  margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
-  /* background-color: gray; */
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+`;
+const BoardsImage = styled.img`
+  width: 60%;
+  height: 100%;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;
+const CarouselWrapper = styled.div`
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  /* .slick-next:before {
+    opacity: 0.2;
+    color: #15133c;
+  }
+  .slick-prev:before {
+    opacity: 0.2;
+    color: #15133c;
+  } */
+  /* .slick-dots {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 20px 0;
+    list-style-type: none;
+  } */
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
-// const MySlider = styled(Slider)`
-//   width: 100%;
-//   /* display: flex;
-//   flex-direction: column; */
-//   margin-right: 30px;
-// `;
+const MySlider = styled(Slider)`
+  width: 100%;
+  display: flex;
+  margin-top: 40px;
+  @media (max-width: 767px) {
+    width: 100%;
+    margin-top: 0px;
+  }
+`;
 const BoardList = styled.div`
-  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 15px solid #ffe69a;
   border-radius: 5px;
-  margin-right: 10px;
-  /* padding: 10px 10px; */
+  margin: 15px 0px;
+  transition: 0.2s;
+  box-shadow: 0px 3px 1px 0px #00000033;
+  :hover {
+    box-shadow: 0px 5px 1px 0px #ffd24c;
+    transform: translateY(-5px);
+  }
 `;
 const BoardTitleWrapper = styled.div`
   width: 100%;
@@ -56,11 +105,9 @@ const BoardTitleWrapper = styled.div`
 const BoardCategory = styled.div`
   text-align: center;
   color: green;
-  /* font-size: 0.825rem; */
 `;
 const BoardTitle = styled.div`
   text-align: center;
-  /* font-size: 0.825rem; */
 `;
 const BoardContents = styled.div`
   width: 100%;
@@ -96,64 +143,71 @@ const Icon = styled.img`
 `;
 
 const BoardSection = () => {
-  const animatedItem = {
-    0: useScrollFadeIn("up", 1),
-    1: useScrollFadeIn("up", 1, 0.2),
-    2: useScrollFadeIn("up", 1, 0.4),
+  const animatedItem = useScrollClipPath();
+
+  const settings = {
+    infinite: true,
+    vertical: true,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    initialSlide: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+    // arrows: true,
+    dots: true,
+    responsive: [
+      // 반응형
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          dots: true,
+        },
+      },
+    ],
   };
-  // const settings = {
-  //   slide: "div",
-  //   infinite: false,
-  //   speed: 100,
-  //   slidesToShow: 2,
-  //   slidesToScroll: 2,
-  //   initialSlide: 1,
-  //   autoplay: true,
-  //   autoplaySpeed: 1000,
-  //   pauseOnHover: true,
-  //   vertical: false,
-  // responsive: [
-  //   // 반응형
-  //   {
-  //     breakpoint: 767,
-  //     settings: {
-  //       slidesToShow: 1,
-  //     },
-  //   },
-  // ],
-  // };
 
   return (
     <OutWrapper>
       <Title>
-        <h3> 같이 즐길 동행구하기 </h3>
-        <More>더보기</More>
+        <div>
+          <h1> # 동행구하기 </h1>
+          <div>이제 혼자가 아닌 우리 같이 가요!</div>
+        </div>
+        <TitleRightWrapper>
+          <More>더보기</More>
+          <img src="/icon/arrow_right.png" />
+        </TitleRightWrapper>
       </Title>
       <Wrapper>
-        {/* <MySlider {...settings}> */}
-        {new Array(2).fill(1).map((el: any, index: number) => (
-          <BoardList key={index} {...animatedItem[index]}>
-            <BoardTitleWrapper>
-              <BoardCategory>[모집중]</BoardCategory>
-              <BoardTitle>
-                이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
-              </BoardTitle>
-            </BoardTitleWrapper>
-            <BoardContents>
-              20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도 드실분
-              연락주세요! 남녀 상관 없습니다.{" "}
-            </BoardContents>
-            <BoardInfo>
-              <Icon src="/example3.png" />
-              <BoardEvents>지브리전시회</BoardEvents>
-              <Icon src="/example4.png" />
-              <BoardPeople>2~3명</BoardPeople>
-              <Icon src="/example5.png" />
-              <BoardDate>2022.07.06~2022.07.06</BoardDate>
-            </BoardInfo>
-          </BoardList>
-        ))}
-        {/* </MySlider> */}
+        <BoardsImage src="/main/boards.png" {...animatedItem} />
+        <CarouselWrapper>
+          <MySlider {...settings}>
+            {new Array(6).fill(1).map((el: any, index: number) => (
+              <BoardList key={index} {...animatedItem[index]}>
+                <BoardTitleWrapper>
+                  <BoardCategory>[모집중]</BoardCategory>
+                  <BoardTitle>
+                    이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
+                  </BoardTitle>
+                </BoardTitleWrapper>
+                <BoardContents>
+                  20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도
+                  드실분 연락주세요! 남녀 상관 없습니다.{" "}
+                </BoardContents>
+                <BoardInfo>
+                  <Icon src="/example3.png" />
+                  <BoardEvents>지브리전시회</BoardEvents>
+                  <Icon src="/example4.png" />
+                  <BoardPeople>2~3명</BoardPeople>
+                  <Icon src="/example5.png" />
+                  <BoardDate>2022.07.06~2022.07.06</BoardDate>
+                </BoardInfo>
+              </BoardList>
+            ))}
+          </MySlider>
+        </CarouselWrapper>
       </Wrapper>
     </OutWrapper>
   );

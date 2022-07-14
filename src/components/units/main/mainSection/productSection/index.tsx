@@ -5,10 +5,23 @@ import styled from "@emotion/styled";
 import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
 
 const OutWrapper = styled.section`
-  width: 100%;
+  /* width: 100vw; */
   display: flex;
   flex-direction: column;
+  position: relative;
+  /* width: calc(100vw - (100vw * 1.01 / 100));
+  z-index: 30; */
+  /* padding: 50px 20px; */
 `;
+
+// const Back = styled.div`
+//   position: absolute;
+//   width: 100vw;
+//   height: 100%;
+//   left: calc((100vw - 100%) / 2);
+//   /* background-color: #f7e7e7; */
+//   z-index: 10;
+// `;
 const Title = styled.div`
   width: 100%;
   display: flex;
@@ -16,17 +29,38 @@ const Title = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const More = styled.div`
+const TitleRightWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
   :hover {
     text-decoration: underline;
+    color: #42c2ff;
   }
-  padding-right: 30px;
+  gap: 5px;
 `;
-const Wrapper = styled.div`
+const More = styled.span``;
+const InnerWrapper = styled.div`
   width: 100%;
-  margin-bottom: 30px;
+  height: 100%;
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;
+const MySlider = styled(Slider)`
+  width: 100%;
+  display: flex;
+  margin-top: 40px;
+  @media (max-width: 767px) {
+    width: 100%;
+    margin-top: 0px;
+  }
 `;
 const ProductList = styled.div`
   width: 240px;
@@ -34,8 +68,6 @@ const ProductList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #bdbdbd;
-  margin-right: 10px;
 `;
 const ProductImages = styled.img`
   width: 100%;
@@ -59,58 +91,36 @@ const ProductPrice = styled.div`
 const ProductSection = () => {
   const animatedItem = {
     0: useScrollFadeIn("up", 1),
-    1: useScrollFadeIn("up", 1, 0.2),
-    2: useScrollFadeIn("up", 1, 0.3),
-    3: useScrollFadeIn("up", 1, 0.4),
-    4: useScrollFadeIn("up", 1, 0.5),
+    1: useScrollFadeIn("up", 1),
+    2: useScrollFadeIn("up", 1),
+    3: useScrollFadeIn("up", 1),
+    4: useScrollFadeIn("up", 1),
   };
-  // const settings = {
-  //   slide: "div",
-  //   infinite: false,
-  //   speed: 100,
-  //   slidesToShow: 4,
-  //   slidesToScroll: 4,
-  //   initialSlide: 1,
-  //   autoplay: true,
-  //   autoplaySpeed: 10000,
-  //   pauseOnHover: true,
-  //   vertical: false,
-
-  //   responsive: [
-  //     // 반응형
-  //     {
-  //       breakpoint: 960,
-  //       settings: {
-  //         slidesToShow: 3,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 767,
-  //       settings: {
-  //         slidesToShow: 2,
-  //       },
-  //     },
-  //   ],
-  // };
 
   return (
     <OutWrapper>
       <Title>
-        <h3> 취향저격 나만의 행사굿즈찾기 </h3>
-        <More>더보기</More>
+        <div>
+          <h1> # 굿즈찾기</h1>
+          <div>내 마음에 쏙!드는 행사들을 골라봐요!</div>
+        </div>
       </Title>
+      <TitleRightWrapper>
+        <More>더보기</More>
+        <img src="/icon/arrow_right.png" />
+      </TitleRightWrapper>
 
-      <Wrapper>
-        {/* <Slider {...settings}> */}
+      <InnerWrapper>
+        {/* <MySlider {...settings}> */}
         {new Array(5).fill(1).map((el: any, index: number) => (
           <ProductList key={index} {...animatedItem[index]}>
             <ProductImages src="/example2.png" />
             <ProductName>행사굿즈 노트세트</ProductName>
-            <ProductPrice>2022.07.05~2022.07.05</ProductPrice>
+            <ProductPrice>10000원</ProductPrice>
           </ProductList>
         ))}
-        {/* </Slider> */}
-      </Wrapper>
+        {/* </MySlider> */}
+      </InnerWrapper>
     </OutWrapper>
   );
 };
