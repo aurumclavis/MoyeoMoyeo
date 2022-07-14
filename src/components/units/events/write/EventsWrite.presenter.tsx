@@ -51,18 +51,20 @@ export default function EventsWriteUI(props) {
           </S.RowWrapper>
           <S.SubTitle>상세 설명</S.SubTitle>
           <S.ContentQuill />
-          <S.SubTitle>대표 사진(포스터 파일)</S.SubTitle>
-          <S.ImageWrapper>
-            <Upload listType="picture" maxCount={3} multiple>
-              <Button icon={<UploadOutlined />}>사진등록</Button>
-            </Upload>
-          </S.ImageWrapper>
-          <S.SubTitle>상세 사진</S.SubTitle>
-          <S.ImageWrapper>
-            <Upload listType="picture" maxCount={3} multiple>
-              <Button icon={<UploadOutlined />}>사진등록</Button>
-            </Upload>
-          </S.ImageWrapper>
+          <S.RowWrapper>
+            <S.ImageWrapper>
+              <S.SubTitle>대표 사진</S.SubTitle>
+              <Upload listType="picture" maxCount={3} multiple>
+                <Button icon={<UploadOutlined />}>사진등록</Button>
+              </Upload>
+            </S.ImageWrapper>
+            <S.ImageWrapper>
+              <S.SubTitle>전체 사진</S.SubTitle>
+              <Upload listType="picture" maxCount={3} multiple>
+                <Button icon={<UploadOutlined />}>사진등록</Button>
+              </Upload>
+            </S.ImageWrapper>
+          </S.RowWrapper>
         </S.InputWrapper>
         <S.ButtonOutWrapper>
           <S.ButtonWrapper>
@@ -72,7 +74,9 @@ export default function EventsWriteUI(props) {
               title="등록하기"
             />
           </S.ButtonWrapper>
-          <S.CancleBtn>취소</S.CancleBtn>
+          <S.CancleBtn onClick={props.onClickMoveToPage("/events")}>
+            취소
+          </S.CancleBtn>
         </S.ButtonOutWrapper>
       </S.Wrapper>
     </>

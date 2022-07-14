@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   align-items: center;
   border-bottom: 0.063rem solid #cccccc;
   @media (max-width: 767px) {
-    height: 4rem;
+    height: 3.4rem;
     position: sticky;
     top: 0;
     z-index: 20;
@@ -37,22 +37,24 @@ export const InsideWrapper = styled.div`
 export const LogoImg = styled.img`
   height: 2.4rem;
   margin-left: 1rem;
+  margin-bottom: 0.63rem;
   cursor: pointer;
   @media (max-width: 767px) {
     height: 2rem;
-    margin: auto;
+    margin-right: 38%;
+    margin-left: auto;
   }
 `;
 
 export const NavBarWrapper = styled.div`
-  width: 28%;
+  width: 340px;
   height: 3.75rem;
   display: flex;
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
   margin-right: auto;
-  padding-left: 2%;
+  padding-left: 1%;
   @media (max-width: 767px) {
     display: none;
   }

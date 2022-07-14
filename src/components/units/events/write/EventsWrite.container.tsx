@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { getDate } from "./date/getdate";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
 const schema = yup.object({
   title: yup
@@ -17,6 +18,7 @@ const schema = yup.object({
   contents: yup.string().required("필수 입력 사항입니다."),
 });
 export default function EventsWrite(props) {
+  const { onClickMoveToPage } = useMoveToPage();
   const [isOpen, setIsOpen] = useState(false);
   const [address, setAddress] = useState("");
   const [date, setDate] = useState({ start: "", end: "" });
@@ -28,19 +30,19 @@ export default function EventsWrite(props) {
   const onChangeDate = (e: any) => {
     const startMonth = e?.[0].month() + 1;
     const endMonth = e?.[1].month() + 1;
-    const accompanyStartDate =
+    const StartDate =
       e?.[0].year().toString() +
       "-" +
       startMonth.toString().padStart(2, "0") +
       "-" +
       e?.[0].date().toString().padStart(2, "0");
-    const accompanyEndDate =
+    const EndDate =
       e?.[1].year().toString() +
       "-" +
       endMonth.toString().padStart(2, "0") +
       "-" +
       e?.[1].date().toString().padStart(2, "0");
-    setDate({ start: accompanyStartDate, end: accompanyEndDate });
+    setDate({ start: StartDate, end: EndDate });
   };
   const defaultDate = { start: getDate(today), end: getDate(today) };
 
@@ -70,6 +72,7 @@ export default function EventsWrite(props) {
 
   return (
     <EventsWriteUI
+      onClickMoveToPage={onClickMoveToPage}
       onChangeDate={onChangeDate}
       date={date}
       onClickAddressSearch={onClickAddressSearch}

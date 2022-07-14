@@ -1,8 +1,6 @@
 import * as S from "./EventsDetail.Styles";
-import { Tooltip } from "antd";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import KakakomapPage from "./kakaomap/kakomap";
-import { useEffect } from "react";
+import KakakomapPage from "./kakaomap/kakaomap.Container";
 
 export default function EventsDetailUI(props: any) {
   return (
@@ -79,7 +77,9 @@ export default function EventsDetailUI(props: any) {
           <S.BtnRouterList onClick={props.onClickMoveToPage("/")}>
             목록으로
           </S.BtnRouterList>
-          <S.BtnRouter>같이 갈 동행 구하기</S.BtnRouter>
+          <S.BtnRouter onClick={props.onClickMoveToPage("boards/new")}>
+            같이 갈 동행 구하기
+          </S.BtnRouter>
         </S.Footer>
       </S.Wrapper>
     </>
