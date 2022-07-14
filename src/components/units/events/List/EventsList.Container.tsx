@@ -4,7 +4,7 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
 export default function EventList() {
   const { onClickMoveToPage } = useMoveToPage();
-  const [activedTab, setActivedTab] = useState(null);
+
   const [datePick, setDatePick] = useState(true);
   const [openEvents, setOpenEvents] = useState(false);
   const [ourEvents, setOurEvents] = useState(false);
@@ -33,7 +33,6 @@ export default function EventList() {
       onClickOurEventTap={onClickOurEventTap}
       onClickDate={onClickDate}
       datePick={datePick}
-      activedTab={activedTab}
       openEvents={openEvents}
       ourEvents={ourEvents}
     />

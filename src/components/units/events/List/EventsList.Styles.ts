@@ -39,9 +39,12 @@ export const Tab = styled.div`
     cursor: pointer;
   }
   @media (max-width: 767px) {
-    justify-content: flex-start;
-    margin-left: 0.6rem;
-    font-size: 1rem;
+    width: 55px;
+    height: 2rem;
+    justify-content: center;
+    margin-left: 0.3rem;
+    margin-bottom: 0.63rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -52,8 +55,15 @@ export const TabWrapper = styled.div`
   background-color: white;
   position: sticky;
   top: 0;
-  z-index: 15;
+  left: 0;
+  z-index: 18;
   margin-bottom: 1rem;
+  @media (max-width: 767px) {
+    position: sticky;
+    top: 3.4rem;
+    align-items: center;
+    margin-bottom: 0;
+  }
 `;
 
 export const FlexWrapper = styled.div`
@@ -67,14 +77,20 @@ export const DateWrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 1rem;
+  @media (max-width: 767px) {
+    display: ${(props: ITabProps) => (props.isActive ? " flex" : "none")};
+  }
 `;
 export const FestivalWrapper = styled.div`
-  width: ${(props: ITabProps) => (props.isActive ? "30%" : "15%")};
+  width: 70%;
   display: ${(props: ITabProps) => (props.isActive ? "flex" : "none")};
   flex-direction: column;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 export const EventsWrapper = styled.div`
-  width: ${(props: ITabProps) => (props.isActive ? "40%" : "20%")};
+  width: 70%;
   display: ${(props: ITabProps) => (props.isActive ? "flex" : "none")};
   flex-direction: column;
   @media (max-width: 767px) {
@@ -98,4 +114,8 @@ export const EventWriteBtn = styled.div`
   margin-left: auto;
   border-radius: 10px;
   background-color: #ffd24c;
+  @media (max-width: 767px) {
+    width: 80px;
+    height: 30px;
+  }
 `;

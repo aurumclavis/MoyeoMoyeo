@@ -94,6 +94,7 @@ export const Quill = styled(ReactQuill)`
 
 export const ContentQuill = styled(ReactQuill)`
   width: 100%;
+  margin-bottom: 1rem;
   .ql-container {
     height: 10rem;
   }
