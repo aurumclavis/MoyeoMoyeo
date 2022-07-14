@@ -9,27 +9,38 @@ const OutWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Title = styled.div`
+const TitleWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+`;
+const TitleIcon = styled.img`
+  width: 34px;
+  height: 30px;
+`;
+const Title = styled.h1`
+  margin: 0;
 `;
 const TitleRightWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
+  gap: 5px;
+`;
+const More = styled.span`
+  width: 45px;
   cursor: pointer;
   :hover {
     text-decoration: underline;
     color: #42c2ff;
   }
-  gap: 5px;
+  margin-right: 5px;
 `;
-const More = styled.span``;
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -170,7 +181,18 @@ const BoardSection = () => {
 
   return (
     <OutWrapper>
-      <Title>
+      <TitleWrapper>
+        <Title># 동행구하기 </Title>
+        <TitleIcon src="/icon/simbollogo.png" />
+      </TitleWrapper>
+      <TitleRightWrapper>
+        <div>이제 혼자가 아닌 우리 같이 가요!</div>
+        <div>
+          <More>더보기</More>
+          <img src="/icon/arrow_right.png" />
+        </div>
+      </TitleRightWrapper>
+      {/* <Title>
         <div>
           <h1> # 동행구하기 </h1>
           <div>이제 혼자가 아닌 우리 같이 가요!</div>
@@ -179,7 +201,7 @@ const BoardSection = () => {
           <More>더보기</More>
           <img src="/icon/arrow_right.png" />
         </TitleRightWrapper>
-      </Title>
+      </Title> */}
       <Wrapper>
         <BoardsImage src="/main/boards.png" {...animatedItem} />
         <CarouselWrapper>

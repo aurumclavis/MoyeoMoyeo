@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
 
-const OutWrapper = styled.section`
+const OutWrapper = styled.div`
   /* width: 100vw; */
   display: flex;
   flex-direction: column;
@@ -22,27 +22,38 @@ const OutWrapper = styled.section`
 //   /* background-color: #f7e7e7; */
 //   z-index: 10;
 // `;
-const Title = styled.div`
+const TitleWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+`;
+const TitleIcon = styled.img`
+  width: 34px;
+  height: 30px;
+`;
+const Title = styled.h1`
+  margin: 0;
 `;
 const TitleRightWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
+  gap: 5px;
+`;
+const More = styled.span`
+  width: 45px;
   cursor: pointer;
   :hover {
     text-decoration: underline;
     color: #42c2ff;
   }
-  gap: 5px;
+  margin-right: 5px;
 `;
-const More = styled.span``;
 const InnerWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -99,7 +110,18 @@ const ProductSection = () => {
 
   return (
     <OutWrapper>
-      <Title>
+      <TitleWrapper>
+        <Title># 굿즈찾기 </Title>
+        <TitleIcon src="/icon/simbollogo.png" />
+      </TitleWrapper>
+      <TitleRightWrapper>
+        <div>내 마음에 쏙!드는 행사들을 골라봐요!</div>
+        <div>
+          <More>더보기</More>
+          <img src="/icon/arrow_right.png" />
+        </div>
+      </TitleRightWrapper>
+      {/* <Title>
         <div>
           <h1> # 굿즈찾기</h1>
           <div>내 마음에 쏙!드는 행사들을 골라봐요!</div>
@@ -108,7 +130,7 @@ const ProductSection = () => {
       <TitleRightWrapper>
         <More>더보기</More>
         <img src="/icon/arrow_right.png" />
-      </TitleRightWrapper>
+      </TitleRightWrapper> */}
 
       <InnerWrapper>
         {/* <MySlider {...settings}> */}

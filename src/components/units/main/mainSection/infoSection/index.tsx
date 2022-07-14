@@ -5,46 +5,51 @@ import "slick-carousel/slick/slick-theme.css";
 const OutWrapper = styled.div`
   width: 100%;
 `;
-const Title = styled.div`
+const TitleWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  margin-bottom: 10px;
+`;
+const TitleIcon = styled.img`
+  width: 34px;
+  height: 30px;
+`;
+const Title = styled.h1`
+  margin: 0;
 `;
 const Wrapper = styled(Slider)`
   width: 100%;
-  /* margin: 0px 30px; */
   border: 20px;
   height: 250px;
 `;
 
 const InfoImg = styled.img`
   width: 100%;
-  height: 300px;
-  /* height: 200px; */
-  /* border: 20px; */
+  height: 230px;
 `;
 
 export default function InfoSection() {
   const settings = {
-    infinite: false,
-    speed: 100,
+    infinite: true,
     slidesToShow: 1,
     initialSlide: 1,
     autoplay: true,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 7000,
     dots: true,
   };
 
   return (
     <OutWrapper>
-      <Title>
-        <h3> </h3>
-      </Title>
-      <Wrapper>
-        <InfoImg src="/info/info1.png" />
+      <TitleWrapper>
+        <Title># 공지사항</Title>
+        <TitleIcon src="/icon/simbollogo.png" />
+      </TitleWrapper>
+      <Wrapper {...settings}>
         <InfoImg src="/info/info2.png" />
+        <InfoImg src="/info/info1.png" />
       </Wrapper>
     </OutWrapper>
   );

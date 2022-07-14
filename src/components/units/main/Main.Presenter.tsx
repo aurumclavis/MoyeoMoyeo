@@ -11,11 +11,11 @@ export default function MainPageUI() {
   return (
     <S.Wrapper>
       {/* <TopSection /> */}
-      {/* <InfoSection /> */}
       {/* <CountSection /> */}
       <EventSection />
-      <ProductSection />
       <BoardSection />
+      <ProductSection />
+      <InfoSection />
       <FAQ />
     </S.Wrapper>
   );

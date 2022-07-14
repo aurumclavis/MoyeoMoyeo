@@ -13,9 +13,8 @@ const TitleWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  border-top: 1px solid black;
 `;
 const TitleIcon = styled.img`
   width: 34px;
@@ -28,16 +27,20 @@ const TitleRightWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
+  gap: 5px;
+`;
+const More = styled.span`
+  width: 45px;
   cursor: pointer;
   :hover {
     text-decoration: underline;
     color: #42c2ff;
   }
-  gap: 5px;
+  margin-right: 5px;
 `;
-const More = styled.span``;
 const Wrapper = styled.div`
   width: 100%;
   margin-bottom: 30px;
@@ -115,17 +118,19 @@ const EventSection = () => {
   return (
     <OutWrapper>
       <TitleWrapper>
-        <Title> 행사찾기</Title>
-        {/* <TitleIcon src="/icon/simbollogo.png" /> */}
+        <Title> # 행사찾기</Title>
+        <TitleIcon src="/icon/simbollogo.png" />
       </TitleWrapper>
-      <div>내 마음에 쏙!드는 행사들을 골라봐요!</div>
       <TitleRightWrapper>
-        <More>더보기</More>
-        <img src="/icon/arrow_right.png" />
+        <div>취향저격 탕! 나만의 행사들을 골라봐요!</div>
+        <div>
+          <More>더보기</More>
+          <img src="/icon/arrow_right.png" />
+        </div>
       </TitleRightWrapper>
       <Wrapper>
         <ImageWrapper>
-          <EventImg src="/main/mainEvent.png" />
+          <EventImg src="/main/eventImage.png" />
         </ImageWrapper>
         {/* <Slider {...settings}> */}
         <EventWrapper>
