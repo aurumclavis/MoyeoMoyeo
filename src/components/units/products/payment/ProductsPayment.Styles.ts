@@ -128,13 +128,13 @@ export const BtnWrapper = styled.div`
     flex-direction: row;
   }
 `;
-export const SkyblueBtn = styled.button`
+export const ActiveBtn = styled.button`
   width: 100%;
   padding: 0.625rem;
   border: none;
   border-radius: 10px;
-  color: #ffffff;
-  background-color: #42c2ff;
+  color: #000000;
+  background-color: #ffd24c;
   font-size: 1.25rem;
   cursor: pointer;
 `;

@@ -5,8 +5,10 @@ import { CameraAlt } from "@mui/icons-material";
 import { IProductWriteUIProps } from "./ProductWrite.Types";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import CommonInput from "../../../commons/inputs/infoInputs";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
 export default function ProductWriteUI(props: IProductWriteUIProps) {
+  const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.Wrapper>
       <S.WriteTitle>{props.isEdit ? "상품 수정" : "상품 등록"}</S.WriteTitle>
@@ -81,7 +83,9 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
             />
           </S.SubmitWrapper>
           <S.SubmitWrapper>
-            <S.CancelBtn type="button">취소</S.CancelBtn>
+            <S.CancelBtn type="button" onClick={onClickMoveToPage(`/products`)}>
+              취소
+            </S.CancelBtn>
           </S.SubmitWrapper>
         </S.BtnWrapper>
       </S.WriteForm>

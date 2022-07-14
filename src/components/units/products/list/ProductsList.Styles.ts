@@ -55,11 +55,10 @@ export const CreateBtn = styled.button`
   height: 100%;
   border: none;
   border-radius: 5px;
-  background-color: #ffd24c;
+  background-color: #15133c;
+  color: #ffffff;
   font-size: 1rem;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 export const Select = styled.select`
   width: 6.25rem;
@@ -88,13 +87,11 @@ export const GridItemWrapper = styled.div`
 export const ImageWrapper = styled.div`
   width: 100%;
   position: relative;
+  cursor: pointer;
   ::after {
     display: block;
     content: "";
     padding-bottom: 100%;
-  }
-  :hover {
-    cursor: pointer;
   }
 `;
 export const Image = styled.img`

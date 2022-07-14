@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CommonInput from "../../../commons/inputs/infoInputs";
 import * as S from "./ProductsPayment.Styles";
 declare const window: typeof globalThis & {
@@ -8,6 +10,8 @@ interface IPointProps {
 }
 
 export default function ProductsPayment(props: IPointProps) {
+  const router = useRouter();
+  const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.Wrapper>
       <S.LeftWrapper>
@@ -60,17 +64,26 @@ export default function ProductsPayment(props: IPointProps) {
           <S.Label>결제금액</S.Label>
           <S.Title>00000원</S.Title>
           <S.BtnWrapper>
-            <S.SkyblueBtn>결제하기</S.SkyblueBtn>
-            <S.WhiteBtn>취소하기</S.WhiteBtn>
+            <S.ActiveBtn>결제하기</S.ActiveBtn>
+            <S.WhiteBtn
+              onClick={onClickMoveToPage(`/products/${router.query.productId}`)}
+            >
+              취소하기
+            </S.WhiteBtn>
           </S.BtnWrapper>
         </S.SidebarWrapper>
       </S.RightWrapper>
 
+      {/* 모바일 화면일때는 사이드바가 아닌 하단 고정 바 */}
       <S.MobilePaymentBar>
         <S.MobilePrice>결제금액 00000원</S.MobilePrice>
         <S.BtnWrapper>
-          <S.SkyblueBtn>결제하기</S.SkyblueBtn>
-          <S.WhiteBtn>취소하기</S.WhiteBtn>
+          <S.ActiveBtn>결제하기</S.ActiveBtn>
+          <S.WhiteBtn
+            onClick={onClickMoveToPage(`/products/${router.query.productId}`)}
+          >
+            취소하기
+          </S.WhiteBtn>
         </S.BtnWrapper>
       </S.MobilePaymentBar>
     </S.Wrapper>
