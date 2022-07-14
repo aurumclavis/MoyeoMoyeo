@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
+import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
 
 const OutWrapper = styled.div`
   width: 100%;
@@ -94,7 +95,12 @@ const Icon = styled.img`
   align-items: center;
 `;
 
-export default function BoardSession() {
+const BoardSection = () => {
+  const animatedItem = {
+    0: useScrollFadeIn("up", 1),
+    1: useScrollFadeIn("up", 1, 0.2),
+    2: useScrollFadeIn("up", 1, 0.4),
+  };
   // const settings = {
   //   slide: "div",
   //   infinite: false,
@@ -126,7 +132,7 @@ export default function BoardSession() {
       <Wrapper>
         {/* <MySlider {...settings}> */}
         {new Array(2).fill(1).map((el: any, index: number) => (
-          <BoardList key={el}>
+          <BoardList key={index} {...animatedItem[index]}>
             <BoardTitleWrapper>
               <BoardCategory>[모집중]</BoardCategory>
               <BoardTitle>
@@ -151,4 +157,5 @@ export default function BoardSession() {
       </Wrapper>
     </OutWrapper>
   );
-}
+};
+export default BoardSection;

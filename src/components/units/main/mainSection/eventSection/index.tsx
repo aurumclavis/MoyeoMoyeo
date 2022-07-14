@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
+import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
 
 const OutWrapper = styled.div`
   width: 100%;
@@ -26,7 +27,15 @@ const Wrapper = styled.div`
   width: 100%;
   margin-bottom: 30px;
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+`;
+const EventImg = styled.img`
+  width: 400px;
+  height: 340px;
+
+  margin-bottom: 30px;
+  display: flex;
+  /* justify-content: space-evenly; */
 `;
 const EventsList = styled.div`
   width: 240px;
@@ -65,7 +74,12 @@ const EventsDate = styled.div`
   text-align: center;
 `;
 
-export default function EventSection() {
+const EventSection = () => {
+  const animatedItem = {
+    0: useScrollFadeIn("left", 1),
+    1: useScrollFadeIn("left", 1, 0.2),
+    2: useScrollFadeIn("left", 1, 0.4),
+  };
   // const settings = {
   //   slide: "div",
   //   infinite: false,
@@ -103,8 +117,8 @@ export default function EventSection() {
       </Title>
       <Wrapper>
         {/* <Slider {...settings}> */}
-        {new Array(5).fill(1).map((el: any, index: number) => (
-          <EventsList key={el}>
+        {new Array(3).fill(1).map((el: any, index: number) => (
+          <EventsList key={index} {...animatedItem[index]}>
             <EventsImages src="/example1.png" />
             <InnderWrapper>
               <EventsName>뮤지컬 아이다</EventsName>
@@ -114,7 +128,9 @@ export default function EventSection() {
           </EventsList>
         ))}
         {/* </Slider> */}
+        <EventImg src="/main/event.png" />
       </Wrapper>
     </OutWrapper>
   );
-}
+};
+export default EventSection;

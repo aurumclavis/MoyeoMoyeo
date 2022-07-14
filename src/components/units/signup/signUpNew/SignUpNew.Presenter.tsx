@@ -3,7 +3,6 @@ import CommonInput from "../../../commons/inputs/infoInputs";
 import CommonMobileInput from "../../../commons/inputs/mobileInputs";
 import * as S from "./SignUpNew.Styles";
 import Countdown from "react-countdown";
-import Link from "next/link";
 import { useRef } from "react";
 import Checkbox from "../../../commons/checkbox";
 import ButtonSubmit from "../../../commons/buttons/submit";
