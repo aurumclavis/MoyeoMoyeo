@@ -17,6 +17,7 @@ const Wrapper = styled.div`
 const Body = styled.div`
   /* width: 1200px; */
   max-width: 75rem;
+  width: 100%;
   display: flex;
   margin: auto;
 `;

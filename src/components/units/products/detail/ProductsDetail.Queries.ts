@@ -24,3 +24,9 @@ export const FETCH_PRODUCT = gql`
     }
   }
 `;
+
+export const DELETE_PRODUCT = gql`
+  mutation deleteProduct($productId: String!) {
+    deleteProduct(productId: $productId)
+  }
+`;

@@ -104,45 +104,48 @@ export default function ProductDetailUI(props: any) {
           <S.BtnWrapper>
             {props.isSeller ? (
               <>
-                <S.SkyblueBtn>수정하기</S.SkyblueBtn>
+                <S.SellerActiveBtn>수정하기</S.SellerActiveBtn>
                 <S.WhiteBtn>삭제하기</S.WhiteBtn>
               </>
             ) : (
               <>
-                <S.SkyblueBtn
+                <S.ActiveBtn
                   onClick={onClickMoveToPage(
                     `/products/${router.query.productId}/payment`
                   )}
                 >
                   구매하기
-                </S.SkyblueBtn>
+                </S.ActiveBtn>
                 <S.WhiteBtn>찜하기</S.WhiteBtn>
               </>
             )}
           </S.BtnWrapper>
         </S.SidebarWrapper>
       </S.RightWrapper>
+
       {/* BackTop(맨 위로 가기) 추가 */}
       <BackTopAnt />
+
       {/* 모바일 화면일때는 찜하기,구매하기가 하단에 고정 */}
       <S.MobilePaymentBar>
         {props.isSeller ? (
           <>
             <S.WhiteBtn>삭제하기</S.WhiteBtn>
-            <S.SkyblueBtn>수정하기</S.SkyblueBtn>
+            <S.SellerActiveBtn>수정하기</S.SellerActiveBtn>
           </>
         ) : (
           <>
+            {/* 유저 : 찜하기,구매하기 버튼 */}
             <S.WhiteBtn style={{ width: "20%" }}>
               <FavoriteBorder />
             </S.WhiteBtn>
-            <S.SkyblueBtn
+            <S.ActiveBtn
               onClick={onClickMoveToPage(
                 `/products/${router.query.productId}/payment`
               )}
             >
               구매하기
-            </S.SkyblueBtn>
+            </S.ActiveBtn>
           </>
         )}
       </S.MobilePaymentBar>
