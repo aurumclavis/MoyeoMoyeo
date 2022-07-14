@@ -3,6 +3,7 @@ import LayoutBanner from "./banner/LayoutBanner.Container";
 import LayoutFooter from "./footer/LayoutFooter.Container";
 import LayoutHeader from "./header/LayoutHeader.Container";
 import { useRouter } from "next/router";
+import { breakPoints } from "../../../commons/styles/media";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -13,7 +14,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Body = styled.div`
+const Body = styled.body`
   width: 100%;
   max-width: 75rem;
   display: flex;

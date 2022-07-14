@@ -10,7 +10,8 @@ export default function LayoutHeaderUI(props) {
         <S.InsideWrapper>
           <S.LogoImg
             src="/icon/mainlogo.png"
-            onClick={props.onClickMoveToPage("/")}
+            id="/"
+            onClick={props.onClickTab}
           />
           <S.NavBarWrapper>
             <S.Menu
@@ -43,10 +44,10 @@ export default function LayoutHeaderUI(props) {
             </S.Menu>
           </S.NavBarWrapper>
           <S.UserMenuWrapper>
-            <S.UserMenu onClick={props.onClickMoveToPage("/login")}>
+            <S.UserMenu id="/login" onClick={props.onClickTab}>
               로그인
             </S.UserMenu>
-            <S.UserMenu onClick={props.onClickMoveToPage("/signup")}>
+            <S.UserMenu id="/signup" onClick={props.onClickTab}>
               회원가입
             </S.UserMenu>
           </S.UserMenuWrapper>
@@ -71,13 +72,13 @@ export default function LayoutHeaderUI(props) {
           <S.MobileMenuFooterWrapper>
             <S.MobileMenuIconWrapper>
               <S.MobileLoginIcon />
-              <S.MobileFooterMenu onClick={props.onClickMoveToPage("/login")}>
+              <S.MobileFooterMenu id="/login" onClick={props.onClickMobileTab}>
                 로그인
               </S.MobileFooterMenu>
             </S.MobileMenuIconWrapper>
             <S.MobileMenuIconWrapper>
               <S.MobileSignUpIcon />
-              <S.MobileFooterMenu onClick={props.onClickMoveToPage("/signup")}>
+              <S.MobileFooterMenu id="/signup" onClick={props.onClickMobileTab}>
                 회원가입
               </S.MobileFooterMenu>
             </S.MobileMenuIconWrapper>

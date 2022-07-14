@@ -31,7 +31,6 @@ export default function LayoutHeader() {
   return (
     <LayoutHeaderUI
       onClickMobileMenu={onClickMobileMenu}
-      onClickMoveToPage={onClickMoveToPage}
       activedTab={activedTab}
       prevClick={prevClick}
       onClickTab={onClickTab}
