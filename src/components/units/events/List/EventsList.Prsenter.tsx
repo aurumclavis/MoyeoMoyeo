@@ -7,7 +7,6 @@ export default function EventsListUI(props) {
   return (
     <>
       <S.Wrapper>
-        여기에 헤더를 둬서 버튼과 날짜 표시 버튼 그리고 전체보기??
         <S.TabWrapper>
           <S.Tab onClick={props.onClickDate} isActive={props.datePick}>
             날짜별 행사
