@@ -100,7 +100,10 @@ export default function BoardListPresenter(props: any) {
               </S.DateWrapper>
             )}
           </S.EventAndDateTypeWrapper>
-          <S.RecruitmentViewTypeButton>
+          <S.RecruitmentViewTypeButton
+            onClick={props.onClickViewRecruit}
+            selectViewRecruit={props.selectViewRecruit}
+          >
             모집중인 글만 보기
           </S.RecruitmentViewTypeButton>
         </S.DetailViewTypeWrapper>

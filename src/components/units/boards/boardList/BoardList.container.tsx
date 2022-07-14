@@ -140,7 +140,12 @@ export default function BoardListContainer() {
     },
   ]);
 
-  // 동행일 오름차순(리스트 페이지의 기본설정)으로 정렬을 위한 깊은복사
+  // 디폴트날짜
+  const [fromToDate, setFromToDate] = useState({
+    ...defaultFromToWeekly(getDate(new Date())),
+  });
+
+  // 동행리스트 페이지의 기본설정인 동행일오름차순으로 정렬을 위한 깊은복사 + 날짜필터링으로 데이터 추출
   const sortedRawData = _.cloneDeep(rawData).sort((a, b) => {
     return Number(a.accompanyDate.start.replaceAll("-", "")) <
       Number(b.accompanyDate.start.replaceAll("-", ""))
@@ -148,43 +153,50 @@ export default function BoardListContainer() {
       : 1;
   });
 
-  // 날짜선택 부분
-  const [isWeekly, setIsWeekly] = useState(true);
-  const [fromToDate, setFromToDate] = useState({
-    ...defaultFromToWeekly(getDate(new Date())),
-  });
-  const onClickWeeklyMonthly = () => {
-    isWeekly
-      ? setFromToDate(changeFromToMonthly(fromToDate.from))
-      : setFromToDate(changeFromToWeekly(fromToDate.from));
-    setIsWeekly((prev) => !prev);
-  };
-  const onClickArrowLeft = () => {
-    isWeekly
-      ? setFromToDate(weeklyMovePrev(fromToDate.from, fromToDate.to))
-      : setFromToDate(MonthlyMovePrev(fromToDate.from));
-  };
-  const onClickArrowRight = () => {
-    isWeekly
-      ? setFromToDate(weeklyMoveNext(fromToDate.from, fromToDate.to))
-      : setFromToDate(MonthlyMoveNext(fromToDate.from));
-  };
+  // 단계별(보기타입별, 날짜선택별, 카테고리별) 검색필터 부분
+  // 날짜별 data추출 검색필터
+  const [sortedData, setSortedData] = useState(
+    sortedRawData.filter(
+      (el) =>
+        Number(fromToDate.from.replaceAll("-", "")) <=
+          Number(el.accompanyDate.start.replaceAll("-", "")) &&
+        Number(fromToDate.to.replaceAll("-", "")) >=
+          Number(el.accompanyDate.start.replaceAll("-", ""))
+    )
+  );
+  useEffect(() => {
+    setSortedData(
+      sortedRawData.filter(
+        (el) =>
+          Number(fromToDate.from.replaceAll("-", "")) <=
+            Number(el.accompanyDate.start.replaceAll("-", "")) &&
+          Number(fromToDate.to.replaceAll("-", "")) >=
+            Number(el.accompanyDate.start.replaceAll("-", ""))
+      )
+    );
+  }, [fromToDate]);
 
-  // 날짜필터링된 raw데이터 추출
-  const [sortedData, setSortedData] = useState(sortedRawData);
-
-  // 단계별 검색필터 부분
+  // 보기타입별, 카테고리별, 모집여부별 data추출 검색필터
   const [viewTypeData, setViewTypeData] = useState(sortedData);
   const [categoryData, setCategoryData] = useState(viewTypeData);
+  const [recruitData, setRecruitData] = useState(categoryData);
+
+  useEffect(() => {
+    setViewTypeData(sortedData);
+  }, [sortedData]);
   useEffect(() => {
     setCategoryData(viewTypeData);
   }, [viewTypeData]);
-  const [data, setData] = useState(categoryData);
   useEffect(() => {
-    setData(categoryData);
+    setRecruitData(categoryData);
   }, [categoryData]);
+  const [data, setData] = useState(recruitData);
+  useEffect(() => {
+    setData(recruitData);
+  }, [recruitData]);
 
-  // 서브헤더 보기타입 부분
+  // 검색필터 클릭이벤트 부분
+  // 서브헤더 이벤트 부분
   const [selectAccompanyDate, setSelectAccompanyDate] = useState(true);
   const [selectLatest, setSelectLatest] = useState(false);
   const [selectRequested, setSelectRequested] = useState(false);
@@ -209,6 +221,33 @@ export default function BoardListContainer() {
     setSelectRequested(true);
     setIsUseDateChanger(false);
     setViewTypeData(rawData.filter((el) => el.requested));
+  };
+  // 날짜선택기능 부분
+  const [isWeekly, setIsWeekly] = useState(true);
+
+  const onClickWeeklyMonthly = () => {
+    isWeekly
+      ? setFromToDate(changeFromToMonthly(fromToDate.from))
+      : setFromToDate(changeFromToWeekly(fromToDate.from));
+    setIsWeekly((prev) => !prev);
+  };
+  const onClickArrowLeft = () => {
+    isWeekly
+      ? setFromToDate(weeklyMovePrev(fromToDate.from, fromToDate.to))
+      : setFromToDate(MonthlyMovePrev(fromToDate.from));
+  };
+  const onClickArrowRight = () => {
+    isWeekly
+      ? setFromToDate(weeklyMoveNext(fromToDate.from, fromToDate.to))
+      : setFromToDate(MonthlyMoveNext(fromToDate.from));
+  };
+  // 모집중선택기능 부분
+  const [selectViewRecruit, setSelectViewRecruit] = useState(false);
+  const onClickViewRecruit = () => {
+    selectViewRecruit
+      ? setRecruitData(categoryData)
+      : setRecruitData(categoryData.filter((el) => !el.recruited));
+    setSelectViewRecruit((prev) => !prev);
   };
 
   const onClickCreateBoard = () => {
@@ -275,6 +314,8 @@ export default function BoardListContainer() {
       onClickViewAccompanyDate={onClickViewAccompanyDate}
       onClickViewLatest={onClickViewLatest}
       onClickViewRequested={onClickViewRequested}
+      onClickViewRecruit={onClickViewRecruit}
+      selectViewRecruit={selectViewRecruit}
       data={data}
       setData={setData}
       viewTypeData={viewTypeData}
