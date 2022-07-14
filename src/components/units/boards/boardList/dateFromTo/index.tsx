@@ -1,6 +1,6 @@
 import moment from "moment";
 
-// 오늘이 속한 주의 시작 일요일과 끝 토요일의 날짜를 string으로 리턴
+// 오늘이 속한 주의 시작 일요일과 끝 토요일의 날짜를 객체로 리턴
 export const defaultFromToWeekly = (today: string) => {
   const from = moment(today).startOf("week").format("YYYY-MM-DD");
   const to = moment(today).endOf("week").format("YYYY-MM-DD");

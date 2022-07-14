@@ -10,6 +10,7 @@ const Item = styled.div`
   border-radius: 5px;
   border: 1px solid #d2d2d2;
   background-color: white;
+  transition: 0.3s;
   ${(props: any) => props.isViewTotal && "background-color : #F1EEE9;"}
   ${(props: any) => props.clicked && "background-color : #F1EEE9;"}
   cursor: pointer;

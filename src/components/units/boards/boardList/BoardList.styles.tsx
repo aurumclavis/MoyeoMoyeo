@@ -178,15 +178,20 @@ export const DateChangerWrapper = styled.div`
   align-items: center;
   gap: 2rem;
 `;
-export const ArrowButton = styled.div`
+export const ArrowButton = styled.button`
   width: 2rem;
   height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
   border: 1px solid #f1eee9;
   border-radius: 50%;
+  transition: 0.2s;
   cursor: pointer;
+  :active {
+    background-color: #f1eee9;
+  }
 `;
 export const ArrowLeft = styled.img``;
 export const ArrowRight = styled.img`
@@ -233,7 +238,7 @@ export const WeeklyViewButton = styled.button`
 `;
 // 모집중 보기 토글버튼
 export const RecruitmentViewTypeButton = styled.button`
-  width: 15%;
+  width: 17%;
   height: 2rem;
   display: flex;
   align-items: center;
@@ -243,13 +248,17 @@ export const RecruitmentViewTypeButton = styled.button`
   border: 2px solid gray;
   border-radius: 15px;
   font-weight: 600;
-  background-color: white;
+  transition: 0.5s;
+  ${(props: any) =>
+    props.selectViewRecruit
+      ? "color:white;background-color:#ffd24c; border-color:#FFE69A;"
+      : "color:black;background-color:white;"}
   cursor: pointer;
 `;
 
 // 리스트 무한스크롤 wrap
 export const ListWrapper = styled.div`
-  width: 100%;
+  width: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -257,7 +266,7 @@ export const ListWrapper = styled.div`
   cursor: pointer;
 `;
 export const Item = styled.div`
-  width: 90%;
+  width: 100%;
   height: 8rem;
   display: flex;
   justify-content: space-between;
