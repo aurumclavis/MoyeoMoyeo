@@ -1,11 +1,11 @@
 import { Calendar } from "antd";
 import * as S from "./Calender.Styles";
-export default function CalenderPage(props) {
+export default function CalenderPageUI(props) {
   return (
     <>
       <S.Wrapper>
         <S.CalenderWrapper>
-          <S.CalenderText>date</S.CalenderText>
+          <S.CalenderText></S.CalenderText>
           <Calendar fullscreen={false} />
           {/*  onSelect={props.setPickDate}  확인 필요 */}
         </S.CalenderWrapper>

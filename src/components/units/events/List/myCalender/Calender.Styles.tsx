@@ -7,11 +7,14 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const CalenderWrapper = styled.div`
   width: 316px;
-  height: 400px;
+  height: 360px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -23,12 +26,20 @@ export const CalenderWrapper = styled.div`
   z-index: 5;
   padding-right: 1rem;
   border-right: 1px solid #d2d2d2;
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 380px;
+    top: 56px;
+    border-right: none;
+    border-bottom: 1px solid #d2d2d2;
+  }
 `;
 
 export const CalenderText = styled.div`
   width: 70%;
   height: 30px;
   background-color: #d2d2d2;
+  text-align: center;
 `;
 
 export const ListWrapper = styled.div`
@@ -38,6 +49,12 @@ export const ListWrapper = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 0.63rem;
   margin-left: 1rem;
+  @media (max-width: 767px) {
+    width: 100%;
+    grid-template-rows: repeat(auto-fill, minmax(180px, 1fr));
+    grid-gap: 5px;
+    margin-top: 10px;
+  }
 `;
 export const List = styled.div`
   width: 150px;

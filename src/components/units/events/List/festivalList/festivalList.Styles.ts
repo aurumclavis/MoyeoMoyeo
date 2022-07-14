@@ -6,14 +6,17 @@ interface ITabProps {
 
 export const Wrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 0.4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 0.63rem;
+  margin-left: 1rem;
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 `;
 
 export const ListWrapper = styled.div`
-  width: 90%;
+  width: 300px;
   height: 150px;
   display: flex;
   flex-direction: row;
@@ -22,7 +25,6 @@ export const ListWrapper = styled.div`
   align-items: center;
   padding: ${(props: ITabProps) => (props.isActive ? "1rem" : "0.4rem")};
   margin-top: 0.4rem;
-  margin-left: 1rem;
   border: ${(props: ITabProps) =>
     props.isActive ? "1px solid #d2d2d2" : "none"};
   border-left: ${(props: ITabProps) =>
@@ -30,7 +32,7 @@ export const ListWrapper = styled.div`
   border-radius: ${(props: ITabProps) =>
     props.isActive ? "0.63rem;" : "none"};
   @media (max-width: 767px) {
-    width: 100%;
+    width: 150px;
     height: 65px;
     margin: 2px;
     margin-left: 0px;

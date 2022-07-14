@@ -1,6 +1,6 @@
-import CalenderPage from "./calender/Calender";
+import CalenderPage from "./myCalender/Calender.Container";
 import * as S from "./EventsList.Styles";
-import OurEventList from "./EventsList/OurEventList.Container";
+import OurEventList from "./eventsList/OurEventList.Container";
 import FestivalList from "./festivalList/festivalList.Container";
 
 export default function EventsListUI(props) {
