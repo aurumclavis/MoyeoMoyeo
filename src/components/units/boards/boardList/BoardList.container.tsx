@@ -141,17 +141,41 @@ export default function BoardListContainer() {
   ]);
 
   // 동행일 오름차순(리스트 페이지의 기본설정)으로 정렬을 위한 깊은복사
-  const sortedData = _.cloneDeep(rawData).sort((a, b) => {
+  const sortedRawData = _.cloneDeep(rawData).sort((a, b) => {
     return Number(a.accompanyDate.start.replaceAll("-", "")) <
       Number(b.accompanyDate.start.replaceAll("-", ""))
       ? -1
       : 1;
   });
 
+  // 날짜선택 부분
+  const [isWeekly, setIsWeekly] = useState(true);
+  const [fromToDate, setFromToDate] = useState({
+    ...defaultFromToWeekly(getDate(new Date())),
+  });
+  const onClickWeeklyMonthly = () => {
+    isWeekly
+      ? setFromToDate(changeFromToMonthly(fromToDate.from))
+      : setFromToDate(changeFromToWeekly(fromToDate.from));
+    setIsWeekly((prev) => !prev);
+  };
+  const onClickArrowLeft = () => {
+    isWeekly
+      ? setFromToDate(weeklyMovePrev(fromToDate.from, fromToDate.to))
+      : setFromToDate(MonthlyMovePrev(fromToDate.from));
+  };
+  const onClickArrowRight = () => {
+    isWeekly
+      ? setFromToDate(weeklyMoveNext(fromToDate.from, fromToDate.to))
+      : setFromToDate(MonthlyMoveNext(fromToDate.from));
+  };
+
+  // 날짜필터링된 raw데이터 추출
+  const [sortedData, setSortedData] = useState(sortedRawData);
+
   // 단계별 검색필터 부분
   const [viewTypeData, setViewTypeData] = useState(sortedData);
   const [categoryData, setCategoryData] = useState(viewTypeData);
-  const [dateFilteredData, setDateFilteredData] = useState(categoryData);
   useEffect(() => {
     setCategoryData(viewTypeData);
   }, [viewTypeData]);
@@ -213,28 +237,6 @@ export default function BoardListContainer() {
   const eventCategory = rawData
     .map((el) => el.category)
     .reduce((acc, cur) => (acc.includes(cur) ? acc : [...acc, cur]), ["전체"]);
-
-  // 날짜선택 부분
-  const [isWeekly, setIsWeekly] = useState(true);
-  const onClickWeeklyMonthly = () => {
-    isWeekly
-      ? setFromToDate(changeFromToMonthly(fromToDate.from))
-      : setFromToDate(changeFromToWeekly(fromToDate.from));
-    setIsWeekly((prev) => !prev);
-  };
-  const [fromToDate, setFromToDate] = useState({
-    ...defaultFromToWeekly(getDate(new Date())),
-  });
-  const onClickArrowLeft = () => {
-    isWeekly
-      ? setFromToDate(weeklyMovePrev(fromToDate.from, fromToDate.to))
-      : setFromToDate(MonthlyMovePrev(fromToDate.from));
-  };
-  const onClickArrowRight = () => {
-    isWeekly
-      ? setFromToDate(weeklyMoveNext(fromToDate.from, fromToDate.to))
-      : setFromToDate(MonthlyMoveNext(fromToDate.from));
-  };
 
   // 게시글 상세로 이동
   const onClickGoDetail = (eventName: any) => () => {
