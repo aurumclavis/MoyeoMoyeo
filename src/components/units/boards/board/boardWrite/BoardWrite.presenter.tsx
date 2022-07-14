@@ -45,7 +45,7 @@ export default function BoardWritePresenter(props: any) {
             <S.EventInfo>
               <S.EventInfoDetail>
                 <S.EventFestivalIcon />
-                <S.EventInfoItem>행사이름</S.EventInfoItem>
+                <S.EventInfoItem>이벤트이름</S.EventInfoItem>
                 <S.EventInfoContents>동탄고양이플리마켓</S.EventInfoContents>
               </S.EventInfoDetail>
               <S.EventInfoDetail>
@@ -133,7 +133,7 @@ export default function BoardWritePresenter(props: any) {
           />
         </S.ItemsWrapper>
         <S.EventLocationWrapper>
-          <S.ItemText>행사 위치</S.ItemText>
+          <S.ItemText>이벤트 위치</S.ItemText>
           <S.MapWrapper>
             <S.TransportationWrapper>
               <S.TransportationSelect onClick={props.onClickTransportSelect}>

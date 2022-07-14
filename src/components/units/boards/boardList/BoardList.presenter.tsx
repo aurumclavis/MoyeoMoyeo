@@ -7,42 +7,41 @@ import InfiniteScroll from "react-infinite-scroller";
 export default function BoardListPresenter(props: any) {
   return (
     <S.Wrapper>
-      <S.SubHeader
-        ref={props.subHeader}
-        isSubHeaderOnTop={props.isSubHeaderOnTop}
-      >
-        <S.ViewTypeWrapper>
-          <S.ViewTotal
-            onClick={props.onClickViewAccompanyDate}
-            selectAccompanyDate={props.selectAccompanyDate}
-          >
-            날짜로 보기
-          </S.ViewTotal>
-          <S.ViewLatest
-            onClick={props.onClickViewLatest}
-            selectLatest={props.selectLatest}
-          >
-            최신글 보기
-          </S.ViewLatest>
-          <S.ViewAccompany
-            onClick={props.onClickViewRequested}
-            selectRequested={props.selectRequested}
-          >
-            신청리스트
-          </S.ViewAccompany>
-        </S.ViewTypeWrapper>
-        <S.SearchAndCreateWrapper>
-          <S.ViewAsSearch>
-            <S.EventSearchWrapper>
-              <S.MySearchIcon />
-              <S.EventSearchInput placeholder="행사이름으로 검색해보세요!" />
-            </S.EventSearchWrapper>
-          </S.ViewAsSearch>
-          <S.CreateBoard onClick={props.onClickCreateBoard}>
-            글쓰기
-          </S.CreateBoard>
-        </S.SearchAndCreateWrapper>
-      </S.SubHeader>
+      <S.SubHeaderWrapper isSubHeaderOnTop={props.isSubHeaderOnTop}>
+        <S.SubHeader ref={props.subHeader}>
+          <S.ViewTypeWrapper>
+            <S.ViewTotal
+              onClick={props.onClickViewAccompanyDate}
+              selectAccompanyDate={props.selectAccompanyDate}
+            >
+              날짜로 보기
+            </S.ViewTotal>
+            <S.ViewLatest
+              onClick={props.onClickViewLatest}
+              selectLatest={props.selectLatest}
+            >
+              최신글 보기
+            </S.ViewLatest>
+            <S.ViewAccompany
+              onClick={props.onClickViewRequested}
+              selectRequested={props.selectRequested}
+            >
+              신청리스트
+            </S.ViewAccompany>
+          </S.ViewTypeWrapper>
+          <S.SearchAndCreateWrapper>
+            <S.ViewAsSearch>
+              <S.EventSearchWrapper>
+                <S.MySearchIcon />
+                <S.EventSearchInput placeholder="행사이름으로 검색해보세요!" />
+              </S.EventSearchWrapper>
+            </S.ViewAsSearch>
+            <S.CreateBoard onClick={props.onClickCreateBoard}>
+              글쓰기
+            </S.CreateBoard>
+          </S.SearchAndCreateWrapper>
+        </S.SubHeader>
+      </S.SubHeaderWrapper>
       <S.Main>
         <S.DetailViewTypeWrapper>
           <S.EventAndDateTypeWrapper>
@@ -90,11 +89,11 @@ export default function BoardListPresenter(props: any) {
                 </S.DateChangerWrapper>
                 {!props.isWeekly ? (
                   <S.WeeklyViewButton onClick={props.onClickWeeklyMonthly}>
-                    주 단위 이동
+                    주별 이동
                   </S.WeeklyViewButton>
                 ) : (
                   <S.MonthlyViewButton onClick={props.onClickWeeklyMonthly}>
-                    월 단위 이동
+                    월별 이동
                   </S.MonthlyViewButton>
                 )}
               </S.DateWrapper>

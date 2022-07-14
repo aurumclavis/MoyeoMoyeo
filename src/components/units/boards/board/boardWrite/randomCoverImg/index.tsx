@@ -1,4 +1,4 @@
-export default function RandomCoverImg(dataCategory: string | null) {
+export function randomCoverImg(dataCategory: string | null) {
   const eventCategory = [
     "클래식",
     "콘서트",
