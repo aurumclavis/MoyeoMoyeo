@@ -8,8 +8,9 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useRouter } from "next/router";
 import BackTopAnt from "../../../commons/backTop";
 import { FavoriteBorder } from "@mui/icons-material";
+import DOMPurify from "dompurify";
 
-export default function ProductDetailUI(props) {
+export default function ProductDetailUI(props: any) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
   const settings = {
@@ -43,68 +44,52 @@ export default function ProductDetailUI(props) {
       </S.NavWrapper>
 
       <S.LeftWrapper>
-        <S.Title>상품명</S.Title>
-
+        <S.Title>{props.data?.fetchProduct.name}</S.Title>
         <S.ViewPickWrapper>
-          <S.MobilePrice>00000원</S.MobilePrice>
+          <S.MobilePrice>{props.data?.fetchProduct.price}원</S.MobilePrice>
           <S.IconWrapper>
             <S.ViewIcon />
-            <S.Label>100</S.Label>
+            <S.Label>{props.data?.fetchProduct.viewCount}</S.Label>
           </S.IconWrapper>
           <S.IconWrapper>
             <S.PickIcon />
-            <S.Label>11</S.Label>
+            <S.Label>{props.data?.fetchProduct.likedUsers.length}</S.Label>
           </S.IconWrapper>
+          {/* <S.Label>{props.data?.fetchProduct.createdAt}</S.Label> */}
         </S.ViewPickWrapper>
         <S.Line />
-
-        <S.Label>
-          상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-          상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-          상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-          상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-          상품요약 상품요약 상품요약 상품요약 상품요약 상품요약{" "}
-        </S.Label>
+        <S.Label>{props.data?.fetchProduct.description}</S.Label>
         <S.Line />
         <S.Subtitle ref={props.detailRef}>상품 정보</S.Subtitle>
+
+        {/* 메인(대표) 이미지 */}
         <Image
           width="100%"
           alt="thumbnail-image"
           src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDN8fGFydHxlbnwwfHx8fDE2NTcxMTM3Mjk&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450"
         />
+        {/* 추가 이미지 : carousel */}
         <S.CarouselWrapper>
           {/* <S.MySlider {...settings}>
           </S.MySlider> */}
           <S.CarouselImage src="https://images.unsplash.com/photo-1544816155-12df9643f363?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDUxfHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
           <S.CarouselImage src="https://images.unsplash.com/photo-1589365278144-c9e705f843ba?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDU0fHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
         </S.CarouselWrapper>
-        <S.DetailContents>
-          상품 상세 내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품
-          상세 내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
-          내용입니다 상품 상세 내용입니다{" "}
-        </S.DetailContents>
+
+        {typeof window !== "undefined" && (
+          <S.DetailContents
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(props.data?.fetchProduct.contentSrc),
+            }}
+          />
+        )}
+
         <S.Line />
         <S.SellerContentsWrapper>
-          <S.Label>운영자</S.Label>
-          <S.Label>00회사</S.Label>
-          <S.Label>010-0000-0000</S.Label>
+          <S.Label>{props.data?.fetchProduct.seller.name}</S.Label>
+          <S.Label>{props.data?.fetchProduct.seller.phone}</S.Label>
         </S.SellerContentsWrapper>
         <S.Line />
-
         {/* 상품 문의(Q&A) 작성, 조회*/}
         <div ref={props.qnaRef}>
           <ProductsQuestionWrite />
@@ -115,7 +100,7 @@ export default function ProductDetailUI(props) {
       {/* 오른쪽 사이드바 Wrapper */}
       <S.RightWrapper>
         <S.SidebarWrapper>
-          <S.Subtitle>00000원</S.Subtitle>
+          <S.Subtitle>{props.data?.fetchProduct.price}원</S.Subtitle>
           <S.BtnWrapper>
             {props.isSeller ? (
               <>
