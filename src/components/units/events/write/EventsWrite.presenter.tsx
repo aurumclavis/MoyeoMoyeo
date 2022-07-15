@@ -39,6 +39,7 @@ export default function EventsWriteUI(props) {
               <DateRangePicker
                 date={props.defaultDate}
                 onChangeDate={props.onChangeDate}
+                placeholder={["행사 시작일", "행사 종료일"]}
               />
             </S.DateWrapper>
           </S.RowWrapper>

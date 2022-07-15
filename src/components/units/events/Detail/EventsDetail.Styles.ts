@@ -220,7 +220,7 @@ export const NavMenu = styled.div`
   border-bottom: ${(props: IMenuProps) =>
     props.isActive ? "3px solid #ffe69a;" : "none"};
   font-size: 1rem;
-  font-weight: ${(props: IMenuProps) => (props.isActive ? "700;" : "500")};
+  font-weight: 700;
 
   :hover {
     cursor: pointer;
@@ -283,7 +283,7 @@ export const IconTitle = styled.div`
 `;
 export const PickIcon = styled(CheckCircleOutlined)`
   font-size: 1.4rem;
-  color: ${(props: IMenuProps) => (props.isActive ? "red" : "#000000")};
+  color: red;
   cursor: pointer;
   @media (max-width: 767px) {
     font-size: 1.2rem;

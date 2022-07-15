@@ -1,4 +1,4 @@
-import CalenderPage from "./myCalender/Calender.Container";
+import CalenderPage from "./DateList/DateList.Container";
 import * as S from "./EventsList.Styles";
 import OurEventList from "./eventsList/OurEventList.Container";
 import FestivalList from "./festivalList/festivalList.Container";
@@ -9,7 +9,7 @@ export default function EventsListUI(props) {
       <S.Wrapper>
         <S.TabWrapper>
           <S.Tab onClick={props.onClickDate} isActive={props.datePick}>
-            날짜별 행사
+            일자별 행사
           </S.Tab>
           <S.Tab
             onClick={props.onClickOpenEventTap}

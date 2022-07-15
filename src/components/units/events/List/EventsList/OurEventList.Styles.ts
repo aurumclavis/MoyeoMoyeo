@@ -5,20 +5,50 @@ interface ITabProps {
 }
 
 export const Wrapper = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(85%, 1fr));
-  margin-top: 0.4rem;
-  padding-left: 1rem;
-
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: 0.4rem auto;
   @media (max-width: 767px) {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 5px;
+    width: 95%;
+    margin: 0.4rem auto 0 0;
   }
 `;
 
+export const InsideWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 5px;
+  }
+`;
+// export const SelectWrapper = styled.div`
+//   width: 90%;
+//   height: 3rem;
+//   border: 1px solid #d2d2d2;
+//   border-radius: 5px;
+//   background-color: white;
+//   color: #d2d2d2;
+//   text-align: center;
+//   font-size: 1rem;
+// `;
+
+export const Select = styled.select`
+  width: 120px;
+  height: 1.6rem;
+  /* margin-left: auto; */
+  margin-right: 2rem;
+  border: 1px solid #d2d2d2;
+  border-radius: 5px;
+  color: #d2d2d2;
+  text-align: center;
+  font-size: 1rem;
+`;
+
 export const ListWrapper = styled.div`
-  width: 95%;
+  width: 400px;
   height: 150px;
   display: flex;
   flex-direction: row;
@@ -29,19 +59,22 @@ export const ListWrapper = styled.div`
     props.isActive ? "1px solid #d2d2d2" : "none"};
   border-left: ${(props: ITabProps) =>
     props.isActive ? "1px solid #d2d2d2" : "3px solid #FFD24C"};
-  border-radius: ${(props: ITabProps) =>
-    props.isActive ? "0.63rem;" : "none"};
+  border-radius: 10px;
   @media (max-width: 767px) {
-    width: 150px;
-    height: 200px;
-    flex-direction: column;
+    width: 300px;
+    height: 150px;
     padding: 0.4rem;
     border-radius: 0.4rem;
   }
 `;
 export const ListImg = styled.img`
-  width: ${(props: ITabProps) => (props.isActive ? "100px" : "0")};
-  height: ${(props: ITabProps) => (props.isActive ? "100px" : "0")};
+  width: 100px;
+  height: 130px;
+  border-radius: 5px;
+  @media (max-width: 767px) {
+    width: 100px;
+    height: 130px;
+  }
 `;
 export const FlexWrapper = styled.div`
   width: 100%;
@@ -51,6 +84,8 @@ export const FlexWrapper = styled.div`
   justify-content: space-between;
   margin-left: auto;
   padding-left: 1rem;
+  @media (max-width: 767px) {
+  }
 `;
 
 export const TitleWraepper = styled.div`
@@ -73,7 +108,8 @@ export const Title = styled.div`
   font-weight: 700;
   @media (max-width: 767px) {
     width: 100%;
-    height: 40%;
+    height: 20%;
+    margin-top: 5px;
     font-size: 1rem;
     text-align: center;
   }
@@ -82,7 +118,7 @@ export const Title = styled.div`
 export const ContentsWrapper = styled.div`
   font-size: 0.8rem;
   @media (max-width: 767px) {
-    font-size: 0;
+    font-size: 0.4rem;
   }
 `;
 
@@ -91,7 +127,7 @@ export const Period = styled.div`
   font-size: 0.6rem;
   @media (max-width: 767px) {
     width: 100%;
-    height: 60%;
+    height: 10%;
     flex-direction: column;
     text-align: center;
     font-size: 6px;
@@ -106,31 +142,43 @@ export const FooterWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   @media (max-width: 767px) {
-    height: 58%;
+    height: 30%;
     flex-direction: column;
     justify-content: center;
   }
 `;
+
+export const CounterWrapper = styled.div`
+  width: 60%;
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: auto;
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 40%;
+  }
+`;
+
 export const Counter = styled.div`
-  width: 30%;
+  width: 50%;
   color: #d2d2d2;
   font-size: 8px;
   @media (max-width: 767px) {
     width: 100%;
-    height: 30%;
     text-align: center;
     font-size: 3px;
-    padding-top: 5%;
   }
 `;
 
 export const Btn = styled.div`
-  width: ${(props: ITabProps) => (props.isActive ? "40%" : "100%")};
+  width: 40%;
   height: 100%;
   display: flex;
   justify-content: ${(props: ITabProps) =>
     props.isActive ? "flex-end" : "center"};
-  padding-right: 1rem;
+  padding-right: 0.3rem;
   color: #42c2ff;
   border-radius: 20px;
   font-size: 1rem;
@@ -141,9 +189,8 @@ export const Btn = styled.div`
   }
   @media (max-width: 767px) {
     width: 100%;
-    height: 40%;
+    height: 50%;
     justify-content: center;
-    align-items: flex-end;
     padding-right: 0rem;
     font-size: 1rem;
   }

@@ -11,7 +11,6 @@ export const globalStyles = css`
 
   html,
   body {
-    height: 100vh;
     font-size: 16px;
     @media ${breakPoints.mobile} {
       font-size: 14px;

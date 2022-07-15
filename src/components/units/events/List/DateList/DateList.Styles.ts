@@ -1,59 +1,100 @@
 import styled from "@emotion/styled";
+import { DatePicker } from "antd";
 interface ITabProps {
   isActive: boolean;
 }
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
   @media (max-width: 767px) {
     flex-direction: column;
   }
 `;
 
-export const CalenderWrapper = styled.div`
-  width: 316px;
-  height: 360px;
+export const NavWrapper = styled.div`
+  width: 80%;
+  height: 100px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  background-color: white;
   position: sticky;
-  top: 60px;
+  top: 3.25rem;
   left: 0;
-  z-index: 5;
-  padding-right: 1rem;
-  border-right: 1px solid #d2d2d2;
+  z-index: 10;
+  margin: 0 auto 1rem auto;
+  background-color: white;
+  border: 1px solid #d2d2d2;
+  border-radius: 10px;
   @media (max-width: 767px) {
     width: 100%;
-    height: 380px;
-    top: 56px;
-    border-right: none;
-    border-bottom: 1px solid #d2d2d2;
+    height: 160px;
+    flex-direction: column;
+    justify-content: center;
+    top: 6rem;
   }
 `;
+export const InsideWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-export const CalenderText = styled.div`
+export const NavTitle = styled.div`
   width: 70%;
   height: 30px;
-  background-color: #d2d2d2;
+  font-weight: 600;
   text-align: center;
 `;
 
+export const DatePick = styled(DatePicker)`
+  width: 275px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1.9rem;
+  border-radius: 5px;
+  border: 1px solid #f1eee9;
+  background-color: white;
+  @media (max-width: 767px) {
+    width: 90%;
+  }
+`;
+
+export const SelectWrapper = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+export const Select = styled.select`
+  width: 275px;
+  height: 40px;
+  padding: 0.5rem 1.9rem;
+  border-radius: 5px;
+  border: 1px solid #f1eee9;
+  @media (max-width: 767px) {
+    width: 90%;
+  }
+`;
+
 export const ListWrapper = styled.div`
-  width: 600px;
+  width: 80%;
   height: 1200px;
   display: ${(props: ITabProps) => (props.isActive ? "grid" : "none")};
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 0.63rem;
-  margin-left: 1rem;
+  margin: 1rem auto 0 auto;
   @media (max-width: 767px) {
-    width: 100%;
+    width: 90%;
     grid-template-rows: repeat(auto-fill, minmax(180px, 1fr));
     grid-gap: 5px;
     margin-top: 10px;
+    margin-left: 0rem;
   }
 `;
 export const List = styled.div`

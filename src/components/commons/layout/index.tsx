@@ -3,7 +3,6 @@ import LayoutBanner from "./banner/LayoutBanner.Container";
 import LayoutFooter from "./footer/LayoutFooter.Container";
 import LayoutHeader from "./header/LayoutHeader.Container";
 import { useRouter } from "next/router";
-import CountSection from "./CountSection";
 
 const Wrapper = styled.div`
   width: 100%;
