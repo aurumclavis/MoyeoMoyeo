@@ -42,7 +42,7 @@ export default function EventsDetailUI(props: any) {
           <S.IconWrapper>
             <S.PickWraepper>
               <S.IconTitle>행사 찜하기</S.IconTitle>
-              <S.PickIcon isActive={props.isActive} />
+              <S.PickIcon />
             </S.PickWraepper>
             <CopyToClipboard text={props.currentUrl}>
               <S.Linkraepper onClick={props.onClickLink}>
@@ -52,7 +52,7 @@ export default function EventsDetailUI(props: any) {
             </CopyToClipboard>
           </S.IconWrapper>
         </S.NavWrapper>
-        <S.MainTitle>이벤트타입 요약</S.MainTitle>
+        <S.MainTitle>이벤트 요약</S.MainTitle>
         <S.MainImg src="/배너이미지_행사1.png" />
         <S.ContetsText>
           상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세 설명이

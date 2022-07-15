@@ -1,4 +1,5 @@
 import { DatePicker, Space } from "antd";
+import locale from "antd/lib/date-picker/locale/ko_KR";
 
 const { RangePicker } = DatePicker;
 
@@ -12,8 +13,9 @@ export default function DateRangePicker(props: any) {
           borderRadius: "5px",
           paddingLeft: "15px",
         }}
+        placeholder={props.placeholder}
         onChange={props.onChangeDate}
-        autoFocus={true}
+        locale={locale}
       />
     </Space>
   );

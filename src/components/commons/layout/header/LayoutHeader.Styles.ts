@@ -29,7 +29,7 @@ export const InsideWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 1.875rem;
+
   margin: auto;
   margin-top: 0.625rem;
 `;
@@ -41,8 +41,8 @@ export const LogoImg = styled.img`
   cursor: pointer;
   @media (max-width: 767px) {
     height: 2rem;
-    margin-right: 38%;
-    margin-left: auto;
+    margin-right: 50%;
+    margin-left: 25%;
   }
 `;
 
@@ -132,7 +132,7 @@ export const MobileMenuWrapper = styled.div`
     justify-content: space-between;
     justify-content: flex-start;
     position: fixed;
-    top: 4rem;
+    top: 3.4rem;
     transition: left 0.2s;
   }
 `;

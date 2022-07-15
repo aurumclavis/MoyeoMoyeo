@@ -26,15 +26,15 @@ interface ITabProps {
   isActive: boolean;
 }
 export const Tab = styled.div`
-  width: 80px;
+  /* width: 80px; */
   height: 3.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 1.4rem;
-  font-weight: ${(props: ITabProps) => (props.isActive ? "700" : "none")};
+  font-weight: ${(props: ITabProps) => props.isActive && "700"};
   border-bottom: ${(props: ITabProps) =>
-    props.isActive ? "3px solid #ffd24c" : "none"};
+    props.isActive ? "3px solid #ffd24c" : " 3px solid white"};
   :hover {
     cursor: pointer;
   }
@@ -69,32 +69,30 @@ export const TabWrapper = styled.div`
 export const FlexWrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
 `;
 export const DateWrapper = styled.div`
-  width: ${(props: ITabProps) => (props.isActive ? "100%" : "316px")};
-  display: flex;
-  flex-direction: row;
+  width: 100%;
+  display: ${(props: ITabProps) => (props.isActive ? " flex" : "none")};
+
   margin-top: 1rem;
   @media (max-width: 767px) {
     display: ${(props: ITabProps) => (props.isActive ? " flex" : "none")};
   }
 `;
 export const FestivalWrapper = styled.div`
-  width: 70%;
+  width: 100%;
   display: ${(props: ITabProps) => (props.isActive ? "flex" : "none")};
-  flex-direction: column;
+
   @media (max-width: 767px) {
-    width: 100%;
   }
 `;
 export const EventsWrapper = styled.div`
-  width: 70%;
+  width: 100%;
   display: ${(props: ITabProps) => (props.isActive ? "flex" : "none")};
-  flex-direction: column;
+
   @media (max-width: 767px) {
-    margin-left: 1rem;
   }
 `;
 
