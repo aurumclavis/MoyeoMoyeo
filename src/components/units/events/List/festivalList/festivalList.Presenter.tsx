@@ -6,7 +6,7 @@ export default function FestivalListUI(props) {
       <S.Wrapper>
         <S.Select>
           <option>등록 순</option>
-          <option>인기 순</option>
+          {/* <option>인기 순</option> */}
           <option>날짜 순</option>
         </S.Select>
         <S.InsideWrapper>

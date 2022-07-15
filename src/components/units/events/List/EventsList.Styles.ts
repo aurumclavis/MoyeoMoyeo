@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
-  padding: 1rem 5%;
+  padding: 0rem 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,11 +27,11 @@ interface ITabProps {
 }
 export const Tab = styled.div`
   /* width: 80px; */
-  height: 3.25rem;
+  height: 3.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 1.4rem;
+  margin-right: 1.4rem;
   font-weight: ${(props: ITabProps) => props.isActive && "700"};
   border-bottom: ${(props: ITabProps) =>
     props.isActive ? "3px solid #ffd24c" : " 3px solid white"};
@@ -49,15 +49,19 @@ export const Tab = styled.div`
 `;
 
 export const TabWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
   background-color: white;
   position: sticky;
   top: 0;
   left: 0;
   z-index: 18;
   margin-bottom: 1rem;
+  padding-top: 0.5rem;
+
   @media (max-width: 767px) {
     position: sticky;
     top: 3.4rem;
@@ -91,7 +95,6 @@ export const FestivalWrapper = styled.div`
 export const EventsWrapper = styled.div`
   width: 100%;
   display: ${(props: ITabProps) => (props.isActive ? "flex" : "none")};
-
   @media (max-width: 767px) {
   }
 `;
@@ -104,14 +107,15 @@ export const EventsBtnWrapper = styled.div`
 `;
 
 export const EventWriteBtn = styled.div`
-  width: 150px;
-  height: 40px;
+  width: 5.2rem;
+  height: 2.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #ffd24c;
+  font-weight: 600;
   @media (max-width: 767px) {
     width: 80px;
     height: 30px;
