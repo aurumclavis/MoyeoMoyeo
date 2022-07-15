@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import Policy from "../../units/policy/policy.Container";
+import Policy from "../../units/signup/signUpNew/policy/policy.Container";
 
 const Wrapper = styled.div`
   width: 100%;
   padding-bottom: 20px;
+  position: relative;
 `;
 const SeletAll = styled.span`
   margin-left: 5px;
@@ -21,17 +22,29 @@ const InputBox = styled.div`
 const Input = styled.input`
   display: flex;
 `;
-const Icon = styled.img`
-  width: 10px;
+const ShowModal = styled.span`
+  /* width: 10px;
   height: 10px;
-  margin-top: 10px;
+  margin-top: 10px; */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 0.825rem;
+  color: #42c2ff;
   cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
 `;
 export default function Checkbox() {
   const [checkList, setCheckList] = useState([]);
   const [visible, setVisible] = useState(false);
+  const [Isvisible, setIsVisible] = useState(false);
   const onClickShowPolicyModal = () => {
     setVisible(true);
+  };
+  const onClickShowPersonalModal = () => {
+    setIsVisible(true);
   };
 
   const onClickCheckAll = () => {
@@ -73,11 +86,13 @@ export default function Checkbox() {
             // id="checkbox_id"
           />
           <Data>{list.data}</Data>
-          {list.id < 3 && (
-            <Icon
+          {list.id === 2 && (
+            <ShowModal
               src="/icon/double_arrow_right.png"
               onClick={onClickShowPolicyModal}
-            />
+            >
+              [이용약관확인]
+            </ShowModal>
           )}
         </InputBox>
       ))}
@@ -98,7 +113,6 @@ export default function Checkbox() {
 // el.id<3 &&( 아이디 값이 1,2면 옆에 [약관보기]
 
 const dataList = [
-  // { id: 1, data: "[필수] 만 14세 이상입니다." },
   { id: 1, data: "[필수] 개인정보 취급방침에 동의합니다." },
   { id: 2, data: "[필수] 이용약관에 동의합니다" },
   { id: 3, data: "[선택] 마켓팅 정보이용에 동의합니다." },

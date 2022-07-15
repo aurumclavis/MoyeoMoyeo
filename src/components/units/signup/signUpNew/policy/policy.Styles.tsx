@@ -2,19 +2,18 @@ import styled from "@emotion/styled";
 
 export const OutWapper = styled.div`
   width: 100%;
-  background-color: gray;
-  /* opacity: 50%; */
+  background-color: white;
+  position: absolute;
+  border: 2px solid black;
+  border-radius: 10px;
+  top: -200%;
+  padding: 10px;
 `;
 export const Wrapper = styled.div`
-  width: 300px;
+  width: 100%;
   height: 300px;
-  background-color: gray;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  position: absolute;
-  left: 73vh;
-  top: 50vh;
 `;
 export const Header = styled.div`
   width: 100%;
@@ -27,10 +26,12 @@ export const Policy = styled.span`
   font-weight: 700;
 `;
 export const CancelIcon = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
 `;
 export const PolicyContents = styled.div`
+  padding-top: 15px;
   font-size: 0.625rem;
   height: 300px;
 `;
