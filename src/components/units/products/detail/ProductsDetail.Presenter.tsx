@@ -44,21 +44,25 @@ export default function ProductDetailUI(props: any) {
       </S.NavWrapper>
 
       <S.LeftWrapper>
-        <S.Title>{props.data?.fetchProduct.name}</S.Title>
+        <S.Title>{props.data?.fetchProduct.name || "상품 이름"}</S.Title>
         <S.ViewPickWrapper>
-          <S.MobilePrice>{props.data?.fetchProduct.price}원</S.MobilePrice>
+          <S.MobilePrice>
+            {props.data?.fetchProduct.price || 10000}원
+          </S.MobilePrice>
           <S.IconWrapper>
             <S.ViewIcon />
-            <S.Label>{props.data?.fetchProduct.viewCount}</S.Label>
+            <S.Label>{props.data?.fetchProduct.viewCount || 10}</S.Label>
           </S.IconWrapper>
           <S.IconWrapper>
             <S.PickIcon />
-            <S.Label>{props.data?.fetchProduct.likedUsers.length}</S.Label>
+            <S.Label>{props.data?.fetchProduct.likedUsers.length || 1}</S.Label>
           </S.IconWrapper>
-          {/* <S.Label>{props.data?.fetchProduct.createdAt}</S.Label> */}
         </S.ViewPickWrapper>
         <S.Line />
-        <S.Label>{props.data?.fetchProduct.description}</S.Label>
+        <S.Label>
+          {props.data?.fetchProduct.description ||
+            "상품 요약입니다 상품 요약입니다 상품 요약입니다"}
+        </S.Label>
         <S.Line />
         <S.Subtitle ref={props.detailRef}>상품 정보</S.Subtitle>
 
@@ -76,18 +80,41 @@ export default function ProductDetailUI(props: any) {
           <S.CarouselImage src="https://images.unsplash.com/photo-1589365278144-c9e705f843ba?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDU0fHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
         </S.CarouselWrapper>
 
-        {typeof window !== "undefined" && (
+        {/* {typeof window !== "undefined" && (
           <S.DetailContents
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(props.data?.fetchProduct.contentSrc),
             }}
           />
-        )}
+        )} */}
+        <S.DetailContents>
+          상품 상세 내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품
+          상세 내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다 상품 상세 내용입니다 상품 상세
+          내용입니다 상품 상세 내용입니다{" "}
+        </S.DetailContents>
 
         <S.Line />
         <S.SellerContentsWrapper>
-          <S.Label>{props.data?.fetchProduct.seller.name}</S.Label>
-          <S.Label>{props.data?.fetchProduct.seller.phone}</S.Label>
+          <S.Label>
+            {props.data?.fetchProduct.seller.name || "판매자 이름"}
+          </S.Label>
+          <S.Label>
+            {props.data?.fetchProduct.seller.phone || "010-1234-5678"}
+          </S.Label>
         </S.SellerContentsWrapper>
         <S.Line />
         {/* 상품 문의(Q&A) 작성, 조회*/}
@@ -100,7 +127,7 @@ export default function ProductDetailUI(props: any) {
       {/* 오른쪽 사이드바 Wrapper */}
       <S.RightWrapper>
         <S.SidebarWrapper>
-          <S.Subtitle>{props.data?.fetchProduct.price}원</S.Subtitle>
+          <S.Subtitle>{props.data?.fetchProduct.price || 10000}원</S.Subtitle>
           <S.BtnWrapper>
             {props.isSeller ? (
               <>
