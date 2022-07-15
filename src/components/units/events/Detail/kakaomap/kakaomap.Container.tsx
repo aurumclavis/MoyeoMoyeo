@@ -17,7 +17,7 @@ export default function KakakomapPage(props) {
         const options = {
           // 지도를 생성할 때 필요한 기본 옵션
           center: new window.kakao.maps.LatLng(37.4846, 126.8979), // 지도의 중심좌표.
-          level: 3, // 지도의 레벨(확대, 축소 정도)
+          level: 4, // 지도의 레벨(확대, 축소 정도)
           isPanto: true,
         };
         const map = new window.kakao.maps.Map(container, options);
@@ -68,7 +68,7 @@ export default function KakakomapPage(props) {
   }, []);
   return (
     <div>
-      <div id="map" style={{ width: 500, height: 400 }}></div>
+      <div id="map" style={{ width: 400, height: 300 }}></div>
     </div>
   );
 }

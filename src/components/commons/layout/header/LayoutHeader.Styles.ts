@@ -29,9 +29,13 @@ export const InsideWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
   margin: auto;
   margin-top: 0.625rem;
+  @media (max-width: 767px) {
+    justify-content: center;
+    margin-top: 0.325rem;
+    padding-right: 36.4px;
+  }
 `;
 
 export const LogoImg = styled.img`
@@ -40,9 +44,6 @@ export const LogoImg = styled.img`
   margin-bottom: 0.63rem;
   cursor: pointer;
   @media (max-width: 767px) {
-    height: 2rem;
-    margin-right: 50%;
-    margin-left: 25%;
   }
 `;
 
@@ -64,7 +65,7 @@ interface IMenuProps {
 }
 
 export const Menu = styled.div`
-  height: 90%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

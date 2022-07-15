@@ -1,8 +1,8 @@
-import CalenderPage from "./DateList/DateList.Container";
+import CalenderPage from "../DateList/DateList.Container";
 import * as S from "./EventsList.Styles";
-import OurEventList from "./eventsList/OurEventList.Container";
-import FestivalList from "./festivalList/festivalList.Container";
-
+import OurEventList from "../eventsList/OurEventList.Container";
+import FestivalList from "../festivalList/festivalList.Container";
+import BackTopAnt from "../../../../commons/backTop";
 export default function EventsListUI(props) {
   return (
     <>
@@ -35,6 +35,7 @@ export default function EventsListUI(props) {
             <OurEventList ourEvents={props.ourEvents} />
           </S.EventsWrapper>
         </S.FlexWrapper>
+        <BackTopAnt />
       </S.Wrapper>
     </>
   );

@@ -20,10 +20,6 @@ export const NavWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 3.25rem;
-  left: 0;
-  z-index: 10;
   margin: 0 auto 1rem auto;
   background-color: white;
   border: 1px solid #d2d2d2;
@@ -58,7 +54,7 @@ export const DatePick = styled(DatePicker)`
   justify-content: space-between;
   padding: 0.5rem 1.9rem;
   border-radius: 5px;
-  border: 1px solid #f1eee9;
+  border: 1px solid #15133c;
   background-color: white;
   @media (max-width: 767px) {
     width: 90%;
@@ -75,7 +71,7 @@ export const Select = styled.select`
   width: 275px;
   height: 40px;
   padding: 0.5rem 1.9rem;
-  border: 1px solid #f1eee9;
+  border: 1px solid #15133c;
   border-radius: 5px;
   @media (max-width: 767px) {
     width: 90%;
@@ -84,11 +80,10 @@ export const Select = styled.select`
 
 export const ListWrapper = styled.div`
   width: 90%;
-  height: 1200px;
   display: ${(props: ITabProps) => (props.isActive ? "grid" : "none")};
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 0.63rem;
-  margin: 1rem auto 0 auto;
+  margin: 1rem auto;
 
   @media (max-width: 767px) {
     width: 90%;
