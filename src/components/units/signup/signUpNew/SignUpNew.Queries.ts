@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 export const CREATE_USER = gql`
   mutation createUser($userInput: UserInput!) {
     createUser(userInput: $userInput) {
-      _id
+      id
       email
       name
       phone
@@ -13,7 +13,7 @@ export const CREATE_USER = gql`
 `;
 
 //핸드폰인증
-export const sendSMS = gql`
+export const SEND_SMS = gql`
   mutation sendSMS($phone: String!) {
     sendSMS(phone: $phone)
   }

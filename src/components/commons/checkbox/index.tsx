@@ -10,7 +10,7 @@ const SeletAll = styled.span`
   margin-left: 5px;
   font-size: 0.825rem;
 `;
-const Data = styled.td`
+const Data = styled.div`
   padding: 5px;
   font-size: 0.825rem;
 `;
@@ -70,7 +70,7 @@ export default function Checkbox() {
             type="checkbox"
             onChange={() => onCheckedItem(list)}
             checked={isChecked(list)}
-            id="checkbox_id"
+            // id="checkbox_id"
           />
           <Data>{list.data}</Data>
           {list.id < 3 && (

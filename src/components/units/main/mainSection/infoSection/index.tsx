@@ -36,6 +36,7 @@ const Wrapper = styled(Slider)`
   width: 100%;
   border: 20px;
   height: 200px;
+  margin: 0;
   @media ${breakPoints.mobile} {
     height: 80px;
   }

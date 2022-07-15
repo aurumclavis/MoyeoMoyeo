@@ -1,9 +1,8 @@
-// import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CommonInput from "../../../commons/inputs/infoInputs";
 import CommonMobileInput from "../../../commons/inputs/mobileInputs";
 import * as S from "./SignUpNew.Styles";
 import Countdown from "react-countdown";
-import { useRef } from "react";
+
 import Checkbox from "../../../commons/checkbox";
 import ButtonSubmit from "../../../commons/buttons/submit";
 export default function SignUpNewPageUI(props) {
@@ -14,8 +13,6 @@ export default function SignUpNewPageUI(props) {
       </S.Timer>
     );
   };
-  const mobileInput = useRef(null);
-  const mobile2ndInput = useRef(null);
   return (
     <S.OutWrapper>
       <S.Wrapper onSubmit={props.handleSubmit(props.onClickCreateUser)}>
@@ -51,16 +48,13 @@ export default function SignUpNewPageUI(props) {
               type="text"
               register={props.register("phoneNumber")}
               onChange={props.onChange2ndNum}
-              ref={mobileInput}
             />
             <CommonMobileInput
               register={props.register("phoneNumber2")}
               onChange={props.onChange3rdNum}
-              ref={mobile2ndInput}
             />
           </S.NumberInputs>
           <S.Error>{props.formState.errors.phoneNumber?.message}</S.Error>
-          <S.Error>{props.formState.errors.phoneNumber2?.message}</S.Error>
           {!props.isDone ? (
             props.isReadyForNum ? (
               <S.NewAuthWrapper>
@@ -90,12 +84,12 @@ export default function SignUpNewPageUI(props) {
           )}
         </S.MobileInfo>
         <Checkbox
-          {...props.register("checkbox", {
-            required: {
-              value: true,
-              message: "[필수]를 확인해주세요.",
-            },
-          })}
+        // {...props.register("checkbox", {
+        //   required: {
+        //     value: true,
+        //     message: "[필수]를 확인해주세요.",
+        //   },
+        // })}
         />
         <S.Error>{props.formState.errors.checkbox?.message}</S.Error>
         <S.ButtonWrapper>

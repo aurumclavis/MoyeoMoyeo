@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { CREATE_USER } from "./SignUpNew.Queries";
+import { CREATE_USER, SEND_SMS } from "./SignUpNew.Queries";
 import { useMutation } from "@apollo/client";
 const schema = yup.object({
   name: yup
@@ -32,15 +32,12 @@ const schema = yup.object({
     .number()
     .required("핸드폰 번호는 필수 입력 사항입니다.")
     .typeError("숫자만 입력가능합니다."),
-  phoneNumber2: yup
-    .number()
-    .required("핸드폰 번호는 필수 입력 사항입니다.")
-    .typeError("숫자만 입력가능합니다."),
 });
 
 export default function SignUpNewPage() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
+  const [sendSMS] = useMutation(SEND_SMS);
   const { onClickMoveToPage } = useMoveToPage();
   const [phone2ndNum, setPhone2ndNum] = useState<number>();
   const [phone3rdNum, setPhone3rdNum] = useState<number>();
@@ -71,6 +68,8 @@ export default function SignUpNewPage() {
     setIsReadyForNum(false);
     setIsDone(true);
   };
+
+  const phone = "010" + phone2ndNum + phone3rdNum;
   const onClickCreateUser = async (data: any) => {
     console.log(data);
     try {
@@ -80,7 +79,7 @@ export default function SignUpNewPage() {
             name: data.name,
             email: data.email,
             password: data.password,
-            phone: "010" + phone2ndNum + phone3rdNum,
+            phone: phone,
           },
         },
       });
