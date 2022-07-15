@@ -45,11 +45,10 @@ export default function ApolloSetting(props: any) {
     }
   });
   const client = new ApolloClient({
-    //accessToken 넣기 전까지만 여기에 uri 삽입
     uri: "http://34.64.202.27:3000/graphql",
-    // link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
-    //connectToDevTools: true,
+    connectToDevTools: true,
   });
   return (
     <>
