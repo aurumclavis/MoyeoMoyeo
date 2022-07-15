@@ -14,11 +14,15 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Body = styled.body`
+const Body = styled.div`
   width: 100%;
   max-width: 75rem;
   display: flex;
   margin: auto;
+  font-size: 16px;
+  @media ${breakPoints.mobile} {
+    font-size: 14px;
+  }
 `;
 
 const SHOW_BANNER = ["/", "/events"];
