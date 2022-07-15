@@ -190,15 +190,18 @@ export const BtnRouterList = styled.div`
 /// 네브바
 export const NavWrapper = styled.div`
   width: 100%;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: white;
   position: sticky;
   top: 0;
+  left: 0;
   z-index: 5;
 
   @media (max-width: 767px) {
+    top: 47px;
   }
 `;
 
@@ -214,8 +217,8 @@ export const NavMenuWrapper = styled.div`
 
 export const NavMenu = styled.div`
   padding: 0.4rem;
-  margin-bottom: 0.2rem;
   margin-left: 2rem;
+  padding-bottom: 0.2rem;
 
   border-bottom: ${(props: IMenuProps) =>
     props.isActive ? "3px solid #ffe69a;" : "none"};

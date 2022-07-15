@@ -5,6 +5,8 @@ import CommentListContainer from "../Comment/List/CommentList.container";
 import CommentWriteContainer from "../Comment/Write/CommentWrite.container";
 import Dompurify from "dompurify";
 import * as S from "./BoardDetail.styles";
+import { v4 as uuidv4 } from "uuid";
+import RequestUserList from "../../../../commons/requestUserList";
 
 export default function BoardDetailPresenter(props: any) {
   return (
@@ -93,11 +95,11 @@ export default function BoardDetailPresenter(props: any) {
             <>
               <S.AccompanyUpperWrapper>
                 <S.AccompanyUpperItemsWrapper>
-                  <S.AccompanyItems isMyBoard={props.isMyBoard}>
+                  <S.AccompanyItems>
                     <S.AccompanyAmountIcon src="/icon/groups.png" />
-                    <S.AccompanyAmountText>인원 2/3</S.AccompanyAmountText>
+                    <S.AccompanyAmountText>인원 4/5</S.AccompanyAmountText>
                   </S.AccompanyItems>
-                  <S.AccompanyItems isMyBoard={props.isMyBoard}>
+                  <S.AccompanyItems>
                     <S.AccompanyChangeMaxIcon src="/icon/group_add.png" />
                     <S.AccompanyChangeMaxText>
                       인원 변경
@@ -105,9 +107,16 @@ export default function BoardDetailPresenter(props: any) {
                   </S.AccompanyItems>
                 </S.AccompanyUpperItemsWrapper>
               </S.AccompanyUpperWrapper>
-              <S.AccompanyItems isMyBoard={props.isMyBoard}>
+              <S.AccompanyUnderWrapper>
                 {props.isCompleted ? (
                   <>
+                    <S.AccompanyUserListWrapper>
+                      {/* map으로 동행유저 뿌리는 부분 */}
+                      <S.AccompanyUser>김성훈</S.AccompanyUser>
+                      <S.AccompanyUser>성혜린</S.AccompanyUser>
+                      <S.AccompanyUser>김은재</S.AccompanyUser>
+                      <S.AccompanyUser>한주연</S.AccompanyUser>
+                    </S.AccompanyUserListWrapper>
                     <S.AccompanyRequestButton isCompleted={props.isCompleted}>
                       <S.AccompanyCompleteCancelIcon src="/icon/cancel.png" />
                       <S.AccompanyCompleteCancelText>
@@ -121,6 +130,20 @@ export default function BoardDetailPresenter(props: any) {
                   </>
                 ) : (
                   <>
+                    <S.AccompanyUserListWrapper>
+                      {/* map으로 동행유저 뿌리는 부분 */}
+                      <S.AccompanyUser>김성훈</S.AccompanyUser>
+                      <S.AccompanyUser>성혜린</S.AccompanyUser>
+                      <S.AccompanyUser>김은재</S.AccompanyUser>
+                      <S.AccompanyUser>한주연</S.AccompanyUser>
+                    </S.AccompanyUserListWrapper>
+                    <RequestUserList
+                      onClickAcceptRequest={props.onClickAcceptRequest}
+                      onClickRefuseRequest={props.onClickRefuseRequest}
+                      requestAccepted={props.requestAccepted}
+                      requestRefused={props.requestRefused}
+                      isDetailPage={true}
+                    />
                     <S.AccompanyRequestButton>
                       <S.AccompanyCompleteIcon src="/icon/done.png" />
                       <S.AccompanyCompleteText>
@@ -133,7 +156,7 @@ export default function BoardDetailPresenter(props: any) {
                     </S.AccompanyInfo>
                   </>
                 )}
-              </S.AccompanyItems>
+              </S.AccompanyUnderWrapper>
             </>
           )}
           {!props.isMyBoard &&

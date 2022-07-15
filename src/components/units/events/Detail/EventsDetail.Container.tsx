@@ -3,17 +3,22 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import _, { throttle } from "lodash";
+import { useRecoilState } from "recoil";
+import { eventIdForBoardState } from "../../../../commons/store";
 
 // import { useLocation } from 'react-router-dom';
 
 export default function EventsDetail() {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
+  const [eventIdForBoard, setEventIdForBoard] =
+    useRecoilState(eventIdForBoardState);
 
   const currentUrl = `localhost:3000/events/list/${router.query._id}`;
 
-  const [activedTab, setActivedTab] = useState("maker");
-  const makerRef = useRef(null);
+  const [activedTab, setActivedTab] = useState("marker");
+  const navRef = useRef(null);
+  const markerRef = useRef(null);
   const contentsRef = useRef<HTMLDivElement>(null);
   const mapsRef = useRef<HTMLDivElement>(null);
 
@@ -21,61 +26,66 @@ export default function EventsDetail() {
     window.addEventListener("scroll", onScrollNav);
   }, []);
 
-  const onScrollNav = () => {
-    if (makerRef.current !== null) {
-      if (
-        document.body.scrollTop > 100 ||
-        document.documentElement.scrollTop > 50
-      ) {
-        makerRef.current.style = "top:0";
-      } else {
-        makerRef.current.style = "top: -100px";
-      }
+  const onClickMoveToBoardNew = () => {
+    setEventIdForBoard(String(router.query._id));
+    onClickMoveToPage("/boards/new")();
+  };
+
+  const onScrollNav = _.throttle(() => {
+    if (!markerRef.current) return;
+
+    if (
+      document.documentElement.scrollTop <=
+      mapsRef.current?.offsetTop - navRef.current?.offsetHeight
+    ) {
+      setActivedTab("marker");
     }
     if (
-      document.documentElement.scrollTop >
-      mapsRef.current?.offsetTop - contentsRef.current?.clientHeight
+      document.documentElement.scrollTop >=
+        mapsRef.current?.offsetTop - navRef.current?.offsetHeight &&
+      document.documentElement.scrollTop <=
+        contentsRef.current?.offsetTop - navRef.current?.offsetHeight
     ) {
       setActivedTab("maps");
-    } else if (
-      document.documentElement.scrollTop >
-      contentsRef.current?.offsetTop - makerRef.current?.clientHeight
+    }
+    if (
+      document.documentElement.scrollTop >=
+      contentsRef.current?.offsetTop - navRef.current?.offsetHeight
     ) {
       setActivedTab("contents");
-    } else {
-      setActivedTab("maker");
     }
-  };
+  }, 500);
 
   const onClickMarker = e => {
     window.scrollTo({
-      top: makerRef.current?.offsetTop - 50,
+      top: markerRef.current?.offsetTop - navRef.current?.offsetHeight,
       behavior: "smooth",
     });
-    setActivedTab(e.currentTarget.id);
+
     throttle(() => {
       setActivedTab(e.currentTarget.id);
-    }, 500);
+    });
   };
+
   const onClickContents = e => {
     window.scrollTo({
-      top: contentsRef.current?.offsetTop - 50,
+      top: contentsRef.current?.offsetTop - navRef.current?.offsetHeight,
       behavior: "smooth",
     });
-    setActivedTab(e.currentTarget.id);
+
     throttle(() => {
       setActivedTab(e.currentTarget.id);
-    }, 500);
+    });
   };
+
   const onClickMaps = e => {
     window.scrollTo({
-      top: mapsRef.current?.offsetTop - 50,
+      top: mapsRef.current?.offsetTop - navRef.current?.offsetHeight,
       behavior: "smooth",
     });
-    setActivedTab(e.currentTarget.id);
     throttle(() => {
       setActivedTab(e.currentTarget.id);
-    }, 500);
+    });
   };
   const onClickLink = () => {
     alert("링크가 복사되었습니다");
@@ -86,7 +96,8 @@ export default function EventsDetail() {
       <EventsDetailUI
         currentUrl={currentUrl}
         activedTab={activedTab}
-        makerRef={makerRef}
+        navRef={navRef}
+        markerRef={markerRef}
         contentsRef={contentsRef}
         mapsRef={mapsRef}
         onClickMoveToPage={onClickMoveToPage}
@@ -95,6 +106,7 @@ export default function EventsDetail() {
         onClickMaps={onClickMaps}
         onScrollNav={onScrollNav}
         onClickLink={onClickLink}
+        onClickMoveToBoardNew={onClickMoveToBoardNew}
       />
     </>
   );

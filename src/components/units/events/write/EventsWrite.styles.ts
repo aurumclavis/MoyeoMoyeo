@@ -149,7 +149,17 @@ export const Address = styled.input`
 `;
 
 export const ImageWrapper = styled.div`
-  width: 100%;
+  width: 33%;
+`;
+
+export const TypeWrapper = styled.div`
+  width: 33%;
+`;
+
+export const TypeSelect = styled.select`
+  width: 120px;
+  height: 30px;
+  padding-left: 10px;
 `;
 
 export const ButtonOutWrapper = styled.div`
