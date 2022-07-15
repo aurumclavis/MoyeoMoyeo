@@ -64,6 +64,8 @@ export default function EventsDetailUI(props: any) {
         <S.ContentsWrapper ref={props.contentsRef}>
           <S.ContentsTitle>상세 설명</S.ContentsTitle>
           <S.ContentImg src="/배너이미지_행사1.png" />
+          <S.ContentImg src="/배너이미지_행사1.png" />
+          <S.ContentImg src="/배너이미지_행사1.png" />
         </S.ContentsWrapper>
 
         <S.LineDiv />
@@ -74,10 +76,10 @@ export default function EventsDetailUI(props: any) {
         <S.LineDiv />
         <S.Footer>
           <S.BtnRouter>관련 사이트 보러가기</S.BtnRouter>
-          <S.BtnRouterList onClick={props.onClickMoveToPage("/")}>
+          <S.BtnRouterList onClick={props.onClickMoveToPage("/events")}>
             목록으로
           </S.BtnRouterList>
-          <S.BtnRouter onClick={props.onClickMoveToPage("boards/new")}>
+          <S.BtnRouter onClick={props.onClickMoveToPage("/boards/new")}>
             같이 갈 동행 구하기
           </S.BtnRouter>
         </S.Footer>

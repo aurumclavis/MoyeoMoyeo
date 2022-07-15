@@ -15,7 +15,7 @@ export default function EventsListUI(props) {
             onClick={props.onClickOpenEventTap}
             isActive={props.openEvents}
           >
-            공공 행사
+            행사 정보
           </S.Tab>
           <S.Tab onClick={props.onClickOurEventTap} isActive={props.ourEvents}>
             추천 행사

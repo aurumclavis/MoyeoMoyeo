@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
 `;
 
 export const NavWrapper = styled.div`
-  width: 80%;
+  width: 90%;
   height: 100px;
   display: flex;
   flex-direction: row;
@@ -27,7 +27,7 @@ export const NavWrapper = styled.div`
   margin: 0 auto 1rem auto;
   background-color: white;
   border: 1px solid #d2d2d2;
-  border-radius: 10px;
+  border-radius: 5px;
   @media (max-width: 767px) {
     width: 100%;
     height: 160px;
@@ -75,20 +75,21 @@ export const Select = styled.select`
   width: 275px;
   height: 40px;
   padding: 0.5rem 1.9rem;
-  border-radius: 5px;
   border: 1px solid #f1eee9;
+  border-radius: 5px;
   @media (max-width: 767px) {
     width: 90%;
   }
 `;
 
 export const ListWrapper = styled.div`
-  width: 80%;
+  width: 90%;
   height: 1200px;
   display: ${(props: ITabProps) => (props.isActive ? "grid" : "none")};
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 0.63rem;
   margin: 1rem auto 0 auto;
+
   @media (max-width: 767px) {
     width: 90%;
     grid-template-rows: repeat(auto-fill, minmax(180px, 1fr));
@@ -109,7 +110,12 @@ export const List = styled.div`
     props.isActive ? "1px solid #d2d2d2" : "none"};
   border-left: ${(props: ITabProps) =>
     props.isActive ? "1px solid #d2d2d2" : "3px solid #FFD24C"};
-
+  transition: 0.2s;
+  box-shadow: 0px 2px 4px 0px #00000033;
+  :hover {
+    box-shadow: 0px 2px 4px 2px #00000033;
+    transform: translateY(-5px);
+  }
   @media (max-width: 767px) {
   }
 `;

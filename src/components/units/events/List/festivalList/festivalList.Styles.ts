@@ -4,7 +4,7 @@ interface ITabProps {
   isActive: boolean;
 }
 export const Wrapper = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   margin: 0.4rem auto;
@@ -29,6 +29,7 @@ export const Select = styled.select`
   height: 1.6rem;
   /* margin-left: auto; */
   margin-right: 2rem;
+  margin-bottom: 1rem;
   border: 1px solid #d2d2d2;
   border-radius: 5px;
   color: #d2d2d2;
@@ -51,6 +52,12 @@ export const ListWrapper = styled.div`
     props.isActive ? "1px solid #d2d2d2" : "3px solid #FFD24C"};
   border-radius: ${(props: ITabProps) =>
     props.isActive ? "0.63rem;" : "none"};
+  transition: 0.2s;
+  box-shadow: 0px 2px 4px 0px #00000033;
+  :hover {
+    box-shadow: 0px 2px 4px 2px #00000033;
+    transform: translateY(-5px);
+  }
   @media (max-width: 767px) {
     width: 130px;
     height: 65px;
