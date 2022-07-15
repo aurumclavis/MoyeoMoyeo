@@ -1,15 +1,21 @@
 import * as S from "./Main.Styles";
-import FAQ from "../../commons/mainSection/questionSection/FAQ";
-import BoardSession from "../../commons/mainSection/boardSection";
-import ProductSection from "../../commons/mainSection/productSection";
-import EventSection from "../../commons/mainSection/eventSection";
+import FAQ from "./mainSection/questionSection/FAQ";
+import BoardSection from "./mainSection/boardSection";
+import ProductSection from "./mainSection/productSection";
+import EventSection from "./mainSection/eventSection";
+import CountSection from "../../commons/layout/CountSection";
+import TopSection from "./mainSection/topSection";
+import InfoSection from "./mainSection/infoSection";
 
 export default function MainPageUI() {
   return (
     <S.Wrapper>
+      {/* <TopSection /> */}
+      {/* <CountSection /> */}
       <EventSection />
-      <BoardSession />
+      <BoardSection />
       <ProductSection />
+      <InfoSection />
       <FAQ />
     </S.Wrapper>
   );

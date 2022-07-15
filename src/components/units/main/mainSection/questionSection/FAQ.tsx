@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 
 const { Panel } = Collapse;
 const text = `
-      질문에 대한 답변은 어쩌고 저쩌고 일단 나도 몰라요 이것만 하면 진짜 집간다 간다간다 집간다
+      이것은 임의로 답변하는 답변창입니다. 추후에 추가데이터를 넣을 예정입니다.
     `;
 export default function FAQ() {
   const onChange = (key) => {
@@ -14,7 +14,10 @@ export default function FAQ() {
   return (
     <OutWrapper>
       <InnerWrapper>
-        <MainTitle>자주하는 질문 일반회원 </MainTitle>
+        <TitleWrapper>
+          <MainTitle># 자주하는 질문 </MainTitle>
+          <TitleImage src="icon/done.png" />
+        </TitleWrapper>
         <Wrapper defaultActiveKey={["1"]} onChange={onChange}>
           <Title header="자주하는 질문1 " key="1">
             <p>{text}</p>
@@ -28,7 +31,7 @@ export default function FAQ() {
         </Wrapper>
       </InnerWrapper>
       <InnerWrapper>
-        <MainTitle>자주하는 질문 관계자회원</MainTitle>
+        <MainTitle># 자주하는 질문(관계자)</MainTitle>
         <Wrapper defaultActiveKey={["1"]} onChange={onChange}>
           <Titles header="자주하는 질문1 " key="1">
             <p>{text}</p>
@@ -50,18 +53,28 @@ const OutWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* margin-bottom: 50px; */
 `;
 const InnerWrapper = styled.div`
   width: 50%;
+  height: 450px;
   display: flex;
   flex-direction: column;
   margin-right: 10px;
 `;
-const MainTitle = styled.h3`
-  width: 100%;
+const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+const MainTitle = styled.h2`
+  /* width: 100%; */
   text-align: left;
-  margin: 20px;
+  margin-bottom: 20px;
   position: relative;
+`;
+const TitleImage = styled.img`
+  width: 34px;
+  height: 34px;
 `;
 const Wrapper = styled(Collapse)`
   width: 100%;

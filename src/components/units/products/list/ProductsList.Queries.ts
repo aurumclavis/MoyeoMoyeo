@@ -1,19 +1,21 @@
 import { gql } from "@apollo/client";
 
-// 상품리스트
 export const FETCH_PRODUCTS = gql`
   query fetchProducts {
     fetchProducts {
       id
       name
+      description
+      contentSrc
       price
       viewCount
-      mainImage
-      seller
-      likedUsers
+      createdAt
+      isSoldout
+      seller {
+        id
+        name
+        email
+      }
     }
   }
 `;
-
-// 동행리스트
-// 이벤트리스트

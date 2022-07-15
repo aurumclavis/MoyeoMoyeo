@@ -2,11 +2,13 @@ import { Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import * as S from "./ProductWrite.Styles";
 import { CameraAlt } from "@mui/icons-material";
-import { IProductsWriteUIProps } from "./ProductWrite.Types";
+import { IProductWriteUIProps } from "./ProductWrite.Types";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import CommonInput from "../../../commons/inputs/infoInputs";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
-export default function ProductsWriteUI(props: IProductsWriteUIProps) {
+export default function ProductWriteUI(props: IProductWriteUIProps) {
+  const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.Wrapper>
       <S.WriteTitle>{props.isEdit ? "상품 수정" : "상품 등록"}</S.WriteTitle>
@@ -14,10 +16,6 @@ export default function ProductsWriteUI(props: IProductsWriteUIProps) {
         {/* 이름, 가격, 요약 입력 */}
         <S.InputWrapper>
           <S.Label>상품 이름 *</S.Label>
-          {/* <S.Input
-            {...props.register("name")}
-            placeholder="상품의 특성이 잘 드러나도록 입력해주세요."
-          /> */}
           <CommonInput
             register={props.register("name")}
             placeholder="상품의 특성이 잘 드러나도록 입력해주세요."
@@ -85,7 +83,9 @@ export default function ProductsWriteUI(props: IProductsWriteUIProps) {
             />
           </S.SubmitWrapper>
           <S.SubmitWrapper>
-            <S.CancelBtn type="button">취소</S.CancelBtn>
+            <S.CancelBtn type="button" onClick={onClickMoveToPage(`/products`)}>
+              취소
+            </S.CancelBtn>
           </S.SubmitWrapper>
         </S.BtnWrapper>
       </S.WriteForm>

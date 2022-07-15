@@ -105,7 +105,7 @@ export const Line = styled.div`
   border-bottom: 1px solid #d9d9d9;
 `;
 
-export const DetailContents = styled.p`
+export const DetailContents = styled.div`
   width: 100%;
   padding-top: 50px;
 `;
@@ -141,17 +141,25 @@ export const BtnWrapper = styled.div`
   justify-content: space-between;
 `;
 // 유저: 구매,찜 버튼, 관계자: 수정,삭제 버튼
-export const SkyblueBtn = styled.button`
+export const ActiveBtn = styled.button`
+  width: 100%;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 10px;
+  color: #000000;
+  background-color: #ffd24c;
+  font-size: 1.25rem;
+  cursor: pointer;
+`;
+export const SellerActiveBtn = styled.button`
   width: 100%;
   padding: 0.625rem;
   border: none;
   border-radius: 10px;
   color: #ffffff;
-  background-color: #42c2ff;
+  background-color: #15133c;
   font-size: 1.25rem;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 export const WhiteBtn = styled.button`
   width: 100%;
@@ -160,9 +168,7 @@ export const WhiteBtn = styled.button`
   border-radius: 10px;
   background-color: #ffffff;
   font-size: 1.25rem;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 export const SellerContentsWrapper = styled.div`
   width: 100%;

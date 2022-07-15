@@ -3,7 +3,6 @@ import LayoutBanner from "./banner/LayoutBanner.Container";
 import LayoutFooter from "./footer/LayoutFooter.Container";
 import LayoutHeader from "./header/LayoutHeader.Container";
 import { useRouter } from "next/router";
-import { breakPoints } from "../../../commons/styles/media";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -15,24 +14,24 @@ const Wrapper = styled.div`
 `;
 
 const Body = styled.div`
-  width: 100%;
+  /* width: 1200px; */
   max-width: 75rem;
+  width: 100%;
   display: flex;
   margin: auto;
-  font-size: 16px;
-  @media ${breakPoints.mobile} {
-    font-size: 14px;
-  }
 `;
 
 const SHOW_BANNER = ["/", "/events"];
+const SHOW_CountSection = ["/"];
 
 export default function Layout(props) {
   const router = useRouter();
   const isShowBanner = SHOW_BANNER.includes(router.asPath);
+  const isShowCountSection = SHOW_CountSection.includes(router.asPath);
   return (
     <Wrapper>
       <LayoutHeader></LayoutHeader>
+      {isShowCountSection && <CountSection />}
       {/* {isShowBanner && <LayoutBanner />} */}
       <Body>{props.children}</Body>
       <LayoutFooter />
