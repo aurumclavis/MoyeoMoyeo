@@ -105,7 +105,7 @@ const EventsDate = styled.div`
   text-align: center;
 `;
 
-const EventSection = () => {
+const EventSection = (props) => {
   const animatedItem = {
     0: useScrollFadeIn("left", 1),
     1: useScrollFadeIn("left", 1),
@@ -124,7 +124,7 @@ const EventSection = () => {
       <TitleRightWrapper>
         <div>취향저격 탕! 나만의 행사들을 골라봐요!</div>
         <div>
-          <More>더보기</More>
+          <More onClick={props.onClickMoveToPage("/events")}>더보기</More>
           <img src="/icon/arrow_right.png" />
         </div>
       </TitleRightWrapper>

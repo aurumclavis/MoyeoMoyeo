@@ -21,7 +21,7 @@ export const sendSMS = gql`
 
 //인증번호 확인
 export const validatePhone = gql`
-  mutation sendSMS($phone: String!,tokenInput: String!) {
-    sendSMS(phone: $phone,tokenInput:$tokenInput)
+  mutation sendSMS($phone: String!, $tokenInput: String!) {
+    sendSMS(phone: $phone, tokenInput: $tokenInput)
   }
 `;

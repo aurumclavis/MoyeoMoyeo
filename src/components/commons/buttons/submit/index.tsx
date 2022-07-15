@@ -15,7 +15,7 @@ const ButtonStyled = styled.button`
   width: 100%;
   height: 100%;
   padding: 0 10%;
-  border-radius: 0.625rem;
+  border-radius: 0.313rem;
   border: none;
   background-color: ${(props: IButtonStyledProps) =>
     props.isActive ? "#ffd24c" : "rgba(255, 210, 76, 0.3)"};

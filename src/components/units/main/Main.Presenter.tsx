@@ -3,18 +3,17 @@ import FAQ from "./mainSection/questionSection/FAQ";
 import BoardSection from "./mainSection/boardSection";
 import ProductSection from "./mainSection/productSection";
 import EventSection from "./mainSection/eventSection";
-import CountSection from "../../commons/layout/CountSection";
-import TopSection from "./mainSection/topSection";
+
 import InfoSection from "./mainSection/infoSection";
+import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 
 export default function MainPageUI() {
+  const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.Wrapper>
-      {/* <TopSection /> */}
-      {/* <CountSection /> */}
-      <EventSection />
-      <BoardSection />
-      <ProductSection />
+      <EventSection onClickMoveToPage={onClickMoveToPage} />
+      <BoardSection onClickMoveToPage={onClickMoveToPage} />
+      <ProductSection onClickMoveToPage={onClickMoveToPage} />
       <InfoSection />
       <FAQ />
     </S.Wrapper>

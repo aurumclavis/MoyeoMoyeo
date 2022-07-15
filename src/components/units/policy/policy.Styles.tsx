@@ -3,14 +3,18 @@ import styled from "@emotion/styled";
 export const OutWapper = styled.div`
   width: 100%;
   background-color: gray;
-  opacity: 50%;
+  /* opacity: 50%; */
 `;
 export const Wrapper = styled.div`
-  width: 500px;
-  height: 500px;
-  background-color: #ffffff;
+  width: 300px;
+  height: 300px;
+  background-color: gray;
   display: flex;
   flex-direction: column;
+  position: absolute;
+  position: absolute;
+  left: 73vh;
+  top: 50vh;
 `;
 export const Header = styled.div`
   width: 100%;

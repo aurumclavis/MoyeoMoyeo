@@ -153,7 +153,7 @@ const Icon = styled.img`
   align-items: center;
 `;
 
-const BoardSection = () => {
+const BoardSection = (props) => {
   const animatedItem = useScrollClipPath();
 
   const settings = {
@@ -188,7 +188,7 @@ const BoardSection = () => {
       <TitleRightWrapper>
         <div>이제 혼자가 아닌 우리 같이 가요!</div>
         <div>
-          <More>더보기</More>
+          <More onClick={props.onClickMoveToPage("/boards")}>더보기</More>
           <img src="/icon/arrow_right.png" />
         </div>
       </TitleRightWrapper>

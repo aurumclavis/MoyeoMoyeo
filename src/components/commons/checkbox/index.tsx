@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import Policy from "../../units/policy/policy.Container";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -20,10 +21,18 @@ const InputBox = styled.div`
 const Input = styled.input`
   display: flex;
 `;
-
+const Icon = styled.img`
+  width: 10px;
+  height: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+`;
 export default function Checkbox() {
   const [checkList, setCheckList] = useState([]);
-  console.log(checkList);
+  const [visible, setVisible] = useState(false);
+  const onClickShowPolicyModal = () => {
+    setVisible(true);
+  };
 
   const onClickCheckAll = () => {
     if (checkList.length !== dataList.length) {
@@ -64,8 +73,15 @@ export default function Checkbox() {
             id="checkbox_id"
           />
           <Data>{list.data}</Data>
+          {list.id < 3 && (
+            <Icon
+              src="/icon/double_arrow_right.png"
+              onClick={onClickShowPolicyModal}
+            />
+          )}
         </InputBox>
       ))}
+      {visible && <Policy setVisible={setVisible} />}
     </Wrapper>
   );
 }
@@ -81,7 +97,6 @@ export default function Checkbox() {
 // 토글
 // el.id<3 &&( 아이디 값이 1,2면 옆에 [약관보기]
 
-//
 const dataList = [
   // { id: 1, data: "[필수] 만 14세 이상입니다." },
   { id: 1, data: "[필수] 개인정보 취급방침에 동의합니다." },

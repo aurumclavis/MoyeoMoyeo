@@ -201,7 +201,7 @@ export const FooterWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 20px 0px;
 `;
 export const FooterTitle = styled.span`
   font-size: 0.875rem;

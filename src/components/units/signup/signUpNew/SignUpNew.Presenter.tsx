@@ -75,11 +75,11 @@ export default function SignUpNewPageUI(props) {
               </S.NewAuthWrapper>
             ) : (
               <S.MobileAuthBtn
-                disabled={!/^[a-zA-Z0-9+-.]+$/.test(props.watch("phoneNumber"))}
-                // isActive={
-                //   props?.phone3rdNum !== undefined &&
-                //   props?.phone2ndNum !== undefined
-                // }
+                disabled={!/^[0-9]+$/.test(props.watch("phoneNumber"))}
+                isActive={
+                  props?.phone3rdNum !== undefined &&
+                  props?.phone2ndNum !== undefined
+                }
                 onClick={props.onClickGetNumber}
               >
                 인증번호 요청
@@ -89,34 +89,6 @@ export default function SignUpNewPageUI(props) {
             <S.MobileAuthBtn>인증됨</S.MobileAuthBtn>
           )}
         </S.MobileInfo>
-        {/* <S.CheckBoxWrapper>
-            <S.CommonCheckBox>
-              <S.CheckedIcon type="checkbox" />
-              <S.CheckBoxTitle>모두 선택</S.CheckBoxTitle>
-            </S.CommonCheckBox>
-            <S.SubCommonCheckBox>
-              <S.CheckedIcon type="checkbox" />
-              <S.CheckBoxTitle>[필수] 만14세 이상입니다.</S.CheckBoxTitle>
-            </S.SubCommonCheckBox>
-            <S.SubCommonCheckBox>
-              <S.CheckedIcon type="checkbox" />
-              <S.CheckBoxTitle>
-                [필수] 개인정보 취급방침에 동의합니다.
-              </S.CheckBoxTitle>
-            </S.SubCommonCheckBox>
-            <S.SubCommonCheckBox>
-              <S.CheckedIcon type="checkbox" />
-              <S.CheckBoxTitle>
-                [필수] <S.Policy>이용약관</S.Policy>에 동의합니다.
-              </S.CheckBoxTitle>
-            </S.SubCommonCheckBox>
-            <S.SubCommonCheckBox>
-              <S.CheckedIcon type="checkbox" />
-              <S.CheckBoxTitle>
-                [선택] 마켓팅 정보이용에 동의합니다.
-              </S.CheckBoxTitle>
-            </S.SubCommonCheckBox>
-          </S.CheckBoxWrapper> */}
         <Checkbox
           {...props.register("checkbox", {
             required: {
@@ -126,10 +98,6 @@ export default function SignUpNewPageUI(props) {
           })}
         />
         <S.Error>{props.formState.errors.checkbox?.message}</S.Error>
-        {/* <S.SubmitBtn type="submit" isActive={props.formState.isValid}>
-          회원가입
-        </S.SubmitBtn> */}
-        {/* submit btn  */}
         <S.ButtonWrapper>
           <ButtonSubmit
             fontSize="1.25rem"
