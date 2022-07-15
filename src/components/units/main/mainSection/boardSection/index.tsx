@@ -3,11 +3,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import useScrollClipPath from "../../../../commons/hooks/useScrollClipPath";
+import { breakPoints } from "../../../../../commons/styles/media";
 
 const OutWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  @media ${breakPoints.mobile} {
+    margin: 2rem 0rem 2rem 0rem;
+    padding: 0 1.125rem;
+  }
 `;
 const TitleWrapper = styled.div`
   width: 100%;
@@ -19,9 +24,16 @@ const TitleWrapper = styled.div`
 const TitleIcon = styled.img`
   width: 34px;
   height: 30px;
+  @media ${breakPoints.mobile} {
+    width: 1.5rem; //24
+    height: 1.25rem; //20
+  }
 `;
 const Title = styled.h1`
   margin: 0;
+  @media ${breakPoints.mobile} {
+    font-size: 1.6rem;
+  }
 `;
 const TitleRightWrapper = styled.div`
   width: 100%;
@@ -45,7 +57,8 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  @media (max-width: 767px) {
+  @media ${breakPoints.mobile} {
+    display: flex;
     flex-direction: column;
   }
 `;

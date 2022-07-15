@@ -3,11 +3,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
+import { breakPoints } from "../../../../../commons/styles/media";
 
 const OutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  @media ${breakPoints.mobile} {
+    margin: 4rem 0rem 0rem 0rem;
+    padding: 0 1.125rem;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -20,9 +25,16 @@ const TitleWrapper = styled.div`
 const TitleIcon = styled.img`
   width: 34px;
   height: 30px;
+  @media ${breakPoints.mobile} {
+    width: 1.5rem; //24
+    height: 1.25rem; //20
+  }
 `;
 const Title = styled.h1`
   margin: 0;
+  @media ${breakPoints.mobile} {
+    font-size: 1.6rem;
+  }
 `;
 const TitleRightWrapper = styled.div`
   width: 100%;
@@ -49,29 +61,45 @@ const InnerWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  @media (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     width: 100%;
+    flex-wrap: wrap;
   }
 `;
-const MySlider = styled(Slider)`
-  width: 100%;
-  display: flex;
-  margin-top: 40px;
-  @media (max-width: 767px) {
-    width: 100%;
-    margin-top: 0px;
-  }
-`;
+// const MoblieInnerWrapper = styled.div`
+//   display: none;
+//   @media ${breakPoints.mobile} {
+//     width: 100%;
+//     height: 100%;
+//     display: flex;
+//     align-items: center;
+//     flex-wrap: wrap;
+//   }
+// `;
+// const MySlider = styled(Slider)`
+//   width: 100%;
+//   display: flex;
+//   margin-top: 40px;
+//   @media (max-width: 767px) {
+//     width: 100%;
+//     margin-top: 0px;
+//   }
+// `;
 const ProductList = styled.div`
   width: 240px;
   height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${breakPoints.mobile} {
+    width: 30%;
+    flex-wrap: wrap;
+    height: 200px;
+  }
 `;
 const ProductImages = styled.img`
   width: 100%;
-  height: 240px;
+  /* height: 240px; */
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
@@ -120,6 +148,15 @@ const ProductSection = (props) => {
           </ProductList>
         ))}
       </InnerWrapper>
+      {/* <MoblieInnerWrapper>
+        {new Array(5).fill(1).map((el: any, index: number) => (
+          <ProductList key={index} {...animatedItem[index]}>
+            <ProductImages src="/example2.png" />
+            <ProductName>행사굿즈 노트세트</ProductName>
+            <ProductPrice>10000원</ProductPrice>
+          </ProductList>
+        ))}
+      </MoblieInnerWrapper> */}
     </OutWrapper>
   );
 };

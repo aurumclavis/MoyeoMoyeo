@@ -1,6 +1,7 @@
 import React from "react";
 import useScrollCount from "../../hooks/useScrollCount";
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../commons/styles/media";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -12,9 +13,17 @@ const Wrapper = styled.div`
   background-color: #fcefa6;
   position: relative;
   margin-bottom: 30px;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    height: 200px;
+  }
 `;
 const MainTitle = styled.h1`
   margin-bottom: 30px;
+  @media ${breakPoints.mobile} {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+  }
 `;
 const List = styled.div`
   width: 100%;
@@ -23,6 +32,12 @@ const List = styled.div`
   justify-content: center;
   align-items: center;
   gap: 30px;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 5px;
+    padding: 0 0.313rem;
+  }
 `;
 const ListItem = styled.div`
   width: 351px;
@@ -30,24 +45,37 @@ const ListItem = styled.div`
   text-align: center;
   border-radius: 10px;
   background-color: #ffffff;
+  @media ${breakPoints.mobile} {
+    width: 33%;
+    height: 100px;
+    padding: 0px;
+  }
 `;
 const Number = styled.span`
   font-size: 3rem;
   font-weight: 700;
   color: #15133c;
-  /* margin-bottom: 1rem; */
+  @media ${breakPoints.mobile} {
+    font-size: 2rem;
+  }
 `;
 const Unit = styled.span`
   font-size: 3rem;
   margin-bottom: 1rem;
-
   color: #15133c;
+  @media ${breakPoints.mobile} {
+    font-size: 2rem;
+  }
 `;
 const Title = styled.h3`
   margin: 0px;
   margin-top: 1rem;
 `;
-const Description = styled.p``;
+const Description = styled.p`
+  @media ${breakPoints.mobile} {
+    display: none;
+  }
+`;
 
 const FIGURE_ITEMS = [
   {
@@ -57,13 +85,13 @@ const FIGURE_ITEMS = [
     description: "취향저격 행사들! 다 준비했어요!",
   },
   {
-    title: "행사 참여 회원",
+    title: "참여회원",
     number: 1240,
     unit: "+",
     description: "다같이 모여?모여!",
   },
   {
-    title: "행사참여 후 굿즈구매율",
+    title: "굿즈구매율",
     number: 92,
     unit: "%",
     description: "추억템,커플템 인기가 쑥쑥! ",

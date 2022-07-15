@@ -3,11 +3,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
+import { breakPoints } from "../../../../../commons/styles/media";
 
 const OutWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  @media ${breakPoints.mobile} {
+    margin: 1rem 0rem 0rem 0rem;
+    padding: 0 1.125rem;
+  }
 `;
 const TitleWrapper = styled.div`
   width: 100%;
@@ -19,9 +24,16 @@ const TitleWrapper = styled.div`
 const TitleIcon = styled.img`
   width: 34px;
   height: 30px;
+  @media ${breakPoints.mobile} {
+    width: 1.5rem; //24
+    height: 1.25rem; //20
+  }
 `;
 const Title = styled.h1`
   margin: 0;
+  @media ${breakPoints.mobile} {
+    font-size: 1.6rem;
+  }
 `;
 const TitleRightWrapper = styled.div`
   width: 100%;
@@ -46,18 +58,24 @@ const Wrapper = styled.div`
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 const ImageWrapper = styled.div`
   width: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media ${breakPoints.mobile} {
+    display: none;
+  }
 `;
 const EventImg = styled.img`
   width: 100%;
   /* height: 400px; */
-  border-radius: 50%;
-  border: 1px solid #bdbdbd;
+  /* border-radius: 50%; */
 `;
 const EventWrapper = styled.div`
   width: 60%;
@@ -65,9 +83,14 @@ const EventWrapper = styled.div`
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: 10px;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    height: 450px;
+    justify-content: center;
+  }
 `;
 const EventsList = styled.div`
-  width: 30%;
+  width: 31%;
   height: 50%;
   display: flex;
   flex-direction: column;
@@ -78,6 +101,9 @@ const EventsList = styled.div`
     box-shadow: 3px 5px 1px 0px #ffd24c;
     transform: translateY(-5px);
   } */
+  @media ${breakPoints.mobile} {
+    height: 200px;
+  }
 `;
 const EventsImages = styled.img`
   width: 100%;
@@ -140,7 +166,7 @@ const EventSection = (props) => {
               <InnderWrapper>
                 <EventsName>뮤지컬 아이다</EventsName>
                 <EventsPlaces>블루스퀘어 신한카드홀</EventsPlaces>
-                <EventsDate>2022.07.05~2022.07.05</EventsDate>
+                <EventsDate>2022.07.05~07.05</EventsDate>
               </InnderWrapper>
             </EventsList>
           ))}

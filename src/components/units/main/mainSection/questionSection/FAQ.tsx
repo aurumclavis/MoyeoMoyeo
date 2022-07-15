@@ -1,6 +1,7 @@
 import { Collapse } from "antd";
 import React from "react";
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../../commons/styles/media";
 
 const { Panel } = Collapse;
 const text = `
@@ -54,13 +55,25 @@ const OutWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   /* margin-bottom: 50px; */
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0rem 0rem 0rem;
+    padding: 0 1.125rem;
+    gap: 30px;
+  }
 `;
 const InnerWrapper = styled.div`
   width: 50%;
-  height: 450px;
+  /* height: 450px; */
   display: flex;
   flex-direction: column;
   margin-right: 10px;
+  margin-bottom: auto;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    height: auto;
+  }
 `;
 const TitleWrapper = styled.div`
   display: flex;
@@ -71,6 +84,9 @@ const MainTitle = styled.h2`
   text-align: left;
   margin-bottom: 20px;
   position: relative;
+  @media ${breakPoints.mobile} {
+    margin-bottom: 0px;
+  }
 `;
 const TitleImage = styled.img`
   width: 34px;
