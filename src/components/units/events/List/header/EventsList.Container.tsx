@@ -1,6 +1,6 @@
 import EventsListUI from "./EventsList.Prsenter";
 import { useState, useEffect } from "react";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 export default function EventList() {
   const { onClickMoveToPage } = useMoveToPage();

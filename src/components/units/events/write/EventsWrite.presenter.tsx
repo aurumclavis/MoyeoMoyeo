@@ -65,6 +65,15 @@ export default function EventsWriteUI(props) {
                 <Button icon={<UploadOutlined />}>사진등록</Button>
               </Upload>
             </S.ImageWrapper>
+            <S.TypeWrapper>
+              <S.SubTitle>행사 분류</S.SubTitle>
+              <S.TypeSelect>
+                <option disabled>선택</option>
+                <option>축제</option>
+                <option>공연/문화</option>
+                <option>기타</option>
+              </S.TypeSelect>
+            </S.TypeWrapper>
           </S.RowWrapper>
         </S.InputWrapper>
         <S.ButtonOutWrapper>

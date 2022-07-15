@@ -27,3 +27,8 @@ export const userInfoState = atom({
     pm: "",
   },
 });
+
+export const eventIdForBoardState = atom({
+  key: "eventIdForBoardState",
+  default: "",
+});

@@ -15,18 +15,18 @@ export default function LayoutHeaderUI(props) {
           />
           <S.NavBarWrapper>
             <S.Menu
-              isActive={props.activedTab === "/boards"}
-              id="/boards"
-              onClick={props.onClickTab}
-            >
-              동행하기
-            </S.Menu>
-            <S.Menu
               isActive={props.activedTab === "/events"}
               id="/events"
               onClick={props.onClickTab}
             >
               행사일정
+            </S.Menu>
+            <S.Menu
+              isActive={props.activedTab === "/boards"}
+              id="/boards"
+              onClick={props.onClickTab}
+            >
+              동행하기
             </S.Menu>
             <S.Menu
               isActive={props.activedTab === "/products"}

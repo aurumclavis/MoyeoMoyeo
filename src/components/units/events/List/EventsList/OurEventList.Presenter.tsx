@@ -66,7 +66,7 @@ export default function OurEventListUI(props) {
                 </S.Btn>
               </S.FooterWrapper>
             </S.FlexWrapper>
-          </S.ListWrapper>{" "}
+          </S.ListWrapper>
         </S.InsideWrapper>
       </S.Wrapper>
     </>
