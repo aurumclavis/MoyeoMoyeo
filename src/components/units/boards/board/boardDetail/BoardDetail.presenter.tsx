@@ -3,6 +3,7 @@ import ToolTip from "../../../../commons/tooltip";
 import KaKaoMapFetch from "../../KaKaoMap/FetchMap";
 import CommentListContainer from "../Comment/List/CommentList.container";
 import CommentWriteContainer from "../Comment/Write/CommentWrite.container";
+import Dompurify from "dompurify";
 import * as S from "./BoardDetail.styles";
 
 export default function BoardDetailPresenter(props: any) {
@@ -64,22 +65,15 @@ export default function BoardDetailPresenter(props: any) {
                 </S.AccompanyDate>
               </S.InfoUnder>
             </S.InfoWrapper>
-            <S.Contents>
-              게시글 내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다. 게시글
-              내용입니다. 게시글 내용입니다. 게시글 내용입니다.
-            </S.Contents>
+            {typeof window !== "undefined" ? (
+              <S.Contents
+                dangerouslySetInnerHTML={{
+                  __html: Dompurify.sanitize("aaa"),
+                }}
+              />
+            ) : (
+              <S.Contents />
+            )}
             <S.LocationWrapper>
               <S.MapWrapper>
                 <KaKaoMapFetch lat={props.lat} lng={props.lng} />

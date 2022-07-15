@@ -16,14 +16,15 @@ export const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3.5rem;
-  padding: 4rem 2rem;
+  gap: 3rem;
+  padding: 0rem 2rem 4rem 2rem;
 `;
 
 // 최상단 커버이미지 wrap
 export const CoverImageWrapper = styled.div`
-  width: calc(100% + 2rem * 2);
-  height: 20.625rem;
+  /* width: calc(100vw); */
+  width: calc(100vw - (100vw * 1.01 / 100));
+  height: 25rem;
   position: relative;
 `;
 export const CoverImage = styled.img`
@@ -37,8 +38,8 @@ export const CoverImage = styled.img`
 export const UpperWrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  padding-top: 2rem;
+  align-items: center;
+  padding: 2rem;
   gap: 5%;
 `;
 
@@ -276,7 +277,7 @@ export const MaxHeadCountInput = styled.input`
 `;
 export const MyDateRangeIcon = styled(DateRangeIcon)``;
 export const MyReactQuill = styled(ReactQuill)`
-  height: 25rem;
+  height: 23rem;
   margin-left: 0.5rem;
   margin-bottom: 2.2rem;
 `;
@@ -287,6 +288,7 @@ export const UnderWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.87rem;
+  padding: 0 2rem;
 `;
 export const RemarkInput = styled.input`
   width: 100%;

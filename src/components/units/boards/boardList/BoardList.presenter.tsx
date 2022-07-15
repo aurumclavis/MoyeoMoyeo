@@ -7,42 +7,41 @@ import InfiniteScroll from "react-infinite-scroller";
 export default function BoardListPresenter(props: any) {
   return (
     <S.Wrapper>
-      <S.SubHeader
-        ref={props.subHeader}
-        isSubHeaderOnTop={props.isSubHeaderOnTop}
-      >
-        <S.ViewTypeWrapper>
-          <S.ViewTotal
-            onClick={props.onClickViewAccompanyDate}
-            selectAccompanyDate={props.selectAccompanyDate}
-          >
-            날짜로 보기
-          </S.ViewTotal>
-          <S.ViewLatest
-            onClick={props.onClickViewLatest}
-            selectLatest={props.selectLatest}
-          >
-            최신글 보기
-          </S.ViewLatest>
-          <S.ViewAccompany
-            onClick={props.onClickViewRequested}
-            selectRequested={props.selectRequested}
-          >
-            신청리스트
-          </S.ViewAccompany>
-        </S.ViewTypeWrapper>
-        <S.SearchAndCreateWrapper>
-          <S.ViewAsSearch>
-            <S.EventSearchWrapper>
-              <S.MySearchIcon />
-              <S.EventSearchInput placeholder="행사이름으로 검색해보세요!" />
-            </S.EventSearchWrapper>
-          </S.ViewAsSearch>
-          <S.CreateBoard onClick={props.onClickCreateBoard}>
-            글쓰기
-          </S.CreateBoard>
-        </S.SearchAndCreateWrapper>
-      </S.SubHeader>
+      <S.SubHeaderWrapper isSubHeaderOnTop={props.isSubHeaderOnTop}>
+        <S.SubHeader ref={props.subHeader}>
+          <S.ViewTypeWrapper>
+            <S.ViewTotal
+              onClick={props.onClickViewAccompanyDate}
+              selectAccompanyDate={props.selectAccompanyDate}
+            >
+              날짜로 보기
+            </S.ViewTotal>
+            <S.ViewLatest
+              onClick={props.onClickViewLatest}
+              selectLatest={props.selectLatest}
+            >
+              최신글 보기
+            </S.ViewLatest>
+            <S.ViewAccompany
+              onClick={props.onClickViewRequested}
+              selectRequested={props.selectRequested}
+            >
+              신청리스트
+            </S.ViewAccompany>
+          </S.ViewTypeWrapper>
+          <S.SearchAndCreateWrapper>
+            <S.ViewAsSearch>
+              <S.EventSearchWrapper>
+                <S.MySearchIcon />
+                <S.EventSearchInput placeholder="행사이름으로 검색해보세요!" />
+              </S.EventSearchWrapper>
+            </S.ViewAsSearch>
+            <S.CreateBoard onClick={props.onClickCreateBoard}>
+              글쓰기
+            </S.CreateBoard>
+          </S.SearchAndCreateWrapper>
+        </S.SubHeader>
+      </S.SubHeaderWrapper>
       <S.Main>
         <S.DetailViewTypeWrapper>
           <S.EventAndDateTypeWrapper>
@@ -57,47 +56,50 @@ export default function BoardListPresenter(props: any) {
               </S.CarouselWrapper>
             </S.EventTypeWrapper>
             {props.isUseDateChanger && (
-              <S.DateWrapper>
-                <S.DetailViewTypeTitle>날짜선택</S.DetailViewTypeTitle>
-                <S.DateChangerWrapper>
-                  <S.ArrowButton onClick={props.onClickArrowLeft}>
-                    {!props.isWeekly ? (
-                      <S.ArrowLeft src="/icon/double_arrow_left.png" />
-                    ) : (
-                      <S.ArrowLeft src="/icon/arrow_left.png" />
-                    )}
-                  </S.ArrowButton>
-                  <S.DateView>
-                    <S.DateStart>
-                      {props.fromToDate.from
-                        .replace("-", "년 ")
-                        .replace("-", "월 ") + "일"}
-                    </S.DateStart>
-                    ~
-                    <S.DateEnd>
-                      {props.fromToDate.to
-                        .replace("-", "년 ")
-                        .replace("-", "월 ") + "일"}
-                    </S.DateEnd>
-                  </S.DateView>
-                  <S.ArrowButton onClick={props.onClickArrowRight}>
-                    {!props.isWeekly ? (
-                      <S.ArrowRight src="/icon/double_arrow_right.png" />
-                    ) : (
-                      <S.ArrowRight src="/icon/arrow_right.png" />
-                    )}
-                  </S.ArrowButton>
-                </S.DateChangerWrapper>
-                {!props.isWeekly ? (
-                  <S.WeeklyViewButton onClick={props.onClickWeeklyMonthly}>
-                    주 단위 이동
-                  </S.WeeklyViewButton>
-                ) : (
-                  <S.MonthlyViewButton onClick={props.onClickWeeklyMonthly}>
-                    월 단위 이동
-                  </S.MonthlyViewButton>
-                )}
-              </S.DateWrapper>
+              <>
+                <S.SeparateLine />
+                <S.DateWrapper>
+                  <S.DetailViewTypeTitle>날짜선택</S.DetailViewTypeTitle>
+                  <S.DateChangerWrapper>
+                    <S.ArrowButton onClick={props.onClickArrowLeft}>
+                      {!props.isWeekly ? (
+                        <S.ArrowLeft src="/icon/double_arrow_left.png" />
+                      ) : (
+                        <S.ArrowLeft src="/icon/arrow_left.png" />
+                      )}
+                    </S.ArrowButton>
+                    <S.DateView>
+                      <S.DateStart>
+                        {props.fromToDate.from
+                          .replace("-", "년 ")
+                          .replace("-", "월 ") + "일"}
+                      </S.DateStart>
+                      ~
+                      <S.DateEnd>
+                        {props.fromToDate.to
+                          .replace("-", "년 ")
+                          .replace("-", "월 ") + "일"}
+                      </S.DateEnd>
+                    </S.DateView>
+                    <S.ArrowButton onClick={props.onClickArrowRight}>
+                      {!props.isWeekly ? (
+                        <S.ArrowRight src="/icon/double_arrow_right.png" />
+                      ) : (
+                        <S.ArrowRight src="/icon/arrow_right.png" />
+                      )}
+                    </S.ArrowButton>
+                  </S.DateChangerWrapper>
+                  {!props.isWeekly ? (
+                    <S.WeeklyViewButton onClick={props.onClickWeeklyMonthly}>
+                      주별 이동
+                    </S.WeeklyViewButton>
+                  ) : (
+                    <S.MonthlyViewButton onClick={props.onClickWeeklyMonthly}>
+                      월별 이동
+                    </S.MonthlyViewButton>
+                  )}
+                </S.DateWrapper>
+              </>
             )}
           </S.EventAndDateTypeWrapper>
           <S.RecruitmentViewTypeButton

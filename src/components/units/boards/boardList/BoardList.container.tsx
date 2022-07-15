@@ -4,9 +4,8 @@ import { useRouter } from "next/router";
 import _ from "lodash";
 import { useQuery } from "@apollo/client";
 import {
-  changeFromToMonthly,
+  defaultFromToMonthly,
   changeFromToWeekly,
-  defaultFromToWeekly,
   MonthlyMoveNext,
   MonthlyMovePrev,
   weeklyMoveNext,
@@ -45,7 +44,7 @@ export default function BoardListContainer() {
       eventName: "동탄고양이플리마켓",
       maxHeadCount: 2,
       accompanyDate: { start: "2022-07-20", end: "2022-07-20" },
-      requested: true,
+      requested: false,
       category: "뮤지컬",
     },
     {
@@ -75,7 +74,7 @@ export default function BoardListContainer() {
       eventName: "동탄고양이플리마켓",
       maxHeadCount: 2,
       accompanyDate: { start: "2022-07-28", end: "2022-07-28" },
-      requested: true,
+      requested: false,
       category: "굿즈행사",
     },
     {
@@ -142,7 +141,7 @@ export default function BoardListContainer() {
 
   // 디폴트날짜
   const [fromToDate, setFromToDate] = useState({
-    ...defaultFromToWeekly(getDate(new Date())),
+    ...defaultFromToMonthly(getDate(new Date())),
   });
 
   // 동행리스트 페이지의 기본설정인 동행일오름차순으로 정렬을 위한 깊은복사 + 날짜필터링으로 데이터 추출
@@ -223,11 +222,11 @@ export default function BoardListContainer() {
     setViewTypeData(rawData.filter((el) => el.requested));
   };
   // 날짜선택기능 부분
-  const [isWeekly, setIsWeekly] = useState(true);
+  const [isWeekly, setIsWeekly] = useState(false);
 
   const onClickWeeklyMonthly = () => {
     isWeekly
-      ? setFromToDate(changeFromToMonthly(fromToDate.from))
+      ? setFromToDate(defaultFromToMonthly(fromToDate.from))
       : setFromToDate(changeFromToWeekly(fromToDate.from));
     setIsWeekly((prev) => !prev);
   };

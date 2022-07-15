@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import BoardWritePresenter from "./BoardWrite.presenter";
-import RandomCoverImg from "./randomCoverImg";
+import { randomCoverImg } from "./randomCoverImg";
 
 export default function BoardWriteContainer(props: any) {
   const { onClickMoveToPage } = useMoveToPage();
-  const { register, handleSubmit, setValue, getValues, trigger } = useForm();
+  const { register, handleSubmit, setValue, trigger } = useForm();
   const [address, setAddress] = useState("");
 
   // 이미지 등록부분
@@ -43,7 +43,10 @@ export default function BoardWriteContainer(props: any) {
 
   // 랜덤커버이미지 부분
   const dataCategory = "축제";
-  const randomCoverUrl = RandomCoverImg(dataCategory);
+  const [randomCoverUrl, setRandomCoverUrl] = useState("");
+  useEffect(() => {
+    setRandomCoverUrl(randomCoverImg(dataCategory));
+  }, []);
 
   // 동행일자 데이트피커 부분
   const [accompanyDate, setAccompanyDate] = useState({ start: "", end: "" });
