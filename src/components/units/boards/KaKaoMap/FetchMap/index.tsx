@@ -61,57 +61,57 @@ export default function KaKaoMapFetch(props: any) {
         // 마커가 지도 위에 표시되도록 설정합니다
         marker.setMap(map);
 
-        const content = `
-          <Wrapper className="wrap">
-            <Info className="info">
-              <Title className="title">
-                카카오 스페이스닷원
-                <Close className="close" onClick={closeOverlay} title="닫기"></Close>
-              </Title>
-              <Body className="body">
-                <ImgWrapper>
-                  <Img className="img"
-                    src="https://cfile181.uf.daum.net/image/250649365602043421936D"
-                    width="73"
-                    height="70"
-                    alt="행사사진"
-                  />
-                </ImgWrapper>
-                <Desc className="desc">
-                  <Location className="ellipsis">제주특별자치도 제주시 첨단로 242</Location>
-                  <Homepage>
-                    <a
-                      href="https://www.kakaocorp.com/main"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="link"
-                    >
-                      홈페이지
-                    </a>
-                  </Homepage>
-                </Desc>
-              </Body>
-            </Info>
-          </Wrapper>
-        `;
-        // 마커 위에 커스텀오버레이를 표시합니다
-        // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-        const overlay = new window.kakao.maps.CustomOverlay({
-          content: content,
-          map: map,
-          position: marker.getPosition(),
-        });
-        console.log(overlay);
+        // const content = `
+        //   <Wrapper className="wrap">
+        //     <Info className="info">
+        //       <Title className="title">
+        //         카카오 스페이스닷원
+        //         <Close className="close" onClick={closeOverlay} title="닫기"></Close>
+        //       </Title>
+        //       <Body className="body">
+        //         <ImgWrapper>
+        //           <Img className="img"
+        //             src="https://cfile181.uf.daum.net/image/250649365602043421936D"
+        //             width="73"
+        //             height="70"
+        //             alt="행사사진"
+        //           />
+        //         </ImgWrapper>
+        //         <Desc className="desc">
+        //           <Location className="ellipsis">제주특별자치도 제주시 첨단로 242</Location>
+        //           <Homepage>
+        //             <a
+        //               href="https://www.kakaocorp.com/main"
+        //               target="_blank"
+        //               rel="noreferrer"
+        //               className="link"
+        //             >
+        //               홈페이지
+        //             </a>
+        //           </Homepage>
+        //         </Desc>
+        //       </Body>
+        //     </Info>
+        //   </Wrapper>
+        // `;
+        // // 마커 위에 커스텀오버레이를 표시합니다
+        // // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+        // const overlay = new window.kakao.maps.CustomOverlay({
+        //   content: content,
+        //   map: map,
+        //   position: marker.getPosition(),
+        // });
+        // console.log(overlay);
 
-        // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-        window.kakao.maps.event.addListener(marker, "click", function () {
-          overlay.setMap(map);
-        });
+        // // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+        // window.kakao.maps.event.addListener(marker, "click", function () {
+        //   overlay.setMap(map);
+        // });
 
-        // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-        function closeOverlay() {
-          overlay.setMap(null);
-        }
+        // // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+        // function closeOverlay() {
+        //   overlay.setMap(null);
+        // }
       });
     };
   }, [props]);
