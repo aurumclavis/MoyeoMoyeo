@@ -5,6 +5,7 @@ import _, { throttle } from "lodash";
 
 export default function BoardDetailContainer() {
   const router = useRouter();
+
   // 네비 부분
   const [activeTab, setActiveTab] = useState("detail");
   const navRef = useRef(null);
@@ -80,10 +81,22 @@ export default function BoardDetailContainer() {
     }, 500);
   };
 
+  // 우측 날개부분
+  // 작성자인 경우
+  const [requestAccepted, setRequestAccepted] = useState(false);
+  const [requestRefused, setRequestRefused] = useState(false);
+  const onClickAcceptRequest = () => {
+    setRequestAccepted(true);
+  };
+  const onClickRefuseRequest = () => {
+    setRequestRefused(true);
+  };
+  // 열람자인 경우
+
   // 목업을 위한 하드코딩
   const lat = 37.5378;
   const lng = 126.8939;
-  const [isMyBoard] = useState(false);
+  const [isMyBoard] = useState(true);
   const [isCompleted] = useState(false);
   const [isSendRequestUser] = useState(false);
   const onClickGoEventDetail = () => {
@@ -105,6 +118,10 @@ export default function BoardDetailContainer() {
       isCompleted={isCompleted}
       isSendRequestUser={isSendRequestUser}
       onClickGoEventDetail={onClickGoEventDetail}
+      onClickAcceptRequest={onClickAcceptRequest}
+      onClickRefuseRequest={onClickRefuseRequest}
+      requestAccepted={requestAccepted}
+      requestRefused={requestRefused}
     />
   );
 }

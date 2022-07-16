@@ -276,12 +276,12 @@ export const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.8rem;
   cursor: pointer;
 `;
 export const Item = styled.div`
   width: 100%;
-  height: 8rem;
+  height: 9rem;
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
@@ -296,16 +296,16 @@ export const Item = styled.div`
 export const ItemLeft = styled.div`
   width: 90%;
   display: flex;
-  gap: 0.7rem;
+  gap: 1rem;
   padding: 10px;
 `;
 export const EventImage = styled.img`
-  width: 5.938rem;
+  width: 14%;
   border-radius: 5px;
   object-fit: cover;
 `;
 export const ItemMain = styled.div`
-  width: 100%;
+  width: 86%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -324,6 +324,7 @@ export const Title = styled.div`
   font-weight: 500;
 `;
 export const Remark = styled.div`
+  padding-left: 0.5rem;
   font-size: 0.9rem;
 `;
 export const Footer = styled.div`
@@ -369,12 +370,20 @@ export const ItemRight = styled.div`
   width: 10%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   ${(props: any) => props.requested && "background-color: #FFD24C"}
 `;
 export const PaperPlaneImage = styled.img`
   width: 60%;
+`;
+export const ItemRightText = styled.div`
+  letter-spacing: 0.3px;
+  font-size: 1rem;
+  color: #323232;
+  ${(props: any) => props.requested && "color: white;"}
 `;

@@ -148,9 +148,17 @@ export default function BoardListPresenter(props: any) {
               </S.ItemLeft>
               <S.ItemRight requested={el.requested}>
                 {el.requested ? (
-                  <S.PaperPlaneImage src="/icon/symbollogo_removebg.png" />
+                  <>
+                    <S.PaperPlaneImage src="/icon/symbollogo_removebg.png" />
+                    <S.ItemRightText requested={el.requested}>
+                      요청중
+                    </S.ItemRightText>
+                  </>
                 ) : (
-                  <S.PaperPlaneImage src="/icon/simbollogo.png" />
+                  <>
+                    <S.PaperPlaneImage src="/icon/simbollogo.png" />
+                    <S.ItemRightText>동행신청</S.ItemRightText>
+                  </>
                 )}
               </S.ItemRight>
             </S.Item>
