@@ -145,40 +145,7 @@ export const MobileAuthCheckBtn = styled.div`
   }
 `;
 
-//checkbox
-export const CheckBoxWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  font-size: 0.875rem;
-  margin-bottom: 30px;
-`;
-export const CheckedIcon = styled.input`
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-`;
-
-export const CommonCheckBox = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-
-export const SubCommonCheckBox = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  margin-bottom: 10px;
-`;
-export const CheckBoxTitle = styled.span`
-  text-align: center;
-`;
-
 //submit
-
 export const ButtonWrapper = styled.div`
   width: 100%;
   height: 56px;
