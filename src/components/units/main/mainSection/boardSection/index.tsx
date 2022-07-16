@@ -178,7 +178,7 @@ const BoardSection = (props) => {
     autoplay: true,
     autoplaySpeed: 5000,
     pauseOnHover: true,
-    // arrows: true,
+    arrows: false,
     dots: true,
     responsive: [
       // 반응형
