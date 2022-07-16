@@ -3,12 +3,15 @@ import styled from "@emotion/styled";
 export const RequestUserListWrapper = styled.div`
   width: 100%;
   display: flex;
-  ${(props: any) => props.isDetailPage && "flex-direction: column;"}
+  flex-direction: column;
+  /* ${(props: any) => props.isDetailPage && "flex-direction: column;"} */
+
   align-items: center;
   justify-content: center;
 `;
 export const RequestUserWrapper = styled.div`
   width: 90%;
+  width: ${(props) => !props.isDetailPage && "100%"};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,6 +58,7 @@ export default function RequestUserList(props: any) {
         .map((el) => (
           <RequestUserWrapper
             key={el}
+            isDetailPage={props.isDetailPage}
             decided={props.requestAccepted || props.requestRefused}
           >
             <RequestUserName>{el}</RequestUserName>
