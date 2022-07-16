@@ -24,7 +24,7 @@ export default function ApolloSetting(props: any) {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-    credentials: "include",
+    //credentials: "include",
   });
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
@@ -45,10 +45,10 @@ export default function ApolloSetting(props: any) {
     }
   });
   const client = new ApolloClient({
-    uri: "http://34.64.202.27:3000/graphql",
-    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
+    //uri: "http://34.64.202.27:3000/graphql",
+    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
-    connectToDevTools: true,
+    //connectToDevTools: true,
   });
   return (
     <>
