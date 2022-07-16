@@ -11,11 +11,6 @@ export const FETCH_PRODUCTS = gql`
       viewCount
       createdAt
       isSoldout
-      seller {
-        id
-        name
-        email
-      }
     }
   }
 `;

@@ -16,6 +16,8 @@ export const FETCH_PRODUCT = gql`
         id
         email
         phone
+        manager
+        institution
         isAdmin
       }
       likedUsers {
