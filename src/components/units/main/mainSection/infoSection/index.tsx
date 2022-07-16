@@ -35,20 +35,17 @@ const Title = styled.h1`
 const Wrapper = styled(Slider)`
   width: 100%;
   border: 20px;
-  height: 200px;
   margin: 0;
   @media ${breakPoints.mobile} {
-    height: 80px;
+    height: 80%;
   }
 `;
 
 const InfoImg = styled.img`
   width: 100%;
-  height: 200px;
   @media ${breakPoints.mobile} {
     width: 100%;
-    height: 80px;
-    flex-wrap: wrap;
+    height: 80%;
   }
 `;
 
@@ -60,6 +57,7 @@ export default function InfoSection() {
     autoplay: true,
     autoplaySpeed: 7000,
     dots: true,
+    arrows: false,
   };
 
   return (

@@ -74,40 +74,31 @@ const ImageWrapper = styled.div`
 `;
 const EventImg = styled.img`
   width: 100%;
-  /* height: 400px; */
-  /* border-radius: 50%; */
 `;
 const EventWrapper = styled.div`
   width: 60%;
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
   @media ${breakPoints.mobile} {
     width: 100%;
-    height: 450px;
     justify-content: center;
   }
 `;
 const EventsList = styled.div`
-  width: 31%;
-  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* transition: 0.2s;
+  transition: 0.2s;
   box-shadow: 1px 3px 1px 0px #00000033;
   :hover {
     box-shadow: 3px 5px 1px 0px #ffd24c;
     transform: translateY(-5px);
-  } */
-  @media ${breakPoints.mobile} {
-    height: 200px;
   }
 `;
 const EventsImages = styled.img`
   width: 100%;
-  height: 250px;
+  /* height: 250px; */
 `;
 const InnderWrapper = styled.div`
   width: 100%;

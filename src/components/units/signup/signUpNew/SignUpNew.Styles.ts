@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-
+interface IButtonStyledProps {
+  isActive?: boolean;
+}
 //전체;
 export const OutWrapper = styled.div`
   width: 100%;
@@ -67,20 +69,16 @@ export const NumberInputs = styled.div`
   justify-content: space-between;
   gap: 10px;
 `;
-export const MobileAuthBtn = styled.div`
+export const MobileAuthBtn = styled.button`
   width: 123px;
   height: 37px;
   text-align: center;
-  padding-top: 7px;
   border: 1px solid #edf0f5;
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.825rem;
-  :disabled {
-    background-color: #edf0f5;
-  }
-  /* background-color: ${(props) =>
-    props.isActive ? "#FFD24C" : "#edf0f5"}; */
+  background-color: ${(props: IButtonStyledProps) =>
+    props.isActive ? "#FFD24C" : "edf0f5"};
 `;
 
 //인증번호
@@ -186,14 +184,13 @@ export const ButtonWrapper = styled.div`
   height: 56px;
 `;
 export const SubmitBtn = styled.button`
-  /* width: 100%;
-  height: 56px; */
   text-align: center;
   border: 1px solid #edf0f5;
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 20px;
-  background-color: ${(props) => (props.isActive ? "#FFD24C" : "#edf0f5")};
+  background-color: ${(props: IButtonStyledProps) =>
+    props.isActive ? "#FFD24C" : "#edf0f5"};
 `;
 
 // footer

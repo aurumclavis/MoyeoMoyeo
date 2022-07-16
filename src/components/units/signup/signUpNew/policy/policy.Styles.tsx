@@ -11,7 +11,7 @@ export const OutWapper = styled.div`
 `;
 export const Wrapper = styled.div`
   width: 100%;
-  height: 300px;
+  height: auto;
   display: flex;
   flex-direction: column;
 `;
@@ -31,7 +31,6 @@ export const CancelIcon = styled.img`
   cursor: pointer;
 `;
 export const PolicyContents = styled.div`
-  padding-top: 15px;
+  padding: 15px 0px;
   font-size: 0.625rem;
-  height: 300px;
 `;

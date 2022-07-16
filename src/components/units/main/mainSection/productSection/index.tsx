@@ -58,43 +58,24 @@ const More = styled.span`
 const InnerWrapper = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 10px;
   @media ${breakPoints.mobile} {
-    width: 100%;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 `;
-// const MoblieInnerWrapper = styled.div`
-//   display: none;
-//   @media ${breakPoints.mobile} {
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     align-items: center;
-//     flex-wrap: wrap;
-//   }
-// `;
-// const MySlider = styled(Slider)`
-//   width: 100%;
-//   display: flex;
-//   margin-top: 40px;
-//   @media (max-width: 767px) {
-//     width: 100%;
-//     margin-top: 0px;
-//   }
-// `;
 const ProductList = styled.div`
-  width: 240px;
-  height: 300px;
+  /* width: 240px;
+  height: 300px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   @media ${breakPoints.mobile} {
-    width: 30%;
+    /* width: 30%;
     flex-wrap: wrap;
-    height: 200px;
+    height: 200px; */
   }
 `;
 const ProductImages = styled.img`

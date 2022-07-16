@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 const Input = styled.input`
   width: 100%;
-  height: 52px;
+  height: 45px;
   text-align: center;
   border: 1px solid rgba(198, 211, 230, 1);
   border-radius: 5px;

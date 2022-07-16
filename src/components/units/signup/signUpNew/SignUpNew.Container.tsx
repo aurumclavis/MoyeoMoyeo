@@ -5,8 +5,9 @@ import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { CREATE_USER, SEND_SMS } from "./SignUpNew.Queries";
+import { CREATE_USER, SEND_SMS, VALIDATE_PHONE } from "./SignUpNew.Queries";
 import { useMutation } from "@apollo/client";
+import { Modal } from "antd";
 const schema = yup.object({
   name: yup
     .string()
@@ -24,13 +25,21 @@ const schema = yup.object({
       /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W))(?=.*[!@#$%^*+=-]).{8,16}$/,
       "비밀번호는 영문, 숫자, 특수문자를 포함한 8~16자리로 입력바랍니다."
     ),
-  password2: yup
+  passwordCheck: yup
     .string()
     .required("비밀번호는 확인은 필수 입력 사항입니다.")
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다."),
   phoneNumber: yup
-    .number()
+    .string()
     .required("핸드폰 번호는 필수 입력 사항입니다.")
+    .typeError("숫자만 입력가능합니다."),
+  phoneNumber2: yup
+    .string()
+    .required("핸드폰 번호는 필수 입력 사항입니다.")
+    .typeError("숫자만 입력가능합니다."),
+  validateToken: yup
+    .number()
+    .required("필수 사항입니다.")
     .typeError("숫자만 입력가능합니다."),
 });
 
@@ -38,39 +47,61 @@ export default function SignUpNewPage() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
   const [sendSMS] = useMutation(SEND_SMS);
+  const [validatePhone] = useMutation(VALIDATE_PHONE);
+  const [isActive, setIsActive] = useState(true);
+  const [phoneNum, setPhoneNum] = useState();
+
   const { onClickMoveToPage } = useMoveToPage();
-  const [phone2ndNum, setPhone2ndNum] = useState<number>();
-  const [phone3rdNum, setPhone3rdNum] = useState<number>();
-  const [isActive, setIsActive] = useState(false);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
-  const { register, handleSubmit, formState, setValue, trigger, reset, watch } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-    });
-  const onChange2ndNum = (event) => {
-    setPhone2ndNum(event.target.value);
-  };
-  const onChange3ndNum = (event) => {
-    setPhone3rdNum(event.target.value);
+  const { register, handleSubmit, formState, watch } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
+  // moblie 비활성화용
+  const onChangeMobile = (event) => {
+    setIsActive(event.target.inpuvt);
   };
 
-  const onClickGetNumber = () => {
+  // moblie 인증번호 요청
+  const phone = "010" + watch("phoneNumber") + watch("phoneNumber2");
+  const tokenInput = watch("validateToken");
+  const onClickGetNumber = async () => {
+    console.log(phone);
     setIsReadyForNum(true);
-    // if (phone2ndNum.length >= 4) {
-    //   phone3rdNum.current.focus();
-    //   return;
-    // }
+    try {
+      await sendSMS({
+        variables: { phone },
+      });
+      Modal.success({ content: "인증번호를 전송하였습니다." });
+    } catch (error) {
+      Modal.error({ content: "인증번호 전송에 실패하였습니다." });
+    }
+  };
+  // moblie 인증번호 확인
+  const onClickConfirm = async () => {
+    try {
+      await validatePhone({
+        variables: { phone, tokenInput },
+      });
+      Modal.success({ content: "핸드폰 번호인증이 완료되었습니다." });
+      setIsDone(true);
+    } catch (error) {
+      setIsDone(false);
+      setIsReadyForNum(true);
+      Modal.error({ content: "핸드폰 번호인증을 다시 해주세요." });
+    }
   };
 
-  const onClickConfirm = () => {
-    setIsReadyForNum(false);
-    setIsDone(true);
-  };
-
-  const phone = "010" + phone2ndNum + phone3rdNum;
+  // 회원가입
   const onClickCreateUser = async (data: any) => {
+    // if (isDone === false) {
+    //   return Modal.info({ content: "핸드폰 번호를 인증해주세요" });
+    // }
+    // if(){
+    //   return Modal.info({ content: "중복된 이메일(ID)입니다." });
+    // }
+
     console.log(data);
     try {
       await createUser({
@@ -83,10 +114,10 @@ export default function SignUpNewPage() {
           },
         },
       });
-      alert("회원가입완료");
+      Modal.success({ content: "회원가입에 성공했습니다!" });
       router.push(`/login`);
     } catch (error) {
-      alert("가입안됨 확인필요");
+      Modal.error({ content: "(회원가입실패) 다시 한 번 확인해주세요." });
     }
   };
 
@@ -101,16 +132,13 @@ export default function SignUpNewPage() {
       isActive={isActive}
       isReadyForNum={isReadyForNum}
       isDone={isDone}
-      phone2ndNum={phone2ndNum}
-      phone3rdNum={phone3rdNum}
-      onChange2ndNum={onChange2ndNum}
-      onChange3ndNum={onChange3ndNum}
       onClickGetNumber={onClickGetNumber}
       onClickConfirm={onClickConfirm}
       // signup
       onClickCreateUser={onClickCreateUser}
       //login
       onClickMoveToPage={onClickMoveToPage}
+      onChangeMobile={onChangeMobile}
     />
   );
 }

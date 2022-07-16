@@ -23,9 +23,6 @@ const Input = styled.input`
   display: flex;
 `;
 const ShowModal = styled.span`
-  /* width: 10px;
-  height: 10px;
-  margin-top: 10px; */
   display: flex;
   align-items: center;
   text-align: center;
@@ -38,15 +35,13 @@ const ShowModal = styled.span`
 `;
 export default function Checkbox() {
   const [checkList, setCheckList] = useState([]);
+  // 이용약관 모달
   const [visible, setVisible] = useState(false);
-  const [Isvisible, setIsVisible] = useState(false);
   const onClickShowPolicyModal = () => {
     setVisible(true);
   };
-  const onClickShowPersonalModal = () => {
-    setIsVisible(true);
-  };
 
+  // 체크박스 전체
   const onClickCheckAll = () => {
     if (checkList.length !== dataList.length) {
       setCheckList(dataList);
@@ -55,6 +50,7 @@ export default function Checkbox() {
     }
   };
 
+  // 체크박스 개별
   const onCheckedItem = (list) => {
     if (checkList.every((cur) => cur.id !== list.id)) {
       setCheckList([...checkList, list]);
@@ -76,7 +72,6 @@ export default function Checkbox() {
         checked={checkList.length === dataList.length}
       />
       <SeletAll>모두 선택</SeletAll>
-
       {dataList.map((list, index) => (
         <InputBox key={index}>
           <Input
@@ -86,11 +81,9 @@ export default function Checkbox() {
             // id="checkbox_id"
           />
           <Data>{list.data}</Data>
+
           {list.id === 2 && (
-            <ShowModal
-              src="/icon/double_arrow_right.png"
-              onClick={onClickShowPolicyModal}
-            >
+            <ShowModal onClick={onClickShowPolicyModal}>
               [이용약관확인]
             </ShowModal>
           )}
@@ -101,6 +94,13 @@ export default function Checkbox() {
   );
 }
 
+// 체크박스 data
+const dataList = [
+  { id: 1, data: "[필수] 개인정보 취급방침에 동의합니다." },
+  { id: 2, data: "[필수] 이용약관에 동의합니다" },
+  { id: 3, data: "[선택] 마켓팅 정보이용에 동의합니다." },
+];
+
 // react hook form
 // {...register("checkbox",{
 //   required:{
@@ -108,12 +108,3 @@ export default function Checkbox() {
 //     message:'[필수]를 확인해주세요.'
 //   }
 // }}
-
-// 토글
-// el.id<3 &&( 아이디 값이 1,2면 옆에 [약관보기]
-
-const dataList = [
-  { id: 1, data: "[필수] 개인정보 취급방침에 동의합니다." },
-  { id: 2, data: "[필수] 이용약관에 동의합니다" },
-  { id: 3, data: "[선택] 마켓팅 정보이용에 동의합니다." },
-];
