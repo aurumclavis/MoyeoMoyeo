@@ -150,9 +150,7 @@ export default function BoardListPresenter(props: any) {
                 {el.requested ? (
                   <>
                     <S.PaperPlaneImage src="/icon/symbollogo_removebg.png" />
-                    <S.ItemRightText requested={el.requested}>
-                      요청중
-                    </S.ItemRightText>
+                    <S.ItemRightText>요청중</S.ItemRightText>
                   </>
                 ) : (
                   <>

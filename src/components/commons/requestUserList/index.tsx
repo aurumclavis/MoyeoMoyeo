@@ -44,8 +44,8 @@ export const RefuseButton = styled.button`
   ${(props: any) => props.requestAccepted && "width:0;"}
   border: none;
   border-radius: 5px;
-  background-color: #ec994b;
-  color: white;
+  background-color: #d2d2d2;
+  color: #323232;
   transition: 0.5s;
   cursor: pointer;
 `;

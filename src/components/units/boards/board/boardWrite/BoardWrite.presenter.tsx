@@ -136,7 +136,10 @@ export default function BoardWritePresenter(props: any) {
           <S.ItemText>이벤트 위치</S.ItemText>
           <S.MapWrapper>
             <S.TransportationWrapper>
-              <S.TransportationSelect onClick={props.onClickTransportSelect}>
+              <S.TransportationSelect
+                onClick={props.onClickTransportSelect}
+                isDropTransport={props.isDropTransport}
+              >
                 <S.MyArrowRightIcon isDropTransport={props.isDropTransport} />
                 이동수단선택
               </S.TransportationSelect>

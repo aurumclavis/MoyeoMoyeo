@@ -4,6 +4,7 @@ import FestivalIcon from "@mui/icons-material/Festival";
 import GroupsIcon from "@mui/icons-material/Groups";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import ListIcon from "@mui/icons-material/List";
+import { breakPoints } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -11,12 +12,14 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding-bottom: 4rem;
+  @media ${breakPoints.mobile} {
+    gap: 1rem;
+  }
 `;
 
 // 게시글viewType변경 탭이 있는 서브헤더
 export const SubHeaderWrapper = styled.div`
   width: calc(100vw - (100vw * 1.01 / 100));
-  /* width: 100vw; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,6 +29,9 @@ export const SubHeaderWrapper = styled.div`
   z-index: 1;
   ${(props: any) =>
     props.isSubHeaderOnTop && "border-bottom: 1px solid #d2d2d2;"}
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 export const SubHeader = styled.div`
   width: 75rem;
@@ -33,6 +39,13 @@ export const SubHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 6rem;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    padding: 0 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 `;
 export const ViewTypeWrapper = styled.div`
   display: flex;
@@ -49,6 +62,9 @@ export const ViewTotal = styled.span`
     props.selectAccompanyDate &&
     "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
+  @media ${breakPoints.mobile} {
+    height: 2.7rem;
+  }
 `;
 export const ViewLatest = styled.span`
   height: 3.75rem;
@@ -60,6 +76,9 @@ export const ViewLatest = styled.span`
     props.selectLatest &&
     "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
+  @media ${breakPoints.mobile} {
+    height: 2.7rem;
+  }
 `;
 export const ViewAccompany = styled.span`
   height: 3.75rem;
@@ -71,11 +90,19 @@ export const ViewAccompany = styled.span`
     props.selectRequested &&
     "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
+  @media ${breakPoints.mobile} {
+    height: 2.7rem;
+  }
 `;
 export const SearchAndCreateWrapper = styled.div`
   display: flex;
   gap: 2rem;
   align-items: center;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+  }
 `;
 export const ViewAsSearch = styled.div`
   width: 16rem;
@@ -136,6 +163,9 @@ export const Main = styled.div`
   align-items: center;
   gap: 1.5rem;
   padding: 2rem 6rem 0rem 6rem;
+  @media ${breakPoints.mobile} {
+    padding: 0;
+  }
 `;
 
 // 카테고리, 날짜선택, 모집여부 필터 wrap
@@ -155,21 +185,35 @@ export const EventAndDateTypeWrapper = styled.div`
   padding: 1rem;
   border: 1px solid #d2d2d2;
   border-radius: 5px;
+  @media ${breakPoints.mobile} {
+    padding: 0.5rem;
+  }
 `;
-// 행사카테고리 type을 선택하는 캐러샐row
+// 행사카테고리 type을 선택하는 캐러샐을 감싸는 wrap
 export const EventTypeWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 1rem 2rem 1rem 2rem;
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+  }
 `;
 export const DetailViewTypeTitle = styled.div`
   width: 10%;
   font-weight: 600;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 export const CarouselWrapper = styled.div`
   width: 85%;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    font-size: 0.8rem;
+  }
 `;
 export const ArrowRightString = styled.div`
   z-index: 1;
@@ -185,11 +229,23 @@ export const DateWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem 1rem 2rem;
+  @media ${breakPoints.mobile} {
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+  }
 `;
 export const DateChangerWrapper = styled.div`
+  width: 90%;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
+  @media ${breakPoints.mobile} {
+    width: 70%;
+    gap: 1rem;
+  }
 `;
 export const ArrowButton = styled.button`
   width: 2rem;
@@ -211,13 +267,18 @@ export const ArrowRight = styled.img`
   padding-left: 3px;
 `;
 export const DateView = styled.div`
-  width: 23.125rem;
+  width: 60%;
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 1.9rem;
   border-radius: 5px;
   border: 1px solid #f1eee9;
-  background-color: white;
+  @media ${breakPoints.mobile} {
+    font-size: 0.8rem;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.2rem;
+  }
 `;
 export const DateStart = styled.div`
   letter-spacing: 0.06rem;
@@ -236,6 +297,9 @@ export const MonthlyViewButton = styled.button`
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
+  @media ${breakPoints.mobile} {
+    width: 20%;
+  }
 `;
 export const WeeklyViewButton = styled.button`
   width: 6.4rem;
@@ -249,6 +313,9 @@ export const WeeklyViewButton = styled.button`
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
+  @media ${breakPoints.mobile} {
+    width: 23%;
+  }
 `;
 // 모집중 보기 토글버튼
 export const RecruitmentViewTypeButton = styled.button`
@@ -268,6 +335,9 @@ export const RecruitmentViewTypeButton = styled.button`
       ? "color:white;background-color:#ffd24c; border-color:#FFE69A;"
       : "color:black;background-color:white;border-color:#d2d2d2;"}
   cursor: pointer;
+  @media ${breakPoints.mobile} {
+    width: 90%;
+  }
 `;
 
 // 리스트 무한스크롤 wrap
@@ -292,17 +362,30 @@ export const Item = styled.div`
     box-shadow: 0px 2px 4px 2px #00000033;
     transform: translateY(-5px);
   }
+  @media ${breakPoints.mobile} {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 export const ItemLeft = styled.div`
   width: 90%;
   display: flex;
   gap: 1rem;
   padding: 10px;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 export const EventImage = styled.img`
   width: 14%;
   border-radius: 5px;
   object-fit: cover;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    height: 15rem;
+  }
 `;
 export const ItemMain = styled.div`
   width: 86%;
@@ -310,10 +393,17 @@ export const ItemMain = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 0.7rem;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    gap: 1.5rem;
+  }
 `;
 export const Header = styled.div`
   display: flex;
   gap: 0.5rem;
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+  }
 `;
 export const Recruitment = styled.div`
   ${(props: any) => (props.recruited ? "color : #FFD24C;" : "color : #00AD07;")}
@@ -322,10 +412,16 @@ export const Title = styled.div`
   width: 80%;
   font-size: 1rem;
   font-weight: 500;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 export const Remark = styled.div`
   padding-left: 0.5rem;
   font-size: 0.9rem;
+  @media ${breakPoints.mobile} {
+    margin-bottom: 1rem;
+  }
 `;
 export const Footer = styled.div`
   display: flex;
@@ -333,6 +429,10 @@ export const Footer = styled.div`
   font-size: 0.8rem;
   color: #d2d2d2;
   line-height: 25px;
+  @media ${breakPoints.mobile} {
+    flex-wrap: wrap;
+    gap: 0 1.5rem;
+  }
 `;
 export const Event = styled.div`
   display: flex;
@@ -376,14 +476,25 @@ export const ItemRight = styled.div`
   gap: 1rem;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  ${(props: any) => props.requested && "background-color: #FFD24C"}
+  ${(props: any) =>
+    props.requested && "background-color: #FFD24C; color: white;"}
+  @media ${breakPoints.mobile} {
+    padding: 1rem;
+    width: 100%;
+    flex-direction: row;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 5px;
+  }
 `;
 export const PaperPlaneImage = styled.img`
   width: 60%;
+  @media ${breakPoints.mobile} {
+    width: 3rem;
+    height: auto;
+  }
 `;
 export const ItemRightText = styled.div`
   letter-spacing: 0.3px;
   font-size: 1rem;
   color: #323232;
-  ${(props: any) => props.requested && "color: white;"}
 `;

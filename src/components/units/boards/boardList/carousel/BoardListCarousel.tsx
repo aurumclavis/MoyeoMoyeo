@@ -12,6 +12,9 @@ const Wrapper = styled.div`
     opacity: 0.6;
     color: #15133c;
   }
+  .slick-prev:before {
+    opacity: 0;
+  }
 `;
 const EachWrapper = styled.div``;
 
@@ -22,6 +25,15 @@ export default function UnevenSetsFinite(props: any) {
     speed: 700,
     slidesToScroll: 3,
     slidesToShow: 7,
+    responsive: [
+      // 반응형
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+    ],
   };
   const [clickedIndex, setClickedIndex] = useState(0);
   const [categoryName, setCategoryName] = useState("");

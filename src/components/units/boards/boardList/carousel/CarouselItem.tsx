@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { breakPoints } from "../../../../../commons/styles/media";
 
 const Item = styled.div`
   width: 90%;
@@ -14,6 +15,10 @@ const Item = styled.div`
   ${(props: any) => props.isViewTotal && "background-color : #F1EEE9;"}
   ${(props: any) => props.clicked && "background-color : #F1EEE9;"}
   cursor: pointer;
+  @media ${breakPoints.mobile} {
+    width: 90%;
+    height: 3rem;
+  }
 `;
 
 export default function EachItem(props: any) {
