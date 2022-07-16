@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import styled from "@emotion/styled";
+import KakakomapPageUI from "./Kakaomap.Presenter";
+
 declare const window: typeof globalThis & {
   kakao: any;
 };
@@ -66,9 +67,5 @@ export default function KakakomapPage(props) {
 
     // div에 지도를 그려줘
   }, []);
-  return (
-    <div>
-      <div id="map" style={{ width: 400, height: 300 }}></div>
-    </div>
-  );
+  return <KakakomapPageUI />;
 }

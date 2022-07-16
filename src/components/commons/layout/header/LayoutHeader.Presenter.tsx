@@ -10,8 +10,7 @@ export default function LayoutHeaderUI(props) {
         <S.InsideWrapper>
           <S.LogoImg
             src="/icon/mainlogo.png"
-            id="/"
-            onClick={props.onClickTab}
+            onClick={props.onClickMobileLogo}
           />
           <S.NavBarWrapper>
             <S.Menu
@@ -72,9 +71,18 @@ export default function LayoutHeaderUI(props) {
           <S.MobileMenuFooterWrapper>
             <S.MobileMenuIconWrapper>
               <S.MobileLoginIcon />
-              <S.MobileFooterMenu id="/login" onClick={props.onClickMobileTab}>
-                로그인
-              </S.MobileFooterMenu>
+              {props.accessToken ? (
+                <S.MobileFooterMenu
+                  id="/login"
+                  onClick={props.onClickMobileTab}
+                >
+                  로그인
+                </S.MobileFooterMenu>
+              ) : (
+                <S.MobileFooterMenu id="/login" onClick={props.onClickLogout}>
+                  로그아웃
+                </S.MobileFooterMenu>
+              )}
             </S.MobileMenuIconWrapper>
             <S.MobileMenuIconWrapper>
               <S.MobileSignUpIcon />

@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 0.063rem solid #cccccc;
+  background-color: #ffffff;
   @media (max-width: 767px) {
     height: 3.4rem;
     position: sticky;
