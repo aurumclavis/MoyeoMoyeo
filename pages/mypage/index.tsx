@@ -25,6 +25,7 @@ const obj = {
 
 const staffObj = {
   0: <MyPageStaffSell />,
+  1: <div></div>,
 };
 
 export default function MyPageEventsPage() {
@@ -44,10 +45,10 @@ export default function MyPageEventsPage() {
       {isStaff && (
         <Wrapper>
           <MyPageStaffSidebar
-            activedIndex={0}
+            activedIndex={activedIndex}
             setActivedIndex={setActivedIndex}
           />
-          {staffObj[0]}
+          {staffObj[activedIndex]}
         </Wrapper>
       )}
     </>

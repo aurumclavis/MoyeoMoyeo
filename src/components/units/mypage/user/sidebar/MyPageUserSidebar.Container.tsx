@@ -23,16 +23,10 @@ function MyPageUserSidebar(props: IMyPageUserSidebarProps) {
       <S.SidebarWrapper>
         {/* <S.Title>마이페이지</S.Title> */}
         <S.ProfileWrapper>
-          <S.ProfileImg src="../../icon/user2.png" />
+          <S.ProfileImg src="../../icon/user1.png" />
           <S.ProfileContentsWrapper>
             <S.ProfileText>김철수님</S.ProfileText>
             <S.ProfileText>kim1234@gmail.com</S.ProfileText>
-            {/* <S.PointWrapper>
-            <S.ProfileText>6800P</S.ProfileText>
-            <S.PointBtnWrapper>
-              <S.PointBtn onClick={onClickShowPointModal}>충전</S.PointBtn>
-            </S.PointBtnWrapper>
-          </S.PointWrapper> */}
           </S.ProfileContentsWrapper>
         </S.ProfileWrapper>
 
@@ -50,8 +44,6 @@ function MyPageUserSidebar(props: IMyPageUserSidebarProps) {
             );
           })}
         </S.TabWrapper>
-
-        {/* {visible && <Point setVisible={setVisible} />} */}
       </S.SidebarWrapper>
     </S.Wrapper>
   );

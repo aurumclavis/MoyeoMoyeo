@@ -34,7 +34,7 @@ export default function MyPageUserBoards() {
           <S.MoreText>게시글 더보기</S.MoreText>
           <S.RequestUserWrapper>
             <S.ItemText>동행 신청자</S.ItemText>
-            <RequestUserList />
+            <RequestUserList isDetailPage={false} />
           </S.RequestUserWrapper>
         </S.ItemContentsWrapper>
       </S.ItemWrapper>
@@ -67,6 +67,10 @@ export default function MyPageUserBoards() {
             내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다
           </S.ItemText>
           <S.MoreText>게시글 더보기</S.MoreText>
+          <S.RequestUserWrapper>
+            <S.ItemText>동행 신청자</S.ItemText>
+            <RequestUserList isDetailPage={false} />
+          </S.RequestUserWrapper>
         </S.ItemContentsWrapper>
       </S.ItemWrapper>
     </S.Wrapper>
