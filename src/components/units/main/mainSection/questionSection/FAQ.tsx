@@ -54,11 +54,11 @@ const OutWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* margin-bottom: 50px; */
+  margin-bottom: 20px;
   @media ${breakPoints.mobile} {
     display: flex;
     flex-direction: column;
-    margin: 2rem 0rem 0rem 0rem;
+    margin: 2rem 0rem 2rem 0rem;
     padding: 0 1.125rem;
     gap: 30px;
   }

@@ -70,7 +70,7 @@ export default function LoginPage() {
         },
       });
       setAccessToken(result.data?.login);
-      localStorage.setItem("refreshToken", "true");
+      // localStorage.setItem("refreshToken", "true");
       const userInfo = resultUserInfo.data?.fetchUser;
       setUserInfo(userInfo);
       console.log(userInfo);
