@@ -68,7 +68,7 @@ export default function EventsWriteUI(props) {
             <S.TypeWrapper>
               <S.SubTitle>행사 분류</S.SubTitle>
               <S.TypeSelect>
-                <option disabled>선택</option>
+                <option selected>선택</option>
                 <option>축제</option>
                 <option>공연/문화</option>
                 <option>기타</option>

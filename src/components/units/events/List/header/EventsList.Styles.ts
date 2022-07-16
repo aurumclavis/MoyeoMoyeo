@@ -6,6 +6,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media (max-width: 767px) {
+    padding: 0rem 1rem;
+  }
 `;
 
 export const LineDiv = styled.div`
@@ -117,7 +120,7 @@ export const EventWriteBtn = styled.div`
   background-color: #ffd24c;
   font-weight: 600;
   @media (max-width: 767px) {
-    width: 80px;
+    width: 60px;
     height: 30px;
   }
 `;

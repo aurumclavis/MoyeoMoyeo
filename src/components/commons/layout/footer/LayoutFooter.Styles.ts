@@ -2,16 +2,17 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 13rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 200;
-  /* margin-bottom: 5%; */
+  margin-bottom: 2%;
   padding-top: 2%;
   border-top: 0.063px solid #d2d2d2;
   @media (max-width: 767px) {
-    height: auto;
+    height: 110px;
+    padding-top: 1%;
+    margin-bottom: 1%;
   }
 `;
 export const InsideWrapper = styled.div`
@@ -51,7 +52,7 @@ export const LeftListWrapper = styled.div`
   margin-left: auto;
   font-size: 1rem;
   @media (max-width: 767px) {
-    margin-left: 10%;
+    margin-left: 5%;
     margin-right: auto;
     font-size: 0.6rem;
   }
@@ -65,6 +66,7 @@ export const RightListWrapper = styled.div`
   font-size: 1rem;
   @media (max-width: 767px) {
     font-size: 0.6rem;
+    margin-right: auto;
   }
 `;
 

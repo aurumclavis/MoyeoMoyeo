@@ -131,6 +131,7 @@ export const MapTitle = styled.div`
   margin-bottom: 1rem;
   font-size: 1.25rem;
   font-weight: 600;
+  overflow: hidden;
 `;
 
 export const Footer = styled.div`

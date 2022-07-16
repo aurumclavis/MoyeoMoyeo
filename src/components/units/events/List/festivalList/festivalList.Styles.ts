@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   margin: 0.4rem auto;
   @media (max-width: 767px) {
     width: 95%;
-    margin: 0.4rem auto 0 0;
+    margin: 0.4rem auto 1rem auto;
   }
 `;
 
