@@ -18,7 +18,7 @@ export const RequestUserWrapper = styled.div`
   animation-iteration-count: 1;
   ${(props: any) =>
     props.decided &&
-    "@keyframes decided {30%{opacity:1;}50%{opacity:0;}70%{opacity:0;visibility:hidden;width:90%;height:auto;}70.01%{opacity:0;visibility:hidden;width:0;height:0;}100%{opacity:0;visibility:hidden;width:0;height:0;}}"}
+    "@keyframes decided {30%{opacity:1;}50%{opacity:0.5;}60%{opacity:1;}70%{opacity:0;visibility:hidden;width:90%;height:auto;}70.01%{opacity:0;visibility:hidden;width:0;height:0;}100%{opacity:0;visibility:hidden;width:0;height:0;}}"}
 `;
 export const RequestUserName = styled.div`
   width: 36%;
