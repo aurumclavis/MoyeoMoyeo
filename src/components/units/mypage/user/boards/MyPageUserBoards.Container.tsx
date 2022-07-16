@@ -1,3 +1,4 @@
+import RequestUserList from "../../../../commons/requestUserList";
 import * as S from "../../listItem/MyPageListItem.Styles";
 
 export default function MyPageUserBoards() {
@@ -31,6 +32,10 @@ export default function MyPageUserBoards() {
             내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다
           </S.ItemText>
           <S.MoreText>게시글 더보기</S.MoreText>
+          <S.RequestUserWrapper>
+            <S.ItemText>동행 신청자</S.ItemText>
+            <RequestUserList />
+          </S.RequestUserWrapper>
         </S.ItemContentsWrapper>
       </S.ItemWrapper>
 
