@@ -48,7 +48,7 @@ export default function ProductWrite(props: IProductWriteProps) {
             contentSrc: data.contents,
             mainImgSrc: "",
             subImgSrcs: ["", ""],
-            userId: "e7fde4be-5eb6-4463-a4b9-16e2510a7104",
+            userId: "f67c13bb-d098-4caf-85d4-fbd4a1070302",
           },
         },
       });

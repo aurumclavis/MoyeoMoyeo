@@ -4,20 +4,26 @@ import _, { throttle } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
 import { DELETE_PRODUCT, FETCH_PRODUCT } from "./ProductsDetail.Queries";
 import { useRouter } from "next/router";
+import { Modal } from "antd";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 export default function ProductDetail() {
   const [activedTab, setActivedTab] = useState("detail");
   const navRef = useRef(null);
   const detailRef = useRef(null);
   const qnaRef = useRef(null);
-  const router = useRouter();
-  const [deleteProduct] = useMutation(DELETE_PRODUCT);
 
+  const router = useRouter();
+  const { onClickMoveToPage } = useMoveToPage();
+
+  const [deleteProduct] = useMutation(DELETE_PRODUCT);
   const { data } = useQuery(FETCH_PRODUCT, {
     variables: { productId: router.query.productId },
   });
 
   useEffect(() => {
+    console.log(data?.fetchProduct);
     window.addEventListener("scroll", onScrollNav);
     return window.removeEventListener("scroll", () => {
       onScrollNav;
@@ -64,6 +70,32 @@ export default function ProductDetail() {
     }, 500);
   };
 
+  const onClickShowConfirm = () => {
+    Modal.confirm({
+      title: "정말 이 상품을 삭제하시겠습니까?",
+      icon: <ExclamationCircleOutlined />,
+      content: "삭제한 이후에는 취소가 불가능합니다.",
+      onOk() {
+        onClickDeleteProduct();
+      },
+      onCancel() {},
+    });
+  };
+
+  const onClickDeleteProduct = async () => {
+    try {
+      await deleteProduct({
+        variables: { productId: router.query.productId },
+      });
+      Modal.success({
+        content: "상품 삭제가 완료되었습니다.",
+      });
+      onClickMoveToPage("/products")();
+    } catch (error) {
+      Modal.error(error.message);
+    }
+  };
+
   return (
     <ProductDetailUI
       data={data}
@@ -75,6 +107,7 @@ export default function ProductDetail() {
       onClickDetail={onClickDetail}
       onClickQna={onClickQna}
       isSeller={false}
+      onClickShowConfirm={onClickShowConfirm}
     />
   );
 }

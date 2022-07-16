@@ -68,16 +68,15 @@ export const Label = styled.span`
   overflow: scroll;
   font-size: 1rem;
 `;
-export const SmallText = styled.span``;
 
 export const LeftWrapper = styled.div`
   width: 70%;
-  @media screen and (max-width: 767px) {
-    width: 100%;
-  }
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 // 조회수, 찜한 수 감싸는 Wrapper
 export const ViewPickWrapper = styled.div`
@@ -175,59 +174,61 @@ export const SellerContentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const CarouselWrapper = styled.div`
-  width: 100%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-`;
-export const MySlider = styled(Slider)`
-  width: 100%;
-  height: 280px;
-  .slick-dots {
-    .slick-active {
-      button::before {
-        color: #c1c1c1;
-      }
-    }
-    button::before {
-      color: #e9e9e9;
-    }
-    li {
-      margin: 5px;
-    }
-  }
-  .slick-prev {
-    z-index: 1;
-    left: 5%;
-  }
-  .slick-prev::before {
-    content: "<";
-    color: #f2f2f2;
-    font-size: 30px;
-  }
-  .slick-next {
-    z-index: 1;
-    right: 10%;
-  }
-  .slick-next::before {
-    content: ">";
-    color: #f2f2f2;
-    font-size: 30px;
-  }
-`;
-export const CarouselImage = styled(Image)`
+// export const CarouselWrapper = styled.div`
+//   width: 100%;
+//   height: 300px;
+//   display: flex;
+//   justify-content: center;
+// `;
+// export const MySlider = styled(Slider)`
+//   width: 100%;
+
+//   .slick-dots {
+//     .slick-active {
+//       button::before {
+//         color: #c1c1c1;
+//       }
+//     }
+//     button::before {
+//       color: #e9e9e9;
+//     }
+//     li {
+//       margin: 5px;
+//     }
+//   }
+//   .slick-prev {
+//     z-index: 1;
+//     left: 5%;
+//   }
+//   .slick-prev::before {
+//     content: "<";
+//     color: #f2f2f2;
+//     font-size: 30px;
+//   }
+//   .slick-next {
+//     z-index: 1;
+//     right: 10%;
+//   }
+//   .slick-next::before {
+//     content: ">";
+//     color: #f2f2f2;
+//     font-size: 30px;
+//   }
+// `;
+export const ImageItem = styled(Image)`
   width: 100%;
   max-height: 300px;
 `;
+
 export const DetailImage = styled(Image)`
-  width: 100%;
-  max-height: 300px;
+  width: auto;
+  max-width: 100%;
 `;
-export const DetailImageWrapper = styled.div`
-  width: 100%;
-  height: 300px;
-  display: flex;
+export const PreviewGroup = styled.div`
+  margin: 0.625rem 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
 `;
 
 // 모바일 화면일 때 하단에 고정되는 바

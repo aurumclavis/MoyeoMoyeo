@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-
+// require("react-quill/dist/quill.snow.css");
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const Wrapper = styled.div`
@@ -116,11 +116,12 @@ export const SubmitWrapper = styled.div`
     width: 20%;
   }
 `;
+
 export const CancelBtn = styled.button`
   width: 100%;
   height: 100%;
   padding: 0 10%;
-  border-radius: 0.625rem;
+  border-radius: 0.313rem;
   border: none;
   background-color: #f4f4f4;
   font-size: 1.25rem;

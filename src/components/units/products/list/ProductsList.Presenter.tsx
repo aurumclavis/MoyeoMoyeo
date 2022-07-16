@@ -43,7 +43,7 @@ export default function ProductsListUI(props: any) {
           </S.GridItemWrapper>
         ))}
         {/* 목업용 하드코딩 데이터 */}
-        {props.data?.fetchProducts === undefined &&
+        {/* {props.data?.fetchProducts === undefined &&
           new Array(10).fill(1).map((el, index) => (
             <S.GridItemWrapper
               onClick={onClickMoveToPage(`products/id`)}
@@ -57,7 +57,7 @@ export default function ProductsListUI(props: any) {
                 <S.Text>5500원</S.Text>
               </S.TextWrapper>
             </S.GridItemWrapper>
-          ))}
+          ))} */}
       </S.GridWrapper>
 
       {/* 페이지네이션 */}
