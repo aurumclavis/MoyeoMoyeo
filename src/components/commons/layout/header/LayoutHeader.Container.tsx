@@ -23,7 +23,7 @@ export default function LayoutHeader() {
     setIsOpen(prev => !prev);
   };
   const onClickMobileLogo = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen(false);
     onClickMoveToPage("/")();
   };
   const onClickMobileTab = e => {
