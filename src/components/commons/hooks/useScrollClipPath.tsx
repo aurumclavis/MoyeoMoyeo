@@ -47,7 +47,7 @@ const useScrollClipPath = (direction = "left", duration = 1, delay = 0) => {
   return {
     ref: element,
     style: {
-      transform: "scale(1.2)",
+      transform: "scale(0.9)",
       clipPath: handleClipPath(direction),
     },
   };

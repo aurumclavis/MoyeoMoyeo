@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// 관리자 회원가입
 export const CREATE_USER = gql`
   mutation createUser($userInput: UserInput!) {
     createUser(userInput: $userInput) {
@@ -11,13 +12,17 @@ export const CREATE_USER = gql`
     }
   }
 `;
+
+//핸드폰 인증
 export const SEND_SMS = gql`
   mutation sendSMS($phone: String!) {
     sendSMS(phone: $phone)
   }
 `;
+
+// 인증번호 확인
 export const VALIDATE_PHONE = gql`
-  mutation sendSMS($phone: String!, $tokenInput: String!) {
-    sendSMS(phone: $phone, tokenInput: $tokenInput)
+  mutation validatePhone($phone: String!, $tokenInput: String!) {
+    validatePhone(phone: $phone, tokenInput: $tokenInput)
   }
 `;

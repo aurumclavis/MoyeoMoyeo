@@ -93,7 +93,7 @@ export default function SignUpNewEventPage() {
     } catch (error) {
       setIsDone(false);
       setIsReadyForNum(true);
-      Modal.error({ content: "핸드폰 번호인증을 다시 해주세요." });
+      Modal.error({ content: "인증번호를 재확인바랍니다." });
     }
   };
 
