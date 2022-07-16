@@ -34,7 +34,6 @@ export const InsideWrapper = styled.div`
   margin-top: 0.625rem;
   @media (max-width: 767px) {
     justify-content: center;
-    margin-top: 0.325rem;
     padding-right: 36.4px;
   }
 `;
@@ -45,6 +44,9 @@ export const LogoImg = styled.img`
   margin-bottom: 0.63rem;
   cursor: pointer;
   @media (max-width: 767px) {
+    height: 2rem;
+    margin-left: 0rem;
+    margin-bottom: 0rem;
   }
 `;
 
@@ -90,12 +92,14 @@ export const UserMenuWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-right: 1rem;
   @media (max-width: 767px) {
     display: none;
   }
 `;
 
 export const UserMenu = styled.div`
+  height: 100%;
   height: 1.875rem;
   cursor: pointer;
   :hover {
@@ -153,7 +157,7 @@ export const MobileMenu = styled.div`
   margin-left: auto;
   margin-top: 15%;
   margin-bottom: 5%;
-  font-size: large;
+  font-size: medium;
   font-weight: 600;
   border-bottom: 1px solid black;
   cursor: pointer;
