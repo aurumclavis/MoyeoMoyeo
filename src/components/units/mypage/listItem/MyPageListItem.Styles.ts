@@ -113,3 +113,6 @@ export const MoreText = styled.span`
     font-size: 0.75rem;
   }
 `;
+export const RequestUserWrapper = styled.div`
+  margin-top: 0.625rem;
+`;
