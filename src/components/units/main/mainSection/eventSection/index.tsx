@@ -82,7 +82,8 @@ const EventWrapper = styled.div`
   gap: 10px;
   @media ${breakPoints.mobile} {
     width: 100%;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 `;
 const EventsList = styled.div`
@@ -90,7 +91,7 @@ const EventsList = styled.div`
   flex-direction: column;
   justify-content: space-between;
   transition: 0.2s;
-  box-shadow: 1px 3px 1px 0px #00000033;
+  /* box-shadow: 1px 3px 1px 0px #00000033; */
   :hover {
     box-shadow: 3px 5px 1px 0px #ffd24c;
     transform: translateY(-5px);
@@ -124,12 +125,12 @@ const EventsDate = styled.div`
 
 const EventSection = (props) => {
   const animatedItem = {
-    0: useScrollFadeIn("left", 1),
-    1: useScrollFadeIn("left", 1),
-    2: useScrollFadeIn("left", 1),
-    3: useScrollFadeIn("left", 1),
-    4: useScrollFadeIn("left", 1),
-    5: useScrollFadeIn("left", 1),
+    0: useScrollFadeIn("down", 1),
+    1: useScrollFadeIn("down", 1),
+    2: useScrollFadeIn("down", 1),
+    3: useScrollFadeIn("down", 1),
+    4: useScrollFadeIn("down", 1),
+    5: useScrollFadeIn("down", 1),
   };
 
   return (

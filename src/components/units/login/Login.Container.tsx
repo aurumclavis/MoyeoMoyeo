@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import { useApolloClient } from "@apollo/client";
+import { useApolloClient, useMutation, useQuery } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { accessTokenState, userInfoState } from "../../../commons/store";
+import { LOGIN, FETCH_USER } from "./Login.Queries";
 
 const schema = yup.object({
   email: yup
@@ -23,6 +24,8 @@ const schema = yup.object({
 export default function LoginPage() {
   const router = useRouter();
   const client = useApolloClient();
+  const [login] = useMutation(LOGIN);
+  const { data } = useQuery(FETCH_USER);
   const [, setAccessToken] = useRecoilState(accessTokenState);
   const [, setUserInfo] = useRecoilState(userInfoState);
   const { register, handleSubmit, formState, setValue, trigger, reset, watch } =
@@ -47,26 +50,30 @@ export default function LoginPage() {
   const onClickToLogin = async (data: any) => {
     console.log(data);
     try {
-      const result = await loginUser({
+      const result = await login({
         variables: {
           email: data.email,
           password: data.password,
         },
       });
-
-      const Token = result.data.loginUser.accessToken;
+      console.log(result.data.login);
+      const Token = result.data.login; //accessToken
       const resultUserInfo = await client.query({
-        query: FETCH_USER_LOGGED_IN,
+        query: FETCH_USER,
+        variables: {
+          email: data.email,
+        },
         context: {
           headers: {
             Authorization: `Bearer ${Token}`,
           },
         },
       });
-      setAccessToken(result.data?.loginUser.accessToken);
+      setAccessToken(result.data?.login);
       localStorage.setItem("refreshToken", "true");
-      const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
+      const userInfo = resultUserInfo.data?.fetchUser;
       setUserInfo(userInfo);
+      console.log(userInfo);
       alert("로그인이 되었습니다.");
       router.push("/");
     } catch (error) {

@@ -95,9 +95,6 @@ export default function SignUpNewPage() {
 
   // 회원가입
   const onClickCreateUser = async (data: any) => {
-    // if (isDone === false) {
-    //   return Modal.info({ content: "핸드폰 번호를 인증해주세요" });
-    // }
     // if(){
     //   return Modal.info({ content: "중복된 이메일(ID)입니다." });
     // }
@@ -106,7 +103,7 @@ export default function SignUpNewPage() {
     try {
       await createUser({
         variables: {
-          UserInput: {
+          userInput: {
             name: data.name,
             email: data.email,
             password: data.password,

@@ -31,9 +31,9 @@ export default function SignUpNewPageUI(props) {
         <CommonInput
           type="password"
           placeholder={"비밀번호를 한번 더 입력해주세요"}
-          register={props.register("password2")}
+          register={props.register("passwordCheck")}
         />
-        <S.Error>{props.formState.errors.password2?.message}</S.Error>
+        <S.Error>{props.formState.errors.passwordCheck?.message}</S.Error>
         <CommonInput
           placeholder={"이름을 입력해주세요"}
           register={props.register("name")}
@@ -75,9 +75,9 @@ export default function SignUpNewPageUI(props) {
                 isActive={/^[0-9]$/.test(
                   props.watch("phoneNumber" && "phoneNumber2")
                 )}
-                disabled={
-                  !/^[0-9]$/.test(props.watch("phoneNumber" && "phoneNumber2"))
-                }
+                // disabled={
+                //   !/^[0-9]$/.test(props.watch("phoneNumber" && "phoneNumber2"))
+                // }
                 onClick={props.onClickGetNumber}
               >
                 인증번호 요청
@@ -98,11 +98,12 @@ export default function SignUpNewPageUI(props) {
         // })}
         />
 
-        <S.Error>{props.formState.errors.checkbox?.message}</S.Error>
+        {/* <S.Error>{props.formState.errors.checkbox?.message}</S.Error> */}
         <S.ButtonWrapper>
           <ButtonSubmit
             fontSize="1.25rem"
             isActive={props.formState.isValid}
+            // isActive={true}
             title="회원가입"
           />
         </S.ButtonWrapper>

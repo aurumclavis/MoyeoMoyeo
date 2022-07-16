@@ -59,7 +59,7 @@ const InnerWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 10px;
   @media ${breakPoints.mobile} {
     display: grid;
@@ -121,7 +121,7 @@ const ProductSection = (props) => {
       </TitleRightWrapper>
 
       <InnerWrapper>
-        {new Array(5).fill(1).map((el: any, index: number) => (
+        {new Array(6).fill(1).map((el: any, index: number) => (
           <ProductList key={index} {...animatedItem[index]}>
             <ProductImages src="/example2.png" />
             <ProductName>행사굿즈 노트세트</ProductName>
