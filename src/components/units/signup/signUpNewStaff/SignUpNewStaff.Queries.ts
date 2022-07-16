@@ -5,21 +5,19 @@ export const CREATE_USER = gql`
     createUser(userInput: $userInput) {
       _id
       email
+      manager
       phone
       institution
-      manager
     }
   }
 `;
-export const sendSMS = gql`
+export const SEND_SMS = gql`
   mutation sendSMS($phone: String!) {
-    sendSMS(phone: $phone){
-    }
+    sendSMS(phone: $phone)
   }
 `;
-export const validatePhone = gql`
-  mutation sendSMS($phone: String!,tokenInput: String!) {
-    sendSMS(phone: $phone,tokenInput:$tokenInput){
-    }
+export const VALIDATE_PHONE = gql`
+  mutation sendSMS($phone: String!, $tokenInput: String!) {
+    sendSMS(phone: $phone, tokenInput: $tokenInput)
   }
 `;

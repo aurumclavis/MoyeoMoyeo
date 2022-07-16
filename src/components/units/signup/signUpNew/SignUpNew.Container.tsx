@@ -49,7 +49,6 @@ export default function SignUpNewPage() {
   const [sendSMS] = useMutation(SEND_SMS);
   const [validatePhone] = useMutation(VALIDATE_PHONE);
   const [isActive, setIsActive] = useState(true);
-  const [phoneNum, setPhoneNum] = useState();
 
   const { onClickMoveToPage } = useMoveToPage();
   const [isReadyForNum, setIsReadyForNum] = useState(false);
@@ -60,7 +59,7 @@ export default function SignUpNewPage() {
   });
   // moblie 비활성화용
   const onChangeMobile = (event) => {
-    setIsActive(event.target.inpuvt);
+    setIsActive(event.target.input);
   };
 
   // moblie 인증번호 요청
@@ -97,6 +96,9 @@ export default function SignUpNewPage() {
   const onClickCreateUser = async (data: any) => {
     // if(){
     //   return Modal.info({ content: "중복된 이메일(ID)입니다." });
+    // }
+    // if(){
+    //   return Modal.info({ content: "중복된 핸드폰 번호입니다." });
     // }
 
     console.log(data);

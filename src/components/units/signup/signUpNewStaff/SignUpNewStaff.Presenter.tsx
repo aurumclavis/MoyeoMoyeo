@@ -3,7 +3,7 @@ import * as S from "./SignUpNewStaff.Styles";
 import CommonInput from "../../../commons/inputs/infoInputs";
 import CommonMobileInput from "../../../commons/inputs/mobileInputs";
 
-export default function SignUpNewEventPageUI(props) {
+export default function SignUpNewStaffPageUI(props) {
   return (
     <S.OutWrapper>
       <S.Wrapper>
