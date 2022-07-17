@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
+import { breakPoints } from "../../../../commons/styles/media";
+
 // require("react-quill/dist/quill.snow.css");
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -112,7 +114,7 @@ export const SubmitWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-right: 0.625rem;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     width: 20%;
   }
 `;
@@ -131,4 +133,13 @@ export const Error = styled.div`
   color: red;
   font-size: 0.875rem;
   padding-top: 0.625rem;
+`;
+export const UploadImage = styled.img`
+  width: 78px;
+  height: 78px;
+  margin-right: 24px;
+  cursor: pointer;
+`;
+export const UploadFileHidden = styled.input`
+  display: none;
 `;

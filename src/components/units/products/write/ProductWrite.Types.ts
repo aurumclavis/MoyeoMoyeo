@@ -7,7 +7,10 @@ export interface IProductWriteUIProps {
   onChangeContents: (value: string) => void;
   isEdit?: boolean;
   onClickCreateProduct: (data: any) => void;
+  onClickUpdateProduct: (data: any) => void;
+  data?: any;
 }
 export interface IProductWriteProps {
   isEdit?: boolean;
+  data?: any;
 }
