@@ -14,9 +14,10 @@ import { onError } from "@apollo/client/link/error";
 export default function ApolloSetting(props: any) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   useEffect(() => {
-    GetAccessToken().then((newAccessToken) => {
-      setAccessToken(newAccessToken);
-    });
+    // GetAccessToken().then((newAccessToken) => {
+    //   setAccessToken(newAccessToken);
+    // });
+    setAccessToken(accessToken);
   }, []);
 
   const uploadLink = createUploadLink({
