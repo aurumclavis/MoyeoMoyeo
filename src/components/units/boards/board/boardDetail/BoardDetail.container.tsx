@@ -97,8 +97,8 @@ export default function BoardDetailContainer() {
   const lat = 37.5378;
   const lng = 126.8939;
   const [isMyBoard] = useState(true);
+  const [isSendRequestUser] = useState(true);
   const [isCompleted] = useState(false);
-  const [isSendRequestUser] = useState(false);
   const onClickGoEventDetail = () => {
     router.push("");
   };

@@ -5,9 +5,9 @@ export const RequestUserListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   /* ${(props: any) => props.isDetailPage && "flex-direction: column;"} */
-
   align-items: center;
   justify-content: center;
+  gap: 1rem 0;
 `;
 export const RequestUserWrapper = styled.div`
   width: 90%;
@@ -53,8 +53,8 @@ export const RefuseButton = styled.button`
 export default function RequestUserList(props: any) {
   return (
     <RequestUserListWrapper>
-      {["송인호"]
-        .filter((el) => el === "송인호")
+      {["송인호", "김민승"]
+        .filter((el) => el === "송인호" || el === "김민승")
         .map((el) => (
           <RequestUserWrapper
             key={el}

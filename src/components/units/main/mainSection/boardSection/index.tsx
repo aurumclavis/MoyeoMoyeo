@@ -66,7 +66,7 @@ const BoardsImage = styled.img`
   width: 60%;
   height: 100%;
 
-  @media (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     width: 100%;
   }
 `;
@@ -92,7 +92,7 @@ const CarouselWrapper = styled.div`
     padding: 20px 0;
     list-style-type: none;
   } */
-  @media (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     width: 100%;
   }
 `;
@@ -101,7 +101,7 @@ const MySlider = styled(Slider)`
   width: 100%;
   display: flex;
   margin-top: 40px;
-  @media (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     width: 100%;
     margin-top: 0px;
   }
@@ -220,7 +220,7 @@ const BoardSection = (props) => {
         <CarouselWrapper>
           <MySlider {...settings}>
             {new Array(6).fill(1).map((el: any, index: number) => (
-              <BoardList key={index} {...animatedItem[index]}>
+              <BoardList key={index}>
                 <BoardTitleWrapper>
                   <BoardCategory>[모집중]</BoardCategory>
                   <BoardTitle>

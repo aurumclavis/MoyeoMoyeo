@@ -4,13 +4,20 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import FestivalIcon from "@mui/icons-material/Festival";
 import MapIcon from "@mui/icons-material/Map";
 import ListIcon from "@mui/icons-material/List";
+import { breakPoints } from "../../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4rem;
   padding: 4rem 2rem;
+  @media ${breakPoints.mobile} {
+    padding: 0 0 2rem 0;
+    margin-bottom: 8rem;
+    gap: 2rem;
+  }
 `;
 
 // 스크롤 내리면 나타나는 서브헤더(네비)
@@ -29,9 +36,12 @@ export const NavWrapper = styled.nav`
   background-color: #ffffff;
   border-bottom: 1px solid #d9d9d9;
   transition: top 0.5s;
+  @media ${breakPoints.mobile} {
+    margin-top: 3.3em;
+  }
 `;
 export const NavItemWrapper = styled.div`
-  width: 1200px;
+  width: 75rem;
   display: flex;
   background-color: #ffffff;
 `;
@@ -54,6 +64,11 @@ export const CoverImage = styled.img`
   height: 20.625rem;
   border-radius: 10px;
   object-fit: cover;
+  @media ${breakPoints.mobile} {
+    width: calc(100vw - (100vw * 1.01 / 100));
+    height: 15rem;
+    border-radius: 0;
+  }
 `;
 
 // 좌측 바디와 우측 프로필날개를 감싸는 wrap
@@ -63,6 +78,12 @@ export const BodyWrapper = styled.div`
   flex-wrap: wrap;
   gap: 2%;
   position: relative;
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 0 1rem 0 1rem;
+    gap: 2rem;
+  }
 `;
 
 // 좌측 바디
@@ -71,13 +92,21 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    gap: 2rem;
+    order: 0;
+  }
 `;
 export const Title = styled.span`
   font-size: 2.5rem;
   font-weight: 700;
   ${(props) => props.isCompleted && "background-color: #ffe69a;"}
+  @media ${breakPoints.mobile} {
+    font-size: 1.5rem;
+  }
 `;
-export const CreatedAtAndViewWrapper = styled.div`
+export const CreatedAtAndViewCountWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
   font-size: 1rem;
@@ -97,6 +126,10 @@ export const Main = styled.div`
   flex-direction: column;
   gap: 3rem;
   padding-left: 1%;
+  @media ${breakPoints.mobile} {
+    gap: 2rem;
+    padding: 0;
+  }
 `;
 
 // 인포박스
@@ -109,14 +142,21 @@ export const InfoWrapper = styled.div`
   border-radius: 5px;
   gap: 1rem;
   font-size: 1.5rem;
+  @media ${breakPoints.mobile} {
+  }
 `;
 export const InfoUpper = styled.div`
   display: flex;
-  gap: 8rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
 `;
 export const ItemsText = styled.div`
   font-size: 1.5rem;
   color: #323232;
+  @media ${breakPoints.mobile} {
+    font-size: 1rem;
+  }
 `;
 export const TransportationWrapper = styled.div`
   display: flex;
@@ -127,6 +167,9 @@ export const TransPortImage = styled.img`
   width: 2.5rem;
   height: auto;
   cursor: pointer;
+  @media ${breakPoints.mobile} {
+    width: 2rem;
+  }
 `;
 export const HeadCountWrapper = styled.div`
   display: flex;
@@ -134,6 +177,9 @@ export const HeadCountWrapper = styled.div`
 `;
 export const MaxHeadCount = styled.div`
   font-weight: 600;
+  @media ${breakPoints.mobile} {
+    font-size: 1rem;
+  }
 `;
 export const InfoUnder = styled.div`
   display: flex;
@@ -146,6 +192,9 @@ export const MyCalendarIcon = styled(DateRangeIcon)`
 export const AccompanyDate = styled.div`
   font-size: 1.5rem;
   letter-spacing: 0.05rem;
+  @media ${breakPoints.mobile} {
+    font-size: 1rem;
+  }
 `;
 
 // 게시글 본문 내용
@@ -169,6 +218,9 @@ export const LocationExplainWrapper = styled.div`
 export const LocationExplain = styled.div`
   padding-left: 1%;
   font-size: 1.5rem;
+  @media ${breakPoints.mobile} {
+    font-size: 1.3rem;
+  }
 `;
 // 카카오맵 감싸는 wrap
 export const MapWrapper = styled.div`
@@ -194,6 +246,16 @@ export const AccompanyWrapper = styled.div`
   :hover {
     box-shadow: 0px 2px 4px 2px #00000033;
     transform: translateY(-5px);
+  }
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    position: static;
+    order: 2;
+    padding: 1rem;
+    :hover {
+      box-shadow: none;
+      transform: none;
+    }
   }
 `;
 // 우측 날개 상단
@@ -221,25 +283,6 @@ export const WriterName = styled.span`
 export const WriterEtc = styled.div`
   font-size: 1rem;
   color: #d2d2d2;
-`;
-export const AccompanyRequestButton = styled.button`
-  width: 90%;
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  ${(props: any) =>
-    props.isSendRequestUser || props.isCompleted
-      ? "background-color: #FFD24C; color: white;"
-      : "background-color: #15133c; color: white;"}
-
-  font-size: 1rem;
-  cursor: pointer;
 `;
 export const AccompanyRequestIcon = styled.img`
   width: 20%;
@@ -299,7 +342,7 @@ export const AccompanyChangeMaxText = styled.div`
   font-size: 1rem;
   letter-spacing: 1px;
 `;
-// 날개 중단 wrap
+// 날개 하단 wrap
 export const AccompanyUnderWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -307,6 +350,9 @@ export const AccompanyUnderWrapper = styled.div`
   align-items: center;
   padding: 1rem;
   gap: 2rem;
+  @media ${breakPoints.mobile} {
+    gap: 4rem;
+  }
 `;
 // 동행자리스트
 export const AccompanyUserListWrapper = styled.div`
@@ -320,54 +366,28 @@ export const AccompanyUser = styled.div`
   font-size: 1.2rem;
   font-weight: 600;
 `;
-// 신청자리스트
-export const RequestUserListWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  ${(props: any) => props.isDetailPage && "flex-direction: column;"}
-  align-items: center;
-  justify-content: center;
-`;
-export const RequestUserWrapper = styled.div`
-  width: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  animation-name: decided;
-  animation-duration: 1.5s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
-  ${(props: any) =>
-    props.decided &&
-    "@keyframes decided {30%{opacity:1;}50%{opacity:0;}70%{opacity:0;visibility:hidden;width:90%;height:auto;}70.01%{opacity:0;visibility:hidden;width:0;height:0;}100%{opacity:0;visibility:hidden;width:0;height:0;}}"}
-`;
-export const RequestUserName = styled.div`
-  width: 36%;
-  font-size: 1.1rem;
-`;
-export const AcceptButton = styled.button`
-  width: 40%;
-  ${(props: any) => props.requestAccepted && "width:60%;"}
-  ${(props: any) => props.requestRefused && "width:0;"}
-  border: none;
-  border-radius: 5px;
-  background-color: #00ad07;
-  color: white;
-  transition: 0.5s;
-  cursor: pointer;
-`;
-export const RefuseButton = styled.button`
-  width: 20%;
-  ${(props: any) => props.requestRefused && "width:60%;"}
-  ${(props: any) => props.requestAccepted && "width:0;"}
-  border: none;
-  border-radius: 5px;
-  background-color: #ec994b;
-  color: white;
-  transition: 0.5s;
-  cursor: pointer;
-`;
 //모집완료/완료취소버튼
+export const AccompanyRequestButton = styled.button`
+  width: 90%;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  ${(props: any) =>
+    props.isSendRequestUser || props.isCompleted
+      ? "background-color: #FFD24C; color: white;"
+      : "background-color: #15133c; color: white;"}
+  font-size: 1rem;
+  cursor: pointer;
+  @media ${breakPoints.mobile} {
+    width: 20rem;
+  }
+`;
 export const AccompanyCompleteIcon = styled.img`
   width: 20%;
 `;
@@ -398,16 +418,29 @@ export const EventInfoWrapper = styled.div`
     box-shadow: 0px 2px 4px 2px #00000033;
     transform: translateY(-5px);
   }
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    gap: 1rem;
+    padding: 1rem;
+    order: 1;
+  }
 `;
 export const EventInfoText = styled.div`
   padding: 2px 5px;
   border-radius: 10px;
   font-size: 1.6rem;
   font-weight: 700;
+  @media ${breakPoints.mobile} {
+    font-size: 1rem;
+  }
 `;
 export const EventInfo = styled.div`
   display: flex;
   gap: 5%;
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+    gap: 2rem;
+  }
 `;
 export const EventImage = styled.img`
   width: 50%;
@@ -415,17 +448,30 @@ export const EventImage = styled.img`
   object-fit: fill;
   border-radius: 5px;
   cursor: pointer;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 export const EventInfoDetailWrapper = styled.div`
   width: 45%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem 10%;
+  }
 `;
 export const EventInfoDetail = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  @media ${breakPoints.mobile} {
+    width: 45%;
+    order: 1;
+  }
 `;
 export const EventFestivalIcon = styled(FestivalIcon)``;
 export const EventMapIcon = styled(MapIcon)``;
@@ -450,6 +496,10 @@ export const CommentWrapper = styled.div`
   flex-direction: column;
   gap: 2rem;
   margin-bottom: 5rem;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    order: 3;
+  }
 `;
 export const CommentText = styled.span`
   padding: 0 5px;
