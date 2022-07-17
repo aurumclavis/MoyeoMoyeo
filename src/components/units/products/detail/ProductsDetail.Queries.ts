@@ -32,3 +32,12 @@ export const DELETE_PRODUCT = gql`
     deleteProduct(productId: $productId)
   }
 `;
+
+export const DIBS_PRODUCT = gql`
+  mutation dibsProduct($productId: String!) {
+    dibsProduct(productId: $productId) {
+      name
+      email
+    }
+  }
+`;

@@ -127,7 +127,9 @@ export default function ProductDetailUI(props: any) {
                 >
                   구매하기
                 </S.ActiveBtn>
-                <S.WhiteBtn>찜하기</S.WhiteBtn>
+                <S.WhiteBtn onClick={props.onClickDibsProduct}>
+                  찜하기
+                </S.WhiteBtn>
               </>
             )}
           </S.BtnWrapper>
@@ -154,7 +156,10 @@ export default function ProductDetailUI(props: any) {
         ) : (
           <>
             {/* 유저 : 찜하기,구매하기 */}
-            <S.WhiteBtn style={{ width: "20%" }}>
+            <S.WhiteBtn
+              onClick={props.onClickDibsProduct}
+              style={{ width: "20%" }}
+            >
               <FavoriteBorder />
             </S.WhiteBtn>
             <S.ActiveBtn

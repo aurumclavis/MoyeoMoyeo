@@ -1,12 +1,13 @@
-import MyPageUserEvents from "../../src/components/units/mypage/user/events/MyPageUserEvents.Container";
-import MyPageUserSidebar from "../../src/components/units/mypage/user/sidebar/MyPageUserSidebar.Container";
+import { useState } from "react";
 import styled from "@emotion/styled";
+import MyPageUserSidebar from "../../src/components/units/mypage/user/sidebar/MyPageUserSidebar.Container";
+import MyPageUserEvents from "../../src/components/units/mypage/user/events/MyPageUserEvents.Container";
 import MyPageUserBoards from "../../src/components/units/mypage/user/boards/MyPageUserBoards.Container";
 import MyPageUserProducts from "../../src/components/units/mypage/user/products/MyPageUserProducts.Container";
 import MyPageUserBuy from "../../src/components/units/mypage/user/buy/MyPageUserBuy.Container";
-import { useState } from "react";
 import MyPageStaffSidebar from "../../src/components/units/mypage/staff/sidebar/MyPageStaffSidebar.Container";
 import MyPageStaffSell from "../../src/components/units/mypage/staff/sell/MyPageStaffSell.Container";
+import MyPageStaffEvents from "../../src/components/units/mypage/staff/events/MyPageStaffEventsContainer";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -25,7 +26,7 @@ const obj = {
 
 const staffObj = {
   0: <MyPageStaffSell />,
-  1: <div></div>,
+  1: <MyPageStaffEvents />,
 };
 
 export default function MyPageEventsPage() {

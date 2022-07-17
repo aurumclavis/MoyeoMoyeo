@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../../commons/styles/media";
+
 interface ITabItemProps {
   isActive: boolean;
 }
 export const Wrapper = styled.div`
-  min-width: 12.5rem;
+  min-width: 15rem;
   padding-left: 1.5rem;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
+    width: 100%;
     padding: 0 1rem;
   }
 `;
@@ -33,7 +36,7 @@ export const ProfileWrapper = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 4px;
 
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     flex-direction: row;
     height: 120px;
     padding: 1.25rem 0;
@@ -66,7 +69,7 @@ export const TabWrapper = styled.div`
   border-radius: 4px;
 
   /* 모바일 화면일 때 탭 가로 배치 */
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     flex-direction: row;
     justify-content: space-around;
     border: none;
@@ -87,7 +90,7 @@ export const TabItemWrapper = styled.div`
     props.isActive ? "3px solid #15133C" : "none"};
 
   /* 모바일 화면일 때 각각의 탭은 클릭했을 때 밑줄, 배경색 없음 */
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     padding: 0.625rem 0.313rem;
     background-color: #ffffff;
     border-left: none;
@@ -97,7 +100,7 @@ export const TabItemWrapper = styled.div`
 `;
 export const TabText = styled.span`
   font-size: 1.25rem;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     font-size: 1rem;
   }
 `;

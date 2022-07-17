@@ -49,13 +49,9 @@ export const IconWrapper = styled.div`
 `;
 export const DeleteIcon = styled(Clear)`
   font-size: 1.5rem;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 export const ReplyIcon = styled(Reply)`
   font-size: 1.5rem;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
