@@ -181,7 +181,7 @@ export default function BoardWritePresenter(props: any) {
               setValue={props.setValue}
               isEdit={props.isEdit}
               setAddress={props.setAddress}
-            ></KaKaoMap>
+            />
             <S.AddressExplainWrapper>
               <S.ItemsWrapper>
                 <S.ItemText>주소</S.ItemText>
@@ -201,11 +201,11 @@ export default function BoardWritePresenter(props: any) {
             </S.AddressExplainWrapper>
           </S.MapWrapper>
         </S.EventLocationWrapper>
-        <S.ButtonWrapper>
-          <S.CancelButton type="button">취소</S.CancelButton>
-          <S.SubmitButton type="submit">등록</S.SubmitButton>
-        </S.ButtonWrapper>
       </S.UnderWrapper>
+      <S.ButtonWrapper>
+        <S.CancelButton type="button">취소</S.CancelButton>
+        <S.SubmitButton type="submit">등록</S.SubmitButton>
+      </S.ButtonWrapper>
     </S.Wrapper>
   );
 }

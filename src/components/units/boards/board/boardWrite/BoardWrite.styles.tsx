@@ -8,6 +8,7 @@ import ListIcon from "@mui/icons-material/List";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import { breakPoints } from "../../../../../commons/styles/media";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -26,6 +27,9 @@ export const CoverImageWrapper = styled.div`
   width: calc(100vw - (100vw * 1.01 / 100));
   height: 25rem;
   position: relative;
+  @media ${breakPoints.mobile} {
+    height: 15rem;
+  }
 `;
 export const CoverImage = styled.img`
   width: 100%;
@@ -41,6 +45,11 @@ export const UpperWrapper = styled.div`
   align-items: center;
   padding: 2rem;
   gap: 5%;
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0 0 0;
+  }
 `;
 
 // 이벤트정보 wrap
@@ -49,6 +58,11 @@ export const EventWrapper = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    order: 1;
+    margin: 2rem 0;
+  }
 `;
 export const EventInfoWrapper = styled.div`
   display: flex;
@@ -163,6 +177,10 @@ export const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.87rem;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    order: 0;
+  }
 `;
 export const ItemsWrapper = styled.div`
   width: 100%;
@@ -188,10 +206,17 @@ export const TitleInput = styled.input`
     color: #d2d2d2;
     font-size: 1rem;
   }
+  @media ${breakPoints.mobile} {
+    margin: 0;
+  }
 `;
 export const DateAndMaxHeadCountWrapper = styled.div`
   width: 100%;
   display: flex;
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+    gap: 3rem;
+  }
 `;
 export const DateWrapper = styled.div`
   width: 60%;
@@ -199,6 +224,9 @@ export const DateWrapper = styled.div`
   flex-direction: column;
   justify-items: flex-end;
   gap: 1rem;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 export const AccompanyDateInputWrapper = styled.div`
   width: 100%;
@@ -208,6 +236,9 @@ export const AccompanyDateInputWrapper = styled.div`
   gap: 1rem;
   margin-left: 0.5rem;
   padding-top: 10px;
+  @media ${breakPoints.mobile} {
+    margin: 0;
+  }
 `;
 export const MyHelpOutlineIcon = styled(HelpOutlineIcon)`
   width: 1.2rem;
@@ -220,6 +251,9 @@ export const MaxHeadCountWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   gap: 1rem;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 export const MaxHeadCount = styled.div`
   display: flex;
@@ -227,6 +261,9 @@ export const MaxHeadCount = styled.div`
   gap: 0.5rem;
   padding-top: 0.7rem;
   margin-left: 0.5rem;
+  @media ${breakPoints.mobile} {
+    margin: 0;
+  }
 `;
 export const CountPlus = styled.div`
   width: 1.2rem;
@@ -280,6 +317,10 @@ export const MyReactQuill = styled(ReactQuill)`
   height: 23rem;
   margin-left: 0.5rem;
   margin-bottom: 2.2rem;
+  @media ${breakPoints.mobile} {
+    margin: 0;
+    height: 15rem;
+  }
 `;
 
 // 하단 게시글요약/행사위치정보 wrap
@@ -289,6 +330,9 @@ export const UnderWrapper = styled.div`
   flex-direction: column;
   gap: 2.87rem;
   padding: 0 2rem;
+  @media ${breakPoints.mobile} {
+    padding: 0;
+  }
 `;
 export const RemarkInput = styled.input`
   width: 100%;
@@ -305,6 +349,9 @@ export const RemarkInput = styled.input`
     color: #d2d2d2;
     font-size: 1rem;
   }
+  @media ${breakPoints.mobile} {
+    margin: 0;
+  }
 `;
 export const EventLocationWrapper = styled.div`
   width: 100%;
@@ -318,6 +365,10 @@ export const MapWrapper = styled.div`
   display: flex;
   gap: 2rem;
   position: relative;
+  @media ${breakPoints.mobile} {
+    height: auto;
+    flex-direction: column;
+  }
 `;
 export const TransportationWrapper = styled.div`
   width: 7rem;
@@ -390,10 +441,6 @@ export const TransportationImg = styled.img`
   height: auto;
   cursor: pointer;
 `;
-export const KaKaoMap = styled.div`
-  margin-left: 0.5rem;
-  border: 1px solid gray;
-`;
 export const AddressExplainWrapper = styled.div`
   width: 40%;
   display: flex;
@@ -402,6 +449,11 @@ export const AddressExplainWrapper = styled.div`
   padding: 1rem;
   border: 1px solid #d9d9d9;
   border-radius: 5px;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    padding: 0;
+    border: none;
+  }
 `;
 export const AddressInput = styled.input`
   height: 2.188rem;
@@ -428,6 +480,10 @@ export const LocationExplainInput = styled.textarea`
     color: #d2d2d2;
     font-size: 1rem;
   }
+  @media ${breakPoints.mobile} {
+    border: 1px solid #d2d2d2;
+    border-radius: 5px;
+  }
 `;
 
 // 최하단 취소/등록버튼 wrap
@@ -436,6 +492,9 @@ export const ButtonWrapper = styled.div`
   padding-top: 4rem;
   display: flex;
   gap: 3rem;
+  @media ${breakPoints.mobile} {
+    padding-top: 0;
+  }
 `;
 export const CancelButton = styled.button`
   width: 50%;

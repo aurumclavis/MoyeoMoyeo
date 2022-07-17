@@ -94,7 +94,7 @@ export default function KaKaoMap(props: any) {
         id="map"
         style={{
           width: "100%",
-          height: "100%",
+          height: "24.188rem",
           borderRadius: "10px",
         }}
       ></div>

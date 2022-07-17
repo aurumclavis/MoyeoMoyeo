@@ -42,10 +42,10 @@ export default function BoardDetailPresenter(props: any) {
           <S.Title isCompleted={props.isCompleted} ref={props.detailRef}>
             이번 주 토요일 동탄 고양이플리마켓 같이 구경할 동행 구합니다!!
           </S.Title>
-          <S.CreatedAtAndViewWrapper>
+          <S.CreatedAtAndViewCountWrapper>
             <S.CreatedAt>2022년 7월 11일 19:31 작성</S.CreatedAt> ・
             <S.View>조회수 {10}</S.View> ・ <S.Report>신고하기</S.Report>
-          </S.CreatedAtAndViewWrapper>
+          </S.CreatedAtAndViewCountWrapper>
           <S.Main>
             <S.InfoWrapper>
               <S.InfoUpper>
@@ -246,8 +246,8 @@ export default function BoardDetailPresenter(props: any) {
           <CommentWriteContainer />
           <CommentListContainer />
         </S.CommentWrapper>
-        <BackTopAnt />
       </S.BodyWrapper>
+      <BackTopAnt />
     </S.Wrapper>
   );
 }
