@@ -15,26 +15,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const InsideWrapper = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  @media (max-width: 767px) {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 5px;
-  }
-`;
-// export const SelectWrapper = styled.div`
-//   width: 90%;
-//   height: 3rem;
-//   border: 1px solid #d2d2d2;
-//   border-radius: 5px;
-//   background-color: white;
-//   color: #d2d2d2;
-//   text-align: center;
-//   font-size: 1rem;
-// `;
-
 export const Select = styled.select`
   width: 120px;
   height: 1.6rem;
@@ -47,7 +27,22 @@ export const Select = styled.select`
   text-align: center;
   font-size: 1rem;
 `;
-
+export const InsideWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; */
+  /* grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); */
+  grid-template-rows: repeat(auto-fit, minmax(400px, 1fr));
+  /* grid-template-rows: 1fr 1fr; */
+  grid-gap: 1rem;
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 5px;
+  }
+`;
+export const GridWrapper = styled.div``;
 export const ListWrapper = styled.div`
   width: 400px;
   height: 150px;
@@ -58,10 +53,7 @@ export const ListWrapper = styled.div`
   margin-top: 0.4rem;
   border: ${(props: ITabProps) =>
     props.isActive ? "1px solid #d2d2d2" : "none"};
-  border-left: ${(props: ITabProps) =>
-    props.isActive ? "1px solid #d2d2d2" : "3px solid #FFD24C"};
   border-radius: 10px;
-
   transition: 0.2s;
   box-shadow: 0px 2px 4px 0px #00000033;
   :hover {
@@ -110,8 +102,8 @@ export const TitleWraepper = styled.div`
   }
 `;
 export const Title = styled.div`
-  width: 35%;
-  height: 100%;
+  width: 100%;
+  height: 30%;
   font-size: 1.4rem;
   font-weight: 700;
   @media (max-width: 767px) {

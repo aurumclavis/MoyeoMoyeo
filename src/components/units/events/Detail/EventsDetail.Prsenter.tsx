@@ -7,8 +7,8 @@ export default function EventsDetailUI(props: any) {
   return (
     <>
       <S.Wrapper>
-        <S.MainHost>기관명 주최</S.MainHost>
-        <S.HeaderTitle>행사명 행사명 행사명</S.HeaderTitle>
+        <S.MainHost>{props.data?.fetchPost?.writer} 주최</S.MainHost>
+        <S.HeaderTitle>{props.data?.fetchPost?.title}</S.HeaderTitle>
         <S.HeaderCalendar>2022.07.01 - 2022.07.29</S.HeaderCalendar>
         <S.CountWrapper>
           <S.CountIcon />
@@ -41,7 +41,7 @@ export default function EventsDetailUI(props: any) {
           </S.NavMenuWrapper>
 
           <S.IconWrapper>
-            <S.PickWraepper>
+            <S.PickWraepper onClick={props.onClickDibs}>
               <S.IconTitle>행사 찜하기</S.IconTitle>
               <S.PickIcon />
             </S.PickWraepper>
@@ -53,14 +53,11 @@ export default function EventsDetailUI(props: any) {
             </CopyToClipboard>
           </S.IconWrapper>
         </S.NavWrapper>
-        <S.MainTitle ref={props.markerRef}>이벤트 요약</S.MainTitle>
+        <S.MainTitle ref={props.markerRef}>
+          {props.data?.fetchPost?.category} 요약
+        </S.MainTitle>
         <S.MainImg src="/배너이미지_행사1.png" />
-        <S.ContetsText>
-          상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세 설명이
-          들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳
-          입니다.상세 설명이 들어갈 곳 입니다.상세 설명이 들어갈 곳 입니다.상세
-          설명이 들어갈 곳 입니다.
-        </S.ContetsText>{" "}
+        <S.ContetsText>{props.data?.fetchPost?.description}</S.ContetsText>
         <S.LineDiv />
         <S.MapWrapper ref={props.mapsRef}>
           <S.MapTitle>행사 위치</S.MapTitle>

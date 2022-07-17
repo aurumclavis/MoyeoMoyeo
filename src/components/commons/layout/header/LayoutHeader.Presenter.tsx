@@ -64,31 +64,42 @@ export default function LayoutHeaderUI(props) {
             <S.MobileMenu id="/products" onClick={props.onClickMobileTab}>
               모여마켓
             </S.MobileMenu>
-            <S.MobileMenu id="/mypage" onClick={props.onClickMobileTab}>
-              마이페이지
-            </S.MobileMenu>
+            {props.accessToken && (
+              <S.MobileMenu id="/mypage" onClick={props.onClickMobileTab}>
+                마이페이지
+              </S.MobileMenu>
+            )}
           </S.MobileMenuIistWrapper>
           <S.MobileMenuFooterWrapper>
             <S.MobileMenuIconWrapper>
               <S.MobileLoginIcon />
               {props.accessToken ? (
+                <S.MobileFooterMenu id="/login" onClick={props.onClickLogout}>
+                  로그아웃
+                </S.MobileFooterMenu>
+              ) : (
                 <S.MobileFooterMenu
                   id="/login"
                   onClick={props.onClickMobileTab}
                 >
                   로그인
                 </S.MobileFooterMenu>
-              ) : (
-                <S.MobileFooterMenu id="/login" onClick={props.onClickLogout}>
-                  로그아웃
-                </S.MobileFooterMenu>
               )}
             </S.MobileMenuIconWrapper>
             <S.MobileMenuIconWrapper>
-              <S.MobileSignUpIcon />
-              <S.MobileFooterMenu id="/signup" onClick={props.onClickMobileTab}>
-                회원가입
-              </S.MobileFooterMenu>
+              {props.accessToken ? (
+                ""
+              ) : (
+                <>
+                  <S.MobileSignUpIcon />
+                  <S.MobileFooterMenu
+                    id="/signup"
+                    onClick={props.onClickMobileTab}
+                  >
+                    회원가입
+                  </S.MobileFooterMenu>
+                </>
+              )}
             </S.MobileMenuIconWrapper>
           </S.MobileMenuFooterWrapper>
         </S.MobileMenuWrapper>
