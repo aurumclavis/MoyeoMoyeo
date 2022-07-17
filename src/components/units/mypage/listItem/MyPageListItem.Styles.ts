@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { People, PropaneSharp, Today } from "@mui/icons-material";
+import { breakPoints } from "../../../../commons/styles/media";
 
 // 마이페이지에 들어가는 리스트 컴포넌트 스타일
 interface ItemFinishedProps {
@@ -14,7 +15,7 @@ export const Wrapper = styled.div`
   display: grid;
   padding: 0 1.5rem;
   grid-gap: 1.25rem;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     padding: 0 1rem;
   }
 `;
@@ -31,7 +32,7 @@ export const ItemWrapper = styled.div`
 export const ItemImageWrapper = styled.div`
   max-width: 7.5rem;
   max-height: 7.5rem;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     max-width: 6rem;
   }
 `;
@@ -48,7 +49,7 @@ export const ItemRowWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin: 0.313rem 0;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
@@ -58,7 +59,7 @@ export const ItemTitle = styled.h2`
   font-size: 1.25rem;
   font-weight: bold;
   margin: 0;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     font-size: 1rem;
   }
 `;
@@ -69,7 +70,7 @@ export const ItemFinished = styled.span`
   color: ${(props: ItemFinishedProps) =>
     props.isFinished ? "#d2d2d2" : "#FFD24C"};
   margin: 0;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     font-size: 1rem;
   }
 `;
@@ -83,7 +84,7 @@ export const ItemText = styled.span`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   font-size: 1rem;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     font-size: 0.75rem;
   }
 `;
@@ -109,7 +110,7 @@ export const MoreText = styled.span`
   :hover {
     text-decoration: underline;
   }
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     font-size: 0.75rem;
   }
 `;

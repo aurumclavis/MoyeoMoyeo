@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { SearchOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { breakPoints } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -20,15 +21,16 @@ export const SelectBtnWrapper = styled.div`
 `;
 export const SearchBarWrapper = styled.div`
   width: 30%;
-  @media screen and (max-width: 767px) {
-    width: 40%;
-  }
+
   height: 45px;
   display: flex;
   padding: 0.625rem;
   border: none;
   border-radius: 5px;
   background-color: #f4f4f4;
+  @media ${breakPoints.mobile} {
+    width: 40%;
+  }
 `;
 export const SearchBarIcon = styled(SearchOutlined)`
   font-size: 1.5rem;
@@ -74,11 +76,11 @@ export const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 1.25rem;
-  @media screen and (max-width: 767px) {
+  margin: 3.125rem 0;
+  @media ${breakPoints.mobile} {
     grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     grid-gap: 0.625rem;
   }
-  margin: 3.125rem 0;
 `;
 export const GridItemWrapper = styled.div`
   display: flex;

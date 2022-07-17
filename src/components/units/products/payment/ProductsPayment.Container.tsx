@@ -5,6 +5,13 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CommonInput from "../../../commons/inputs/infoInputs";
 import * as S from "./ProductsPayment.Styles";
 import { Modal } from "antd";
+import { FETCH_PRODUCT } from "../detail/ProductsDetail.Queries";
+import { useMutation, useQuery } from "@apollo/client";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../../../commons/store";
+import { CREATE_PAYMENT } from "./ProductsPayment.Queries";
+
 declare const window: typeof globalThis & {
   IMP: any;
 };
@@ -12,6 +19,19 @@ declare const window: typeof globalThis & {
 export default function ProductsPayment() {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
+  const { data } = useQuery(FETCH_PRODUCT, {
+    variables: { productId: router.query.productId },
+  });
+  const [createPayment] = useMutation(CREATE_PAYMENT);
+
+  const [userInfo] = useRecoilState(userInfoState);
+
+  const PRODUCT_INFO = {
+    id: data?.fetchProduct.id,
+    name: data?.fetchProduct.name,
+    description: data?.fetchProduct.description,
+    price: data?.fetchProduct.price,
+  };
 
   const onClickPayment = () => {
     const IMP = window.IMP;
@@ -20,17 +40,29 @@ export default function ProductsPayment() {
       {
         pg: "html5_inicis",
         pay_method: "card",
-        name: "행사 상품",
-        amount: 1000,
-        buyer_email: "aaa@gmail.com",
-        buyer_name: "아무개",
+        name: PRODUCT_INFO.name,
+        amount: PRODUCT_INFO.price,
+        buyer_email: userInfo.email,
+        buyer_name: userInfo.name,
+        merchant_uid: PRODUCT_INFO.id,
         m_redirect_url: "http://localhost:3000/",
       },
       async (rsp: any) => {
         if (rsp.success) {
-          console.log(rsp);
+          // createPayment Error:422 처리되지 않은 결제
+          try {
+            await createPayment({
+              variables: {
+                impUid: rsp.imp_uid,
+                productId: PRODUCT_INFO.id,
+              },
+            });
+            alert("결제가 완료되었습니다.");
+          } catch (error) {
+            alert(error.message);
+          }
         } else {
-          Modal.error({ content: "결제에 실패했습니다. 다시 시도해주세요." });
+          alert("결제에 실패했습니다. 다시 시도해주세요.");
         }
       }
     );
@@ -57,15 +89,9 @@ export default function ProductsPayment() {
         <S.ProductInfoWrapper>
           <S.ProductInfoImage src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDN8fGFydHxlbnwwfHx8fDE2NTcxMTM3Mjk&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
           <S.ProductInfoTextWrapper>
-            <S.Label>상품이름</S.Label>
+            <S.Label>{PRODUCT_INFO.name}</S.Label>
 
-            <S.SmallLabel>
-              상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-              상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-              상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-              상품요약 상품요약 상품요약 상품요약 상품요약 상품요약 상품요약
-              상품요약 상품요약 상품요약 상품요약 상품요약 상품요약{" "}
-            </S.SmallLabel>
+            <S.SmallLabel>{PRODUCT_INFO.description}</S.SmallLabel>
           </S.ProductInfoTextWrapper>
         </S.ProductInfoWrapper>
 
@@ -98,7 +124,7 @@ export default function ProductsPayment() {
       <S.RightWrapper>
         <S.SidebarWrapper>
           <S.Label>결제금액</S.Label>
-          <S.Title>00000원</S.Title>
+          <S.Title>{PRODUCT_INFO.price}원</S.Title>
           <S.BtnWrapper>
             <S.ActiveBtn onClick={onClickPayment}>결제하기</S.ActiveBtn>
             <S.WhiteBtn
@@ -112,7 +138,7 @@ export default function ProductsPayment() {
 
       {/* 모바일 화면일때는 사이드바가 아닌 하단 고정 바 */}
       <S.MobilePaymentBar>
-        <S.MobilePrice>결제금액 00000원</S.MobilePrice>
+        <S.MobilePrice>결제금액 {PRODUCT_INFO.price}원</S.MobilePrice>
         <S.BtnWrapper>
           <S.ActiveBtn onClick={onClickPayment}>결제하기</S.ActiveBtn>
           <S.WhiteBtn

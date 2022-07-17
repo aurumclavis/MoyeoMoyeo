@@ -1,18 +1,15 @@
-import { useRouter } from "next/router";
-import { memo, useEffect, useState, Dispatch, SetStateAction } from "react";
-import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import { memo, Dispatch, SetStateAction } from "react";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../../../../commons/store";
 import * as S from "./MyPageStaffSidebar.Styles";
 interface IMyPageStaffSidebarProps {
   activedIndex: number;
   setActivedIndex: Dispatch<SetStateAction<number>>;
 }
 
-// 포인트 내역 부분 주석 처리
 function MyPageStaffSidebar(props: IMyPageStaffSidebarProps) {
   const MENU_NAME = ["판매 내역", "등록한 행사"];
-  const router = useRouter();
-  const { onClickMoveToPage } = useMoveToPage();
-
+  const [userInfo] = useRecoilState(userInfoState);
   const onClickTab = (index: number) => () => {
     props.setActivedIndex(index);
   };
@@ -24,8 +21,8 @@ function MyPageStaffSidebar(props: IMyPageStaffSidebarProps) {
         <S.ProfileWrapper>
           <S.ProfileImg src="../../icon/staff1.png" />
           <S.ProfileContentsWrapper>
-            <S.ProfileText>김철수님</S.ProfileText>
-            <S.ProfileText>aaa@company.com</S.ProfileText>
+            <S.ProfileText>{userInfo.name}</S.ProfileText>
+            <S.ProfileText>{userInfo.email}</S.ProfileText>
           </S.ProfileContentsWrapper>
         </S.ProfileWrapper>
 

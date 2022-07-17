@@ -2,7 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import ProductDetailUI from "./ProductsDetail.Presenter";
 import _, { throttle } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
-import { DELETE_PRODUCT, FETCH_PRODUCT } from "./ProductsDetail.Queries";
+import {
+  DELETE_PRODUCT,
+  FETCH_PRODUCT,
+  DIBS_PRODUCT,
+} from "./ProductsDetail.Queries";
 import { useRouter } from "next/router";
 import { Modal } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
@@ -23,6 +27,7 @@ export default function ProductDetail() {
   const { data } = useQuery(FETCH_PRODUCT, {
     variables: { productId: router.query.productId },
   });
+  const [dibsProduct] = useMutation(DIBS_PRODUCT);
   const [userInfo] = useRecoilState(userInfoState);
 
   useEffect(() => {
@@ -98,6 +103,21 @@ export default function ProductDetail() {
     }
   };
 
+  const onClickDibsProduct = async () => {
+    try {
+      await dibsProduct({
+        variables: {
+          productId: router.query.productId,
+        },
+      });
+      Modal.success({
+        content: "찜하기 완료",
+      });
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
+  };
+
   return (
     <ProductDetailUI
       data={data}
@@ -110,6 +130,7 @@ export default function ProductDetail() {
       onClickQna={onClickQna}
       isSeller={userInfo.email === data?.fetchProduct.seller.email}
       onClickShowConfirm={onClickShowConfirm}
+      onClickDibsProduct={onClickDibsProduct}
     />
   );
 }

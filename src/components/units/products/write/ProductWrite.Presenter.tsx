@@ -12,7 +12,13 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
   return (
     <S.Wrapper>
       <S.WriteTitle>{props.isEdit ? "상품 수정" : "상품 등록"}</S.WriteTitle>
-      <S.WriteForm onSubmit={props.handleSubmit(props.onClickCreateProduct)}>
+      <S.WriteForm
+        onSubmit={
+          props.isEdit
+            ? props.handleSubmit(props.onClickUpdateProduct)
+            : props.handleSubmit(props.onClickCreateProduct)
+        }
+      >
         {/* 이름, 가격, 요약 입력 */}
         <S.InputWrapper>
           <S.Label>상품 이름 *</S.Label>
@@ -40,23 +46,31 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.Error>{props.formState.errors.summary?.message}</S.Error>
         </S.InputWrapper>
 
-        {/* 이미지 업로드 UI */}
+        {/* 이미지 업로드 UI : 업로드 해결 후 주석 해제*/}
         <S.InputWrapper>
           <S.Label>대표 이미지 (최대 1장)</S.Label>
-          <Upload
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            listType="picture"
-            maxCount={1}
-          >
-            <Button icon={<UploadOutlined />}>사진등록</Button>
-          </Upload>
+          {/* {props.mainImageSrc ? (
+            <S.UploadImage
+              onClick={props.onClickUpload}
+              src={`${props.mainImageSrc}`}
+            />
+          ) : (
+            <Button onClick={props.onClickUpload} icon={<UploadOutlined />}>
+              사진등록
+            </Button>
+          )}
+          <S.UploadFileHidden
+            onChange={props.onChangeMainImg}
+            type="file"
+            ref={props.imageRef}
+          /> */}
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>추가 이미지</S.Label>
           <Upload
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             listType="picture"
-            maxCount={3}
+            maxCount={8}
             multiple
           >
             <Button icon={<UploadOutlined />}>사진등록</Button>
@@ -68,6 +82,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.Label>상세 내용 *</S.Label>
           <S.MyReactQuill
             onChange={props.onChangeContents}
+            // value={props.isEdit && props.data?.fetchProduct.contentSrc}
             placeholder="상품에 대한 설명을 입력해주세요."
           />
           <S.Error>{props.formState.errors.contents?.message}</S.Error>

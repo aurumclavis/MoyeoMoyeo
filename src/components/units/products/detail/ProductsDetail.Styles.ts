@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { Visibility, FavoriteBorder } from "@mui/icons-material";
 import { Image } from "antd";
-import Slider from "react-slick";
+import { breakPoints } from "../../../../commons/styles/media";
+
 interface INavItemProps {
   isActive: boolean;
 }
@@ -10,7 +11,7 @@ export const Wrapper = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     flex-direction: column;
   }
   justify-content: space-between;
@@ -32,6 +33,9 @@ export const NavWrapper = styled.nav`
   background-color: #ffffff;
   border-bottom: 1px solid #d9d9d9;
   transition: top 0.5s;
+  @media ${breakPoints.mobile} {
+    margin-top: 3.3em;
+  }
 `;
 export const NavItemWrapper = styled.div`
   width: 75rem;
@@ -74,7 +78,7 @@ export const LeftWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     width: 100%;
   }
 `;
@@ -111,7 +115,7 @@ export const DetailContents = styled.div`
 
 export const RightWrapper = styled.div`
   width: 28%;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     display: none;
   }
 `;
@@ -234,7 +238,7 @@ export const PreviewGroup = styled.div`
 // 모바일 화면일 때 하단에 고정되는 바
 export const MobilePaymentBar = styled.div`
   display: none;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     width: 100%;
     height: 50px;
     display: flex;
@@ -249,7 +253,7 @@ export const MobilePaymentBar = styled.div`
 `;
 export const MobilePrice = styled.h2`
   display: none;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     display: block;
     width: 100%;
     margin: 0;

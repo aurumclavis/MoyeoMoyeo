@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../../commons/styles/media";
+
 export const FormWrapper = styled.form`
   width: 100%;
   display: flex;
@@ -36,7 +38,7 @@ export const SubmitWrapper = styled.div`
   width: 10%;
   height: 100%;
 
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     width: 20%;
   }
 `;

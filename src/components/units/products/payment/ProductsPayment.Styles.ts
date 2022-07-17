@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../commons/styles/media";
+
 export const Wrapper = styled.div`
   width: 100%;
   height: auto;
@@ -35,12 +37,13 @@ export const SmallLabel = styled.span`
 
 export const LeftWrapper = styled.div`
   width: 70%;
-  @media screen and (max-width: 767px) {
-    width: 100%;
-  }
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 export const Line = styled.div`
   width: 100%;
@@ -78,7 +81,7 @@ export const ZipcodeWrapper = styled.div`
   width: 40%;
   display: flex;
   margin: 0.625rem 0;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     width: 100%;
   }
 `;
@@ -94,7 +97,7 @@ export const ZipcodeBtnWrapper = styled.div`
 // 오른쪽 사이드바
 export const RightWrapper = styled.div`
   width: 28%;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     display: none;
   }
 `;
@@ -124,7 +127,7 @@ export const BtnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     flex-direction: row;
   }
 `;
@@ -160,7 +163,7 @@ export const WhiteSmallBtn = styled.button`
 // 모바일 화면일 때 하단에 고정되는 바
 export const MobilePaymentBar = styled.div`
   display: none;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     width: 100%;
     height: 85px;
     display: flex;
@@ -176,7 +179,7 @@ export const MobilePaymentBar = styled.div`
 `;
 export const MobilePrice = styled.h2`
   display: none;
-  @media screen and (max-width: 767px) {
+  @media ${breakPoints.mobile} {
     display: block;
     width: 100%;
     margin: 0;
