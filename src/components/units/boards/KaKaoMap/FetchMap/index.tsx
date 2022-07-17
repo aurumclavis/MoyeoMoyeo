@@ -1,22 +1,4 @@
 import { useEffect } from "react";
-import styled from "@emotion/styled";
-import Image from "next/image";
-const Wrapper = styled.div`
-  width: 100px;
-  height: 40px;
-  background-color: black;
-`;
-const Info = styled.div``;
-const Title = styled.div``;
-const Close = styled.div``;
-const Body = styled.div``;
-const ImgWrapper = styled.div``;
-const Img = styled.img``;
-const Desc = styled.div``;
-const Location = styled.div``;
-const Homepage = styled.div``;
-// const Wrapper = styled.div``;
-// const Wrapper = styled.div``;
 
 declare const window: typeof globalThis & {
   kakao: any;
@@ -61,57 +43,22 @@ export default function KaKaoMapFetch(props: any) {
         // 마커가 지도 위에 표시되도록 설정합니다
         marker.setMap(map);
 
-        // const content = `
-        //   <Wrapper className="wrap">
-        //     <Info className="info">
-        //       <Title className="title">
-        //         카카오 스페이스닷원
-        //         <Close className="close" onClick={closeOverlay} title="닫기"></Close>
-        //       </Title>
-        //       <Body className="body">
-        //         <ImgWrapper>
-        //           <Img className="img"
-        //             src="https://cfile181.uf.daum.net/image/250649365602043421936D"
-        //             width="73"
-        //             height="70"
-        //             alt="행사사진"
-        //           />
-        //         </ImgWrapper>
-        //         <Desc className="desc">
-        //           <Location className="ellipsis">제주특별자치도 제주시 첨단로 242</Location>
-        //           <Homepage>
-        //             <a
-        //               href="https://www.kakaocorp.com/main"
-        //               target="_blank"
-        //               rel="noreferrer"
-        //               className="link"
-        //             >
-        //               홈페이지
-        //             </a>
-        //           </Homepage>
-        //         </Desc>
-        //       </Body>
-        //     </Info>
-        //   </Wrapper>
-        // `;
-        // // 마커 위에 커스텀오버레이를 표시합니다
-        // // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-        // const overlay = new window.kakao.maps.CustomOverlay({
-        //   content: content,
-        //   map: map,
-        //   position: marker.getPosition(),
-        // });
-        // console.log(overlay);
+        const iwContent = `<div style="padding:5px; position: absolute; left:-25px; bottom: -25px;width : 200px;border: 1px solid #D2D2D2; background-color:white;border-radius:5px; "><div style="font-size:1.1rem; font-weight:500; padding-left:5px; margin-bottom:3px;">${"행사이름동적할당"}</div>
+        <div style="padding-left:5px;">${"주소동적할당"}</div><div style="padding-left:3px;"><a href="https://map.kakao.com/link/map/${"주소동적할당"},${
+            props.lat
+          },${
+            props.lng
+          }" style="color:#FFD24C" target="_blank">카카오맵에서 큰지도보기</a></div></div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          iwPosition = new window.kakao.maps.LatLng(props.lat, props.lng); //인포윈도우 표시 위치입니다
 
-        // // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-        // window.kakao.maps.event.addListener(marker, "click", function () {
-        //   overlay.setMap(map);
-        // });
+        // 인포윈도우를 생성합니다
+        const infowindow = new window.kakao.maps.InfoWindow({
+          position: iwPosition,
+          content: iwContent,
+        });
 
-        // // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-        // function closeOverlay() {
-        //   overlay.setMap(null);
-        // }
+        // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+        infowindow.open(map, marker);
       });
     };
   }, [props]);

@@ -476,6 +476,9 @@ export const ItemRight = styled.div`
   gap: 1rem;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  :hover img {
+    transform: scale(1.1, 1.1);
+  }
   ${(props: any) =>
     props.requested && "background-color: #FFD24C; color: white;"}
   @media ${breakPoints.mobile} {
@@ -488,6 +491,7 @@ export const ItemRight = styled.div`
 `;
 export const PaperPlaneImage = styled.img`
   width: 60%;
+  transition: 0.2s;
   @media ${breakPoints.mobile} {
     width: 3rem;
     height: auto;

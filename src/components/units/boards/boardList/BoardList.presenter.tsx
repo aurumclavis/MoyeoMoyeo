@@ -112,11 +112,8 @@ export default function BoardListPresenter(props: any) {
         {/* <InfiniteScroll pageStart={0} loadMore={props.loadFunc} hasMore={true}> */}
         <S.ListWrapper>
           {props.data.map((el: any) => (
-            <S.Item
-              key={uuidv4()}
-              onClick={props.onClickGoDetail(el.eventName)}
-            >
-              <S.ItemLeft>
+            <S.Item key={uuidv4()}>
+              <S.ItemLeft onClick={props.onClickGoDetail(el.eventName)}>
                 <S.EventImage src="/market.jpg" />
                 <S.ItemMain>
                   <S.Header>
