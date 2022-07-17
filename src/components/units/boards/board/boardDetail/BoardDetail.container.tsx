@@ -5,6 +5,12 @@ import _, { throttle } from "lodash";
 
 export default function BoardDetailContainer() {
   const router = useRouter();
+  // 목업을 위한 하드코딩
+  const lat = 37.5378;
+  const lng = 126.8939;
+  const [isMyBoard] = useState(true);
+  const [isSendRequestUser] = useState(false);
+  const [isCompleted] = useState(false);
 
   // 네비 부분
   const [activeTab, setActiveTab] = useState("detail");
@@ -83,22 +89,26 @@ export default function BoardDetailContainer() {
 
   // 우측 날개부분
   // 작성자인 경우
-  const [requestAccepted, setRequestAccepted] = useState(false);
-  const [requestRefused, setRequestRefused] = useState(false);
-  const onClickAcceptRequest = () => {
-    setRequestAccepted(true);
+  const [requestAccepted, setRequestAccepted] = useState("");
+  const [requestRefused, setRequestRefused] = useState("");
+  const onClickAcceptRequest = (el: string) => () => {
+    setRequestAccepted(el);
   };
-  const onClickRefuseRequest = () => {
-    setRequestRefused(true);
+  const onClickRefuseRequest = (el: string) => () => {
+    setRequestRefused(el);
   };
   // 열람자인 경우
 
-  // 목업을 위한 하드코딩
-  const lat = 37.5378;
-  const lng = 126.8939;
-  const [isMyBoard] = useState(true);
-  const [isSendRequestUser] = useState(true);
-  const [isCompleted] = useState(false);
+  // 로드뷰 부분
+  const [roadView, setRoadView] = useState(false);
+  const onClickRoadView = () => {
+    setRoadView(true);
+  };
+  const onClickExitRoadView = () => {
+    setRoadView(false);
+  };
+
+  // 동행하기 상세로 이동
   const onClickGoEventDetail = () => {
     router.push("");
   };
@@ -114,6 +124,9 @@ export default function BoardDetailContainer() {
       onClickComment={onClickComment}
       lat={lat}
       lng={lng}
+      roadView={roadView}
+      onClickRoadView={onClickRoadView}
+      onClickExitRoadView={onClickExitRoadView}
       isMyBoard={isMyBoard}
       isCompleted={isCompleted}
       isSendRequestUser={isSendRequestUser}

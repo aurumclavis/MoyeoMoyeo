@@ -7,6 +7,7 @@ import Dompurify from "dompurify";
 import * as S from "./BoardDetail.styles";
 import { v4 as uuidv4 } from "uuid";
 import RequestUserList from "../../../../commons/requestUserList";
+import KaKaoRoadView from "../../KaKaoMap/FetchMap/roadView";
 
 export default function BoardDetailPresenter(props: any) {
   return (
@@ -78,7 +79,17 @@ export default function BoardDetailPresenter(props: any) {
             )}
             <S.LocationWrapper>
               <S.MapWrapper>
+                <S.RoadViewButton onClick={props.onClickRoadView}>
+                  행사장소 로드뷰
+                </S.RoadViewButton>
                 <KaKaoMapFetch lat={props.lat} lng={props.lng} />
+                {props.roadView && (
+                  <KaKaoRoadView
+                    lat={props.lat}
+                    lng={props.lng}
+                    onClickExitRoadView={props.onClickExitRoadView}
+                  />
+                )}
               </S.MapWrapper>
               <S.LocationExplainWrapper>
                 <S.ItemsText>모임장소 설명</S.ItemsText>

@@ -142,8 +142,6 @@ export const InfoWrapper = styled.div`
   border-radius: 5px;
   gap: 1rem;
   font-size: 1.5rem;
-  @media ${breakPoints.mobile} {
-  }
 `;
 export const InfoUpper = styled.div`
   display: flex;
@@ -217,15 +215,26 @@ export const LocationExplainWrapper = styled.div`
 `;
 export const LocationExplain = styled.div`
   padding-left: 1%;
-  font-size: 1.5rem;
-  @media ${breakPoints.mobile} {
-    font-size: 1.3rem;
-  }
+  font-size: 1.3rem;
 `;
 // 카카오맵 감싸는 wrap
 export const MapWrapper = styled.div`
   width: 100%;
   height: 24rem;
+  position: relative;
+`;
+export const RoadViewButton = styled.button`
+  border: 2px solid #73777b;
+  border-radius: 5px;
+  background-color: #f1eee9;
+  position: absolute;
+  padding: 5px;
+  top: 1rem;
+  left: 1rem;
+  color: #323232;
+  font-weight: 700;
+  z-index: 2;
+  cursor: pointer;
 `;
 
 // 바디 우측 프로필 날개 wrap
@@ -321,7 +330,6 @@ export const AccompanyItems = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  cursor: pointer;
 `;
 export const AccompanyAmountWrapper = styled.div`
   display: flex;
@@ -337,6 +345,11 @@ export const AccompanyAmountText = styled.div`
 `;
 export const AccompanyChangeMaxIcon = styled.img`
   width: 80%;
+  transition: 0.2s;
+  cursor: pointer;
+  :hover {
+    transform: scale(1.3, 1.3);
+  }
 `;
 export const AccompanyChangeMaxText = styled.div`
   font-size: 1rem;
