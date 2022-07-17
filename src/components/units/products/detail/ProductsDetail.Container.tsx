@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import { Modal } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { userInfoState } from "../../../../commons/store";
+import { useRecoilState } from "recoil";
 
 export default function ProductDetail() {
   const [activedTab, setActivedTab] = useState("detail");
@@ -21,9 +23,9 @@ export default function ProductDetail() {
   const { data } = useQuery(FETCH_PRODUCT, {
     variables: { productId: router.query.productId },
   });
+  const [userInfo] = useRecoilState(userInfoState);
 
   useEffect(() => {
-    console.log(data?.fetchProduct);
     window.addEventListener("scroll", onScrollNav);
     return window.removeEventListener("scroll", () => {
       onScrollNav;
@@ -106,7 +108,7 @@ export default function ProductDetail() {
       onScrollNav={onScrollNav}
       onClickDetail={onClickDetail}
       onClickQna={onClickQna}
-      isSeller={false}
+      isSeller={userInfo.email === data?.fetchProduct.seller.email}
       onClickShowConfirm={onClickShowConfirm}
     />
   );
