@@ -5,23 +5,28 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import _, { throttle } from "lodash";
 import { useRecoilState } from "recoil";
 import { eventIdForBoardState } from "../../../../commons/store";
+import { useMutation, useQuery } from "@apollo/client";
+import { DIBS_POST, FETCH_POST } from "./EventsDetail.Queries";
 
 // import { useLocation } from 'react-router-dom';
 
 export default function EventsDetail() {
   const router = useRouter();
+  const { data } = useQuery(FETCH_POST, {
+    variables: { postId: router.query._id },
+  });
   const { onClickMoveToPage } = useMoveToPage();
   const [eventIdForBoard, setEventIdForBoard] =
     useRecoilState(eventIdForBoardState);
 
-  const currentUrl = `localhost:3000/events/list/${router.query._id}`;
+  const [dibsPost] = useMutation(DIBS_POST);
 
   const [activedTab, setActivedTab] = useState("marker");
+  const currentUrl = `localhost:3000/events/${router.query._id}`;
   const navRef = useRef(null);
   const markerRef = useRef(null);
   const contentsRef = useRef<HTMLDivElement>(null);
   const mapsRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     window.addEventListener("scroll", onScrollNav);
   }, []);
@@ -29,6 +34,22 @@ export default function EventsDetail() {
   const onClickMoveToBoardNew = () => {
     setEventIdForBoard(String(router.query._id));
     onClickMoveToPage("/boards/new")();
+  };
+  const onClickDibs = async () => {
+    try {
+      await dibsPost({
+        variables: { postId: router.query._id },
+        // refetchQueries: [
+        //   {
+        //     query: FETCH_POST,
+        //     variables: { postId: router.query._id },
+        //   },
+        // ],
+      });
+      alert("찜했어요");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onScrollNav = _.throttle(() => {
@@ -90,10 +111,12 @@ export default function EventsDetail() {
   const onClickLink = () => {
     alert("링크가 복사되었습니다");
   };
+  console.log(data);
 
   return (
     <>
       <EventsDetailUI
+        data={data}
         currentUrl={currentUrl}
         activedTab={activedTab}
         navRef={navRef}
@@ -105,6 +128,7 @@ export default function EventsDetail() {
         onClickContents={onClickContents}
         onClickMaps={onClickMaps}
         onScrollNav={onScrollNav}
+        onClickDibs={onClickDibs}
         onClickLink={onClickLink}
         onClickMoveToBoardNew={onClickMoveToBoardNew}
       />

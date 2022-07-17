@@ -114,9 +114,12 @@ export const Zipcode = styled.input`
   border: 1px solid #bdbdbd;
 `;
 
-export const SearchButton = styled.button`
+export const SearchButton = styled.div`
   width: 100px;
   height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 10%;
   margin-right: auto;
   border: none;

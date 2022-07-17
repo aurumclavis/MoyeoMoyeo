@@ -5,9 +5,9 @@ import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 export default function EventList() {
   const { onClickMoveToPage } = useMoveToPage();
 
-  const [datePick, setDatePick] = useState(true);
+  const [datePick, setDatePick] = useState(false);
   const [openEvents, setOpenEvents] = useState(false);
-  const [ourEvents, setOurEvents] = useState(false);
+  const [ourEvents, setOurEvents] = useState(true);
 
   const onClickDate = () => {
     setDatePick(true);

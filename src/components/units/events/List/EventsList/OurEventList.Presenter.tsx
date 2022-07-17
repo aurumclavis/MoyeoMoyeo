@@ -1,4 +1,6 @@
 import * as S from "./OurEventList.Styles";
+import InfiniteScroll from "react-infinite-scroller";
+import OurEventListUIAdd from "./OurEventList.PresenterAdd";
 
 export default function OurEventListUI(props) {
   return (
@@ -10,63 +12,20 @@ export default function OurEventListUI(props) {
           <option>날짜 순</option>
         </S.Select>
         <S.InsideWrapper>
-          <S.ListWrapper isActive={props.ourEvents}>
-            <S.ListImg src="/배너이미지_동행1.png" />
-            <S.FlexWrapper>
-              <S.Title>축제이름</S.Title>
-              <S.Period>2020.07.01부터 2020.07.31까지</S.Period>
-              <S.ContentsWrapper>
-                한줄 소개 한줄 소개 한줄 소개 한줄 소개 한줄 소개 한줄 소개
-              </S.ContentsWrapper>
-              <S.FooterWrapper>
-                <S.CounterWrapper>
-                  <S.Counter>조회수</S.Counter>
-                  <S.Counter>좋아요</S.Counter>
-                </S.CounterWrapper>
-                <S.Btn onClick={props.onClickMoveToPage("events/aaa")}>
-                  자세히보기
-                </S.Btn>
-              </S.FooterWrapper>
-            </S.FlexWrapper>
-          </S.ListWrapper>{" "}
-          <S.ListWrapper isActive={props.ourEvents}>
-            <S.ListImg src="/배너이미지_동행1.png" />
-            <S.FlexWrapper>
-              <S.Title>축제이름</S.Title>
-              <S.Period>2020.07.01부터 2020.07.31까지</S.Period>
-              <S.ContentsWrapper>
-                한줄 소개 한줄 소개 한줄 소개 한줄 소개 한줄 소개 한줄 소개
-              </S.ContentsWrapper>
-              <S.FooterWrapper>
-                <S.CounterWrapper>
-                  <S.Counter>조회수</S.Counter>
-                  <S.Counter>좋아요</S.Counter>
-                </S.CounterWrapper>
-                <S.Btn onClick={props.onClickMoveToPage("events/aaa")}>
-                  자세히보기
-                </S.Btn>
-              </S.FooterWrapper>
-            </S.FlexWrapper>
-          </S.ListWrapper>{" "}
-          <S.ListWrapper isActive={props.ourEvents}>
-            <S.ListImg src="/배너이미지_동행1.png" />
-            <S.FlexWrapper>
-              <S.Title>축제이름</S.Title>
-              <S.Period>2020.07.01부터 2020.07.31까지</S.Period>
-              <S.ContentsWrapper>
-                한줄 소개 한줄 소개 한줄 소개 한줄 소개 한줄 소개 한줄 소개
-              </S.ContentsWrapper>
-              <S.FooterWrapper>
-                <S.CounterWrapper>
-                  <S.Counter>조회수</S.Counter>
-                  <S.Counter>좋아요</S.Counter>
-                </S.CounterWrapper>
-                <S.Btn onClick={props.onClickMoveToPage("events/aaa")}>
-                  자세히보기
-                </S.Btn>
-              </S.FooterWrapper>
-            </S.FlexWrapper>
-          </S.ListWrapper>
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={props.loadFunc}
+            hasMore={true}
+          >
+            {props.data?.fetchPosts.map(el => (
+              <OurEventListUIAdd
+                // data={props.data?.fetchPosts}
+                key={el._id}
+                el={el}
+                onClickMoveToPage={props.onClickMoveToPage}
+              />
+            ))}
+          </InfiniteScroll>
         </S.InsideWrapper>
       </S.Wrapper>
     </>
