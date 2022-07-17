@@ -337,11 +337,13 @@ export const TransportationSelect = styled.div`
   border: 1px solid red;
   border-radius: 15px;
   border: 1px solid #d2d2d2;
-  background-color: white;
-  color: #73777b;
+  background-color: #15133c;
+  ${(props: any) => props.isDropTransport && "background-color: white;"}
+  color: white;
+  ${(props: any) => props.isDropTransport && "color: #73777b;"}
   font-size: 0.8rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.3s;
 `;
 export const MyArrowRightIcon = styled(ArrowRightIcon)`
   ${(props: any) => props.isDropTransport && "transform: rotate(90deg);"}
@@ -414,7 +416,9 @@ export const AddressInput = styled.input`
   }
 `;
 export const LocationExplainInput = styled.textarea`
-  height: 12rem;
+  height: 11rem;
+  max-height: 11rem;
+  min-height: 11rem;
   padding: 10px;
   border: none;
   outline: none;
