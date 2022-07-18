@@ -12,6 +12,8 @@ export const FETCH_USER = gql`
       id
       email
       manager
+      institution
+      phone
     }
   }
 `;

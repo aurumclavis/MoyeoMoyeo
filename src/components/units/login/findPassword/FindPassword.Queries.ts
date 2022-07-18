@@ -16,12 +16,8 @@ export const AUTHORIZE_RESET = gql`
 export const UPDATE_USER = gql`
   mutation updateUser($updateUserInput: UpdateUserInput!) {
     updateUser(updateUserInput: $updateUserInput) {
-      name
       password
       email
-      phone
-      institution
-      manager
     }
   }
 `;
