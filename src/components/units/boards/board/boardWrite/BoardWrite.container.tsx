@@ -1,12 +1,42 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useMutation } from "@apollo/client";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import BoardWritePresenter from "./BoardWrite.presenter";
+import { CREATE_BOARD } from "./BoardWrite.queries";
 import { randomCoverImg } from "./randomCoverImg";
 
 export default function BoardWriteContainer(props: any) {
   const { onClickMoveToPage } = useMoveToPage();
   const { register, handleSubmit, setValue, trigger } = useForm();
+  const [createBoard] = useMutation(CREATE_BOARD);
+
+  const onClickSubmit = async () => {
+    try {
+      const result = await createBoard({
+        variables: {
+          createBoardInput: {
+            title: "",
+            contents: "",
+            viewCount: 0,
+            isFull: false,
+            targetDate: 11,
+            transport: "",
+            boardAddress: {
+              lat: 0,
+              lng: 0,
+              postal: "",
+              address_description: "",
+            },
+          },
+        },
+      });
+      onClickMoveToPage(`/boards/${result.data.createBoard.id}`)();
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+  // 지도 부분
   const [address, setAddress] = useState("");
 
   // 이미지 등록부분
@@ -73,7 +103,7 @@ export default function BoardWriteContainer(props: any) {
   const onClickCount = (event: any) => {
     event.target.id === "+" && setMaxHeadCount((prev) => prev + 1);
     event.target.id === "-" &&
-      maxHeadCount > 0 &&
+      maxHeadCount > 1 &&
       setMaxHeadCount((prev) => prev - 1);
   };
 
@@ -108,12 +138,6 @@ export default function BoardWriteContainer(props: any) {
   };
   const eventData = { date: { start: "2022-07-15", end: "2022-07-26" } };
 
-  // 등록 부분
-  const onClickSubmit = (data: any) => {
-    console.log(data);
-    //왜 페이지이동이 안되지
-    onClickMoveToPage(`/boards/${111}`)();
-  };
   return (
     <BoardWritePresenter
       isEdit={props.isEdit}

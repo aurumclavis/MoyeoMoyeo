@@ -104,7 +104,7 @@ export default function BoardWritePresenter(props: any) {
                   -
                 </S.CountMinus>
                 <S.MaxHeadCountInput
-                  defaultValue={0}
+                  defaultValue={1}
                   value={props.maxHeadCount}
                   readOnly
                 />

@@ -97,7 +97,23 @@ export default function BoardDetailContainer() {
   const onClickRefuseRequest = (el: string) => () => {
     setRequestRefused(el);
   };
-  // 열람자인 경우
+  // 인원 변경 모달
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const onClickChangeMaxCount = () => {
+    setIsModalVisible(true);
+  };
+  const handleOk = () => {
+    setIsModalVisible(false);
+    // 아래 변경된 maxHeadCount로 동행인원 업데이트쿼리 날릴 예정
+  };
+  // 패치된 동행인원도 아래 스테이트에 담아 내려주기
+  const [maxHeadCount, setMaxHeadCount] = useState(5);
+  const onClickCount = (event: any) => {
+    event.target.id === "+" && setMaxHeadCount((prev) => prev + 1);
+    event.target.id === "-" &&
+      maxHeadCount > 1 &&
+      setMaxHeadCount((prev) => prev - 1);
+  };
 
   // 로드뷰 부분
   const [roadView, setRoadView] = useState(false);
@@ -114,6 +130,9 @@ export default function BoardDetailContainer() {
   };
   return (
     <BoardDetailPresenter
+      isMyBoard={isMyBoard}
+      isCompleted={isCompleted}
+      isSendRequestUser={isSendRequestUser}
       navRef={navRef}
       detailRef={detailRef}
       commentRef={commentRef}
@@ -127,9 +146,12 @@ export default function BoardDetailContainer() {
       roadView={roadView}
       onClickRoadView={onClickRoadView}
       onClickExitRoadView={onClickExitRoadView}
-      isMyBoard={isMyBoard}
-      isCompleted={isCompleted}
-      isSendRequestUser={isSendRequestUser}
+      isModalVisible={isModalVisible}
+      setIsModalVisible={setIsModalVisible}
+      onClickChangeMaxCount={onClickChangeMaxCount}
+      handleOk={handleOk}
+      maxHeadCount={maxHeadCount}
+      onClickCount={onClickCount}
       onClickGoEventDetail={onClickGoEventDetail}
       onClickAcceptRequest={onClickAcceptRequest}
       onClickRefuseRequest={onClickRefuseRequest}
