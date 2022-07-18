@@ -36,11 +36,12 @@ export default function ProductWrite(props: IProductWriteProps) {
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const [updateProduct] = useMutation(UPDATE_PRODUCT);
 
-  // 이미지 파일 업로드 api,ref,state
+  // 이미지 파일 업로드 api,state
   const [uploadImages] = useMutation(UPLOAD_IMAGES);
-  const [mainImageSrc, setMainImageSrc] = useState("");
-  const [files, setFiles] = useState(undefined);
-  const imageRef = useRef(null);
+  // imageList : 이미지 미리보기 link를 담는 배열
+  const [imageList, setImageList] = useState([]);
+  // File 객체를 담는 배열
+  const [files, setFiles] = useState([]);
 
   const { register, handleSubmit, formState, setValue, trigger, reset } =
     useForm({
@@ -63,11 +64,14 @@ export default function ProductWrite(props: IProductWriteProps) {
   };
 
   const onClickCreateProduct = async (data) => {
-    const resultUploadFile = await uploadImages({
-      variables: { files: [files] },
-    });
-
-    console.log(resultUploadFile);
+    // upload API 해결되면 createProduct할 때 같이 요청 예정
+    console.log(files);
+    // const result = await uploadImages({
+    //   variables: {
+    //     files,
+    //   },
+    // });
+    // console.log(result);
     try {
       const result = await createProduct({
         variables: {
@@ -119,23 +123,11 @@ export default function ProductWrite(props: IProductWriteProps) {
     }
   };
 
-  // 업로드 미해결
-  const onClickUpload = () => {
-    imageRef.current?.click();
-  };
-  const onChangeMainImg = async (event) => {
-    const file = event.target.files?.[0];
-    const isValid = checkValidationImage(file);
-    if (!isValid) return;
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-
-    fileReader.onload = (data) => {
-      if (typeof data.target?.result === "string") {
-        setMainImageSrc(data.target?.result);
-        setFiles(file);
-      }
-    };
+  const onChangeFiles = (imageList, addUpdateIndex) => {
+    setImageList(imageList);
+    const tempFiles = [...files];
+    tempFiles[addUpdateIndex] = imageList[addUpdateIndex]?.file;
+    setFiles(tempFiles);
   };
 
   return (
@@ -145,10 +137,8 @@ export default function ProductWrite(props: IProductWriteProps) {
       handleSubmit={handleSubmit}
       formState={formState}
       onChangeContents={onChangeContents}
-      onChangeMainImg={onChangeMainImg}
-      onClickUpload={onClickUpload}
-      mainImageSrc={mainImageSrc}
-      imageRef={imageRef}
+      imageList={imageList}
+      onChangeFiles={onChangeFiles}
       isEdit={props.isEdit}
       onClickCreateProduct={onClickCreateProduct}
       onClickUpdateProduct={onClickUpdateProduct}
