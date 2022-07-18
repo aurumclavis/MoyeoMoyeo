@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import { useApolloClient } from "@apollo/client";
+import { useApolloClient, useMutation, useQuery } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { accessTokenState, userInfoState } from "../../../../commons/store";
+import { FETCH_USER, LOGIN } from "../Login.Queries";
 
 const schema = yup.object({
   email: yup
@@ -23,6 +24,8 @@ const schema = yup.object({
 export default function LoginNewStaffPage() {
   const router = useRouter();
   const client = useApolloClient();
+  const [login] = useMutation(LOGIN);
+  const { data } = useQuery(FETCH_USER);
   const [, setAccessToken] = useRecoilState(accessTokenState);
   const [, setUserInfo] = useRecoilState(userInfoState);
   const { register, handleSubmit, formState, setValue, trigger, reset, watch } =
@@ -45,26 +48,33 @@ export default function LoginNewStaffPage() {
   };
   // 로그인
   const onClickToLogin = async (data: any) => {
+    console.log(data);
     try {
-      const result = await loginUser({
+      const result = await login({
         variables: {
           email: data.email,
           password: data.password,
         },
       });
 
-      const Token = result.data.loginUser.accessToken;
+      const Token = result.data.login;
       const resultUserInfo = await client.query({
-        query: FETCH_USER_LOGGED_IN,
+        query: FETCH_USER,
+        variables: {
+          email: data.email,
+        },
         context: {
           headers: {
             Authorization: `Bearer ${Token}`,
           },
         },
       });
-      setAccessToken(result.data?.loginUser.accessToken);
-      localStorage.setItem("refreshToken", "true");
-      const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
+      setAccessToken(result.data?.login);
+      // localStorage.setItem("refreshToken", "true");
+      const userInfo = resultUserInfo.data?.fetchUser;
+      // if (!userInfo.manager) {
+      //   return alert("일반 회원 로그인페이지에서 다시 로그인바랍니다.");
+      // }
       setUserInfo(userInfo);
       alert("로그인이 되었습니다.");
       router.push("/");

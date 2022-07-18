@@ -56,6 +56,7 @@ export default function LoginPage() {
           password: data.password,
         },
       });
+
       console.log(result.data.login);
       const Token = result.data.login; //accessToken
       const resultUserInfo = await client.query({
@@ -69,9 +70,13 @@ export default function LoginPage() {
           },
         },
       });
+
       setAccessToken(result.data?.login);
       // localStorage.setItem("refreshToken", "true");
       const userInfo = resultUserInfo.data?.fetchUser;
+      // if (userInfo.manager) {
+      //   return alert("관계자 회원 로그인페이지에서 다시 로그인바랍니다.");
+      // }
       setUserInfo(userInfo);
       console.log(userInfo);
       alert("로그인이 되었습니다.");

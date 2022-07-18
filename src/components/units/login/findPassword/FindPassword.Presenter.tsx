@@ -4,6 +4,7 @@ import CommonMobileInput from "../../../commons/inputs/mobileInputs";
 import * as S from "./FindPasswordStyles";
 
 import Countdown from "react-countdown";
+import ButtonSubmit from "../../../commons/buttons/submit";
 export default function FindPwPageUI(props) {
   const renderer = ({ minutes, seconds }: any) => {
     return (
@@ -27,7 +28,10 @@ export default function FindPwPageUI(props) {
           {!props.isDone ? (
             props.isReadyForNum ? (
               <S.NewAuthWrapper>
-                <S.AuthInput placeholder="인증번호" />
+                <S.AuthInput
+                  placeholder="인증번호"
+                  {...props.register("validateToken")}
+                />
                 <Countdown renderer={renderer} date={Date.now() + 180000} />
                 <S.MobileGetNumAgainBtn onClick={props.onClickGetNumberAgain}>
                   인증번호 재요청
@@ -53,18 +57,28 @@ export default function FindPwPageUI(props) {
             <S.MobileAuthBtn>인증됨</S.MobileAuthBtn>
           )}
         </S.MobileInfo>
-
-        <CommonInput
-          placeholder={"새 비밀번호를 입력해주세요"}
-          register={props.register("password")}
-        />
-        <S.Error>{props.formState.errors.password?.message}</S.Error>
-        <CommonInput
-          placeholder={"새 비밀번호를 한번 더 입력해주세요"}
-          register={props.register("password")}
-        />
-
-        <S.SubmitBtn>새 비밀번호로 수정</S.SubmitBtn>
+        <form onSubmit={props.handleSubmit(props.onClickToUpdatePW)}>
+          <CommonInput
+            type="password"
+            placeholder={"새 비밀번호를 입력해주세요"}
+            register={props.register("password")}
+          />
+          <S.Error>{props.formState.errors.password?.message}</S.Error>
+          <CommonInput
+            type="password"
+            placeholder={"새 비밀번호를 한번 더 입력해주세요"}
+            register={props.register("passwordCheck")}
+          />
+          <S.Error>{props.formState.errors.passwordCheck?.message}</S.Error>
+          <S.ButtonWrapper>
+            <ButtonSubmit
+              fontSize="1.25rem"
+              isActive={props.formState.isValid}
+              // isActive={true}
+              title="비밀번호 업데이트"
+            />
+          </S.ButtonWrapper>
+        </form>
         <S.FooterWrapper>
           <S.FooterTitle>앗! 비밀번호가 갑자기 생각나셨나요?</S.FooterTitle>
           <S.FooterBtn>로그인으로 돌아가기</S.FooterBtn>

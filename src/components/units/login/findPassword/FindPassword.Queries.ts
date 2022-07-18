@@ -1,21 +1,19 @@
 import { gql } from "@apollo/client";
 // 이메일 인증
-export const sendEmail = gql`
+export const SEND_EMAIL = gql`
   mutation sendEmail($email: String!) {
-    sendEmail(email: $email){
-    }
+    sendEmail(email: $email)
   }
 `;
 // 인증번호 확인
-export const authorizeReset = gql`
-  mutation sendEmail($email: String!, $tokenInput: String!) {
-    sendEmail(email: $email, tokenInput:$tokenInput){
-    }
+export const AUTHORIZE_RESET = gql`
+  mutation authorizeReset($email: String!, $tokenInput: String!) {
+    authorizeReset(email: $email, tokenInput: $tokenInput)
   }
 `;
 
 // 비밀번호 업데이트
-export const updateUser = gql`
+export const UPDATE_USER = gql`
   mutation updateUser($updateUserInput: UpdateUserInput!) {
     updateUser(updateUserInput: $updateUserInput) {
       name

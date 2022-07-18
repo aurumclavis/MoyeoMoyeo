@@ -6,16 +6,6 @@ export const LOGIN = gql`
     login(email: $email, password: $password)
   }
 `;
-// backend 07꺼
-// export const FETCH_USER_LOGGED_IN = gql`
-//   query fetchUserLoggedIn {
-//     fetchUserLoggedIn {
-//       _id
-//       email
-//       name
-//     }
-//   }
-// `;
 
 // 우리꺼 (는 확인하고 사용하기)
 export const FETCH_USER = gql`
@@ -24,6 +14,7 @@ export const FETCH_USER = gql`
       id
       email
       name
+      manager
     }
   }
 `;

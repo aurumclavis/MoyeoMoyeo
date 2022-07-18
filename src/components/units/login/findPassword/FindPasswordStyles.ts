@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-
+interface IButtonStyledProps {
+  isActive?: boolean;
+}
 //전체;
 export const OutWrapper = styled.div`
   width: 100%;
@@ -42,7 +44,7 @@ export const MobileInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin: 20px 0px;
+  margin: 10px 0px;
 `;
 export const NumberInputs = styled.div`
   width: 100%;
@@ -56,12 +58,10 @@ export const MobileAuthBtn = styled.button`
   text-align: center;
   border: 1px solid #edf0f5;
   border-radius: 5px;
-  background-color: #ffd24c;
   cursor: pointer;
-  :disabled {
-    background-color: "#edf0f5";
-  }
-  background-color: ${(props) => (props.isActive ? "#FFD24C" : "#edf0f5")};
+  font-size: 0.825rem;
+  background-color: ${(props: IButtonStyledProps) =>
+    props.isActive ? "#FFD24C" : "edf0f5"};
 `;
 
 //인증번호
@@ -95,11 +95,12 @@ export const AuthInput = styled.input`
     border: 2px solid #ffd24c;
   }
 `;
-export const MobileGetNumAgainBtn = styled.button`
+export const MobileGetNumAgainBtn = styled.div`
   width: 120px;
   height: 37px;
   background-color: #ffffff;
   text-align: center;
+  padding-top: 7px;
   border: 1px solid #ffd24c;
   border-radius: 5px;
   font-size: 0.875rem;
@@ -110,11 +111,12 @@ export const MobileGetNumAgainBtn = styled.button`
     border: 1px solid black;
   }
 `;
-export const MobileAuthCheckBtn = styled.button`
+export const MobileAuthCheckBtn = styled.div`
   width: 80px;
   height: 37px;
   background-color: #ffffff;
   text-align: center;
+  padding-top: 7px;
   border: 1px solid #ffd24c;
   border-radius: 5px;
   font-size: 0.875rem;
@@ -127,14 +129,19 @@ export const MobileAuthCheckBtn = styled.button`
 `;
 
 //submit
-export const SubmitBtn = styled.button`
+export const ButtonWrapper = styled.div`
   width: 100%;
-  height: 50px;
+  height: 56px;
+  margin-bottom: 20px;
+`;
+export const SubmitBtn = styled.button`
   text-align: center;
   border: 1px solid #edf0f5;
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 20px;
+  background-color: ${(props: IButtonStyledProps) =>
+    props.isActive ? "#FFD24C" : "#edf0f5"};
 `;
 
 // footer

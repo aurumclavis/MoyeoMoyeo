@@ -20,6 +20,7 @@ const schema = yup.object({
     .min(2, "이름은 최소 2자리 이상 입력해주세요")
     .max(5, "이름은 최대 5자리로 입력해주세요"),
   institution: yup.string().required("소속회사은 필수 입력사항입니다."),
+  // name: yup.string().required("이름은 필수 입력사항입니다."),
   email: yup
     .string()
     .email("이메일 형식이 적합하지 않습니다")
@@ -116,6 +117,7 @@ export default function SignUpNewEventPage() {
             password: data.password,
             phone: phone,
             institution: data.institution,
+            name: "data.name",
           },
         },
       });

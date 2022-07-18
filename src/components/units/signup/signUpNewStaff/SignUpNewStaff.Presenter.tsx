@@ -16,7 +16,7 @@ export default function SignUpNewStaffPageUI(props) {
   };
   return (
     <S.OutWrapper>
-      <S.Wrapper>
+      <S.Wrapper onSubmit={props.handleSubmit(props.onClickCreateUser)}>
         <S.HeaderTitle>
           <span>관계자</span> 회원가입
         </S.HeaderTitle>
