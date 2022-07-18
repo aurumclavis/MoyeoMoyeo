@@ -43,23 +43,27 @@ export default function LayoutHeaderUI(props) {
             </S.Menu>
           </S.NavBarWrapper>
           <S.UserMenuWrapper>
-            <S.UserMenu id="/login" onClick={props.onClickTab}>
-              로그인
-            </S.UserMenu>
-            <S.UserMenu id="/signup" onClick={props.onClickTab}>
-              회원가입
-            </S.UserMenu>
+            {props.accessToken && (
+              <>
+                <S.UserMenu id="/login" onClick={props.onClickTab}>
+                  로그인
+                </S.UserMenu>
+                <S.UserMenu id="/signup" onClick={props.onClickTab}>
+                  회원가입
+                </S.UserMenu>
+              </>
+            )}
           </S.UserMenuWrapper>
         </S.InsideWrapper>
       </S.Wrapper>
       <S.Flex>
         <S.MobileMenuWrapper isActive={props.isOpen}>
           <S.MobileMenuIistWrapper>
-            <S.MobileMenu id="/boards" onClick={props.onClickMobileTab}>
-              동행하기
-            </S.MobileMenu>
             <S.MobileMenu id="/events" onClick={props.onClickMobileTab}>
               행사일정
+            </S.MobileMenu>
+            <S.MobileMenu id="/boards" onClick={props.onClickMobileTab}>
+              동행하기
             </S.MobileMenu>
             <S.MobileMenu id="/products" onClick={props.onClickMobileTab}>
               모여마켓
@@ -87,9 +91,7 @@ export default function LayoutHeaderUI(props) {
               )}
             </S.MobileMenuIconWrapper>
             <S.MobileMenuIconWrapper>
-              {props.accessToken ? (
-                ""
-              ) : (
+              {!props.accessToken && (
                 <>
                   <S.MobileSignUpIcon />
                   <S.MobileFooterMenu
