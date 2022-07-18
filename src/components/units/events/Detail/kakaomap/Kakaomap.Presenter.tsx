@@ -3,11 +3,11 @@ export default function KakakomapPageUI(props) {
   return (
     <S.Wrapper>
       <S.MapWrapper>
-        <div id="map" style={{ width: 800, height: 600 }}></div>
+        <div id="map" style={{ width: 800, height: 500 }}></div>
       </S.MapWrapper>
 
       <>
-        {/* <div>
+        <div>
           <ul id="category">
             <li id="BK9" data-order="0">
               <span className="category_bg bank"></span>
@@ -42,7 +42,7 @@ export default function KakakomapPageUI(props) {
               지하철역
             </li>
           </ul>
-        </div> */}
+        </div>
       </>
     </S.Wrapper>
   );

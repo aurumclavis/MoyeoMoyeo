@@ -117,7 +117,9 @@ export const EventWriteBtn = styled.div`
   align-items: center;
   margin-left: auto;
   border-radius: 5px;
-  background-color: #ffd24c;
+  background-color: #15133c;
+  color: #ffffff;
+  font-size: 1rem;
   font-weight: 600;
   @media (max-width: 767px) {
     width: 60px;

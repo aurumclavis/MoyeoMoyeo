@@ -48,7 +48,7 @@ export default function EventsDetail() {
       });
       alert("찜했어요");
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 

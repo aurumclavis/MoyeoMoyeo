@@ -1,16 +1,16 @@
 import styled from "@emotion/styled";
-
 import {
   CheckCircleOutlined,
   LinkOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
-import styledEngine from "@mui/styled-engine";
+
 interface IMenuProps {
   isActive: boolean;
 }
 
 export const Wrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 1.25rem;
@@ -120,9 +120,11 @@ export const ContetsText = styled.div`
 
 export const MapWrapper = styled.div`
   width: 100%;
+  height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   align-items: center;
   margin: 2rem 0rem;
 `;
