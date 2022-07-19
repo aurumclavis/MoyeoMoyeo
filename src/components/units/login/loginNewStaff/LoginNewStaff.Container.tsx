@@ -77,7 +77,7 @@ export default function LoginNewStaffPage() {
       router.push("/");
     } catch (error) {
       alert("로그인 정보가 일치하지 않습니다.");
-      router.push("/login");
+      router.push("/login/newStaff");
     }
   };
 
