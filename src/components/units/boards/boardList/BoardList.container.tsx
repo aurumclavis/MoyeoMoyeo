@@ -156,7 +156,7 @@ export default function BoardListContainer() {
   // 날짜별 data추출 검색필터
   const [sortedData, setSortedData] = useState(
     sortedRawData.filter(
-      (el) =>
+      el =>
         Number(fromToDate.from.replaceAll("-", "")) <=
           Number(el.accompanyDate.start.replaceAll("-", "")) &&
         Number(fromToDate.to.replaceAll("-", "")) >=
@@ -166,7 +166,7 @@ export default function BoardListContainer() {
   useEffect(() => {
     setSortedData(
       sortedRawData.filter(
-        (el) =>
+        el =>
           Number(fromToDate.from.replaceAll("-", "")) <=
             Number(el.accompanyDate.start.replaceAll("-", "")) &&
           Number(fromToDate.to.replaceAll("-", "")) >=
@@ -219,7 +219,7 @@ export default function BoardListContainer() {
     setSelectLatest(false);
     setSelectRequested(true);
     setIsUseDateChanger(false);
-    setViewTypeData(rawData.filter((el) => el.requested));
+    setViewTypeData(rawData.filter(el => el.requested));
   };
   // 날짜선택기능 부분
   const [isWeekly, setIsWeekly] = useState(false);
@@ -228,7 +228,7 @@ export default function BoardListContainer() {
     isWeekly
       ? setFromToDate(defaultFromToMonthly(fromToDate.from))
       : setFromToDate(changeFromToWeekly(fromToDate.from));
-    setIsWeekly((prev) => !prev);
+    setIsWeekly(prev => !prev);
   };
   const onClickArrowLeft = () => {
     isWeekly
@@ -245,8 +245,8 @@ export default function BoardListContainer() {
   const onClickViewRecruit = () => {
     selectViewRecruit
       ? setRecruitData(categoryData)
-      : setRecruitData(categoryData.filter((el) => !el.recruited));
-    setSelectViewRecruit((prev) => !prev);
+      : setRecruitData(categoryData.filter(el => !el.recruited));
+    setSelectViewRecruit(prev => !prev);
   };
 
   const onClickCreateBoard = () => {
@@ -273,7 +273,7 @@ export default function BoardListContainer() {
 
   // 행사카테고리 중복제거 부분
   const eventCategory = rawData
-    .map((el) => el.category)
+    .map(el => el.category)
     .reduce((acc, cur) => (acc.includes(cur) ? acc : [...acc, cur]), ["전체"]);
 
   // 게시글 상세로 이동

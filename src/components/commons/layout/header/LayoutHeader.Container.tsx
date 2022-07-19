@@ -5,6 +5,7 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { LOGOUT } from "./LayoutHeader.Queries";
 import { useMutation, useQuery } from "@apollo/client";
 import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../../commons/store";
 
 export default function LayoutHeader() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function LayoutHeader() {
     setActivedTab(e.currentTarget.id);
     onClickMoveToPage(e.currentTarget.id)();
   };
-  // const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickMobileMenu = () => {
@@ -44,6 +45,7 @@ export default function LayoutHeader() {
     <LayoutHeaderUI
       onClickMobileLogo={onClickMobileLogo}
       onClickMobileMenu={onClickMobileMenu}
+      accessToke={accessToken}
       activedTab={activedTab}
       prevClick={prevClick}
       onClickTab={onClickTab}
