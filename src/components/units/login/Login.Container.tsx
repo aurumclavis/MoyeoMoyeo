@@ -70,7 +70,7 @@ export default function LoginPage() {
 
       setAccessToken(result.data?.login);
       // localStorage.setItem("refreshToken", "true");
-      const userInfo = resultUserInfo.data?.fetchUser;
+      const userInfo = resultUserInfo.data?.fetchLoginUser;
       // if (userInfo.manager) {
       //   return alert("관계자 회원 로그인페이지에서 다시 로그인바랍니다.");
       // }

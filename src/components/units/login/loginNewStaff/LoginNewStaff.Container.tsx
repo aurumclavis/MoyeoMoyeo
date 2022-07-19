@@ -68,11 +68,11 @@ export default function LoginNewStaffPage() {
       });
       setAccessToken(result.data?.login);
       // localStorage.setItem("refreshToken", "true");
-      const userInfo = resultUserInfo.data?.fetchUser;
+      const userInfo = resultUserInfo.data?.fetchLoginUser;
       // if (!userInfo.manager) {
       //   return alert("일반 회원 로그인페이지에서 다시 로그인바랍니다.");
       // }
-      // setUserInfo(userInfo);
+      setUserInfo(userInfo);
       alert("로그인이 되었습니다.");
       router.push("/");
     } catch (error) {
