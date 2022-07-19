@@ -128,7 +128,7 @@ export default function ProductDetail() {
       onScrollNav={onScrollNav}
       onClickDetail={onClickDetail}
       onClickQna={onClickQna}
-      isSeller={userInfo.email === data?.fetchProduct.seller.email}
+      isSeller={userInfo?.email === data?.fetchProduct.seller.email}
       onClickShowConfirm={onClickShowConfirm}
       onClickDibsProduct={onClickDibsProduct}
     />
