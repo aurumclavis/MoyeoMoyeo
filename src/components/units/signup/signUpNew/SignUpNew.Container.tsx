@@ -10,10 +10,7 @@ import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 const schema = yup.object({
   // 컴포넌트
-  // checkbox1: yup
-  // .string()
-  // .test
-  // .required("[필수] 입력사항입니다."),
+  checkbox1: yup.boolean().required("[필수] 입력사항입니다."),
   name: yup
     .string()
     .required("이름은 필수 입력사항입니다.")
@@ -58,10 +55,11 @@ export default function SignUpNewPage() {
   const { onClickMoveToPage } = useMoveToPage();
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
-  const { register, handleSubmit, formState, watch } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-  });
+  const { register, handleSubmit, formState, watch, setValue, trigger } =
+    useForm({
+      resolver: yupResolver(schema),
+      mode: "onChange",
+    });
   // moblie 비활성화용
   const onChangeMobile = (event) => {
     setIsActive(event.target.input);
@@ -131,6 +129,8 @@ export default function SignUpNewPage() {
       register={register}
       handleSubmit={handleSubmit}
       watch={watch}
+      setValue={setValue}
+      trigger={trigger}
       // mobile
       isActive={isActive}
       isReadyForNum={isReadyForNum}

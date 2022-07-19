@@ -88,14 +88,13 @@ export default function SignUpNewPageUI(props) {
             <S.MobileAuthBtn disabled={true}>인증됨</S.MobileAuthBtn>
           )}
         </S.MobileInfo>
-        <Checkbox register={props.register()} />
+        <Checkbox setValue={props.setValue} trigger={props.trigger} />
 
         <S.Error>{props.formState.errors.checkbox?.message}</S.Error>
         <S.ButtonWrapper>
           <ButtonSubmit
             fontSize="1.25rem"
             isActive={props.formState.isValid}
-            // isActive={true}
             title="회원가입"
           />
         </S.ButtonWrapper>

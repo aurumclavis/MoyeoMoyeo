@@ -6,13 +6,15 @@ import Policy from "../../units/signup/signUpNew/policy/policy.Container";
 interface ICheckBoxProps {
   setIsVisible?: any;
   register?: any;
+  setValue?: any;
+  trigger?: any;
 }
 const Wrapper = styled.div`
   width: 100%;
   padding-bottom: 20px;
   position: relative;
 `;
-const SeletAll = styled.span`
+const SelectAll = styled.span`
   margin-left: 5px;
   font-size: 0.825rem;
 `;
@@ -82,7 +84,7 @@ export default function Checkbox(props: ICheckBoxProps) {
         onChange={onClickCheckAll}
         checked={checkList.length === dataList.length}
       />
-      <SeletAll>모두 선택</SeletAll>
+      <SelectAll>모두 선택</SelectAll>
       {dataList.map((list, index) => (
         <InputBox key={index}>
           <Input
@@ -91,14 +93,7 @@ export default function Checkbox(props: ICheckBoxProps) {
             checked={isChecked(list)}
           />
           <Data>{list.data}</Data>
-          {list.id <= 2 && {
-            ...props.register("checkbox", {
-              required: {
-                value: true,
-                message: "[필수]를 확인해주세요.",
-              },
-            }),
-          }}
+
           {list.id === 1 && (
             <ShowModal onClick={onClickShowModal}>
               [개인정보 취급방침확인]
