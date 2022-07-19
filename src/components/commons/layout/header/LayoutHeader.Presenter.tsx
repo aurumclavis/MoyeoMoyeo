@@ -47,7 +47,12 @@ export default function LayoutHeaderUI(props) {
             )}
           </S.NavBarWrapper>
           <S.UserMenuWrapper>
-            {!props.accessToken && (
+            {props.accessToken ? (
+              <>
+                <S.UserMenu></S.UserMenu>
+                <S.UserMenu onClick={props.onClickLogout}>로그아웃</S.UserMenu>
+              </>
+            ) : (
               <>
                 <S.UserMenu id="/login" onClick={props.onClickTab}>
                   로그인
@@ -82,7 +87,7 @@ export default function LayoutHeaderUI(props) {
             <S.MobileMenuIconWrapper>
               <S.MobileLoginIcon />
               {props.accessToken ? (
-                <S.MobileFooterMenu id="/login" onClick={props.onClickLogout}>
+                <S.MobileFooterMenu onClick={props.onClickLogout}>
                   로그아웃
                 </S.MobileFooterMenu>
               ) : (

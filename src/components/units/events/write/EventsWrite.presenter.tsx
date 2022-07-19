@@ -20,9 +20,10 @@ export default function EventsWriteUI(props) {
           <DaumPostcode onComplete={props.onCompleteAddressSearch} />
         </Modal>
       )}
+
       <S.Wrapper>
         <S.FormWrapper onSubmit={props.handleSubmit(props.onClickSubmit)}>
-          <S.HeaderTitle>행사 등록</S.HeaderTitle>
+          <S.HeaderTitle>행사 {props.isEdit ? "수정" : "등록"}</S.HeaderTitle>
           <S.InputWrapper>
             <S.RowWrapper>
               <S.TitleWrapper>
@@ -31,6 +32,7 @@ export default function EventsWriteUI(props) {
                   register={props.register("title")}
                   type="text"
                   placeholder="제목을 작성해주세요."
+                  defaultValue={props.postData?.fetchPost.title}
                 />
               </S.TitleWrapper>
               <S.DateWrapper>
@@ -38,12 +40,21 @@ export default function EventsWriteUI(props) {
                 <DateRangePicker
                   placeholder={["축제 시작일", "축제 종료일"]}
                   onChangeDate={props.onChangeDate}
+                  defaultValue={[
+                    props.postData?.fetchPost.dateStart,
+                    props.postData?.fetchPost.dateEnd,
+                  ]}
                 />
               </S.DateWrapper>
             </S.RowWrapper>
             <S.SubTitle>행사 주소</S.SubTitle>
             <S.RowWrapper>
-              <S.Address defaultValue={props.address} readOnly />
+              <S.Address
+                readOnly
+                {...props.register("address")}
+                defaultValue={props.data?.postData?.address}
+                value={props.address || props.postData?.fetchPost.address}
+              />
               <S.SearchButton onClick={props.onClickAddressSearch}>
                 주소 검색
               </S.SearchButton>
@@ -51,6 +62,7 @@ export default function EventsWriteUI(props) {
             <S.SubTitle>상세 설명</S.SubTitle>
             <S.ContentQuill
               onChange={props.onChangeContents}
+              defaultValue={props.postData?.fetchPost.description}
               placeholder="축제에 대한 설명을 입력해주세요."
             />
             <S.RowWrapper>
@@ -68,7 +80,7 @@ export default function EventsWriteUI(props) {
               </S.ImageWrapper>
               <S.TypeWrapper>
                 <S.SubTitle>행사 분류</S.SubTitle>
-                <S.TypeSelect onChange={props.onChangeCategory}>
+                <S.TypeSelect {...props.register("category")}>
                   {/* <option selected>선택</option> */}
                   <option value={"축제"}>축제</option>
                   <option value={"문화"}>문화</option>

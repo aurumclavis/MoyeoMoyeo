@@ -16,6 +16,7 @@ export default function DateRangePicker(props: any) {
         placeholder={props.placeholder}
         onChange={props.onChangeDate}
         locale={locale}
+        defaultValue={props.defaultValue}
       />
     </Space>
   );

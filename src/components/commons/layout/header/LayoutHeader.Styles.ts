@@ -54,7 +54,7 @@ export const NavBarWrapper = styled.div`
   width: 320px;
   height: 3.75rem;
   display: flex;
-  justify-content: flex-start5142;
+  justify-content: flex-start;
   flex-direction: row;
   align-items: center;
   margin-right: auto;
@@ -74,7 +74,6 @@ export const Menu = styled.div`
   align-items: center;
   margin-top: auto;
   margin-left: 5%;
-  margin-right: auto;
   font-weight: ${(props: IMenuProps) => (props.isActive ? "700" : "400")};
   /* color: ${(props: IMenuProps) =>
     props.isActive ? "#ffe69a" : "#000000"}; */
