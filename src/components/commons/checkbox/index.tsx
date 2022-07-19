@@ -1,7 +1,11 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import PrivacyPolicy from "../../units/signup/signUpNew/ PrivacyPolicy/PrivacyPolicy.Container";
 import Policy from "../../units/signup/signUpNew/policy/policy.Container";
 
+interface ICheckBoxProps {
+  setIsVisible?: any;
+}
 const Wrapper = styled.div`
   width: 100%;
   padding-bottom: 20px;
@@ -33,12 +37,18 @@ const ShowModal = styled.span`
     text-decoration: underline;
   }
 `;
-export default function Checkbox(props) {
+export default function Checkbox(props: ICheckBoxProps) {
   const [checkList, setCheckList] = useState([]);
+
   // 이용약관 모달
   const [visible, setVisible] = useState(false);
   const onClickShowPolicyModal = () => {
     setVisible(true);
+  };
+  // 개인정보 모달
+  const [Isvisible, setIsVisible] = useState(false);
+  const onClickShowModal = () => {
+    setIsVisible(true);
   };
 
   // 체크박스 전체
@@ -79,15 +89,20 @@ export default function Checkbox(props) {
             onChange={() => onCheckedItem(list)}
             checked={isChecked(list)}
             // id="checkbox_id"
-            {...props.register("checkbox", {
-              required: {
-                value: true,
-                message: "[필수]를 확인해주세요.",
-              },
-            })}
+            // {...props.register("checkbox", {
+            //   required: {
+            //     value: true,
+            //     message: "[필수]를 확인해주세요.",
+            //   },
+            // })}
           />
           <Data>{list.data}</Data>
 
+          {list.id === 1 && (
+            <ShowModal onClick={onClickShowModal}>
+              [개인정보 취급방침확인]
+            </ShowModal>
+          )}
           {list.id === 2 && (
             <ShowModal onClick={onClickShowPolicyModal}>
               [이용약관확인]
@@ -95,7 +110,9 @@ export default function Checkbox(props) {
           )}
         </InputBox>
       ))}
+
       {visible && <Policy setVisible={setVisible} />}
+      {Isvisible && <PrivacyPolicy setIsVisible={setIsVisible} />}
     </Wrapper>
   );
 }
@@ -106,11 +123,3 @@ const dataList = [
   { id: 2, data: "[필수] 이용약관에 동의합니다" },
   { id: 3, data: "[선택] 마켓팅 정보이용에 동의합니다." },
 ];
-
-// react hook form
-// {...register("checkbox",{
-//   required:{
-//     value:true,
-//     message:'[필수]를 확인해주세요.'
-//   }
-// }}
