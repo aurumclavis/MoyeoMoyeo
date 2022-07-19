@@ -9,6 +9,8 @@ import { CREATE_USER, SEND_SMS, VALIDATE_PHONE } from "./SignUpNew.Queries";
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 const schema = yup.object({
+  // 컴포넌트
+  // checkbox1: yup.required("이름은 필수 입력사항입니다."),
   name: yup
     .string()
     .required("이름은 필수 입력사항입니다.")
@@ -80,27 +82,26 @@ export default function SignUpNewPage() {
   // moblie 인증번호 확인
   const onClickConfirm = async () => {
     try {
-      await validatePhone({
+      const result = await validatePhone({
         variables: { phone, tokenInput },
       });
-      Modal.success({ content: "핸드폰 번호인증이 완료되었습니다." });
-      setIsDone(true);
+      const TokenCheckValid = result.data?.validatePhone;
+      if (TokenCheckValid === false) {
+        Modal.error({ content: "인증번호를 다시 확인 바랍니다." });
+      }
+      if (TokenCheckValid === true) {
+        Modal.success({ content: "핸드폰 번호인증이 완료되었습니다." });
+        setIsDone(true);
+      }
     } catch (error) {
       setIsDone(false);
       setIsReadyForNum(true);
-      Modal.error({ content: "핸드폰 번호인증을 다시 해주세요." });
+      Modal.error({ content: "인증번호를 다시 확인 바랍니다." });
     }
   };
 
   // 회원가입
   const onClickCreateUser = async (data: any) => {
-    // if(){
-    //   return Modal.info({ content: "중복된 이메일(ID)입니다." });
-    // }
-    // if(){
-    //   return Modal.info({ content: "중복된 핸드폰 번호입니다." });
-    // }
-
     console.log(data);
     try {
       await createUser({

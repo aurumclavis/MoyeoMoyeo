@@ -120,6 +120,7 @@ export default function SignUpNewEventPage() {
           },
         },
       });
+
       Modal.success({ content: "회원가입에 성공했습니다!" });
       router.push(`/login`);
     } catch (error) {

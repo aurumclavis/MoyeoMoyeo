@@ -33,7 +33,7 @@ const ShowModal = styled.span`
     text-decoration: underline;
   }
 `;
-export default function Checkbox() {
+export default function Checkbox(props) {
   const [checkList, setCheckList] = useState([]);
   // 이용약관 모달
   const [visible, setVisible] = useState(false);
@@ -79,6 +79,12 @@ export default function Checkbox() {
             onChange={() => onCheckedItem(list)}
             checked={isChecked(list)}
             // id="checkbox_id"
+            {...props.register("checkbox", {
+              required: {
+                value: true,
+                message: "[필수]를 확인해주세요.",
+              },
+            })}
           />
           <Data>{list.data}</Data>
 

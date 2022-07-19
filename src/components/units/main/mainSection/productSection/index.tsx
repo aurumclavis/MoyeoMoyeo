@@ -149,8 +149,8 @@ const ProductSection = (props) => {
         {data?.fetchProducts.map((el: any, index: number) => (
           <ProductList
             {...animatedItem[index]}
-            key={el.id}
-            onClick={onClickMoveToPage(`products/${el.id}`)}
+            key={index}
+            // onClick={onClickMoveToPage(`products/${el.id}`)}
           >
             <ProductImages src="/example2.png" />
             <ProductName>{el.name}</ProductName>

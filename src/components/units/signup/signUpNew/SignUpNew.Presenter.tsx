@@ -46,10 +46,12 @@ export default function SignUpNewPageUI(props) {
             <CommonMobileInput
               register={props.register("phoneNumber")}
               onChange={props.onChangeMobile}
+              readOnly={props.isDone === true}
             />
             <CommonMobileInput
               register={props.register("phoneNumber2")}
               onChange={props.onChangeMobile}
+              readOnly={props.isDone === true}
             />
           </S.NumberInputs>
           <S.Error>{props.formState.errors.phoneNumber?.message}</S.Error>
@@ -84,19 +86,10 @@ export default function SignUpNewPageUI(props) {
               </S.MobileAuthBtn>
             )
           ) : (
-            <S.MobileAuthBtn disabled={true} type="button">
-              인증됨
-            </S.MobileAuthBtn>
+            <S.MobileAuthBtn disabled={true}>인증됨</S.MobileAuthBtn>
           )}
         </S.MobileInfo>
-        <Checkbox
-        // {...props.register("checkbox", {
-        //   required: {
-        //     value: true,
-        //     message: "[필수]를 확인해주세요.",
-        //   },
-        // })}
-        />
+        <Checkbox register={props.register} />
 
         {/* <S.Error>{props.formState.errors.checkbox?.message}</S.Error> */}
         <S.ButtonWrapper>
