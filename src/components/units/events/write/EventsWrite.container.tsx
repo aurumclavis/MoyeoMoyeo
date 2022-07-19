@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { CREATE_POST, UPLOAD_IMAGES } from "./EventsWrite.Queries";
+import { CREATE_POST, UPLOAD_IMAGES, UPDATE_POST } from "./EventsWrite.Queries";
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
+import { Router, useRouter } from "next/router";
 
 const schema = yup.object({
   title: yup
@@ -14,20 +15,21 @@ const schema = yup.object({
     .max(50, "50자 이내로 입력해주세요.")
     .required("필수 입력 사항입니다."),
   contents: yup.string().required("필수 입력 사항입니다."),
-  // address: yup.string().required("필수 입력 사항입니다."),
+  address: yup.string().required("필수 입력 사항입니다."),
   category: yup.string().required(),
 });
 export default function EventsWrite(props) {
+  const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
   // const [uploadImages] = useMutation(UPLOAD_IMAGES);
   const [isOpen, setIsOpen] = useState(false);
 
   const [address, setAddress] = useState("");
-  const [category, setCategoy] = useState("");
   const [dateStart, setDateStart] = useState("");
   const [dateEnd, setDateEnd] = useState("");
   // 날짜 선택
   const [createPost] = useMutation(CREATE_POST);
+  const [updatePost] = useMutation(UPDATE_POST);
 
   // const [fileMain, setMainFileUrls] = useState([""]);
   // const [fileUrls, setFileUrls] = useState("");
@@ -77,17 +79,40 @@ export default function EventsWrite(props) {
         variables: {
           postInput: {
             title: data.title,
-            address,
+            address: data.address,
             dateStart,
             dateEnd,
             description: data.contents,
             category: data.category,
-            // imgSrcs: ["", ""],
+            imgSrcs: ["", ""],
           },
         },
       });
       Modal.success({ content: "등록 완료" });
-      onClickMoveToPage("/event")();
+      router.push("/events");
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
+  };
+
+  const onClickUpdate = async data => {
+    const updatePostInput: any = {};
+    if (data.title) updatePostInput.title = data.title;
+    if (data.contents) updatePostInput.description = data.contents;
+    if (data.address) updatePostInput.address = data.address;
+    if (data.category) updatePostInput.category = data.category;
+    if (dateStart) updatePostInput.title = dateStart;
+    if (dateEnd) updatePostInput.contents = dateEnd;
+
+    try {
+      await updatePost({
+        variables: {
+          postId: router.query.id,
+          updatePostInput,
+        },
+      });
+      Modal.success({ content: "게시글이 수정되었습니다." });
+      router.push(`/events/${router.query._id}`);
     } catch (error) {
       Modal.error({ content: error.message });
     }
@@ -127,7 +152,7 @@ export default function EventsWrite(props) {
       handleSubmit={handleSubmit}
       formState={formState}
       isEdit={props.isEdit}
-      // data={props.data}
+      postData={props.data}
       isOpen={isOpen}
       address={address}
       onClickMoveToPage={onClickMoveToPage}
@@ -138,6 +163,7 @@ export default function EventsWrite(props) {
       onClickSubmit={onClickSubmit}
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
+      onClickUpdate={onClickUpdate}
     />
   );
 }

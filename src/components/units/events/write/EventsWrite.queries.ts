@@ -16,3 +16,11 @@ export const UPLOAD_IMAGES = gql`
     }
   }
 `;
+
+export const UPDATE_POST = gql`
+  mutation updatePost($postId: String!, $updatePostInput: UpdatePostInput) {
+    updatePost(postId: $postId, updatePostInput: $updatePostInput) {
+      id
+    }
+  }
+`;

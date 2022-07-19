@@ -45,7 +45,7 @@ export default function LayoutHeader() {
     <LayoutHeaderUI
       onClickMobileLogo={onClickMobileLogo}
       onClickMobileMenu={onClickMobileMenu}
-      accessToke={accessToken}
+      accessToken={accessToken}
       activedTab={activedTab}
       prevClick={prevClick}
       onClickTab={onClickTab}
