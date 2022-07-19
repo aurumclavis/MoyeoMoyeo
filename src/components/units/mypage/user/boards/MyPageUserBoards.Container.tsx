@@ -1,7 +1,17 @@
+import { useState } from "react";
 import RequestUserList from "../../../../commons/requestUserList";
 import * as S from "../../listItem/MyPageListItem.Styles";
 
 export default function MyPageUserBoards() {
+  const [requestAccepted, setRequestAccepted] = useState("");
+  const [requestRefused, setRequestRefused] = useState("");
+  const onClickAcceptRequest = (el: string) => () => {
+    setRequestAccepted(el);
+  };
+  const onClickRefuseRequest = (el: string) => () => {
+    setRequestRefused(el);
+  };
+
   return (
     <S.Wrapper>
       <S.ItemWrapper>
@@ -34,7 +44,13 @@ export default function MyPageUserBoards() {
           <S.MoreText>게시글 더보기</S.MoreText>
           <S.RequestUserWrapper>
             <S.ItemText>동행 신청자</S.ItemText>
-            <RequestUserList isDetailPage={false} />
+            <RequestUserList
+              onClickAcceptRequest={onClickAcceptRequest}
+              onClickRefuseRequest={onClickRefuseRequest}
+              requestAccepted={requestAccepted}
+              requestRefused={requestRefused}
+              isDetailPage={false}
+            />
           </S.RequestUserWrapper>
         </S.ItemContentsWrapper>
       </S.ItemWrapper>
@@ -69,7 +85,13 @@ export default function MyPageUserBoards() {
           <S.MoreText>게시글 더보기</S.MoreText>
           <S.RequestUserWrapper>
             <S.ItemText>동행 신청자</S.ItemText>
-            <RequestUserList isDetailPage={false} />
+            <RequestUserList
+              onClickAcceptRequest={onClickAcceptRequest}
+              onClickRefuseRequest={onClickRefuseRequest}
+              requestAccepted={requestAccepted}
+              requestRefused={requestRefused}
+              isDetailPage={false}
+            />
           </S.RequestUserWrapper>
         </S.ItemContentsWrapper>
       </S.ItemWrapper>
