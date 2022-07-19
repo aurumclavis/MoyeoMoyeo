@@ -148,8 +148,8 @@ const ProductSection = (props) => {
       <InnerWrapper>
         {data?.fetchProducts.map((el: any, index: number) => (
           <ProductList
+            {...animatedItem[index]}
             key={el.id}
-            // {...animatedItem[index]}
             onClick={onClickMoveToPage(`products/${el.id}`)}
           >
             <ProductImages src="/example2.png" />

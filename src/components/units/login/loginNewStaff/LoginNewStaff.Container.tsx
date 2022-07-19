@@ -72,7 +72,7 @@ export default function LoginNewStaffPage() {
       // if (!userInfo.manager) {
       //   return alert("일반 회원 로그인페이지에서 다시 로그인바랍니다.");
       // }
-      setUserInfo(userInfo);
+      // setUserInfo(userInfo);
       alert("로그인이 되었습니다.");
       router.push("/");
     } catch (error) {
