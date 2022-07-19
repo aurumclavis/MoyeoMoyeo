@@ -29,20 +29,18 @@ export const Select = styled.select`
 `;
 export const InsideWrapper = styled.div`
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+`;
+export const GridWrapper = styled.div`
   display: grid;
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; */
-  /* grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); */
-  grid-template-rows: repeat(auto-fit, minmax(400px, 1fr));
-  /* grid-template-rows: 1fr 1fr; */
-  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 1.25rem;
   @media (max-width: 767px) {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 5px;
   }
 `;
-export const GridWrapper = styled.div``;
 export const ListWrapper = styled.div`
   width: 400px;
   height: 150px;

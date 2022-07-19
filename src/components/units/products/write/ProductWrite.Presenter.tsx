@@ -1,12 +1,11 @@
-import { Upload, Button } from "antd";
+import { Upload, Button, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import * as S from "./ProductWrite.Styles";
-import { CameraAlt } from "@mui/icons-material";
 import { IProductWriteUIProps } from "./ProductWrite.Types";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import CommonInput from "../../../commons/inputs/infoInputs";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-
+import ImageUploading from "react-images-uploading";
 export default function ProductWriteUI(props: IProductWriteUIProps) {
   const { onClickMoveToPage } = useMoveToPage();
   return (
@@ -67,14 +66,66 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>추가 이미지</S.Label>
-          <Upload
+          {/* <Upload
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             listType="picture"
             maxCount={8}
             multiple
           >
             <Button icon={<UploadOutlined />}>사진등록</Button>
-          </Upload>
+          </Upload> */}
+          <ImageUploading
+            multiple
+            value={props.imageList}
+            onChange={props.onChangeFiles}
+            maxNumber={1000}
+            dataURLKey="data_url"
+          >
+            {({
+              imageList,
+              onImageUpload,
+              onImageRemoveAll,
+              onImageUpdate,
+              onImageRemove,
+              isDragging,
+              dragProps,
+            }) => (
+              // write your building UI
+              <div className="upload__image-wrapper">
+                <button
+                  type="button"
+                  style={isDragging ? { color: "red" } : undefined}
+                  onClick={onImageUpload}
+                  {...dragProps}
+                >
+                  Click or Drop here
+                </button>
+                &nbsp;
+                <button type="button" onClick={onImageRemoveAll}>
+                  Remove all images
+                </button>
+                {imageList.map((image, index) => (
+                  <div key={index} className="image-item">
+                    <img src={image["data_url"]} alt="" width="100" />
+                    <div className="image-item__btn-wrapper">
+                      <button
+                        type="button"
+                        onClick={() => onImageUpdate(index)}
+                      >
+                        Update
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => onImageRemove(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </ImageUploading>
         </S.InputWrapper>
 
         {/* 웹에디터 UI */}

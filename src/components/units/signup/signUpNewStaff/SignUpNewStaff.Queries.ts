@@ -9,7 +9,6 @@ export const CREATE_USER = gql`
       manager
       phone
       institution
-      name
     }
   }
 `;

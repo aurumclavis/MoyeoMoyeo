@@ -13,11 +13,8 @@ export const AUTHORIZE_RESET = gql`
 `;
 
 // 비밀번호 업데이트
-export const UPDATE_USER = gql`
-  mutation updateUser($updateUserInput: UpdateUserInput!) {
-    updateUser(updateUserInput: $updateUserInput) {
-      password
-      email
-    }
+export const RESET_PASSWORD = gql`
+  mutation resetPassword($email: String!, $newPassword: String!) {
+    resetPassword(email: $email, newPassword: $newPassword)
   }
 `;

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Visibility, FavoriteBorder } from "@mui/icons-material";
+import { Visibility, FavoriteBorder, Chat } from "@mui/icons-material";
 import { Image } from "antd";
 import { breakPoints } from "../../../../commons/styles/media";
 
@@ -122,6 +122,7 @@ export const RightWrapper = styled.div`
 export const SidebarWrapper = styled.div`
   position: -webkit-sticky;
   position: sticky;
+  width: 100%;
   top: 100px;
   display: flex;
   flex-direction: column;
@@ -178,47 +179,7 @@ export const SellerContentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-// export const CarouselWrapper = styled.div`
-//   width: 100%;
-//   height: 300px;
-//   display: flex;
-//   justify-content: center;
-// `;
-// export const MySlider = styled(Slider)`
-//   width: 100%;
 
-//   .slick-dots {
-//     .slick-active {
-//       button::before {
-//         color: #c1c1c1;
-//       }
-//     }
-//     button::before {
-//       color: #e9e9e9;
-//     }
-//     li {
-//       margin: 5px;
-//     }
-//   }
-//   .slick-prev {
-//     z-index: 1;
-//     left: 5%;
-//   }
-//   .slick-prev::before {
-//     content: "<";
-//     color: #f2f2f2;
-//     font-size: 30px;
-//   }
-//   .slick-next {
-//     z-index: 1;
-//     right: 10%;
-//   }
-//   .slick-next::before {
-//     content: ">";
-//     color: #f2f2f2;
-//     font-size: 30px;
-//   }
-// `;
 export const ImageItem = styled(Image)`
   width: 100%;
   max-height: 300px;
@@ -260,4 +221,45 @@ export const MobilePrice = styled.h2`
     font-size: 1.5rem;
     font-weight: 600;
   }
+`;
+export const ChatWrapper = styled.div`
+  position: fixed;
+  bottom: 3%;
+  right: 10%;
+  animation: fadein 1s;
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+export const ChatIconWrapper = styled.div`
+  width: 50px;
+  height: 50px;
+  display: flex;
+  position: fixed;
+  top: 85%;
+  right: 13%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #ffd24c;
+  cursor: pointer;
+  :hover {
+    animation: motion 0.5s linear 0s infinite alternate;
+  }
+  @keyframes motion {
+    0% {
+      margin-top: 0px;
+    }
+    100% {
+      margin-top: 10px;
+    }
+  }
+`;
+export const ChatIcon = styled(Chat)`
+  color: white;
 `;

@@ -1,19 +1,25 @@
 import * as S from "./ProductsDetail.Styles";
 import ProductsQuestionList from "../question/list/ProductsQuestionList.Container";
 import ProductsQuestionWrite from "../question/write/ProductsQuestionWrite.Container";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Image } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useRouter } from "next/router";
 import BackTopAnt from "../../../commons/backTop";
 import { FavoriteBorder } from "@mui/icons-material";
 import DOMPurify from "dompurify";
+import { useState } from "react";
+
+import Chat from "../../chat";
+// import io from "socket.io-client";
+// const socket = io.connect("http://localhost:3001");
 
 export default function ProductDetailUI(props: any) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
-
+  const [clicked, setClicked] = useState(false);
+  const onClickChat = () => {
+    setClicked((prev) => !prev);
+  };
   return (
     <S.Wrapper>
       {/* 스크롤 할 때 생기는 네비게이션바 */}
@@ -87,7 +93,7 @@ export default function ProductDetailUI(props: any) {
 
         <S.Line />
         <S.SellerContentsWrapper>
-          <S.Label>{props.data?.fetchProduct.seller?.name}</S.Label>
+          <S.Label>{props.data?.fetchProduct.seller?.manager}</S.Label>
           <S.Label>{props.data?.fetchProduct.seller?.phone}</S.Label>
         </S.SellerContentsWrapper>
         <S.Line />
@@ -138,6 +144,21 @@ export default function ProductDetailUI(props: any) {
 
       {/* BackTop(맨 위로 가기) 추가 */}
       <BackTopAnt />
+
+      {clicked ? (
+        <S.ChatWrapper>
+          <Chat
+            // socket={socket}
+            onClickChat={onClickChat}
+            username="username"
+            room="1"
+          />
+        </S.ChatWrapper>
+      ) : (
+        <S.ChatIconWrapper onClick={onClickChat}>
+          <S.ChatIcon />
+        </S.ChatIconWrapper>
+      )}
 
       {/* 모바일 화면일때는 찜하기,구매하기가 하단에 고정 */}
       <S.MobilePaymentBar>

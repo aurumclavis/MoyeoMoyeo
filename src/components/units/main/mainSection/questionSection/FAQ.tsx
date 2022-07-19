@@ -16,8 +16,8 @@ export default function FAQ() {
     <OutWrapper>
       <InnerWrapper>
         <TitleWrapper>
-          <MainTitle># 자주하는 질문 </MainTitle>
           <TitleImage src="icon/done.png" />
+          <MainTitle> 자주하는 질문 </MainTitle>
         </TitleWrapper>
         <Wrapper defaultActiveKey={["1"]} onChange={onChange}>
           <Title header="자주하는 질문1 " key="1">
@@ -32,7 +32,10 @@ export default function FAQ() {
         </Wrapper>
       </InnerWrapper>
       <InnerWrapper>
-        <MainTitle># 자주하는 질문(관계자)</MainTitle>
+        <TitleWrapper>
+          <TitleImage src="icon/done.png" />
+          <MainTitle> 자주하는 질문 [관계자] </MainTitle>
+        </TitleWrapper>
         <Wrapper defaultActiveKey={["1"]} onChange={onChange}>
           <Titles header="자주하는 질문1 " key="1">
             <p>{text}</p>

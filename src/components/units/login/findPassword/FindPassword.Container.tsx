@@ -9,7 +9,7 @@ import { useMutation } from "@apollo/client";
 import {
   AUTHORIZE_RESET,
   SEND_EMAIL,
-  UPDATE_USER,
+  RESET_PASSWORD,
 } from "./FindPassword.Queries";
 import { date } from "yup/lib/locale";
 const schema = yup.object({
@@ -37,7 +37,7 @@ export default function FindPwPage() {
   const router = useRouter();
   const [sendEmail] = useMutation(SEND_EMAIL);
   const [authorizeReset] = useMutation(AUTHORIZE_RESET);
-  const [updateUser] = useMutation(UPDATE_USER);
+  const [resetPassword] = useMutation(RESET_PASSWORD);
 
   const [emailComfirm, setEmailComfirm] = useState("");
   const [isActive, setIsActive] = useState(false);
@@ -54,6 +54,7 @@ export default function FindPwPage() {
   };
   const email = watch("email");
   const tokenInput = watch("validateToken");
+  const newPassword = watch("password");
   const onClickGetNumber = async () => {
     setIsReadyForNum(true);
     try {
@@ -81,12 +82,10 @@ export default function FindPwPage() {
 
   const onClickToUpdatePW = async (data: any) => {
     try {
-      await updateUser({
+      await resetPassword({
         variables: {
-          updateUserInput: {
-            email: data.email,
-            password: data.password,
-          },
+          email: data.email,
+          newPassword: newPassword,
         },
       });
       Modal.success({ content: "비밀번호가 업데이트 되었습니다. " });
