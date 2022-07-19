@@ -43,7 +43,7 @@ export default function LayoutHeaderUI(props) {
             </S.Menu>
           </S.NavBarWrapper>
           <S.UserMenuWrapper>
-            {props.accessToken && (
+            {!props.accessToken && (
               <>
                 <S.UserMenu id="/login" onClick={props.onClickTab}>
                   로그인
