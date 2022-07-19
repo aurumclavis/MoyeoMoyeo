@@ -34,6 +34,7 @@ export default function ProductsPayment() {
   };
 
   const onClickPayment = () => {
+    console.log(userInfo);
     const IMP = window.IMP;
     IMP.init("imp23997847");
     IMP.request_pay(
@@ -42,27 +43,31 @@ export default function ProductsPayment() {
         pay_method: "card",
         name: PRODUCT_INFO.name,
         amount: PRODUCT_INFO.price,
-        buyer_email: userInfo.email,
-        buyer_name: userInfo.name,
+        buyer_addr: "테스트 주소",
+        buyer_email: userInfo?.email,
+        buyer_name: userInfo?.name,
         merchant_uid: PRODUCT_INFO.id,
         m_redirect_url: "http://localhost:3000/",
       },
       async (rsp: any) => {
         if (rsp.success) {
+          console.log(rsp);
           // createPayment Error:422 처리되지 않은 결제
           try {
-            await createPayment({
+            const result = await createPayment({
               variables: {
                 impUid: rsp.imp_uid,
-                productId: PRODUCT_INFO.id,
+                productId: rsp.merchant_uid,
+                address: rsp.buyer_addr,
               },
             });
+            console.log(result);
             alert("결제가 완료되었습니다.");
           } catch (error) {
             alert(error.message);
           }
         } else {
-          alert("결제에 실패했습니다. 다시 시도해주세요.");
+          alert(rsp.error_msg);
         }
       }
     );

@@ -12,7 +12,6 @@ export const FETCH_PRODUCT = gql`
       createdAt
       isSoldout
       seller {
-        name
         id
         email
         phone
@@ -36,7 +35,6 @@ export const DELETE_PRODUCT = gql`
 export const DIBS_PRODUCT = gql`
   mutation dibsProduct($productId: String!) {
     dibsProduct(productId: $productId) {
-      name
       email
     }
   }
@@ -44,7 +42,6 @@ export const DIBS_PRODUCT = gql`
 export const UNDIBS_PRODUCT = gql`
   mutation undibsProduct($productId: String!) {
     undibsProduct(productId: $productId) {
-      name
       email
     }
   }
