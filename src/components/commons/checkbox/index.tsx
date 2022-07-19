@@ -5,6 +5,7 @@ import Policy from "../../units/signup/signUpNew/policy/policy.Container";
 
 interface ICheckBoxProps {
   setIsVisible?: any;
+  register?: any;
 }
 const Wrapper = styled.div`
   width: 100%;
@@ -88,16 +89,16 @@ export default function Checkbox(props: ICheckBoxProps) {
             type="checkbox"
             onChange={() => onCheckedItem(list)}
             checked={isChecked(list)}
-            // id="checkbox_id"
-            // {...props.register("checkbox", {
-            //   required: {
-            //     value: true,
-            //     message: "[필수]를 확인해주세요.",
-            //   },
-            // })}
           />
           <Data>{list.data}</Data>
-
+          {list.id <= 2 && {
+            ...props.register("checkbox", {
+              required: {
+                value: true,
+                message: "[필수]를 확인해주세요.",
+              },
+            }),
+          }}
           {list.id === 1 && (
             <ShowModal onClick={onClickShowModal}>
               [개인정보 취급방침확인]

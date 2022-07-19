@@ -74,12 +74,11 @@ export default function SignUpNewPageUI(props) {
             ) : (
               <S.MobileAuthBtn
                 type="button"
-                isActive={/^[0-9]$/.test(
-                  props.watch("phoneNumber" && "phoneNumber2")
-                )}
-                // disabled={
-                //   !/^[0-9]$/.test(props.watch("phoneNumber" && "phoneNumber2"))
-                // }
+                isActive={
+                  /[0-9]$/.test(props.watch("phoneNumber")) &&
+                  /[0-9]$/.test(props.watch("phoneNumber2"))
+                }
+                disabled={!props.watch("phoneNumber" && "phoneNumber2")}
                 onClick={props.onClickGetNumber}
               >
                 인증번호 요청
@@ -89,9 +88,9 @@ export default function SignUpNewPageUI(props) {
             <S.MobileAuthBtn disabled={true}>인증됨</S.MobileAuthBtn>
           )}
         </S.MobileInfo>
-        <Checkbox register={props.register} />
+        <Checkbox register={props.register()} />
 
-        {/* <S.Error>{props.formState.errors.checkbox?.message}</S.Error> */}
+        <S.Error>{props.formState.errors.checkbox?.message}</S.Error>
         <S.ButtonWrapper>
           <ButtonSubmit
             fontSize="1.25rem"
