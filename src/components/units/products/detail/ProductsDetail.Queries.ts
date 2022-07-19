@@ -46,11 +46,3 @@ export const UNDIBS_PRODUCT = gql`
     }
   }
 `;
-export const UNDIBS_PRODUCT = gql`
-  mutation undibsProduct($productId: String!) {
-    undibsProduct(productId: $productId) {
-      name
-      email
-    }
-  }
-`;
