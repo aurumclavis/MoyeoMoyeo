@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import * as S from "../../listItem/MyPageListItem.Styles";
 
 const FETCH_LOGIN_USER = gql`
@@ -15,6 +15,7 @@ const FETCH_LOGIN_USER = gql`
   }
 `;
 export default function MyPageUserEvents() {
+  const { data } = useQuery(FETCH_LOGIN_USER);
   return (
     <S.Wrapper>
       <S.ItemWrapper>
