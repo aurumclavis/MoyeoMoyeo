@@ -8,6 +8,7 @@ import * as S from "./BoardDetail.styles";
 import { v4 as uuidv4 } from "uuid";
 import RequestUserList from "../../../../commons/requestUserList";
 import KaKaoRoadView from "../../KaKaoMap/FetchMap/roadView";
+import MaxHeadCountChangeModal from "./maxHeadcountChangeModal";
 
 export default function BoardDetailPresenter(props: any) {
   return (
@@ -58,13 +59,13 @@ export default function BoardDetailPresenter(props: any) {
                 </S.TransportationWrapper>
                 <S.HeadCountWrapper>
                   <S.ItemsText>모집인원</S.ItemsText>
-                  <S.MaxHeadCount>3명</S.MaxHeadCount>
+                  <S.MaxHeadCount>{props.maxHeadCount}명</S.MaxHeadCount>
                 </S.HeadCountWrapper>
               </S.InfoUpper>
               <S.InfoUnder>
                 <S.MyCalendarIcon />
                 <S.AccompanyDate>
-                  2022년 7월 16일 ~ 2022년 7월 16일
+                  <div>{`2022년 7월 16일`}</div>~<div>{`2022년 7월 16일`}</div>
                 </S.AccompanyDate>
               </S.InfoUnder>
             </S.InfoWrapper>
@@ -108,13 +109,26 @@ export default function BoardDetailPresenter(props: any) {
                 <S.AccompanyUpperItemsWrapper>
                   <S.AccompanyItems>
                     <S.AccompanyAmountIcon src="/icon/groups.png" />
-                    <S.AccompanyAmountText>인원 4/5</S.AccompanyAmountText>
+                    <S.AccompanyAmountText>
+                      인원 {4}/{props.maxHeadCount}
+                    </S.AccompanyAmountText>
                   </S.AccompanyItems>
                   <S.AccompanyItems>
-                    <S.AccompanyChangeMaxIcon src="/icon/group_add.png" />
+                    <S.AccompanyChangeMaxIcon
+                      src="/icon/group_add.png"
+                      onClick={props.onClickChangeMaxCount}
+                    />
                     <S.AccompanyChangeMaxText>
                       인원 변경
                     </S.AccompanyChangeMaxText>
+                    {props.isModalVisible && (
+                      <MaxHeadCountChangeModal
+                        setIsModalVisible={props.setIsModalVisible}
+                        handleOk={props.handleOk}
+                        maxHeadCount={props.maxHeadCount}
+                        onClickCount={props.onClickCount}
+                      />
+                    )}
                   </S.AccompanyItems>
                 </S.AccompanyUpperItemsWrapper>
               </S.AccompanyUpperWrapper>
@@ -122,11 +136,9 @@ export default function BoardDetailPresenter(props: any) {
                 {props.isCompleted ? (
                   <>
                     <S.AccompanyUserListWrapper>
-                      {/* map으로 동행유저 뿌리는 부분 */}
-                      <S.AccompanyUser>김성훈</S.AccompanyUser>
-                      <S.AccompanyUser>성혜린</S.AccompanyUser>
-                      <S.AccompanyUser>김은재</S.AccompanyUser>
-                      <S.AccompanyUser>한주연</S.AccompanyUser>
+                      {["김성훈", "성혜린", "김은재", "한주연"].map((el) => (
+                        <S.AccompanyUser key={el}>{el}</S.AccompanyUser>
+                      ))}
                     </S.AccompanyUserListWrapper>
                     <S.AccompanyRequestButton isCompleted={props.isCompleted}>
                       <S.AccompanyCompleteCancelIcon src="/icon/cancel.png" />
@@ -142,11 +154,9 @@ export default function BoardDetailPresenter(props: any) {
                 ) : (
                   <>
                     <S.AccompanyUserListWrapper>
-                      {/* map으로 동행유저 뿌리는 부분 */}
-                      <S.AccompanyUser>김성훈</S.AccompanyUser>
-                      <S.AccompanyUser>성혜린</S.AccompanyUser>
-                      <S.AccompanyUser>김은재</S.AccompanyUser>
-                      <S.AccompanyUser>한주연</S.AccompanyUser>
+                      {["김성훈", "성혜린", "김은재", "한주연"].map((el) => (
+                        <S.AccompanyUser key={el}>{el}</S.AccompanyUser>
+                      ))}
                     </S.AccompanyUserListWrapper>
                     <RequestUserList
                       onClickAcceptRequest={props.onClickAcceptRequest}

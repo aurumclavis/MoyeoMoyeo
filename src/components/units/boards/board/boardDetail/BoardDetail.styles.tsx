@@ -32,7 +32,7 @@ export const NavWrapper = styled.nav`
   position: fixed;
   top: -71px;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   background-color: #ffffff;
   border-bottom: 1px solid #d9d9d9;
   transition: top 0.5s;
@@ -101,7 +101,7 @@ export const Body = styled.div`
 export const Title = styled.span`
   font-size: 2.5rem;
   font-weight: 700;
-  ${(props) => props.isCompleted && "background-color: #ffe69a;"}
+  ${(props: any) => props.isCompleted && "background-color: #ffe69a;"}
   @media ${breakPoints.mobile} {
     font-size: 1.5rem;
   }
@@ -134,7 +134,7 @@ export const Main = styled.div`
 
 // 인포박스
 export const InfoWrapper = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem;
@@ -142,12 +142,14 @@ export const InfoWrapper = styled.div`
   border-radius: 5px;
   gap: 1rem;
   font-size: 1.5rem;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 export const InfoUpper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 1rem;
 `;
 export const ItemsText = styled.div`
   font-size: 1.5rem;
@@ -188,6 +190,9 @@ export const MyCalendarIcon = styled(DateRangeIcon)`
   width: 1.5rem;
 `;
 export const AccompanyDate = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   font-size: 1.5rem;
   letter-spacing: 0.05rem;
   @media ${breakPoints.mobile} {

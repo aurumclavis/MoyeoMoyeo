@@ -23,7 +23,6 @@ export const Wrapper = styled.form`
 
 // 최상단 커버이미지 wrap
 export const CoverImageWrapper = styled.div`
-  /* width: calc(100vw); */
   width: calc(100vw - (100vw * 1.01 / 100));
   height: 25rem;
   position: relative;
