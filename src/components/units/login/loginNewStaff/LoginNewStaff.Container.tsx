@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useApolloClient, useMutation, useQuery } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { accessTokenState, userInfoState } from "../../../../commons/store";
-import { FETCH_LOGIN_USER, LOGIN } from "../Login.Queries";
+import { FETCH_LOGIN_USER, LOGIN } from "./LoginNewStaff.Queries";
 
 const schema = yup.object({
   email: yup
