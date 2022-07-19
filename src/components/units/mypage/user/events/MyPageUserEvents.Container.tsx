@@ -1,4 +1,19 @@
+import { gql } from "@apollo/client";
 import * as S from "../../listItem/MyPageListItem.Styles";
+
+const FETCH_LOGIN_USER = gql`
+  query fetchLoginUser {
+    fetchLoginUser {
+      email
+      dibsPosts {
+        id
+        title
+        writer
+        description
+      }
+    }
+  }
+`;
 export default function MyPageUserEvents() {
   return (
     <S.Wrapper>

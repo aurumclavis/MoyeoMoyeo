@@ -80,8 +80,7 @@ export default function ProductWrite(props: IProductWriteProps) {
             price: data.price,
             description: data.summary,
             contentSrc: data.contents,
-            mainImgSrc: "",
-            subImgSrcs: [],
+            imgSrcs: [],
           },
         },
       });
