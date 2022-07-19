@@ -34,13 +34,17 @@ export default function LayoutHeaderUI(props) {
             >
               모여마켓
             </S.Menu>
-            <S.Menu
-              isActive={props.activedTab === "/mypage"}
-              id="/mypage"
-              onClick={props.onClickTab}
-            >
-              마이페이지
-            </S.Menu>
+            {props.accessToken ? (
+              <S.Menu
+                isActive={props.activedTab === "/mypage"}
+                id="/mypage"
+                onClick={props.onClickTab}
+              >
+                마이페이지
+              </S.Menu>
+            ) : (
+              <S.Menu isActive={false}> </S.Menu>
+            )}
           </S.NavBarWrapper>
           <S.UserMenuWrapper>
             {!props.accessToken && (

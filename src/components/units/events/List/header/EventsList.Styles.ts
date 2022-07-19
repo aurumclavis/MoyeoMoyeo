@@ -121,6 +121,7 @@ export const EventWriteBtn = styled.div`
   color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
+  cursor: pointer;
   @media (max-width: 767px) {
     width: 60px;
     height: 30px;

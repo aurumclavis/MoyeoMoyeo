@@ -21,7 +21,7 @@ export default function EventsWriteUI(props) {
         </Modal>
       )}
       <S.Wrapper>
-        <form onSubmit={props.handleSubmit(props.onClickSubmit)}>
+        <S.FormWrapper onSubmit={props.handleSubmit(props.onClickSubmit)}>
           <S.HeaderTitle>행사 등록</S.HeaderTitle>
           <S.InputWrapper>
             <S.RowWrapper>
@@ -69,10 +69,12 @@ export default function EventsWriteUI(props) {
               <S.TypeWrapper>
                 <S.SubTitle>행사 분류</S.SubTitle>
                 <S.TypeSelect onChange={props.onChangeCategory}>
-                  <option selected>선택</option>
-                  <option value={"festival"}>축제</option>
-                  <option value={"cultural"}>공연/문화</option>
-                  <option value={"other"}>기타</option>
+                  {/* <option selected>선택</option> */}
+                  <option value={"축제"}>축제</option>
+                  <option value={"문화"}>문화</option>
+                  <option value={"공연"}>공연</option>
+                  <option value={"전시"}>전시</option>
+                  <option value={"기타"}>기타</option>
                 </S.TypeSelect>
               </S.TypeWrapper>
             </S.RowWrapper>
@@ -82,8 +84,8 @@ export default function EventsWriteUI(props) {
               <ButtonSubmit
                 fontSize="1.25rem"
                 onClick={props.onClick}
-                isActive={props.formState.isValid}
-                // isActive={true}
+                // isActive={props.formState.isValid}
+                isActive={true}
                 title="등록하기"
               />
               {/* <button>버튼</button> */}
@@ -92,7 +94,7 @@ export default function EventsWriteUI(props) {
               취소
             </S.CancleBtn>
           </S.ButtonOutWrapper>
-        </form>
+        </S.FormWrapper>
       </S.Wrapper>
     </>
   );

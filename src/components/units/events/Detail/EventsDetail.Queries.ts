@@ -3,18 +3,20 @@ import { gql } from "@apollo/client";
 export const FETCH_POST = gql`
   query fetchPost($postId: String!) {
     fetchPost(postId: $postId) {
-      # id
+      id
       title
-      # writer
+      # writer {
+      #   id
+      #   manager
+      # }
+      address
       description
-      # mainImage {
-      #   id
-      # }
-      # subImages {
-      #   id
-      # }
+      dateStart
+      dateEnd
+      # images
       category
       viewCount
+      uploadedAt
       likedUsers {
         id
       }
@@ -25,6 +27,14 @@ export const FETCH_POST = gql`
 export const DIBS_POST = gql`
   mutation dibsPost($postId: String!) {
     dibsPost(postId: $postId) {
+      id
+    }
+  }
+`;
+
+export const UNDIBS_POST = gql`
+  mutation undibsPost($postId: String!) {
+    undibsPost(postId: $postId) {
       id
     }
   }

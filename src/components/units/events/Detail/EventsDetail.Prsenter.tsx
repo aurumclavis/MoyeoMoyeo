@@ -2,6 +2,7 @@ import * as S from "./EventsDetail.Styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import KakakomapPage from "./kakaomap/kakaomap.Container";
 import BackTopAnt from "../../../commons/backTop";
+import { getDate } from "../../../commons/getDate";
 
 export default function EventsDetailUI(props: any) {
   return (
@@ -9,10 +10,13 @@ export default function EventsDetailUI(props: any) {
       <S.Wrapper>
         <S.MainHost>{props.data?.fetchPost?.writer} 주최</S.MainHost>
         <S.HeaderTitle>{props.data?.fetchPost?.title}</S.HeaderTitle>
-        <S.HeaderCalendar>2022.07.01 - 2022.07.29</S.HeaderCalendar>
+        <S.HeaderCalendar>
+          {getDate(props.data?.fetchPost?.dateStart)} -
+          {getDate(props.data?.fetchPost?.dateEnd)}
+        </S.HeaderCalendar>
         <S.CountWrapper>
+          조회수 {props.data?.fetchPost?.viewCount}
           <S.CountIcon />
-          조회수
         </S.CountWrapper>
         <S.LineDiv />
         <S.NavWrapper ref={props.navRef}>
@@ -61,22 +65,19 @@ export default function EventsDetailUI(props: any) {
         <S.LineDiv />
         <S.MapWrapper ref={props.mapsRef}>
           <S.MapTitle>행사 위치</S.MapTitle>
-          <KakakomapPage />
-          <S.ContetsText>
-            이벤트 주소 이벤트 주소 이벤트 주소 이벤트 주소 이벤트 주소 이벤트
-            주소 이벤트 주소 이벤트 주소 이벤트 주소 이벤트 주소{" "}
-          </S.ContetsText>
+          <S.ContetsText>{props.data?.fetchPost?.address}</S.ContetsText>
+          <KakakomapPage address={props.data?.fetchPost?.address} />
         </S.MapWrapper>
         <S.LineDiv />
         <S.ContentsWrapper ref={props.contentsRef}>
-          <S.ContentsTitle>상세 설명</S.ContentsTitle>
+          <S.ContentsTitle>상세 이미지</S.ContentsTitle>
           <S.ContentImg src="/배너이미지_행사1.png" />
           <S.ContentImg src="/배너이미지_행사1.png" />
           <S.ContentImg src="/배너이미지_행사1.png" />
         </S.ContentsWrapper>
         <S.LineDiv />
         <S.Footer>
-          <S.BtnRouter>관련 사이트 보러가기</S.BtnRouter>
+          {/* <S.BtnRouter>관련 사이트 보러가기</S.BtnRouter> */}
           <S.BtnRouterList onClick={props.onClickMoveToPage("/events")}>
             목록으로
           </S.BtnRouterList>

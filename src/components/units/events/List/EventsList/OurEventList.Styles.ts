@@ -31,6 +31,7 @@ export const InsideWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 `;
 export const GridWrapper = styled.div`
   display: grid;
@@ -48,6 +49,7 @@ export const ListWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 1rem;
+
   margin-top: 0.4rem;
   border: ${(props: ITabProps) =>
     props.isActive ? "1px solid #d2d2d2" : "none"};

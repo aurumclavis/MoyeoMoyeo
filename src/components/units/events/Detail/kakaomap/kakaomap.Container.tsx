@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import KakakomapPageUI from "./Kakaomap.Presenter";
 import * as S from "./Kakaomap.Styles";
 declare const window: typeof globalThis & {
@@ -39,29 +39,26 @@ export default function KakakomapPage(props) {
         const geocoder = new window.kakao.maps.services.Geocoder();
 
         // 주소로 좌표를 검색합니다
-        geocoder.addressSearch(
-          `제주특별자치도 제주시 첨단로 242`,
-          function (result, status) {
-            // 정상적으로 검색이 완료됐으면
-            if (status === window.kakao.maps.services.Status.OK) {
-              const coords = new window.kakao.maps.LatLng(
-                result[0].y,
-                result[0].x
-              );
+        geocoder.addressSearch(`${props.address}`, function (result, status) {
+          // 정상적으로 검색이 완료됐으면
+          if (status === window.kakao.maps.services.Status.OK) {
+            const coords = new window.kakao.maps.LatLng(
+              result[0].y,
+              result[0].x
+            );
 
-              // 결과값으로 받은 위치를 마커로 표시합니다
-              const marker = new window.kakao.maps.Marker({
-                map: map,
-                position: coords,
-                image: markerImage,
-              });
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            const marker = new window.kakao.maps.Marker({
+              map: map,
+              position: coords,
+              image: markerImage,
+            });
 
-              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-              map.setCenter(coords);
-              marker.setMap(map);
-            }
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+            marker.setMap(map);
           }
-        );
+        });
 
         // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
         let placeOverlay = new window.kakao.maps.CustomOverlay({ zIndex: 1 }),
@@ -259,34 +256,38 @@ export default function KakakomapPage(props) {
 
           if (className === "on") {
             currCategory = "";
-            changeCategoryClass("");
+            // changeCategoryClass("");
             removeMarker();
           } else {
             currCategory = id;
-            changeCategoryClass(this);
+            // changeCategoryClass(this);
             searchPlaces();
           }
         }
 
         // 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
-        function changeCategoryClass(el) {
-          let category = document.getElementById("category"),
-            children = category.children,
-            i;
+        // function changeCategoryClass(el) {
+        //   let category = document.getElementById("category"),
+        //     children = category.children,
+        //     i;
 
-          for (i = 0; i < children.length; i++) {
-            children[i].className = "";
-          }
+        //   for (i = 0; i < children.length; i++) {
+        //     children[i].className = "";
+        //   }
 
-          if (el) {
-            el.className = "on";
-          }
-        }
+        //   if (el) {
+        //     el.className = "on";
+        //   }
+        // }
         // };
       });
       // };
     };
   }, [props.address]);
+  const [tapOpen, setTapOpen] = useState(false);
+  const onClickTap = () => {
+    setTapOpen(prev => !prev);
+  };
   return (
     <>
       <S.MapWrapper>
@@ -306,30 +307,31 @@ export default function KakakomapPage(props) {
       >
 
       </div> */}
-      <S.CategoryWrapper>
+      <div onClick={onClickTap}>버튼</div>
+      <S.CategoryWrapper isActive={tapOpen}>
         <S.UlWrapper id="category">
           <S.LiItems id="BK9" data-order="0">
-            <div className="category_bg bank"></div>
+            {/* <div className="category_bg bank"></div> */}
             은행
           </S.LiItems>
           <S.LiItems id="MT1" data-order="1">
-            <div className="category_bg mart"></div>
+            {/* <div className="category_bg mart"></div> */}
             마트
           </S.LiItems>
           <S.LiItems id="PM9" data-order="2">
-            <div className="category_bg pharmacy"></div>
+            {/* <div className="category_bg pharmacy"></div> */}
             약국
           </S.LiItems>
           <S.LiItems id="OL7" data-order="3">
-            <div className="category_bg oil"></div>
+            {/* <div className="category_bg oil"></div> */}
             주유소
           </S.LiItems>
           <S.LiItems id="CE7" data-order="4">
-            <div className="category_bg cafe"></div>
+            {/* <div className="category_bg cafe"></div> */}
             카페
           </S.LiItems>
           <S.LiItems id="CS2" data-order="5">
-            <div className="category_bg store"></div>
+            {/* <div className="category_bg store"></div> */}
             편의점
           </S.LiItems>
           {/* <S.LiItems id="MT1" data-order="6">
@@ -337,7 +339,7 @@ export default function KakakomapPage(props) {
             대형마트
           </S.LiItems> */}
           <S.LiItems id="SW8" data-order="7">
-            <div className="category_bg subway"></div>
+            {/* <div className="category_bg subway"></div> */}
             지하철역
           </S.LiItems>
         </S.UlWrapper>

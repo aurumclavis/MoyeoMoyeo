@@ -5,14 +5,15 @@ export const FETCH_POST = gql`
     fetchPosts {
       id
       title
-      description
-      # mainImage{
-      #   id
-      #   src
-      # }
+      dateStart
+      dateEnd
+      # images
       category
+      uploadedAt
       viewCount
-      # likedUsers
+      likedUsers {
+        id
+      }
     }
   }
 `;

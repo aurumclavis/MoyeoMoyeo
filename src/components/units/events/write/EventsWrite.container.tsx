@@ -6,7 +6,6 @@ import * as yup from "yup";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { CREATE_POST, UPLOAD_IMAGES } from "./EventsWrite.Queries";
 import { useMutation } from "@apollo/client";
-
 import { Modal } from "antd";
 
 const schema = yup.object({
@@ -15,20 +14,24 @@ const schema = yup.object({
     .max(50, "50자 이내로 입력해주세요.")
     .required("필수 입력 사항입니다."),
   contents: yup.string().required("필수 입력 사항입니다."),
+  // address: yup.string().required("필수 입력 사항입니다."),
+  category: yup.string().required(),
 });
 export default function EventsWrite(props) {
   const { onClickMoveToPage } = useMoveToPage();
-  const [uploadImages] = useMutation(UPLOAD_IMAGES);
+  // const [uploadImages] = useMutation(UPLOAD_IMAGES);
   const [isOpen, setIsOpen] = useState(false);
-  const [date, setDate] = useState({ start: "", end: "" });
+
   const [address, setAddress] = useState("");
   const [category, setCategoy] = useState("");
+  const [dateStart, setDateStart] = useState("");
+  const [dateEnd, setDateEnd] = useState("");
   // 날짜 선택
   const [createPost] = useMutation(CREATE_POST);
 
   // const [fileMain, setMainFileUrls] = useState([""]);
-  const [fileUrls, setFileUrls] = useState("");
-  const [file, setFile] = useState<File>();
+  // const [fileUrls, setFileUrls] = useState("");
+  // const [file, setFile] = useState<File>();
 
   const { register, handleSubmit, formState, setValue, trigger } = useForm({
     resolver: yupResolver(schema),
@@ -38,6 +41,10 @@ export default function EventsWrite(props) {
   const onChangeContents = (value: string) => {
     setValue("contents", value === "<p><br></p>" ? "" : value);
     trigger("contents");
+  };
+  const onChangeCategory = (value: string) => {
+    setValue("category", value);
+    trigger("category");
   };
 
   // const onChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
@@ -58,11 +65,11 @@ export default function EventsWrite(props) {
   //   // const result = URL.createObjectURL(file);
   // };
 
-  const onChangeCategory = e => {
-    setCategoy(e.target.value);
-  };
+  // const onChangeCategory = e => {
+  //   setCategoy(e.target.value);
+  // };
 
-  const onClickSubmit = async data => {
+  const onClickSubmit = async (data: any) => {
     // const resultfile = await uploadImages({ variables: { files: file } });
     // const url = resultfile.data.uploadFile.url; // 리턴값..?
     try {
@@ -70,20 +77,19 @@ export default function EventsWrite(props) {
         variables: {
           postInput: {
             title: data.title,
-            address: address,
-            dateStart: date.start,
-            dateEnd: date.end,
+            address,
+            dateStart,
+            dateEnd,
             description: data.contents,
-            mainImgSrc: "",
-            subImgSrcs: ["", ""],
-            category,
+            category: data.category,
+            // imgSrcs: ["", ""],
           },
         },
       });
       Modal.success({ content: "등록 완료" });
-      onClickMoveToPage("/")();
+      onClickMoveToPage("/event")();
     } catch (error) {
-      alert(error);
+      Modal.error({ content: error.message });
     }
   };
 
@@ -102,8 +108,8 @@ export default function EventsWrite(props) {
       endMonth.toString().padStart(2, "0") +
       "-" +
       e?.[1].date().toString().padStart(2, "0");
-    setDate({ start: StartDate, end: EndDate });
-    console.log(e);
+    setDateStart(StartDate);
+    setDateEnd(EndDate);
   };
 
   const onClickAddressSearch = () => {
@@ -115,15 +121,8 @@ export default function EventsWrite(props) {
     setIsOpen(false);
   };
 
-  // const onChangeFileUrls = (fileUrl: string, index: number) => {
-  //   const newFileUrls = [...fileUrls];
-  //   newFileUrls[index] = fileUrl;
-  //   setFileUrls(newFileUrls);
-  // };
-
   return (
     <EventsWriteUI
-      date={date}
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
