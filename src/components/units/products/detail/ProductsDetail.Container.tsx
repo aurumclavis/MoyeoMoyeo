@@ -6,12 +6,13 @@ import {
   DELETE_PRODUCT,
   FETCH_PRODUCT,
   DIBS_PRODUCT,
+  UNDIBS_PRODUCT,
 } from "./ProductsDetail.Queries";
 import { useRouter } from "next/router";
 import { Modal } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { userInfoState } from "../../../../commons/store";
+import { userInfoState, dibsProductIdState } from "../../../../commons/store";
 import { useRecoilState } from "recoil";
 
 export default function ProductDetail() {
@@ -28,6 +29,8 @@ export default function ProductDetail() {
     variables: { productId: router.query.productId },
   });
   const [dibsProduct] = useMutation(DIBS_PRODUCT);
+  const [undibsProduct] = useMutation(UNDIBS_PRODUCT);
+  const [dibsId, setDibsId] = useRecoilState(dibsProductIdState);
   const [userInfo] = useRecoilState(userInfoState);
 
   useEffect(() => {
@@ -104,17 +107,34 @@ export default function ProductDetail() {
   };
 
   const onClickDibsProduct = async () => {
-    try {
-      await dibsProduct({
-        variables: {
-          productId: router.query.productId,
-        },
-      });
-      Modal.success({
-        content: "찜하기 완료",
-      });
-    } catch (error) {
-      Modal.error({ content: error.message });
+    if (!dibsId) {
+      try {
+        const result = await dibsProduct({
+          variables: {
+            productId: router.query.productId,
+          },
+        });
+        Modal.success({
+          content: "찜하기 완료",
+        });
+        setDibsId(result.data.dibsProduct[0].id);
+      } catch (error) {
+        Modal.error({ content: error.message });
+      }
+    } else {
+      try {
+        await undibsProduct({
+          variables: {
+            productId: router.query.productId,
+          },
+        });
+        setDibsId("");
+        Modal.success({
+          content: "찜하기 해제 완료",
+        });
+      } catch (error) {
+        Modal.error({ content: error.message });
+      }
     }
   };
 

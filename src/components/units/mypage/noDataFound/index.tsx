@@ -3,7 +3,6 @@ import { ErrorOutlined } from "@mui/icons-material";
 
 const NoDataFoundWrapper = styled.div`
   width: 100%;
-  height: 557px;
   display: flex;
   flex: 1;
   flex-direction: column;

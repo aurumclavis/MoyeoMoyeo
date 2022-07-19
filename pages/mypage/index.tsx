@@ -8,6 +8,8 @@ import MyPageUserBuy from "../../src/components/units/mypage/user/buy/MyPageUser
 import MyPageStaffSidebar from "../../src/components/units/mypage/staff/sidebar/MyPageStaffSidebar.Container";
 import MyPageStaffSell from "../../src/components/units/mypage/staff/sell/MyPageStaffSell.Container";
 import MyPageStaffEvents from "../../src/components/units/mypage/staff/events/MyPageStaffEventsContainer";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../src/commons/store";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,7 +32,8 @@ const staffObj = {
 };
 
 export default function MyPageEventsPage() {
-  const [isStaff, setIsStaff] = useState(false);
+  const [userInfo] = useRecoilState(userInfoState);
+  const [isStaff, setIsStaff] = useState(!userInfo.name);
   const [activedIndex, setActivedIndex] = useState(0);
   return (
     <>

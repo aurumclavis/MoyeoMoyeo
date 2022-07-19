@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { breakPoints } from "../../../../commons/styles/media";
 
-export const Wrapper = styled.div`
+export const FormWrapper = styled.form`
   width: 100%;
   height: auto;
   display: flex;
@@ -37,7 +37,6 @@ export const SmallLabel = styled.span`
 
 export const LeftWrapper = styled.div`
   width: 70%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,8 +135,10 @@ export const ActiveBtn = styled.button`
   padding: 0.625rem;
   border: none;
   border-radius: 10px;
-  color: #000000;
-  background-color: #ffd24c;
+  background-color: ${(props) =>
+    props.isActive ? "#ffd24c" : "rgba(255, 210, 76, 0.3)"};
+  color: ${(props) => (props.isActive ? "black" : "rgba(87, 84, 77, 0.3)")};
+
   font-size: 1.25rem;
   cursor: pointer;
 `;

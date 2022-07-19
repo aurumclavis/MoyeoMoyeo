@@ -5,11 +5,12 @@ import { Image } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useRouter } from "next/router";
 import BackTopAnt from "../../../commons/backTop";
-import { FavoriteBorder } from "@mui/icons-material";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import DOMPurify from "dompurify";
 import { useState } from "react";
-
 import Chat from "../../chat";
+import { dibsProductIdState } from "../../../../commons/store";
+import { useRecoilState } from "recoil";
 // import io from "socket.io-client";
 // const socket = io.connect("http://localhost:3001");
 
@@ -17,6 +18,7 @@ export default function ProductDetailUI(props: any) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
   const [clicked, setClicked] = useState(false);
+  const [dibsId, setDibsId] = useRecoilState(dibsProductIdState);
   const onClickChat = () => {
     setClicked((prev) => !prev);
   };
@@ -133,9 +135,16 @@ export default function ProductDetailUI(props: any) {
                 >
                   구매하기
                 </S.ActiveBtn>
-                <S.WhiteBtn onClick={props.onClickDibsProduct}>
-                  찜하기
-                </S.WhiteBtn>
+                {dibsId && (
+                  <S.WhiteBtn onClick={props.onClickDibsProduct}>
+                    찜하기 해제
+                  </S.WhiteBtn>
+                )}
+                {!dibsId && (
+                  <S.WhiteBtn onClick={props.onClickDibsProduct}>
+                    찜하기
+                  </S.WhiteBtn>
+                )}
               </>
             )}
           </S.BtnWrapper>
@@ -177,12 +186,23 @@ export default function ProductDetailUI(props: any) {
         ) : (
           <>
             {/* 유저 : 찜하기,구매하기 */}
-            <S.WhiteBtn
-              onClick={props.onClickDibsProduct}
-              style={{ width: "20%" }}
-            >
-              <FavoriteBorder />
-            </S.WhiteBtn>
+
+            {!dibsId && (
+              <S.WhiteBtn
+                onClick={props.onClickDibsProduct}
+                style={{ width: "20%" }}
+              >
+                <FavoriteBorder />
+              </S.WhiteBtn>
+            )}
+            {dibsId && (
+              <S.WhiteBtn
+                onClick={props.onClickDibsProduct}
+                style={{ width: "20%" }}
+              >
+                <Favorite />
+              </S.WhiteBtn>
+            )}
             <S.ActiveBtn
               onClick={onClickMoveToPage(
                 `/products/${router.query.productId}/payment`

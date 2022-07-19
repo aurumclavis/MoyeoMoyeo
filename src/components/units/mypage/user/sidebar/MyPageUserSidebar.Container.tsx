@@ -8,7 +8,7 @@ interface IMyPageUserSidebarProps {
 }
 
 function MyPageUserSidebar(props: IMyPageUserSidebarProps) {
-  const MENU_NAME = ["관심 행사", "동행 내역", "관심 상품", "구매 내역"];
+  const MENU_NAME = ["관심 행사", "동행 내역", "관심 상품", "결제 내역"];
   const [userInfo] = useRecoilState(userInfoState);
   const onClickTab = (index: number) => () => {
     props.setActivedIndex(index);

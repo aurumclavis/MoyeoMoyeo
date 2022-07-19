@@ -69,7 +69,6 @@ export const Subtitle = styled.h2`
 `;
 export const Label = styled.span`
   height: auto;
-  overflow: scroll;
   font-size: 1rem;
 `;
 

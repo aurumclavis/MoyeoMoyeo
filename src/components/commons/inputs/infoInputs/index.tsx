@@ -26,6 +26,8 @@ export default function CommonInput(props) {
       {...props?.register}
       placeholder={props?.placeholder}
       type={props?.type}
+      readOnly={props.readOnly}
+      defaultValue={props.defaultValue}
       // onChange={props?.onChange}
     />
   );
