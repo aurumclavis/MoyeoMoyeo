@@ -51,10 +51,10 @@ export const LogoImg = styled.img`
 `;
 
 export const NavBarWrapper = styled.div`
-  width: 340px;
+  width: 320px;
   height: 3.75rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start5142;
   flex-direction: row;
   align-items: center;
   margin-right: auto;
@@ -73,6 +73,8 @@ export const Menu = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: auto;
+  margin-left: 5%;
+  margin-right: auto;
   font-weight: ${(props: IMenuProps) => (props.isActive ? "700" : "400")};
   /* color: ${(props: IMenuProps) =>
     props.isActive ? "#ffe69a" : "#000000"}; */

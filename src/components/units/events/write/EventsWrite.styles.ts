@@ -4,15 +4,21 @@ import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const Wrapper = styled.div`
-  width: 100%;
+  width: 80%;
   /* height: 1847px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px 10%;
+  margin: auto;
+  padding: 50px 0%;
 `;
-
+export const FormWrapper = styled.form`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+`;
 export const HeaderTitle = styled.div`
   width: 100%;
   height: 30px;
@@ -172,6 +178,7 @@ export const ButtonOutWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 2rem;
+  margin: 2rem auto;
   @media (max-width: 767px) {
     width: 100%;
   }
@@ -183,6 +190,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  justify-content: center;
 `;
 export const CancleBtn = styled.div`
   width: 40%;
@@ -191,7 +199,7 @@ export const CancleBtn = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 0.625rem;
+  border-radius: 0.313rem;
   border: none;
   background-color: #d2d2d2;
   font-size: 1.25rem;

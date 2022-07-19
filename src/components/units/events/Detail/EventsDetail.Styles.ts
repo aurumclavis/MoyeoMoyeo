@@ -48,7 +48,7 @@ export const CountWrapper = styled.div`
   color: #d2d2d2;
 `;
 export const CountIcon = styled(EyeOutlined)`
-  margin-right: 0.4rem;
+  margin-left: 0.4rem;
   font-size: 1rem;
   cursor: pointer;
 `;
@@ -262,6 +262,7 @@ export const PickWraepper = styled.div`
   background-color: #ffd24c;
   @media (max-width: 767px) {
     width: 40%;
+    justify-content: center;
   }
 `;
 
@@ -276,7 +277,9 @@ export const Linkraepper = styled.div`
   border-radius: 10px;
   background-color: #ffd24c;
   @media (max-width: 767px) {
+    height: 85%;
     width: 40%;
+    justify-content: center;
   }
 `;
 

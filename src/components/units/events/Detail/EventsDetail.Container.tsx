@@ -15,6 +15,7 @@ export default function EventsDetail() {
   const { data } = useQuery(FETCH_POST, {
     variables: { postId: router.query._id },
   });
+  console.log(data);
   const { onClickMoveToPage } = useMoveToPage();
   const [eventIdForBoard, setEventIdForBoard] =
     useRecoilState(eventIdForBoardState);
