@@ -32,3 +32,7 @@ export const eventIdForBoardState = atom({
   key: "eventIdForBoardState",
   default: "",
 });
+export const dibsProductIdState = atom({
+  key: `dibsProductIdState`,
+  default: "",
+});

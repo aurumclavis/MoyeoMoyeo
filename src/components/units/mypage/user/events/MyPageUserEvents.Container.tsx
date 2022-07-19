@@ -1,5 +1,9 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
+import { useEffect } from "react";
+import { getDate } from "../../../../commons/getDate";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import * as S from "../../listItem/MyPageListItem.Styles";
+import NoDataFound from "../../noDataFound";
 
 const FETCH_LOGIN_USER = gql`
   query fetchLoginUser {
@@ -8,95 +12,44 @@ const FETCH_LOGIN_USER = gql`
       dibsPosts {
         id
         title
-        writer
+        address
         description
+        dateStart
+        dateEnd
+        category
       }
     }
   }
 `;
 export default function MyPageUserEvents() {
+  const { data } = useQuery(FETCH_LOGIN_USER);
+  const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.Wrapper>
-      <S.ItemWrapper>
-        <S.ItemImageWrapper>
-          <S.ItemImage src="../../배너이미지_동행1.png" />
-        </S.ItemImageWrapper>
-        <S.ItemContentsWrapper>
-          <S.ItemTitle>[지역명] 기본 행사 이름</S.ItemTitle>
-          <S.ItemRowWrapper>
-            <S.IconWrapper>
-              <S.CalendarIcon />
-              <S.ItemText>2022.07.26~2022.07.28</S.ItemText>
-            </S.IconWrapper>
-          </S.ItemRowWrapper>
-          <S.ItemText>짧은 내용</S.ItemText>
-          <S.MoreText>행사 정보 더 보기</S.MoreText>
-        </S.ItemContentsWrapper>
-      </S.ItemWrapper>
-
-      <S.ItemWrapper>
-        <S.ItemImageWrapper>
-          <S.ItemImage src="../../배너이미지_동행2.png" />
-        </S.ItemImageWrapper>
-        <S.ItemContentsWrapper>
-          <S.ItemTitle>[지역명] 내용이 긴 행사</S.ItemTitle>
-          <S.ItemRowWrapper>
-            <S.IconWrapper>
-              <S.CalendarIcon />
-              <S.ItemText>2022.07.26~2022.07.28</S.ItemText>
-            </S.IconWrapper>
-          </S.ItemRowWrapper>
-          <S.ItemText>
-            내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
-            내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
-            내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
-            내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
-            내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
-            내용입니다 내용입니다 내용입니다 내용입니다
-          </S.ItemText>
-          <S.MoreText>행사 정보 더 보기</S.MoreText>
-        </S.ItemContentsWrapper>
-      </S.ItemWrapper>
-      <S.ItemWrapper>
-        <S.ItemImageWrapper>
-          <S.ItemImage src="../../배너이미지_동행1.png" />
-        </S.ItemImageWrapper>
-        <S.ItemContentsWrapper>
-          <S.ItemTitle>[지역명] 기본 행사 이름</S.ItemTitle>
-          <S.ItemRowWrapper>
-            <S.IconWrapper>
-              <S.CalendarIcon />
-              <S.ItemText>2022.07.26~2022.07.28</S.ItemText>
-            </S.IconWrapper>
-          </S.ItemRowWrapper>
-          <S.ItemText>짧은 내용</S.ItemText>
-          <S.MoreText>행사 정보 더 보기</S.MoreText>
-        </S.ItemContentsWrapper>
-      </S.ItemWrapper>
-
-      <S.ItemWrapper>
-        <S.ItemImageWrapper>
-          <S.ItemImage src="../../배너이미지_동행2.png" />
-        </S.ItemImageWrapper>
-        <S.ItemContentsWrapper>
-          <S.ItemTitle>[지역명] 내용이 긴 행사</S.ItemTitle>
-          <S.ItemRowWrapper>
-            <S.IconWrapper>
-              <S.CalendarIcon />
-              <S.ItemText>2022.07.26~2022.07.28</S.ItemText>
-            </S.IconWrapper>
-          </S.ItemRowWrapper>
-          <S.ItemText>
-            내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
-            내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
-            내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
-            내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
-            내용입니다 내용입니다 내용입니다 내용입니다 내용입니다 내용입니다
-            내용입니다 내용입니다 내용입니다 내용입니다
-          </S.ItemText>
-          <S.MoreText>행사 정보 더 보기</S.MoreText>
-        </S.ItemContentsWrapper>
-      </S.ItemWrapper>
+      {data?.fetchLoginUser.dibsPosts.map((el, index) => (
+        <S.ItemWrapper key={index}>
+          <S.ItemImageWrapper>
+            <S.ItemImage src="../../배너이미지_동행1.png" />
+          </S.ItemImageWrapper>
+          <S.ItemContentsWrapper>
+            <S.ItemTitle>
+              [{el.category}]{el.title}
+            </S.ItemTitle>
+            <S.ItemRowWrapper>
+              <S.IconWrapper>
+                <S.CalendarIcon />
+                <S.ItemText>
+                  {getDate(el.dateStart)}~{getDate(el.dateEnd)}
+                </S.ItemText>
+              </S.IconWrapper>
+            </S.ItemRowWrapper>
+            <S.ItemText>{el.description}</S.ItemText>
+            <S.MoreText>행사 정보 더 보기</S.MoreText>
+          </S.ItemContentsWrapper>
+        </S.ItemWrapper>
+      ))}
+      {(data?.fetchLoginUser.dibsPosts.length === 0 ||
+        !data?.fetchLoginUser.dibsPosts) && <NoDataFound />}
     </S.Wrapper>
   );
 }

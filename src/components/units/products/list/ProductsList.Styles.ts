@@ -74,11 +74,11 @@ export const Select = styled.select`
 // 상품 그리드
 export const GridWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1.25rem;
   margin: 3.125rem 0;
   @media ${breakPoints.mobile} {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     grid-gap: 0.625rem;
   }
 `;

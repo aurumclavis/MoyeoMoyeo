@@ -35,6 +35,7 @@ export const DELETE_PRODUCT = gql`
 export const DIBS_PRODUCT = gql`
   mutation dibsProduct($productId: String!) {
     dibsProduct(productId: $productId) {
+      id
       email
     }
   }
@@ -42,15 +43,8 @@ export const DIBS_PRODUCT = gql`
 export const UNDIBS_PRODUCT = gql`
   mutation undibsProduct($productId: String!) {
     undibsProduct(productId: $productId) {
+      id
       email
     }
   }
 `;
-// export const UNDIBS_PRODUCT = gql`
-//   mutation undibsProduct($productId: String!) {
-//     undibsProduct(productId: $productId) {
-//       name
-//       email
-//     }
-//   }
-// `;
