@@ -22,8 +22,9 @@ const TitleWrapper = styled.div`
   align-items: center;
 `;
 const TitleIcon = styled.img`
-  width: 34px;
-  height: 30px;
+  width: 20px;
+  height: 16px;
+  margin-right: 5px;
   @media ${breakPoints.mobile} {
     width: 1.5rem; //24
     height: 1.25rem; //20
@@ -44,6 +45,11 @@ const TitleRightWrapper = styled.div`
   margin-bottom: 10px;
   gap: 5px;
 `;
+const MoreBox = styled.div`
+  width: 60px;
+  display: flex;
+  justify-content: flex-end;
+`;
 const More = styled.span`
   width: 45px;
   cursor: pointer;
@@ -51,7 +57,14 @@ const More = styled.span`
     text-decoration: underline;
     color: #42c2ff;
   }
-  margin-right: 5px;
+`;
+const ArrowIcon = styled.img`
+  width: 10px;
+  height: 11px;
+  margin-top: 7px;
+  @media ${breakPoints.mobile} {
+    margin-top: 6px;
+  }
 `;
 const Wrapper = styled.div`
   width: 100%;
@@ -195,26 +208,16 @@ const BoardSection = (props) => {
   return (
     <OutWrapper>
       <TitleWrapper>
-        <Title># 동행구하기 </Title>
         <TitleIcon src="/icon/simbollogo.png" />
+        <Title>동행구하기 </Title>
       </TitleWrapper>
       <TitleRightWrapper>
         <div>이제 혼자가 아닌 우리 같이 가요!</div>
-        <div>
+        <MoreBox>
           <More onClick={props.onClickMoveToPage("/boards")}>더보기</More>
-          <img src="/icon/arrow_right.png" />
-        </div>
+          <ArrowIcon src="/icon/arrow_right.png" />
+        </MoreBox>
       </TitleRightWrapper>
-      {/* <Title>
-        <div>
-          <h1> # 동행구하기 </h1>
-          <div>이제 혼자가 아닌 우리 같이 가요!</div>
-        </div>
-        <TitleRightWrapper>
-          <More>더보기</More>
-          <img src="/icon/arrow_right.png" />
-        </TitleRightWrapper>
-      </Title> */}
       <Wrapper>
         <BoardsImage src="/main/boards.png" {...animatedItem} />
         <CarouselWrapper>

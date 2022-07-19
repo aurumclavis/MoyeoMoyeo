@@ -19,8 +19,9 @@ const TitleWrapper = styled.div`
   margin-bottom: 10px;
 `;
 const TitleIcon = styled.img`
-  width: 34px;
-  height: 30px;
+  width: 20px;
+  height: 16px;
+  margin-right: 5px;
   @media ${breakPoints.mobile} {
     width: 1.5rem; //24
     height: 1.25rem; //20
@@ -63,8 +64,8 @@ export default function InfoSection() {
   return (
     <OutWrapper>
       <TitleWrapper>
-        <Title># 공지사항</Title>
         <TitleIcon src="/icon/simbollogo.png" />
+        <Title>공지사항</Title>
       </TitleWrapper>
       <Wrapper {...settings}>
         <InfoImg src="/info/info2.png" />

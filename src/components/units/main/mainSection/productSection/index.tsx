@@ -4,6 +4,18 @@ import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
 import { breakPoints } from "../../../../../commons/styles/media";
+import { gql, useQuery } from "@apollo/client";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+
+export const FETCH_PRODUCTS = gql`
+  query fetchProducts {
+    fetchProducts {
+      id
+      name
+      price
+    }
+  }
+`;
 
 const OutWrapper = styled.div`
   display: flex;
@@ -23,8 +35,9 @@ const TitleWrapper = styled.div`
   align-items: center;
 `;
 const TitleIcon = styled.img`
-  width: 34px;
-  height: 30px;
+  width: 20px;
+  height: 16px;
+  margin-right: 5px;
   @media ${breakPoints.mobile} {
     width: 1.5rem; //24
     height: 1.25rem; //20
@@ -45,6 +58,11 @@ const TitleRightWrapper = styled.div`
   margin-bottom: 30px;
   gap: 5px;
 `;
+const MoreBox = styled.div`
+  width: 60px;
+  display: flex;
+  justify-content: flex-end;
+`;
 const More = styled.span`
   width: 45px;
   cursor: pointer;
@@ -52,9 +70,15 @@ const More = styled.span`
     text-decoration: underline;
     color: #42c2ff;
   }
-  margin-right: 5px;
 `;
-
+const ArrowIcon = styled.img`
+  width: 10px;
+  height: 11px;
+  margin-top: 7px;
+  @media ${breakPoints.mobile} {
+    margin-top: 6px;
+  }
+`;
 const InnerWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -105,39 +129,35 @@ const ProductSection = (props) => {
     3: useScrollFadeIn("up", 1),
     4: useScrollFadeIn("up", 1),
   };
-
+  const { data } = useQuery(FETCH_PRODUCTS);
+  const { onClickMoveToPage } = useMoveToPage();
   return (
     <OutWrapper>
       <TitleWrapper>
-        <Title># 굿즈찾기 </Title>
         <TitleIcon src="/icon/simbollogo.png" />
+        <Title> 굿즈찾기 </Title>
       </TitleWrapper>
       <TitleRightWrapper>
         <div>내 마음에 쏙!드는 행사들을 골라봐요!</div>
-        <div>
+        <MoreBox>
           <More onClick={props.onClickMoveToPage("/products")}>더보기</More>
-          <img src="/icon/arrow_right.png" />
-        </div>
+          <ArrowIcon src="/icon/arrow_right.png" />
+        </MoreBox>
       </TitleRightWrapper>
 
       <InnerWrapper>
-        {new Array(6).fill(1).map((el: any, index: number) => (
-          <ProductList key={index} {...animatedItem[index]}>
+        {data.fetchProducts.map((el: any, index: number) => (
+          <ProductList
+            key={el.id}
+            {...animatedItem[index]}
+            onClick={onClickMoveToPage(`products/${el.id}`)}
+          >
             <ProductImages src="/example2.png" />
-            <ProductName>행사굿즈 노트세트</ProductName>
-            <ProductPrice>10000원</ProductPrice>
+            <ProductName>{el.name}</ProductName>
+            <ProductPrice>{el.price.toLocaleString()}</ProductPrice>
           </ProductList>
         ))}
       </InnerWrapper>
-      {/* <MoblieInnerWrapper>
-        {new Array(5).fill(1).map((el: any, index: number) => (
-          <ProductList key={index} {...animatedItem[index]}>
-            <ProductImages src="/example2.png" />
-            <ProductName>행사굿즈 노트세트</ProductName>
-            <ProductPrice>10000원</ProductPrice>
-          </ProductList>
-        ))}
-      </MoblieInnerWrapper> */}
     </OutWrapper>
   );
 };

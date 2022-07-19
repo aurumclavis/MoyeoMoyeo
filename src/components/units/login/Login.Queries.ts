@@ -8,9 +8,9 @@ export const LOGIN = gql`
 `;
 
 // 우리꺼 (는 확인하고 사용하기)
-export const FETCH_USER = gql`
-  query fetchUser($email: String!) {
-    fetchUser(email: $email) {
+export const FETCH_LOGIN_USER = gql`
+  query fetchLoginUser {
+    fetchLoginUser {
       id
       email
       name

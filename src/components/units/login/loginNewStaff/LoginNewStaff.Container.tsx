@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useApolloClient, useMutation, useQuery } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { accessTokenState, userInfoState } from "../../../../commons/store";
-import { FETCH_USER, LOGIN } from "../Login.Queries";
+import { FETCH_LOGIN_USER, LOGIN } from "../Login.Queries";
 
 const schema = yup.object({
   email: yup
@@ -25,7 +25,7 @@ export default function LoginNewStaffPage() {
   const router = useRouter();
   const client = useApolloClient();
   const [login] = useMutation(LOGIN);
-  const { data } = useQuery(FETCH_USER);
+  const { data } = useQuery(FETCH_LOGIN_USER);
   const [, setAccessToken] = useRecoilState(accessTokenState);
   const [, setUserInfo] = useRecoilState(userInfoState);
   const { register, handleSubmit, formState, setValue, trigger, reset, watch } =
@@ -59,10 +59,7 @@ export default function LoginNewStaffPage() {
 
       const Token = result.data.login;
       const resultUserInfo = await client.query({
-        query: FETCH_USER,
-        variables: {
-          email: data.email,
-        },
+        query: FETCH_LOGIN_USER,
         context: {
           headers: {
             Authorization: `Bearer ${Token}`,

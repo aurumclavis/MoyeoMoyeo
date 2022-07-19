@@ -112,10 +112,20 @@ const SliderWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  /* .slick-next:before {
+    opacity: 0.2;
+    color: #15133c;
+  }
+  .slick-prev:before {
+    opacity: 0.2;
+    color: #15133c;
+  } */
 `;
 const MySlider = styled(Slider)`
-  width: 100%;
+  width: 1200px;
   display: flex;
+
   @media ${breakPoints.mobile} {
     width: 100%;
     margin-top: 0px;
@@ -133,11 +143,12 @@ const EventsList = styled.div`
 `;
 
 const EventsSlickList = styled.div`
-  width: 100%;
+  /* width: 100px; */
   display: flex;
   flex-direction: column;
   transition: 0.2s;
-  margin-right: 5px;
+  margin: 0 auto;
+
   :hover {
     box-shadow: 3px 5px 1px 0px #ffd24c;
     transform: translateY(-5px);
@@ -234,16 +245,16 @@ const EventSection = (props) => {
       <SliderWrapper>
         <MySlider {...settings}>
           {new Array(10).fill(1).map((el: any, index: number) => (
-            <div key={index}>
-              <EventsSlickList key={index}>
-                <EventsImages src="/eventmap.png" />
-                <InnderWrapper>
-                  <EventsName>뮤지컬 아이다</EventsName>
-                  <EventsPlaces>블루스퀘어 신한카드홀</EventsPlaces>
-                  <EventsDate>2022.07.05~07.05</EventsDate>
-                </InnderWrapper>
-              </EventsSlickList>
-            </div>
+            // <div key={index}>
+            <EventsSlickList key={index}>
+              <EventsImages src="/eventmap.png" />
+              <InnderWrapper>
+                <EventsName>뮤지컬 아이다</EventsName>
+                <EventsPlaces>블루스퀘어 신한카드홀</EventsPlaces>
+                <EventsDate>2022.07.05~07.05</EventsDate>
+              </InnderWrapper>
+            </EventsSlickList>
+            // </div>
           ))}
         </MySlider>
       </SliderWrapper>

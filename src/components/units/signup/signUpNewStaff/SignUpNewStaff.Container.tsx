@@ -117,7 +117,6 @@ export default function SignUpNewEventPage() {
             password: data.password,
             phone: phone,
             institution: data.institution,
-            name: "data.name",
           },
         },
       });
