@@ -5,14 +5,13 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useRouter } from "next/router";
 import DaumPostcode from "react-daum-postcode";
 import { Modal } from "antd";
-import ButtonSubmit from "../../../commons/buttons/submit";
 
 export default function ProductsPaymentUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
   return (
     <S.FormWrapper onSubmit={props.handleSubmit(props.onClickPayment)}>
-      {/* jQuery : iamport payment*/}
+      {/* jQuery : iamport payment */}
       <div>
         <Script
           type="text/javascript"

@@ -11,8 +11,7 @@ import {
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { useEffect, useRef, useState } from "react";
-import { checkValidationImage } from "../../../../commons/libraries/checkValidationImage";
+import { useEffect, useState } from "react";
 
 const schema = yup.object({
   name: yup
@@ -63,7 +62,7 @@ export default function ProductWrite(props: IProductWriteProps) {
     trigger("contents");
   };
 
-  const onClickCreateProduct = async (data) => {
+  const onClickCreateProduct = async (data: any) => {
     // upload API 해결되면 createProduct할 때 같이 요청 예정
     console.log(files);
     // const result = await uploadImages({
@@ -96,7 +95,7 @@ export default function ProductWrite(props: IProductWriteProps) {
     }
   };
 
-  const onClickUpdateProduct = async (data) => {
+  const onClickUpdateProduct = async (data: any) => {
     try {
       const updateProductInput = {};
 
@@ -122,10 +121,13 @@ export default function ProductWrite(props: IProductWriteProps) {
     }
   };
 
-  const onChangeFiles = (imageList, addUpdateIndex) => {
+  const onChangeFiles = (
+    imageList: any,
+    addUpdatedIndex?: number | undefined
+  ) => {
     setImageList(imageList);
     const tempFiles = [...files];
-    tempFiles[addUpdateIndex] = imageList[addUpdateIndex]?.file;
+    tempFiles[addUpdatedIndex] = imageList[addUpdatedIndex]?.file;
     setFiles(tempFiles);
   };
 

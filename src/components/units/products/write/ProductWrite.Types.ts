@@ -1,11 +1,18 @@
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import {
+  FieldValues,
+  FormState,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from "react-hook-form";
 
 export interface IProductWriteUIProps {
   register: UseFormRegister<FieldValues>;
-  handleSubmit: any;
-  formState: any;
+  handleSubmit: UseFormHandleSubmit<FieldValues>;
+  formState: FormState<FieldValues>;
   onChangeContents: (value: string) => void;
   isEdit?: boolean;
+  imageList: Array<any>;
+  onChangeFiles: (imageList: any, addUpdateIndex: number) => void;
   onClickCreateProduct: (data: any) => void;
   onClickUpdateProduct: (data: any) => void;
   data?: any;

@@ -1,5 +1,3 @@
-import { Upload, Button, message } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
 import * as S from "./ProductWrite.Styles";
 import { IProductWriteUIProps } from "./ProductWrite.Types";
 import ButtonSubmit from "../../../commons/buttons/submit";
@@ -45,7 +43,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.Error>{props.formState.errors.summary?.message}</S.Error>
         </S.InputWrapper>
 
-        {/* 이미지 업로드 UI : 업로드 해결 후 주석 해제*/}
+        {/* 이미지 업로드 UI : 업로드 해결 후 주석 해제 */}
         <S.InputWrapper>
           <S.Label>대표 이미지 (최대 1장)</S.Label>
           {/* {props.mainImageSrc ? (

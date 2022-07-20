@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import BackTopAnt from "../../../commons/backTop";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import DOMPurify from "dompurify";
-import { useState } from "react";
 import Chat from "../../chat";
 import { dibsProductIdState } from "../../../../commons/store";
 import { useRecoilState } from "recoil";
@@ -17,11 +16,9 @@ import { useRecoilState } from "recoil";
 export default function ProductDetailUI(props: any) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
-  const [clicked, setClicked] = useState(false);
-  const [dibsId, setDibsId] = useRecoilState(dibsProductIdState);
-  const onClickChat = () => {
-    setClicked((prev) => !prev);
-  };
+
+  const [dibsId] = useRecoilState(dibsProductIdState);
+
   return (
     <S.Wrapper>
       {/* 스크롤 할 때 생기는 네비게이션바 */}
@@ -70,8 +67,7 @@ export default function ProductDetailUI(props: any) {
           src="https://images.unsplash.com/photo-1574629173115-01ba37282238?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1076&q=80"
         />
 
-        {/* 추가 이미지*/}
-
+        {/* 추가 이미지 */}
         <S.PreviewGroup>
           <Image.PreviewGroup>
             <S.ImageItem src="https://images.unsplash.com/photo-1544816155-12df9643f363?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDUxfHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
@@ -84,7 +80,6 @@ export default function ProductDetailUI(props: any) {
             <S.ImageItem src="https://images.unsplash.com/photo-1589365278144-c9e705f843ba?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDU0fHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
           </Image.PreviewGroup>
         </S.PreviewGroup>
-
         {typeof window !== "undefined" && (
           <S.DetailContents
             dangerouslySetInnerHTML={{
@@ -92,14 +87,14 @@ export default function ProductDetailUI(props: any) {
             }}
           />
         )}
-
         <S.Line />
+        {/* 판매자 정보 */}
         <S.SellerContentsWrapper>
           <S.Label>{props.data?.fetchProduct.seller?.manager}</S.Label>
           <S.Label>{props.data?.fetchProduct.seller?.phone}</S.Label>
         </S.SellerContentsWrapper>
         <S.Line />
-        {/* 상품 문의(Q&A) 작성, 조회*/}
+        {/* 상품 문의(Q&A) 작성, 조회 */}
         <S.ProductsQuestionWrapper ref={props.qnaRef}>
           <ProductsQuestionWrite />
           <ProductsQuestionList />
@@ -154,17 +149,18 @@ export default function ProductDetailUI(props: any) {
       {/* BackTop(맨 위로 가기) 추가 */}
       <BackTopAnt />
 
-      {clicked ? (
+      {/* 채팅 mock-up */}
+      {props.clicked ? (
         <S.ChatWrapper>
           <Chat
             // socket={socket}
-            onClickChat={onClickChat}
+            onClickChat={props.onClickChat}
             username="username"
             room="1"
           />
         </S.ChatWrapper>
       ) : (
-        <S.ChatIconWrapper onClick={onClickChat}>
+        <S.ChatIconWrapper onClick={props.onClickChat}>
           <S.ChatIcon />
         </S.ChatIconWrapper>
       )}

@@ -11,17 +11,16 @@ export const Wrapper = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
-  @media ${breakPoints.mobile} {
-    flex-direction: column;
-  }
   justify-content: space-between;
   margin-top: 3.125rem;
   padding: 0 1.125rem;
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+  }
 `;
 
 // 네비게이션 탭 스타일: 상품정보,Q&A
-
-export const NavWrapper = styled.nav`
+export const NavWrapper = styled.div`
   width: 100%;
   height: 50px;
   display: flex;

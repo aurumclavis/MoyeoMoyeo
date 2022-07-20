@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import ProductsQuestionListUI from "./ProductsQuestionList.Presenter";
 import { FETCH_PRODUCT_COMMENTS } from "./ProductsQuestionList.Queries";
 
