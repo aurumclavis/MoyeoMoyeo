@@ -7,17 +7,6 @@ import ScrollToBottom from "react-scroll-to-bottom";
 interface MessageProps {
   you?: string;
 }
-export const App = styled.div`
-  background: #fff;
-  color: #212121;
-  display: grid;
-  place-items: center;
-`;
-export const JoinChatContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-`;
 export const ChatWindow = styled.div`
   width: 300px;
   height: 420px;
@@ -104,6 +93,7 @@ export const TimeText = styled.p`
 export const Text = styled.p`
   margin: 0;
 `;
+
 export const ChatFooter = styled.div`
   height: 40px;
   display: flex;

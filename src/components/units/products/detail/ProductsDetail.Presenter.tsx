@@ -100,10 +100,10 @@ export default function ProductDetailUI(props: any) {
         </S.SellerContentsWrapper>
         <S.Line />
         {/* 상품 문의(Q&A) 작성, 조회*/}
-        <div ref={props.qnaRef}>
+        <S.ProductsQuestionWrapper ref={props.qnaRef}>
           <ProductsQuestionWrite />
           <ProductsQuestionList />
-        </div>
+        </S.ProductsQuestionWrapper>
       </S.LeftWrapper>
 
       {/* 오른쪽 사이드바 Wrapper */}

@@ -32,6 +32,7 @@ export const ItemWrapper = styled.div`
 export const ItemImageWrapper = styled.div`
   max-width: 7.5rem;
   max-height: 7.5rem;
+  margin-right: 3%;
   @media ${breakPoints.mobile} {
     max-width: 6rem;
   }
@@ -42,7 +43,8 @@ export const ItemImage = styled.img`
   border-radius: 5px;
 `;
 export const ItemContentsWrapper = styled.div`
-  padding-left: 3%;
+  display: flex;
+  flex-direction: column;
 `;
 export const ItemRowWrapper = styled.div`
   display: flex;

@@ -1,5 +1,15 @@
+import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import ProductsQuestionListUI from "./ProductsQuestionList.Presenter";
+import { FETCH_PRODUCT_COMMENTS } from "./ProductsQuestionList.Queries";
 
 export default function ProductsQuestionList() {
-  return <ProductsQuestionListUI />;
+  const router = useRouter();
+  const { data } = useQuery(FETCH_PRODUCT_COMMENTS, {
+    variables: {
+      productId: router.query.productId,
+    },
+  });
+  return <ProductsQuestionListUI data={data} />;
 }
