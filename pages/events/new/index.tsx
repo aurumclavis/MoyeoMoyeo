@@ -3,7 +3,7 @@ import EventsWrite from "../../../src/components/units/events/write/EventsWrite.
 export default function EventsWritePage() {
   return (
     <>
-      <EventsWrite />
+      <EventsWrite isEdit={false} />
     </>
   );
 }

@@ -3,7 +3,9 @@ import * as S from "./EventsList.Styles";
 import OurEventList from "../eventsList/OurEventList.Container";
 import FestivalList from "../festivalList/FestivalList.Container";
 import BackTopAnt from "../../../../commons/backTop";
-export default function EventsListUI(props) {
+import { IEventsListUIProps } from "./EventsList.Type";
+
+export default function EventsListUI(props: IEventsListUIProps) {
   return (
     <>
       <S.Wrapper>
@@ -20,19 +22,19 @@ export default function EventsListUI(props) {
           <S.Tab onClick={props.onClickOurEventTap} isActive={props.ourEvents}>
             추천 행사
           </S.Tab>
-          <S.EventWriteBtn onClick={props.onClickMoveToPage("/events/new")}>
+          <S.EventWriteBtn onClick={props.onClickNew}>
             행사 등록
           </S.EventWriteBtn>
         </S.TabWrapper>
         <S.FlexWrapper>
           <S.DateWrapper isActive={props.datePick}>
-            <CalenderPage isActive={props.datePick} />
+            <CalenderPage />
           </S.DateWrapper>
           <S.FestivalWrapper isActive={props.openEvents}>
-            <FestivalList openEvents={props.openEvents} />
+            <FestivalList />
           </S.FestivalWrapper>
           <S.EventsWrapper isActive={props.ourEvents}>
-            <OurEventList ourEvents={props.ourEvents} />
+            <OurEventList />
           </S.EventsWrapper>
         </S.FlexWrapper>
         <BackTopAnt />

@@ -1,27 +1,12 @@
 import * as S from "./DateList.Styles";
+// import { ICalederListUIAdd } from "./DateList.Types";
 
-export default function CalederListUI(props) {
+export default function CalederListUIAdd() {
   return (
-    <S.ListWrapper isActive={props.isActive}>
-      <S.List
-        isActive={props.isActive}
-        onClick={props.onClickMoveToPage("events/aaa")}
-      >
-        <S.ListImg isActive={props.isActive} src="/배너이미지_동행1.png" />
-        <S.Title>축제이름 </S.Title>
-      </S.List>
-      <S.List
-        isActive={props.isActive}
-        onClick={props.onClickMoveToPage("events/aaa")}
-      >
-        <S.ListImg isActive={props.isActive} src="/배너이미지_동행1.png" />
-        <S.Title>축제이름 </S.Title>
-      </S.List>
-      <S.List
-        isActive={props.isActive}
-        onClick={props.onClickMoveToPage("events/aaa")}
-      >
-        <S.ListImg isActive={props.isActive} src="/배너이미지_동행1.png" />
+    <S.ListWrapper>
+      <S.List>
+        {/* <S.List onClick={props.onClickDetail()}> */}
+        <S.ListImg src="/배너이미지_동행1.png" />
         <S.Title>축제이름 </S.Title>
       </S.List>
     </S.ListWrapper>

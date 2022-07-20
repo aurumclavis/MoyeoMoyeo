@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
 import FestivalListUI from "./FestivalList.Presenter";
 import { FETCH_POST } from "./FestivalList.Queries";
+import { IFestivalList } from "./FestivalList.Types";
 
-export default function FestivalList(props) {
+export default function FestivalList(props: IFestivalList) {
   const { data, refetch, fetchMore } = useQuery(FETCH_POST);
 
   const ToloadFunc = () => {
@@ -24,12 +25,7 @@ export default function FestivalList(props) {
 
   return (
     <>
-      <FestivalListUI
-        openEvents={props.openEvents}
-        data={data}
-        ToloadFunc={ToloadFunc}
-        refetch={refetch}
-      />
+      <FestivalListUI data={data} ToloadFunc={ToloadFunc} refetch={refetch} />
     </>
   );
 }
