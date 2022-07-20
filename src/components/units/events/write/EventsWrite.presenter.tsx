@@ -34,6 +34,7 @@ export default function EventsWriteUI(props) {
                   placeholder="제목을 작성해주세요."
                   defaultValue={props.postData?.fetchPost.title}
                 />
+                <S.Error>{props.formState.errors.title?.message}</S.Error>
               </S.TitleWrapper>
               <S.DateWrapper>
                 <S.SubTitle>행사 일정</S.SubTitle>
@@ -59,6 +60,8 @@ export default function EventsWriteUI(props) {
                 주소 검색
               </S.SearchButton>
             </S.RowWrapper>
+            <S.Error>{props.formState.errors.address?.message}</S.Error>
+
             <S.SubTitle>상세 설명</S.SubTitle>
             <S.ContentQuill
               onChange={props.onChangeContents}
@@ -88,6 +91,7 @@ export default function EventsWriteUI(props) {
                   <option value={"전시"}>전시</option>
                   <option value={"기타"}>기타</option>
                 </S.TypeSelect>
+                <S.Error>{props.formState.errors.category?.message}</S.Error>
               </S.TypeWrapper>
             </S.RowWrapper>
           </S.InputWrapper>
@@ -95,7 +99,6 @@ export default function EventsWriteUI(props) {
             <S.ButtonWrapper>
               <ButtonSubmit
                 fontSize="1.25rem"
-                onClick={props.onClick}
                 // isActive={props.formState.isValid}
                 isActive={true}
                 title="등록하기"
