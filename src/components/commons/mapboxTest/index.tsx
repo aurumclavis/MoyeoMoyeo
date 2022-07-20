@@ -100,7 +100,7 @@ export default function MapBoxComponent() {
       const map = new mapboxgl.Map({
         container: "map",
         language: "it",
-        style: "mapbox://styles/mapbox/light-v10",
+        style: "mapbox://styles/disagreedd/cl5sy3s1g000614mu3p25897n",
         ...start,
         boxZoom: false,
         data: geoData,
@@ -141,7 +141,6 @@ export default function MapBoxComponent() {
         return marker;
       });
       map.scrollZoom.disable();
-      map.easeTo([127.003, 37.516], { duration: 5000 });
 
       // map.on("click", (el) => {
       //   const result = map.queryRenderedFeatures(el.point, {
