@@ -148,13 +148,36 @@ export const Footer = styled.div`
     width: 80%;
   }
 `;
+
+export const EditWrapper = styled.div`
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 1rem;
+`;
+
+export const EditBtn = styled.div`
+  width: 60px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: #d2d2d2;
+`;
+
 export const BtnRouter = styled.div`
   width: 12.625rem;
   height: 3.375rem;
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
   background-color: #42c2ff;
   color: #ffffff;
   font-size: 1rem;

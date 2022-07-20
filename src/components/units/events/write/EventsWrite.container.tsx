@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import EventsWriteUI from "./EventsWrite.Presenter";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,7 +7,7 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { CREATE_POST, UPLOAD_IMAGES, UPDATE_POST } from "./EventsWrite.Queries";
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const schema = yup.object({
   title: yup
@@ -15,10 +15,10 @@ const schema = yup.object({
     .max(50, "50자 이내로 입력해주세요.")
     .required("필수 입력 사항입니다."),
   contents: yup.string().required("필수 입력 사항입니다."),
-  address: yup.string().required("필수 입력 사항입니다."),
+  // address: yup.string().required("필수 입력 사항입니다."),
   category: yup.string().required("필수 입력 사항입니다."),
 });
-export default function EventsWrite(props) {
+export default function EventsWrite(props: any) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
   // const [uploadImages] = useMutation(UPLOAD_IMAGES);
@@ -80,7 +80,7 @@ export default function EventsWrite(props) {
         variables: {
           postInput: {
             title: data.title,
-            address: data.address,
+            address,
             dateStart,
             dateEnd,
             description: data.contents,
@@ -91,12 +91,12 @@ export default function EventsWrite(props) {
       });
       Modal.success({ content: "등록 완료" });
       router.push("/events");
-    } catch (error) {
+    } catch (error: any) {
       Modal.error({ content: error.message });
     }
   };
 
-  const onClickUpdate = async data => {
+  const onClickUpdate = async (data: any) => {
     const updatePostInput: any = {};
     if (data.title) updatePostInput.title = data.title;
     if (data.contents) updatePostInput.description = data.contents;
@@ -114,7 +114,7 @@ export default function EventsWrite(props) {
       });
       Modal.success({ content: "게시글이 수정되었습니다." });
       router.push(`/events/${router.query._id}`);
-    } catch (error) {
+    } catch (error: any) {
       Modal.error({ content: error.message });
     }
   };
