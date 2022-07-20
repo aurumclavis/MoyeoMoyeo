@@ -68,6 +68,7 @@ export default function ProductDetailUI(props: any) {
         />
 
         {/* 추가 이미지 */}
+
         <S.PreviewGroup>
           <Image.PreviewGroup>
             <S.ImageItem src="https://images.unsplash.com/photo-1544816155-12df9643f363?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDUxfHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />

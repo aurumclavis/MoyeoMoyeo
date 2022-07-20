@@ -14,15 +14,15 @@ function Chat(props: ChatProps) {
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
-      // const messageData = {
-      //   room: props.room,
-      //   author: props.username,
-      //   message: currentMessage,
-      //   time:
-      //     new Date(Date.now()).getHours() +
-      //     ":" +
-      //     new Date(Date.now()).getMinutes(),
-      // };
+      const messageData = {
+        room: props.room,
+        author: props.username,
+        message: currentMessage,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
       // await socket.emit("send_message", messageData);
       // setMessageList((list) => [...list, messageData]);
       // setCurrentMessage("");
