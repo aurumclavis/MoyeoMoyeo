@@ -1,17 +1,14 @@
 import ButtonSubmit from "../../../../commons/buttons/submit";
 import { ProductsAnswerWriteUIProps } from "./ProductsAnswerWrite.Types";
 import * as S from "./ProductsAnswerWrite.Styles";
+
 export default function ProductsAnswerWriteUI(
   props: ProductsAnswerWriteUIProps
 ) {
   return (
-    <S.FormWrapper
-      onSubmit={props.handleSubmit(() => {
-        console.log("submit test");
-      })}
-    >
+    <S.FormWrapper onSubmit={props.handleSubmit(props.onClickCreateComment)}>
       <S.WriteInput
-        {...props.register("contents")}
+        {...props.register("content")}
         maxLength={200}
         placeholder="200자 이내로 입력해주세요."
       />

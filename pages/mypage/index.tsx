@@ -33,11 +33,10 @@ const staffObj = {
 
 export default function MyPageEventsPage() {
   const [userInfo] = useRecoilState(userInfoState);
-  const [isStaff, setIsStaff] = useState(!userInfo.name);
   const [activedIndex, setActivedIndex] = useState(0);
   return (
     <>
-      {!isStaff && (
+      {userInfo.name && (
         <Wrapper>
           <MyPageUserSidebar
             activedIndex={activedIndex}
@@ -46,7 +45,7 @@ export default function MyPageEventsPage() {
           {obj[activedIndex]}
         </Wrapper>
       )}
-      {isStaff && (
+      {!userInfo.name && (
         <Wrapper>
           <MyPageStaffSidebar
             activedIndex={activedIndex}
