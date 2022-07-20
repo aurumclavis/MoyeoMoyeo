@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import { useApolloClient, useMutation, useQuery } from "@apollo/client";
+import { useApolloClient, useMutation } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { accessTokenState, userInfoState } from "../../../../commons/store";
 import { FETCH_LOGIN_USER, LOGIN } from "./LoginNewStaff.Queries";
@@ -25,14 +25,12 @@ export default function LoginNewStaffPage() {
   const router = useRouter();
   const client = useApolloClient();
   const [login] = useMutation(LOGIN);
-  const { data } = useQuery(FETCH_LOGIN_USER);
   const [, setAccessToken] = useRecoilState(accessTokenState);
   const [, setUserInfo] = useRecoilState(userInfoState);
-  const { register, handleSubmit, formState, setValue, trigger, reset, watch } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-    });
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
   // 관계자회원가입
   const onClickToSignUp = () => {
@@ -69,10 +67,10 @@ export default function LoginNewStaffPage() {
       setAccessToken(result.data?.login);
       // localStorage.setItem("refreshToken", "true");
       const userInfo = resultUserInfo.data?.fetchLoginUser;
-      // if (!userInfo.manager) {
-      //   alert("일반 회원 로그인페이지에서 다시 로그인바랍니다.");
-      //   return router.push("/login");
-      // }
+      if (!userInfo.manager) {
+        alert("일반 회원 로그인페이지에서 다시 로그인바랍니다.");
+        return router.push("/login");
+      }
       console.log(userInfo);
       setUserInfo(userInfo);
       alert("로그인이 되었습니다.");

@@ -48,8 +48,8 @@ export default function KaKaoMapFetch(props: any) {
             props.lat
           },${
             props.lng
-          }" style="color:#FFD24C" target="_blank">카카오맵에서 큰지도보기</a></div></div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-          iwPosition = new window.kakao.maps.LatLng(props.lat, props.lng); //인포윈도우 표시 위치입니다
+          }" style="color:#FFD24C" target="_blank">카카오맵에서 큰지도보기</a></div></div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          const iwPosition = new window.kakao.maps.LatLng(props.lat, props.lng); // 인포윈도우 표시 위치입니다
 
         // 인포윈도우를 생성합니다
         const infowindow = new window.kakao.maps.InfoWindow({

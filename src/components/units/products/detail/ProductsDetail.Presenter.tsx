@@ -70,7 +70,7 @@ export default function ProductDetailUI(props: any) {
           src="https://images.unsplash.com/photo-1574629173115-01ba37282238?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1076&q=80"
         />
 
-        {/* 추가 이미지*/}
+        {/* 추가 이미지 */}
 
         <S.PreviewGroup>
           <Image.PreviewGroup>
@@ -99,7 +99,7 @@ export default function ProductDetailUI(props: any) {
           <S.Label>{props.data?.fetchProduct.seller?.phone}</S.Label>
         </S.SellerContentsWrapper>
         <S.Line />
-        {/* 상품 문의(Q&A) 작성, 조회*/}
+        {/* 상품 문의(Q&A) 작성, 조회 */}
         <S.ProductsQuestionWrapper ref={props.qnaRef}>
           <ProductsQuestionWrite />
           <ProductsQuestionList />

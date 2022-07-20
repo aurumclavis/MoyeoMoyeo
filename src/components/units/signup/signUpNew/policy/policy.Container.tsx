@@ -1,8 +1,5 @@
-import { useState } from "react";
 import * as S from "./policy.Styles";
-declare const window: typeof globalThis & {
-  IMP: any;
-};
+
 interface IPolicyProps {
   setVisible?: any;
 }

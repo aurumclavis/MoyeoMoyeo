@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-//전체
+// 전체
 export const OutWrapper = styled.div`
   width: 100%;
   /* height: 50vh; */
@@ -11,7 +11,7 @@ export const OutWrapper = styled.div`
   /* background-color: #bdbdbd; */
 `;
 
-//inner
+// inner
 export const Wrapper = styled.div`
   max-width: 1200px;
   /* height: 50%; */
@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
   padding: 15px;
 `;
 
-//헤더
+// 헤더
 export const HeaderWrapper = styled.div`
   width: 100%;
   height: 30px;
@@ -40,7 +40,7 @@ export const HeaderIcon = styled.img`
   height: 1.938rem; // 31px
 `;
 
-//바디
+// 바디
 export const BodyWrapper = styled.div`
   width: 100%;
   display: flex;

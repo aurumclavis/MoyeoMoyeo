@@ -1,11 +1,12 @@
+import * as S from "./SignUpNew.Styles";
 import CommonInput from "../../../commons/inputs/infoInputs";
 import CommonMobileInput from "../../../commons/inputs/mobileInputs";
-import * as S from "./SignUpNew.Styles";
 import Countdown from "react-countdown";
 import Checkbox from "../../../commons/checkbox";
 import ButtonSubmit from "../../../commons/buttons/submit";
+import { ISignUpNew } from "./SignUpNew.Queries";
 
-export default function SignUpNewPageUI(props) {
+export default function SignUpNewPageUI(props: ISignUpNew) {
   const renderer = ({ minutes, seconds }: any) => {
     return (
       <S.Timer>
@@ -46,12 +47,10 @@ export default function SignUpNewPageUI(props) {
             <CommonMobileInput defaultValue={"010"} readOnly />
             <CommonMobileInput
               register={props.register("phoneNumber")}
-              onChange={props.onChangeMobile}
               readOnly={props.isDone === true}
             />
             <CommonMobileInput
               register={props.register("phoneNumber2")}
-              onChange={props.onChangeMobile}
               readOnly={props.isDone === true}
             />
           </S.NumberInputs>

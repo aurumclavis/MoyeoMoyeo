@@ -1,8 +1,5 @@
-import { useState } from "react";
 import * as S from "./PrivacyPolicy.Styles";
-declare const window: typeof globalThis & {
-  IMP: any;
-};
+
 interface IPrivacyPolicyProps {
   setIsVisible?: any;
 }

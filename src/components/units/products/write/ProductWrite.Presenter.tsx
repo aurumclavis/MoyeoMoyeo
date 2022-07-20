@@ -45,7 +45,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.Error>{props.formState.errors.summary?.message}</S.Error>
         </S.InputWrapper>
 
-        {/* 이미지 업로드 UI : 업로드 해결 후 주석 해제*/}
+        {/* 이미지 업로드 UI : 업로드 해결 후 주석 해제 */}
         <S.InputWrapper>
           <S.Label>대표 이미지 (최대 1장)</S.Label>
           {/* {props.mainImageSrc ? (
@@ -106,7 +106,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
                 </button>
                 {imageList.map((image, index) => (
                   <div key={index} className="image-item">
-                    <img src={image["data_url"]} alt="" width="100" />
+                    <img src={image.data_url} alt="" width="100" />
                     <div className="image-item__btn-wrapper">
                       <button
                         type="button"

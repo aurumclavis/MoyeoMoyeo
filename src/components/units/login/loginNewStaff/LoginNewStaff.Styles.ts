@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-//전체;
+// 전체;
 export const OutWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -8,7 +8,7 @@ export const OutWrapper = styled.div`
   /* background-color: #bdbdbd; */
 `;
 
-//내용
+// 내용
 export const Wrapper = styled.form`
   width: 430px;
   background-color: #ffffff;
@@ -51,7 +51,7 @@ export const CommonTitle = styled.div`
   text-align: center;
   margin-bottom: 20px;
 `;
-//submit
+// submit
 export const SubmitBtn = styled.button`
   width: 100%;
   height: 56px;
@@ -68,7 +68,7 @@ export const SubmitBtn = styled.button`
   }
 `;
 
-//findpw
+// findpw
 export const findPassword = styled.div`
   width: 100%;
   text-align: right;
@@ -113,7 +113,7 @@ export const FooterBtn = styled.div`
     border: 1px solid black;
   }
 `;
-//hook-form error
+// hook-form error
 export const Error = styled.div`
   width: 100%;
   color: red;

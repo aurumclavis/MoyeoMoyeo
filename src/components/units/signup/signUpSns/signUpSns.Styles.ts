@@ -24,7 +24,7 @@ export const HeaderTitle = styled.h1`
   text-align: center;
   margin-bottom: 30px;
 `;
-//kakao
+// kakao
 export const KakaoWrapper = styled.div`
   width: 100%;
   height: 56px;
@@ -45,8 +45,8 @@ export const SnsIcon = styled.img`
   height: 30px;
   margin-right: 5px;
 `;
-//naver
 
+// naver
 export const NaverWrapper = styled.div`
   width: 100%;
   height: 56px;

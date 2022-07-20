@@ -1,8 +1,11 @@
 import Link from "next/link";
+import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 import CommonInput from "../../commons/inputs/infoInputs";
 import * as S from "./Login.Styles";
+import { ILoginNew } from "./Login.Queries";
 
-export default function LoginPageUI(props) {
+export default function LoginPageUI(props: ILoginNew) {
+  const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.OutWrapper>
       <S.Wrapper onSubmit={props.handleSubmit(props.onClickToLogin)}>
@@ -26,7 +29,7 @@ export default function LoginPageUI(props) {
         />
         <S.Error>{props.formState.errors.password?.message}</S.Error>
         <S.SubmitBtn>로그인</S.SubmitBtn>
-        <S.findPassword onClick={props.onClickToFindPw}>
+        <S.findPassword onClick={onClickMoveToPage("/login/findpw")}>
           비밀번호찾기
         </S.findPassword>
         <S.CommonTitle>소셜 계정으로 1초만에 로그인</S.CommonTitle>
@@ -49,7 +52,9 @@ export default function LoginPageUI(props) {
         </S.SnsWrapper>
         <S.FooterWrapper>
           <S.FooterTitle>아직 모여?모여!계정이 없으신가요?</S.FooterTitle>
-          <S.FooterBtn onClick={props.onClickToSignUp}>회원가입</S.FooterBtn>
+          <S.FooterBtn onClick={onClickMoveToPage("/signup")}>
+            회원가입
+          </S.FooterBtn>
         </S.FooterWrapper>
       </S.Wrapper>
     </S.OutWrapper>

@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import * as S from "./signUpSns.Styles";
 
-export default function SignUpSnsPageUI(props) {
+export default function SignUpSnsPageUI() {
+  const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.OutWrapper>
       <S.Wrapper>
@@ -33,7 +35,7 @@ export default function SignUpSnsPageUI(props) {
         </Link>
 
         <S.BodyWrapper>
-          <S.BodyTitle onClick={props.onClickMoveToPage("/signup/new")}>
+          <S.BodyTitle onClick={onClickMoveToPage("/signup/new")}>
             이메일로 가입
           </S.BodyTitle>
           <S.BodyIcon src="/signUp/arrow.png" />

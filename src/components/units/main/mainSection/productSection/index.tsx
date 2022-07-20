@@ -146,17 +146,19 @@ const ProductSection = (props) => {
       </TitleRightWrapper>
 
       <InnerWrapper>
-        {data?.fetchProducts.map((el: any, index: number) => (
-          <ProductList
-            // {...animatedItem[index]}
-            key={index}
-            onClick={onClickMoveToPage(`products/${el.id}`)}
-          >
-            <ProductImages src="/example2.png" />
-            <ProductName>{el.name}</ProductName>
-            <ProductPrice>{el.price.toLocaleString()}</ProductPrice>
-          </ProductList>
-        ))}
+        {data?.fetchProducts
+          .map((el: any, index: number) => (
+            <ProductList
+              {...animatedItem[index]}
+              key={index}
+              onClick={onClickMoveToPage(`products/${el.id}`)}
+            >
+              <ProductImages src="/example2.png" />
+              <ProductName>{el.name}</ProductName>
+              <ProductPrice>{el.price.toLocaleString()}</ProductPrice>
+            </ProductList>
+          ))
+          .slice(0, 5)}
       </InnerWrapper>
     </OutWrapper>
   );

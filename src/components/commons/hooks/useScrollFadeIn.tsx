@@ -1,10 +1,9 @@
 import { useRef, useEffect, useCallback } from "react";
-import ReactDOM from "react-dom";
 
 const useScrollFadeIn = (direction = "up", duration = 1, delay = 0) => {
   const element = useRef(null);
 
-  const handleDirection = (name) => {
+  const handleDirection = (name: any) => {
     switch (name) {
       case "up":
         return "translate3d(0, 50%, 0)";
@@ -15,7 +14,6 @@ const useScrollFadeIn = (direction = "up", duration = 1, delay = 0) => {
       case "right":
         return "translate3d(-50%, 0, 0)";
       default:
-        return;
     }
   };
 

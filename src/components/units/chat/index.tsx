@@ -11,7 +11,7 @@ function Chat({ username, room, onClickChat }) {
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        room: room,
+        room,
         author: username,
         message: currentMessage,
         time:
