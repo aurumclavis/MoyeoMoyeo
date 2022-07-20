@@ -5,14 +5,14 @@ import { breakPoints } from "../../../../commons/styles/media";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 350px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #fcefa6;
   position: relative;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   @media ${breakPoints.mobile} {
     display: flex;
     height: 200px;
@@ -100,8 +100,8 @@ const FIGURE_ITEMS = [
 
 const CountSection = () => {
   const countItem = {
-    0: useScrollCount(620),
-    1: useScrollCount(800),
+    0: useScrollCount(62),
+    1: useScrollCount(120),
     2: useScrollCount(92),
   };
 

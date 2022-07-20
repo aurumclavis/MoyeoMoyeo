@@ -9,8 +9,6 @@ import { CREATE_USER, SEND_SMS, VALIDATE_PHONE } from "./SignUpNew.Queries";
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 const schema = yup.object({
-  // 컴포넌트
-  checkbox1: yup.boolean().required("[필수] 입력사항입니다."),
   name: yup
     .string()
     .required("이름은 필수 입력사항입니다.")
@@ -31,37 +29,42 @@ const schema = yup.object({
     .string()
     .required("비밀번호는 확인은 필수 입력 사항입니다.")
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다."),
-  phoneNumber: yup
-    .string()
-    .required("핸드폰 번호는 필수 입력 사항입니다.")
-    .typeError("숫자만 입력가능합니다."),
-  phoneNumber2: yup
-    .string()
-    .required("핸드폰 번호는 필수 입력 사항입니다.")
-    .typeError("숫자만 입력가능합니다."),
-  validateToken: yup
-    .number()
-    .required("필수 사항입니다.")
-    .typeError("숫자만 입력가능합니다."),
+  // phoneNumber: yup
+  //   .string()
+  //   .required("핸드폰 번호는 필수 입력 사항입니다.")
+  //   .typeError("숫자만 입력가능합니다."),
+  // phoneNumber2: yup
+  //   .string()
+  //   .required("핸드폰 번호는 필수 입력 사항입니다.")
+  //   .typeError("숫자만 입력가능합니다."),
+  // validateToken: yup
+  //   .number()
+  //   .required("필수 사항입니다.")
+  //   .typeError("숫자만 입력가능합니다."),
 });
 
 export default function SignUpNewPage() {
   const router = useRouter();
+  const { onClickMoveToPage } = useMoveToPage();
+
   const [createUser] = useMutation(CREATE_USER);
   const [sendSMS] = useMutation(SEND_SMS);
   const [validatePhone] = useMutation(VALIDATE_PHONE);
-  const [isActive, setIsActive] = useState(true);
 
-  const { onClickMoveToPage } = useMoveToPage();
+  const [isActive, setIsActive] = useState(true);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
+
+  const [checked, setChecked] = useState(false);
+  const [secondChecked, setSecondChecked] = useState(false);
+
   const { register, handleSubmit, formState, watch, setValue, trigger } =
     useForm({
       resolver: yupResolver(schema),
       mode: "onChange",
     });
   // moblie 비활성화용
-  const onChangeMobile = (event) => {
+  const onChangeMobile = (event: any) => {
     setIsActive(event.target.input);
   };
 
@@ -103,6 +106,14 @@ export default function SignUpNewPage() {
 
   // 회원가입
   const onClickCreateUser = async (data: any) => {
+    console.log(checked);
+    console.log(secondChecked);
+    if (!checked) {
+      return Modal.info({ content: "개인정보 취급방침을 확인바랍니다." });
+    }
+    if (!secondChecked) {
+      return Modal.info({ content: "이용약관을 확인바랍니다." });
+    }
     console.log(data);
     try {
       await createUser({
@@ -111,7 +122,7 @@ export default function SignUpNewPage() {
             name: data.name,
             email: data.email,
             password: data.password,
-            phone: phone,
+            // phone: phone,
           },
         },
       });
@@ -129,8 +140,6 @@ export default function SignUpNewPage() {
       register={register}
       handleSubmit={handleSubmit}
       watch={watch}
-      setValue={setValue}
-      trigger={trigger}
       // mobile
       isActive={isActive}
       isReadyForNum={isReadyForNum}
@@ -142,6 +151,8 @@ export default function SignUpNewPage() {
       //login
       onClickMoveToPage={onClickMoveToPage}
       onChangeMobile={onChangeMobile}
+      setChecked={setChecked}
+      setSecondChecked={setSecondChecked}
     />
   );
 }

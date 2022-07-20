@@ -9,6 +9,7 @@ const OutWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
   @media ${breakPoints.mobile} {
     margin: 1rem 0rem 0rem 0rem;
     padding: 0 1.125rem;
@@ -97,9 +98,9 @@ const EventImg = styled.img`
   height: 100%;
 `;
 const EventWrapper = styled.div`
-  width: 60%;
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 10px;
   @media ${breakPoints.mobile} {
     width: 100%;
@@ -226,11 +227,11 @@ const EventSection = (props) => {
         </MoreBox>
       </TitleRightWrapper>
       <Wrapper>
-        <ImageWrapper>
-          {/* <EventImg src="/main/eventImage.png" /> */}
-        </ImageWrapper>
+        {/* <ImageWrapper>
+          <EventImg src="/main/eventImage.png" />
+        </ImageWrapper> */}
         <EventWrapper>
-          {new Array(3).fill(1).map((el: any, index: number) => (
+          {new Array(5).fill(1).map((el: any, index: number) => (
             <EventsList key={index} {...animatedItem[index]}>
               <EventsImages src="/eventmap.png" />
               <InnderWrapper>
@@ -243,7 +244,7 @@ const EventSection = (props) => {
         </EventWrapper>
       </Wrapper>
       <SliderWrapper>
-        <MySlider {...settings}>
+        {/* <MySlider {...settings}>
           {new Array(10).fill(1).map((el: any, index: number) => (
             // <div key={index}>
             <EventsSlickList key={index}>
@@ -256,7 +257,7 @@ const EventSection = (props) => {
             </EventsSlickList>
             // </div>
           ))}
-        </MySlider>
+        </MySlider> */}
       </SliderWrapper>
     </OutWrapper>
   );

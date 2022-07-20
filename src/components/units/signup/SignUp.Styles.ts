@@ -47,6 +47,7 @@ export const BodyWrapper = styled.div`
   justify-content: space-between;
   @media (max-width: 767px) {
     flex-direction: column;
+    align-items: center;
   }
 `;
 export const BodyCommonContainer = styled.div`
@@ -98,7 +99,7 @@ export const BodyCommonTitle = styled.span`
   font-weight: 500;
   @media (max-width: 767px) {
     display: flex;
-    font-size: 0.8rem;
+    font-size: 1.3rem;
   }
 `;
 export const BodyCommonSubTitle = styled.span`
@@ -109,7 +110,7 @@ export const BodyCommonSubTitle = styled.span`
   margin-bottom: 10px;
   @media (max-width: 767px) {
     display: flex;
-    font-size: 1rem;
+    font-size: 2rem;
   }
 `;
 export const BodyCommonButton = styled.button`

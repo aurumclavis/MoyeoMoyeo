@@ -2,10 +2,14 @@ import { useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import styled from "@emotion/styled";
 import geoData from "./geoData.json";
+import { breakPoints } from "../../../commons/styles/media";
 
 const Map = styled.div`
-  width: 100vw;
-  height: 80vh;
+  width: 100%;
+  height: 600px;
+  @media ${breakPoints.mobile} {
+    display: none;
+  }
 `;
 
 export default function MapBoxComponent() {

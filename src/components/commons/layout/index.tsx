@@ -4,6 +4,7 @@ import LayoutFooter from "./footer/LayoutFooter.Container";
 import LayoutHeader from "./header/LayoutHeader.Container";
 import { useRouter } from "next/router";
 import CountSection from "./CountSection";
+import MapBoxComponent from "../mapboxTest";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -33,6 +34,7 @@ export default function Layout(props) {
     <Wrapper>
       <LayoutHeader></LayoutHeader>
       {isShowCountSection && <CountSection />}
+      {isShowCountSection && <MapBoxComponent />}
       {/* {isShowBanner && <LayoutBanner />} */}
       <Body>{props.children}</Body>
       <LayoutFooter />

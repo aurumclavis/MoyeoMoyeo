@@ -8,6 +8,8 @@ interface ICheckBoxProps {
   register?: any;
   setValue?: any;
   trigger?: any;
+  setChecked?: boolean;
+  setSecondChecked?: boolean;
 }
 const Wrapper = styled.div`
   width: 100%;
@@ -64,7 +66,7 @@ export default function Checkbox(props: ICheckBoxProps) {
   };
 
   // 체크박스 개별
-  const onCheckedItem = (list) => {
+  const onCheckedItem = (list: any) => {
     if (checkList.every((cur) => cur.id !== list.id)) {
       setCheckList([...checkList, list]);
     } else {
@@ -73,10 +75,16 @@ export default function Checkbox(props: ICheckBoxProps) {
     }
   };
 
-  const isChecked = (list) => {
+  const isChecked = (list: any) => {
+    if (list.id === 1) {
+      props.setChecked === true;
+    }
+    if (list.id === 2) {
+      props.setSecondChecked === true;
+    }
     return checkList.some((cur) => cur.id === list.id);
   };
-
+  //setChecked
   return (
     <Wrapper>
       <input

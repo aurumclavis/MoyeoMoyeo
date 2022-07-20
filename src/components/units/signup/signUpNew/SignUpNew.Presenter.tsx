@@ -4,6 +4,7 @@ import * as S from "./SignUpNew.Styles";
 import Countdown from "react-countdown";
 import Checkbox from "../../../commons/checkbox";
 import ButtonSubmit from "../../../commons/buttons/submit";
+
 export default function SignUpNewPageUI(props) {
   const renderer = ({ minutes, seconds }: any) => {
     return (
@@ -39,7 +40,7 @@ export default function SignUpNewPageUI(props) {
           register={props.register("name")}
         />
         <S.Error>{props.formState.errors.name?.message}</S.Error>
-        <S.MobileInfo>
+        {/* <S.MobileInfo>
           <S.CommonSubTitle>휴대폰 인증</S.CommonSubTitle>
           <S.NumberInputs>
             <CommonMobileInput defaultValue={"010"} readOnly />
@@ -87,10 +88,13 @@ export default function SignUpNewPageUI(props) {
           ) : (
             <S.MobileAuthBtn disabled={true}>인증됨</S.MobileAuthBtn>
           )}
-        </S.MobileInfo>
-        <Checkbox setValue={props.setValue} trigger={props.trigger} />
+        </S.MobileInfo> */}
+        <Checkbox
+          setChecked={props.setChecked}
+          setSecondChecked={props.setSecondChecked}
+        />
 
-        <S.Error>{props.formState.errors.checkbox?.message}</S.Error>
+        {/* <S.Error>{props.formState.errors.checkbox?.message}</S.Error> */}
         <S.ButtonWrapper>
           <ButtonSubmit
             fontSize="1.25rem"
