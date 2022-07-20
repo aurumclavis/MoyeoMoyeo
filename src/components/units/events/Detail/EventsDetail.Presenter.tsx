@@ -3,6 +3,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import KakakomapPage from "./kakaomap/kakaomap.Container";
 import BackTopAnt from "../../../commons/backTop";
 import { getDate } from "../../../commons/getDate";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 export default function EventsDetailUI(props: any) {
   return (
@@ -75,7 +76,19 @@ export default function EventsDetailUI(props: any) {
           <S.ContentImg src="/배너이미지_행사1.png" />
           <S.ContentImg src="/배너이미지_행사1.png" />
         </S.ContentsWrapper>
+
+        <S.EditWrapper>
+          <S.EditBtn onClick={props.onClickEdit}>
+            <EditOutlined />
+            수정
+          </S.EditBtn>
+          <S.EditBtn onClick={props.onClickEdit}>
+            <DeleteOutlined />
+            삭제
+          </S.EditBtn>
+        </S.EditWrapper>
         <S.LineDiv />
+
         <S.Footer>
           {/* <S.BtnRouter>관련 사이트 보러가기</S.BtnRouter> */}
           <S.BtnRouterList onClick={props.onClickMoveToPage("/events")}>

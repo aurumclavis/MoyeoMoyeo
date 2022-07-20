@@ -1,14 +1,13 @@
-import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
 import * as S from "./EventsWrite.Styles";
 // import { v4 as uuidv4 } from "uuid";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import CommonInput from "../../../commons/inputs/infoInputs";
 import DateRangePicker from "./date/date";
-import { Upload, Button } from "antd";
+import { Upload, Button, Modal } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
-export default function EventsWriteUI(props) {
+export default function EventsWriteUI(props: any) {
   return (
     <>
       {props.isOpen && (
@@ -22,7 +21,11 @@ export default function EventsWriteUI(props) {
       )}
 
       <S.Wrapper>
-        <S.FormWrapper onSubmit={props.handleSubmit(props.onClickSubmit)}>
+        <S.FormWrapper
+          onSubmit={props.handleSubmit(
+            props.isEdit ? props.onClickUpdate : props.onClickSubmi
+          )}
+        >
           <S.HeaderTitle>행사 {props.isEdit ? "수정" : "등록"}</S.HeaderTitle>
           <S.InputWrapper>
             <S.RowWrapper>
@@ -85,9 +88,13 @@ export default function EventsWriteUI(props) {
                 <S.SubTitle>행사 분류</S.SubTitle>
                 <S.TypeSelect {...props.register("category")}>
                   {/* <option selected>선택</option> */}
+                  <option value={"플리마켓"}>플리마켓</option>
                   <option value={"축제"}>축제</option>
                   <option value={"문화"}>문화</option>
                   <option value={"공연"}>공연</option>
+                  <option value={"실외공연"}>실외공연</option>
+                  <option value={"뮤지컬"}>뮤지컬</option>
+                  <option value={"클래식"}>클래식</option>
                   <option value={"전시"}>전시</option>
                   <option value={"기타"}>기타</option>
                 </S.TypeSelect>

@@ -1,4 +1,4 @@
-import EventsDetailUI from "./EventsDetail.Prsenter";
+import EventsDetailUI from "./EventsDetail.Presenter";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
@@ -17,8 +17,7 @@ export default function EventsDetail() {
   });
   console.log(data);
   const { onClickMoveToPage } = useMoveToPage();
-  const [eventIdForBoard, setEventIdForBoard] =
-    useRecoilState(eventIdForBoardState);
+  const [, setEventIdForBoard] = useRecoilState(eventIdForBoardState);
 
   const [dibsPost] = useMutation(DIBS_POST);
 
@@ -113,6 +112,9 @@ export default function EventsDetail() {
     alert("링크가 복사되었습니다");
   };
   console.log(data);
+  const onClickEdit = () => {
+    router.push(`/events/${router.query._id}/edit`);
+  };
 
   return (
     <>
@@ -132,6 +134,7 @@ export default function EventsDetail() {
         onClickDibs={onClickDibs}
         onClickLink={onClickLink}
         onClickMoveToBoardNew={onClickMoveToBoardNew}
+        onClickEdit={onClickEdit}
       />
     </>
   );
