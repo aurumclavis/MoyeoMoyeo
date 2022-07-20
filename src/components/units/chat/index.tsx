@@ -15,8 +15,8 @@ function Chat(props: ChatProps) {
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        room: props.room,
-        author: props.username,
+        room,
+        author: username,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
