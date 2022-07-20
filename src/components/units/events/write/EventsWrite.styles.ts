@@ -204,3 +204,7 @@ export const CancleBtn = styled.div`
   background-color: #d2d2d2;
   font-size: 1.25rem;
 `;
+export const Error = styled.span`
+  color: red;
+  font-size: 6px;
+`;

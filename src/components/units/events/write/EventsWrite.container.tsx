@@ -16,7 +16,7 @@ const schema = yup.object({
     .required("필수 입력 사항입니다."),
   contents: yup.string().required("필수 입력 사항입니다."),
   address: yup.string().required("필수 입력 사항입니다."),
-  category: yup.string().required(),
+  category: yup.string().required("필수 입력 사항입니다."),
 });
 export default function EventsWrite(props) {
   const router = useRouter();
@@ -72,6 +72,7 @@ export default function EventsWrite(props) {
   // };
 
   const onClickSubmit = async (data: any) => {
+    console.log(data);
     // const resultfile = await uploadImages({ variables: { files: file } });
     // const url = resultfile.data.uploadFile.url; // 리턴값..?
     try {

@@ -8,7 +8,9 @@ export default function FestivalListUIAdd(props) {
         <S.FlexWrapper>
           <S.Title>{props.el?.title}</S.Title>
           <S.ContentsWrapper>{props.el?.description}</S.ContentsWrapper>
-          <S.Period>2020.07.01 - 2020.07.31</S.Period>
+          <S.Period>
+            {props.el?.dateStart} - {props.el?.dateEnd}
+          </S.Period>
           <S.Btn> 페이지로</S.Btn>
         </S.FlexWrapper>
       </S.ListWrapper>
