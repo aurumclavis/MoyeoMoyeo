@@ -1,7 +1,9 @@
 import ButtonSubmit from "../../../../commons/buttons/submit";
-
+import { ProductsAnswerWriteUIProps } from "./ProductsAnswerWrite.Types";
 import * as S from "./ProductsAnswerWrite.Styles";
-export default function ProductsAnswerWriteUI(props) {
+export default function ProductsAnswerWriteUI(
+  props: ProductsAnswerWriteUIProps
+) {
   return (
     <S.FormWrapper
       onSubmit={props.handleSubmit(() => {

@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import BackTopAnt from "../../../commons/backTop";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import DOMPurify from "dompurify";
-import { useState } from "react";
 import Chat from "../../chat";
 import { dibsProductIdState } from "../../../../commons/store";
 import { useRecoilState } from "recoil";
@@ -17,11 +16,9 @@ import { useRecoilState } from "recoil";
 export default function ProductDetailUI(props: any) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
-  const [clicked, setClicked] = useState(false);
-  const [dibsId, setDibsId] = useRecoilState(dibsProductIdState);
-  const onClickChat = () => {
-    setClicked((prev) => !prev);
-  };
+
+  const [dibsId] = useRecoilState(dibsProductIdState);
+
   return (
     <S.Wrapper>
       {/* 스크롤 할 때 생기는 네비게이션바 */}
@@ -84,7 +81,6 @@ export default function ProductDetailUI(props: any) {
             <S.ImageItem src="https://images.unsplash.com/photo-1589365278144-c9e705f843ba?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDU0fHxwcm9kdWN0fGVufDB8fHx8MTY1NzEzNzM0MA&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
           </Image.PreviewGroup>
         </S.PreviewGroup>
-
         {typeof window !== "undefined" && (
           <S.DetailContents
             dangerouslySetInnerHTML={{
@@ -92,8 +88,8 @@ export default function ProductDetailUI(props: any) {
             }}
           />
         )}
-
         <S.Line />
+        {/* 판매자 정보 */}
         <S.SellerContentsWrapper>
           <S.Label>{props.data?.fetchProduct.seller?.manager}</S.Label>
           <S.Label>{props.data?.fetchProduct.seller?.phone}</S.Label>
@@ -154,17 +150,18 @@ export default function ProductDetailUI(props: any) {
       {/* BackTop(맨 위로 가기) 추가 */}
       <BackTopAnt />
 
-      {clicked ? (
+      {/* 채팅 mock-up */}
+      {props.clicked ? (
         <S.ChatWrapper>
           <Chat
             // socket={socket}
-            onClickChat={onClickChat}
+            onClickChat={props.onClickChat}
             username="username"
             room="1"
           />
         </S.ChatWrapper>
       ) : (
-        <S.ChatIconWrapper onClick={onClickChat}>
+        <S.ChatIconWrapper onClick={props.onClickChat}>
           <S.ChatIcon />
         </S.ChatIconWrapper>
       )}

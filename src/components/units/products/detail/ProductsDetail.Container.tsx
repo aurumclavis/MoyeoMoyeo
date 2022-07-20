@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, ChangeEvent } from "react";
 import ProductDetailUI from "./ProductsDetail.Presenter";
 import _, { throttle } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
@@ -17,9 +17,9 @@ import { useRecoilState } from "recoil";
 
 export default function ProductDetail() {
   const [activedTab, setActivedTab] = useState("detail");
-  const navRef = useRef(null);
-  const detailRef = useRef(null);
-  const qnaRef = useRef(null);
+  const navRef = useRef<HTMLDivElement>(null);
+  const detailRef = useRef<HTMLElement>(null);
+  const qnaRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
@@ -32,11 +32,12 @@ export default function ProductDetail() {
   const [undibsProduct] = useMutation(UNDIBS_PRODUCT);
   const [dibsId, setDibsId] = useRecoilState(dibsProductIdState);
   const [userInfo] = useRecoilState(userInfoState);
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", onScrollNav);
-    return window.removeEventListener("scroll", () => {
-      onScrollNav;
+    window.removeEventListener("scroll", () => {
+      return onScrollNav;
     });
   });
 
@@ -60,7 +61,7 @@ export default function ProductDetail() {
     }
   }, 100);
 
-  const onClickDetail = (event) => {
+  const onClickDetail = (event: ChangeEvent<HTMLDivElement>) => {
     window.scrollTo({
       top: detailRef.current?.offsetTop - navRef.current?.clientHeight,
       behavior: "smooth",
@@ -70,7 +71,7 @@ export default function ProductDetail() {
     }, 500);
   };
 
-  const onClickQna = (event) => {
+  const onClickQna = (event: ChangeEvent<HTMLDivElement>) => {
     window.scrollTo({
       top: qnaRef.current?.offsetTop - navRef.current?.clientHeight,
       behavior: "smooth",
@@ -137,6 +138,9 @@ export default function ProductDetail() {
       }
     }
   };
+  const onClickChat = () => {
+    setClicked((prev) => !prev);
+  };
 
   return (
     <ProductDetailUI
@@ -151,6 +155,8 @@ export default function ProductDetail() {
       isSeller={userInfo?.email === data?.fetchProduct.seller.email}
       onClickShowConfirm={onClickShowConfirm}
       onClickDibsProduct={onClickDibsProduct}
+      clicked={clicked}
+      onClickChat={onClickChat}
     />
   );
 }

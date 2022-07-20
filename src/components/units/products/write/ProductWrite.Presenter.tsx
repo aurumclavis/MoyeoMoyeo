@@ -1,5 +1,3 @@
-import { Upload, Button, message } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
 import * as S from "./ProductWrite.Styles";
 import { IProductWriteUIProps } from "./ProductWrite.Types";
 import ButtonSubmit from "../../../commons/buttons/submit";

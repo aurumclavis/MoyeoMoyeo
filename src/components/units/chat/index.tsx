@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as S from "./Chat.Styles";
 
 // app.js에서 선언한 socket 변수 보내기 필요
 // 창을 닫으면 disconnected
-
-function Chat({ username, room, onClickChat }) {
+interface ChatProps {
+  username: string;
+  room: string;
+  onClickChat: () => void;
+}
+function Chat(props: ChatProps) {
   const [currentMessage, setCurrentMessage] = useState("");
-  const [messageList, setMessageList] = useState([]);
+  // const [messageList, setMessageList] = useState([]);
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -19,7 +23,6 @@ function Chat({ username, room, onClickChat }) {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-
       // await socket.emit("send_message", messageData);
       // setMessageList((list) => [...list, messageData]);
       // setCurrentMessage("");
@@ -38,7 +41,7 @@ function Chat({ username, room, onClickChat }) {
     <S.ChatWindow>
       <S.ChatHeader>
         <S.ChatHeaderTitle>1:1 채팅방</S.ChatHeaderTitle>
-        <S.ChatHeaderLeave onClick={onClickChat}>
+        <S.ChatHeaderLeave onClick={props.onClickChat}>
           <S.LeaveIcon />
           <S.Text>닫기</S.Text>
         </S.ChatHeaderLeave>

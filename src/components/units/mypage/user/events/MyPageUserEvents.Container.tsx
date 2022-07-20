@@ -1,5 +1,4 @@
 import { gql, useQuery } from "@apollo/client";
-import { useEffect } from "react";
 import { getDate } from "../../../../commons/getDate";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import * as S from "../../listItem/MyPageListItem.Styles";
@@ -26,8 +25,8 @@ export default function MyPageUserEvents() {
   const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.Wrapper>
-      {data?.fetchLoginUser.dibsPosts.map((el, index) => (
-        <S.ItemWrapper key={index}>
+      {data?.fetchLoginUser.dibsPosts.map((el: any) => (
+        <S.ItemWrapper key={el.id}>
           <S.ItemImageWrapper>
             <S.ItemImage src="../../배너이미지_동행1.png" />
           </S.ItemImageWrapper>

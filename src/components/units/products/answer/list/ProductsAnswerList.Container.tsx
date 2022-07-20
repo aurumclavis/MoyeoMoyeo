@@ -1,11 +1,10 @@
-import { useState } from "react";
 import * as S from "./ProductsAnswerList.Styles";
+interface ProductsAnswerListProps {
+  child: any;
+  onClickActiveAnswer: () => void;
+}
 
-export default function ProductsAnswerList(props) {
-  const [isActiveAnswer, setIsActiveAnswer] = useState(false);
-  const onClickActiveAnswer = () => {
-    setIsActiveAnswer((prev) => !prev);
-  };
+export default function ProductsAnswerList(props: ProductsAnswerListProps) {
   return (
     <S.ItemWrapper>
       <S.SubDirectoryWrapper>

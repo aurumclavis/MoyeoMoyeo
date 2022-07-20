@@ -1,5 +1,4 @@
 import { gql, useQuery } from "@apollo/client";
-import { useEffect } from "react";
 import { getDate } from "../../../../commons/getDate";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import * as S from "../../listItem/MyPageListItem.Styles";
@@ -25,8 +24,8 @@ export default function MyPageUserProducts() {
 
   return (
     <S.Wrapper>
-      {data?.fetchLoginUser.dibsProducts.map((el, index) => (
-        <S.ItemWrapper key={index}>
+      {data?.fetchLoginUser.dibsProducts.map((el: any) => (
+        <S.ItemWrapper key={el.id}>
           <S.ItemImageWrapper>
             <S.ItemImage src="../../배너이미지_상품1.png" />
           </S.ItemImageWrapper>

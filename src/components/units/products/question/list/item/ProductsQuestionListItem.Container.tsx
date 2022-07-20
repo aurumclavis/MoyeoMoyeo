@@ -2,8 +2,12 @@ import { useState } from "react";
 import ProductsAnswerList from "../../../answer/list/ProductsAnswerList.Container";
 import ProductsAnswerWrite from "../../../answer/write/ProductsAnswerWrite.Container";
 import * as S from "./ProductsQuestionListItem.Style";
-
-export default function ProductsQuestionListItem(props) {
+interface ProductsQuestionListItemProps {
+  el: any;
+}
+export default function ProductsQuestionListItem(
+  props: ProductsQuestionListItemProps
+) {
   const [isActiveAnswer, setIsActiveAnswer] = useState(false);
   const onClickActiveAnswer = () => {
     setIsActiveAnswer((prev) => !prev);
