@@ -1,12 +1,12 @@
 {
   "type": "FeatureCollection",
-
   "features": [
     {
       "type": "Feature",
       "properties": {
         "code": "11250",
         "name": "강동구",
+        "centerCrd": [127.15, 37.55],
         "name_eng": "Gangdong-gu",
         "base_year": "2013"
       },
@@ -573,6 +573,7 @@
       "properties": {
         "code": "11240",
         "name": "송파구",
+        "centerCrd": [127.12, 37.5],
         "name_eng": "Songpa-gu",
         "base_year": "2013"
       },
@@ -1218,6 +1219,7 @@
       "properties": {
         "code": "11230",
         "name": "강남구",
+        "centerCrd": [127.05, 37.5],
         "name_eng": "Gangnam-gu",
         "base_year": "2013"
       },
@@ -1939,6 +1941,7 @@
       "properties": {
         "code": "11220",
         "name": "서초구",
+        "centerCrd": [127.019534, 37.480077],
         "name_eng": "Seocho-gu",
         "base_year": "2013"
       },
@@ -3351,6 +3354,7 @@
       "properties": {
         "code": "11210",
         "name": "관악구",
+        "centerCrd": [126.95, 37.46],
         "name_eng": "Gwanak-gu",
         "base_year": "2013"
       },
@@ -4931,6 +4935,7 @@
       "properties": {
         "code": "11200",
         "name": "동작구",
+        "centerCrd": [126.949, 37.51],
         "name_eng": "Dongjak-gu",
         "base_year": "2013"
       },
@@ -6066,6 +6071,7 @@
       "properties": {
         "code": "11190",
         "name": "영등포구",
+        "centerCrd": [126.896252, 37.522],
         "name_eng": "Yeongdeungpo-gu",
         "base_year": "2013"
       },
@@ -6611,6 +6617,7 @@
       "properties": {
         "code": "11180",
         "name": "금천구",
+        "centerCrd": [126.9, 37.46],
         "name_eng": "Geumcheon-gu",
         "base_year": "2013"
       },
@@ -7735,6 +7742,7 @@
       "properties": {
         "code": "11170",
         "name": "구로구",
+        "centerCrd": [126.83, 37.49],
         "name_eng": "Guro-gu",
         "base_year": "2013"
       },
@@ -9131,6 +9139,7 @@
       "properties": {
         "code": "11160",
         "name": "강서구",
+        "centerCrd": [126.810453, 37.564779],
         "name_eng": "Gangseo-gu",
         "base_year": "2013"
       },
@@ -10308,6 +10317,7 @@
       "properties": {
         "code": "11150",
         "name": "양천구",
+        "centerCrd": [126.871631, 37.546108],
         "name_eng": "Yangcheon-gu",
         "base_year": "2013"
       },
@@ -11357,6 +11367,7 @@
       "properties": {
         "code": "11140",
         "name": "마포구",
+        "centerCrd": [126.901763, 37.566404],
         "name_eng": "Mapo-gu",
         "base_year": "2013"
       },
@@ -12272,6 +12283,7 @@
       "properties": {
         "code": "11130",
         "name": "서대문구",
+        "centerCrd": [126.936773, 37.579213],
         "name_eng": "Seodaemun-gu",
         "base_year": "2013"
       },
@@ -13305,6 +13317,7 @@
       "properties": {
         "code": "11120",
         "name": "은평구",
+        "centerCrd": [126.927804, 37.639681],
         "name_eng": "Eunpyeong-gu",
         "base_year": "2013"
       },
@@ -14745,6 +14758,7 @@
       "properties": {
         "code": "11110",
         "name": "노원구",
+        "centerCrd": [127.07947, 37.652994],
         "name_eng": "Nowon-gu",
         "base_year": "2013"
       },
@@ -16365,6 +16379,7 @@
       "properties": {
         "code": "11100",
         "name": "도봉구",
+        "centerCrd": [127.047364, 37.668639],
         "name_eng": "Dobong-gu",
         "base_year": "2013"
       },
@@ -17571,6 +17586,7 @@
       "properties": {
         "code": "11090",
         "name": "강북구",
+        "centerCrd": [127.000508, 37.653286],
         "name_eng": "Gangbuk-gu",
         "base_year": "2013"
       },
@@ -18807,6 +18823,7 @@
       "properties": {
         "code": "11080",
         "name": "성북구",
+        "centerCrd": [127.033894, 37.597176],
         "name_eng": "Seongbuk-gu",
         "base_year": "2013"
       },
@@ -20120,6 +20137,7 @@
       "properties": {
         "code": "11070",
         "name": "중랑구",
+        "centerCrd": [127.092924, 37.606736],
         "name_eng": "Jungnang-gu",
         "base_year": "2013"
       },
@@ -20952,6 +20970,7 @@
       "properties": {
         "code": "11060",
         "name": "동대문구",
+        "centerCrd": [127.06, 37.588799],
         "name_eng": "Dongdaemun-gu",
         "base_year": "2013"
       },
@@ -21605,6 +21624,7 @@
       "properties": {
         "code": "11050",
         "name": "광진구",
+        "centerCrd": [127.081722, 37.550578],
         "name_eng": "Gwangjin-gu",
         "base_year": "2013"
       },
@@ -22158,6 +22178,7 @@
       "properties": {
         "code": "11040",
         "name": "성동구",
+        "centerCrd": [127.037047, 37.563386],
         "name_eng": "Seongdong-gu",
         "base_year": "2013"
       },
@@ -22886,6 +22907,7 @@
       "properties": {
         "code": "11030",
         "name": "용산구",
+        "centerCrd": [126.969503, 37.529054],
         "name_eng": "Yongsan-gu",
         "base_year": "2013"
       },
@@ -23585,6 +23607,7 @@
       "properties": {
         "code": "11020",
         "name": "중구",
+        "centerCrd": [126.985806, 37.560029],
         "name_eng": "Jung-gu",
         "base_year": "2013"
       },
@@ -24504,6 +24527,7 @@
       "properties": {
         "code": "11010",
         "name": "종로구",
+        "centerCrd": [126.980626, 37.594009],
         "name_eng": "Jongno-gu",
         "base_year": "2013"
       },
