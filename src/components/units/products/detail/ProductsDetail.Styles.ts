@@ -262,3 +262,7 @@ export const ChatIconWrapper = styled.div`
 export const ChatIcon = styled(Chat)`
   color: white;
 `;
+
+export const ProductsQuestionWrapper = styled.div`
+  width: 100%;
+`;

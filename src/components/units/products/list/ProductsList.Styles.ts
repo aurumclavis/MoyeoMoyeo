@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { SearchOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { breakPoints } from "../../../../commons/styles/media";
+import { Visibility, FavoriteBorder } from "@mui/icons-material";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -13,15 +14,14 @@ export const Wrapper = styled.div`
 // 검색바를 포함한 상단바 영역
 export const SearchWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 export const SelectBtnWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  width: auto;
 `;
 export const SearchBarWrapper = styled.div`
   width: 30%;
-
   height: 45px;
   display: flex;
   padding: 0.625rem;
@@ -56,6 +56,7 @@ export const CreateBtn = styled.button`
   width: 100%;
   height: 100%;
   border: none;
+  padding: 0.313rem;
   border-radius: 5px;
   background-color: #15133c;
   color: #ffffff;
@@ -65,6 +66,7 @@ export const CreateBtn = styled.button`
 export const Select = styled.select`
   width: 6.25rem;
   height: 45px;
+  padding: 0.313rem;
   border: 1px solid black;
   border-radius: 5px;
   text-align: center;
@@ -103,9 +105,28 @@ export const Image = styled.img`
   height: 100%;
 `;
 
-export const TextWrapper = styled.div``;
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.625rem;
+`;
 export const Text = styled.span`
   display: block;
-  margin-top: 0.625rem;
   font-size: 1rem;
+`;
+export const ViewPickWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+`;
+export const ViewIcon = styled(Visibility)`
+  font-size: 1.25rem;
+`;
+export const PickIcon = styled(FavoriteBorder)`
+  font-size: 1.25rem;
 `;

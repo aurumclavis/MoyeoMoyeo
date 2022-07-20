@@ -3,8 +3,8 @@ import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../../../commons/store";
 import * as S from "./MyPageUserSidebar.Styles";
 interface IMyPageUserSidebarProps {
-  activedIndex: number;
-  setActivedIndex: Dispatch<SetStateAction<number>>;
+  activedIndex?: number;
+  setActivedIndex?: Dispatch<SetStateAction<number>>;
 }
 
 function MyPageUserSidebar(props: IMyPageUserSidebarProps) {

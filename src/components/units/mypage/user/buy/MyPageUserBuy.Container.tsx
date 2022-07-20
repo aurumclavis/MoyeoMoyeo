@@ -10,9 +10,6 @@ export default function MyPageUserBuy() {
     <S.Wrapper>
       {data?.fetchLoginPayments.map((el, index) => (
         <S.ItemWrapper key={index}>
-          <S.ItemImageWrapper>
-            <S.ItemImage src="../../배너이미지_상품1.png" />
-          </S.ItemImageWrapper>
           <S.ItemContentsWrapper>
             <S.ItemTitle>
               [{el.status === "PAYMENT" ? "결제완료" : "결제취소"}] {el.impUid}
@@ -22,8 +19,7 @@ export default function MyPageUserBuy() {
               <S.ItemText>{el.transactAt}</S.ItemText>
             </S.ItemRowWrapper>
             <S.ItemText>배송 주소 : {el.retrieveAddress}</S.ItemText>
-            
-            <S.MoreText>상품 정보 더 보기</S.MoreText> */}
+            {/* <S.MoreText>상품 정보 더 보기</S.MoreText> */}
           </S.ItemContentsWrapper>
         </S.ItemWrapper>
       ))}

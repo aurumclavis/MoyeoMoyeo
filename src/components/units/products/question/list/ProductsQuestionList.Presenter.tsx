@@ -1,10 +1,10 @@
 import ProductsQuestionListItem from "./item/ProductsQuestionListItem.Container";
 import * as S from "./ProductsQuestionList.Styles";
-export default function ProductsQuestionListUI() {
+export default function ProductsQuestionListUI(props) {
   return (
     <S.Wrapper>
-      {new Array(3).fill(1).map((el, index) => (
-        <ProductsQuestionListItem key={index} />
+      {props.data?.fetchProductComments.map((el) => (
+        <ProductsQuestionListItem el={el} key={el.id} />
       ))}
     </S.Wrapper>
   );
