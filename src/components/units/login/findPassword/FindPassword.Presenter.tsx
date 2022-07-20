@@ -1,11 +1,10 @@
-// import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CommonInput from "../../../commons/inputs/infoInputs";
-import CommonMobileInput from "../../../commons/inputs/mobileInputs";
 import * as S from "./FindPasswordStyles";
-
 import Countdown from "react-countdown";
 import ButtonSubmit from "../../../commons/buttons/submit";
-export default function FindPwPageUI(props) {
+import { IFindPw } from "./FindPassword.Types";
+
+export default function FindPwPageUI(props: IFindPw) {
   const renderer = ({ minutes, seconds }: any) => {
     return (
       <S.Timer>

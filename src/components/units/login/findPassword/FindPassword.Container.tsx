@@ -11,7 +11,6 @@ import {
   SEND_EMAIL,
   RESET_PASSWORD,
 } from "./FindPassword.Queries";
-import { date } from "yup/lib/locale";
 const schema = yup.object({
   email: yup
     .string()
@@ -43,11 +42,10 @@ export default function FindPwPage() {
   const [isActive, setIsActive] = useState(false);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
-  const { register, handleSubmit, formState, setValue, trigger, reset, watch } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-    });
+  const { register, handleSubmit, formState, watch } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
   const onChagneEmail = (event) => {
     setEmailComfirm(event.target.value);
     setIsActive(true);
@@ -85,7 +83,7 @@ export default function FindPwPage() {
       await resetPassword({
         variables: {
           email: data.email,
-          newPassword: newPassword,
+          newPassword,
         },
       });
       Modal.success({ content: "비밀번호가 업데이트 되었습니다. " });

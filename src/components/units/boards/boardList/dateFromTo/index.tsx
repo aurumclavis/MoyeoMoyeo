@@ -78,6 +78,6 @@ export const weeklyMoveNext = (currentFrom, currentTo) => {
 export const changeFromToWeekly = (currentFrom) => {
   const from = moment(currentFrom).startOf("week").format("YYYY-MM-DD");
   const to = moment(currentFrom).endOf("week").format("YYYY-MM-DD");
-  const result = { from: from, to: to };
+  const result = { from, to };
   return result;
 };

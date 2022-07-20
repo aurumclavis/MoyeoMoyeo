@@ -41,10 +41,10 @@ export default function MapBoxComponent() {
     { 중구: 6 },
     { 종로구: 18 },
   ];
-  geoData["features"].forEach((guItem: any) => {
+  geoData.features.forEach((guItem: any) => {
     gu_event.forEach((el) => {
-      if (Object.keys(el)[0] === guItem["properties"]["name"]) {
-        guItem["properties"]["eventCount"] = Object.values(el)[0];
+      if (Object.keys(el)[0] === guItem.properties.name) {
+        guItem.properties.eventCount = Object.values(el)[0];
       }
     });
   });
@@ -56,22 +56,22 @@ export default function MapBoxComponent() {
     [10, "#8A4C44", 800],
     ["", "#683235", 1000],
   ];
-  geoData["features"].forEach((guItem: any) => {
-    if (guItem["properties"]["eventCount"] <= myLayers[0][0]) {
-      guItem["properties"]["color"] = myLayers[0][1];
-      guItem["properties"]["height"] = myLayers[0][2];
-    } else if (guItem["properties"]["eventCount"] <= myLayers[1][0]) {
-      guItem["properties"]["color"] = myLayers[1][1];
-      guItem["properties"]["height"] = myLayers[1][2];
-    } else if (guItem["properties"]["eventCount"] <= myLayers[2][0]) {
-      guItem["properties"]["color"] = myLayers[2][1];
-      guItem["properties"]["height"] = myLayers[2][2];
-    } else if (guItem["properties"]["eventCount"] <= myLayers[3][0]) {
-      guItem["properties"]["color"] = myLayers[3][1];
-      guItem["properties"]["height"] = myLayers[3][2];
+  geoData.features.forEach((guItem: any) => {
+    if (guItem.properties.eventCount <= myLayers[0][0]) {
+      guItem.properties.color = myLayers[0][1];
+      guItem.properties.height = myLayers[0][2];
+    } else if (guItem.properties.eventCount <= myLayers[1][0]) {
+      guItem.properties.color = myLayers[1][1];
+      guItem.properties.height = myLayers[1][2];
+    } else if (guItem.properties.eventCount <= myLayers[2][0]) {
+      guItem.properties.color = myLayers[2][1];
+      guItem.properties.height = myLayers[2][2];
+    } else if (guItem.properties.eventCount <= myLayers[3][0]) {
+      guItem.properties.color = myLayers[3][1];
+      guItem.properties.height = myLayers[3][2];
     } else {
-      guItem["properties"]["color"] = myLayers[4][1];
-      guItem["properties"]["height"] = myLayers[4][2];
+      guItem.properties.color = myLayers[4][1];
+      guItem.properties.height = myLayers[4][2];
     }
   });
 
@@ -130,15 +130,15 @@ export default function MapBoxComponent() {
           essential: true,
         });
       });
-      geoData["features"].map((el) => {
+      geoData.features.map((el) => {
         const marker = new mapboxgl.Marker({
           color: "#FFE69A",
           scale: 0.7,
         })
-          .setLngLat(el["properties"]["centerCrd"])
+          .setLngLat(el.properties.centerCrd)
           .setPopup(
             new mapboxgl.Popup({ closeButton: false }).setHTML(
-              `<h2>${el["properties"]["name"]}</h2><div style="color:#FFD24C">${el["properties"]["eventCount"]}개의 이벤트</div>`
+              `<h2>${el.properties.name}</h2><div style="color:#FFD24C">${el.properties.eventCount}개의 이벤트</div>`
             )
           )
           .addTo(map);

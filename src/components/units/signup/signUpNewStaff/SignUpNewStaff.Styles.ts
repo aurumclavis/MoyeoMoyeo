@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 interface IButtonStyledProps {
   isActive?: boolean;
 }
-//전체;
+// 전체
 export const OutWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
 `;
 
-//내용
+// 내용
 export const Wrapper = styled.form`
   width: 430px;
   background-color: #ffffff;
@@ -64,7 +64,7 @@ export const MobileAuthBtn = styled.button`
     props.isActive ? "#FFD24C" : "edf0f5"};
 `;
 
-//인증번호
+// 인증번호
 export const NewAuthWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -128,7 +128,7 @@ export const MobileAuthCheckBtn = styled.div`
   }
 `;
 
-//submit
+// submit
 export const ButtonWrapper = styled.div`
   width: 100%;
   height: 56px;
@@ -164,7 +164,7 @@ export const FooterBtn = styled.div`
   }
 `;
 
-//hook-form error
+// hook-form error
 export const Error = styled.div`
   width: 100%;
   color: red;

@@ -12,7 +12,7 @@ export default function ProductsPaymentUI(props: any) {
   const router = useRouter();
   return (
     <S.FormWrapper onSubmit={props.handleSubmit(props.onClickPayment)}>
-      {/* jQuery : iamport payment*/}
+      {/* jQuery : iamport payment */}
       <div>
         <Script
           type="text/javascript"

@@ -1,4 +1,3 @@
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import SignUpNewStaffPageUI from "./SignUpNewStaff.Presenter";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,7 +19,6 @@ const schema = yup.object({
     .min(2, "이름은 최소 2자리 이상 입력해주세요")
     .max(5, "이름은 최대 5자리로 입력해주세요"),
   institution: yup.string().required("소속회사은 필수 입력사항입니다."),
-  // name: yup.string().required("이름은 필수 입력사항입니다."),
   email: yup
     .string()
     .email("이메일 형식이 적합하지 않습니다")
@@ -54,19 +52,14 @@ export default function SignUpNewEventPage() {
   const [createUser] = useMutation(CREATE_USER);
   const [sendSMS] = useMutation(SEND_SMS);
   const [validatePhone] = useMutation(VALIDATE_PHONE);
-  const [isActive, setIsActive] = useState(true);
+  const [isActive] = useState(true);
 
-  const { onClickMoveToPage } = useMoveToPage();
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const { register, handleSubmit, formState, watch } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
-  // moblie 비활성화용
-  const onChangeMobile = (event) => {
-    setIsActive(event.target.input);
-  };
 
   // moblie 인증번호 요청
   const phone = "010" + watch("phoneNumber") + watch("phoneNumber2");
@@ -100,13 +93,6 @@ export default function SignUpNewEventPage() {
 
   // 회원가입
   const onClickCreateUser = async (data: any) => {
-    // if(){
-    //   return Modal.info({ content: "중복된 이메일(ID)입니다." });
-    // }
-    // if(){
-    //   return Modal.info({ content: "중복된 핸드폰 번호입니다." });
-    // }
-
     console.log(data);
     try {
       await createUser({
@@ -115,7 +101,7 @@ export default function SignUpNewEventPage() {
             manager: data.manager,
             email: data.email,
             password: data.password,
-            phone: phone,
+            phone,
             institution: data.institution,
           },
         },
@@ -142,9 +128,6 @@ export default function SignUpNewEventPage() {
       onClickConfirm={onClickConfirm}
       // signup
       onClickCreateUser={onClickCreateUser}
-      //login
-      onClickMoveToPage={onClickMoveToPage}
-      onChangeMobile={onChangeMobile}
     />
   );
 }

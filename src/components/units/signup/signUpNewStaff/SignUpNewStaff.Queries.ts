@@ -13,7 +13,7 @@ export const CREATE_USER = gql`
   }
 `;
 
-//핸드폰 인증
+// 핸드폰 인증
 export const SEND_SMS = gql`
   mutation sendSMS($phone: String!) {
     sendSMS(phone: $phone)

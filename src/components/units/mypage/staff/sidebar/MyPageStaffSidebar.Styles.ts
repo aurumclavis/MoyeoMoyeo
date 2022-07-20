@@ -23,7 +23,7 @@ export const Title = styled.h2`
   margin: 0;
   font-weight: bold;
 `;
-//유저 정보를 보여주고 포인트 충전이 가능한 Wrapper
+// 유저 정보를 보여주고 포인트 충전이 가능한 Wrapper
 export const ProfileWrapper = styled.div`
   width: 100%;
   height: 250px;

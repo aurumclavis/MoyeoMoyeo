@@ -1,12 +1,14 @@
 import * as S from "./SignUpNewStaff.Styles";
-// import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CommonInput from "../../../commons/inputs/infoInputs";
 import CommonMobileInput from "../../../commons/inputs/mobileInputs";
 import Checkbox from "../../../commons/checkbox";
 import Countdown from "react-countdown";
 import ButtonSubmit from "../../../commons/buttons/submit";
+import { ISignUpNewStaffUI } from "./SignUpNewStaff.Types";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
-export default function SignUpNewStaffPageUI(props) {
+export default function SignUpNewStaffPageUI(props: ISignUpNewStaffUI) {
+  const { onClickMoveToPage } = useMoveToPage();
   const renderer = ({ minutes, seconds }: any) => {
     return (
       <S.Timer>
@@ -54,14 +56,8 @@ export default function SignUpNewStaffPageUI(props) {
           <S.CommonSubTitle>담당자 휴대폰 인증</S.CommonSubTitle>
           <S.NumberInputs>
             <CommonMobileInput defaultValue={"010"} />
-            <CommonMobileInput
-              register={props.register("phoneNumber")}
-              onChange={props.onChangeMobile}
-            />
-            <CommonMobileInput
-              register={props.register("phoneNumber2")}
-              onChange={props.onChangeMobile}
-            />
+            <CommonMobileInput register={props.register("phoneNumber")} />
+            <CommonMobileInput register={props.register("phoneNumber2")} />
           </S.NumberInputs>
           <S.Error>{props.formState.errors.phoneNumber?.message}</S.Error>
           <S.Error>{props.formState.errors.phoneNumber2?.message}</S.Error>
@@ -83,12 +79,11 @@ export default function SignUpNewStaffPageUI(props) {
             ) : (
               <S.MobileAuthBtn
                 type="button"
-                // isActive={/^[0-9]$/.test(
-                //   props.watch("phoneNumber" && "phoneNumber2")
-                // )}
-                // disabled={
-                //   !/^[0-9]$/.test(props.watch("phoneNumber" && "phoneNumber2"))
-                // }
+                isActive={
+                  /[0-9]$/.test(props.watch("phoneNumber")) &&
+                  /[0-9]$/.test(props.watch("phoneNumber2"))
+                }
+                disabled={!props.watch("phoneNumber" && "phoneNumber2")}
                 onClick={props.onClickGetNumber}
               >
                 인증번호 요청
@@ -106,13 +101,12 @@ export default function SignUpNewStaffPageUI(props) {
           <ButtonSubmit
             fontSize="1.25rem"
             isActive={props.formState.isValid}
-            // isActive={true}
             title="회원가입"
           />
         </S.ButtonWrapper>
         <S.FooterWrapper>
           <S.FooterTitle>이미 관계자 계정이 있으신가요?</S.FooterTitle>
-          <S.FooterBtn onClick={props.onClickMoveToPage("/login/newStaff")}>
+          <S.FooterBtn onClick={onClickMoveToPage("/login/newStaff")}>
             관계자회원 로그인
           </S.FooterBtn>
         </S.FooterWrapper>

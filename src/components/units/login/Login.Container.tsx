@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import { useApolloClient, useMutation, useQuery } from "@apollo/client";
+import { useApolloClient, useMutation } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { accessTokenState, userInfoState } from "../../../commons/store";
 import { LOGIN, FETCH_LOGIN_USER } from "./Login.Queries";
@@ -25,14 +25,12 @@ export default function LoginPage() {
   const router = useRouter();
   const client = useApolloClient();
   const [login] = useMutation(LOGIN);
-  const { data } = useQuery(FETCH_LOGIN_USER);
   const [, setAccessToken] = useRecoilState(accessTokenState);
   const [, setUserInfo] = useRecoilState(userInfoState);
-  const { register, handleSubmit, formState, setValue, trigger, reset, watch } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-    });
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
   // 회원가입
   const onClickToSignUp = () => {
@@ -58,7 +56,7 @@ export default function LoginPage() {
       });
 
       console.log(result.data.login);
-      const Token = result.data.login; //accessToken
+      const Token = result.data.login; // accessToken
       const resultUserInfo = await client.query({
         query: FETCH_LOGIN_USER,
         context: {

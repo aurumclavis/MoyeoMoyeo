@@ -1,11 +1,10 @@
-import { Modal } from "antd";
+import { Modal , Upload, Button } from "antd";
 import DaumPostcode from "react-daum-postcode";
 import * as S from "./EventsWrite.Styles";
 // import { v4 as uuidv4 } from "uuid";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import CommonInput from "../../../commons/inputs/infoInputs";
 import DateRangePicker from "./date/date";
-import { Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 export default function EventsWriteUI(props) {

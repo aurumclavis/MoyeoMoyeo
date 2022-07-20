@@ -14,7 +14,6 @@ const useScrollClipPath = (direction = "left", duration = 1, delay = 0) => {
       case "right":
         return "inset(0 0 0 100%)";
       default:
-        return;
     }
   };
 

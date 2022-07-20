@@ -1,5 +1,13 @@
 import styled from "@emotion/styled";
-//types
+import { UseFormRegisterReturn } from "react-hook-form";
+
+interface IInfoInput {
+  placeholder?: string | undefined;
+  type?: string;
+  defaultValue?: string;
+  readOnly?: boolean;
+  register?: UseFormRegisterReturn;
+}
 
 const Input = styled.input`
   width: 100%;
@@ -20,7 +28,7 @@ const Input = styled.input`
   }
 `;
 
-export default function CommonInput(props) {
+export default function CommonInput(props: IInfoInput) {
   return (
     <Input
       {...props?.register}
@@ -28,7 +36,6 @@ export default function CommonInput(props) {
       type={props?.type}
       readOnly={props.readOnly}
       defaultValue={props.defaultValue}
-      // onChange={props?.onChange}
     />
   );
 }

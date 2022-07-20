@@ -76,15 +76,15 @@ export default function Checkbox(props: ICheckBoxProps) {
   };
 
   const isChecked = (list: any) => {
-    if (list.id === 1) {
-      props.setChecked === true;
-    }
-    if (list.id === 2) {
-      props.setSecondChecked === true;
-    }
+    // if (list.id === 1) {
+    //   props.setChecked === true;
+    // }
+    // if (list.id === 2) {
+    //   props.setSecondChecked === true;
+    // }
     return checkList.some((cur) => cur.id === list.id);
   };
-  //setChecked
+  // setChecked
   return (
     <Wrapper>
       <input

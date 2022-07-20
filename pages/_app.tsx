@@ -1,6 +1,5 @@
 import { AppProps } from "next/app";
 import Layout from "../src/components/commons/layout";
-// import '../styles/globals.css'
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import "antd/dist/antd.css";
@@ -21,5 +20,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
-
-//AppProps

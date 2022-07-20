@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
-//types
-
+import { UseFormRegisterReturn } from "react-hook-form";
+interface IMobileInput {
+  placeholder?: string | undefined;
+  type?: string;
+  defaultValue?: string;
+  readOnly?: boolean;
+  register?: UseFormRegisterReturn;
+}
 const Input = styled.input`
   width: 100%;
   height: 45px;
@@ -16,7 +22,7 @@ const Input = styled.input`
   }
 `;
 
-export default function CommonMobileInput(props) {
+export default function CommonMobileInput(props: IMobileInput) {
   return (
     <Input
       type={props?.type}
@@ -24,8 +30,6 @@ export default function CommonMobileInput(props) {
       {...props?.register}
       defaultValue={props?.defaultValue}
       readOnly={props?.readOnly}
-      // disabled={props?.disabled}
-      // onChange={props?.onChange}
     />
   );
 }

@@ -51,22 +51,17 @@ export default function SignUpNewPage() {
   const [sendSMS] = useMutation(SEND_SMS);
   const [validatePhone] = useMutation(VALIDATE_PHONE);
 
-  const [isActive, setIsActive] = useState(true);
+  const [isActive] = useState(true);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
 
   const [checked, setChecked] = useState(false);
   const [secondChecked, setSecondChecked] = useState(false);
 
-  const { register, handleSubmit, formState, watch, setValue, trigger } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-    });
-  // moblie 비활성화용
-  const onChangeMobile = (event: any) => {
-    setIsActive(event.target.input);
-  };
+  const { register, handleSubmit, formState, watch } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
   // moblie 인증번호 요청
   const phone = "010" + watch("phoneNumber") + watch("phoneNumber2");
@@ -148,9 +143,8 @@ export default function SignUpNewPage() {
       onClickConfirm={onClickConfirm}
       // signup
       onClickCreateUser={onClickCreateUser}
-      //login
+      // login
       onClickMoveToPage={onClickMoveToPage}
-      onChangeMobile={onChangeMobile}
       setChecked={setChecked}
       setSecondChecked={setSecondChecked}
     />
