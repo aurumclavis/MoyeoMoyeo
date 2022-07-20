@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { CREATE_USER, SEND_SMS, VALIDATE_PHONE } from "./SignUpNew.Queries";
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
@@ -29,23 +28,22 @@ const schema = yup.object({
     .string()
     .required("비밀번호는 확인은 필수 입력 사항입니다.")
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다."),
-  // phoneNumber: yup
-  //   .string()
-  //   .required("핸드폰 번호는 필수 입력 사항입니다.")
-  //   .typeError("숫자만 입력가능합니다."),
-  // phoneNumber2: yup
-  //   .string()
-  //   .required("핸드폰 번호는 필수 입력 사항입니다.")
-  //   .typeError("숫자만 입력가능합니다."),
-  // validateToken: yup
-  //   .number()
-  //   .required("필수 사항입니다.")
-  //   .typeError("숫자만 입력가능합니다."),
+  phoneNumber: yup
+    .string()
+    .required("핸드폰 번호는 필수 입력 사항입니다.")
+    .typeError("숫자만 입력가능합니다."),
+  phoneNumber2: yup
+    .string()
+    .required("핸드폰 번호는 필수 입력 사항입니다.")
+    .typeError("숫자만 입력가능합니다."),
+  validateToken: yup
+    .number()
+    .required("필수 사항입니다.")
+    .typeError("숫자만 입력가능합니다."),
 });
 
 export default function SignUpNewPage() {
   const router = useRouter();
-  const { onClickMoveToPage } = useMoveToPage();
 
   const [createUser] = useMutation(CREATE_USER);
   const [sendSMS] = useMutation(SEND_SMS);
@@ -55,8 +53,8 @@ export default function SignUpNewPage() {
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
 
-  const [checked, setChecked] = useState(false);
-  const [secondChecked, setSecondChecked] = useState(false);
+  const [checked] = useState(false);
+  const [secondChecked] = useState(false);
 
   const { register, handleSubmit, formState, watch } = useForm({
     resolver: yupResolver(schema),
@@ -85,9 +83,6 @@ export default function SignUpNewPage() {
         variables: { phone, tokenInput },
       });
       const TokenCheckValid = result.data?.validatePhone;
-      if (TokenCheckValid === false) {
-        Modal.error({ content: "인증번호를 다시 확인 바랍니다." });
-      }
       if (TokenCheckValid === true) {
         Modal.success({ content: "핸드폰 번호인증이 완료되었습니다." });
         setIsDone(true);
@@ -117,7 +112,7 @@ export default function SignUpNewPage() {
             name: data.name,
             email: data.email,
             password: data.password,
-            // phone: phone,
+            phone,
           },
         },
       });
@@ -144,9 +139,8 @@ export default function SignUpNewPage() {
       // signup
       onClickCreateUser={onClickCreateUser}
       // login
-      onClickMoveToPage={onClickMoveToPage}
-      setChecked={setChecked}
-      setSecondChecked={setSecondChecked}
+      checked={checked}
+      secondChecked={secondChecked}
     />
   );
 }

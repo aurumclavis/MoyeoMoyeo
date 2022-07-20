@@ -1,9 +1,7 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
 import { breakPoints } from "../../../../../commons/styles/media";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 const OutWrapper = styled.div`
   width: 100%;
@@ -83,20 +81,7 @@ const Wrapper = styled.div`
     flex-direction: column;
   }
 `;
-const ImageWrapper = styled.div`
-  width: 40%;
-  /* height: 350px; */
-  /* background-color: gray; */
-  border: 1px solid black;
 
-  @media ${breakPoints.mobile} {
-    display: none;
-  }
-`;
-const EventImg = styled.img`
-  width: 100%;
-  height: 100%;
-`;
 const EventWrapper = styled.div`
   width: 100%;
   display: grid;
@@ -109,29 +94,7 @@ const EventWrapper = styled.div`
     padding-right: 2px;
   }
 `;
-const SliderWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* .slick-next:before {
-    opacity: 0.2;
-    color: #15133c;
-  }
-  .slick-prev:before {
-    opacity: 0.2;
-    color: #15133c;
-  } */
-`;
-const MySlider = styled(Slider)`
-  width: 1200px;
-  display: flex;
 
-  @media ${breakPoints.mobile} {
-    width: 100%;
-    margin-top: 0px;
-  }
-`;
 const EventsList = styled.div`
   display: flex;
   flex-direction: column;
@@ -143,19 +106,6 @@ const EventsList = styled.div`
   }
 `;
 
-const EventsSlickList = styled.div`
-  /* width: 100px; */
-  display: flex;
-  flex-direction: column;
-  transition: 0.2s;
-  margin: 0 auto;
-
-  :hover {
-    box-shadow: 3px 5px 1px 0px #ffd24c;
-    transform: translateY(-5px);
-    border-radius: 5px;
-  }
-`;
 const EventsImages = styled.img`
   width: 100%;
 `;
@@ -181,37 +131,16 @@ const EventsDate = styled.div`
   text-align: center;
 `;
 
-const EventSection = (props) => {
+const EventSection = (props: any) => {
   const animatedItem = {
-    0: useScrollFadeIn("down", 1),
-    1: useScrollFadeIn("down", 1),
-    2: useScrollFadeIn("down", 1),
-    3: useScrollFadeIn("down", 1),
-    4: useScrollFadeIn("down", 1),
-    5: useScrollFadeIn("down", 1),
+    0: useScrollFadeIn("up", 1),
+    1: useScrollFadeIn("up", 1),
+    2: useScrollFadeIn("up", 1),
+    3: useScrollFadeIn("up", 1),
+    4: useScrollFadeIn("up", 1),
+    5: useScrollFadeIn("up", 1),
   };
-  const settings = {
-    infinite: true,
-    vertical: false,
-    slidesToShow: 6,
-    slidesToScroll: 2,
-    initialSlide: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    pauseOnHover: true,
-    arrows: false,
-    dots: true,
-    responsive: [
-      // 반응형
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 3,
-          dots: true,
-        },
-      },
-    ],
-  };
+  const { onClickMoveToPage } = useMoveToPage();
 
   return (
     <OutWrapper>
@@ -222,14 +151,11 @@ const EventSection = (props) => {
       <TitleRightWrapper>
         <div>취향저격 탕! 나만의 행사들을 골라봐요!</div>
         <MoreBox>
-          <More onClick={props.onClickMoveToPage("/events")}>더보기</More>
+          <More onClick={onClickMoveToPage("/events")}>더보기</More>
           <ArrowIcon src="/icon/arrow_right.png" />
         </MoreBox>
       </TitleRightWrapper>
       <Wrapper>
-        {/* <ImageWrapper>
-          <EventImg src="/main/eventImage.png" />
-        </ImageWrapper> */}
         <EventWrapper>
           {new Array(5).fill(1).map((el: any, index: number) => (
             <EventsList key={index} {...animatedItem[index]}>
@@ -243,22 +169,6 @@ const EventSection = (props) => {
           ))}
         </EventWrapper>
       </Wrapper>
-      <SliderWrapper>
-        {/* <MySlider {...settings}>
-          {new Array(10).fill(1).map((el: any, index: number) => (
-            // <div key={index}>
-            <EventsSlickList key={index}>
-              <EventsImages src="/eventmap.png" />
-              <InnderWrapper>
-                <EventsName>뮤지컬 아이다</EventsName>
-                <EventsPlaces>블루스퀘어 신한카드홀</EventsPlaces>
-                <EventsDate>2022.07.05~07.05</EventsDate>
-              </InnderWrapper>
-            </EventsSlickList>
-            // </div>
-          ))}
-        </MySlider> */}
-      </SliderWrapper>
     </OutWrapper>
   );
 };

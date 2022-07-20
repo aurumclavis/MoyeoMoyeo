@@ -4,9 +4,11 @@ import CommonMobileInput from "../../../commons/inputs/mobileInputs";
 import Countdown from "react-countdown";
 import Checkbox from "../../../commons/checkbox";
 import ButtonSubmit from "../../../commons/buttons/submit";
-import { ISignUpNew } from "./SignUpNew.Queries";
+import { ISignUpNew } from "./SignUpNew.Types";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
 export default function SignUpNewPageUI(props: ISignUpNew) {
+  const { onClickMoveToPage } = useMoveToPage();
   const renderer = ({ minutes, seconds }: any) => {
     return (
       <S.Timer>
@@ -64,7 +66,7 @@ export default function SignUpNewPageUI(props: ISignUpNew) {
                   {...props.register("validateToken")}
                 />
                 <Countdown renderer={renderer} date={Date.now() + 180000} />
-                <S.MobileGetNumAgainBtn onClick={props.onClickGetNumberAgain}>
+                <S.MobileGetNumAgainBtn onClick={props.onClickGetNumber}>
                   인증번호 재요청
                 </S.MobileGetNumAgainBtn>
                 <S.MobileAuthCheckBtn onClick={props.onClickConfirm}>
@@ -88,12 +90,7 @@ export default function SignUpNewPageUI(props: ISignUpNew) {
             <S.MobileAuthBtn disabled={true}>인증됨</S.MobileAuthBtn>
           )}
         </S.MobileInfo>
-        <Checkbox
-          setChecked={props.setChecked}
-          setSecondChecked={props.setSecondChecked}
-        />
-
-        {/* <S.Error>{props.formState.errors.checkbox?.message}</S.Error> */}
+        <Checkbox checked={props.checked} secondChecked={props.secondChecked} />
         <S.ButtonWrapper>
           <ButtonSubmit
             fontSize="1.25rem"
@@ -104,7 +101,7 @@ export default function SignUpNewPageUI(props: ISignUpNew) {
 
         <S.FooterWrapper>
           <S.FooterTitle>이미 계정이 있으신가요?</S.FooterTitle>
-          <S.FooterBtn onClick={props.onClickMoveToPage("/login")}>
+          <S.FooterBtn onClick={onClickMoveToPage("/login")}>
             로그인
           </S.FooterBtn>
         </S.FooterWrapper>

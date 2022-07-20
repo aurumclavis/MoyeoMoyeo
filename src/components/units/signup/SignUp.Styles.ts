@@ -3,20 +3,16 @@ import styled from "@emotion/styled";
 // 전체
 export const OutWrapper = styled.div`
   width: 100%;
-  /* height: 50vh; */
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #bdbdbd; */
 `;
 
 // inner
 export const Wrapper = styled.div`
   max-width: 1200px;
-  /* height: 50%; */
   background-color: #ffffff;
-  /* border: 1px solid #bdbdbd; */
   border-radius: 3px;
   padding: 15px;
 `;
@@ -123,7 +119,6 @@ export const BodyCommonButton = styled.button`
   :hover {
     background-color: #ffd24c;
     border: 2px solid black;
-    /* color: #ffffff; */
   }
   @media (max-width: 767px) {
     height: 35px;

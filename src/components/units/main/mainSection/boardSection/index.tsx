@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import useScrollClipPath from "../../../../commons/hooks/useScrollClipPath";
 import { breakPoints } from "../../../../../commons/styles/media";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 const OutWrapper = styled.div`
   width: 100%;
@@ -179,9 +180,9 @@ const Icon = styled.img`
   align-items: center;
 `;
 
-const BoardSection = (props) => {
+const BoardSection = (props: any) => {
   const animatedItem = useScrollClipPath();
-
+  const { onClickMoveToPage } = useMoveToPage();
   const settings = {
     infinite: true,
     vertical: true,
@@ -214,7 +215,7 @@ const BoardSection = (props) => {
       <TitleRightWrapper>
         <div>이제 혼자가 아닌 우리 같이 가요!</div>
         <MoreBox>
-          <More onClick={props.onClickMoveToPage("/boards")}>더보기</More>
+          <More onClick={onClickMoveToPage("/boards")}>더보기</More>
           <ArrowIcon src="/icon/arrow_right.png" />
         </MoreBox>
       </TitleRightWrapper>

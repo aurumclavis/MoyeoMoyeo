@@ -7,14 +7,12 @@ export const OutWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  /* background-color: #bdbdbd; */
 `;
 
 // 내용
 export const Wrapper = styled.form`
   width: 430px;
   background-color: #ffffff;
-  /* border: 1px solid #bdbdbd; */
   border-radius: 3px;
   padding: 50px 15px;
 `;

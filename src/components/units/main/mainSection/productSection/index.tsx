@@ -1,6 +1,3 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
 import { breakPoints } from "../../../../../commons/styles/media";
@@ -91,20 +88,12 @@ const InnerWrapper = styled.div`
   }
 `;
 const ProductList = styled.div`
-  /* width: 240px;
-  height: 300px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media ${breakPoints.mobile} {
-    /* width: 30%;
-    flex-wrap: wrap;
-    height: 200px; */
-  }
 `;
 const ProductImages = styled.img`
   width: 100%;
-  /* height: 240px; */
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
@@ -121,7 +110,7 @@ const ProductPrice = styled.div`
   text-align: left;
   margin-bottom: 30px;
 `;
-const ProductSection = (props) => {
+const ProductSection = (props: any) => {
   const animatedItem = {
     0: useScrollFadeIn("up", 1),
     1: useScrollFadeIn("up", 1),
@@ -147,7 +136,7 @@ const ProductSection = (props) => {
 
       <InnerWrapper>
         {data?.fetchProducts
-          .map((el: any, index: number) => (
+          .map((el: any, index: any) => (
             <ProductList
               {...animatedItem[index]}
               key={index}

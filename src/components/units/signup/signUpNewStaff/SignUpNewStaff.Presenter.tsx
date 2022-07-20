@@ -4,8 +4,8 @@ import CommonMobileInput from "../../../commons/inputs/mobileInputs";
 import Checkbox from "../../../commons/checkbox";
 import Countdown from "react-countdown";
 import ButtonSubmit from "../../../commons/buttons/submit";
-import { ISignUpNewStaffUI } from "./SignUpNewStaff.Types";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import { ISignUpNewStaffUI } from "./SignUpNewStaff.Types";
 
 export default function SignUpNewStaffPageUI(props: ISignUpNewStaffUI) {
   const { onClickMoveToPage } = useMoveToPage();
@@ -69,7 +69,7 @@ export default function SignUpNewStaffPageUI(props: ISignUpNewStaffUI) {
                   {...props.register("validateToken")}
                 />
                 <Countdown renderer={renderer} date={Date.now() + 180000} />
-                <S.MobileGetNumAgainBtn onClick={props.onClickGetNumberAgain}>
+                <S.MobileGetNumAgainBtn onClick={props.onClickGetNumber}>
                   인증번호 재요청
                 </S.MobileGetNumAgainBtn>
                 <S.MobileAuthCheckBtn onClick={props.onClickConfirm}>

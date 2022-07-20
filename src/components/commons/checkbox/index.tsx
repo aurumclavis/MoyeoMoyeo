@@ -8,8 +8,8 @@ interface ICheckBoxProps {
   register?: any;
   setValue?: any;
   trigger?: any;
-  setChecked?: boolean;
-  setSecondChecked?: boolean;
+  checked?: boolean;
+  secondChecked?: boolean;
 }
 const Wrapper = styled.div`
   width: 100%;
