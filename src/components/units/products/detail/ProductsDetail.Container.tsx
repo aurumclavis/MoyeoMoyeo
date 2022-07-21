@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, ChangeEvent } from "react";
+import { useState, useRef, useEffect, MouseEvent } from "react";
 import ProductDetailUI from "./ProductsDetail.Presenter";
 import _, { throttle } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
@@ -18,7 +18,7 @@ import { useRecoilState } from "recoil";
 export default function ProductDetail() {
   const [activedTab, setActivedTab] = useState("detail");
   const navRef = useRef<HTMLDivElement>(null);
-  const detailRef = useRef<HTMLElement>(null);
+  const detailRef = useRef<HTMLHeadingElement>(null);
   const qnaRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
@@ -61,7 +61,7 @@ export default function ProductDetail() {
     }
   }, 100);
 
-  const onClickDetail = (event: ChangeEvent<HTMLDivElement>) => {
+  const onClickDetail = (event: MouseEvent<HTMLDivElement>) => {
     window.scrollTo({
       top: detailRef.current?.offsetTop - navRef.current?.clientHeight,
       behavior: "smooth",
@@ -71,7 +71,7 @@ export default function ProductDetail() {
     }, 500);
   };
 
-  const onClickQna = (event: ChangeEvent<HTMLDivElement>) => {
+  const onClickQna = (event: MouseEvent<HTMLDivElement>) => {
     window.scrollTo({
       top: qnaRef.current?.offsetTop - navRef.current?.clientHeight,
       behavior: "smooth",

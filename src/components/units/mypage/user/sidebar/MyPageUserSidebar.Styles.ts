@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 import { breakPoints } from "../../../../../commons/styles/media";
-interface ITabItemProps {
-  isActive?: boolean;
-}
+import { ITabItemProps } from "./MyPageUserSidebar.Types";
 
 export const Wrapper = styled.div`
   min-width: 15rem;

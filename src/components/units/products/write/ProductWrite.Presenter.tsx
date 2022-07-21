@@ -45,9 +45,8 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
         </S.InputWrapper>
 
         {/* 이미지 업로드 */}
-
         <S.InputWrapper>
-          <S.Label>추가 이미지</S.Label>
+          <S.Label>상품 이미지</S.Label>
           {/* <Upload
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             listType="picture"
@@ -115,9 +114,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.Label>상세 내용 *</S.Label>
           <S.MyReactQuill
             onChange={props.onChangeContents}
-            // value={
-            //   props.getValues("contents") || props.data?.fetchProduct.contentSrc
-            // }
+            defaultValue={props.data?.fetchProduct.contentSrc}
             placeholder="상품에 대한 설명을 입력해주세요."
           />
           <S.Error>{props.formState.errors.contents?.message}</S.Error>

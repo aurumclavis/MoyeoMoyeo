@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 import { Modal } from "antd";
 import { FETCH_COMMENT } from "../../question/list/ProductsQuestionList.Queries";
 import { ProductsAnswerWriteProps } from "./ProductsAnswerWrite.Types";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../../../../commons/store";
 const schema = yup.object({
   content: yup.string().required(),
 });
@@ -18,6 +20,7 @@ export default function ProductsAnswerWrite(props: ProductsAnswerWriteProps) {
   const [createProductComment] = useMutation(CREATE_PRODUCT_COMMENT);
   const [created, setCreated] = useState(false);
 
+  const [userInfo] = useRecoilState(userInfoState);
   const { register, handleSubmit, formState, reset } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -28,29 +31,33 @@ export default function ProductsAnswerWrite(props: ProductsAnswerWriteProps) {
   }, [created]);
 
   const onClickCreateComment = async (data: any) => {
-    try {
-      await createProductComment({
-        variables: {
-          commentInput: {
-            content: data.content,
-            parentId: props.id,
+    if (!userInfo.email) {
+      Modal.error({ content: "로그인한 유저만 작성 가능합니다." });
+    } else {
+      try {
+        await createProductComment({
+          variables: {
+            commentInput: {
+              content: data.content,
+              parentId: props.id,
+            },
+            productId: router.query.productId,
           },
-          productId: router.query.productId,
-        },
-        refetchQueries: [
-          {
-            query: FETCH_COMMENT,
-            variables: { commentId: props.id },
-          },
-        ],
-      });
-      Modal.success({
-        content: "답변이 등록되었습니다.",
-      });
-      props.setIsActiveAnswer(false);
-      setCreated(true);
-    } catch (error) {
-      if (error instanceof Error) Modal.error({ content: error.message });
+          refetchQueries: [
+            {
+              query: FETCH_COMMENT,
+              variables: { commentId: props.id },
+            },
+          ],
+        });
+        Modal.success({
+          content: "답변이 등록되었습니다.",
+        });
+        props.setIsActiveAnswer(false);
+        setCreated(true);
+      } catch (error) {
+        if (error instanceof Error) Modal.error({ content: error.message });
+      }
     }
   };
 

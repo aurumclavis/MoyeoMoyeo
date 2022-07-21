@@ -50,7 +50,7 @@ export default function ProductsPayment() {
     setIsVisible((prev) => !prev);
   };
 
-  const onClickPayment = async (data) => {
+  const onClickPayment = async (data: any) => {
     console.log(data);
     const IMP = window.IMP;
     IMP.init("imp01312583");

@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import { breakPoints } from "../../../../commons/styles/media";
-interface ActiveProps {
-  isActive?: boolean;
-}
+import { IActiveProps } from "./ProductsPayment.Types";
+
 export const FormWrapper = styled.form`
   width: 100%;
   height: auto;
@@ -138,9 +137,9 @@ export const ActiveBtn = styled.button`
   padding: 0.625rem;
   border: none;
   border-radius: 10px;
-  background-color: ${(props: ActiveProps) =>
+  background-color: ${(props: IActiveProps) =>
     props.isActive ? "#ffd24c" : "rgba(255, 210, 76, 0.3)"};
-  color: ${(props: ActiveProps) =>
+  color: ${(props: IActiveProps) =>
     props.isActive ? "black" : "rgba(87, 84, 77, 0.3)"};
 
   font-size: 1.25rem;
