@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { People, PropaneSharp, Today } from "@mui/icons-material";
+import { People, Today } from "@mui/icons-material";
 import { breakPoints } from "../../../../commons/styles/media";
 
 // 마이페이지에 들어가는 리스트 컴포넌트 스타일
@@ -78,7 +78,6 @@ export const ItemFinished = styled.span`
 `;
 export const ItemText = styled.span`
   display: block;
-  // margin: 0.313rem 0;
   padding-right: 0.625rem;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -34,16 +34,16 @@ export default function ProductsQuestionListItem(
           <S.DeleteIcon />
         </S.IconWrapper>
       </S.ItemWrapper>
+      <ProductsAnswerList
+        data={data}
+        onClickActiveAnswer={onClickActiveAnswer}
+      />
       {isActiveAnswer && (
         <ProductsAnswerWrite
           setIsActiveAnswer={setIsActiveAnswer}
           id={props.el.id}
         />
       )}
-      <ProductsAnswerList
-        data={data}
-        onClickActiveAnswer={onClickActiveAnswer}
-      />
     </>
   );
 }

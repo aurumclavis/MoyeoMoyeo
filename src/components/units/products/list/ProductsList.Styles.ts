@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { SearchOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import { breakPoints } from "../../../../commons/styles/media";
 import { Visibility, FavoriteBorder } from "@mui/icons-material";
 

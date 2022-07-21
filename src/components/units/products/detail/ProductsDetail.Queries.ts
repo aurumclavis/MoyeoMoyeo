@@ -11,6 +11,10 @@ export const FETCH_PRODUCT = gql`
       viewCount
       createdAt
       isSoldout
+      images {
+        id
+        src
+      }
       seller {
         id
         email

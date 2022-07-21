@@ -182,11 +182,6 @@ export const ImageItem = styled(Image)`
   width: 100%;
   max-height: 300px;
 `;
-
-export const DetailImage = styled(Image)`
-  width: auto;
-  max-width: 100%;
-`;
 export const PreviewGroup = styled.div`
   margin: 0.625rem 0;
   display: grid;
@@ -220,6 +215,8 @@ export const MobilePrice = styled.h2`
     font-weight: 600;
   }
 `;
+
+// 채팅 목업 스타일
 export const ChatWrapper = styled.div`
   position: fixed;
   bottom: 3%;
