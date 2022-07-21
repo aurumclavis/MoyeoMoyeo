@@ -40,7 +40,7 @@ export default function FindPwPage() {
   const [isActive] = useState(true);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
-  const { register, handleSubmit, formState, watch } = useForm({
+  const { register, handleSubmit, formState, watch, setValue } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -50,14 +50,15 @@ export default function FindPwPage() {
 
   // email 인증번호 요청
   const onClickGetNumber = async () => {
-    setIsReadyForNum(true);
     try {
       await sendEmail({
         variables: { email },
       });
+      setIsReadyForNum(true);
       Modal.success({ content: "인증번호를 전송하였습니다." });
     } catch (error) {
-      Modal.error({ content: "인증번호 전송에 실패하였습니다." });
+      setIsReadyForNum(false);
+      Modal.error({ content: "등록된 이메일이 아닙니다." });
     }
   };
 
@@ -101,6 +102,7 @@ export default function FindPwPage() {
       register={register}
       watch={watch}
       handleSubmit={handleSubmit}
+      setValue={setValue}
       // email 인증
       isReadyForNum={isReadyForNum}
       isDone={isDone}

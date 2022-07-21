@@ -61,7 +61,9 @@ export default function LoginNewStaffPage() {
       }
       console.log(userInfo);
       setUserInfo(userInfo);
-      Modal.success({ content: `${userInfo.name}님 어서오세요!` });
+      Modal.success({
+        content: `${userInfo.institution}의 ${userInfo.manager}님 어서오세요!`,
+      });
       router.push("/");
     } catch (error) {
       Modal.error({ content: "로그인 정보가 일치하지 않습니다." });

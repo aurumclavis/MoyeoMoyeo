@@ -28,18 +28,19 @@ const schema = yup.object({
     .string()
     .required("비밀번호는 확인은 필수 입력 사항입니다.")
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다."),
-  phoneNumber: yup
-    .string()
-    .required("핸드폰 번호는 필수 입력 사항입니다.")
-    .typeError("숫자만 입력가능합니다."),
-  phoneNumber2: yup
-    .string()
-    .required("핸드폰 번호는 필수 입력 사항입니다.")
-    .typeError("숫자만 입력가능합니다."),
-  validateToken: yup
-    .number()
-    .required("필수 사항입니다.")
-    .typeError("숫자만 입력가능합니다."),
+  // checkbox: yup.boolean().oneOf([true]).required(),
+  // phoneNumber: yup
+  //   .number()
+  //   .required("핸드폰 번호는 필수 입력 사항입니다.")
+  //   .typeError("숫자만 입력가능합니다."),
+  // phoneNumber2: yup
+  //   .number()
+  //   .required("핸드폰 번호는 필수 입력 사항입니다.")
+  //   .typeError("숫자만 입력가능합니다."),
+  // validateToken: yup
+  //   .number()
+  //   .required("필수 사항입니다.")
+  //   .typeError("숫자만 입력가능합니다."),
 });
 
 export default function SignUpNewPage() {
@@ -53,19 +54,19 @@ export default function SignUpNewPage() {
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
 
-  const [checked] = useState(false);
-  const [secondChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [secondChecked, setSecondChecked] = useState(false);
 
-  const { register, handleSubmit, formState, watch } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-  });
+  const { register, handleSubmit, formState, watch, setValue, trigger } =
+    useForm({
+      resolver: yupResolver(schema),
+      mode: "onChange",
+    });
 
   // moblie 인증번호 요청
   const phone = "010" + watch("phoneNumber") + watch("phoneNumber2");
   const tokenInput = watch("validateToken");
   const onClickGetNumber = async () => {
-    console.log(phone);
     setIsReadyForNum(true);
     try {
       await sendSMS({
@@ -130,6 +131,8 @@ export default function SignUpNewPage() {
       register={register}
       handleSubmit={handleSubmit}
       watch={watch}
+      setValue={setValue}
+      trigger={trigger}
       // mobile
       isActive={isActive}
       isReadyForNum={isReadyForNum}
@@ -139,8 +142,8 @@ export default function SignUpNewPage() {
       // signup
       onClickCreateUser={onClickCreateUser}
       // login
-      checked={checked}
-      secondChecked={secondChecked}
+      setChecked={setChecked}
+      setSecondChecked={setSecondChecked}
     />
   );
 }

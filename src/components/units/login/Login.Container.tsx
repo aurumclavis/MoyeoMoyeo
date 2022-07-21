@@ -66,7 +66,7 @@ export default function LoginPage() {
       setUserInfo(userInfo);
       console.log(userInfo);
       Modal.success({
-        content: `${userInfo.institution}의 ${userInfo.manager}님 어서오세요!`,
+        content: `${userInfo.name}님 어서오세요!`,
       });
       router.push("/");
     } catch (error) {

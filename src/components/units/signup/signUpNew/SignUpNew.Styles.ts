@@ -109,11 +109,13 @@ export const AuthInput = styled.input`
     outline: none;
     border: 2px solid #ffd24c;
   }
+  :disabled {
+    background-color: "#edf0f5";
+  }
 `;
 export const MobileGetNumAgainBtn = styled.div`
   width: 120px;
   height: 37px;
-  background-color: #ffffff;
   text-align: center;
   padding-top: 7px;
   border: 1px solid #ffd24c;
