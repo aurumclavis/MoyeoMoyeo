@@ -89,9 +89,7 @@ export default function ProductWrite(props: IProductWriteProps) {
       });
       onClickMoveToPage(`/products/${result.data.createProduct.id}`)();
     } catch (error) {
-      Modal.error({
-        content: error.message,
-      });
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 
@@ -115,9 +113,7 @@ export default function ProductWrite(props: IProductWriteProps) {
       });
       onClickMoveToPage(`/products/${result.data.updateProduct.id}`)();
     } catch (error) {
-      Modal.error({
-        content: error.message,
-      });
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 

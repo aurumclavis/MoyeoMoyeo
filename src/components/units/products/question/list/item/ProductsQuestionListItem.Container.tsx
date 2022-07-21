@@ -1,10 +1,13 @@
+import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import ProductsAnswerList from "../../../answer/list/ProductsAnswerList.Container";
 import ProductsAnswerWrite from "../../../answer/write/ProductsAnswerWrite.Container";
+import { FETCH_COMMENT } from "../ProductsQuestionList.Queries";
 import * as S from "./ProductsQuestionListItem.Style";
 interface ProductsQuestionListItemProps {
   el: any;
 }
+
 export default function ProductsQuestionListItem(
   props: ProductsQuestionListItemProps
 ) {
@@ -12,6 +15,12 @@ export default function ProductsQuestionListItem(
   const onClickActiveAnswer = () => {
     setIsActiveAnswer((prev) => !prev);
   };
+  const { data } = useQuery(FETCH_COMMENT, {
+    variables: {
+      commentId: props.el.id,
+    },
+  });
+
   return (
     <>
       <S.ItemWrapper>
@@ -25,9 +34,14 @@ export default function ProductsQuestionListItem(
           <S.DeleteIcon />
         </S.IconWrapper>
       </S.ItemWrapper>
-      {isActiveAnswer && <ProductsAnswerWrite />}
+      {isActiveAnswer && (
+        <ProductsAnswerWrite
+          setIsActiveAnswer={setIsActiveAnswer}
+          id={props.el.id}
+        />
+      )}
       <ProductsAnswerList
-        child={props.el.children}
+        data={data}
         onClickActiveAnswer={onClickActiveAnswer}
       />
     </>

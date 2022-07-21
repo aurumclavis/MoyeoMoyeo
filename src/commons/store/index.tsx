@@ -1,17 +1,17 @@
 import { atom, selector } from "recoil";
 import { GetAccessToken } from "../libraries/getAccessToken";
-
+import { v1 } from "uuid";
 export const visitedPageState = atom({
-  key: "visitedPageState",
+  key: `visitedPageState/${v1()}`,
   default: "/",
 });
 export const accessTokenState = atom({
-  key: `accessTokenState`,
+  key: `accessTokenState/${v1()}`,
   default: "",
 });
 
 export const restoreAccessTokenLoadable = selector({
-  key: "restoreAccessTokenLoadable",
+  key: `restoreAccessTokenLoadable/${v1()}`,
   get: async () => {
     const newAccessToken = await GetAccessToken();
     return newAccessToken;
@@ -19,7 +19,7 @@ export const restoreAccessTokenLoadable = selector({
 });
 
 export const userInfoState = atom({
-  key: `userInfoState`,
+  key: `userInfoState/${v1()}`,
   default: {
     email: "",
     name: "",
@@ -29,10 +29,10 @@ export const userInfoState = atom({
 });
 
 export const eventIdForBoardState = atom({
-  key: "eventIdForBoardState",
+  key: `eventIdForBoardState/${v1()}`,
   default: "",
 });
 export const dibsProductIdState = atom({
-  key: `dibsProductIdState`,
+  key: `dibsProductIdState/${v1()}`,
   default: "",
 });

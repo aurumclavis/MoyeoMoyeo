@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { Modal } from "antd";
 declare const window: typeof globalThis & {
   IMP: any;
 };
@@ -77,12 +78,16 @@ export default function ProductsPayment() {
                 address: rsp.buyer_addr,
               },
             });
-            alert("결제가 완료되었습니다.");
+            Modal.success({
+              content: "결제가 완료되었습니다.",
+            });
           } catch (error) {
-            alert(error.message);
+            if (error instanceof Error) Modal.error({ content: error.message });
           }
         } else {
-          alert(rsp.error_msg);
+          Modal.error({
+            content: rsp.error_msg,
+          });
         }
       }
     );
