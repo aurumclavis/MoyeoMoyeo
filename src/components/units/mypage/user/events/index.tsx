@@ -43,7 +43,9 @@ export default function MyPageUserEvents() {
               </S.IconWrapper>
             </S.ItemRowWrapper>
             <S.ItemText>{el.description}</S.ItemText>
-            <S.MoreText>행사 정보 더 보기</S.MoreText>
+            <S.MoreText onClick={onClickMoveToPage(`/events/${el.id}`)}>
+              행사 정보 더 보기
+            </S.MoreText>
           </S.ItemContentsWrapper>
         </S.ItemWrapper>
       ))}

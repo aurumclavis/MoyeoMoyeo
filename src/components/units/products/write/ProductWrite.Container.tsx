@@ -12,6 +12,7 @@ import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useEffect, useState } from "react";
+import { ImageListType } from "react-images-uploading";
 
 const schema = yup.object({
   name: yup
@@ -70,13 +71,10 @@ export default function ProductWrite(props: IProductWriteProps) {
   };
 
   const onClickCreateProduct = async (data: any) => {
-    console.log(files);
+    // 등록 버튼을 눌렀을 때 이미지 업로드 요청하기
     const resultUploadImages = await uploadImages({
-      variables: {
-        files,
-      },
+      variables: { files },
     });
-    console.log(resultUploadImages.data?.uploadImages);
 
     try {
       const result = await createProduct({
@@ -125,12 +123,12 @@ export default function ProductWrite(props: IProductWriteProps) {
   };
 
   const onChangeFiles = (
-    imageList: any,
-    addUpdatedIndex?: number | undefined
+    value: ImageListType,
+    addUpdateIndex?: number | undefined
   ) => {
-    setImageList(imageList);
+    setImageList(value);
     const tempFiles = [...files];
-    tempFiles[addUpdatedIndex] = imageList[addUpdatedIndex]?.file;
+    tempFiles[addUpdateIndex] = imageList[addUpdateIndex]?.file;
     setFiles(tempFiles);
   };
 
@@ -139,8 +137,8 @@ export default function ProductWrite(props: IProductWriteProps) {
       data={props.data}
       register={register}
       handleSubmit={handleSubmit}
-      getValues={getValues}
       formState={formState}
+      getValues={getValues}
       onChangeContents={onChangeContents}
       imageList={imageList}
       onChangeFiles={onChangeFiles}

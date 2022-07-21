@@ -1,14 +1,25 @@
-import { useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import * as S from "../../listItem/MyPageListItem.Styles";
 import NoDataFound from "../../noDataFound";
-import { FETCH_LOGIN_PAYMENTS } from "./MyPageUserBuy.Queries";
+
+const FETCH_LOGIN_PAYMENTS = gql`
+  query fetchLoginPayments {
+    fetchLoginPayments {
+      impUid
+      transactAt
+      status
+      payAmount
+      retrieveAddress
+    }
+  }
+`;
 
 export default function MyPageUserBuy() {
   const { data } = useQuery(FETCH_LOGIN_PAYMENTS);
 
   return (
     <S.Wrapper>
-      {data?.fetchLoginPayments.map((el, index) => (
+      {data?.fetchLoginPayments.map((el: any, index: number) => (
         <S.ItemWrapper key={index}>
           <S.ItemContentsWrapper>
             <S.ItemTitle>
@@ -19,7 +30,6 @@ export default function MyPageUserBuy() {
               <S.ItemText>{el.transactAt}</S.ItemText>
             </S.ItemRowWrapper>
             <S.ItemText>배송 주소 : {el.retrieveAddress}</S.ItemText>
-            {/* <S.MoreText>상품 정보 더 보기</S.MoreText> */}
           </S.ItemContentsWrapper>
         </S.ItemWrapper>
       ))}

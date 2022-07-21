@@ -1,13 +1,13 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
-import MyPageUserSidebar from "../../src/components/units/mypage/user/sidebar/MyPageUserSidebar.Container";
-import MyPageUserEvents from "../../src/components/units/mypage/user/events/MyPageUserEvents.Container";
-import MyPageUserBoards from "../../src/components/units/mypage/user/boards/MyPageUserBoards.Container";
-import MyPageUserProducts from "../../src/components/units/mypage/user/products/MyPageUserProducts.Container";
-import MyPageUserBuy from "../../src/components/units/mypage/user/buy/MyPageUserBuy.Container";
-import MyPageStaffSidebar from "../../src/components/units/mypage/staff/sidebar/MyPageStaffSidebar.Container";
-import MyPageStaffSell from "../../src/components/units/mypage/staff/sell/MyPageStaffSell.Container";
-import MyPageStaffEvents from "../../src/components/units/mypage/staff/events/MyPageStaffEventsContainer";
+import MyPageUserSidebar from "../../src/components/units/mypage/user/sidebar";
+import MyPageUserEvents from "../../src/components/units/mypage/user/events";
+import MyPageUserBoards from "../../src/components/units/mypage/user/boards";
+import MyPageUserProducts from "../../src/components/units/mypage/user/products";
+import MyPageUserBuy from "../../src/components/units/mypage/user/buy";
+import MyPageStaffSidebar from "../../src/components/units/mypage/staff/sidebar";
+import MyPageStaffSell from "../../src/components/units/mypage/staff/sell";
+import MyPageStaffEvents from "../../src/components/units/mypage/staff/events";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../src/commons/store";
 

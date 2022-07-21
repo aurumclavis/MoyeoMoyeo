@@ -5,8 +5,9 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useRouter } from "next/router";
 import DaumPostcode from "react-daum-postcode";
 import { Modal } from "antd";
+import { IProductsPaymentUIProps } from "./ProductsPayment.Types";
 
-export default function ProductsPaymentUI(props: any) {
+export default function ProductsPaymentUI(props: IProductsPaymentUIProps) {
   const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
   return (
