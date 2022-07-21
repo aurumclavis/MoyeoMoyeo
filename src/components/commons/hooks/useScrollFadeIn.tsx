@@ -13,7 +13,6 @@ const useScrollFadeIn = (direction = "up", duration = 1, delay = 0) => {
         return "translate3d(50%, 0, 0)";
       case "right":
         return "translate3d(-50%, 0, 0)";
-      default:
     }
   };
 
@@ -21,6 +20,7 @@ const useScrollFadeIn = (direction = "up", duration = 1, delay = 0) => {
     ([entry]) => {
       const { current } = element;
       if (entry.isIntersecting) {
+        if (!current) return;
         current.style.transitionProperty = "all";
         current.style.transitionDuration = `${duration}s`;
         current.style.transitionTimingFunction = "cubic-bezier(0, 0, 0.2, 1)";
@@ -33,7 +33,7 @@ const useScrollFadeIn = (direction = "up", duration = 1, delay = 0) => {
   );
 
   useEffect(() => {
-    let observer;
+    let observer: any;
 
     if (element.current) {
       observer = new IntersectionObserver(onScroll, { threshold: 0.7 });
