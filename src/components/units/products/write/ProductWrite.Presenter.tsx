@@ -4,6 +4,7 @@ import ButtonSubmit from "../../../commons/buttons/submit";
 import CommonInput from "../../../commons/inputs/infoInputs";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import ImageUploading from "react-images-uploading";
+
 export default function ProductWriteUI(props: IProductWriteUIProps) {
   const { onClickMoveToPage } = useMoveToPage();
   return (
@@ -43,25 +44,8 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.Error>{props.formState.errors.summary?.message}</S.Error>
         </S.InputWrapper>
 
-        {/* 이미지 업로드 UI : 업로드 해결 후 주석 해제 */}
-        <S.InputWrapper>
-          <S.Label>대표 이미지 (최대 1장)</S.Label>
-          {/* {props.mainImageSrc ? (
-            <S.UploadImage
-              onClick={props.onClickUpload}
-              src={`${props.mainImageSrc}`}
-            />
-          ) : (
-            <Button onClick={props.onClickUpload} icon={<UploadOutlined />}>
-              사진등록
-            </Button>
-          )}
-          <S.UploadFileHidden
-            onChange={props.onChangeMainImg}
-            type="file"
-            ref={props.imageRef}
-          /> */}
-        </S.InputWrapper>
+        {/* 이미지 업로드 */}
+
         <S.InputWrapper>
           <S.Label>추가 이미지</S.Label>
           {/* <Upload
@@ -131,7 +115,9 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.Label>상세 내용 *</S.Label>
           <S.MyReactQuill
             onChange={props.onChangeContents}
-            // value={props.isEdit && props.data?.fetchProduct.contentSrc}
+            // value={
+            //   props.getValues("contents") || props.data?.fetchProduct.contentSrc
+            // }
             placeholder="상품에 대한 설명을 입력해주세요."
           />
           <S.Error>{props.formState.errors.contents?.message}</S.Error>

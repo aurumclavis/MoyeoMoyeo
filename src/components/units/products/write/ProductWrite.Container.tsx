@@ -2,7 +2,7 @@ import ProductWriteUI from "./ProductWrite.Presenter";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { IProductWriteProps } from "./ProductWrite.Types";
+import { IProductWriteProps, IUpdateProductInput } from "./ProductWrite.Types";
 import {
   CREATE_PRODUCT,
   UPDATE_PRODUCT,
@@ -42,11 +42,18 @@ export default function ProductWrite(props: IProductWriteProps) {
   // File 객체를 담는 배열
   const [files, setFiles] = useState([]);
 
-  const { register, handleSubmit, formState, setValue, trigger, reset } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-    });
+  const {
+    register,
+    handleSubmit,
+    formState,
+    setValue,
+    getValues,
+    trigger,
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
   useEffect(() => {
     reset({
@@ -63,14 +70,14 @@ export default function ProductWrite(props: IProductWriteProps) {
   };
 
   const onClickCreateProduct = async (data: any) => {
-    // upload API 해결되면 createProduct할 때 같이 요청 예정
     console.log(files);
-    // const result = await uploadImages({
-    //   variables: {
-    //     files,
-    //   },
-    // });
-    // console.log(result);
+    const resultUploadImages = await uploadImages({
+      variables: {
+        files,
+      },
+    });
+    console.log(resultUploadImages.data?.uploadImages);
+
     try {
       const result = await createProduct({
         variables: {
@@ -79,7 +86,7 @@ export default function ProductWrite(props: IProductWriteProps) {
             price: data.price,
             description: data.summary,
             contentSrc: data.contents,
-            imgSrcs: [],
+            imgSrcs: resultUploadImages.data?.uploadImages,
           },
         },
       });
@@ -95,7 +102,7 @@ export default function ProductWrite(props: IProductWriteProps) {
 
   const onClickUpdateProduct = async (data: any) => {
     try {
-      const updateProductInput = {};
+      const updateProductInput: IUpdateProductInput = {};
 
       if (data.name) updateProductInput.name = data.name;
       if (data.price) updateProductInput.price = data.price;
@@ -132,6 +139,7 @@ export default function ProductWrite(props: IProductWriteProps) {
       data={props.data}
       register={register}
       handleSubmit={handleSubmit}
+      getValues={getValues}
       formState={formState}
       onChangeContents={onChangeContents}
       imageList={imageList}
