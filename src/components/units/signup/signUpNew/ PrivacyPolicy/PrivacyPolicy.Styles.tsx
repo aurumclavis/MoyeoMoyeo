@@ -31,6 +31,9 @@ export const CancelIcon = styled.img`
   cursor: pointer;
 `;
 export const PolicyContents = styled.div`
+  height: 300px;
   padding: 15px 0px;
   font-size: 0.625rem;
+  overflow: scroll;
+  overflow-x: hidden;
 `;

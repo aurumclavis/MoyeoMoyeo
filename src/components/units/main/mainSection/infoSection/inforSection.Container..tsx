@@ -3,6 +3,32 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { breakPoints } from "../../../../../commons/styles/media";
+
+export default function InfoSection() {
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    initialSlide: 1,
+    autoplay: true,
+    autoplaySpeed: 7000,
+    dots: true,
+    arrows: false,
+  };
+
+  return (
+    <OutWrapper>
+      <TitleWrapper>
+        <TitleIcon src="/icon/simbollogo.png" />
+        <Title>공지사항</Title>
+      </TitleWrapper>
+      <Wrapper {...settings}>
+        <InfoImg src="/info/info2.png" />
+        <InfoImg src="/info/info1.png" />
+      </Wrapper>
+    </OutWrapper>
+  );
+}
+
 const OutWrapper = styled.div`
   width: 100%;
   @media ${breakPoints.mobile} {
@@ -49,28 +75,3 @@ const InfoImg = styled.img`
     height: 80%;
   }
 `;
-
-export default function InfoSection() {
-  const settings = {
-    infinite: true,
-    slidesToShow: 1,
-    initialSlide: 1,
-    autoplay: true,
-    autoplaySpeed: 7000,
-    dots: true,
-    arrows: false,
-  };
-
-  return (
-    <OutWrapper>
-      <TitleWrapper>
-        <TitleIcon src="/icon/simbollogo.png" />
-        <Title>공지사항</Title>
-      </TitleWrapper>
-      <Wrapper {...settings}>
-        <InfoImg src="/info/info2.png" />
-        <InfoImg src="/info/info1.png" />
-      </Wrapper>
-    </OutWrapper>
-  );
-}

@@ -78,10 +78,17 @@ export const ImageWrapper = styled.div`
   justify-content: space-between;
   position: relative;
 `;
+export const RandomCover = styled.div`
+  padding: 2px 5px;
+  background-color: #d9d9d9;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+`;
 export const MyImageUpload = styled.div`
   padding: 2px 5px;
   background-color: #d9d9d9;
-  font-size: 0.813rem;
   position: absolute;
   bottom: 0;
   right: 0;

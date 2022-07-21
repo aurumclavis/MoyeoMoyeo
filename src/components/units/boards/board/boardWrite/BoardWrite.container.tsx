@@ -3,9 +3,15 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { eventIdForBoardState } from "../../../../../commons/store";
+import { getDate } from "../../../../commons/getDate";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import BoardWritePresenter from "./BoardWrite.presenter";
-import { CREATE_BOARD, FETCH_POST, UPLOAD_IMAGES } from "./BoardWrite.queries";
+import {
+  CREATE_BOARD,
+  FETCH_POST,
+  UPLOAD_IMAGES,
+  FETCH_LOGIN_USER,
+} from "./BoardWrite.queries";
 import { randomCoverImg } from "./randomCoverImg";
 
 export default function BoardWriteContainer(props: any) {
@@ -16,39 +22,49 @@ export default function BoardWriteContainer(props: any) {
       postId: eventIdForBoard,
     },
   });
-
   const { register, handleSubmit, setValue, trigger } = useForm();
   const [createBoard] = useMutation(CREATE_BOARD);
   const [uploadImages] = useMutation(UPLOAD_IMAGES);
-
+  const { data: userData } = useQuery(FETCH_LOGIN_USER);
+  console.log(userData?.fetchLoginUser.id);
   const onClickSubmit = async (data: any) => {
-    const uploadResults = await uploadImages({
-      variables: {
-        files,
-      },
-    });
-    console.log(uploadResults);
-    // const uploadResultsUrls = uploadResults.map((el) =>
-    //   el ? el.data.uploadFile.url : ""
-    // );
     try {
+      console.log(
+        "data",
+        data,
+        accompanyDate.start,
+        accompanyDate.start,
+        selectedTransport,
+        maxHeadCount
+      );
+      const uploadResults = await uploadImages({
+        variables: {
+          files,
+        },
+      });
+      console.log("upload", uploadResults, typeof uploadResults);
+
       const result = await createBoard({
         variables: {
           createBoardInput: {
             title: data.title,
             contents: data.contents,
-            viewCount: 0,
-            isFull: false,
+            personCount: maxHeadCount,
             dateStart: accompanyDate.start,
-            dateEnd: accompanyDate.end,
+            dateEnd: accompanyDate.start,
             transport: selectedTransport,
             boardAddress: {
               lat: data.LatLng.lat,
               lng: data.LatLng.lng,
-              postal: "",
+              postal: address,
               address_description: data.accompanyLocation,
             },
-            // coverImgSrc :
+            coverImgSrc: uploadResults.data.uploadImages[0],
+            eventImageSrc: "",
+            eventName: postData.fetchPost.title,
+            eventStart: getDate(postData.fetchPost.dateStart),
+            eventEnd: getDate(postData.fetchPost.dateEnd),
+            eventCategory: postData.fetchPost.category,
           },
         },
       });
@@ -58,7 +74,11 @@ export default function BoardWriteContainer(props: any) {
     }
   };
   // 지도 부분
+  const postAddress = postData?.fetchPost.address;
   const [address, setAddress] = useState("");
+  useEffect(() => {
+    setAddress(postAddress);
+  }, [postAddress]);
 
   // 랜덤커버이미지 부분
   const [randomCoverUrl, setRandomCoverUrl] = useState("");
@@ -66,43 +86,32 @@ export default function BoardWriteContainer(props: any) {
   useEffect(() => {
     setRandomCoverUrl(randomCoverImg(category));
   }, [category]);
+  const onClickChangeRandomCover = () => {
+    setRandomCoverUrl(randomCoverImg(category));
+  };
 
   // 이미지 변경 부분
   const coverImgRef = useRef(null);
-  const eventImgRef = useRef(null);
   const [previewUrls, setPreviewUrls] = useState(["", ""]);
-  const [files, setFiles] = useState([undefined, undefined]);
-  let aaa = {};
+  const [files, setFiles] = useState([undefined]);
 
+  // 랜덤커버이미지 경로를 파일객체로 변환한 뒤 files 스테이트 변경
   useEffect(() => {
-    // setFiles([convertURLtoFile(randomCoverUrl), ""]);
+    let coverImageFile = {};
     const convertURLtoFile = async (url: string) => {
       const response = await fetch(url);
       const data = await response.blob();
       const ext = url?.split(".").pop();
       const filename = url?.split("/").pop();
       const metadata = { type: `image/${ext}` };
-      aaa = new File([data], filename!, metadata);
-      return aaa;
+      coverImageFile = new File([data], filename!, metadata);
+      setFiles([coverImageFile]);
     };
     convertURLtoFile(randomCoverUrl);
-    console.log("aaab", aaa);
-    // const img = document.querySelector("#coverImage");
-    // // console.log("bbb", img.src);
-    // // const bstr = window.atob(img.src.split(",")[1])
-    // let n = randomCoverUrl?.length;
-    // const u8arr = new Uint8Array(n);
-    // while (n--) {
-    //   u8arr[n] = randomCoverUrl.charCodeAt(n);
-    // }
-    // const file = new File([u8arr], "aaa", { type: "mime" });
-    // console.log("aaa", file);
   }, [randomCoverUrl]);
-  // console.log(files);
 
   const onChangeImgInput = (number: string) => async (event: any) => {
     const file = event.target.files?.[0];
-
     if (!file) {
       alert("파일이 없습니다!!");
       return;
@@ -124,9 +133,6 @@ export default function BoardWriteContainer(props: any) {
 
   const onClickMyCoverImg = () => {
     coverImgRef.current.click();
-  };
-  const onClickMyEventImg = () => {
-    eventImgRef.current.click();
   };
 
   // 동행일자 데이트피커 부분
@@ -150,7 +156,7 @@ export default function BoardWriteContainer(props: any) {
   };
 
   // 모집인원 부분
-  const [maxHeadCount, setMaxHeadCount] = useState(0);
+  const [maxHeadCount, setMaxHeadCount] = useState(1);
   const onClickCount = (event: any) => {
     event.target.id === "+" && setMaxHeadCount((prev) => prev + 1);
     event.target.id === "-" &&
@@ -197,10 +203,9 @@ export default function BoardWriteContainer(props: any) {
       handleSubmit={handleSubmit}
       // eventData={eventData}
       randomCoverUrl={randomCoverUrl}
+      onClickChangeRandomCover={onClickChangeRandomCover}
       coverImgRef={coverImgRef}
-      eventImgRef={eventImgRef}
       onClickMyCoverImg={onClickMyCoverImg}
-      onClickMyEventImg={onClickMyEventImg}
       onChangeImgInput={onChangeImgInput}
       previewUrls={previewUrls}
       onChangeDatePicker={onChangeDatePicker}

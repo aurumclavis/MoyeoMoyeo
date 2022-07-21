@@ -21,7 +21,9 @@ export default function BoardWritePresenter(props: any) {
           // src={`https://storage.googleapis.com/${}`}
           />
         )}
-
+        <S.RandomCover onClick={props.onClickChangeRandomCover}>
+          다른 랜덤이미지로 변경
+        </S.RandomCover>
         <S.MyImageUpload onClick={props.onClickMyCoverImg}>
           커버 이미지 직접 등록
           <S.ImageInput
@@ -35,22 +37,8 @@ export default function BoardWritePresenter(props: any) {
         <S.EventWrapper>
           <S.EventInfoWrapper>
             <S.ImageWrapper>
-              <S.MyImageUpload onClick={props.onClickMyEventImg}>
-                이벤트 대표이미지 직접 등록
-                <S.ImageInput
-                  type="file"
-                  ref={props.eventImgRef}
-                  onChange={props.onChangeImgInput(1)}
-                />
-              </S.MyImageUpload>
               {!props.isEdit ? (
-                <S.EventImage
-                  src={
-                    props.previewUrls[1]
-                      ? props.previewUrls[1]
-                      : "/catGoodsMarketExample.jpeg"
-                  }
-                />
+                <S.EventImage src={"/catGoodsMarketExample.jpeg"} />
               ) : (
                 <S.EventImage
                 // src={`https://storage.googleapis.com/${}`}
@@ -150,9 +138,9 @@ export default function BoardWritePresenter(props: any) {
       </S.UpperWrapper>
       <S.UnderWrapper>
         <S.ItemsWrapper>
-          <S.ItemText>한 줄 설명</S.ItemText>
+          <S.ItemText>나의 한 줄 설명</S.ItemText>
           <S.RemarkInput
-            placeholder="동행 게시글 목록에 노출되는 한 줄 설명을 적어주세요!"
+            placeholder="행사나 나 자신에 대한 한 줄 설명을 적어주세요! 동행 게시글 목록에 노출됩니다."
             {...props.register("remark")}
           />
         </S.ItemsWrapper>
