@@ -1,6 +1,6 @@
 import EventsDetailUI from "./EventsDetail.Presenter";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, ChangeEvent } from "react";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import _, { throttle } from "lodash";
 import { useRecoilState } from "recoil";
@@ -23,8 +23,8 @@ export default function EventsDetail() {
 
   const [activedTab, setActivedTab] = useState("marker");
   const currentUrl = `localhost:3000/events/${router.query._id}`;
-  const navRef = useRef(null);
-  const markerRef = useRef(null);
+  const navRef = useRef<HTMLDivElement>(null);
+  const markerRef = useRef<HTMLElement>(null);
   const contentsRef = useRef<HTMLDivElement>(null);
   const mapsRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -35,6 +35,10 @@ export default function EventsDetail() {
     setEventIdForBoard(String(router.query._id));
     onClickMoveToPage("/boards/new")();
   };
+  const onClickMoveToList = () => {
+    onClickMoveToPage("/events")();
+  };
+
   const onClickDibs = async () => {
     try {
       await dibsPost({
@@ -77,7 +81,7 @@ export default function EventsDetail() {
     }
   }, 500);
 
-  const onClickMarker = e => {
+  const onClickMarker = (e: ChangeEvent<HTMLDivElement>) => {
     window.scrollTo({
       top: markerRef.current?.offsetTop - navRef.current?.offsetHeight,
       behavior: "smooth",
@@ -88,7 +92,7 @@ export default function EventsDetail() {
     });
   };
 
-  const onClickContents = e => {
+  const onClickContents = (e: ChangeEvent<HTMLDivElement>) => {
     window.scrollTo({
       top: contentsRef.current?.offsetTop - navRef.current?.offsetHeight,
       behavior: "smooth",
@@ -99,7 +103,7 @@ export default function EventsDetail() {
     });
   };
 
-  const onClickMaps = e => {
+  const onClickMaps = (e: ChangeEvent<HTMLDivElement>) => {
     window.scrollTo({
       top: mapsRef.current?.offsetTop - navRef.current?.offsetHeight,
       behavior: "smooth",
@@ -126,7 +130,7 @@ export default function EventsDetail() {
         markerRef={markerRef}
         contentsRef={contentsRef}
         mapsRef={mapsRef}
-        onClickMoveToPage={onClickMoveToPage}
+        onClickMoveToList={onClickMoveToList}
         onClickMarker={onClickMarker}
         onClickContents={onClickContents}
         onClickMaps={onClickMaps}

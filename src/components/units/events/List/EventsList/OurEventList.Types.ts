@@ -1,5 +1,7 @@
 // import { ApolloQueryResult, OperationVariables } from "@apollo/client";
 
+import { MouseEventHandler } from "react";
+
 // export interface IOurEventList {
 //   data: any;
 //   refetch(
@@ -15,11 +17,11 @@
 export interface IOurEventListUIAdd {
   el: any;
   data?: any;
-  onClickDetail?: () => void;
 }
 
 export interface IOurEventListUI {
   data: any;
+  onClickMoveToPage?: (path: any) => MouseEventHandler<HTMLDivElement>;
   //   refetch(
   //     variables?: Partial<OperationVariables> | undefined
   //   ): Promise<ApolloQueryResult<any>>;

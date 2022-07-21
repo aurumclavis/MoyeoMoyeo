@@ -1,10 +1,10 @@
 import OurEventListUI from "./OurEventList.Presenter";
-
-import { FETCH_POST } from "./OurEventList.Queries";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import { FETCH_POSTS } from "./OurEventList.Queries";
 import { useQuery } from "@apollo/client";
 
 export default function OurEventList() {
-  const { data } = useQuery(FETCH_POST);
+  const { data } = useQuery(FETCH_POSTS);
   // const { data, refetch, fetchMore } = useQuery(FETCH_POST);
   // const { data : dataPostsCount, refetch: refetchPostsCount } =
   //   useQuery(FETCH_POST);
@@ -24,6 +24,9 @@ export default function OurEventList() {
   //     },
   //   });
   // };
+  const { onClickMoveToPage } = useMoveToPage();
 
-  return <OurEventListUI data={data} />;
+  console.log(data);
+
+  return <OurEventListUI data={data} onClickMoveToPage={onClickMoveToPage} />;
 }

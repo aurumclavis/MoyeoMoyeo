@@ -1,6 +1,7 @@
 import * as S from "./LayoutHeader.Styles";
+import { ILayoutHeaderUI } from "./LayoutHeader.Types";
 
-export default function LayoutHeaderUI(props: any) {
+export default function LayoutHeaderUI(props: ILayoutHeaderUI) {
   return (
     <>
       <S.Wrapper isStaff={props.isStaff}>

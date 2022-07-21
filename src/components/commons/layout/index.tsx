@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
-import LayoutBanner from "./banner/LayoutBanner.Container";
+// import LayoutBanner from "./banner/LayoutBanner.Container";
 import LayoutFooter from "./footer/LayoutFooter.Container";
 import LayoutHeader from "./header/LayoutHeader.Container";
 import { useRouter } from "next/router";
 import CountSection from "./CountSection";
 import MapBoxComponent from "../mapboxTest";
+import { ReactNode } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -22,14 +23,17 @@ const Body = styled.div`
   display: flex;
   margin: auto;
 `;
+interface ILayoutProps {
+  children: ReactNode;
+}
 
-const SHOW_BANNER = ["/", "/events"];
-const SHOW_CountSection = ["/"];
+// const SHOWBANNER = ["/", "/events"];
+const SHOWCountSection = ["/"];
 
-export default function Layout(props) {
+export default function Layout(props: ILayoutProps) {
   const router = useRouter();
-  const isShowBanner = SHOW_BANNER.includes(router.asPath);
-  const isShowCountSection = SHOW_CountSection.includes(router.asPath);
+  // const isShowBanner = SHOW_BANNER.includes(router.asPath);
+  const isShowCountSection = SHOWCountSection.includes(router.asPath);
   return (
     <Wrapper>
       <LayoutHeader></LayoutHeader>
