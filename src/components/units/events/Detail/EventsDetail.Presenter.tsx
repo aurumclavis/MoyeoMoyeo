@@ -4,8 +4,10 @@ import KakakomapPage from "./kakaomap/kakaomap.Container";
 import BackTopAnt from "../../../commons/backTop";
 import { getDate } from "../../../commons/getDate";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { IEventsDetailUI } from "./EventsDetail.Type";
+import DOMPurify from "dompurify";
 
-export default function EventsDetailUI(props: any) {
+export default function EventsDetailUI(props: IEventsDetailUI) {
   return (
     <>
       <S.Wrapper>
@@ -62,7 +64,14 @@ export default function EventsDetailUI(props: any) {
           {props.data?.fetchPost?.category} 요약
         </S.MainTitle>
         <S.MainImg src="/배너이미지_행사1.png" />
-        <S.ContetsText>{props.data?.fetchPost?.description}</S.ContetsText>
+
+        {typeof window !== "undefined" && (
+          <S.ContetsText
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(props.data?.fetchPost?.description),
+            }}
+          />
+        )}
         <S.LineDiv />
         <S.MapWrapper ref={props.mapsRef}>
           <S.MapTitle>행사 위치</S.MapTitle>
@@ -91,7 +100,7 @@ export default function EventsDetailUI(props: any) {
 
         <S.Footer>
           {/* <S.BtnRouter>관련 사이트 보러가기</S.BtnRouter> */}
-          <S.BtnRouterList onClick={props.onClickMoveToPage("/events")}>
+          <S.BtnRouterList onClick={props.onClickMoveToList}>
             목록으로
           </S.BtnRouterList>
           <S.BtnRouter onClick={props.onClickMoveToBoardNew}>

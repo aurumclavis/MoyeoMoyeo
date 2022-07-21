@@ -1,16 +1,17 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_POST = gql`
+export const FETCH_POSTS = gql`
   query fetchPosts {
     fetchPosts {
       id
       title
       dateStart
       dateEnd
-      # images
+      # images{id src }
       category
       uploadedAt
       viewCount
+      description
       likedUsers {
         id
       }

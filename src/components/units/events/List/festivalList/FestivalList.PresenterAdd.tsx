@@ -4,8 +4,8 @@ import { IFestivalListUIAdd } from "./FestivalList.Types";
 export default function FestivalListUIAdd(props: IFestivalListUIAdd) {
   return (
     <>
-      <S.ListWrapper id={props.el?._id} isActive={props.openEvents}>
-        <S.ListImg isActive={props.openEvents} src="/배너이미지_동행1.png" />
+      <S.ListWrapper id={props.el?._id}>
+        <S.ListImg src="/배너이미지_동행1.png" />
         <S.FlexWrapper>
           <S.Title>{props.el?.title}</S.Title>
           <S.ContentsWrapper>{props.el?.description}</S.ContentsWrapper>

@@ -2,17 +2,18 @@ import LayoutHeaderUI from "./LayoutHeader.Presenter";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { FETCH_LOGIN_USER, LOGOUT } from "./LayoutHeader.Queries";
-import { useMutation, useQuery } from "@apollo/client";
+import { LOGOUT } from "./LayoutHeader.Queries";
+import { useMutation } from "@apollo/client";
 import { useRecoilState } from "recoil";
-import { accessTokenState, userInfoState } from "../../../../commons/store";
+import { accessTokenState } from "../../../../commons/store";
+// import { accessTokenState, userInfoState } from "../../../../commons/store";
 
 export default function LayoutHeader() {
   const router = useRouter();
 
   const { onClickMoveToPage } = useMoveToPage();
   const [activedTab, setActivedTab] = useState<string | null>(null);
-  const [prevClick] = useState(null);
+
   const [logout] = useMutation(LOGOUT);
 
   const onClickTab = (e: any) => {
@@ -34,7 +35,7 @@ export default function LayoutHeader() {
     onClickMoveToPage(e.currentTarget.id)();
   };
   // const [userInfo] = useRecoilState(userInfoState);
-  const resultUserInfo = useQuery(FETCH_LOGIN_USER);
+  // const resultUserInfo = useQuery(FETCH_LOGIN_USER);
   // localStorage.setItem("refreshToken", "true");
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function LayoutHeader() {
     //   setIstStaff(true);
     // }
   });
-  const [isStaff] = useState<boolean | null>();
+  const [isStaff] = useState<boolean | undefined>();
 
   const onClickLogout = () => {
     logout();
@@ -56,7 +57,6 @@ export default function LayoutHeader() {
       onClickMobileMenu={onClickMobileMenu}
       accessToken={accessToken}
       activedTab={activedTab}
-      prevClick={prevClick}
       onClickTab={onClickTab}
       onClickMobileTab={onClickMobileTab}
       isOpen={isOpen}

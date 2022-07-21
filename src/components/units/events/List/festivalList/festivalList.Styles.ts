@@ -1,8 +1,5 @@
 import styled from "@emotion/styled";
 
-interface ITabProps {
-  isActive: boolean;
-}
 export const Wrapper = styled.div`
   width: 90%;
   display: flex;
@@ -41,17 +38,13 @@ export const ListWrapper = styled.div`
   height: 130px;
   display: flex;
   flex-direction: row;
-  justify-content: ${(props: ITabProps) =>
-    props.isActive ? "space-between" : "flex-end"};
+  justify-content: space-between;
   align-items: center;
-  padding: ${(props: ITabProps) => (props.isActive ? "1rem" : "0.4rem")};
+  padding: 1rem;
   margin-top: 0.4rem;
-  border: ${(props: ITabProps) =>
-    props.isActive ? "1px solid #d2d2d2" : "none"};
-  border-left: ${(props: ITabProps) =>
-    props.isActive ? "1px solid #d2d2d2" : "3px solid #FFD24C"};
-  border-radius: ${(props: ITabProps) =>
-    props.isActive ? "0.63rem;" : "none"};
+  border: 1px solid #d2d2d2;
+  border-left: 1px solid #d2d2d2;
+  border-radius: 0.63rem;
   transition: 0.2s;
   box-shadow: 0px 2px 4px 0px #00000033;
   :hover {
@@ -69,11 +62,11 @@ export const ListWrapper = styled.div`
   }
 `;
 export const ListImg = styled.img`
-  width: ${(props: ITabProps) => (props.isActive ? "100px" : "0")};
-  height: ${(props: ITabProps) => (props.isActive ? "100px" : "0")};
+  width: 100px;
+  height: 100px;
   @media (max-width: 767px) {
-    width: ${(props: ITabProps) => (props.isActive ? "50px" : "0")};
-    height: ${(props: ITabProps) => (props.isActive ? "50px" : "0")};
+    width: 50px;
+    height: 50px;
   }
 `;
 export const FlexWrapper = styled.div`
