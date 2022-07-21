@@ -33,7 +33,7 @@ const useScrollClipPath = (direction = "left", duration = 1, delay = 0) => {
   );
 
   useEffect(() => {
-    let observer;
+    let observer: any;
 
     if (element.current) {
       observer = new IntersectionObserver(onScroll, { threshold: 0.7 });

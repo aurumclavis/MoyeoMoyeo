@@ -20,7 +20,6 @@ const useScrollFadeIn = (direction = "up", duration = 1, delay = 0) => {
     ([entry]) => {
       const { current } = element;
       if (entry.isIntersecting) {
-        if (!current) return;
         current.style.transitionProperty = "all";
         current.style.transitionDuration = `${duration}s`;
         current.style.transitionTimingFunction = "cubic-bezier(0, 0, 0.2, 1)";

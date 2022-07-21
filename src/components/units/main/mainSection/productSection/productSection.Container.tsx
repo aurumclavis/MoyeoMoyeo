@@ -2,6 +2,7 @@ import * as S from "./productSection.Styles";
 import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
 import { gql, useQuery } from "@apollo/client";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import { v4 } from "uuid";
 
 export const FETCH_PRODUCTS = gql`
   query fetchProducts {
@@ -9,18 +10,14 @@ export const FETCH_PRODUCTS = gql`
       id
       name
       price
+      viewCount
     }
   }
 `;
 
 const ProductSection = (props: any) => {
-  const animatedItem = {
-    0: useScrollFadeIn("up", 1),
-    1: useScrollFadeIn("up", 1),
-    2: useScrollFadeIn("up", 1),
-    3: useScrollFadeIn("up", 1),
-    4: useScrollFadeIn("up", 1),
-  };
+  const animatedItem = useScrollFadeIn();
+
   const { data } = useQuery(FETCH_PRODUCTS);
   const { onClickMoveToPage } = useMoveToPage();
   return (
@@ -32,25 +29,32 @@ const ProductSection = (props: any) => {
       <S.TitleRightWrapper>
         <div>내 마음에 쏙!드는 행사들을 골라봐요!</div>
         <S.MoreBox>
-          <S.More onClick={props.onClickMoveToPage("/products")}>더보기</S.More>
+          <S.More onClick={onClickMoveToPage("/products")}>더보기</S.More>
           <S.ArrowIcon src="/icon/arrow_right.png" />
         </S.MoreBox>
       </S.TitleRightWrapper>
 
-      <S.InnerWrapper>
+      <S.InnerWrapper {...animatedItem}>
         {data?.fetchProducts
-          .map((el: any, index: any) => (
+          .map((el: any) => (
             <S.ProductList
-              {...animatedItem[index]}
-              key={el.id}
+              key={v4(el.id)}
               onClick={onClickMoveToPage(`products/${el.id}`)}
             >
               <S.ProductImages src="/example2.png" />
               <S.ProductName>{el.name}</S.ProductName>
-              <S.ProductPrice>{el.price.toLocaleString()}</S.ProductPrice>
+              <S.ProductUnderWapper>
+                <S.ProductPrice>{`${el.price.toLocaleString()}원`}</S.ProductPrice>
+                <S.IconWrapper>
+                  <S.ViewIcon />
+                  <S.Text>{el.viewCount || "0"}</S.Text>
+                  <S.PickIcon />
+                  <S.Text>{el.likedUsers?.length || "0"}</S.Text>
+                </S.IconWrapper>
+              </S.ProductUnderWapper>
             </S.ProductList>
           ))
-          .slice(0, 5)}
+          .slice(0, 6)}
       </S.InnerWrapper>
     </S.OutWrapper>
   );

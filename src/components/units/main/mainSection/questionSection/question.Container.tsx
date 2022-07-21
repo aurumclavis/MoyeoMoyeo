@@ -7,10 +7,8 @@ const { Panel } = Collapse;
 const text = `
       이것은 임의로 답변하는 답변창입니다. 추후에 추가데이터를 넣을 예정입니다.
     `;
-export default function FAQ() {
-  const onChange = (key: any) => {
-    console.log(key);
-  };
+export default function QuestionSection() {
+  const onChange = (key: any) => {};
 
   return (
     <OutWrapper>

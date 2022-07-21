@@ -1,16 +1,15 @@
 import styled from "@emotion/styled";
 import { breakPoints } from "../../../../../commons/styles/media";
-import { Visibility, FavoriteBorder } from "@mui/icons-material";
 export const OutWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
+  margin-top: 30px;
   @media ${breakPoints.mobile} {
-    margin: 4rem 0rem 0rem 0rem;
+    margin: 1rem 0rem 0rem 0rem;
     padding: 0 1.125rem;
   }
 `;
-
 export const TitleWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -39,9 +38,10 @@ export const TitleRightWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
   gap: 5px;
+  margin-bottom: 30px;
 `;
+
 export const MoreBox = styled.div`
   width: 60px;
   display: flex;
@@ -54,7 +54,10 @@ export const More = styled.span`
     text-decoration: underline;
     color: #42c2ff;
   }
+  margin-right: 2px;
+  text-align: center;
 `;
+
 export const ArrowIcon = styled.img`
   width: 10px;
   height: 11px;
@@ -63,60 +66,64 @@ export const ArrowIcon = styled.img`
     margin-top: 6px;
   }
 `;
-export const InnerWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 10px;
-  @media ${breakPoints.mobile} {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-`;
-export const ProductList = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-export const ProductImages = styled.img`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-`;
-export const ProductName = styled.div`
-  width: 100%;
-  font-size: 0.875rem;
-  text-align: left;
-`;
 
-export const ProductPrice = styled.div`
+export const Wrapper = styled.div`
   width: 100%;
-  font-size: 0.875rem;
-  text-align: left;
-`;
-export const IconWrapper = styled.div`
-  display: flex;
-  justify-content: left;
-  gap: 2px;
-  margin-right: 5px;
-`;
-export const ViewIcon = styled(Visibility)`
-  margin-top: 5px;
-  font-size: 0.825rem;
-`;
-export const PickIcon = styled(FavoriteBorder)`
-  margin-top: 5px;
-  font-size: 0.825rem;
-`;
-export const Text = styled.span`
-  margin-top: 1px;
-  text-align: center;
-  font-size: 0.825rem;
-`;
-export const ProductUnderWapper = styled.div`
-  width: 100%;
+  margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+export const EventWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-right: 2px;
+  }
+`;
+
+export const EventsList = styled.div`
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s;
+  :hover {
+    box-shadow: 3px 5px 1px 0px #ffd24c;
+    transform: translateY(-5px);
+    border-radius: 5px;
+  }
+`;
+
+export const EventsImages = styled.img`
+  width: 100%;
+`;
+export const InnderWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const EventsName = styled.div`
+  width: 100%;
+  font-size: 0.875rem;
+  text-align: center;
+`;
+export const EventsPlaces = styled.div`
+  width: 100%;
+  font-size: 0.875rem;
+  text-align: center;
+`;
+export const EventsDate = styled.div`
+  width: 100%;
+  font-size: 0.875rem;
+  text-align: center;
 `;

@@ -10,10 +10,10 @@ export const accessTokenState = atom({
   default: "",
 });
 
-export const isLoadedState = atom({
-  key: "isLoadedState",
-  default: false,
-});
+// export const isLoadedState = atom({
+//   key: "isLoadedState",
+//   default: false,
+// });
 
 export const restoreAccessTokenLoadable = selector({
   key: `restoreAccessTokenLoadable/${v1()}`,

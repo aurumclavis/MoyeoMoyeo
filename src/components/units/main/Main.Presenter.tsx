@@ -1,21 +1,18 @@
 import * as S from "./Main.Styles";
-import FAQ from "./mainSection/questionSection/FAQ";
-import BoardSection from "./mainSection/boardSection";
-import ProductSection from "./mainSection/productSection";
-import EventSection from "./mainSection/eventSection";
-
-import InfoSection from "./mainSection/infoSection";
-import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
+import BoardSection from "./mainSection/boardSection/boardSection.Container";
+import EventSection from "./mainSection/eventSection/eventSection.Container";
+import InfoSection from "./mainSection/infoSection/inforSection.Container.";
+import ProductSection from "./mainSection/productSection/productSection.Container";
+import QuestionSection from "./mainSection/questionSection/question.Container";
 
 export default function MainPageUI() {
-  const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.Wrapper>
-      <EventSection onClickMoveToPage={onClickMoveToPage} />
-      <BoardSection onClickMoveToPage={onClickMoveToPage} />
-      <ProductSection onClickMoveToPage={onClickMoveToPage} />
+      <EventSection />
+      <BoardSection />
+      <ProductSection />
       <InfoSection />
-      <FAQ />
+      <QuestionSection />
     </S.Wrapper>
   );
 }
