@@ -9,8 +9,10 @@ import {
   REQUEST_ACCOMPANY,
 } from "./BoardDetail.queries";
 import { useMutation, useQuery } from "@apollo/client";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 export default function BoardDetailContainer() {
+  const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
   const { data } = useQuery(FETCH_BOARD, {
     variables: {
@@ -218,6 +220,7 @@ export default function BoardDetailContainer() {
       onClickRefuseRequest={onClickRefuseRequest}
       requestAccepted={requestAccepted}
       requestRefused={requestRefused}
+      onClickMoveToPage={onClickMoveToPage}
     />
   );
 }

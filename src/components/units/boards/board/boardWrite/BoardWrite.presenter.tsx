@@ -11,14 +11,17 @@ export default function BoardWritePresenter(props: any) {
       <S.CoverImageWrapper>
         {!props.isEdit ? (
           <S.CoverImage
-            id="coverImage"
             src={
               props.previewUrls[0] ? props.previewUrls[0] : props.randomCoverUrl
             }
           />
         ) : (
           <S.CoverImage
-          // src={`https://storage.googleapis.com/${}`}
+            src={
+              props.editPageRandomCover
+                ? props.randomCoverUrl
+                : `https://storage.googleapis.com/${props.data?.fetchBoard.coverImage.src}`
+            }
           />
         )}
         <S.RandomCover onClick={props.onClickChangeRandomCover}>
@@ -41,7 +44,7 @@ export default function BoardWritePresenter(props: any) {
                 <S.EventImage src={"/catGoodsMarketExample.jpeg"} />
               ) : (
                 <S.EventImage
-                // src={`https://storage.googleapis.com/${}`}
+                  src={`https://storage.googleapis.com/${props.data?.fetchBoard.eventImage.src}`}
                 />
               )}
             </S.ImageWrapper>
@@ -50,29 +53,40 @@ export default function BoardWritePresenter(props: any) {
                 <S.EventFestivalIcon />
                 <S.EventInfoItem>이벤트이름</S.EventInfoItem>
                 <S.EventInfoContents>
-                  {props.postData?.fetchPost.title}
+                  {!props.isEdit
+                    ? props.postData?.fetchPost.title
+                    : props.data?.fetchBoard.eventName}
                 </S.EventInfoContents>
               </S.EventInfoDetail>
               <S.EventInfoDetail>
                 <S.EventMapIcon />
                 <S.EventInfoItem>지역</S.EventInfoItem>
                 <S.EventInfoContents>
-                  {props.postData?.fetchPost.address}
+                  {!props.isEdit
+                    ? props.postData?.fetchPost.address
+                    : props.data?.fetchBoard.eventAddress}
                 </S.EventInfoContents>
               </S.EventInfoDetail>
               <S.EventInfoDetail>
                 <S.EventDateRangeIcon />
                 <S.EventInfoItem>기간</S.EventInfoItem>
                 <S.EventInfoContents>
-                  {getDate(props.postData?.fetchPost.dateStart)} <br />~{" "}
-                  {getDate(props.postData?.fetchPost.dateEnd)}
+                  {!props.isEdit
+                    ? getDate(props.postData?.fetchPost.dateStart) +
+                      " ~ " +
+                      getDate(props.postData?.fetchPost.dateEnd)
+                    : getDate(props.data?.fetchBoard.eventStart) +
+                      " ~ " +
+                      getDate(props.data?.fetchBoard.eventEnd)}
                 </S.EventInfoContents>
               </S.EventInfoDetail>
               <S.EventInfoDetail>
                 <S.EventListIcon />
                 <S.EventInfoItem>카테고리</S.EventInfoItem>
                 <S.EventInfoContents>
-                  {props.postData?.fetchPost.category}
+                  {!props.isEdit
+                    ? props.postData?.fetchPost.category
+                    : props.data?.fetchBoard.eventCategory}
                 </S.EventInfoContents>
               </S.EventInfoDetail>
             </S.EventInfo>
@@ -86,6 +100,7 @@ export default function BoardWritePresenter(props: any) {
           <S.ItemsWrapper>
             <S.ItemText>모여글 제목</S.ItemText>
             <S.TitleInput
+              defaultValue={props.data?.fetchBoard.title}
               placeholder="제목을 입력해주세요.(100자 이내)"
               {...props.register("title")}
             />
@@ -101,10 +116,17 @@ export default function BoardWritePresenter(props: any) {
                   <S.MyHelpOutlineIcon />
                 </ToolTip>
                 <DateRangePicker
-                  eventDate={{
-                    start: getDate(props.postData?.fetchPost.dateStart),
-                    end: getDate(props.postData?.fetchPost.dateEnd),
-                  }}
+                  eventDate={
+                    !props.isEdit
+                      ? {
+                          start: getDate(props.postData?.fetchPost.dateStart),
+                          end: getDate(props.postData?.fetchPost.dateEnd),
+                        }
+                      : {
+                          start: getDate(props.data?.fetchBoard.eventStart),
+                          end: getDate(props.data?.fetchBoard.eventEnd),
+                        }
+                  }
                   onChangeDatePicker={props.onChangeDatePicker}
                 />
               </S.AccompanyDateInputWrapper>
@@ -116,7 +138,9 @@ export default function BoardWritePresenter(props: any) {
                   -
                 </S.CountMinus>
                 <S.MaxHeadCountInput
-                  defaultValue={1}
+                  defaultValue={
+                    !props.isEdit ? 1 : props.data?.fetchBoard.personCount
+                  }
                   value={props.maxHeadCount}
                   readOnly
                 />
@@ -132,6 +156,7 @@ export default function BoardWritePresenter(props: any) {
             <S.MyReactQuill
               placeholder="내용을 입력해주세요.(1000자 이내)"
               onChange={props.onChangeQuill}
+              defaultValue={props.data?.fetchBoard.contents}
             />
           </S.ItemsWrapper>
         </S.MainWrapper>
@@ -142,6 +167,7 @@ export default function BoardWritePresenter(props: any) {
           <S.RemarkInput
             placeholder="행사나 나 자신에 대한 한 줄 설명을 적어주세요! 동행 게시글 목록에 노출됩니다."
             {...props.register("remark")}
+            defaultValue={props.data?.fetchBoard.remark}
           />
         </S.ItemsWrapper>
         <S.EventLocationWrapper>
@@ -157,7 +183,7 @@ export default function BoardWritePresenter(props: any) {
               </S.TransportationSelect>
               <S.Transportation isDropTransport={props.isDropTransport}>
                 {props.transportation.map((el: any) =>
-                  props.selectedTransport.includes(el.transportName) ? (
+                  props.selectedTransport?.includes(el.transportName) ? (
                     <S.TransportationItemSelected
                       key={uuidv4()}
                       onClick={props.onClickSelectTransportation(
@@ -191,9 +217,10 @@ export default function BoardWritePresenter(props: any) {
             </S.TransportationWrapper>
             <KaKaoMap
               setValue={props.setValue}
-              isEdit={props.isEdit}
               postAddress={props.postData?.fetchPost.address}
               setAddress={props.setAddress}
+              isEdit={props.isEdit}
+              isEditAddress={props.data?.fetchBoard.boardAddress}
             />
             <S.AddressExplainWrapper>
               <S.ItemsWrapper>
@@ -201,6 +228,7 @@ export default function BoardWritePresenter(props: any) {
                 <S.AddressInput
                   readOnly
                   placeholder="지도에서 선택하면 자동으로 입력됩니다."
+                  defaultValue={props.data?.fetchBoard.boardAddress.postal}
                   value={props.address}
                 />
               </S.ItemsWrapper>
@@ -209,6 +237,9 @@ export default function BoardWritePresenter(props: any) {
                 <S.LocationExplainInput
                   placeholder="모임장소에 관해 설명해주세요!"
                   {...props.register("accompanyLocation")}
+                  defaultValue={
+                    props.data?.fetchBoard.boardAddress.address_description
+                  }
                 />
               </S.ItemsWrapper>
             </S.AddressExplainWrapper>

@@ -6,9 +6,12 @@ import Checkbox from "../../../commons/checkbox";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import { ISignUpNew } from "./SignUpNew.Types";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import React, { useRef } from "react";
 
 export default function SignUpNewPageUI(props: ISignUpNew) {
   const { onClickMoveToPage } = useMoveToPage();
+  const startDate = useRef(Date.now());
+
   const renderer = ({ minutes, seconds }: any) => {
     return (
       <S.Timer>
@@ -49,11 +52,11 @@ export default function SignUpNewPageUI(props: ISignUpNew) {
             <CommonMobileInput defaultValue={"010"} readOnly />
             <CommonMobileInput
               register={props.register("phoneNumber")}
-              readOnly={props.isDone === true}
+              readOnly={props.isDone === true || props.isReadyForNum === true}
             />
             <CommonMobileInput
               register={props.register("phoneNumber2")}
-              readOnly={props.isDone === true}
+              readOnly={props.isDone === true || props.isReadyForNum === true}
             />
           </S.NumberInputs>
           <S.Error>{props.formState.errors.phoneNumber?.message}</S.Error>
@@ -64,8 +67,12 @@ export default function SignUpNewPageUI(props: ISignUpNew) {
                 <S.AuthInput
                   placeholder="인증번호"
                   {...props.register("validateToken")}
+                  disabled={props.timer === false}
                 />
-                <Countdown renderer={renderer} date={Date.now() + 180000} />
+                <Countdown
+                  renderer={renderer}
+                  date={startDate.current + 180000}
+                />
                 <S.MobileGetNumAgainBtn onClick={props.onClickGetNumber}>
                   인증번호 재요청
                 </S.MobileGetNumAgainBtn>
@@ -80,7 +87,10 @@ export default function SignUpNewPageUI(props: ISignUpNew) {
                   /[0-9]$/.test(props.watch("phoneNumber")) &&
                   /[0-9]$/.test(props.watch("phoneNumber2"))
                 }
-                disabled={!props.watch("phoneNumber" && "phoneNumber2")}
+                disabled={
+                  !/[0-9]$/.test(props.watch("phoneNumber")) &&
+                  !/[0-9]$/.test(props.watch("phoneNumber2"))
+                }
                 onClick={props.onClickGetNumber}
               >
                 인증번호 요청
@@ -90,7 +100,10 @@ export default function SignUpNewPageUI(props: ISignUpNew) {
             <S.MobileAuthBtn disabled={true}>인증됨</S.MobileAuthBtn>
           )}
         </S.MobileInfo>
-        <Checkbox checked={props.checked} secondChecked={props.secondChecked} />
+        <Checkbox
+          setChecked={props.setChecked}
+          setSecondChecked={props.setSecondChecked}
+        />
         <S.ButtonWrapper>
           <ButtonSubmit
             fontSize="1.25rem"

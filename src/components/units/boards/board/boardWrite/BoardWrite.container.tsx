@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { eventIdForBoardState } from "../../../../../commons/store";
@@ -10,7 +10,7 @@ import {
   CREATE_BOARD,
   FETCH_POST,
   UPLOAD_IMAGES,
-  FETCH_LOGIN_USER,
+  UPDATE_BOARD,
 } from "./BoardWrite.queries";
 import { randomCoverImg } from "./randomCoverImg";
 
@@ -24,70 +24,103 @@ export default function BoardWriteContainer(props: any) {
   });
   const { register, handleSubmit, setValue, trigger } = useForm();
   const [createBoard] = useMutation(CREATE_BOARD);
+  const [updateBoard] = useMutation(UPDATE_BOARD);
   const [uploadImages] = useMutation(UPLOAD_IMAGES);
-  const { data: userData } = useQuery(FETCH_LOGIN_USER);
-  console.log(userData?.fetchLoginUser.id);
+
   const onClickSubmit = async (data: any) => {
     try {
-      console.log(
-        "data",
-        data,
-        accompanyDate.start,
-        accompanyDate.start,
-        selectedTransport,
-        maxHeadCount
-      );
       const uploadResults = await uploadImages({
         variables: {
           files,
         },
       });
-      console.log("upload", uploadResults, typeof uploadResults);
-
-      const result = await createBoard({
-        variables: {
-          createBoardInput: {
-            title: data.title,
-            contents: data.contents,
-            personCount: maxHeadCount,
-            dateStart: accompanyDate.start,
-            dateEnd: accompanyDate.start,
-            transport: selectedTransport,
-            boardAddress: {
-              lat: data.LatLng.lat,
-              lng: data.LatLng.lng,
-              postal: address,
-              address_description: data.accompanyLocation,
+      if (!props.isEdit) {
+        const result = await createBoard({
+          variables: {
+            createBoardInput: {
+              title: data.title,
+              contents: data.contents,
+              // remark : data.remark,
+              personCount: maxHeadCount,
+              dateStart: accompanyDate.start,
+              dateEnd: accompanyDate.end,
+              transport: selectedTransport,
+              boardAddress: {
+                lat: data.LatLng.lat,
+                lng: data.LatLng.lng,
+                postal: address,
+                address_description: data.accompanyLocation,
+              },
+              coverImgSrc: uploadResults.data.uploadImages[0],
+              eventImageSrc: "",
+              eventName: postData.fetchPost.title,
+              eventStart: getDate(postData.fetchPost.dateStart),
+              eventEnd: getDate(postData.fetchPost.dateEnd),
+              eventCategory: postData.fetchPost.category,
             },
-            coverImgSrc: uploadResults.data.uploadImages[0],
-            eventImageSrc: "",
-            eventName: postData.fetchPost.title,
-            eventStart: getDate(postData.fetchPost.dateStart),
-            eventEnd: getDate(postData.fetchPost.dateEnd),
-            eventCategory: postData.fetchPost.category,
           },
-        },
-      });
-      onClickMoveToPage(`/boards/${result.data.createBoard.id}`)();
+        });
+        onClickMoveToPage(`/boards/${result.data.createBoard.id}`)();
+      } else {
+        console.log(
+          data,
+          maxHeadCount,
+          accompanyDate.start,
+          accompanyDate.end,
+          selectedTransport,
+          address,
+          uploadResults.data.uploadImages[0],
+          props.data.fetchBoard.eventName
+        );
+        const result = await updateBoard({
+          variables: {
+            boardId: props.data.fetchBoard.id,
+            updateBoardInput: {
+              title: data.title,
+              contents: data.contents,
+              // remark : data.remark,
+              personCount: maxHeadCount,
+              dateStart: accompanyDate.start,
+              dateEnd: accompanyDate.end,
+              transport: selectedTransport,
+              boardAddress: {
+                lat: data.LatLng.lat,
+                lng: data.LatLng.lng,
+                postal: address,
+                address_description: data.accompanyLocation,
+              },
+              coverImgSrc: uploadResults.data.uploadImages[0],
+              eventImageSrc: "",
+              eventName: props.data.fetchBoard.eventName,
+              eventStart: props.data.fetchBoard.eventStart,
+              eventEnd: props.data.fetchBoard.eventEnd,
+              eventCategory: props.data.fetchBoard.eventCategory,
+            },
+          },
+        });
+        onClickMoveToPage(`/boards/${result.data.updateBoard.id}`)();
+      }
     } catch (error) {
       alert(error.message);
     }
   };
+
   // 지도 부분
   const postAddress = postData?.fetchPost.address;
   const [address, setAddress] = useState("");
   useEffect(() => {
-    setAddress(postAddress);
+    !props.isEdit && setAddress(postAddress);
   }, [postAddress]);
 
   // 랜덤커버이미지 부분
   const [randomCoverUrl, setRandomCoverUrl] = useState("");
-  const category = postData?.fetchPost.category;
+  const [editPageRandomCover, setEditPageRandomCover] = useState(false);
   useEffect(() => {
-    setRandomCoverUrl(randomCoverImg(category));
-  }, [category]);
+    setRandomCoverUrl(randomCoverImg(postData?.fetchPost.category));
+  }, [postData?.fetchPost.category]);
   const onClickChangeRandomCover = () => {
-    setRandomCoverUrl(randomCoverImg(category));
+    setRandomCoverUrl(randomCoverImg(postData?.fetchPost.category));
+    props.isEdit && setEditPageRandomCover(true);
   };
 
   // 이미지 변경 부분
@@ -96,9 +129,9 @@ export default function BoardWriteContainer(props: any) {
   const [files, setFiles] = useState([undefined]);
 
   // 랜덤커버이미지 경로를 파일객체로 변환한 뒤 files 스테이트 변경
-  useEffect(() => {
-    let coverImageFile = {};
-    const convertURLtoFile = async (url: string) => {
+  let coverImageFile = {};
+  const convertURLtoFile = useCallback(
+    async (url) => {
       const response = await fetch(url);
       const data = await response.blob();
       const ext = url?.split(".").pop();
@@ -106,9 +139,14 @@ export default function BoardWriteContainer(props: any) {
       const metadata = { type: `image/${ext}` };
       coverImageFile = new File([data], filename!, metadata);
       setFiles([coverImageFile]);
-    };
+    },
+    [randomCoverUrl]
+  );
+  useEffect(() => {
     convertURLtoFile(randomCoverUrl);
   }, [randomCoverUrl]);
+
+  console.log("커버이미지파일객체", files);
 
   const onChangeImgInput = (number: string) => async (event: any) => {
     const file = event.target.files?.[0];
@@ -194,15 +232,41 @@ export default function BoardWriteContainer(props: any) {
     setSelectedTransport([...selectedTransport, transportName]);
   };
 
+  // 수정페이지일 때 디폴트값
+  useEffect(() => {
+    if (props.isEdit) {
+      setValue("title", props.data?.fetchBoard.title);
+      setValue("contents", props.data?.fetchBoard.contents);
+      setValue("remark", props.data?.fetchBoard.remark);
+      setValue("LatLng", {
+        lat: props.data?.fetchBoard.boardAddress.lat,
+        lng: props.data?.fetchBoard.boardAddress.lng,
+      });
+      setValue(
+        "accompanyLocation",
+        props.data?.fetchBoard.boardAddress.address_description
+      );
+      setValue("contents", props.data?.fetchBoard.contents);
+      setMaxHeadCount(props.data?.fetchBoard.personCount);
+      setAccompanyDate({
+        start: props.data?.fetchBoard.dateStart,
+        end: props.data?.fetchBoard.dateEnd,
+      });
+      setSelectedTransport(props.data?.fetchBoard.transport);
+      setAddress(props.data?.fetchBoard.boardAddress.postal);
+    }
+  }, [props.data]);
+
   return (
     <BoardWritePresenter
       isEdit={props.isEdit}
+      data={props.data}
       postData={postData}
       setValue={setValue}
       register={register}
       handleSubmit={handleSubmit}
-      // eventData={eventData}
       randomCoverUrl={randomCoverUrl}
+      editPageRandomCover={editPageRandomCover}
       onClickChangeRandomCover={onClickChangeRandomCover}
       coverImgRef={coverImgRef}
       onClickMyCoverImg={onClickMyCoverImg}

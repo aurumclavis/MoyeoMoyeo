@@ -39,7 +39,7 @@ export default function BoardDetailPresenter(props: any) {
         </S.NavItemWrapper>
       </S.NavWrapper>
       <S.CoverImage
-        src={`https://storage.googleapis.com/moyeo-data/${props.data?.fetchBoard.coverImage?.src}`}
+        src={`https://storage.googleapis.com/${props.data?.fetchBoard.coverImage?.src}`}
       />
       <S.BodyWrapper>
         <S.Body>
@@ -337,6 +337,20 @@ export default function BoardDetailPresenter(props: any) {
             </S.EventInfoDetailWrapper>
           </S.EventInfo>
         </S.EventInfoWrapper>
+        <S.ButtonWrapper>
+          <S.GoListButton onClick={props.onClickMoveToPage("/boards")}>
+            동행게시판으로
+          </S.GoListButton>
+          {props.isMyBoard && (
+            <S.EditButton
+              onClick={props.onClickMoveToPage(
+                `/boards/${props.data?.fetchBoard.id}/edit`
+              )}
+            >
+              수정하기
+            </S.EditButton>
+          )}
+        </S.ButtonWrapper>
         <S.CommentWrapper ref={props.commentRef}>
           <S.CommentText>댓글로 질문하기</S.CommentText>
           <CommentWriteContainer />

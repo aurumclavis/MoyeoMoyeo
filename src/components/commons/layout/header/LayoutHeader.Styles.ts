@@ -170,8 +170,8 @@ export const MobileMenu = styled.div`
   border-bottom: 1px solid black;
   cursor: pointer;
   :hover {
-    color: #ffe69a;
-    border-bottom: 0.063rem solid #ffe69a;
+    color: #ffffff;
+    border-bottom: 0.063rem solid #ffffff;
   }
 `;
 

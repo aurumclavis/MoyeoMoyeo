@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { Dispatch, memo, SetStateAction, useEffect, useState } from "react";
 import PrivacyPolicy from "../../units/signup/signUpNew/ PrivacyPolicy/PrivacyPolicy.Container";
 import Policy from "../../units/signup/signUpNew/policy/policy.Container";
 
@@ -8,9 +8,9 @@ interface ICheckBoxProps {
   register?: any;
   setValue?: any;
   trigger?: any;
-  checked?: boolean;
-  secondChecked?: boolean;
   id?: any;
+  setChecked?: Dispatch<SetStateAction<boolean>>;
+  setSecondChecked?: Dispatch<SetStateAction<boolean>>;
 }
 const Wrapper = styled.div`
   width: 100%;
@@ -43,7 +43,7 @@ const ShowModal = styled.span`
     text-decoration: underline;
   }
 `;
-export default function Checkbox(props: ICheckBoxProps) {
+const Checkbox = memo((props: ICheckBoxProps) => {
   const [checkList, setCheckList] = useState([]);
 
   // 이용약관 모달
@@ -70,22 +70,27 @@ export default function Checkbox(props: ICheckBoxProps) {
   const onCheckedItem = (list: any) => {
     if (checkList.every((cur) => cur.id !== list.id)) {
       setCheckList([...checkList, list]);
+      if (list.id === 1) {
+        props.setChecked(true);
+      }
+      if (list.id === 2) {
+        props.setSecondChecked(true);
+      }
     } else {
       const result = checkList.filter((cur) => cur.id !== list.id);
+      if (list.id === 1) {
+        props.setChecked(false);
+      }
+      if (list.id === 2) {
+        props.setSecondChecked(false);
+      }
       setCheckList(result);
     }
   };
 
   const isChecked = (list: any) => {
-    // if (list.id === 1) {
-    //   props.setChecked === true;
-    // }
-    // if (list.id === 2) {
-    //   props.setSecondChecked === true;
-    // }
-    return checkList.some((cur) => cur.id === list.id);
+    return checkList.some((cur: any) => cur.id === list.id);
   };
-  // setChecked
   return (
     <Wrapper>
       <input
@@ -120,9 +125,10 @@ export default function Checkbox(props: ICheckBoxProps) {
       {Isvisible && <PrivacyPolicy setIsVisible={setIsVisible} />}
     </Wrapper>
   );
-}
-
+});
+export default Checkbox;
 // 체크박스 data
+
 const dataList = [
   { id: 1, data: "[필수] 개인정보 취급방침에 동의합니다." },
   { id: 2, data: "[필수] 이용약관에 동의합니다" },

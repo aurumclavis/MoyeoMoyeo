@@ -15,8 +15,8 @@ export default function KaKaoMap(props: any) {
         // 지도를 담을 영역의 DOM 레퍼런스
 
         // 새로운 작성일 때 -> 행사주소를 좌표로 변환한 뒤 랜더링
+        const geocoder = new window.kakao.maps.services.Geocoder();
         if (!props.isEdit) {
-          const geocoder = new window.kakao.maps.services.Geocoder();
           geocoder.addressSearch(
             props.postAddress,
             function (result: any, status: any) {
@@ -106,7 +106,10 @@ export default function KaKaoMap(props: any) {
         if (props.isEdit) {
           const mapContainer = document.getElementById("map"); // 지도를 표시할 div
           const mapOption = {
-            center: new window.kakao.maps.LatLng(props.lat, props.lng), // 지도의 중심좌표
+            center: new window.kakao.maps.LatLng(
+              props.isEditAddress?.lat,
+              props.isEditAddress?.lng
+            ), // 지도의 중심좌표
             level: 3, // 지도의 확대 레벨
           };
 
@@ -125,8 +128,8 @@ export default function KaKaoMap(props: any) {
             imageOption
           );
           const markerPosition = new window.kakao.maps.LatLng(
-            props.lat,
-            props.lng
+            props.isEditAddress?.lat,
+            props.isEditAddress?.lng
           ); // 마커가 표시될 위치입니다
 
           // 마커를 생성합니다
@@ -137,6 +140,21 @@ export default function KaKaoMap(props: any) {
 
           // 마커가 지도 위에 표시되도록 설정합니다
           marker.setMap(map);
+
+          const callback = function (result: any, status: any) {
+            if (status === window.kakao.maps.services.Status.OK) {
+              props.setAddress(result[0].address.address_name);
+            }
+          };
+
+          const searchDetailAddrFromCoords = (coords: any) => {
+            // 좌표로 법정동 상세 주소 정보를 요청합니다
+            return geocoder.coord2Address(
+              coords.getLng(),
+              coords.getLat(),
+              callback
+            );
+          };
 
           // 지도에 클릭 이벤트를 등록
           // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출
@@ -153,12 +171,13 @@ export default function KaKaoMap(props: any) {
                 lat: latLng.getLat(),
                 lng: latLng.getLng(),
               });
+              searchDetailAddrFromCoords(latLng);
             }
           );
         }
       });
     };
-  }, [props.isEdit, props.postAddress]);
+  }, [props.isEdit, props.postAddress, props.isEditAddress]);
 
   return (
     <>

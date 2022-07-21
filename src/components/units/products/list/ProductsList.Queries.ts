@@ -9,6 +9,10 @@ export const FETCH_PRODUCTS = gql`
       contentSrc
       price
       viewCount
+      images {
+        id
+        src
+      }
       createdAt
       isSoldout
       viewCount

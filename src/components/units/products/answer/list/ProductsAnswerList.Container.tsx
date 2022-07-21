@@ -1,27 +1,15 @@
-import * as S from "./ProductsAnswerList.Styles";
-interface ProductsAnswerListProps {
-  data: any;
-  onClickActiveAnswer: () => void;
-}
+import ProductsAnswerListItem from "./item/ProductsAnswerListItem.Container";
+import { IProductsAnswerListProps } from "./ProductsAnswerList.Types";
 
-export default function ProductsAnswerList(props: ProductsAnswerListProps) {
+export default function ProductsAnswerList(props: IProductsAnswerListProps) {
   return (
     <>
       {props.data?.fetchComment.children.map((el: any) => (
-        <S.ItemWrapper key={el.id}>
-          <S.SubDirectoryWrapper>
-            <S.SubDirectoryIcon />
-          </S.SubDirectoryWrapper>
-          <S.ContentsWrapper>
-            <S.Text>판매자</S.Text>
-            <S.Date>{el.createdAt}</S.Date>
-            <S.Contents>{el.content}</S.Contents>
-          </S.ContentsWrapper>
-          <S.IconWrapper>
-            <S.ReplyIcon onClick={props.onClickActiveAnswer} />
-            <S.DeleteIcon />
-          </S.IconWrapper>
-        </S.ItemWrapper>
+        <ProductsAnswerListItem
+          key={el.id}
+          el={el}
+          onClickActiveAnswer={props.onClickActiveAnswer}
+        />
       ))}
     </>
   );

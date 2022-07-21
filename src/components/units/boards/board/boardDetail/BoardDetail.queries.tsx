@@ -22,6 +22,7 @@ export const FETCH_BOARD = gql`
       boardAddress {
         lat
         lng
+        postal
         address_description
       }
       coverImage {

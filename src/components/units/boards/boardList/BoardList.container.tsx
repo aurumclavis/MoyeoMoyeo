@@ -250,7 +250,7 @@ export default function BoardListContainer() {
   };
 
   const onClickCreateBoard = () => {
-    router.push("/boards/f2cd3ee5-99a8-4303-9b04-58daed658562");
+    router.push("/boards/91dd66ea-0f9d-4b11-be50-7cb5d0df4ce4");
   };
 
   // 서브헤더 스크롤 부분

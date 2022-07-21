@@ -3,8 +3,12 @@ import * as S from "./FindPasswordStyles";
 import Countdown from "react-countdown";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import { IFindPw } from "./FindPassword.Types";
+import { useRef } from "react";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
 export default function FindPwPageUI(props: IFindPw) {
+  const { onClickMoveToPage } = useMoveToPage();
+  const startDate = useRef(Date.now());
   const renderer = ({ minutes, seconds }: any) => {
     return (
       <S.Timer>
@@ -12,6 +16,7 @@ export default function FindPwPageUI(props: IFindPw) {
       </S.Timer>
     );
   };
+
   return (
     <S.OutWrapper>
       <S.Wrapper>
@@ -30,7 +35,10 @@ export default function FindPwPageUI(props: IFindPw) {
                   placeholder="인증번호"
                   {...props.register("validateToken")}
                 />
-                <Countdown renderer={renderer} date={Date.now() + 180000} />
+                <Countdown
+                  renderer={renderer}
+                  date={startDate.current + 180000}
+                />
                 <S.MobileGetNumAgainBtn onClick={props.onClickGetNumber}>
                   인증번호 재요청
                 </S.MobileGetNumAgainBtn>
@@ -40,12 +48,15 @@ export default function FindPwPageUI(props: IFindPw) {
               </S.NewAuthWrapper>
             ) : (
               <S.MobileAuthBtn
+                onClick={props.onClickGetNumber}
+                isActive={/^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+                  props.watch("email")
+                )}
                 disabled={
                   !/^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
                     props.watch("email")
                   )
                 }
-                onClick={props.onClickGetNumber}
               >
                 인증번호 요청
               </S.MobileAuthBtn>
@@ -59,12 +70,14 @@ export default function FindPwPageUI(props: IFindPw) {
             type="password"
             placeholder={"새 비밀번호를 입력해주세요"}
             register={props.register("password")}
+            readOnly={props.isDone === false}
           />
           <S.Error>{props.formState.errors.password?.message}</S.Error>
           <CommonInput
             type="password"
             placeholder={"새 비밀번호를 한번 더 입력해주세요"}
             register={props.register("passwordCheck")}
+            readOnly={props.isDone === false}
           />
           <S.Error>{props.formState.errors.passwordCheck?.message}</S.Error>
           <S.ButtonWrapper>
@@ -77,7 +90,9 @@ export default function FindPwPageUI(props: IFindPw) {
         </form>
         <S.FooterWrapper>
           <S.FooterTitle>앗! 비밀번호가 갑자기 생각나셨나요?</S.FooterTitle>
-          <S.FooterBtn>로그인으로 돌아가기</S.FooterBtn>
+          <S.FooterBtn onClick={onClickMoveToPage("/login")}>
+            로그인으로 돌아가기
+          </S.FooterBtn>
         </S.FooterWrapper>
       </S.Wrapper>
     </S.OutWrapper>

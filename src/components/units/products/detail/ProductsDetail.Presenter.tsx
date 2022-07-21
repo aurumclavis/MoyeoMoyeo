@@ -10,10 +10,11 @@ import DOMPurify from "dompurify";
 import Chat from "../../chat";
 import { dibsProductIdState } from "../../../../commons/store";
 import { useRecoilState } from "recoil";
+import { IProductDetailUIProps } from "./ProductsDetail.Types";
 // import io from "socket.io-client";
 // const socket = io.connect("http://localhost:3001");
 
-export default function ProductDetailUI(props: any) {
+export default function ProductDetailUI(props: IProductDetailUIProps) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
 

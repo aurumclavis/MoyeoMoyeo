@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import {
   UseFormRegister,
   UseFormHandleSubmit,
@@ -17,6 +18,6 @@ export interface ISignUpNew {
   isDone?: boolean;
   isActive?: boolean;
   isReadyForNum?: boolean;
-  checked?: boolean;
-  secondChecked?: boolean;
+  setChecked?: Dispatch<SetStateAction<boolean>>;
+  setSecondChecked?: Dispatch<SetStateAction<boolean>>;
 }
