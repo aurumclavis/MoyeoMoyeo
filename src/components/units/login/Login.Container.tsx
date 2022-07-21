@@ -7,6 +7,7 @@ import { useApolloClient, useMutation } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { accessTokenState, userInfoState } from "../../../commons/store";
 import { LOGIN, FETCH_LOGIN_USER } from "./Login.Queries";
+import { Modal } from "antd";
 
 const schema = yup.object({
   email: yup
@@ -32,18 +33,6 @@ export default function LoginPage() {
     mode: "onChange",
   });
 
-  // 회원가입
-  const onClickToSignUp = () => {
-    router.push("./signup");
-  };
-  // 관계자회원 로그인
-  const onClickToLoginNewStaff = () => {
-    router.push("./login/newStaff");
-  };
-  // 비밀번호 찾기
-  const onClickToFindPw = () => {
-    router.push("./login/findpw");
-  };
   // 로그인
   const onClickToLogin = async (data: any) => {
     console.log(data);
@@ -67,18 +56,21 @@ export default function LoginPage() {
       });
 
       setAccessToken(result.data?.login);
-      // localStorage.setItem("refreshToken", "true");
       const userInfo = resultUserInfo.data?.fetchLoginUser;
       if (!userInfo.name) {
-        alert("관계자 회원 로그인페이지에서 다시 로그인바랍니다.");
+        Modal.info({
+          content: "관계자 회원 로그인페이지에서 다시 로그인바랍니다.",
+        });
         return router.push("/login/newStaff");
       }
       setUserInfo(userInfo);
       console.log(userInfo);
-      alert("로그인이 되었습니다.");
+      Modal.success({
+        content: `${userInfo.institution}의 ${userInfo.manager}님 어서오세요!`,
+      });
       router.push("/");
     } catch (error) {
-      alert("로그인 정보가 일치하지 않습니다.");
+      Modal.error({ content: "로그인 정보가 일치하지 않습니다." });
       router.push("/login");
     }
   };
@@ -88,10 +80,6 @@ export default function LoginPage() {
       handleSubmit={handleSubmit}
       register={register}
       formState={formState}
-      // router
-      onClickToSignUp={onClickToSignUp}
-      onClickToLoginNewStaff={onClickToLoginNewStaff}
-      onClickToFindPw={onClickToFindPw}
       // login
       onClickToLogin={onClickToLogin}
     />

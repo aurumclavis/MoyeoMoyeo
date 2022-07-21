@@ -37,22 +37,18 @@ export default function FindPwPage() {
   const [sendEmail] = useMutation(SEND_EMAIL);
   const [authorizeReset] = useMutation(AUTHORIZE_RESET);
   const [resetPassword] = useMutation(RESET_PASSWORD);
-
-  const [emailComfirm, setEmailComfirm] = useState("");
-  const [isActive, setIsActive] = useState(false);
+  const [isActive] = useState(true);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const { register, handleSubmit, formState, watch } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
-  const onChagneEmail = (event) => {
-    setEmailComfirm(event.target.value);
-    setIsActive(true);
-  };
   const email = watch("email");
   const tokenInput = watch("validateToken");
   const newPassword = watch("password");
+
+  // email 인증번호 요청
   const onClickGetNumber = async () => {
     setIsReadyForNum(true);
     try {
@@ -64,13 +60,18 @@ export default function FindPwPage() {
       Modal.error({ content: "인증번호 전송에 실패하였습니다." });
     }
   };
+
+  // email 인증번호 확인
   const onClickConfirm = async () => {
     try {
-      await authorizeReset({
+      const result = await authorizeReset({
         variables: { email, tokenInput },
       });
-      Modal.success({ content: "이메일 인증이 완료되었습니다." });
-      setIsDone(true);
+      const TokenCheckValid = result.data?.authorizeReset;
+      if (TokenCheckValid === true) {
+        Modal.success({ content: "이메일 인증이 완료되었습니다." });
+        setIsDone(true);
+      }
     } catch (error) {
       setIsDone(false);
       setIsReadyForNum(true);
@@ -78,6 +79,7 @@ export default function FindPwPage() {
     }
   };
 
+  // 비밀번호 업데이트
   const onClickToUpdatePW = async (data: any) => {
     try {
       await resetPassword({
@@ -94,18 +96,18 @@ export default function FindPwPage() {
   };
   return (
     <FindPwPageUI
-      onClickGetNumber={onClickGetNumber}
-      onClickConfirm={onClickConfirm}
+      // hook-form
       formState={formState}
       register={register}
+      watch={watch}
+      handleSubmit={handleSubmit}
+      // email 인증
       isReadyForNum={isReadyForNum}
       isDone={isDone}
       isActive={isActive}
-      onChagneEmail={onChagneEmail}
-      emailComfirm={emailComfirm}
-      watch={watch}
+      onClickGetNumber={onClickGetNumber}
       onClickToUpdatePW={onClickToUpdatePW}
-      handleSubmit={handleSubmit}
+      onClickConfirm={onClickConfirm}
     />
   );
 }

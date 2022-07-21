@@ -9,4 +9,5 @@ export interface ILoginNew {
   register: UseFormRegister<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   formState: FormState<FieldValues>;
+  onClickToLogin: (data: any) => void;
 }

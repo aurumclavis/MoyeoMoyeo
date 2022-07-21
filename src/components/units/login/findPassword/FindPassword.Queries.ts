@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+
 // 이메일 인증
 export const SEND_EMAIL = gql`
   mutation sendEmail($email: String!) {

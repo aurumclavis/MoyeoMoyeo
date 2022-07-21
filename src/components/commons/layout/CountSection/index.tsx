@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   align-items: center;
   background-color: #fcefa6;
   position: relative;
-  /* margin-bottom: 30px; */
   @media ${breakPoints.mobile} {
     display: flex;
     height: 200px;
@@ -34,7 +33,6 @@ const List = styled.div`
   gap: 30px;
   @media ${breakPoints.mobile} {
     display: flex;
-    /* flex-direction: column; */
     gap: 5px;
     padding: 0 0.313rem;
   }
@@ -106,11 +104,10 @@ const CountSection = () => {
   };
 
   return (
-    // <Background>
     <Wrapper>
       <MainTitle>Welcome To 모여?모여!</MainTitle>
       <List>
-        {FIGURE_ITEMS.map((item, index) => (
+        {FIGURE_ITEMS.map((item, index: any) => (
           <ListItem key={item.title}>
             <Title>{item.title}</Title>
             <Number {...countItem[index]}>0</Number>
@@ -120,7 +117,6 @@ const CountSection = () => {
         ))}
       </List>
     </Wrapper>
-    // </Background>
   );
 };
 

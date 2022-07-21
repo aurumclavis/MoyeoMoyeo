@@ -89,23 +89,6 @@ const CarouselWrapper = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-
-  /* .slick-next:before {
-    opacity: 0.2;
-    color: #15133c;
-  }
-  .slick-prev:before {
-    opacity: 0.2;
-    color: #15133c;
-  } */
-  /* .slick-dots {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 20px 0;
-    list-style-type: none;
-  } */
   @media ${breakPoints.mobile} {
     width: 100%;
   }
