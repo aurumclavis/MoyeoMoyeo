@@ -1,33 +1,54 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
+import { eventIdForBoardState } from "../../../../../commons/store";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import BoardWritePresenter from "./BoardWrite.presenter";
-import { CREATE_BOARD } from "./BoardWrite.queries";
+import { CREATE_BOARD, FETCH_POST, UPLOAD_IMAGES } from "./BoardWrite.queries";
 import { randomCoverImg } from "./randomCoverImg";
 
 export default function BoardWriteContainer(props: any) {
   const { onClickMoveToPage } = useMoveToPage();
+  const [eventIdForBoard] = useRecoilState(eventIdForBoardState);
+  const { data: postData } = useQuery(FETCH_POST, {
+    variables: {
+      postId: eventIdForBoard,
+    },
+  });
+
   const { register, handleSubmit, setValue, trigger } = useForm();
   const [createBoard] = useMutation(CREATE_BOARD);
+  const [uploadImages] = useMutation(UPLOAD_IMAGES);
 
-  const onClickSubmit = async () => {
+  const onClickSubmit = async (data: any) => {
+    const uploadResults = await uploadImages({
+      variables: {
+        files,
+      },
+    });
+    console.log(uploadResults);
+    // const uploadResultsUrls = uploadResults.map((el) =>
+    //   el ? el.data.uploadFile.url : ""
+    // );
     try {
       const result = await createBoard({
         variables: {
           createBoardInput: {
-            title: "",
-            contents: "",
+            title: data.title,
+            contents: data.contents,
             viewCount: 0,
             isFull: false,
-            targetDate: 11,
-            transport: "",
+            dateStart: accompanyDate.start,
+            dateEnd: accompanyDate.end,
+            transport: selectedTransport,
             boardAddress: {
-              lat: 0,
-              lng: 0,
+              lat: data.LatLng.lat,
+              lng: data.LatLng.lng,
               postal: "",
-              address_description: "",
+              address_description: data.accompanyLocation,
             },
+            // coverImgSrc :
           },
         },
       });
@@ -39,13 +60,49 @@ export default function BoardWriteContainer(props: any) {
   // 지도 부분
   const [address, setAddress] = useState("");
 
-  // 이미지 등록부분
+  // 랜덤커버이미지 부분
+  const [randomCoverUrl, setRandomCoverUrl] = useState("");
+  const category = postData?.fetchPost.category;
+  useEffect(() => {
+    setRandomCoverUrl(randomCoverImg(category));
+  }, [category]);
+
+  // 이미지 변경 부분
   const coverImgRef = useRef(null);
   const eventImgRef = useRef(null);
   const [previewUrls, setPreviewUrls] = useState(["", ""]);
   const [files, setFiles] = useState([undefined, undefined]);
+  let aaa = {};
+
+  useEffect(() => {
+    // setFiles([convertURLtoFile(randomCoverUrl), ""]);
+    const convertURLtoFile = async (url: string) => {
+      const response = await fetch(url);
+      const data = await response.blob();
+      const ext = url?.split(".").pop();
+      const filename = url?.split("/").pop();
+      const metadata = { type: `image/${ext}` };
+      aaa = new File([data], filename!, metadata);
+      return aaa;
+    };
+    convertURLtoFile(randomCoverUrl);
+    console.log("aaab", aaa);
+    // const img = document.querySelector("#coverImage");
+    // // console.log("bbb", img.src);
+    // // const bstr = window.atob(img.src.split(",")[1])
+    // let n = randomCoverUrl?.length;
+    // const u8arr = new Uint8Array(n);
+    // while (n--) {
+    //   u8arr[n] = randomCoverUrl.charCodeAt(n);
+    // }
+    // const file = new File([u8arr], "aaa", { type: "mime" });
+    // console.log("aaa", file);
+  }, [randomCoverUrl]);
+  // console.log(files);
+
   const onChangeImgInput = (number: string) => async (event: any) => {
     const file = event.target.files?.[0];
+
     if (!file) {
       alert("파일이 없습니다!!");
       return;
@@ -64,19 +121,13 @@ export default function BoardWriteContainer(props: any) {
       }
     };
   };
+
   const onClickMyCoverImg = () => {
     coverImgRef.current.click();
   };
   const onClickMyEventImg = () => {
     eventImgRef.current.click();
   };
-
-  // 랜덤커버이미지 부분
-  const dataCategory = "축제";
-  const [randomCoverUrl, setRandomCoverUrl] = useState("");
-  useEffect(() => {
-    setRandomCoverUrl(randomCoverImg(dataCategory));
-  }, []);
 
   // 동행일자 데이트피커 부분
   const [accompanyDate, setAccompanyDate] = useState({ start: "", end: "" });
@@ -136,15 +187,15 @@ export default function BoardWriteContainer(props: any) {
     }
     setSelectedTransport([...selectedTransport, transportName]);
   };
-  const eventData = { date: { start: "2022-07-15", end: "2022-07-26" } };
 
   return (
     <BoardWritePresenter
       isEdit={props.isEdit}
+      postData={postData}
       setValue={setValue}
       register={register}
       handleSubmit={handleSubmit}
-      eventData={eventData}
+      // eventData={eventData}
       randomCoverUrl={randomCoverUrl}
       coverImgRef={coverImgRef}
       eventImgRef={eventImgRef}

@@ -3,16 +3,25 @@ import KaKaoMap from "../../KaKaoMap";
 import ToolTip from "../../../../commons/tooltip";
 import { v4 as uuidv4 } from "uuid";
 import DateRangePicker from "./dateRangePicker";
+import { getDate } from "../../../../commons/getDate";
 
 export default function BoardWritePresenter(props: any) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickSubmit)}>
       <S.CoverImageWrapper>
-        <S.CoverImage
-          src={
-            props.previewUrls[0] ? props.previewUrls[0] : props.randomCoverUrl
-          }
-        />
+        {!props.isEdit ? (
+          <S.CoverImage
+            id="coverImage"
+            src={
+              props.previewUrls[0] ? props.previewUrls[0] : props.randomCoverUrl
+            }
+          />
+        ) : (
+          <S.CoverImage
+          // src={`https://storage.googleapis.com/${}`}
+          />
+        )}
+
         <S.MyImageUpload onClick={props.onClickMyCoverImg}>
           커버 이미지 직접 등록
           <S.ImageInput
@@ -34,37 +43,49 @@ export default function BoardWritePresenter(props: any) {
                   onChange={props.onChangeImgInput(1)}
                 />
               </S.MyImageUpload>
-              <S.EventImage
-                src={
-                  props.previewUrls[1]
-                    ? props.previewUrls[1]
-                    : "/catGoodsMarketExample.jpeg"
-                }
-              />
+              {!props.isEdit ? (
+                <S.EventImage
+                  src={
+                    props.previewUrls[1]
+                      ? props.previewUrls[1]
+                      : "/catGoodsMarketExample.jpeg"
+                  }
+                />
+              ) : (
+                <S.EventImage
+                // src={`https://storage.googleapis.com/${}`}
+                />
+              )}
             </S.ImageWrapper>
             <S.EventInfo>
               <S.EventInfoDetail>
                 <S.EventFestivalIcon />
                 <S.EventInfoItem>이벤트이름</S.EventInfoItem>
-                <S.EventInfoContents>동탄고양이플리마켓</S.EventInfoContents>
+                <S.EventInfoContents>
+                  {props.postData?.fetchPost.title}
+                </S.EventInfoContents>
               </S.EventInfoDetail>
               <S.EventInfoDetail>
                 <S.EventMapIcon />
                 <S.EventInfoItem>지역</S.EventInfoItem>
-                <S.EventInfoContents>경기도 동탄</S.EventInfoContents>
+                <S.EventInfoContents>
+                  {props.postData?.fetchPost.address}
+                </S.EventInfoContents>
               </S.EventInfoDetail>
               <S.EventInfoDetail>
                 <S.EventDateRangeIcon />
                 <S.EventInfoItem>기간</S.EventInfoItem>
                 <S.EventInfoContents>
-                  {props.eventData.date.start} <br />~{" "}
-                  {props.eventData.date.end}
+                  {getDate(props.postData?.fetchPost.dateStart)} <br />~{" "}
+                  {getDate(props.postData?.fetchPost.dateEnd)}
                 </S.EventInfoContents>
               </S.EventInfoDetail>
               <S.EventInfoDetail>
                 <S.EventListIcon />
                 <S.EventInfoItem>카테고리</S.EventInfoItem>
-                <S.EventInfoContents>플리마켓</S.EventInfoContents>
+                <S.EventInfoContents>
+                  {props.postData?.fetchPost.category}
+                </S.EventInfoContents>
               </S.EventInfoDetail>
             </S.EventInfo>
           </S.EventInfoWrapper>
@@ -92,7 +113,10 @@ export default function BoardWritePresenter(props: any) {
                   <S.MyHelpOutlineIcon />
                 </ToolTip>
                 <DateRangePicker
-                  eventDate={props.eventData.date}
+                  eventDate={{
+                    start: getDate(props.postData?.fetchPost.dateStart),
+                    end: getDate(props.postData?.fetchPost.dateEnd),
+                  }}
                   onChangeDatePicker={props.onChangeDatePicker}
                 />
               </S.AccompanyDateInputWrapper>
@@ -133,7 +157,7 @@ export default function BoardWritePresenter(props: any) {
           />
         </S.ItemsWrapper>
         <S.EventLocationWrapper>
-          <S.ItemText>이벤트 위치</S.ItemText>
+          <S.ItemText>모임 위치</S.ItemText>
           <S.MapWrapper>
             <S.TransportationWrapper>
               <S.TransportationSelect
@@ -180,6 +204,7 @@ export default function BoardWritePresenter(props: any) {
             <KaKaoMap
               setValue={props.setValue}
               isEdit={props.isEdit}
+              postAddress={props.postData?.fetchPost.address}
               setAddress={props.setAddress}
             />
             <S.AddressExplainWrapper>

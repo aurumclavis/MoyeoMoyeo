@@ -7,3 +7,21 @@ export const CREATE_BOARD = gql`
     }
   }
 `;
+
+export const FETCH_POST = gql`
+  query fetchPost($postId: String!) {
+    fetchPost(postId: $postId) {
+      title
+      address
+      dateStart
+      dateEnd
+      category
+    }
+  }
+`;
+
+export const UPLOAD_IMAGES = gql`
+  mutation uploadImages($files: [Upload!]!) {
+    uploadImages(files: $files)
+  }
+`;
