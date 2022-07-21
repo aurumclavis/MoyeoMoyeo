@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { CREATE_POST, UPLOAD_IMAGES, UPDATE_POST } from "./EventsWrite.Queries";
+import { CREATE_POST, UPDATE_POST } from "./EventsWrite.Queries";
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
+import { IEventsWriteProps, IUpdatePostInput } from "./EventsWrite.Type";
 
 const schema = yup.object({
   title: yup
@@ -18,7 +19,7 @@ const schema = yup.object({
   // address: yup.string().required("필수 입력 사항입니다."),
   category: yup.string().required("필수 입력 사항입니다."),
 });
-export default function EventsWrite(props: any) {
+export default function EventsWrite(props: IEventsWriteProps) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
   // const [uploadImages] = useMutation(UPLOAD_IMAGES);
@@ -97,13 +98,13 @@ export default function EventsWrite(props: any) {
   };
 
   const onClickUpdate = async (data: any) => {
-    const updatePostInput: any = {};
+    const updatePostInput: IUpdatePostInput = {};
     if (data.title) updatePostInput.title = data.title;
     if (data.contents) updatePostInput.description = data.contents;
     if (data.address) updatePostInput.address = data.address;
     if (data.category) updatePostInput.category = data.category;
     if (dateStart) updatePostInput.title = dateStart;
-    if (dateEnd) updatePostInput.contents = dateEnd;
+    if (dateEnd) updatePostInput.dateEnd = dateEnd;
 
     try {
       await updatePost({
@@ -146,6 +147,9 @@ export default function EventsWrite(props: any) {
     setAddress(data.address);
     setIsOpen(false);
   };
+  const onClickCancle = () => {
+    router.push("/event");
+  };
 
   return (
     <EventsWriteUI
@@ -165,6 +169,7 @@ export default function EventsWrite(props: any) {
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
       onClickUpdate={onClickUpdate}
+      onClickCancle={onClickCancle}
     />
   );
 }

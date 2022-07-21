@@ -1,5 +1,5 @@
 import EventsListUI from "./EventsList.Prsenter";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 export default function EventList() {
@@ -25,10 +25,12 @@ export default function EventList() {
     setOpenEvents(false);
     setOurEvents(true);
   };
-
+  const onClickNew = () => {
+    onClickMoveToPage("/events/new")();
+  };
   return (
     <EventsListUI
-      onClickMoveToPage={onClickMoveToPage}
+      onClickNew={onClickNew}
       onClickOpenEventTap={onClickOpenEventTap}
       onClickOurEventTap={onClickOurEventTap}
       onClickDate={onClickDate}

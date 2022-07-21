@@ -51,8 +51,7 @@ export const ListWrapper = styled.div`
   padding: 1rem;
 
   margin-top: 0.4rem;
-  border: ${(props: ITabProps) =>
-    props.isActive ? "1px solid #d2d2d2" : "none"};
+  border: 1px solid #d2d2d2;
   border-radius: 10px;
   transition: 0.2s;
   box-shadow: 0px 2px 4px 0px #00000033;

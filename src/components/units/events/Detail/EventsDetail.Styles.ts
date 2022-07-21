@@ -216,7 +216,7 @@ export const BtnRouterList = styled.div`
 /// 네브바
 export const NavWrapper = styled.div`
   width: 100%;
-  height: 40px;
+  height: 45px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -282,7 +282,7 @@ export const PickWraepper = styled.div`
   align-items: center;
   padding: 0 6%;
   border-radius: 10px;
-  background-color: #ffd24c;
+  background-color: #ffe69a;
   @media (max-width: 767px) {
     width: 40%;
     justify-content: center;
@@ -298,7 +298,7 @@ export const Linkraepper = styled.div`
   align-items: center;
   padding: 0 5%;
   border-radius: 10px;
-  background-color: #ffd24c;
+  background-color: #ffe69a;
   @media (max-width: 767px) {
     height: 85%;
     width: 40%;

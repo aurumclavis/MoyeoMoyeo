@@ -2,8 +2,13 @@ import { DatePicker, Space } from "antd";
 import locale from "antd/lib/date-picker/locale/ko_KR";
 
 const { RangePicker } = DatePicker;
+interface IEventsWrite {
+  placeholder: any;
+  onChangeDate: () => void;
+  defaultValue: any;
+}
 
-export default function DateRangePicker(props: any) {
+export default function DateRangePicker(props: IEventsWrite) {
   return (
     <Space direction="vertical" size={12}>
       <RangePicker

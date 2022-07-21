@@ -1,6 +1,7 @@
 import * as S from "./FestivalList.Styles";
+import { IFestivalListUIAdd } from "./FestivalList.Types";
 
-export default function FestivalListUIAdd(props) {
+export default function FestivalListUIAdd(props: IFestivalListUIAdd) {
   return (
     <>
       <S.ListWrapper id={props.el?._id} isActive={props.openEvents}>

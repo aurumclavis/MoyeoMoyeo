@@ -1,10 +1,10 @@
-import CalederListUI from "./DateList.PresnterAdd";
-import { LeftCircleOutlined, RightCircleOutlined } from "@ant-design/icons";
+import CalederListUIAdd from "./DateList.PresnterAdd";
 import locale from "antd/lib/date-picker/locale/ko_KR";
 import { getDate } from "../../../../commons/getDate";
 import * as S from "./DateList.Styles";
+// import { ICaCalenderPageUI } from "./DateList.Types";
 
-export default function CalenderPageUI(props) {
+export default function CalenderPageUI() {
   return (
     <>
       <S.Wrapper>
@@ -24,10 +24,7 @@ export default function CalenderPageUI(props) {
             ></S.DatePick>
           </S.InsideWrapper>
         </S.NavWrapper>
-        <CalederListUI
-          isActive={props.isActive}
-          onClickMoveToPage={props.onClickMoveToPage}
-        />
+        <CalederListUIAdd />
       </S.Wrapper>
     </>
   );

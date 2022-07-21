@@ -5,3 +5,15 @@ export const LOGOUT = gql`
     logout
   }
 `;
+
+export const FETCH_LOGIN_USER = gql`
+  query fetchLoginUser {
+    fetchLoginUser {
+      id
+      email
+      manager
+      institution
+      phone
+    }
+  }
+`;
