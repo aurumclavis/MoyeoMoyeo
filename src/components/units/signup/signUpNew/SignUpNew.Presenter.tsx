@@ -46,7 +46,7 @@ export default function SignUpNewPageUI(props: ISignUpNew) {
           register={props.register("name")}
         />
         <S.Error>{props.formState.errors.name?.message}</S.Error>
-        {/* <S.MobileInfo>
+        <S.MobileInfo>
           <S.CommonSubTitle>휴대폰 인증</S.CommonSubTitle>
           <S.NumberInputs>
             <CommonMobileInput defaultValue={"010"} readOnly />
@@ -99,12 +99,10 @@ export default function SignUpNewPageUI(props: ISignUpNew) {
           ) : (
             <S.MobileAuthBtn disabled={true}>인증됨</S.MobileAuthBtn>
           )}
-        </S.MobileInfo> */}
+        </S.MobileInfo>
         <Checkbox
           setChecked={props.setChecked}
           setSecondChecked={props.setSecondChecked}
-          setValue={props.setValue}
-          trigger={props.trigger}
         />
         <S.ButtonWrapper>
           <ButtonSubmit
