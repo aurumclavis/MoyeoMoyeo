@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 import CommonInput from "../../commons/inputs/infoInputs";
 import * as S from "./Login.Styles";
-import { ILoginNew } from "./Login.Queries";
+import { ILoginNew } from "./Login.Types";
 
 export default function LoginPageUI(props: ILoginNew) {
   const { onClickMoveToPage } = useMoveToPage();
@@ -12,7 +12,7 @@ export default function LoginPageUI(props: ILoginNew) {
         <S.HeaderTitle>로그인</S.HeaderTitle>
         <S.SubWrapper>
           <S.SubTitle>잠깐,관계자 회원이신가요?</S.SubTitle>
-          <S.SubBtn onClick={props.onClickToLoginNewStaff}>
+          <S.SubBtn onClick={onClickMoveToPage("/login/newStaff")}>
             관계자회원 로그인
           </S.SubBtn>
         </S.SubWrapper>

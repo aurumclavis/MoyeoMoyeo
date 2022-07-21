@@ -9,5 +9,5 @@ export interface ILoginNewStaffUI {
   register: UseFormRegister<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   formState: FormState<FieldValues>;
-  onClickToLogin: () => void;
+  onClickToLogin: (data: any) => void;
 }

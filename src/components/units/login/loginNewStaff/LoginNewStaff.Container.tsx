@@ -7,7 +7,7 @@ import { useApolloClient, useMutation } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { accessTokenState, userInfoState } from "../../../../commons/store";
 import { FETCH_LOGIN_USER, LOGIN } from "./LoginNewStaff.Queries";
-
+import { Modal } from "antd";
 const schema = yup.object({
   email: yup
     .string()
@@ -32,18 +32,6 @@ export default function LoginNewStaffPage() {
     mode: "onChange",
   });
 
-  // 관계자회원가입
-  const onClickToSignUp = () => {
-    router.push("/signup/newStaff");
-  };
-  // 일반 로그인
-  const onClickToLoginNewStaff = () => {
-    router.push("/login");
-  };
-  // 비밀번호 찾기
-  const onClickToFindPw = () => {
-    router.push("/login/findpw");
-  };
   // 로그인
   const onClickToLogin = async (data: any) => {
     console.log(data);
@@ -54,8 +42,7 @@ export default function LoginNewStaffPage() {
           password: data.password,
         },
       });
-
-      const Token = result.data.login;
+      const Token = result.data.login; // accessToken
       const resultUserInfo = await client.query({
         query: FETCH_LOGIN_USER,
         context: {
@@ -65,18 +52,19 @@ export default function LoginNewStaffPage() {
         },
       });
       setAccessToken(result.data?.login);
-      // localStorage.setItem("refreshToken", "true");
       const userInfo = resultUserInfo.data?.fetchLoginUser;
       if (!userInfo.manager) {
-        alert("일반 회원 로그인페이지에서 다시 로그인바랍니다.");
+        Modal.info({
+          content: "일반회원 로그인페이지에서 다시 로그인바랍니다.",
+        });
         return router.push("/login");
       }
       console.log(userInfo);
       setUserInfo(userInfo);
-      alert("로그인이 되었습니다.");
+      Modal.success({ content: `${userInfo.name}님 어서오세요!` });
       router.push("/");
     } catch (error) {
-      alert("로그인 정보가 일치하지 않습니다.");
+      Modal.error({ content: "로그인 정보가 일치하지 않습니다." });
       router.push("/login/newStaff");
     }
   };
@@ -87,10 +75,6 @@ export default function LoginNewStaffPage() {
       handleSubmit={handleSubmit}
       register={register}
       formState={formState}
-      // router
-      onClickToSignUp={onClickToSignUp}
-      onClickToLoginNewStaff={onClickToLoginNewStaff}
-      onClickToFindPw={onClickToFindPw}
       // login
       onClickToLogin={onClickToLogin}
     />

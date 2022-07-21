@@ -1,13 +1,10 @@
-import { memo, Dispatch, SetStateAction } from "react";
+import { memo } from "react";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../../../commons/store";
 import * as S from "./MyPageUserSidebar.Styles";
-interface IMyPageUserSidebarProps {
-  activedIndex?: number;
-  setActivedIndex?: Dispatch<SetStateAction<number>>;
-}
+import { IMyPageSidebarProps } from "./MyPageUserSidebar.Types";
 
-function MyPageUserSidebar(props: IMyPageUserSidebarProps) {
+function MyPageUserSidebar(props: IMyPageSidebarProps) {
   const MENU_NAME = ["관심 행사", "동행 내역", "관심 상품", "결제 내역"];
   const [userInfo] = useRecoilState(userInfoState);
   const onClickTab = (index: number) => () => {

@@ -4,6 +4,7 @@ import * as S from "./Chat.Styles";
 // app.js에서 선언한 socket 변수 보내기 필요
 // 창을 닫으면 disconnected
 interface ChatProps {
+  socket?: any;
   username: string;
   room: string;
   onClickChat: () => void;
@@ -15,8 +16,8 @@ function Chat(props: ChatProps) {
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        room,
-        author: username,
+        room: props.room,
+        author: props.username,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +

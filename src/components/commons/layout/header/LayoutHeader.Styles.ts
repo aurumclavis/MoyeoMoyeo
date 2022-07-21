@@ -4,7 +4,9 @@ import {
   ExportOutlined,
   DownloadOutlined,
 } from "@ant-design/icons";
-
+interface IProps {
+  isStaff?: boolean;
+}
 export const Wrapper = styled.div`
   width: 100%;
   position: relative;
@@ -13,13 +15,16 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 0.063rem solid #cccccc;
-  background-color: #ffffff;
+  background-color: ${(props: IProps) =>
+    props.isStaff ? "#73777B" : "#ffffff"};
+  color: ${(props: IProps) => (props.isStaff ? "#ffffff" : "black")};
   @media (max-width: 767px) {
     height: 3.4rem;
     position: sticky;
     top: 0;
     z-index: 20;
-    background-color: #ffffff;
+    background-color: ${(props: IProps) =>
+      props.isStaff ? "#73777B" : "#ffffff"};
   }
 `;
 
@@ -65,6 +70,7 @@ export const NavBarWrapper = styled.div`
 `;
 interface IMenuProps {
   isActive: boolean;
+  isStaff?: boolean;
 }
 
 export const Menu = styled.div`
@@ -74,15 +80,16 @@ export const Menu = styled.div`
   align-items: center;
   margin-top: auto;
   margin-left: 5%;
-  font-weight: ${(props: IMenuProps) => (props.isActive ? "700" : "400")};
+  font-weight: ${(props: IMenuProps) => (props.isActive ? "700" : "500")};
   /* color: ${(props: IMenuProps) =>
     props.isActive ? "#ffe69a" : "#000000"}; */
   border-bottom: ${(props: IMenuProps) =>
     props.isActive ? "3px solid #ffe69a;" : "none"};
   cursor: pointer;
   :hover {
-    color: #ffe69a;
-    border-bottom: 0.063rem solid #ffe69a;
+    color: ${(props: IMenuProps) => (props.isStaff ? "black" : "#ffe69a")};
+    border-bottom: 0.063rem solid
+      ${(props: IMenuProps) => (props.isStaff ? "#ffffff" : "#ffe69a")};
   }
 `;
 

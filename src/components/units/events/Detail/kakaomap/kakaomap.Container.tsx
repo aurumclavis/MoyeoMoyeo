@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import KakakomapPageUI from "./Kakaomap.Presenter";
+import { boolean } from "yup/lib/locale";
+
 import * as S from "./Kakaomap.Styles";
 declare const window: typeof globalThis & {
   kakao: any;
 };
 
-export default function KakakomapPage(props) {
+export default function KakakomapPage(props: any) {
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -39,32 +40,35 @@ export default function KakakomapPage(props) {
         const geocoder = new window.kakao.maps.services.Geocoder();
 
         // 주소로 좌표를 검색합니다
-        geocoder.addressSearch(`${props.address}`, function (result, status) {
-          // 정상적으로 검색이 완료됐으면
-          if (status === window.kakao.maps.services.Status.OK) {
-            const coords = new window.kakao.maps.LatLng(
-              result[0].y,
-              result[0].x
-            );
+        geocoder.addressSearch(
+          `${props.address}`,
+          function (result: any, status: any) {
+            // 정상적으로 검색이 완료됐으면
+            if (status === window.kakao.maps.services.Status.OK) {
+              const coords = new window.kakao.maps.LatLng(
+                result[0].y,
+                result[0].x
+              );
 
-            // 결과값으로 받은 위치를 마커로 표시합니다
-            const marker = new window.kakao.maps.Marker({
-              map,
-              position: coords,
-              image: markerImage,
-            });
+              // 결과값으로 받은 위치를 마커로 표시합니다
+              const marker = new window.kakao.maps.Marker({
+                map,
+                position: coords,
+                image: markerImage,
+              });
 
-            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-            map.setCenter(coords);
-            marker.setMap(map);
+              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+              map.setCenter(coords);
+              marker.setMap(map);
+            }
           }
-        });
+        );
 
         // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
         const placeOverlay = new window.kakao.maps.CustomOverlay({ zIndex: 1 });
-          const contentNode = document.createElement("div"); // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
-          let markers = []; // 마커를 담을 배열입니다
-          let currCategory = ""; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+        const contentNode = document.createElement("div"); // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
+        let markers: any[] = []; // 마커를 담을 배열입니다
+        let currCategory = ""; // 현재 선택된 카테고리를 가지고 있을 변수입니다
         // 장소 검색 객체를 생성합니다
         const ps = new window.kakao.maps.services.Places(map);
 
@@ -94,7 +98,7 @@ export default function KakakomapPage(props) {
         addCategoryClickEvent();
 
         // 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
-        function addEventHandle(target, type, callback) {
+        function addEventHandle(target: any, type: any, callback: any) {
           if (target.addEventListener) {
             target.addEventListener(type, callback);
           } else {
@@ -120,7 +124,7 @@ export default function KakakomapPage(props) {
         }
 
         // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-        function placesSearchCB(data, status, pagination) {
+        function placesSearchCB(data: any, status: any, pagination: any) {
           if (status === window.kakao.maps.services.Status.OK) {
             // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
             displayPlaces(data);
@@ -132,7 +136,7 @@ export default function KakakomapPage(props) {
         }
 
         // 지도에 마커를 표출하는 함수입니다
-        function displayPlaces(places) {
+        function displayPlaces(places: any) {
           // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
           // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
           const order = document
@@ -159,22 +163,22 @@ export default function KakakomapPage(props) {
         // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
         function addMarker(position, order) {
           const imageSrc =
-              "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png"; // 마커 이미지 url, 스프라이트 이미지를 씁니다
-            const imageSize = new window.kakao.maps.Size(27, 28); // 마커 이미지의 크기
-            const imgOptions = {
-              spriteSize: new window.kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
-              spriteOrigin: new window.kakao.maps.Point(46, order * 36), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-              offset: new window.kakao.maps.Point(11, 28), // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-            };
-            const markerImage = new window.kakao.maps.MarkerImage(
-              imageSrc,
-              imageSize,
-              imgOptions
-            );
-            const marker = new window.kakao.maps.Marker({
-              position, // 마커의 위치
-              image: markerImage,
-            });
+            "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png"; // 마커 이미지 url, 스프라이트 이미지를 씁니다
+          const imageSize = new window.kakao.maps.Size(27, 28); // 마커 이미지의 크기
+          const imgOptions = {
+            spriteSize: new window.kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
+            spriteOrigin: new window.kakao.maps.Point(46, order * 36), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+            offset: new window.kakao.maps.Point(11, 28), // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+          };
+          const markerImage = new window.kakao.maps.MarkerImage(
+            imageSrc,
+            imageSize,
+            imgOptions
+          );
+          const marker = new window.kakao.maps.Marker({
+            position, // 마커의 위치
+            image: markerImage,
+          });
 
           marker.setMap(map); // 지도 위에 마커를 표출합니다
           markers.push(marker); // 배열에 생성된 마커를 추가합니다
@@ -240,7 +244,7 @@ export default function KakakomapPage(props) {
         // 각 카테고리에 클릭 이벤트를 등록합니다
         function addCategoryClickEvent(event) {
           const category = document.getElementById("category");
-            const children = category.children;
+          const children = category.children;
 
           for (let i = 0; i < children.length; i++) {
             children[i].onclick = onClickCategory;
@@ -250,7 +254,7 @@ export default function KakakomapPage(props) {
         // 카테고리를 클릭했을 때 호출되는 함수입니다
         function onClickCategory() {
           const id = this.id;
-            const className = this.className;
+          const className = this.className;
 
           placeOverlay.setMap(null);
 
@@ -284,16 +288,12 @@ export default function KakakomapPage(props) {
       // };
     };
   }, [props.address]);
-  const [tapOpen, setTapOpen] = useState(false);
+  const [tapOpen, setTapOpen] = useState<boolean>(false);
   const onClickTap = () => {
     setTapOpen(prev => !prev);
   };
   return (
-    <>
-      <S.MapWrapper>
-        <div id="map" style={{ width: 1000, height: 600 }}></div>
-      </S.MapWrapper>
-
+    <S.Wrapper>
       {/* <div
         className="map_wrap"
         id="map"
@@ -307,9 +307,12 @@ export default function KakakomapPage(props) {
       >
 
       </div> */}
-      <div onClick={onClickTap}>버튼</div>
-      <S.CategoryWrapper isActive={tapOpen}>
-        <S.UlWrapper id="category">
+      <S.MapWrapper>
+        <div id="map" style={{ width: 900, height: 600 }}></div>
+      </S.MapWrapper>
+      <S.CategoryBtn onClick={onClickTap}>주위 편의시설 보기</S.CategoryBtn>
+      <S.UlWrapper id="category" isActive={tapOpen}>
+        <>
           <S.LiItems id="BK9" data-order="0">
             {/* <div className="category_bg bank"></div> */}
             은행
@@ -335,15 +338,16 @@ export default function KakakomapPage(props) {
             편의점
           </S.LiItems>
           {/* <S.LiItems id="MT1" data-order="6">
-            <div className="category_bg"></div>
-            대형마트
-          </S.LiItems> */}
+       <div className="category_bg"></div>
+       대형마트
+     </S.LiItems> */}
           <S.LiItems id="SW8" data-order="7">
             {/* <div className="category_bg subway"></div> */}
             지하철역
           </S.LiItems>
-        </S.UlWrapper>
-      </S.CategoryWrapper>
-    </>
+        </>
+      </S.UlWrapper>
+      <S.CategoryWrapper></S.CategoryWrapper>
+    </S.Wrapper>
   );
 }

@@ -80,7 +80,7 @@ export const Select = styled.select`
 
 export const ListWrapper = styled.div`
   width: 90%;
-  display: ${(props: ITabProps) => (props.isActive ? "grid" : "none")};
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 0.63rem;
   margin: 1rem auto;
@@ -101,10 +101,8 @@ export const List = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-left: 1rem;
-  border: ${(props: ITabProps) =>
-    props.isActive ? "1px solid #d2d2d2" : "none"};
-  border-left: ${(props: ITabProps) =>
-    props.isActive ? "1px solid #d2d2d2" : "3px solid #FFD24C"};
+  border: 1px solid #d2d2d2;
+
   transition: 0.2s;
   box-shadow: 0px 2px 4px 0px #00000033;
   :hover {
@@ -115,8 +113,8 @@ export const List = styled.div`
   }
 `;
 export const ListImg = styled.img`
-  width: ${(props: ITabProps) => (props.isActive ? "150px" : "0")};
-  height: ${(props: ITabProps) => (props.isActive ? "150px" : "0")};
+  width: 150px;
+  height: 150px;
   @media (max-width: 767px) {
   }
 `;

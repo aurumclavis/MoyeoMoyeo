@@ -1,8 +1,9 @@
 import * as S from "./FestivalList.Styles";
 import InfiniteScroll from "react-infinite-scroller";
 import FestivalListUIAdd from "./FestivalList.PresenterAdd";
+import { IFestivalListUI } from "./FestivalList.Types";
 
-export default function FestivalListUI(props) {
+export default function FestivalListUI(props: IFestivalListUI) {
   return (
     <>
       <S.Wrapper>
@@ -17,7 +18,7 @@ export default function FestivalListUI(props) {
             loadMore={props.ToloadFunc}
             hasMore={true}
           >
-            {props.data?.fetchPosts.map(el => (
+            {props.data?.fetchPosts.map((el: any) => (
               <FestivalListUIAdd data={props.data} key={el._id} el={el} />
             ))}
           </InfiniteScroll>

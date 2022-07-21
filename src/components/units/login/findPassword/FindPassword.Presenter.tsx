@@ -20,7 +20,6 @@ export default function FindPwPageUI(props: IFindPw) {
         <CommonInput
           placeholder={"이메일(ID)을 입력해주세요"}
           register={props.register("email")}
-          onChagne={props.onChagneEmail}
         />
         <S.Error>{props.formState.errors.email?.message}</S.Error>
         <S.MobileInfo>
@@ -32,7 +31,7 @@ export default function FindPwPageUI(props: IFindPw) {
                   {...props.register("validateToken")}
                 />
                 <Countdown renderer={renderer} date={Date.now() + 180000} />
-                <S.MobileGetNumAgainBtn onClick={props.onClickGetNumberAgain}>
+                <S.MobileGetNumAgainBtn onClick={props.onClickGetNumber}>
                   인증번호 재요청
                 </S.MobileGetNumAgainBtn>
                 <S.MobileAuthCheckBtn onClick={props.onClickConfirm}>
@@ -46,7 +45,6 @@ export default function FindPwPageUI(props: IFindPw) {
                     props.watch("email")
                   )
                 }
-                // isActive={props.watch("email")}
                 onClick={props.onClickGetNumber}
               >
                 인증번호 요청
@@ -73,7 +71,6 @@ export default function FindPwPageUI(props: IFindPw) {
             <ButtonSubmit
               fontSize="1.25rem"
               isActive={props.formState.isValid}
-              // isActive={true}
               title="비밀번호 업데이트"
             />
           </S.ButtonWrapper>

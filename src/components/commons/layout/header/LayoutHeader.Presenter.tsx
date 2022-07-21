@@ -1,9 +1,9 @@
 import * as S from "./LayoutHeader.Styles";
 
-export default function LayoutHeaderUI(props) {
+export default function LayoutHeaderUI(props: any) {
   return (
     <>
-      <S.Wrapper>
+      <S.Wrapper isStaff={props.isStaff}>
         <S.MenuIconWrapper>
           <S.MenuIcon onClick={props.onClickMobileMenu} />
         </S.MenuIconWrapper>
@@ -14,6 +14,7 @@ export default function LayoutHeaderUI(props) {
           />
           <S.NavBarWrapper>
             <S.Menu
+              isStaff={props.isStaff}
               isActive={props.activedTab === "/events"}
               id="/events"
               onClick={props.onClickTab}
@@ -21,6 +22,7 @@ export default function LayoutHeaderUI(props) {
               행사일정
             </S.Menu>
             <S.Menu
+              isStaff={props.isStaff}
               isActive={props.activedTab === "/boards"}
               id="/boards"
               onClick={props.onClickTab}
@@ -28,28 +30,27 @@ export default function LayoutHeaderUI(props) {
               동행하기
             </S.Menu>
             <S.Menu
+              isStaff={props.isStaff}
               isActive={props.activedTab === "/products"}
               id="/products"
               onClick={props.onClickTab}
             >
               모여마켓
             </S.Menu>
-            {props.accessToken ? (
+            {props.accessToken && (
               <S.Menu
+                isStaff={props.isStaff}
                 isActive={props.activedTab === "/mypage"}
                 id="/mypage"
                 onClick={props.onClickTab}
               >
                 마이페이지
               </S.Menu>
-            ) : (
-              <S.Menu isActive={false}> </S.Menu>
             )}
           </S.NavBarWrapper>
           <S.UserMenuWrapper>
             {props.accessToken ? (
               <>
-                <S.UserMenu></S.UserMenu>
                 <S.UserMenu onClick={props.onClickLogout}>로그아웃</S.UserMenu>
               </>
             ) : (

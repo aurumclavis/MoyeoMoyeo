@@ -10,6 +10,7 @@ interface ICheckBoxProps {
   trigger?: any;
   checked?: boolean;
   secondChecked?: boolean;
+  id?: any;
 }
 const Wrapper = styled.div`
   width: 100%;

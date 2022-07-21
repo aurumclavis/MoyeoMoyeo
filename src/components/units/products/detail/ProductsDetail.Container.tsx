@@ -103,7 +103,7 @@ export default function ProductDetail() {
       });
       onClickMoveToPage("/products")();
     } catch (error) {
-      Modal.error(error.message);
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 
@@ -116,11 +116,11 @@ export default function ProductDetail() {
           },
         });
         Modal.success({
-          content: "찜하기 완료",
+          content: "관심 상품 목록에 담았습니다.",
         });
         setDibsId(result.data.dibsProduct[0].id);
       } catch (error) {
-        Modal.error({ content: error.message });
+        if (error instanceof Error) Modal.error({ content: error.message });
       }
     } else {
       try {
@@ -131,10 +131,10 @@ export default function ProductDetail() {
         });
         setDibsId("");
         Modal.success({
-          content: "찜하기 해제 완료",
+          content: "찜 목록에서 해제되었습니다.",
         });
       } catch (error) {
-        Modal.error({ content: error.message });
+        if (error instanceof Error) Modal.error({ content: error.message });
       }
     }
   };

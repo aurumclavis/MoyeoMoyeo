@@ -21,3 +21,9 @@ export interface IProductWriteProps {
   isEdit?: boolean;
   data?: any;
 }
+export interface IUpdateProductInput {
+  name?: string;
+  price?: number;
+  description?: string;
+  contentSrc?: string;
+}

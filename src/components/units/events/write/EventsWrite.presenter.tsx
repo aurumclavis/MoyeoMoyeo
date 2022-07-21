@@ -6,8 +6,9 @@ import CommonInput from "../../../commons/inputs/infoInputs";
 import DateRangePicker from "./date/date";
 import { Upload, Button, Modal } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import { IEventsWrite } from "./EventsWrite.Type";
 
-export default function EventsWriteUI(props: any) {
+export default function EventsWriteUI(props: IEventsWrite) {
   return (
     <>
       {props.isOpen && (
@@ -23,7 +24,7 @@ export default function EventsWriteUI(props: any) {
       <S.Wrapper>
         <S.FormWrapper
           onSubmit={props.handleSubmit(
-            props.isEdit ? props.onClickUpdate : props.onClickSubmi
+            props.isEdit ? props.onClickUpdate : props.onClickSubmit
           )}
         >
           <S.HeaderTitle>행사 {props.isEdit ? "수정" : "등록"}</S.HeaderTitle>
@@ -112,9 +113,7 @@ export default function EventsWriteUI(props: any) {
               />
               {/* <button>버튼</button> */}
             </S.ButtonWrapper>
-            <S.CancleBtn onClick={props.onClickMoveToPage("/events")}>
-              취소
-            </S.CancleBtn>
+            <S.CancleBtn onClick={props.onClickCancle}>취소</S.CancleBtn>
           </S.ButtonOutWrapper>
         </S.FormWrapper>
       </S.Wrapper>
