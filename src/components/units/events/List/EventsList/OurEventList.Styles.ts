@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
 export const Select = styled.select`
   width: 120px;
   height: 1.6rem;
-  /* margin-left: auto; */
+  margin-left: auto;
   margin-right: 2rem;
   margin-bottom: 1rem;
   border: 1px solid #d2d2d2;

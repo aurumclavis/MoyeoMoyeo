@@ -9,11 +9,8 @@ export const CREATE_POST = gql`
 `;
 
 export const UPLOAD_IMAGES = gql`
-  mutation uploadImages($files: Upload!) {
-    uploadFile(file: $files) {
-      # 리턴값이 읎엉..?
-      id
-    }
+  mutation uploadImages($files: [Upload!]!) {
+    uploadImages(files: $files)
   }
 `;
 

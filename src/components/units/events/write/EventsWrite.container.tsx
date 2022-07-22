@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { CREATE_POST, UPDATE_POST } from "./EventsWrite.Queries";
+import { CREATE_POST, UPDATE_POST, UPLOAD_IMAGES } from "./EventsWrite.Queries";
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
@@ -22,19 +22,22 @@ const schema = yup.object({
 export default function EventsWrite(props: IEventsWriteProps) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
-  // const [uploadImages] = useMutation(UPLOAD_IMAGES);
   const [isOpen, setIsOpen] = useState(false);
 
-  const [address, setAddress] = useState("");
-  const [dateStart, setDateStart] = useState("");
-  const [dateEnd, setDateEnd] = useState("");
   // 날짜 선택
   const [createPost] = useMutation(CREATE_POST);
   const [updatePost] = useMutation(UPDATE_POST);
-
-  // const [fileMain, setMainFileUrls] = useState([""]);
-  // const [fileUrls, setFileUrls] = useState("");
-  // const [file, setFile] = useState<File>();
+  // 이미지
+  const [uploadImages] = useMutation(UPLOAD_IMAGES);
+  const [mainFileUrls, setMainFileUrls] = useState([""]);
+  const [subFileUrls, setSubFileUrls] = useState([]);
+  const [fileUrls] = useState([...mainFileUrls, ...subFileUrls]);
+  // 스테이트 입력 값
+  const [address, setAddress] = useState("");
+  const [dateStart, setDateStart] = useState("");
+  const [dateEnd, setDateEnd] = useState("");
+  const [addressErorr, setAddressErorr] = useState("");
+  const [dateStartErorr, setDateStartErorr] = useState("");
 
   const { register, handleSubmit, formState, setValue, trigger } = useForm({
     resolver: yupResolver(schema),
@@ -50,34 +53,22 @@ export default function EventsWrite(props: IEventsWriteProps) {
     trigger("category");
   };
 
-  // const onChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   if (!file) {
-  //     alert("파일이 없습니다 ");
-  //     return;
-  //   }
-  //   const fileReader = new FileReader();
-  //   fileReader.readAsDataURL(file);
-  //   fileReader.onload = data => {
-  //     if (typeof data.target?.result === "string") {
-  //       console.log(data.target?.result);
-  //       setFileUrls(data.target?.result);
-  //       setFile(file);
-  //     }
-  //   };
-  //   // const result = URL.createObjectURL(file);
-  // };
-
-  // const onChangeCategory = e => {
-  //   setCategoy(e.target.value);
-  // };
-
   const onClickSubmit = async (data: any) => {
-    console.log(data);
-    // const resultfile = await uploadImages({ variables: { files: file } });
-    // const url = resultfile.data.uploadFile.url; // 리턴값..?
+    if (!address) {
+      setAddressErorr("주소를 입력해주세요.");
+      return;
+    }
+    if (!dateStart || !dateEnd) {
+      setDateStartErorr("정확한 일정을 선택해주세요");
+      return;
+    }
+    const imageUpload = await uploadImages({
+      variables: {
+        files: fileUrls,
+      },
+    });
     try {
-      await createPost({
+      const result = await createPost({
         variables: {
           postInput: {
             title: data.title,
@@ -86,27 +77,26 @@ export default function EventsWrite(props: IEventsWriteProps) {
             dateEnd,
             description: data.contents,
             category: data.category,
-            imgSrcs: ["", ""],
+            imgSrcs: imageUpload.data?.uploadImages,
           },
         },
       });
-      Modal.success({ content: "등록 완료" });
-      router.push("/events");
+      Modal.success({ content: "행사 등록이 완료되었습니다." });
+      router.push(`/events${result.data.createPost.id}`);
     } catch (error: any) {
       Modal.error({ content: error.message });
     }
   };
 
   const onClickUpdate = async (data: any) => {
-    const updatePostInput: IUpdatePostInput = {};
-    if (data.title) updatePostInput.title = data.title;
-    if (data.contents) updatePostInput.description = data.contents;
-    if (data.address) updatePostInput.address = data.address;
-    if (data.category) updatePostInput.category = data.category;
-    if (dateStart) updatePostInput.title = dateStart;
-    if (dateEnd) updatePostInput.dateEnd = dateEnd;
-
     try {
+      const updatePostInput: IUpdatePostInput = {};
+      if (data.title) updatePostInput.title = data.title;
+      if (data.contents) updatePostInput.description = data.contents;
+      if (data.address) updatePostInput.address = data.address;
+      if (data.category) updatePostInput.category = data.category;
+      if (dateStart) updatePostInput.title = dateStart;
+      if (dateEnd) updatePostInput.dateEnd = dateEnd;
       await updatePost({
         variables: {
           postId: router.query.id,
@@ -118,6 +108,20 @@ export default function EventsWrite(props: IEventsWriteProps) {
     } catch (error: any) {
       Modal.error({ content: error.message });
     }
+  };
+
+  // const onChangeFilesMain = (fileUrl: string) => () => {
+  //   setMainFileUrls([fileUrl]);
+  // };
+
+  const onChangeFilesMain = (fileUrl: string) => {
+    setMainFileUrls([fileUrl]);
+  };
+
+  const onChangeFilesSub = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setSubFileUrls(newFileUrls);
   };
 
   const onChangeDate = (e: any) => {
@@ -163,13 +167,18 @@ export default function EventsWrite(props: IEventsWriteProps) {
       onClickMoveToPage={onClickMoveToPage}
       onChangeDate={onChangeDate}
       onChangeContents={onChangeContents}
-      // onChangeFileUrls={onChangeFile}
+      onChangeFilesMain={onChangeFilesMain}
+      onChangeFilesSub={onChangeFilesSub}
       onChangeCategory={onChangeCategory}
       onClickSubmit={onClickSubmit}
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
       onClickUpdate={onClickUpdate}
       onClickCancle={onClickCancle}
+      addressErorr={addressErorr}
+      dateStartErorr={dateStartErorr}
+      mainFileUrls={mainFileUrls}
+      subFileUrls={subFileUrls}
     />
   );
 }
