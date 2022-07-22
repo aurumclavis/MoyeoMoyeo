@@ -55,28 +55,6 @@ export const Input = styled.input`
   }
 `;
 
-// 이미지 업로드
-export const ImageWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  ::after {
-    display: block;
-    content: "";
-    padding-bottom: 20%;
-  }
-`;
-export const ImageItemWrapper = styled.div`
-  width: 20%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 0.625rem;
-  border: 1px dashed #73777b;
-  border-radius: 5px;
-  font-size: 2rem;
-`;
-
 // 웹에디터
 export const EditorWrapper = styled.div`
   display: flex;
@@ -134,12 +112,23 @@ export const Error = styled.div`
   font-size: 0.875rem;
   padding-top: 0.625rem;
 `;
+
+// 이미지 업로드
+export const ImageWrapper = styled.div`
+  width: 100%;
+  margin: 0.625rem 0;
+  /* ::after {
+    display: block;
+    content: "";
+  } */
+`;
+
 export const UploadImage = styled.img`
   width: 78px;
   height: 78px;
-  margin-right: 24px;
-  cursor: pointer;
 `;
-export const UploadFileHidden = styled.input`
-  display: none;
+export const UploadBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 `;

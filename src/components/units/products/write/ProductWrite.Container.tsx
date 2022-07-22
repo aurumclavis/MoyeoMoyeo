@@ -123,10 +123,10 @@ export default function ProductWrite(props: IProductWriteProps) {
   };
 
   const onChangeFiles = (
-    value: ImageListType,
+    imageList: any,
     addUpdateIndex?: number | undefined
   ) => {
-    setImageList(value);
+    setImageList(imageList);
     const tempFiles = [...files];
     tempFiles[addUpdateIndex] = imageList[addUpdateIndex]?.file;
     setFiles(tempFiles);
