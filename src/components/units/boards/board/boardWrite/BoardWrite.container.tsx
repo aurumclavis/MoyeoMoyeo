@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { eventIdForBoardState } from "../../../../../commons/store";
@@ -28,12 +28,33 @@ export default function BoardWriteContainer(props: any) {
   const [uploadImages] = useMutation(UPLOAD_IMAGES);
 
   const onClickSubmit = async (data: any) => {
-    try {
+    let uploadResultsImage = "";
+    if (files[0] === undefined) {
+      let coverImageFile = {};
+      const convertURLtoFile = async (url: any) => {
+        const response = await fetch(url);
+        const data = await response.blob();
+        const ext = url.split(".").pop();
+        const filename = url.split("/").pop();
+        const metadata = { type: `image/${ext}` };
+        coverImageFile = new File([data], filename!, metadata);
+      };
+      convertURLtoFile(randomCoverUrl);
+      const uploadResults = await uploadImages({
+        variables: {
+          files: coverImageFile,
+        },
+      });
+      uploadResultsImage = uploadResults.data.uploadImages[0];
+    } else {
       const uploadResults = await uploadImages({
         variables: {
           files,
         },
       });
+      uploadResultsImage = uploadResults.data.uploadImages[0];
+    }
+    try {
       if (!props.isEdit) {
         const result = await createBoard({
           variables: {
@@ -51,7 +72,7 @@ export default function BoardWriteContainer(props: any) {
                 postal: address,
                 address_description: data.accompanyLocation,
               },
-              coverImgSrc: uploadResults.data.uploadImages[0],
+              coverImgSrc: uploadResultsImage,
               eventImageSrc: "",
               eventName: postData.fetchPost.title,
               eventStart: getDate(postData.fetchPost.dateStart),
@@ -62,16 +83,8 @@ export default function BoardWriteContainer(props: any) {
         });
         onClickMoveToPage(`/boards/${result.data.createBoard.id}`)();
       } else {
-        console.log(
-          data,
-          maxHeadCount,
-          accompanyDate.start,
-          accompanyDate.end,
-          selectedTransport,
-          address,
-          uploadResults.data.uploadImages[0],
-          props.data.fetchBoard.eventName
-        );
+        if (!editPageRandomCover && files[0] === undefined)
+          uploadResultsImage = props.data.fetchBoard.coverImage.src;
         const result = await updateBoard({
           variables: {
             boardId: props.data.fetchBoard.id,
@@ -89,7 +102,7 @@ export default function BoardWriteContainer(props: any) {
                 postal: address,
                 address_description: data.accompanyLocation,
               },
-              coverImgSrc: uploadResults.data.uploadImages[0],
+              coverImgSrc: uploadResultsImage,
               eventImageSrc: "",
               eventName: props.data.fetchBoard.eventName,
               eventStart: props.data.fetchBoard.eventStart,
@@ -127,27 +140,6 @@ export default function BoardWriteContainer(props: any) {
   const coverImgRef = useRef(null);
   const [previewUrls, setPreviewUrls] = useState(["", ""]);
   const [files, setFiles] = useState([undefined]);
-
-  // 랜덤커버이미지 경로를 파일객체로 변환한 뒤 files 스테이트 변경
-  let coverImageFile = {};
-  const convertURLtoFile = useCallback(
-    async (url) => {
-      const response = await fetch(url);
-      const data = await response.blob();
-      const ext = url?.split(".").pop();
-      const filename = url?.split("/").pop();
-      const metadata = { type: `image/${ext}` };
-      coverImageFile = new File([data], filename!, metadata);
-      setFiles([coverImageFile]);
-    },
-    [randomCoverUrl]
-  );
-  useEffect(() => {
-    convertURLtoFile(randomCoverUrl);
-  }, [randomCoverUrl]);
-
-  console.log("커버이미지파일객체", files);
-
   const onChangeImgInput = (number: string) => async (event: any) => {
     const file = event.target.files?.[0];
     if (!file) {

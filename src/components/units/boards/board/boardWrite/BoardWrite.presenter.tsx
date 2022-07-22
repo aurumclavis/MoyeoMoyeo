@@ -18,7 +18,9 @@ export default function BoardWritePresenter(props: any) {
         ) : (
           <S.CoverImage
             src={
-              props.editPageRandomCover
+              props.previewUrls[0]
+                ? props.previewUrls[0]
+                : props.editPageRandomCover
                 ? props.randomCoverUrl
                 : `https://storage.googleapis.com/${props.data?.fetchBoard.coverImage.src}`
             }
