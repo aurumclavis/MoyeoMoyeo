@@ -16,9 +16,10 @@ export interface IEventsWrite {
   postData?: any;
   data?: any;
   address: string;
-
+  dateStartErorr: string;
+  addressErorr: string;
   onClickMoveToPage: (path: any) => void;
-  // onChangeDate: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+
   onChangeDate: (e: any) => void;
   onChangeContents: (value: string) => void;
   onChangeCategory: (value: string) => void;
@@ -27,6 +28,10 @@ export interface IEventsWrite {
   onCompleteAddressSearch: (data: any) => void;
   onClickUpdate: (data: any) => void;
   onClickCancle: () => void;
+  onChangeFilesMain: (fileUrl: string) => void;
+  onChangeFilesSub: (fileUrl: string, index: number) => void;
+  mainFileUrls: string[];
+  subFileUrls: string[];
 }
 
 export interface ICompleteAddress {

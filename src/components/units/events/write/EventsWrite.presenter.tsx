@@ -7,6 +7,7 @@ import DateRangePicker from "./date/date";
 import { Upload, Button, Modal } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { IEventsWrite } from "./EventsWrite.Type";
+import { getDate } from "../../../commons/getDate";
 
 export default function EventsWriteUI(props: IEventsWrite) {
   return (
@@ -43,7 +44,12 @@ export default function EventsWriteUI(props: IEventsWrite) {
               <S.DateWrapper>
                 <S.SubTitle>행사 일정</S.SubTitle>
                 <DateRangePicker
-                  placeholder={["축제 시작일", "축제 종료일"]}
+                  placeholder={
+                    [
+                      getDate(props.postData?.fetchPost.dateStart),
+                      getDate(props.postData?.fetchPost.dateEnd),
+                    ] || ["축제 시작일", "축제 종료일"]
+                  }
                   onChangeDate={props.onChangeDate}
                   defaultValue={[
                     props.postData?.fetchPost.dateStart,
@@ -51,6 +57,7 @@ export default function EventsWriteUI(props: IEventsWrite) {
                   ]}
                 />
               </S.DateWrapper>
+              <S.Error>{props.dateStartErorr}</S.Error>
             </S.RowWrapper>
             <S.SubTitle>행사 주소</S.SubTitle>
             <S.RowWrapper>
@@ -64,24 +71,33 @@ export default function EventsWriteUI(props: IEventsWrite) {
                 주소 검색
               </S.SearchButton>
             </S.RowWrapper>
-            <S.Error>{props.formState.errors.address?.message}</S.Error>
+            <S.Error>{props.addressErorr}</S.Error>
 
             <S.SubTitle>상세 설명</S.SubTitle>
             <S.ContentQuill
               onChange={props.onChangeContents}
-              defaultValue={props.postData?.fetchPost.description}
+              value={props.postData?.fetchPost.description}
               placeholder="축제에 대한 설명을 입력해주세요."
             />
             <S.RowWrapper>
               <S.ImageWrapper>
                 <S.SubTitle>대표 사진</S.SubTitle>
-                <Upload listType="picture" maxCount={1} multiple>
+                <Upload
+                  listType="picture"
+                  maxCount={1}
+                  // onChange={props.onChangeFilesMain}
+                >
                   <Button icon={<UploadOutlined />}>사진등록</Button>
                 </Upload>
               </S.ImageWrapper>
               <S.ImageWrapper>
                 <S.SubTitle>전체 사진</S.SubTitle>
-                <Upload listType="picture" maxCount={4} multiple>
+                <Upload
+                  listType="picture"
+                  maxCount={4}
+                  multiple
+                  // onChange={props.onChangeFilesSub}
+                >
                   <Button icon={<UploadOutlined />}>사진등록</Button>
                 </Upload>
               </S.ImageWrapper>
