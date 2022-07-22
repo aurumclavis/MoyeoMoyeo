@@ -12,8 +12,8 @@ export default function ProductsListUI(props: IProductsListUIProps) {
   const [userInfo] = useRecoilState(userInfoState);
   const [selected, setSelected] = useState("");
 
-  const SOLD_ARR = props.data?.fetchProducts.filter((el: any) => el.isSoldout);
-  const UNSOLD_ARR = props.data?.fetchProducts.filter(
+  const SOLD_ARR = props.data?.fetchProducts?.filter((el: any) => el.isSoldout);
+  const UNSOLD_ARR = props.data?.fetchProducts?.filter(
     (el: any) => !el.isSoldout
   );
 
@@ -51,9 +51,11 @@ export default function ProductsListUI(props: IProductsListUIProps) {
             <ProductsListItem el={el} key={el.id} />
           ))}
         {selected === "true" &&
-          SOLD_ARR.map((el: any) => <ProductsListItem el={el} key={el.id} />)}
+          SOLD_ARR?.map((el: any) => <ProductsListItem el={el} key={el.id} />)}
         {selected === "false" &&
-          UNSOLD_ARR.map((el: any) => <ProductsListItem el={el} key={el.id} />)}
+          UNSOLD_ARR?.map((el: any) => (
+            <ProductsListItem el={el} key={el.id} />
+          ))}
       </S.GridWrapper>
 
       {/* 페이지네이션 */}
