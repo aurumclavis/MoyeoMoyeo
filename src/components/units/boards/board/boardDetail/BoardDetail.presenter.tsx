@@ -342,13 +342,18 @@ export default function BoardDetailPresenter(props: any) {
             동행게시판으로
           </S.GoListButton>
           {props.isMyBoard && (
-            <S.EditButton
-              onClick={props.onClickMoveToPage(
-                `/boards/${props.data?.fetchBoard.id}/edit`
-              )}
-            >
-              수정하기
-            </S.EditButton>
+            <>
+              <S.DeleteButton onClick={props.onClickDelete}>
+                삭제하기
+              </S.DeleteButton>
+              <S.EditButton
+                onClick={props.onClickMoveToPage(
+                  `/boards/${props.data?.fetchBoard.id}/edit`
+                )}
+              >
+                수정하기
+              </S.EditButton>
+            </>
           )}
         </S.ButtonWrapper>
         <S.CommentWrapper ref={props.commentRef}>

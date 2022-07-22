@@ -16,6 +16,7 @@ export const FETCH_BOARD = gql`
         id
         name
       }
+      #   널러블에러
       #   scheduledUsers {
       #     id
       #   }
@@ -63,5 +64,11 @@ export const REQUEST_ACCOMPANY = gql`
     requestAccompany(boardId: $boardId) {
       id
     }
+  }
+`;
+
+export const DELETE_BOARD = gql`
+  mutation deleteBoard($boardId: String!) {
+    deleteBoard(boardId: $boardId)
   }
 `;

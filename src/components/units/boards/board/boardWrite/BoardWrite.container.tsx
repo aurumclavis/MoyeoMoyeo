@@ -22,40 +22,43 @@ export default function BoardWriteContainer(props: any) {
       postId: eventIdForBoard,
     },
   });
-  const { register, handleSubmit, setValue, trigger } = useForm();
+  const { register, handleSubmit, setValue, trigger, reset, getValues } =
+    useForm({
+      mode: "onChange",
+    });
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [uploadImages] = useMutation(UPLOAD_IMAGES);
 
   const onClickSubmit = async (data: any) => {
     let uploadResultsImage = "";
-    if (files[0] === undefined) {
-      let coverImageFile = {};
-      const convertURLtoFile = async (url: any) => {
-        const response = await fetch(url);
-        const data = await response.blob();
-        const ext = url.split(".").pop();
-        const filename = url.split("/").pop();
-        const metadata = { type: `image/${ext}` };
-        coverImageFile = new File([data], filename!, metadata);
-      };
-      convertURLtoFile(randomCoverUrl);
-      const uploadResults = await uploadImages({
-        variables: {
-          files: coverImageFile,
-        },
-      });
-      uploadResultsImage = uploadResults.data.uploadImages[0];
-    } else {
-      const uploadResults = await uploadImages({
-        variables: {
-          files,
-        },
-      });
-      uploadResultsImage = uploadResults.data.uploadImages[0];
-    }
+    let coverImageFile = {};
+    const convertURLtoFile = async (url: any) => {
+      const response = await fetch(url);
+      const data = await response.blob();
+      const ext = url?.split(".").pop();
+      const filename = url?.split("/").pop();
+      const metadata = { type: `image/${ext}` };
+      coverImageFile = new File([data], filename!, metadata);
+    };
     try {
       if (!props.isEdit) {
+        if (files[0] === undefined) {
+          await convertURLtoFile(randomCoverUrl);
+          const uploadResults = await uploadImages({
+            variables: {
+              files: coverImageFile,
+            },
+          });
+          uploadResultsImage = uploadResults.data.uploadImages[0];
+        } else {
+          const uploadResults = await uploadImages({
+            variables: {
+              files,
+            },
+          });
+          uploadResultsImage = uploadResults.data.uploadImages[0];
+        }
         const result = await createBoard({
           variables: {
             createBoardInput: {
@@ -83,8 +86,24 @@ export default function BoardWriteContainer(props: any) {
         });
         onClickMoveToPage(`/boards/${result.data.createBoard.id}`)();
       } else {
-        if (!editPageRandomCover && files[0] === undefined)
+        if (!editPageRandomCover && files[0] === undefined) {
           uploadResultsImage = props.data.fetchBoard.coverImage.src;
+        } else if (files[0] === undefined) {
+          await convertURLtoFile(randomCoverUrl);
+          const uploadResults = await uploadImages({
+            variables: {
+              files: coverImageFile,
+            },
+          });
+          uploadResultsImage = uploadResults.data.uploadImages[0];
+        } else {
+          const uploadResults = await uploadImages({
+            variables: {
+              files,
+            },
+          });
+          uploadResultsImage = uploadResults.data.uploadImages[0];
+        }
         const result = await updateBoard({
           variables: {
             boardId: props.data.fetchBoard.id,
@@ -117,7 +136,6 @@ export default function BoardWriteContainer(props: any) {
       alert(error.message);
     }
   };
-
   // 지도 부분
   const postAddress = postData?.fetchPost.address;
   const [address, setAddress] = useState("");
@@ -132,8 +150,12 @@ export default function BoardWriteContainer(props: any) {
     setRandomCoverUrl(randomCoverImg(postData?.fetchPost.category));
   }, [postData?.fetchPost.category]);
   const onClickChangeRandomCover = () => {
-    setRandomCoverUrl(randomCoverImg(postData?.fetchPost.category));
-    props.isEdit && setEditPageRandomCover(true);
+    if (!props.isEdit) {
+      setRandomCoverUrl(randomCoverImg(postData?.fetchPost.category));
+    } else {
+      setEditPageRandomCover(true);
+      setRandomCoverUrl(randomCoverImg(props.data?.fetchBoard.eventCategory));
+    }
   };
 
   // 이미지 변경 부분
@@ -193,7 +215,6 @@ export default function BoardWriteContainer(props: any) {
       maxHeadCount > 1 &&
       setMaxHeadCount((prev) => prev - 1);
   };
-
   // 글 내용 부분
   const onChangeQuill = (value: string) => {
     setValue("contents", value === "<p><br></br>" ? "" : value);
@@ -227,8 +248,10 @@ export default function BoardWriteContainer(props: any) {
   // 수정페이지일 때 디폴트값
   useEffect(() => {
     if (props.isEdit) {
+      reset({
+        contents: props.data?.fetchBoard.title,
+      });
       setValue("title", props.data?.fetchBoard.title);
-      setValue("contents", props.data?.fetchBoard.contents);
       setValue("remark", props.data?.fetchBoard.remark);
       setValue("LatLng", {
         lat: props.data?.fetchBoard.boardAddress.lat,
@@ -238,8 +261,7 @@ export default function BoardWriteContainer(props: any) {
         "accompanyLocation",
         props.data?.fetchBoard.boardAddress.address_description
       );
-      setValue("contents", props.data?.fetchBoard.contents);
-      setMaxHeadCount(props.data?.fetchBoard.personCount);
+      setMaxHeadCount(Number(props.data?.fetchBoard.personCount));
       setAccompanyDate({
         start: props.data?.fetchBoard.dateStart,
         end: props.data?.fetchBoard.dateEnd,
@@ -255,6 +277,7 @@ export default function BoardWriteContainer(props: any) {
       data={props.data}
       postData={postData}
       setValue={setValue}
+      getValues={getValues}
       register={register}
       handleSubmit={handleSubmit}
       randomCoverUrl={randomCoverUrl}
