@@ -13,19 +13,17 @@ export const RequestUserListWrapper = styled.div`
 export default function RequestUserList(props: any) {
   return (
     <RequestUserListWrapper>
-      {["송인호", "김민승"]
-        .filter((el) => el === "송인호" || el === "김민승")
-        .map((el) => (
-          <RequestUserItems
-            key={el}
-            el={el}
-            isDetailPage={props.isDetailPage}
-            requestAccepted={props.requestAccepted}
-            requestRefused={props.requestRefused}
-            onClickAcceptRequest={props.onClickAcceptRequest}
-            onClickRefuseRequest={props.onClickRefuseRequest}
-          />
-        ))}
+      {props.requestUsers?.map((el: any) => (
+        <RequestUserItems
+          key={el}
+          el={el}
+          isDetailPage={props.isDetailPage}
+          requestAccepted={props.requestAccepted}
+          requestRefused={props.requestRefused}
+          onClickAcceptRequest={props.onClickAcceptRequest}
+          onClickRefuseRequest={props.onClickRefuseRequest}
+        />
+      ))}
     </RequestUserListWrapper>
   );
 }

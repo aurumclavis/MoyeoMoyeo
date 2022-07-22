@@ -1,49 +1,145 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
+import { eventIdForBoardState } from "../../../../../commons/store";
+import { getDate } from "../../../../commons/getDate";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import BoardWritePresenter from "./BoardWrite.presenter";
-import { CREATE_BOARD } from "./BoardWrite.queries";
+import {
+  CREATE_BOARD,
+  FETCH_POST,
+  UPLOAD_IMAGES,
+  UPDATE_BOARD,
+} from "./BoardWrite.queries";
 import { randomCoverImg } from "./randomCoverImg";
 
 export default function BoardWriteContainer(props: any) {
   const { onClickMoveToPage } = useMoveToPage();
+  const [eventIdForBoard] = useRecoilState(eventIdForBoardState);
+  const { data: postData } = useQuery(FETCH_POST, {
+    variables: {
+      postId: eventIdForBoard,
+    },
+  });
   const { register, handleSubmit, setValue, trigger } = useForm();
   const [createBoard] = useMutation(CREATE_BOARD);
+  const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [uploadImages] = useMutation(UPLOAD_IMAGES);
 
-  const onClickSubmit = async () => {
-    try {
-      const result = await createBoard({
+  const onClickSubmit = async (data: any) => {
+    let uploadResultsImage = "";
+    if (files[0] === undefined) {
+      let coverImageFile = {};
+      const convertURLtoFile = async (url: any) => {
+        const response = await fetch(url);
+        const data = await response.blob();
+        const ext = url.split(".").pop();
+        const filename = url.split("/").pop();
+        const metadata = { type: `image/${ext}` };
+        coverImageFile = new File([data], filename!, metadata);
+      };
+      convertURLtoFile(randomCoverUrl);
+      const uploadResults = await uploadImages({
         variables: {
-          createBoardInput: {
-            title: "",
-            contents: "",
-            viewCount: 0,
-            isFull: false,
-            targetDate: 11,
-            transport: "",
-            boardAddress: {
-              lat: 0,
-              lng: 0,
-              postal: "",
-              address_description: "",
-            },
-          },
+          files: coverImageFile,
         },
       });
-      onClickMoveToPage(`/boards/${result.data.createBoard.id}`)();
+      uploadResultsImage = uploadResults.data.uploadImages[0];
+    } else {
+      const uploadResults = await uploadImages({
+        variables: {
+          files,
+        },
+      });
+      uploadResultsImage = uploadResults.data.uploadImages[0];
+    }
+    try {
+      if (!props.isEdit) {
+        const result = await createBoard({
+          variables: {
+            createBoardInput: {
+              title: data.title,
+              contents: data.contents,
+              // remark : data.remark,
+              personCount: maxHeadCount,
+              dateStart: accompanyDate.start,
+              dateEnd: accompanyDate.end,
+              transport: selectedTransport,
+              boardAddress: {
+                lat: data.LatLng.lat,
+                lng: data.LatLng.lng,
+                postal: address,
+                address_description: data.accompanyLocation,
+              },
+              coverImgSrc: uploadResultsImage,
+              eventImageSrc: "",
+              eventName: postData.fetchPost.title,
+              eventStart: getDate(postData.fetchPost.dateStart),
+              eventEnd: getDate(postData.fetchPost.dateEnd),
+              eventCategory: postData.fetchPost.category,
+            },
+          },
+        });
+        onClickMoveToPage(`/boards/${result.data.createBoard.id}`)();
+      } else {
+        if (!editPageRandomCover && files[0] === undefined)
+          uploadResultsImage = props.data.fetchBoard.coverImage.src;
+        const result = await updateBoard({
+          variables: {
+            boardId: props.data.fetchBoard.id,
+            updateBoardInput: {
+              title: data.title,
+              contents: data.contents,
+              // remark : data.remark,
+              personCount: maxHeadCount,
+              dateStart: accompanyDate.start,
+              dateEnd: accompanyDate.end,
+              transport: selectedTransport,
+              boardAddress: {
+                lat: data.LatLng.lat,
+                lng: data.LatLng.lng,
+                postal: address,
+                address_description: data.accompanyLocation,
+              },
+              coverImgSrc: uploadResultsImage,
+              eventImageSrc: "",
+              eventName: props.data.fetchBoard.eventName,
+              eventStart: props.data.fetchBoard.eventStart,
+              eventEnd: props.data.fetchBoard.eventEnd,
+              eventCategory: props.data.fetchBoard.eventCategory,
+            },
+          },
+        });
+        onClickMoveToPage(`/boards/${result.data.updateBoard.id}`)();
+      }
     } catch (error) {
       alert(error.message);
     }
   };
-  // 지도 부분
-  const [address, setAddress] = useState("");
 
-  // 이미지 등록부분
+  // 지도 부분
+  const postAddress = postData?.fetchPost.address;
+  const [address, setAddress] = useState("");
+  useEffect(() => {
+    !props.isEdit && setAddress(postAddress);
+  }, [postAddress]);
+
+  // 랜덤커버이미지 부분
+  const [randomCoverUrl, setRandomCoverUrl] = useState("");
+  const [editPageRandomCover, setEditPageRandomCover] = useState(false);
+  useEffect(() => {
+    setRandomCoverUrl(randomCoverImg(postData?.fetchPost.category));
+  }, [postData?.fetchPost.category]);
+  const onClickChangeRandomCover = () => {
+    setRandomCoverUrl(randomCoverImg(postData?.fetchPost.category));
+    props.isEdit && setEditPageRandomCover(true);
+  };
+
+  // 이미지 변경 부분
   const coverImgRef = useRef(null);
-  const eventImgRef = useRef(null);
   const [previewUrls, setPreviewUrls] = useState(["", ""]);
-  const [files, setFiles] = useState([undefined, undefined]);
+  const [files, setFiles] = useState([undefined]);
   const onChangeImgInput = (number: string) => async (event: any) => {
     const file = event.target.files?.[0];
     if (!file) {
@@ -64,19 +160,10 @@ export default function BoardWriteContainer(props: any) {
       }
     };
   };
+
   const onClickMyCoverImg = () => {
     coverImgRef.current.click();
   };
-  const onClickMyEventImg = () => {
-    eventImgRef.current.click();
-  };
-
-  // 랜덤커버이미지 부분
-  const dataCategory = "축제";
-  const [randomCoverUrl, setRandomCoverUrl] = useState("");
-  useEffect(() => {
-    setRandomCoverUrl(randomCoverImg(dataCategory));
-  }, []);
 
   // 동행일자 데이트피커 부분
   const [accompanyDate, setAccompanyDate] = useState({ start: "", end: "" });
@@ -99,7 +186,7 @@ export default function BoardWriteContainer(props: any) {
   };
 
   // 모집인원 부분
-  const [maxHeadCount, setMaxHeadCount] = useState(0);
+  const [maxHeadCount, setMaxHeadCount] = useState(1);
   const onClickCount = (event: any) => {
     event.target.id === "+" && setMaxHeadCount((prev) => prev + 1);
     event.target.id === "-" &&
@@ -136,20 +223,45 @@ export default function BoardWriteContainer(props: any) {
     }
     setSelectedTransport([...selectedTransport, transportName]);
   };
-  const eventData = { date: { start: "2022-07-15", end: "2022-07-26" } };
+
+  // 수정페이지일 때 디폴트값
+  useEffect(() => {
+    if (props.isEdit) {
+      setValue("title", props.data?.fetchBoard.title);
+      setValue("contents", props.data?.fetchBoard.contents);
+      setValue("remark", props.data?.fetchBoard.remark);
+      setValue("LatLng", {
+        lat: props.data?.fetchBoard.boardAddress.lat,
+        lng: props.data?.fetchBoard.boardAddress.lng,
+      });
+      setValue(
+        "accompanyLocation",
+        props.data?.fetchBoard.boardAddress.address_description
+      );
+      setValue("contents", props.data?.fetchBoard.contents);
+      setMaxHeadCount(props.data?.fetchBoard.personCount);
+      setAccompanyDate({
+        start: props.data?.fetchBoard.dateStart,
+        end: props.data?.fetchBoard.dateEnd,
+      });
+      setSelectedTransport(props.data?.fetchBoard.transport);
+      setAddress(props.data?.fetchBoard.boardAddress.postal);
+    }
+  }, [props.data]);
 
   return (
     <BoardWritePresenter
       isEdit={props.isEdit}
+      data={props.data}
+      postData={postData}
       setValue={setValue}
       register={register}
       handleSubmit={handleSubmit}
-      eventData={eventData}
       randomCoverUrl={randomCoverUrl}
+      editPageRandomCover={editPageRandomCover}
+      onClickChangeRandomCover={onClickChangeRandomCover}
       coverImgRef={coverImgRef}
-      eventImgRef={eventImgRef}
       onClickMyCoverImg={onClickMyCoverImg}
-      onClickMyEventImg={onClickMyEventImg}
       onChangeImgInput={onChangeImgInput}
       previewUrls={previewUrls}
       onChangeDatePicker={onChangeDatePicker}

@@ -506,14 +506,51 @@ export const EventInfoContents = styled.div`
   padding-left: 1rem;
   color: #73777b;
 `;
-
+export const ButtonWrapper = styled.div`
+  width: 68%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    padding-top: 0;
+  }
+`;
+export const GoListButton = styled.button`
+  width: 50%;
+  height: 3.238rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #f1eee9;
+  font-size: 1.4rem;
+  color: #323232;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+`;
+export const EditButton = styled.button`
+  width: 50%;
+  height: 3.238rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #15133c;
+  font-size: 1.4rem;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+`;
 // 댓글 wrap
 export const CommentWrapper = styled.div`
   width: 68%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 10rem;
   @media ${breakPoints.mobile} {
     width: 100%;
     order: 3;

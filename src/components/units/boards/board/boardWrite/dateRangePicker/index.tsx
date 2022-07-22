@@ -1,4 +1,5 @@
 import { DatePicker, Space } from "antd";
+import React from "react";
 
 const { RangePicker } = DatePicker;
 
@@ -9,7 +10,7 @@ export default function DateRangePicker(props: any) {
         style={{ height: "2.5rem", borderRadius: "5px" }}
         placeholder={["동행 시작하는 날", "동행 마지막 날"]}
         onChange={props.onChangeDatePicker}
-        dateRender={current => {
+        dateRender={(current) => {
           // month는 +1을 해줌 => 0부터 시작하는 이상한 애
           const month = current.month() + 1;
           const currentDate = Number(

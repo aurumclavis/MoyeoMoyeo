@@ -43,13 +43,9 @@ export default function KaKaoMapFetch(props: any) {
         // 마커가 지도 위에 표시되도록 설정합니다
         marker.setMap(map);
 
-        const iwContent = `<div style="padding:5px; position: absolute; left:-25px; bottom: -25px;width : 200px;border: 1px solid #D2D2D2; background-color:white;border-radius:5px; "><div style="font-size:1.1rem; font-weight:500; padding-left:5px; margin-bottom:3px;">${"행사이름동적할당"}</div>
-        <div style="padding-left:5px;">${"주소동적할당"}</div><div style="padding-left:3px;"><a href="https://map.kakao.com/link/map/${"주소동적할당"},${
-            props.lat
-          },${
-            props.lng
-          }" style="color:#FFD24C" target="_blank">카카오맵에서 큰지도보기</a></div></div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-          const iwPosition = new window.kakao.maps.LatLng(props.lat, props.lng); // 인포윈도우 표시 위치입니다
+        const iwContent = `<div style="padding:5px; position: absolute; left:-25px; bottom: -25px;width : 250px;border: 1px solid #D2D2D2; background-color:white;border-radius:5px; "><div style="font-size:1.1rem; font-weight:500; padding-left:5px; margin-bottom:3px;">${props.eventName}</div>
+        <div style="padding-left:5px;">${props.address}</div><div style="padding-left:3px;"><a href="https://map.kakao.com/link/map/${props.eventName},${props.lat},${props.lng}" style="color:#FFD24C" target="_blank">카카오맵에서 큰지도보기</a></div></div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+        const iwPosition = new window.kakao.maps.LatLng(props.lat, props.lng); // 인포윈도우 표시 위치입니다
 
         // 인포윈도우를 생성합니다
         const infowindow = new window.kakao.maps.InfoWindow({
@@ -61,7 +57,7 @@ export default function KaKaoMapFetch(props: any) {
         infowindow.open(map, marker);
       });
     };
-  }, [props]);
+  }, [props.eventName]);
 
   return (
     <>
