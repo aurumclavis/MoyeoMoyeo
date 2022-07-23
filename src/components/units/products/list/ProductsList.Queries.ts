@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_PRODUCTS = gql`
-  query fetchProducts {
-    fetchProducts {
+  query fetchProducts($page: Float, $pageSize: Float) {
+    fetchProducts(page: $page, pageSize: $pageSize) {
       id
       name
       description
@@ -15,7 +15,6 @@ export const FETCH_PRODUCTS = gql`
       }
       createdAt
       isSoldout
-      viewCount
       likedUsers {
         id
       }

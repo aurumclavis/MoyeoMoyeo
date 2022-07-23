@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Visibility, FavoriteBorder, Chat } from "@mui/icons-material";
+import { Visibility, FavoriteBorder } from "@mui/icons-material";
 import { Image } from "antd";
 import { breakPoints } from "../../../../commons/styles/media";
 
@@ -214,49 +214,6 @@ export const MobilePrice = styled.h2`
     font-size: 1.5rem;
     font-weight: 600;
   }
-`;
-
-// 채팅 목업 스타일
-export const ChatWrapper = styled.div`
-  position: fixed;
-  bottom: 3%;
-  right: 10%;
-  animation: fadein 1s;
-  @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-`;
-export const ChatIconWrapper = styled.div`
-  width: 50px;
-  height: 50px;
-  display: flex;
-  position: fixed;
-  top: 85%;
-  right: 13%;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: #ffd24c;
-  cursor: pointer;
-  :hover {
-    animation: motion 0.5s linear 0s infinite alternate;
-  }
-  @keyframes motion {
-    0% {
-      margin-top: 0px;
-    }
-    100% {
-      margin-top: 10px;
-    }
-  }
-`;
-export const ChatIcon = styled(Chat)`
-  color: white;
 `;
 
 export const ProductsQuestionWrapper = styled.div`

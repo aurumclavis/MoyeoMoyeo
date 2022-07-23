@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { getDate } from "../../../../../commons/getDate";
 import ProductsAnswerList from "../../../answer/list/ProductsAnswerList.Container";
 import ProductsAnswerWrite from "../../../answer/write/ProductsAnswerWrite.Container";
 import {
@@ -27,6 +28,7 @@ export default function ProductsQuestionListItem(
       commentId: props.el.id,
     },
   });
+
   const [deleteComment] = useMutation(DELETE_COMMENT);
   const onClickDeleteComment = async () => {
     try {
@@ -37,7 +39,7 @@ export default function ProductsQuestionListItem(
         refetchQueries: [
           {
             query: FETCH_PRODUCT_COMMENTS,
-            variables: { productId: router.query.productId },
+            variables: { productId: router.query.productId, pageSize: 10 },
           },
         ],
       });
@@ -52,8 +54,10 @@ export default function ProductsQuestionListItem(
     <>
       <S.ItemWrapper>
         <S.ContentsWrapper>
-          <S.Text>작성자{props.el.id}</S.Text>
-          <S.Date>{props.el.createdAt}</S.Date>
+          <S.Text>
+            {props.el.writer.name || `담당자(${props.el.writer?.manager})`}
+          </S.Text>
+          <S.Date>{getDate(props.el.createdAt)}</S.Date>
           <S.Contents>{props.el.content}</S.Contents>
         </S.ContentsWrapper>
         <S.IconWrapper>
