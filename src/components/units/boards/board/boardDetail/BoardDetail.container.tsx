@@ -7,13 +7,16 @@ import {
   FETCH_LOGIN_USER,
   FETCH_REQUEST_USERS,
   REQUEST_ACCOMPANY,
+  DELETE_BOARD,
 } from "./BoardDetail.queries";
+import { UPDATE_BOARD } from "../boardWrite/BoardWrite.queries";
 import { useMutation, useQuery } from "@apollo/client";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 export default function BoardDetailContainer() {
   const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
+  const [updateBoard] = useMutation(UPDATE_BOARD);
   const { data } = useQuery(FETCH_BOARD, {
     variables: {
       boardId: router.query.boardId,
@@ -142,7 +145,15 @@ export default function BoardDetailContainer() {
   const onClickChangeMaxCount = () => {
     setIsModalVisible(true);
   };
-  const handleOk = () => {
+  const handleOk = async () => {
+    await updateBoard({
+      variables: {
+        boardId: router.query.boardId,
+        updateBoardInput: {
+          personCount: maxHeadCount,
+        },
+      },
+    });
     setIsModalVisible(false);
   };
   const [maxHeadCount, setMaxHeadCount] = useState(0);
@@ -187,6 +198,16 @@ export default function BoardDetailContainer() {
     setRoadView(false);
   };
 
+  // 게시글삭제 부분
+  const [deleteBoard] = useMutation(DELETE_BOARD);
+  const onClickDelete = async () => {
+    await deleteBoard({
+      variables: {
+        boardId: router.query.boardId,
+      },
+    });
+    onClickMoveToPage("/boards");
+  };
   return (
     <BoardDetailPresenter
       data={data}
@@ -221,6 +242,7 @@ export default function BoardDetailContainer() {
       requestAccepted={requestAccepted}
       requestRefused={requestRefused}
       onClickMoveToPage={onClickMoveToPage}
+      onClickDelete={onClickDelete}
     />
   );
 }

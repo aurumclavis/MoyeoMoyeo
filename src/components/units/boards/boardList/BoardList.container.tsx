@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import BoardListPresenter from "./BoardList.presenter";
 import { useRouter } from "next/router";
 import _ from "lodash";
-import { useQuery } from "@apollo/client";
 import {
   defaultFromToMonthly,
   changeFromToWeekly,
@@ -13,141 +12,18 @@ import {
 } from "./dateFromTo";
 import { getDate } from "../../../commons/getDate";
 
-export default function BoardListContainer() {
+export default function BoardListContainer(props: any) {
   const router = useRouter();
-  // const { data: RawData, fetchMore } = useQuery({});
-  const [rawData] = useState([
-    {
-      recruited: true,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-07-10", end: "2022-07-10" },
-      requested: false,
-      category: "실외공연",
-    },
-    {
-      recruited: false,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-07-17", end: "2022-07-19" },
-      requested: false,
-      category: "플리마켓",
-    },
-    {
-      recruited: false,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-07-20", end: "2022-07-20" },
-      requested: false,
-      category: "뮤지컬",
-    },
-    {
-      recruited: true,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-08-30", end: "2022-08-30" },
-      requested: false,
-      category: "미술전시",
-    },
-    {
-      recruited: false,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-08-10", end: "2022-08-10" },
-      requested: false,
-      category: "굿즈행사",
-    },
-    {
-      recruited: false,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-07-28", end: "2022-07-28" },
-      requested: false,
-      category: "굿즈행사",
-    },
-    {
-      recruited: true,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-08-02", end: "2022-08-02" },
-      requested: false,
-      category: "실외공연",
-    },
-    {
-      recruited: false,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-09-01", end: "2022-09-02" },
-      requested: false,
-      category: "실내공연",
-    },
-    {
-      recruited: false,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-08-01", end: "2022-08-01" },
-      requested: true,
-      category: "마당놀이",
-    },
-    {
-      recruited: true,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-09-10", end: "2022-09-10" },
-      requested: false,
-      category: "기타",
-    },
-    {
-      recruited: false,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-10-08", end: "2022-10-10" },
-      requested: false,
-      category: "미술전시",
-    },
-    {
-      recruited: false,
-      title: "주말에 플리마켓에서 물건 구경하고 산책하실 분",
-      remark: "고양이 플리마켓 가서 구경도 하고 고양이도 인사해요",
-      eventName: "동탄고양이플리마켓",
-      maxHeadCount: 2,
-      accompanyDate: { start: "2022-07-31", end: "2022-07-31" },
-      requested: true,
-      category: "실외공연",
-    },
-  ]);
 
-  // 디폴트날짜
+  // 디폴트날짜 구하기
   const [fromToDate, setFromToDate] = useState({
     ...defaultFromToMonthly(getDate(new Date())),
   });
 
   // 동행리스트 페이지의 기본설정인 동행일오름차순으로 정렬을 위한 깊은복사 + 날짜필터링으로 데이터 추출
-  const sortedRawData = _.cloneDeep(rawData).sort((a, b) => {
-    return Number(a.accompanyDate.start.replaceAll("-", "")) <
-      Number(b.accompanyDate.start.replaceAll("-", ""))
+  const sortedRawData = _.cloneDeep(props.rawData.fetchBoards).sort((a, b) => {
+    return Number(a.dateStart.replaceAll("-", "")) <
+      Number(b.dateStart.replaceAll("-", ""))
       ? -1
       : 1;
   });
@@ -158,9 +34,9 @@ export default function BoardListContainer() {
     sortedRawData.filter(
       (el) =>
         Number(fromToDate.from.replaceAll("-", "")) <=
-          Number(el.accompanyDate.start.replaceAll("-", "")) &&
+          Number(el.dateStart.replaceAll("-", "")) &&
         Number(fromToDate.to.replaceAll("-", "")) >=
-          Number(el.accompanyDate.start.replaceAll("-", ""))
+          Number(el.dateStart.replaceAll("-", ""))
     )
   );
   useEffect(() => {
@@ -168,9 +44,9 @@ export default function BoardListContainer() {
       sortedRawData.filter(
         (el) =>
           Number(fromToDate.from.replaceAll("-", "")) <=
-            Number(el.accompanyDate.start.replaceAll("-", "")) &&
+            Number(el.dateStart.replaceAll("-", "")) &&
           Number(fromToDate.to.replaceAll("-", "")) >=
-            Number(el.accompanyDate.start.replaceAll("-", ""))
+            Number(el.dateStart.replaceAll("-", ""))
       )
     );
   }, [fromToDate]);
@@ -179,12 +55,21 @@ export default function BoardListContainer() {
   const [viewTypeData, setViewTypeData] = useState(sortedData);
   const [categoryData, setCategoryData] = useState(viewTypeData);
   const [recruitData, setRecruitData] = useState(categoryData);
-
   useEffect(() => {
     setViewTypeData(sortedData);
   }, [sortedData]);
+  // 선택된 카테고리의 상태를 유지하기 위해 아래서 퍼올리는 state
+  const [selectedCategoryName, setSelectedCategoryName] = useState("");
   useEffect(() => {
-    setCategoryData(viewTypeData);
+    if (!selectedCategoryName || selectedCategoryName === "전체") {
+      setCategoryData(viewTypeData);
+    } else {
+      setCategoryData(
+        viewTypeData.filter(
+          (el: any) => el.eventCategory === selectedCategoryName
+        )
+      );
+    }
   }, [viewTypeData]);
   useEffect(() => {
     setRecruitData(categoryData);
@@ -212,14 +97,19 @@ export default function BoardListContainer() {
     setSelectLatest(true);
     setSelectRequested(false);
     setIsUseDateChanger(false);
-    setViewTypeData(rawData);
+    setViewTypeData(props.rawData.fetchBoards);
   };
   const onClickViewRequested = () => {
     setSelectAccompanyDate(false);
     setSelectLatest(false);
     setSelectRequested(true);
     setIsUseDateChanger(false);
-    setViewTypeData(rawData.filter((el) => el.requested));
+    setViewTypeData(
+      props.rawData.fetchBoards.filter(
+        (el) =>
+          props.userData.fetchLoginUser.id === el.accompanyRequests?.reqUser?.id
+      )
+    );
   };
   // 날짜선택기능 부분
   const [isWeekly, setIsWeekly] = useState(false);
@@ -245,12 +135,12 @@ export default function BoardListContainer() {
   const onClickViewRecruit = () => {
     selectViewRecruit
       ? setRecruitData(categoryData)
-      : setRecruitData(categoryData.filter((el) => !el.recruited));
+      : setRecruitData(categoryData.filter((el) => !el.isFull));
     setSelectViewRecruit((prev) => !prev);
   };
 
   const onClickCreateBoard = () => {
-    router.push("/boards/91dd66ea-0f9d-4b11-be50-7cb5d0df4ce4");
+    router.push("/boards/new");
   };
 
   // 서브헤더 스크롤 부분
@@ -272,13 +162,13 @@ export default function BoardListContainer() {
   });
 
   // 행사카테고리 중복제거 부분
-  const eventCategory = rawData
-    .map((el) => el.category)
+  const eventCategory = props.rawData.fetchBoards
+    .map((el) => el.eventCategory)
     .reduce((acc, cur) => (acc.includes(cur) ? acc : [...acc, cur]), ["전체"]);
 
   // 게시글 상세로 이동
-  const onClickGoDetail = (eventName: any) => () => {
-    router.push(`/boards/${eventName}`);
+  const onClickGoDetail = (boardId: any) => () => {
+    router.push(`/boards/${boardId}`);
   };
 
   // 리스트 무한스크롤 부분
@@ -328,6 +218,9 @@ export default function BoardListContainer() {
       subHeader={subHeader}
       isSubHeaderOnTop={isSubHeaderOnTop}
       onClickGoDetail={onClickGoDetail}
+      userData={props.userData}
+      selectedCategoryName={selectedCategoryName}
+      setSelectedCategoryName={setSelectedCategoryName}
     />
   );
 }

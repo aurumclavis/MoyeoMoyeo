@@ -1,5 +1,27 @@
+import { useQuery } from "@apollo/client";
+// import { useRouter } from "next/router";
 import BoardListContainer from "../../src/components/units/boards/boardList/BoardList.container";
+import {
+  FETCH_BOARDS,
+  FETCH_LOGIN_USER,
+} from "../../src/components/units/boards/boardList/BoardList.queries";
 
 export default function BoardListPage() {
-  return <BoardListContainer />;
+  // const router = useRouter();
+  const { data: userData, loading: userLoading } = useQuery(FETCH_LOGIN_USER);
+  const { data: rawData, loading } = useQuery(FETCH_BOARDS, {
+    variables: {
+      page: 1,
+      // pageSize: 10,
+    },
+  });
+  console.log("aa", userData?.fetchLoginUser);
+  console.log("bb", rawData?.fetchBoards);
+  return loading ? (
+    ""
+  ) : userLoading ? (
+    ""
+  ) : (
+    <BoardListContainer rawData={rawData} userData={userData} />
+  );
 }

@@ -36,25 +36,26 @@ export default function UnevenSetsFinite(props: any) {
     ],
   };
   const [clickedIndex, setClickedIndex] = useState(0);
-  const [categoryName, setCategoryName] = useState("");
 
   return (
     <Wrapper>
       <Slider {...settings}>
-        {props.eventCategory.map((el: any, index: number) => (
-          <EachWrapper key={uuidv4()}>
-            <EachItem
-              el={el}
-              index={index}
-              clickedIndex={clickedIndex}
-              setClickedIndex={setClickedIndex}
-              categoryName={categoryName}
-              setCategoryName={setCategoryName}
-              viewTypeData={props.viewTypeData}
-              setCategoryData={props.setCategoryData}
-            />
-          </EachWrapper>
-        ))}
+        {props.eventCategory
+          ?.filter((el: any) => el !== "")
+          .map((el: any, index: number) => (
+            <EachWrapper key={uuidv4()}>
+              <EachItem
+                el={el}
+                index={index}
+                clickedIndex={clickedIndex}
+                setClickedIndex={setClickedIndex}
+                selectedCategoryName={props.selectedCategoryName}
+                setSelectedCategoryName={props.setSelectedCategoryName}
+                viewTypeData={props.viewTypeData}
+                setCategoryData={props.setCategoryData}
+              />
+            </EachWrapper>
+          ))}
       </Slider>
     </Wrapper>
   );

@@ -158,7 +158,7 @@ export default function BoardWritePresenter(props: any) {
             <S.MyReactQuill
               placeholder="내용을 입력해주세요.(1000자 이내)"
               onChange={props.onChangeQuill}
-              defaultValue={props.data?.fetchBoard.contents}
+              value={props.getValues("contents") || ""}
             />
           </S.ItemsWrapper>
         </S.MainWrapper>

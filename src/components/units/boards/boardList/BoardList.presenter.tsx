@@ -2,7 +2,7 @@ import * as S from "./BoardList.styles";
 import UnevenSetsFinite from "../boardList/carousel/BoardListCarousel";
 import { v4 as uuidv4 } from "uuid";
 import BackTopAnt from "../../../commons/backTop";
-import InfiniteScroll from "react-infinite-scroller";
+// import InfiniteScroll from "react-infinite-scroller";
 
 export default function BoardListPresenter(props: any) {
   return (
@@ -52,6 +52,8 @@ export default function BoardListPresenter(props: any) {
                   eventCategory={props.eventCategory}
                   viewTypeData={props.viewTypeData}
                   setCategoryData={props.setCategoryData}
+                  selectedCategoryName={props.selectedCategoryName}
+                  setSelectedCategoryName={props.setSelectedCategoryName}
                 />
               </S.CarouselWrapper>
             </S.EventTypeWrapper>
@@ -113,16 +115,18 @@ export default function BoardListPresenter(props: any) {
         <S.ListWrapper>
           {props.data.map((el: any) => (
             <S.Item key={uuidv4()}>
-              <S.ItemLeft onClick={props.onClickGoDetail(el.eventName)}>
-                <S.EventImage src="/market.jpg" />
+              <S.ItemLeft onClick={props.onClickGoDetail(el.id)}>
+                <S.EventImage
+                  src={`https://storage.googleapis.com/${el.coverImage.src}`}
+                />
                 <S.ItemMain>
                   <S.Header>
-                    <S.Recruitment recruited={el.recruited}>
-                      {el.recruited ? "[모집완료]" : "[모집중]"}
+                    <S.Recruitment recruited={el.isFull}>
+                      {el.isFull ? "[모집완료]" : "[모집중]"}
                     </S.Recruitment>
                     <S.Title>{el.title}</S.Title>
                   </S.Header>
-                  <S.Remark>{el.remark}</S.Remark>
+                  <S.Remark>{el.contents}</S.Remark>
                   <S.Footer>
                     <S.Event>
                       <S.EventIcon />
@@ -130,21 +134,28 @@ export default function BoardListPresenter(props: any) {
                     </S.Event>
                     <S.Category>
                       <S.CategoryIcon />
-                      {el.category}
+                      {el.eventCategory}
                     </S.Category>
                     <S.MaxHeadCount>
                       <S.MaxHeadCountIcon />
-                      {el.maxHeadCount}명
+                      {el.personCount}명
                     </S.MaxHeadCount>
                     <S.AccompanyDate>
                       <S.CalendarIcon />
-                      {el.accompanyDate.start} ~ {el.accompanyDate.end}
+                      {el.dateStart} ~ {el.dateEnd}
                     </S.AccompanyDate>
                   </S.Footer>
                 </S.ItemMain>
               </S.ItemLeft>
-              <S.ItemRight requested={el.requested}>
-                {el.requested ? (
+              {/* 널러블에러로인해 아래 옵셔널체이닝 */}
+              <S.ItemRight
+                requested={
+                  props.userData?.fetchLoginUser.id ===
+                  el.accompanyRequests?.reqUser?.id
+                }
+              >
+                {props.userData?.fetchLoginUser.id ===
+                el.accompanyRequests?.reqUser?.id ? (
                   <>
                     <S.PaperPlaneImage src="/icon/symbollogo_removebg.png" />
                     <S.ItemRightText>요청중</S.ItemRightText>

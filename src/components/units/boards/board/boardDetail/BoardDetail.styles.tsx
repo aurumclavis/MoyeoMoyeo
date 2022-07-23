@@ -512,14 +512,27 @@ export const ButtonWrapper = styled.div`
   padding-bottom: 2rem;
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  gap: 1rem;
   @media ${breakPoints.mobile} {
     width: 100%;
     padding-top: 0;
   }
 `;
 export const GoListButton = styled.button`
-  width: 50%;
+  width: 33%;
+  height: 3.238rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #f1eee9;
+  font-size: 1.4rem;
+  color: #323232;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+`;
+export const DeleteButton = styled.button`
+  width: 33%;
   height: 3.238rem;
   border: none;
   border-radius: 5px;
@@ -532,7 +545,7 @@ export const GoListButton = styled.button`
   cursor: pointer;
 `;
 export const EditButton = styled.button`
-  width: 50%;
+  width: 33%;
   height: 3.238rem;
   border: none;
   border-radius: 5px;
