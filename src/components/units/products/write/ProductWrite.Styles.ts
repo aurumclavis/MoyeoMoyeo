@@ -2,8 +2,6 @@ import styled from "@emotion/styled";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import { breakPoints } from "../../../../commons/styles/media";
-
-// require("react-quill/dist/quill.snow.css");
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const Wrapper = styled.div`
@@ -111,24 +109,4 @@ export const Error = styled.div`
   color: red;
   font-size: 0.875rem;
   padding-top: 0.625rem;
-`;
-
-// 이미지 업로드
-export const ImageWrapper = styled.div`
-  width: 100%;
-  margin: 0.625rem 0;
-  /* ::after {
-    display: block;
-    content: "";
-  } */
-`;
-
-export const UploadImage = styled.img`
-  width: 78px;
-  height: 78px;
-`;
-export const UploadBtn = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
 `;

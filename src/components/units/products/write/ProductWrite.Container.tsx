@@ -43,18 +43,11 @@ export default function ProductWrite(props: IProductWriteProps) {
   // File 객체를 담는 배열
   const [files, setFiles] = useState([]);
 
-  const {
-    register,
-    handleSubmit,
-    formState,
-    setValue,
-    getValues,
-    trigger,
-    reset,
-  } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-  });
+  const { register, handleSubmit, formState, setValue, trigger, reset } =
+    useForm({
+      resolver: yupResolver(schema),
+      mode: "onChange",
+    });
 
   useEffect(() => {
     reset({
@@ -99,20 +92,27 @@ export default function ProductWrite(props: IProductWriteProps) {
   };
 
   const onClickUpdateProduct = async (data: any) => {
+    const resultUploadImages = await uploadImages({
+      variables: { files },
+    });
+
+    const updateProductInput: IUpdateProductInput = {
+      imgSrcs: resultUploadImages.data?.uploadImages,
+    };
+
+    if (data.name) updateProductInput.name = data.name;
+    if (data.price) updateProductInput.price = data.price;
+    if (data.summary) updateProductInput.description = data.summary;
+    if (data.contents) updateProductInput.contentSrc = data.contents;
+
     try {
-      const updateProductInput: IUpdateProductInput = {};
-
-      if (data.name) updateProductInput.name = data.name;
-      if (data.price) updateProductInput.price = data.price;
-      if (data.summary) updateProductInput.description = data.summary;
-      if (data.contents) updateProductInput.contentSrc = data.contents;
-
       const result = await updateProduct({
         variables: {
           productId: props.data?.fetchProduct.id,
           updateProductInput,
         },
       });
+      console.log(result.data?.updateProduct);
       Modal.success({
         content: "상품이 수정되었습니다.",
       });
@@ -122,14 +122,13 @@ export default function ProductWrite(props: IProductWriteProps) {
     }
   };
 
-  const onChangeFiles = (
-    imageList: any,
-    addUpdateIndex?: number | undefined
-  ) => {
+  // 이미지 파일 등록,수정,삭제할 때 마다 실행
+  const onChangeFiles = (imageList: ImageListType, addUpdateIndex: any) => {
     setImageList(imageList);
     const tempFiles = [...files];
     tempFiles[addUpdateIndex] = imageList[addUpdateIndex]?.file;
     setFiles(tempFiles);
+    console.log(files);
   };
 
   return (
@@ -138,7 +137,6 @@ export default function ProductWrite(props: IProductWriteProps) {
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
-      getValues={getValues}
       onChangeContents={onChangeContents}
       imageList={imageList}
       onChangeFiles={onChangeFiles}

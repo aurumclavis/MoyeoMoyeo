@@ -2,11 +2,8 @@ import * as S from "./ProductWrite.Styles";
 import { IProductWriteUIProps } from "./ProductWrite.Types";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import CommonInput from "../../../commons/inputs/infoInputs";
+import CommonUpload from "../../../commons/upload";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import ImageUploading from "react-images-uploading";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button } from "antd";
-import { Clear, Edit } from "@mui/icons-material";
 
 export default function ProductWriteUI(props: IProductWriteUIProps) {
   const { onClickMoveToPage } = useMoveToPage();
@@ -50,57 +47,10 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
         {/* 이미지 업로드 */}
         <S.InputWrapper>
           <S.Label>상품 이미지</S.Label>
-          <ImageUploading
-            multiple
-            value={props.imageList}
-            onChange={props.onChangeFiles}
-            maxNumber={1000}
-            dataURLKey="data_url"
-          >
-            {({
-              imageList,
-              onImageUpload,
-              onImageRemoveAll,
-              onImageUpdate,
-              onImageRemove,
-              isDragging,
-              dragProps,
-            }) => (
-              // write your building UI
-              <div className="upload__image-wrapper">
-                <Button
-                  type="button"
-                  style={isDragging ? { color: "red" } : undefined}
-                  onClick={onImageUpload}
-                  {...dragProps}
-                >
-                  <UploadOutlined />
-                  Click or Drop here
-                </Button>
-                <S.ImageWrapper>
-                  {imageList.map((image, index) => (
-                    <div key={index} className="image-item">
-                      <img src={image.data_url} alt="" width="100" />
-                      <div className="image-item__btn-wrapper">
-                        <S.UploadBtn
-                          type="button"
-                          onClick={() => onImageUpdate(index)}
-                        >
-                          <Edit />
-                        </S.UploadBtn>
-                        <S.UploadBtn
-                          type="button"
-                          onClick={() => onImageRemove(index)}
-                        >
-                          <Clear />
-                        </S.UploadBtn>
-                      </div>
-                    </div>
-                  ))}
-                </S.ImageWrapper>
-              </div>
-            )}
-          </ImageUploading>
+          <CommonUpload
+            imageList={props.imageList}
+            onChangeFiles={props.onChangeFiles}
+          />
         </S.InputWrapper>
 
         {/* 웹에디터 UI */}

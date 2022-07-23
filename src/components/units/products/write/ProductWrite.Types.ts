@@ -1,7 +1,6 @@
 import {
   FieldValues,
   FormState,
-  UseFormGetValues,
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
@@ -12,7 +11,6 @@ export interface IProductWriteUIProps {
   register: UseFormRegister<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   formState: FormState<FieldValues>;
-  getValues: UseFormGetValues<FieldValues>;
   isEdit?: boolean;
   imageList: Array<any>;
   onChangeContents: (value: string) => void;
@@ -32,5 +30,5 @@ export type IUpdateProductInput = {
   price?: number;
   description?: string;
   contentSrc?: string;
-  images?: Array<string>;
+  imgSrcs?: Array<string>;
 };
