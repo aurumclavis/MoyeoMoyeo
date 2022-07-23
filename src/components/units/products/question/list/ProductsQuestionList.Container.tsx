@@ -15,6 +15,7 @@ export default function ProductsQuestionList() {
   const { data } = useQuery(FETCH_PRODUCT_COMMENTS, {
     variables: {
       productId: router.query.productId,
+      pageSize: 10,
     },
   });
   return (

@@ -44,7 +44,7 @@ export default function ProductsQuestionWrite() {
           refetchQueries: [
             {
               query: FETCH_PRODUCT_COMMENTS,
-              variables: { productId: router.query.productId },
+              variables: { productId: router.query.productId, pageSize: 10 },
             },
           ],
         });

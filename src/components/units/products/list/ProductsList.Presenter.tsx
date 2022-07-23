@@ -2,10 +2,10 @@ import { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../../commons/store";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import Pagination01 from "../../../commons/pagination/01/Pagination01.Container";
 import ProductsListItem from "./item/ProductsListItem.Container";
 import * as S from "./ProductsList.Styles";
 import { IProductsListUIProps } from "./ProductsList.Types";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function ProductsListUI(props: IProductsListUIProps) {
   const { onClickMoveToPage } = useMoveToPage();
@@ -24,10 +24,6 @@ export default function ProductsListUI(props: IProductsListUIProps) {
   return (
     <S.Wrapper>
       <S.SearchWrapper>
-        {/* <S.SearchBarWrapper>
-          <S.SearchBarIcon />
-          <S.SearchBarInput placeholder="상품을 검색해보세요." />
-        </S.SearchBarWrapper> */}
         <S.SelectBtnWrapper>
           {!userInfo.name && (
             <S.CreateBtnWrapper>
@@ -44,22 +40,38 @@ export default function ProductsListUI(props: IProductsListUIProps) {
         </S.SelectBtnWrapper>
       </S.SearchWrapper>
 
-      {/* 상품 그리드 */}
-      <S.GridWrapper>
-        {selected === "" &&
-          props.data?.fetchProducts.map((el: any) => (
-            <ProductsListItem el={el} key={el.id} />
-          ))}
-        {selected === "true" &&
-          SOLD_ARR?.map((el: any) => <ProductsListItem el={el} key={el.id} />)}
-        {selected === "false" &&
-          UNSOLD_ARR?.map((el: any) => (
-            <ProductsListItem el={el} key={el.id} />
-          ))}
-      </S.GridWrapper>
+      {/* 상품 그리드 : 무한 스크롤 적용 */}
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={props.loadProducts}
+        hasMore={true || false}
+        useWindow={true}
+      >
+        {SOLD_ARR || UNSOLD_ARR ? (
+          <S.GridWrapper>
+            {selected === "" &&
+              props.data?.fetchProducts.map((el: any) => (
+                <ProductsListItem el={el} key={el.id} />
+              ))}
+            {selected === "true" &&
+              SOLD_ARR?.map((el: any) => (
+                <ProductsListItem el={el} key={el.id} />
+              ))}
+            {selected === "false" &&
+              UNSOLD_ARR?.map((el: any) => (
+                <ProductsListItem el={el} key={el.id} />
+              ))}
+          </S.GridWrapper>
+        ) : (
+          <></>
+        )}
+      </InfiniteScroll>
 
       {/* 페이지네이션 */}
-      <Pagination01 />
+      {/* <Pagination01
+        refetch={props.refetch}
+        count={props.data?.fetchProducts.length || 0}
+      /> */}
     </S.Wrapper>
   );
 }

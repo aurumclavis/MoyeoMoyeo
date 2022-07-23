@@ -1,8 +1,10 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
+import { getDate } from "../../../../../commons/getDate";
 import {
   DELETE_COMMENT,
+  FETCH_COMMENT,
   FETCH_PRODUCT_COMMENTS,
 } from "../../../question/list/ProductsQuestionList.Queries";
 import * as S from "../ProductsAnswerList.Styles";
@@ -11,8 +13,14 @@ import { IProductsAnswerListItemProps } from "../ProductsAnswerList.Types";
 export default function ProductsAnswerListItem(
   props: IProductsAnswerListItemProps
 ) {
+  const { data } = useQuery(FETCH_COMMENT, {
+    variables: {
+      commentId: props.el.id,
+    },
+  });
   const [deleteComment] = useMutation(DELETE_COMMENT);
   const router = useRouter();
+
   const onClickDeleteComment = async () => {
     try {
       await deleteComment({
@@ -22,7 +30,7 @@ export default function ProductsAnswerListItem(
         refetchQueries: [
           {
             query: FETCH_PRODUCT_COMMENTS,
-            variables: { productId: router.query.productId },
+            variables: { productId: router.query.productId, pageSize: 10 },
           },
         ],
       });
@@ -40,8 +48,12 @@ export default function ProductsAnswerListItem(
           <S.SubDirectoryIcon />
         </S.SubDirectoryWrapper>
         <S.ContentsWrapper>
-          <S.Text>{props.el.id}</S.Text>
-          <S.Date>{props.el.createdAt}</S.Date>
+          <S.Text>
+            {data?.fetchComment.writer.name ||
+              `담당자(${data?.fetchComment.writer.manager})`}
+          </S.Text>
+
+          <S.Date>{getDate(props.el.createdAt)}</S.Date>
           <S.Contents>{props.el.content}</S.Contents>
         </S.ContentsWrapper>
         <S.IconWrapper>

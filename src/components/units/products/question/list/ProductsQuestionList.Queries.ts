@@ -2,20 +2,40 @@ import { gql } from "@apollo/client";
 
 // 댓글 조회할 때 사용
 export const FETCH_PRODUCT_COMMENTS = gql`
-  query fetchProductComments($productId: String!) {
-    fetchProductComments(productId: $productId) {
+  query fetchProductComments(
+    $productId: String!
+    $page: Float
+    $pageSize: Float!
+  ) {
+    fetchProductComments(
+      productId: $productId
+      page: $page
+      pageSize: $pageSize
+    ) {
       id
       content
       createdAt
+      writer {
+        name
+        manager
+      }
       children {
         id
         createdAt
         content
+        writer {
+          name
+          manager
+        }
       }
       parent {
         id
         createdAt
         content
+        writer {
+          name
+          manager
+        }
       }
     }
   }
@@ -27,6 +47,11 @@ export const FETCH_COMMENT = gql`
     fetchComment(commentId: $commentId) {
       id
       content
+      createdAt
+      writer {
+        name
+        manager
+      }
       parent {
         id
         content

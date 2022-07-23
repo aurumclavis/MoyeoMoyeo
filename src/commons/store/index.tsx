@@ -30,6 +30,7 @@ export const userInfoState = atom({
     name: "",
     company: "",
     pm: "",
+    manager: "",
   },
 });
 

@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import BackTopAnt from "../../../commons/backTop";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import DOMPurify from "dompurify";
-import Chat from "../../chat";
 import { dibsProductIdState } from "../../../../commons/store";
 import { useRecoilState } from "recoil";
 import { IProductDetailUIProps } from "./ProductsDetail.Types";
@@ -69,6 +68,10 @@ export default function ProductDetailUI(props: IProductDetailUIProps) {
               return (
                 <S.ImageItem
                   key={el.id}
+                  onError={(event) => {
+                    if (event.target instanceof HTMLImageElement)
+                      event.target.src = "../../error-image.png";
+                  }}
                   src={`https://storage.googleapis.com/${el.src}`}
                 />
               );
@@ -89,6 +92,7 @@ export default function ProductDetailUI(props: IProductDetailUIProps) {
           <S.Label>{props.data?.fetchProduct.seller?.phone}</S.Label>
         </S.SellerContentsWrapper>
         <S.Line />
+
         {/* 상품 문의(Q&A) 작성, 조회 */}
         <S.ProductsQuestionWrapper ref={props.qnaRef}>
           <ProductsQuestionWrite />
@@ -143,22 +147,6 @@ export default function ProductDetailUI(props: IProductDetailUIProps) {
 
       {/* BackTop(맨 위로 가기) 추가 */}
       <BackTopAnt />
-
-      {/* 채팅 mock-up */}
-      {props.clicked ? (
-        <S.ChatWrapper>
-          <Chat
-            // socket={socket}
-            onClickChat={props.onClickChat}
-            username="username"
-            room="1"
-          />
-        </S.ChatWrapper>
-      ) : (
-        <S.ChatIconWrapper onClick={props.onClickChat}>
-          <S.ChatIcon />
-        </S.ChatIconWrapper>
-      )}
 
       {/* 모바일 화면일때는 찜하기,구매하기가 하단에 고정 */}
       <S.MobilePaymentBar>

@@ -32,7 +32,6 @@ export default function ProductDetail() {
   const [undibsProduct] = useMutation(UNDIBS_PRODUCT);
   const [dibsId, setDibsId] = useRecoilState(dibsProductIdState);
   const [userInfo] = useRecoilState(userInfoState);
-  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", onScrollNav);
@@ -138,9 +137,6 @@ export default function ProductDetail() {
       }
     }
   };
-  const onClickChat = () => {
-    setClicked((prev) => !prev);
-  };
 
   return (
     <ProductDetailUI
@@ -155,8 +151,6 @@ export default function ProductDetail() {
       isSeller={userInfo?.email === data?.fetchProduct.seller.email}
       onClickShowConfirm={onClickShowConfirm}
       onClickDibsProduct={onClickDibsProduct}
-      clicked={clicked}
-      onClickChat={onClickChat}
     />
   );
 }
