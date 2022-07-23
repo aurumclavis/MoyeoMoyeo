@@ -14,7 +14,7 @@ const Map = styled.div`
 
 export default function MapBoxComponent() {
   // geoData 업데이트부분
-  const gu_event = [
+  const guEvent = [
     { 강동구: 1 },
     { 송파구: 3 },
     { 강남구: 0 },
@@ -42,7 +42,7 @@ export default function MapBoxComponent() {
     { 종로구: 18 },
   ];
   geoData.features.forEach((guItem: any) => {
-    gu_event.forEach((el) => {
+    guEvent.forEach((el) => {
       if (Object.keys(el)[0] === guItem.properties.name) {
         guItem.properties.eventCount = Object.values(el)[0];
       }

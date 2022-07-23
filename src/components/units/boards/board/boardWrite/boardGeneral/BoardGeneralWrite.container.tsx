@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import React, {
   ChangeEvent,
   MouseEvent,
@@ -7,19 +7,15 @@ import React, {
   useState,
 } from "react";
 import { useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
-import { eventIdForBoardState } from "../../../../../commons/store";
-import { getDate } from "../../../../commons/getDate";
-import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
-import BoardWritePresenter from "./BoardWrite.presenter";
+import { useMoveToPage } from "../../../../../commons/hooks/useMoveToPage";
 import {
   CREATE_BOARD,
-  FETCH_POST,
   UPLOAD_IMAGES,
   UPDATE_BOARD,
-} from "./BoardWrite.queries";
-import { IBoardWriteContainerProps } from "./BoardWrite.types";
-import { randomCoverImg } from "./randomCoverImg";
+} from "./BoardGeneralWrite.queries";
+import BoardGeneralWritePresenter from "./BoardGeneralWrite.presenter";
+import { useRecoilState } from "recoil";
+import { boardGeneralWriteState } from "../../../../../../commons/store";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Modal } from "antd";
@@ -40,14 +36,10 @@ const schema = yup.object({
     .matches(REMARKS_REGEXP, "요약내용은 100자를 넘길 수 없습니다"),
 });
 
-export default function BoardWriteContainer(props: IBoardWriteContainerProps) {
+export default function BoardGeneralWriteContainer(props: any) {
   const { onClickMoveToPage } = useMoveToPage();
-  const [eventIdForBoard] = useRecoilState(eventIdForBoardState);
-  const { data: postData } = useQuery(FETCH_POST, {
-    variables: {
-      postId: eventIdForBoard,
-    },
-  });
+  const [, setBoardGeneralWrite] = useRecoilState(boardGeneralWriteState);
+  setBoardGeneralWrite(false);
   const {
     register,
     handleSubmit,
@@ -140,26 +132,18 @@ export default function BoardWriteContainer(props: IBoardWriteContainerProps) {
               },
               coverImgSrc: uploadResultsImage,
               eventImageSrc: "",
-              eventName: postData.fetchPost.title,
-              eventStart: getDate(postData.fetchPost.dateStart),
-              eventEnd: getDate(postData.fetchPost.dateEnd),
-              eventLocation: postData.fetchPost.address,
-              eventCategory: postData.fetchPost.category,
+              eventName: "",
+              eventStart: "",
+              eventEnd: "",
+              eventLocation: "",
+              eventCategory: "일반",
             },
           },
         });
         onClickMoveToPage(`/boards/${result.data.createBoard.id}`)();
       } else {
-        if (!editPageRandomCover && files[0] === undefined) {
+        if (files[0] === undefined) {
           uploadResultsImage = props.data.fetchBoard.coverImage.src;
-        } else if (files[0] === undefined) {
-          await convertURLtoFile(randomCoverUrl);
-          const uploadResults = await uploadImages({
-            variables: {
-              files: coverImageFile,
-            },
-          });
-          uploadResultsImage = uploadResults.data.uploadImages[0];
         } else {
           const uploadResults = await uploadImages({
             variables: {
@@ -187,11 +171,11 @@ export default function BoardWriteContainer(props: IBoardWriteContainerProps) {
               },
               coverImgSrc: uploadResultsImage,
               eventImageSrc: "",
-              eventName: props.data.fetchBoard.eventName,
-              eventStart: props.data.fetchBoard.eventStart,
-              eventEnd: props.data.fetchBoard.eventEnd,
-              eventLocation: postData.fetchPost.address,
-              eventCategory: props.data.fetchBoard.eventCategory,
+              eventName: "",
+              eventStart: "",
+              eventEnd: "",
+              eventLocation: "",
+              eventCategory: "일반",
             },
           },
         });
@@ -202,30 +186,14 @@ export default function BoardWriteContainer(props: IBoardWriteContainerProps) {
     }
   };
   // 지도 부분
-  const postAddress = postData?.fetchPost.address;
   const [address, setAddress] = useState("");
-  useEffect(() => {
-    !props.isEdit && setAddress(postAddress);
-  }, [postAddress]);
 
   // 랜덤커버이미지 부분
-  const [randomCoverUrl, setRandomCoverUrl] = useState("");
-  const [editPageRandomCover, setEditPageRandomCover] = useState(false);
-  useEffect(() => {
-    setRandomCoverUrl(randomCoverImg(postData?.fetchPost.category));
-  }, [postData?.fetchPost.category]);
-  const onClickChangeRandomCover = () => {
-    if (!props.isEdit) {
-      setRandomCoverUrl(randomCoverImg(postData?.fetchPost.category));
-    } else {
-      setEditPageRandomCover(true);
-      setRandomCoverUrl(randomCoverImg(props.data?.fetchBoard.eventCategory));
-    }
-  };
+  const [randomCoverUrl] = useState("/randomCoverImg/general/general.jpg");
 
   // 이미지 변경 부분
   const coverImgRef = useRef(null);
-  const [previewUrls, setPreviewUrls] = useState(["", ""]);
+  const [previewUrls, setPreviewUrls] = useState([""]);
   const [files, setFiles] = useState([undefined]);
   const onChangeImgInput =
     (number: number) => async (event: ChangeEvent<HTMLInputElement>) => {
@@ -338,18 +306,25 @@ export default function BoardWriteContainer(props: IBoardWriteContainerProps) {
     }
   }, [props.data]);
 
+  // 다음포스트 부분
+  const [isOpen, setIsOpen] = useState(false);
+  const onClickAddressSearch = () => {
+    setIsOpen((prev) => !prev);
+  };
+  const onCompleteAddressSearch = (data: any) => {
+    setAddress(data.address);
+    setIsOpen(false);
+  };
+
   return (
-    <BoardWritePresenter
+    <BoardGeneralWritePresenter
       isEdit={props.isEdit}
       data={props.data}
-      postData={postData}
       setValue={setValue}
       getValues={getValues}
       register={register}
       handleSubmit={handleSubmit}
       randomCoverUrl={randomCoverUrl}
-      editPageRandomCover={editPageRandomCover}
-      onClickChangeRandomCover={onClickChangeRandomCover}
       coverImgRef={coverImgRef}
       onClickMyCoverImg={onClickMyCoverImg}
       onChangeImgInput={onChangeImgInput}
@@ -367,6 +342,9 @@ export default function BoardWriteContainer(props: IBoardWriteContainerProps) {
       setAddress={setAddress}
       onClickSubmit={onClickSubmit}
       onClickMoveToPage={onClickMoveToPage}
+      isOpen={isOpen}
+      onClickAddressSearch={onClickAddressSearch}
+      onCompleteAddressSearch={onCompleteAddressSearch}
     />
   );
 }

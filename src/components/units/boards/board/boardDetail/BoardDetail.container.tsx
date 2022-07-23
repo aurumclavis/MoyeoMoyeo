@@ -181,7 +181,7 @@ export default function BoardDetailContainer() {
         });
         setIsSendRequestUser(true);
       } catch (error) {
-        alert(error.message);
+        if (error instanceof Error) alert(error.message);
       }
     }
     if (state === "cancel") {

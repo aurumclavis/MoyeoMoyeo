@@ -52,7 +52,9 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUI) {
           <S.UserMenuWrapper>
             {props.accessToken ? (
               <>
-                <S.UserMenu onClick={props.onClickLogout}>로그아웃</S.UserMenu>
+                <S.LogoutMenu onClick={props.onClickLogout}>
+                  로그아웃
+                </S.LogoutMenu>
               </>
             ) : (
               <>

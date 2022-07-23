@@ -297,55 +297,57 @@ export default function BoardDetailPresenter(
               </>
             ))}
         </S.AccompanyWrapper>
-        <S.EventInfoWrapper ref={props.eventRef}>
-          <S.EventInfoText>행사 정보</S.EventInfoText>
-          <S.EventInfo>
-            <S.EventImage src="/catGoodsMarketExample.jpeg" />
-            <S.EventInfoDetailWrapper>
-              <S.EventInfoDetail>
-                <S.EventInfoItem>
-                  <S.EventFestivalIcon />
-                  행사이름
-                </S.EventInfoItem>
-                <S.EventInfoContents>
-                  {props.data?.fetchBoard.eventName}
-                </S.EventInfoContents>
-              </S.EventInfoDetail>
-              <S.EventInfoDetail>
-                <S.EventInfoItem>
-                  <S.EventMapIcon />
-                  지역
-                </S.EventInfoItem>
-                {/* 이벤트어드레스가 없어서 일단 하드코딩으로 작성 */}
-                <S.EventInfoContents>{"서울시 어디어디"}</S.EventInfoContents>
-              </S.EventInfoDetail>
-              <S.EventInfoDetail>
-                <S.EventInfoItem>
-                  <S.EventDateRangeIcon />
-                  기간
-                </S.EventInfoItem>
-                <S.EventInfoContents>
-                  {props.data?.fetchBoard.eventStart
-                    .replace("-", "년 ")
-                    .replace("-", "월 ") + "일"}{" "}
-                  ~{" "}
-                  {props.data?.fetchBoard.eventEnd
-                    .replace("-", "년 ")
-                    .replace("-", "월 ") + "일"}
-                </S.EventInfoContents>
-              </S.EventInfoDetail>
-              <S.EventInfoDetail>
-                <S.EventInfoItem>
-                  <S.EventListIcon />
-                  카테고리
-                </S.EventInfoItem>
-                <S.EventInfoContents>
-                  {props.data?.fetchBoard.eventCategory}
-                </S.EventInfoContents>
-              </S.EventInfoDetail>
-            </S.EventInfoDetailWrapper>
-          </S.EventInfo>
-        </S.EventInfoWrapper>
+        {props.data?.fetchBoard.eventCategory !== "일반" && (
+          <S.EventInfoWrapper ref={props.eventRef}>
+            <S.EventInfoText>행사 정보</S.EventInfoText>
+            <S.EventInfo>
+              <S.EventImage src="/catGoodsMarketExample.jpeg" />
+              <S.EventInfoDetailWrapper>
+                <S.EventInfoDetail>
+                  <S.EventInfoItem>
+                    <S.EventFestivalIcon />
+                    행사이름
+                  </S.EventInfoItem>
+                  <S.EventInfoContents>
+                    {props.data?.fetchBoard.eventName}
+                  </S.EventInfoContents>
+                </S.EventInfoDetail>
+                <S.EventInfoDetail>
+                  <S.EventInfoItem>
+                    <S.EventMapIcon />
+                    지역
+                  </S.EventInfoItem>
+                  {/* 이벤트어드레스가 없어서 일단 하드코딩으로 작성 */}
+                  <S.EventInfoContents>{"서울시 어디어디"}</S.EventInfoContents>
+                </S.EventInfoDetail>
+                <S.EventInfoDetail>
+                  <S.EventInfoItem>
+                    <S.EventDateRangeIcon />
+                    기간
+                  </S.EventInfoItem>
+                  <S.EventInfoContents>
+                    {props.data?.fetchBoard.eventStart
+                      .replace("-", "년 ")
+                      .replace("-", "월 ") + "일"}{" "}
+                    ~{" "}
+                    {props.data?.fetchBoard.eventEnd
+                      .replace("-", "년 ")
+                      .replace("-", "월 ") + "일"}
+                  </S.EventInfoContents>
+                </S.EventInfoDetail>
+                <S.EventInfoDetail>
+                  <S.EventInfoItem>
+                    <S.EventListIcon />
+                    카테고리
+                  </S.EventInfoItem>
+                  <S.EventInfoContents>
+                    {props.data?.fetchBoard.eventCategory}
+                  </S.EventInfoContents>
+                </S.EventInfoDetail>
+              </S.EventInfoDetailWrapper>
+            </S.EventInfo>
+          </S.EventInfoWrapper>
+        )}
         <S.ButtonWrapper>
           <S.GoListButton onClick={props.onClickMoveToPage("/boards")}>
             동행게시판으로
@@ -356,9 +358,15 @@ export default function BoardDetailPresenter(
                 삭제하기
               </S.DeleteButton>
               <S.EditButton
-                onClick={props.onClickMoveToPage(
-                  `/boards/${props.data?.fetchBoard.id}/edit`
-                )}
+                onClick={
+                  props.data?.fetchBoard.eventCategory === "일반"
+                    ? props.onClickMoveToPage(
+                        `/boards/${props.data?.fetchBoard.id}/edit/general`
+                      )
+                    : props.onClickMoveToPage(
+                        `/boards/${props.data?.fetchBoard.id}/edit`
+                      )
+                }
               >
                 수정하기
               </S.EditButton>

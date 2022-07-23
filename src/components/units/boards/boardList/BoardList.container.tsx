@@ -23,12 +23,14 @@ export default function BoardListContainer(props: any) {
   });
 
   // 동행리스트 페이지의 기본설정인 동행일오름차순으로 정렬을 위한 깊은복사 + 날짜필터링으로 데이터 추출
-  const sortedRawData = _.cloneDeep(props.rawData.fetchBoards).sort((a, b) => {
-    return Number(a.dateStart.replaceAll("-", "")) <
-      Number(b.dateStart.replaceAll("-", ""))
-      ? -1
-      : 1;
-  });
+  const sortedRawData = _.cloneDeep(props.rawData.fetchBoards).sort(
+    (a: any, b: any) => {
+      return Number(a.dateStart.replaceAll("-", "")) <
+        Number(b.dateStart.replaceAll("-", ""))
+        ? -1
+        : 1;
+    }
+  );
 
   // 단계별(보기타입별, 날짜선택별, 카테고리별) 검색필터 부분
   // 날짜별 data추출 검색필터
@@ -108,8 +110,9 @@ export default function BoardListContainer(props: any) {
     setIsUseDateChanger(false);
     setViewTypeData(
       props.rawData.fetchBoards.filter(
-        (el) =>
-          props.userData.fetchLoginUser.id === el.accompanyRequests?.reqUser?.id
+        (el: any) =>
+          props.userData?.fetchLoginUser.id ===
+          el.accompanyRequests?.reqUser?.id
       )
     );
   };
@@ -137,12 +140,12 @@ export default function BoardListContainer(props: any) {
   const onClickViewRecruit = () => {
     selectViewRecruit
       ? setRecruitData(categoryData)
-      : setRecruitData(categoryData.filter((el) => !el.isFull));
+      : setRecruitData(categoryData.filter((el: any) => !el.isFull));
     setSelectViewRecruit((prev) => !prev);
   };
 
   const onClickCreateBoard = () => {
-    router.push("/boards/new");
+    router.push("/boards/new/general");
   };
 
   // 서브헤더 스크롤 부분
@@ -165,8 +168,11 @@ export default function BoardListContainer(props: any) {
 
   // 행사카테고리 중복제거 부분
   const eventCategory = props.rawData.fetchBoards
-    .map((el) => el.eventCategory)
-    .reduce((acc, cur) => (acc.includes(cur) ? acc : [...acc, cur]), ["전체"]);
+    .map((el: any) => el.eventCategory)
+    .reduce(
+      (acc: any, cur: any) => (acc.includes(cur) ? acc : [...acc, cur]),
+      ["전체"]
+    );
 
   // 게시글 상세로 이동
   const onClickGoDetail = (boardId: any) => () => {
