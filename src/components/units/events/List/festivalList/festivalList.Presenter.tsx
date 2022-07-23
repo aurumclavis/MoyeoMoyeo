@@ -18,8 +18,8 @@ export default function FestivalListUI(props: IFestivalListUI) {
             loadMore={props.ToloadFunc}
             hasMore={true}
           > */}
-          {props.data?.fetchPosts.map((el: any) => (
-            <FestivalListUIAdd data={props.data} key={el._id} el={el} />
+          {props.data?.fetchEvents.map((el: any) => (
+            <FestivalListUIAdd key={el._id} el={el} />
           ))}
           {/* </InfiniteScroll> */}
         </S.InsideWrapper>

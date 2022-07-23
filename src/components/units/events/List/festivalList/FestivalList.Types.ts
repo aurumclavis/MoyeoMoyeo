@@ -11,5 +11,4 @@ export interface IFestivalListUI {
 
 export interface IFestivalListUIAdd {
   el: any;
-  data: any;
 }

@@ -1,27 +1,30 @@
 import { useQuery } from "@apollo/client";
 import FestivalListUI from "./FestivalList.Presenter";
-import { FETCH_POSTS } from "./FestivalList.Queries";
+import { FETCH_EVENTS } from "./FestivalList.Queries";
 // import { IFestivalList } from "./FestivalList.Types";
 
 export default function FestivalList() {
-  const { data, refetch, fetchMore } = useQuery(FETCH_POSTS);
+  const { data, refetch, fetchMore } = useQuery(FETCH_EVENTS);
 
   const ToloadFunc = () => {
     if (!data) return;
 
     fetchMore({
-      variables: { page: Math.ceil(data.fetchPosts.length / 10) + 1 },
+      variables: { page: Math.ceil(data.fetchEvents.length / 10) + 1 },
       updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult?.fetchPosts)
+        if (!fetchMoreResult?.fetchEvents)
           return {
-            fetchPosts: [...prev.fetchPosts],
+            fetchEvents: [...prev.fetchEvents],
           };
         return {
-          fetchPosts: [...prev.fetchPosts, ...fetchMoreResult.fetchPosts],
+          fetchEvents: [...prev.fetchEvents, ...fetchMoreResult.fetchEvents],
         };
       },
     });
   };
+  // const onCickUrl = (e: string) => {
+  //   window.open(`${e}`, _blank);
+  // };
 
   return (
     <>

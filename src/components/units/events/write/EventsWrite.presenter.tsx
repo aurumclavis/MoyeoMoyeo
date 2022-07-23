@@ -45,10 +45,12 @@ export default function EventsWriteUI(props: IEventsWrite) {
                 <S.SubTitle>행사 일정</S.SubTitle>
                 <DateRangePicker
                   placeholder={
-                    [
-                      getDate(props.postData?.fetchPost.dateStart),
-                      getDate(props.postData?.fetchPost.dateEnd),
-                    ] || ["축제 시작일", "축제 종료일"]
+                    props.postData
+                      ? [
+                          props.postData?.fetchPost.dateStart,
+                          props.postData?.fetchPost.dateEnd,
+                        ]
+                      : ["축제 시작일", "축제 종료일"]
                   }
                   onChangeDate={props.onChangeDate}
                   defaultValue={[
