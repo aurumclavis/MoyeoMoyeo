@@ -11,6 +11,9 @@ export const FETCH_BOARDS = gql`
       personCount
       dateStart
       dateEnd
+      writer {
+        id
+      }
       #   eventImage {
       #     src
       #   }

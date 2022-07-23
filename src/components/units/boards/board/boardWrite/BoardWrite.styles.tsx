@@ -9,6 +9,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { breakPoints } from "../../../../../commons/styles/media";
+import {
+  IMyArrowRightIconProps,
+  ITransportationProps,
+  ITransportationSelectProps,
+} from "./BoardWrite.types";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -395,21 +400,24 @@ export const TransportationSelect = styled.div`
   border-radius: 15px;
   border: 1px solid #d2d2d2;
   background-color: #15133c;
-  ${(props: any) => props.isDropTransport && "background-color: white;"}
+  ${(props: ITransportationSelectProps) =>
+    props.isOpenTransport && "background-color: white;"}
   color: white;
-  ${(props: any) => props.isDropTransport && "color: #73777b;"}
+  ${(props: ITransportationSelectProps) =>
+    props.isOpenTransport && "color: #73777b;"}
   font-size: 0.8rem;
   cursor: pointer;
   transition: 0.3s;
 `;
 export const MyArrowRightIcon = styled(ArrowRightIcon)`
-  ${(props: any) => props.isDropTransport && "transform: rotate(90deg);"}
+  ${(props: IMyArrowRightIconProps) =>
+    props.isOpenTransport && "transform: rotate(90deg);"}
   transition: 0.3s;
 `;
 export const Transportation = styled.div`
   width: 3.5rem;
-  ${(props: any) =>
-    props.isDropTransport ? "display: flex;" : "display: none;"}
+  ${(props: ITransportationProps) =>
+    props.isOpenTransport ? "display: flex;" : "display: none;"}
   flex-direction: column;
   align-items: center;
   gap: 1rem;

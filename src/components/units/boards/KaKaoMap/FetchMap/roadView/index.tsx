@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import styled from "@emotion/styled";
+import { IKaKaoRoadViewProps } from "../../../board/boardDetail/BoardDetail.types";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -32,7 +33,7 @@ const ExitButton = styled.div`
 declare const window: typeof globalThis & {
   kakao: any;
 };
-export default function KaKaoRoadView(props: any) {
+export default function KaKaoRoadView(props: IKaKaoRoadViewProps) {
   useEffect(() => {
     const script = document.createElement("script");
     script.src =

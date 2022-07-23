@@ -4,8 +4,9 @@ import ToolTip from "../../../../commons/tooltip";
 import { v4 as uuidv4 } from "uuid";
 import DateRangePicker from "./dateRangePicker";
 import { getDate } from "../../../../commons/getDate";
+import { IBoardWritePresenterProps, Transportation } from "./BoardWrite.types";
 
-export default function BoardWritePresenter(props: any) {
+export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickSubmit)}>
       <S.CoverImageWrapper>
@@ -178,13 +179,13 @@ export default function BoardWritePresenter(props: any) {
             <S.TransportationWrapper>
               <S.TransportationSelect
                 onClick={props.onClickTransportSelect}
-                isDropTransport={props.isDropTransport}
+                isOpenTransport={props.isOpenTransport}
               >
-                <S.MyArrowRightIcon isDropTransport={props.isDropTransport} />
+                <S.MyArrowRightIcon isOpenTransport={props.isOpenTransport} />
                 이동수단선택
               </S.TransportationSelect>
-              <S.Transportation isDropTransport={props.isDropTransport}>
-                {props.transportation.map((el: any) =>
+              <S.Transportation isOpenTransport={props.isOpenTransport}>
+                {props.transportation.map((el: Transportation) =>
                   props.selectedTransport?.includes(el.transportName) ? (
                     <S.TransportationItemSelected
                       key={uuidv4()}

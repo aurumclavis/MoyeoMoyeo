@@ -15,8 +15,8 @@ export default function BoardListPage() {
       // pageSize: 10,
     },
   });
-  console.log("aa", userData?.fetchLoginUser);
-  console.log("bb", rawData?.fetchBoards);
+  console.log("aa", userData?.fetchLoginUser.id);
+  console.log("bb", rawData?.fetchBoards[0].writer.id);
   return loading ? (
     ""
   ) : userLoading ? (

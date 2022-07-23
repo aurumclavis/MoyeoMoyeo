@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, MouseEvent } from "react";
 import BoardDetailPresenter from "./BoardDetail.presenter";
 import _, { throttle } from "lodash";
 import {
@@ -88,7 +88,7 @@ export default function BoardDetailContainer() {
     }
   }, 50);
 
-  const onClickDetail = (event: any) => {
+  const onClickDetail = (event: MouseEvent<HTMLDivElement>) => {
     const detailAbsoluteTop =
       window.pageYOffset +
       detailRef.current?.getBoundingClientRect().top -
@@ -101,7 +101,7 @@ export default function BoardDetailContainer() {
       setActiveTab(event.currentTarget.id);
     }, 500);
   };
-  const onClickEvent = (event: any) => {
+  const onClickEvent = (event: MouseEvent<HTMLDivElement>) => {
     const eventAbsoluteTop =
       window.pageYOffset +
       eventRef.current?.getBoundingClientRect().top -
@@ -114,7 +114,7 @@ export default function BoardDetailContainer() {
       setActiveTab(event.currentTarget.id);
     }, 500);
   };
-  const onClickComment = (event: any) => {
+  const onClickComment = (event: MouseEvent<HTMLDivElement>) => {
     const commentAbsoluteTop =
       window.pageYOffset +
       commentRef.current?.getBoundingClientRect().top -
@@ -160,9 +160,10 @@ export default function BoardDetailContainer() {
   useEffect(() => {
     setMaxHeadCount(data?.fetchBoard.personCount);
   }, [data?.fetchBoard.personCount]);
-  const onClickCount = (event: any) => {
-    event.target.id === "+" && setMaxHeadCount((prev) => prev + 1);
-    event.target.id === "-" &&
+  const onClickCount = (event: MouseEvent<HTMLDivElement>) => {
+    (event.target as HTMLDivElement).id === "+" &&
+      setMaxHeadCount((prev) => prev + 1);
+    (event.target as HTMLDivElement).id === "-" &&
       maxHeadCount > 1 &&
       setMaxHeadCount((prev) => prev - 1);
   };

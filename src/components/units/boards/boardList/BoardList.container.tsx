@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import BoardListPresenter from "./BoardList.presenter";
 import { useRouter } from "next/router";
+import { REQUEST_ACCOMPANY } from "./BoardList.queries";
 import _ from "lodash";
 import {
   defaultFromToMonthly,
@@ -11,6 +12,7 @@ import {
   weeklyMovePrev,
 } from "./dateFromTo";
 import { getDate } from "../../../commons/getDate";
+import { useMutation } from "@apollo/client";
 
 export default function BoardListContainer(props: any) {
   const router = useRouter();
@@ -32,7 +34,7 @@ export default function BoardListContainer(props: any) {
   // 날짜별 data추출 검색필터
   const [sortedData, setSortedData] = useState(
     sortedRawData.filter(
-      (el) =>
+      (el: any) =>
         Number(fromToDate.from.replaceAll("-", "")) <=
           Number(el.dateStart.replaceAll("-", "")) &&
         Number(fromToDate.to.replaceAll("-", "")) >=
@@ -42,7 +44,7 @@ export default function BoardListContainer(props: any) {
   useEffect(() => {
     setSortedData(
       sortedRawData.filter(
-        (el) =>
+        (el: any) =>
           Number(fromToDate.from.replaceAll("-", "")) <=
             Number(el.dateStart.replaceAll("-", "")) &&
           Number(fromToDate.to.replaceAll("-", "")) >=
@@ -193,6 +195,11 @@ export default function BoardListContainer(props: any) {
   //   });
   // };
 
+  // 동행요청하기 버튼 부분
+  const [requestAccompany] = useMutation(REQUEST_ACCOMPANY);
+  const onClickRequestAccompany = (boardId: string) => async () => {
+    await requestAccompany({ variables: { boardId } });
+  };
   return (
     <BoardListPresenter
       eventCategory={eventCategory}
@@ -221,6 +228,7 @@ export default function BoardListContainer(props: any) {
       userData={props.userData}
       selectedCategoryName={selectedCategoryName}
       setSelectedCategoryName={setSelectedCategoryName}
+      onClickRequestAccompany={onClickRequestAccompany}
     />
   );
 }

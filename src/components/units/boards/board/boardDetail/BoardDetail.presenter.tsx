@@ -9,8 +9,11 @@ import RequestUserList from "../../../../commons/requestUserList";
 import KaKaoRoadView from "../../KaKaoMap/FetchMap/roadView";
 import MaxHeadCountChangeModal from "./maxHeadcountChangeModal";
 import { v4 as uuidv4 } from "uuid";
+import { IBoardDetailPresenterProps } from "./BoardDetail.types";
 
-export default function BoardDetailPresenter(props: any) {
+export default function BoardDetailPresenter(
+  props: IBoardDetailPresenterProps
+) {
   return (
     <S.Wrapper>
       <S.NavWrapper ref={props.navRef}>
@@ -180,6 +183,7 @@ export default function BoardDetailPresenter(props: any) {
                     </S.AccompanyUserListWrapper>
                     <S.AccompanyRequestButton
                       isCompleted={props.isCompleted}
+                      isSendRequestUser={props.isSendRequestUser}
                       onClick={props.onClickChangeRecruitState("cancel")}
                     >
                       <S.AccompanyCompleteCancelIcon src="/icon/cancel.png" />
@@ -210,6 +214,8 @@ export default function BoardDetailPresenter(props: any) {
                       isDetailPage={true}
                     />
                     <S.AccompanyRequestButton
+                      isCompleted={props.isCompleted}
+                      isSendRequestUser={props.isSendRequestUser}
                       onClick={props.onClickChangeRecruitState("complete")}
                     >
                       <S.AccompanyCompleteIcon src="/icon/done.png" />
@@ -242,6 +248,7 @@ export default function BoardDetailPresenter(props: any) {
                   <>
                     <S.AccompanyRequestButton
                       isSendRequestUser={props.isSendRequestUser}
+                      isCompleted={props.isCompleted}
                       onClick={props.onClickRequestAccompany("cancel")}
                     >
                       <S.AccompanyCancelText>
@@ -271,6 +278,8 @@ export default function BoardDetailPresenter(props: any) {
                 {!!props.userData && (
                   <>
                     <S.AccompanyRequestButton
+                      isSendRequestUser={props.isSendRequestUser}
+                      isCompleted={props.isCompleted}
                       onClick={props.onClickRequestAccompany("request")}
                     >
                       <S.AccompanyRequestText>

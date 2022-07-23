@@ -1,5 +1,11 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { useEffect, useRef, useState } from "react";
+import React, {
+  ChangeEvent,
+  MouseEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { eventIdForBoardState } from "../../../../../commons/store";
@@ -12,9 +18,10 @@ import {
   UPLOAD_IMAGES,
   UPDATE_BOARD,
 } from "./BoardWrite.queries";
+import { IBoardWriteContainerProps } from "./BoardWrite.types";
 import { randomCoverImg } from "./randomCoverImg";
 
-export default function BoardWriteContainer(props: any) {
+export default function BoardWriteContainer(props: IBoardWriteContainerProps) {
   const { onClickMoveToPage } = useMoveToPage();
   const [eventIdForBoard] = useRecoilState(eventIdForBoardState);
   const { data: postData } = useQuery(FETCH_POST, {
@@ -162,26 +169,27 @@ export default function BoardWriteContainer(props: any) {
   const coverImgRef = useRef(null);
   const [previewUrls, setPreviewUrls] = useState(["", ""]);
   const [files, setFiles] = useState([undefined]);
-  const onChangeImgInput = (number: string) => async (event: any) => {
-    const file = event.target.files?.[0];
-    if (!file) {
-      alert("파일이 없습니다!!");
-      return;
-    }
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = (data) => {
-      if (typeof data.target?.result === "string") {
-        const tempUrls = [...previewUrls];
-        tempUrls[number] = data.target?.result;
-        setPreviewUrls(tempUrls);
-
-        const tempFiles = [...files];
-        tempFiles[number] = file;
-        setFiles(tempFiles);
+  const onChangeImgInput =
+    (number: number) => async (event: ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (!file) {
+        alert("파일이 없습니다!!");
+        return;
       }
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = (data) => {
+        if (typeof data.target?.result === "string") {
+          const tempUrls = [...previewUrls];
+          tempUrls[number] = data.target?.result;
+          setPreviewUrls(tempUrls);
+
+          const tempFiles = [...files];
+          tempFiles[number] = file;
+          setFiles(tempFiles);
+        }
+      };
     };
-  };
 
   const onClickMyCoverImg = () => {
     coverImgRef.current.click();
@@ -209,9 +217,10 @@ export default function BoardWriteContainer(props: any) {
 
   // 모집인원 부분
   const [maxHeadCount, setMaxHeadCount] = useState(1);
-  const onClickCount = (event: any) => {
-    event.target.id === "+" && setMaxHeadCount((prev) => prev + 1);
-    event.target.id === "-" &&
+  const onClickCount = (event: MouseEvent<HTMLDivElement>) => {
+    (event.target as HTMLDivElement).id === "+" &&
+      setMaxHeadCount((prev) => prev + 1);
+    (event.target as HTMLDivElement).id === "-" &&
       maxHeadCount > 1 &&
       setMaxHeadCount((prev) => prev - 1);
   };
@@ -222,9 +231,9 @@ export default function BoardWriteContainer(props: any) {
   };
 
   // 이동수단 부분
-  const [isDropTransport, setIsDropTransport] = useState(false);
+  const [isOpenTransport, setIsOpenTransport] = useState(false);
   const onClickTransportSelect = () => {
-    setIsDropTransport((prev) => !prev);
+    setIsOpenTransport((prev) => !prev);
   };
   const transportation = [
     { transportName: "자전거", src: "/icon/bicycle.png" },
@@ -238,7 +247,7 @@ export default function BoardWriteContainer(props: any) {
   const onClickSelectTransportation = (transportName: string) => () => {
     if (selectedTransport.includes(transportName)) {
       setSelectedTransport(
-        selectedTransport.filter((el: any) => el !== transportName)
+        selectedTransport.filter((el: string) => el !== transportName)
       );
       return;
     }
@@ -292,7 +301,7 @@ export default function BoardWriteContainer(props: any) {
       maxHeadCount={maxHeadCount}
       onChangeQuill={onChangeQuill}
       onClickTransportSelect={onClickTransportSelect}
-      isDropTransport={isDropTransport}
+      isOpenTransport={isOpenTransport}
       transportation={transportation}
       onClickSelectTransportation={onClickSelectTransportation}
       selectedTransport={selectedTransport}

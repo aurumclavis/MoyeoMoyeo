@@ -1,5 +1,6 @@
 import { Modal } from "antd";
 import styled from "@emotion/styled";
+import { IMaxHeadCountChangeModalProps } from "../BoardDetail.types";
 
 const MaxHeadCountWrapper = styled.div`
   width: 100%;
@@ -63,7 +64,9 @@ const MaxHeadCountInput = styled.input`
   }
 `;
 
-export default function MaxHeadCountChangeModal(props: any) {
+export default function MaxHeadCountChangeModal(
+  props: IMaxHeadCountChangeModalProps
+) {
   const handleCancel = () => {
     props.setIsModalVisible(false);
   };
