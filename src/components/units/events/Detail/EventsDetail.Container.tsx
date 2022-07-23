@@ -128,7 +128,7 @@ export default function EventsDetail() {
         },
         // refetchQueries: [{ query: FETCH_POST }],
       });
-      router.push(`/evnets`);
+      router.push(`/events`);
       Modal.success({ content: "행사가 삭제되었습니다" });
     } catch (error) {
       Modal.error({ content: "행사 삭제가 실패했습니다" });
@@ -137,7 +137,7 @@ export default function EventsDetail() {
   };
   const onClickShowConfirm = () => {
     Modal.confirm({
-      title: "정말 이 행사를 삭제하시겠습니까?",
+      title: "본 행사를 삭제하시겠습니까?",
       icon: <ExclamationCircleOutlined />,
       content: "삭제한 이후에는 취소가 불가능합니다.",
       onOk() {
