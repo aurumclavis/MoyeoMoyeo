@@ -91,7 +91,7 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
             <EditOutlined />
             수정
           </S.EditBtn>
-          <S.EditBtn onClick={props.onClickEdit}>
+          <S.EditBtn onClick={props.onClickShowConfirm}>
             <DeleteOutlined />
             삭제
           </S.EditBtn>

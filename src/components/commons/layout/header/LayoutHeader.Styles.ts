@@ -114,6 +114,15 @@ export const UserMenu = styled.div`
     font-weight: 900;
   }
 `;
+export const LogoutMenu = styled.div`
+  /* margin: 100%; */
+  height: 1.875rem;
+  margin-left: auto;
+  cursor: pointer;
+  :hover {
+    font-weight: 900;
+  }
+`;
 export const MenuIconWrapper = styled.div`
   display: none;
   @media (max-width: 767px) {

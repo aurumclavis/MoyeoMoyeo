@@ -19,6 +19,7 @@ const schema = yup.object({
   // address: yup.string().required("필수 입력 사항입니다."),
   category: yup.string().required("필수 입력 사항입니다."),
 });
+
 export default function EventsWrite(props: IEventsWriteProps) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
@@ -84,7 +85,7 @@ export default function EventsWrite(props: IEventsWriteProps) {
       Modal.success({ content: "행사 등록이 완료되었습니다." });
       router.push(`/events${result.data.createPost.id}`);
     } catch (error: any) {
-      Modal.error({ content: error.message });
+      Modal.error({ content: "행사 등록에 실패했습니다" });
     }
   };
 

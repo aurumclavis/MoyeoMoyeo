@@ -1,21 +1,21 @@
 import EventsDetailUI from "./EventsDetail.Presenter";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState, ChangeEvent } from "react";
+import { useEffect, useRef, useState, MouseEvent } from "react";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import _, { throttle } from "lodash";
 import { useRecoilState } from "recoil";
 import { eventIdForBoardState } from "../../../../commons/store";
 import { useMutation, useQuery } from "@apollo/client";
-import { DIBS_POST, FETCH_POST } from "./EventsDetail.Queries";
-
-// import { useLocation } from 'react-router-dom';
+import { DELETE_POST, DIBS_POST, FETCH_POST } from "./EventsDetail.Queries";
+import { Modal } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 export default function EventsDetail() {
   const router = useRouter();
   const { data } = useQuery(FETCH_POST, {
     variables: { postId: router.query._id },
   });
-  console.log(data);
+  const [deletePost] = useMutation(DELETE_POST);
   const { onClickMoveToPage } = useMoveToPage();
   const [, setEventIdForBoard] = useRecoilState(eventIdForBoardState);
 
@@ -24,7 +24,7 @@ export default function EventsDetail() {
   const [activedTab, setActivedTab] = useState("marker");
   const currentUrl = `localhost:3000/events/${router.query._id}`;
   const navRef = useRef<HTMLDivElement>(null);
-  const markerRef = useRef<HTMLElement>(null);
+  const markerRef = useRef<HTMLDivElement>(null);
   const contentsRef = useRef<HTMLDivElement>(null);
   const mapsRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -50,9 +50,9 @@ export default function EventsDetail() {
         //   },
         // ],
       });
-      alert("찜했어요");
+      Modal.success({ content: "행사를 찜했습니다" });
     } catch (error) {
-      alert(error);
+      Modal.error({ content: "행사 찜하기가 실패했습니다" });
     }
   };
 
@@ -81,7 +81,7 @@ export default function EventsDetail() {
     }
   }, 500);
 
-  const onClickMarker = (e: ChangeEvent<HTMLDivElement>) => {
+  const onClickMarker = (e: MouseEvent<HTMLDivElement>) => {
     window.scrollTo({
       top: markerRef.current?.offsetTop - navRef.current?.offsetHeight,
       behavior: "smooth",
@@ -92,7 +92,7 @@ export default function EventsDetail() {
     });
   };
 
-  const onClickContents = (e: ChangeEvent<HTMLDivElement>) => {
+  const onClickContents = (e: MouseEvent<HTMLDivElement>) => {
     window.scrollTo({
       top: contentsRef.current?.offsetTop - navRef.current?.offsetHeight,
       behavior: "smooth",
@@ -103,7 +103,7 @@ export default function EventsDetail() {
     });
   };
 
-  const onClickMaps = (e: ChangeEvent<HTMLDivElement>) => {
+  const onClickMaps = (e: MouseEvent<HTMLDivElement>) => {
     window.scrollTo({
       top: mapsRef.current?.offsetTop - navRef.current?.offsetHeight,
       behavior: "smooth",
@@ -118,6 +118,33 @@ export default function EventsDetail() {
   console.log(data);
   const onClickEdit = () => {
     router.push(`/events/${router.query._id}/edit`);
+  };
+
+  const onClickDelete = async () => {
+    try {
+      await deletePost({
+        variables: {
+          postId: router.query._id,
+        },
+        // refetchQueries: [{ query: FETCH_POST }],
+      });
+      router.push(`/evnets`);
+      Modal.success({ content: "행사가 삭제되었습니다" });
+    } catch (error) {
+      Modal.error({ content: "행사 삭제가 실패했습니다" });
+      console.log(error);
+    }
+  };
+  const onClickShowConfirm = () => {
+    Modal.confirm({
+      title: "정말 이 행사를 삭제하시겠습니까?",
+      icon: <ExclamationCircleOutlined />,
+      content: "삭제한 이후에는 취소가 불가능합니다.",
+      onOk() {
+        onClickDelete();
+      },
+      onCancel() {},
+    });
   };
 
   return (
@@ -139,6 +166,7 @@ export default function EventsDetail() {
         onClickLink={onClickLink}
         onClickMoveToBoardNew={onClickMoveToBoardNew}
         onClickEdit={onClickEdit}
+        onClickShowConfirm={onClickShowConfirm}
       />
     </>
   );
