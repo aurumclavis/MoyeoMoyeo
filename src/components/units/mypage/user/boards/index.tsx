@@ -1,6 +1,23 @@
+import { gql } from "@apollo/client";
 import { useState } from "react";
 import RequestUserList from "../../../../commons/requestUserList";
 import * as S from "../../listItem/MyPageListItem.Styles";
+
+const FETCH_LOGIN_USER = gql`
+  query fetchLoginUser {
+    fetchLoginUser {
+      email
+      scheduledBoards {
+        board {
+          title
+        }
+      }
+      confirmedBoards {
+        title
+      }
+    }
+  }
+`;
 
 export default function MyPageUserBoards() {
   const [requestAccepted, setRequestAccepted] = useState("");

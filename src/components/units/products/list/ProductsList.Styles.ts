@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { SearchOutlined } from "@ant-design/icons";
 import { breakPoints } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
@@ -18,31 +17,6 @@ export const SearchWrapper = styled.div`
 export const SelectBtnWrapper = styled.div`
   display: flex;
   width: auto;
-`;
-export const SearchBarWrapper = styled.div`
-  width: 30%;
-  height: 45px;
-  display: flex;
-  padding: 0.625rem;
-  border: none;
-  border-radius: 5px;
-  background-color: #f4f4f4;
-  @media ${breakPoints.mobile} {
-    width: 40%;
-  }
-`;
-export const SearchBarIcon = styled(SearchOutlined)`
-  font-size: 1.5rem;
-`;
-export const SearchBarInput = styled.input`
-  width: 100%;
-  padding: 0 0.625rem;
-  border: none;
-  background-color: transparent;
-  font-size: 1rem;
-  :focus {
-    outline: none;
-  }
 `;
 
 // 상품 등록 버튼

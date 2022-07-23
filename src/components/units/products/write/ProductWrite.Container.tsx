@@ -112,7 +112,7 @@ export default function ProductWrite(props: IProductWriteProps) {
           updateProductInput,
         },
       });
-      console.log(result.data?.updateProduct);
+
       Modal.success({
         content: "상품이 수정되었습니다.",
       });

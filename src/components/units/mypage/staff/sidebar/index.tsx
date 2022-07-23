@@ -18,7 +18,7 @@ function MyPageStaffSidebar(props: IMyPageSidebarProps) {
         <S.ProfileWrapper>
           <S.ProfileImg src="../../icon/staff1.png" />
           <S.ProfileContentsWrapper>
-            <S.ProfileText>{userInfo.name}</S.ProfileText>
+            <S.ProfileText>{userInfo.manager}님</S.ProfileText>
             <S.ProfileText>{userInfo.email}</S.ProfileText>
           </S.ProfileContentsWrapper>
         </S.ProfileWrapper>

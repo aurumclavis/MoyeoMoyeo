@@ -14,6 +14,9 @@ const FETCH_LOGIN_USER = gql`
         description
         price
         createdAt
+        images {
+          src
+        }
       }
     }
   }
@@ -27,7 +30,17 @@ export default function MyPageUserProducts() {
       {data?.fetchLoginUser.dibsProducts.map((el: any) => (
         <S.ItemWrapper key={el.id}>
           <S.ItemImageWrapper>
-            <S.ItemImage src="../../배너이미지_상품1.png" />
+            {el.images === null ? (
+              <S.ItemImage src="../../error-image.png" />
+            ) : (
+              <S.ItemImage
+                onError={(event) => {
+                  if (event.target instanceof HTMLImageElement)
+                    event.target.src = "../../error-image.png";
+                }}
+                src={`https://storage.googleapis.com/${el.images[0]?.src}`}
+              />
+            )}
           </S.ItemImageWrapper>
           <S.ItemContentsWrapper>
             <S.ItemTitle>{el.name}</S.ItemTitle>

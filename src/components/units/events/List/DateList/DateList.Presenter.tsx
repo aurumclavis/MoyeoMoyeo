@@ -4,16 +4,16 @@ import { getDate } from "../../../../commons/getDate";
 import * as S from "./DateList.Styles";
 // import { ICaCalenderPageUI } from "./DateList.Types";
 
-export default function CalenderPageUI() {
+export default function CalenderPageUI(props: any) {
   return (
     <>
       <S.Wrapper>
         <S.NavWrapper>
           <S.InsideWrapper>
             <S.NavTitle>행사 타입</S.NavTitle>
-            <S.Select>
-              <option>행사 정보</option>
-              <option>추천 행사</option>
+            <S.Select onChange={props.onChangeSelect}>
+              <option value="events">행사 정보</option>
+              <option value="posts">추천 행사</option>
             </S.Select>
           </S.InsideWrapper>
           <S.InsideWrapper>

@@ -11,10 +11,11 @@ interface MoreTextProps {
 }
 export const Wrapper = styled.div`
   width: 100%;
-  height: fit-content;
+  height: 500px;
+  overflow: auto;
   display: grid;
   padding: 0 1.5rem;
-  grid-gap: 1.25rem;
+  // gap: 1.25rem;
   @media ${breakPoints.mobile} {
     padding: 0 1rem;
   }
@@ -22,12 +23,14 @@ export const Wrapper = styled.div`
 export const ItemWrapper = styled.div`
   width: 100%;
   height: fit-content;
+  min-height: 162px;
   display: flex;
   padding: 1.25rem 3%;
   background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.25rem;
 `;
 export const ItemImageWrapper = styled.div`
   max-width: 7.5rem;

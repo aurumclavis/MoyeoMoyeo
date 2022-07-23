@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_POST = gql`
- query fetchPosts(page: Float $pageSize: Float) {
-    fetchPosts (page: $pagepageSize: $pageSize){
+  query fetchPost($postId: String!) {
+    fetchPost(postId: $postId) {
       id
       title
       # writer {
@@ -13,7 +13,7 @@ export const FETCH_POST = gql`
       description
       dateStart
       dateEnd
-      # images
+      images
       category
       viewCount
       uploadedAt

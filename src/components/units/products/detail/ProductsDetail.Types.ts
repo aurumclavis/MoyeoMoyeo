@@ -12,6 +12,4 @@ export interface IProductDetailUIProps {
   isSeller: boolean;
   onClickShowConfirm: () => void;
   onClickDibsProduct: () => void;
-  clicked: boolean;
-  onClickChat: () => void;
 }
