@@ -145,21 +145,6 @@ export default function MapBoxComponent() {
         return marker;
       });
       map.scrollZoom.disable();
-
-      // map.on("click", (el) => {
-      //   const result = map.queryRenderedFeatures(el.point, {
-      //     layers: ["seoul"],
-      //   });
-      //   if (result.length) {
-      //     const guName = result[0].properties.name;
-      //     const eventCount = result[0].properties.eventCount;
-      //     const popup = new mapboxgl.Popup({ closeButton: false });
-      //     popup
-      //       .setLngLat(el.lngLat)
-      //       .setHTML(`<h2>${guName}</h2><div>${eventCount}개의 행사</div>`)
-      //       .addTo(map);
-      //   }
-      // });
     };
   }, []);
 

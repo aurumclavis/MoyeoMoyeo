@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
 import EachItem from "./CarouselItem";
 import { v4 as uuidv4 } from "uuid";
+import { IUnevenSetsFiniteProps } from "../BoardList.types";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -18,7 +19,7 @@ const Wrapper = styled.div`
 `;
 const EachWrapper = styled.div``;
 
-export default function UnevenSetsFinite(props: any) {
+export default function UnevenSetsFinite(props: IUnevenSetsFiniteProps) {
   const settings = {
     dots: false,
     infinite: false,
@@ -41,8 +42,8 @@ export default function UnevenSetsFinite(props: any) {
     <Wrapper>
       <Slider {...settings}>
         {props.eventCategory
-          ?.filter((el: any) => el !== "")
-          .map((el: any, index: number) => (
+          ?.filter((el: string) => el !== "")
+          .map((el: string, index: number) => (
             <EachWrapper key={uuidv4()}>
               <EachItem
                 el={el}

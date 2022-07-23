@@ -13,8 +13,9 @@ import {
 } from "./dateFromTo";
 import { getDate } from "../../../commons/getDate";
 import { useMutation } from "@apollo/client";
+import { IBoardListContainerProps } from "./BoardList.types";
 
-export default function BoardListContainer(props: any) {
+export default function BoardListContainer(props: IBoardListContainerProps) {
   const router = useRouter();
 
   // 디폴트날짜 구하기

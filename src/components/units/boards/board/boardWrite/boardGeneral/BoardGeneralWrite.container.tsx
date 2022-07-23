@@ -19,6 +19,7 @@ import { boardGeneralWriteState } from "../../../../../../commons/store";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Modal } from "antd";
+import { IBoardGeneralWriteContainerProps } from "./BoardGeneralWrite.types";
 
 const TITLE_REGEXP = /^.{0,100}$/;
 const CONTENTS_REGEXP = /^.{0,1000}$/;
@@ -36,7 +37,9 @@ const schema = yup.object({
     .matches(REMARKS_REGEXP, "요약내용은 100자를 넘길 수 없습니다"),
 });
 
-export default function BoardGeneralWriteContainer(props: any) {
+export default function BoardGeneralWriteContainer(
+  props: IBoardGeneralWriteContainerProps
+) {
   const { onClickMoveToPage } = useMoveToPage();
   const [, setBoardGeneralWrite] = useRecoilState(boardGeneralWriteState);
   setBoardGeneralWrite(false);

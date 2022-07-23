@@ -3,12 +3,17 @@ import ToolTip from "../../../../../commons/tooltip";
 import { v4 as uuidv4 } from "uuid";
 import DateRangePicker from "../dateRangePicker";
 import { getDate } from "../../../../../commons/getDate";
-import { Transportation } from "./BoardGeneralWrite.types";
+import {
+  IBoardGeneralWritePresenterProps,
+  Transportation,
+} from "./BoardGeneralWrite.types";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
 import KaKaoMap from "../../../KaKaoMap/KaKaoMapForGeneral";
 
-export default function BoardGeneralWritePresenter(props: any) {
+export default function BoardGeneralWritePresenter(
+  props: IBoardGeneralWritePresenterProps
+) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickSubmit)}>
       <S.CoverImageWrapper>

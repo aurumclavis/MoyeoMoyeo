@@ -2,9 +2,10 @@ import * as S from "./BoardList.styles";
 import UnevenSetsFinite from "../boardList/carousel/BoardListCarousel";
 import { v4 as uuidv4 } from "uuid";
 import BackTopAnt from "../../../commons/backTop";
+import { IBoardListPresenter } from "./BoardList.types";
 // import InfiniteScroll from "react-infinite-scroller";
 
-export default function BoardListPresenter(props: any) {
+export default function BoardListPresenter(props: IBoardListPresenter) {
   return (
     <S.Wrapper>
       <S.SubHeaderWrapper isSubHeaderOnTop={props.isSubHeaderOnTop}>
@@ -149,7 +150,6 @@ export default function BoardListPresenter(props: any) {
                   </S.Footer>
                 </S.ItemMain>
               </S.ItemLeft>
-              {/* 널러블에러로인해 아래 옵셔널체이닝 */}
               {props.userData?.fetchLoginUser.id !== el.writer.id && (
                 <S.ItemRight
                   requested={

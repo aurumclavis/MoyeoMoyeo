@@ -20,8 +20,6 @@ export interface IBoardDetailPresenterProps {
   onClickDetail: (event: MouseEvent<HTMLDivElement>) => void;
   onClickEvent: (event: MouseEvent<HTMLDivElement>) => void;
   onClickComment: (event: MouseEvent<HTMLDivElement>) => void;
-  lat: number;
-  lng: number;
   roadView: boolean;
   onClickRoadView: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickExitRoadView: (event: MouseEvent<HTMLDivElement>) => void;

@@ -6,7 +6,7 @@ import {
   FETCH_BOARD,
   FETCH_LOGIN_USER,
   FETCH_REQUEST_USERS,
-  REQUEST_ACCOMPANY,
+  // REQUEST_ACCOMPANY,
   DELETE_BOARD,
   MAKE_BOARD_FULL,
 } from "./BoardDetail.queries";
@@ -56,10 +56,6 @@ export default function BoardDetailContainer() {
       if (requestUsersId?.includes(userId)) setIsSendRequestUser(true);
     }
   }, [userData, data, requestUserData]);
-
-  // 목업을 위한 하드코딩
-  const lat = 37.5378;
-  const lng = 126.8939;
 
   // 네비 부분
   const [activeTab, setActiveTab] = useState("detail");
@@ -175,21 +171,21 @@ export default function BoardDetailContainer() {
       maxHeadCount > 1 &&
       setMaxHeadCount((prev) => prev - 1);
   };
-  // 모집완료/취소 부분 api 안된다......
-  // const [makeFull] = useMutation(MAKE_BOARD_FULL);
+  // 모집완료/취소 부분
+  const [makeFull] = useMutation(MAKE_BOARD_FULL);
   const onClickChangeRecruitState = (state: string) => async () => {
-    // if (state === "complete") {
-    //   try {
-    //     await makeFull({ variables: { boardId: router.query.boardId } });
-    //   } catch (error) {
-    //     if (error instanceof Error) alert(error.message);
-    //   }
-    // }
+    if (state === "complete") {
+      try {
+        await makeFull({ variables: { boardId: router.query.boardId } });
+      } catch (error) {
+        if (error instanceof Error) alert(error.message);
+      }
+    }
     setIsCompleted((prev) => !prev);
   };
 
   // 열람자인 경우
-  // 요청하기/요청취소 부분
+  // 요청하기/요청취소 부분 api 안된다......
   // const [requestAccompany] = useMutation(REQUEST_ACCOMPANY);
   const onClickRequestAccompany = (state: string) => async () => {
     // if (state === "request") {
@@ -241,8 +237,6 @@ export default function BoardDetailContainer() {
       onClickDetail={onClickDetail}
       onClickEvent={onClickEvent}
       onClickComment={onClickComment}
-      lat={lat}
-      lng={lng}
       roadView={roadView}
       onClickRoadView={onClickRoadView}
       onClickExitRoadView={onClickExitRoadView}

@@ -6,7 +6,7 @@ import {
   SetStateAction,
 } from "react";
 
-export interface IBoardWriteContainerProps {
+export interface IBoardGeneralWriteContainerProps {
   isEdit: boolean;
   data?: any;
 }
@@ -14,17 +14,17 @@ export interface Transportation {
   transportName: string;
   src: string;
 }
-export interface IBoardWritePresenterProps {
+export interface IBoardGeneralWritePresenterProps {
+  isOpen: boolean;
+  onClickAddressSearch: (event: MouseEvent<HTMLElement>) => void;
+  onCompleteAddressSearch: (event: any) => void;
   isEdit: boolean;
   data: any;
-  postData: any;
   setValue: any;
   getValues: any;
   register: any;
   handleSubmit: any;
   randomCoverUrl: string;
-  editPageRandomCover: boolean;
-  onClickChangeRandomCover: (event: MouseEvent<HTMLDivElement>) => void;
   coverImgRef: MutableRefObject<HTMLInputElement>;
   onClickMyCoverImg: (event: MouseEvent<HTMLDivElement>) => void;
   onChangeImgInput: (
@@ -68,8 +68,9 @@ export interface IDateRangePickerProps {
 }
 export interface IKaKaoMapProps {
   isEdit: boolean;
-  postAddress: string;
   setValue: any;
   setAddress: Dispatch<SetStateAction<string>>;
   isEditAddress: any;
+  address: string;
+  rerender: any;
 }
