@@ -58,7 +58,7 @@ export default function KaKaoMapFetch(props: IKaKaoMapFetchProps) {
         infowindow.open(map, marker);
       });
     };
-  }, [props]);
+  }, [props.eventName]);
 
   return (
     <>

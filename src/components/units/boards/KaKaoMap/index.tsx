@@ -178,7 +178,7 @@ export default function KaKaoMap(props: IKaKaoMapProps) {
         }
       });
     };
-  }, [props.isEdit, props.postAddress, props.isEditAddress]);
+  }, [props.isEdit, props.postAddress]);
 
   return (
     <>

@@ -6,6 +6,7 @@ export const FETCH_BOARD = gql`
       id
       title
       contents
+      remark
       viewCount
       personCount
       isFull
@@ -16,10 +17,10 @@ export const FETCH_BOARD = gql`
         id
         name
       }
-      #   널러블에러
-      #   scheduledUsers {
-      #     id
-      #   }
+      scheduledUsers {
+        id
+        name
+      }
       boardAddress {
         lat
         lng
@@ -36,6 +37,21 @@ export const FETCH_BOARD = gql`
       eventStart
       eventEnd
       eventCategory
+      createdAt
+      accompanyRequests {
+        id
+        # reqUser {
+        #   id
+        # }
+      }
+    }
+  }
+`;
+
+export const MAKE_BOARD_FULL = gql`
+  mutation makeBoardFull($boardId: String!) {
+    makeBoardFull(boardId: $boardId) {
+      title
     }
   }
 `;

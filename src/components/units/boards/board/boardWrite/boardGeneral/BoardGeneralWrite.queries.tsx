@@ -19,11 +19,10 @@ export const UPDATE_BOARD = gql`
   ) {
     updateBoard(boardId: $boardId, updateBoardInput: $updateBoardInput) {
       id
-      # 널러블에러
-      # writer {
-      #   id
-      #   name
-      # }
+      writer {
+        id
+        name
+      }
       personCount
     }
   }

@@ -252,7 +252,7 @@ export default function KaKaoMap(props: any) {
         }
       });
     };
-  }, [props.isEdit, props.address, props.isEditAddress]);
+  }, [props.isEdit, props.rerender]);
 
   return (
     <>

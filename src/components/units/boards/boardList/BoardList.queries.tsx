@@ -24,9 +24,9 @@ export const FETCH_BOARDS = gql`
       eventCategory
       accompanyRequests {
         id
-        reqUser {
-          id
-        }
+        # reqUser {
+        #   id
+        # }
       }
     }
   }
