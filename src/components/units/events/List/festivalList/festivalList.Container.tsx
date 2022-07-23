@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
 import FestivalListUI from "./FestivalList.Presenter";
-import { FETCH_POST } from "./FestivalList.Queries";
-import { IFestivalList } from "./FestivalList.Types";
+import { FETCH_POSTS } from "./FestivalList.Queries";
+// import { IFestivalList } from "./FestivalList.Types";
 
-export default function FestivalList(props: IFestivalList) {
-  const { data, refetch, fetchMore } = useQuery(FETCH_POST);
+export default function FestivalList() {
+  const { data, refetch, fetchMore } = useQuery(FETCH_POSTS);
 
   const ToloadFunc = () => {
     if (!data) return;

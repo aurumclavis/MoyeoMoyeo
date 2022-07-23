@@ -13,15 +13,15 @@ export default function FestivalListUI(props: IFestivalListUI) {
           <option>날짜 순</option>
         </S.Select>
         <S.InsideWrapper>
-          <InfiniteScroll
+          {/* <InfiniteScroll
             pageStart={0}
             loadMore={props.ToloadFunc}
             hasMore={true}
-          >
-            {props.data?.fetchPosts.map((el: any) => (
-              <FestivalListUIAdd data={props.data} key={el._id} el={el} />
-            ))}
-          </InfiniteScroll>
+          > */}
+          {props.data?.fetchPosts.map((el: any) => (
+            <FestivalListUIAdd data={props.data} key={el._id} el={el} />
+          ))}
+          {/* </InfiniteScroll> */}
         </S.InsideWrapper>
       </S.Wrapper>
     </>
