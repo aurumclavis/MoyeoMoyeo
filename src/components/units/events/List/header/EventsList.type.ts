@@ -6,4 +6,11 @@ export interface IEventsListUIProps {
   openEvents: boolean;
   onClickOurEventTap: () => void;
   ourEvents: boolean;
+  userInfo: {
+    email: string;
+    name: string;
+    company: string;
+    pm: string;
+    manager: string;
+  };
 }

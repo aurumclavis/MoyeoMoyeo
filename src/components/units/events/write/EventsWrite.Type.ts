@@ -46,6 +46,7 @@ export interface IUpdatePostInput {
   category?: string;
   dateStart?: string;
   dateEnd?: string;
+  imgsrc?: Array<string>;
 }
 
 export interface IEventsWriteProps {

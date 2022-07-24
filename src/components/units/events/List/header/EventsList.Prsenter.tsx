@@ -22,9 +22,11 @@ export default function EventsListUI(props: IEventsListUIProps) {
           <S.Tab onClick={props.onClickOurEventTap} isActive={props.ourEvents}>
             추천 행사
           </S.Tab>
-          <S.EventWriteBtn onClick={props.onClickNew}>
-            행사 등록
-          </S.EventWriteBtn>
+          {!props.userInfo.name && (
+            <S.EventWriteBtn onClick={props.onClickNew}>
+              행사 등록
+            </S.EventWriteBtn>
+          )}
         </S.TabWrapper>
         <S.FlexWrapper>
           <S.DateWrapper isActive={props.datePick}>

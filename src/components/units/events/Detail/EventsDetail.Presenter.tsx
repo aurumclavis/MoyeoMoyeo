@@ -63,8 +63,9 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
         <S.MainTitle ref={props.markerRef}>
           {props.data?.fetchPost?.category} 요약
         </S.MainTitle>
-        <S.MainImg src="/배너이미지_행사1.png" />
-
+        <S.MainImg
+          src={`https://storage.googleapis.com/${props.data?.fetchPost?.images[0].src}`}
+        />
         {typeof window !== "undefined" && (
           <S.ContetsText
             dangerouslySetInnerHTML={{
@@ -72,7 +73,7 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
             }}
           />
         )}
-        <S.LineDiv />
+        {/* <S.LineDiv /> */}
         <S.MapWrapper ref={props.mapsRef}>
           <S.MapTitle>행사 위치</S.MapTitle>
           <S.ContetsText>{props.data?.fetchPost?.address}</S.ContetsText>
@@ -81,9 +82,23 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
         <S.LineDiv />
         <S.ContentsWrapper ref={props.contentsRef}>
           <S.ContentsTitle>상세 이미지</S.ContentsTitle>
+          {/* <S.ContentImg src="/배너이미지_행사1.png" />
           <S.ContentImg src="/배너이미지_행사1.png" />
-          <S.ContentImg src="/배너이미지_행사1.png" />
-          <S.ContentImg src="/배너이미지_행사1.png" />
+          <S.ContentImg src="/배너이미지_행사1.png" /> */}
+          {props.data?.fetchPost.images.map((el: any) => {
+            return (
+              <>
+                <S.ContentImg
+                  key={el.id}
+                  onError={event => {
+                    if (event.target instanceof HTMLImageElement)
+                      event.target.src = "../../error-image.png";
+                  }}
+                  src={`https://storage.googleapis.com/${el.src}`}
+                />
+              </>
+            );
+          })}
         </S.ContentsWrapper>
 
         <S.EditWrapper>
