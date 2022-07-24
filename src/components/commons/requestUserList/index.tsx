@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { IRequestUserListProps } from "../../units/boards/board/boardDetail/BoardDetail.types";
 import RequestUserItems from "./requestUserItems";
 export const RequestUserListWrapper = styled.div`
   width: 100%;
@@ -10,7 +11,7 @@ export const RequestUserListWrapper = styled.div`
 `;
 
 // uuid v4를 key값으로 넣으면 왜 transition이 먹통이 되는 걸까???
-export default function RequestUserList(props: any) {
+export default function RequestUserList(props: IRequestUserListProps) {
   return (
     <RequestUserListWrapper>
       {props.requestUsers?.map((el: any) => (

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import BoardListPresenter from "./BoardList.presenter";
 import { useRouter } from "next/router";
+import { REQUEST_ACCOMPANY } from "./BoardList.queries";
 import _ from "lodash";
 import {
   defaultFromToMonthly,
@@ -11,8 +12,10 @@ import {
   weeklyMovePrev,
 } from "./dateFromTo";
 import { getDate } from "../../../commons/getDate";
+import { useMutation } from "@apollo/client";
+import { IBoardListContainerProps } from "./BoardList.types";
 
-export default function BoardListContainer(props: any) {
+export default function BoardListContainer(props: IBoardListContainerProps) {
   const router = useRouter();
 
   // 디폴트날짜 구하기
@@ -21,18 +24,20 @@ export default function BoardListContainer(props: any) {
   });
 
   // 동행리스트 페이지의 기본설정인 동행일오름차순으로 정렬을 위한 깊은복사 + 날짜필터링으로 데이터 추출
-  const sortedRawData = _.cloneDeep(props.rawData.fetchBoards).sort((a, b) => {
-    return Number(a.dateStart.replaceAll("-", "")) <
-      Number(b.dateStart.replaceAll("-", ""))
-      ? -1
-      : 1;
-  });
+  const sortedRawData = _.cloneDeep(props.rawData.fetchBoards).sort(
+    (a: any, b: any) => {
+      return Number(a.dateStart.replaceAll("-", "")) <
+        Number(b.dateStart.replaceAll("-", ""))
+        ? -1
+        : 1;
+    }
+  );
 
   // 단계별(보기타입별, 날짜선택별, 카테고리별) 검색필터 부분
   // 날짜별 data추출 검색필터
   const [sortedData, setSortedData] = useState(
     sortedRawData.filter(
-      (el) =>
+      (el: any) =>
         Number(fromToDate.from.replaceAll("-", "")) <=
           Number(el.dateStart.replaceAll("-", "")) &&
         Number(fromToDate.to.replaceAll("-", "")) >=
@@ -42,7 +47,7 @@ export default function BoardListContainer(props: any) {
   useEffect(() => {
     setSortedData(
       sortedRawData.filter(
-        (el) =>
+        (el: any) =>
           Number(fromToDate.from.replaceAll("-", "")) <=
             Number(el.dateStart.replaceAll("-", "")) &&
           Number(fromToDate.to.replaceAll("-", "")) >=
@@ -106,8 +111,9 @@ export default function BoardListContainer(props: any) {
     setIsUseDateChanger(false);
     setViewTypeData(
       props.rawData.fetchBoards.filter(
-        (el) =>
-          props.userData.fetchLoginUser.id === el.accompanyRequests?.reqUser?.id
+        (el: any) =>
+          props.userData?.fetchLoginUser.id ===
+          el.accompanyRequests?.reqUser?.id
       )
     );
   };
@@ -135,12 +141,12 @@ export default function BoardListContainer(props: any) {
   const onClickViewRecruit = () => {
     selectViewRecruit
       ? setRecruitData(categoryData)
-      : setRecruitData(categoryData.filter((el) => !el.isFull));
+      : setRecruitData(categoryData.filter((el: any) => !el.isFull));
     setSelectViewRecruit((prev) => !prev);
   };
 
   const onClickCreateBoard = () => {
-    router.push("/boards/new");
+    router.push("/boards/new/general");
   };
 
   // 서브헤더 스크롤 부분
@@ -163,8 +169,11 @@ export default function BoardListContainer(props: any) {
 
   // 행사카테고리 중복제거 부분
   const eventCategory = props.rawData.fetchBoards
-    .map((el) => el.eventCategory)
-    .reduce((acc, cur) => (acc.includes(cur) ? acc : [...acc, cur]), ["전체"]);
+    .map((el: any) => el.eventCategory)
+    .reduce(
+      (acc: any, cur: any) => (acc.includes(cur) ? acc : [...acc, cur]),
+      ["전체"]
+    );
 
   // 게시글 상세로 이동
   const onClickGoDetail = (boardId: any) => () => {
@@ -193,6 +202,11 @@ export default function BoardListContainer(props: any) {
   //   });
   // };
 
+  // 동행요청하기 버튼 부분
+  const [requestAccompany] = useMutation(REQUEST_ACCOMPANY);
+  const onClickRequestAccompany = (boardId: string) => async () => {
+    await requestAccompany({ variables: { boardId } });
+  };
   return (
     <BoardListPresenter
       eventCategory={eventCategory}
@@ -221,6 +235,7 @@ export default function BoardListContainer(props: any) {
       userData={props.userData}
       selectedCategoryName={selectedCategoryName}
       setSelectedCategoryName={setSelectedCategoryName}
+      onClickRequestAccompany={onClickRequestAccompany}
     />
   );
 }

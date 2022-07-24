@@ -1,10 +1,11 @@
 import { useEffect } from "react";
+import { IKaKaoMapFetchProps } from "../../board/boardDetail/BoardDetail.types";
 
 declare const window: typeof globalThis & {
   kakao: any;
 };
 
-export default function KaKaoMapFetch(props: any) {
+export default function KaKaoMapFetch(props: IKaKaoMapFetchProps) {
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -57,7 +58,7 @@ export default function KaKaoMapFetch(props: any) {
         infowindow.open(map, marker);
       });
     };
-  }, [props]);
+  }, [props.eventName]);
 
   return (
     <>

@@ -10,5 +10,6 @@ export default function BoardEditPage() {
       boardId: router.query.boardId,
     },
   });
+
   return <BoardWriteContainer isEdit={true} data={data} />;
 }

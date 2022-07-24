@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { breakPoints } from "../../../../../commons/styles/media";
+import { IEachItemProps, IItemProps } from "../BoardList.types";
 
 const Item = styled.div`
   width: 90%;
@@ -12,8 +13,8 @@ const Item = styled.div`
   border: 1px solid #d2d2d2;
   background-color: white;
   transition: 0.3s;
-  ${(props: any) => props.isViewTotal && "background-color : #F1EEE9;"}
-  ${(props: any) => props.clicked && "background-color : #F1EEE9;"}
+  ${(props: IItemProps) => props.isViewTotal && "background-color : #F1EEE9;"}
+  ${(props: IItemProps) => props.clicked && "background-color : #F1EEE9;"}
   cursor: pointer;
   @media ${breakPoints.mobile} {
     width: 90%;
@@ -21,7 +22,7 @@ const Item = styled.div`
   }
 `;
 
-export default function EachItem(props: any) {
+export default function EachItem(props: IEachItemProps) {
   const [isViewTotal] = useState(props.selectedCategoryName === "전체");
   const onClickItem = () => {
     props.setClickedIndex(props.index);

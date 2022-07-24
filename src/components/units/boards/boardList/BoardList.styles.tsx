@@ -5,6 +5,15 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import ListIcon from "@mui/icons-material/List";
 import { breakPoints } from "../../../../commons/styles/media";
+import {
+  IItemRightProps,
+  IRecruitmentProps,
+  IRecruitmentViewTypeButtonProps,
+  ISubHeaderWrapperProps,
+  IViewAccompanyProps,
+  IViewLatestProps,
+  IViewTotalProps,
+} from "./BoardList.types";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -27,7 +36,7 @@ export const SubHeaderWrapper = styled.div`
   position: sticky;
   top: 0;
   z-index: 1;
-  ${(props: any) =>
+  ${(props: ISubHeaderWrapperProps) =>
     props.isSubHeaderOnTop && "border-bottom: 1px solid #d2d2d2;"}
   @media ${breakPoints.mobile} {
     width: 100%;
@@ -58,7 +67,7 @@ export const ViewTotal = styled.span`
   justify-content: center;
   align-items: center;
   border-bottom: 3px solid white;
-  ${(props: any) =>
+  ${(props: IViewTotalProps) =>
     props.selectAccompanyDate &&
     "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
@@ -72,7 +81,7 @@ export const ViewLatest = styled.span`
   justify-content: center;
   align-items: center;
   border-bottom: 3px solid white;
-  ${(props: any) =>
+  ${(props: IViewLatestProps) =>
     props.selectLatest &&
     "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
@@ -86,7 +95,7 @@ export const ViewAccompany = styled.span`
   justify-content: center;
   align-items: center;
   border-bottom: 3px solid white;
-  ${(props: any) =>
+  ${(props: IViewAccompanyProps) =>
     props.selectRequested &&
     "font-weight : 700; border-bottom: 3px solid #ffd24c;"}
   cursor: pointer;
@@ -330,7 +339,7 @@ export const RecruitmentViewTypeButton = styled.button`
   border-radius: 15px;
   font-weight: 600;
   transition: 0.5s;
-  ${(props: any) =>
+  ${(props: IRecruitmentViewTypeButtonProps) =>
     props.selectViewRecruit
       ? "color:white;background-color:#ffd24c; border-color:#FFE69A;"
       : "color:black;background-color:white;border-color:#d2d2d2;"}
@@ -406,7 +415,8 @@ export const Header = styled.div`
   }
 `;
 export const Recruitment = styled.div`
-  ${(props: any) => (props.recruited ? "color : #FFD24C;" : "color : #00AD07;")}
+  ${(props: IRecruitmentProps) =>
+    props.recruited ? "color : #FFD24C;" : "color : #00AD07;"}
 `;
 export const Title = styled.div`
   width: 80%;
@@ -479,7 +489,7 @@ export const ItemRight = styled.div`
   :hover img {
     transform: scale(1.1, 1.1);
   }
-  ${(props: any) =>
+  ${(props: IItemRightProps) =>
     props.requested && "background-color: #FFD24C; color: white;"}
   @media ${breakPoints.mobile} {
     padding: 1rem;

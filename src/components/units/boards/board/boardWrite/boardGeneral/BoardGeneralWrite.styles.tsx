@@ -2,18 +2,13 @@ import styled from "@emotion/styled";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import DateRangeIcon from "@mui/icons-material/DateRange";
-import FestivalIcon from "@mui/icons-material/Festival";
-import MapIcon from "@mui/icons-material/Map";
-import ListIcon from "@mui/icons-material/List";
-import SearchIcon from "@mui/icons-material/Search";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import { breakPoints } from "../../../../../commons/styles/media";
+import { breakPoints } from "../../../../../../commons/styles/media";
 import {
   IMyArrowRightIconProps,
   ITransportationProps,
   ITransportationSelectProps,
-} from "./BoardWrite.types";
+} from "./BoardGeneralWrite.types";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -41,12 +36,12 @@ export const CoverImage = styled.img`
   object-fit: cover;
 `;
 
-// 이벤트정보와 제목-내용을 감싸는 상단 wrap
 // 반응형일 때 flex-direction : column
 export const UpperWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 2rem;
   gap: 5%;
   @media ${breakPoints.mobile} {
@@ -54,42 +49,6 @@ export const UpperWrapper = styled.div`
     justify-content: center;
     padding: 1rem 0 0 0;
   }
-`;
-
-// 이벤트정보 wrap
-export const EventWrapper = styled.div`
-  width: 30%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  @media ${breakPoints.mobile} {
-    width: 100%;
-    order: 1;
-    margin: 2rem 0;
-  }
-`;
-export const EventInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  transition: 0.2s;
-  :hover {
-    box-shadow: 0px 2px 4px 2px #00000033;
-    transform: translateY(-5px);
-  }
-`;
-export const ImageWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-`;
-export const RandomCover = styled.div`
-  padding: 2px 5px;
-  background-color: #d9d9d9;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  cursor: pointer;
 `;
 export const MyImageUpload = styled.div`
   padding: 2px 5px;
@@ -105,86 +64,10 @@ export const ImageInput = styled.input`
   top: 0;
   display: none;
 `;
-export const EventImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  object-fit: cover;
-`;
-export const EventInfo = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border: 1px solid #f1eee9;
-  border-top: none;
-`;
-export const EventInfoDetail = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-`;
-export const EventFestivalIcon = styled(FestivalIcon)`
-  width: 10%;
-`;
-export const EventMapIcon = styled(MapIcon)`
-  width: 10%;
-`;
-export const EventDateRangeIcon = styled(DateRangeIcon)`
-  width: 10%;
-`;
-export const EventListIcon = styled(ListIcon)`
-  width: 10%;
-`;
-export const EventInfoItem = styled.div`
-  width: 40%;
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-`;
-export const EventInfoContents = styled.div`
-  width: 60%;
-  padding-left: 1rem;
-  color: #73777b;
-`;
-// 이벤트 검색바
-export const EventSearchWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 1px;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: 1px solid #d2d2d2;
-`;
-export const MySearchIcon = styled(SearchIcon)`
-  width: 2rem;
-  border-right: 1px solid #d2d2d2;
-  color: #d2d2d2;
-`;
-export const EventSearchInput = styled.input`
-  width: 100%;
-  height: 2.188rem;
-  padding: 10px;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  color: #323232;
-  ::placeholder {
-    color: #d2d2d2;
-    font-size: 1rem;
-  }
-`;
 
 // 우측 제목-내용쓰기 wrap
 export const MainWrapper = styled.div`
-  width: 65%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2.87rem;
@@ -250,11 +133,6 @@ export const AccompanyDateInputWrapper = styled.div`
   @media ${breakPoints.mobile} {
     margin: 0;
   }
-`;
-export const MyHelpOutlineIcon = styled(HelpOutlineIcon)`
-  width: 1.2rem;
-  color: #d2d2d2;
-  cursor: pointer;
 `;
 export const MaxHeadCountWrapper = styled.div`
   width: 20%;
@@ -459,6 +337,7 @@ export const AddressExplainWrapper = styled.div`
   width: 40%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2.87rem;
   padding: 1rem;
   border: 1px solid #d9d9d9;
@@ -468,6 +347,18 @@ export const AddressExplainWrapper = styled.div`
     padding: 0;
     border: none;
   }
+`;
+export const SearchAddressButton = styled.button`
+  width: 90%;
+  height: 3.238rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #f1eee9;
+  font-size: 1.2rem;
+  color: #323232;
+  font-weight: 500;
+  cursor: pointer;
 `;
 export const AddressInput = styled.input`
   height: 2.188rem;
@@ -482,9 +373,9 @@ export const AddressInput = styled.input`
   }
 `;
 export const LocationExplainInput = styled.textarea`
-  height: 11rem;
-  max-height: 11rem;
-  min-height: 11rem;
+  height: 5rem;
+  max-height: 5rem;
+  min-height: 5rem;
   padding: 10px;
   border: none;
   outline: none;

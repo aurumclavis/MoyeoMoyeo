@@ -1,10 +1,11 @@
 import { useEffect } from "react";
+import { IKaKaoMapProps } from "../board/boardWrite/BoardWrite.types";
 
 declare const window: typeof globalThis & {
   kakao: any;
 };
 
-export default function KaKaoMap(props: any) {
+export default function KaKaoMap(props: IKaKaoMapProps) {
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -177,7 +178,7 @@ export default function KaKaoMap(props: any) {
         }
       });
     };
-  }, [props.isEdit, props.postAddress, props.isEditAddress]);
+  }, [props.isEdit, props.postAddress]);
 
   return (
     <>

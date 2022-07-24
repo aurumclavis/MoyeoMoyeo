@@ -1,9 +1,10 @@
 import { DatePicker, Space } from "antd";
 import React from "react";
+import { IDateRangePickerProps } from "../BoardWrite.types";
 
 const { RangePicker } = DatePicker;
 
-export default function DateRangePicker(props: any) {
+export default function DateRangePicker(props: IDateRangePickerProps) {
   return (
     <Space direction="vertical" size={12}>
       <RangePicker

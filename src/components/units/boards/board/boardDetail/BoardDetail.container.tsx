@@ -1,13 +1,14 @@
 import { useRouter } from "next/router";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, MouseEvent } from "react";
 import BoardDetailPresenter from "./BoardDetail.presenter";
 import _, { throttle } from "lodash";
 import {
   FETCH_BOARD,
   FETCH_LOGIN_USER,
   FETCH_REQUEST_USERS,
-  REQUEST_ACCOMPANY,
+  // REQUEST_ACCOMPANY,
   DELETE_BOARD,
+  MAKE_BOARD_FULL,
 } from "./BoardDetail.queries";
 import { UPDATE_BOARD } from "../boardWrite/BoardWrite.queries";
 import { useMutation, useQuery } from "@apollo/client";
@@ -33,6 +34,13 @@ export default function BoardDetailContainer() {
   const [isMyBoard, setIsMyBoard] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isSendRequestUser, setIsSendRequestUser] = useState(false);
+  console.log(
+    "a",
+    requestUserData?.fetchBoardRequest.filter(
+      (el: any) => el.reqUser.id === userData?.fetchLoginUser.id
+    ).length
+  );
+
   useEffect(() => {
     const writerId = data?.fetchBoard.writer.id;
     const userId = userData?.fetchLoginUser.id;
@@ -48,10 +56,6 @@ export default function BoardDetailContainer() {
       if (requestUsersId?.includes(userId)) setIsSendRequestUser(true);
     }
   }, [userData, data, requestUserData]);
-
-  // 목업을 위한 하드코딩
-  const lat = 37.5378;
-  const lng = 126.8939;
 
   // 네비 부분
   const [activeTab, setActiveTab] = useState("detail");
@@ -88,7 +92,7 @@ export default function BoardDetailContainer() {
     }
   }, 50);
 
-  const onClickDetail = (event: any) => {
+  const onClickDetail = (event: MouseEvent<HTMLDivElement>) => {
     const detailAbsoluteTop =
       window.pageYOffset +
       detailRef.current?.getBoundingClientRect().top -
@@ -101,7 +105,7 @@ export default function BoardDetailContainer() {
       setActiveTab(event.currentTarget.id);
     }, 500);
   };
-  const onClickEvent = (event: any) => {
+  const onClickEvent = (event: MouseEvent<HTMLDivElement>) => {
     const eventAbsoluteTop =
       window.pageYOffset +
       eventRef.current?.getBoundingClientRect().top -
@@ -114,7 +118,7 @@ export default function BoardDetailContainer() {
       setActiveTab(event.currentTarget.id);
     }, 500);
   };
-  const onClickComment = (event: any) => {
+  const onClickComment = (event: MouseEvent<HTMLDivElement>) => {
     const commentAbsoluteTop =
       window.pageYOffset +
       commentRef.current?.getBoundingClientRect().top -
@@ -160,33 +164,42 @@ export default function BoardDetailContainer() {
   useEffect(() => {
     setMaxHeadCount(data?.fetchBoard.personCount);
   }, [data?.fetchBoard.personCount]);
-  const onClickCount = (event: any) => {
-    event.target.id === "+" && setMaxHeadCount((prev) => prev + 1);
-    event.target.id === "-" &&
+  const onClickCount = (event: MouseEvent<HTMLDivElement>) => {
+    (event.target as HTMLDivElement).id === "+" &&
+      setMaxHeadCount((prev) => prev + 1);
+    (event.target as HTMLDivElement).id === "-" &&
       maxHeadCount > 1 &&
       setMaxHeadCount((prev) => prev - 1);
   };
   // 모집완료/취소 부분
-  const onClickChangeRecruitState = (state: string) => () => {};
-
-  // 열람자인 경우
-  // 요청하기/요청취소 부분
-  const [requestAccompany] = useMutation(REQUEST_ACCOMPANY);
-  const onClickRequestAccompany = (state: string) => async () => {
-    if (state === "request") {
+  const [makeFull] = useMutation(MAKE_BOARD_FULL);
+  const onClickChangeRecruitState = (state: string) => async () => {
+    if (state === "complete") {
       try {
-        await requestAccompany({
-          variables: { boardId: router.query.boardId },
-        });
-        setIsSendRequestUser(true);
+        await makeFull({ variables: { boardId: router.query.boardId } });
       } catch (error) {
-        alert(error.message);
+        if (error instanceof Error) alert(error.message);
       }
     }
-    if (state === "cancel") {
-      // 요청취소쿼리필요
-      setIsSendRequestUser(false);
-    }
+    setIsCompleted((prev) => !prev);
+  };
+
+  // 열람자인 경우
+  // 요청하기/요청취소 부분 api 안된다......
+  // const [requestAccompany] = useMutation(REQUEST_ACCOMPANY);
+  const onClickRequestAccompany = (state: string) => async () => {
+    // if (state === "request") {
+    //   try {
+    //     await requestAccompany({
+    //       variables: { boardId: router.query.boardId },
+    //     });
+    //     setIsSendRequestUser(true);
+    //   } catch (error) {
+    //     if (error instanceof Error) alert(error.message);
+    //   }
+    // }
+
+    setIsSendRequestUser((prev) => !prev);
   };
 
   // 로드뷰 부분
@@ -224,8 +237,6 @@ export default function BoardDetailContainer() {
       onClickDetail={onClickDetail}
       onClickEvent={onClickEvent}
       onClickComment={onClickComment}
-      lat={lat}
-      lng={lng}
       roadView={roadView}
       onClickRoadView={onClickRoadView}
       onClickExitRoadView={onClickExitRoadView}

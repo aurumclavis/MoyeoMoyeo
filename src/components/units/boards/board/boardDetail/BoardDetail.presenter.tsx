@@ -9,8 +9,12 @@ import RequestUserList from "../../../../commons/requestUserList";
 import KaKaoRoadView from "../../KaKaoMap/FetchMap/roadView";
 import MaxHeadCountChangeModal from "./maxHeadcountChangeModal";
 import { v4 as uuidv4 } from "uuid";
+import { IBoardDetailPresenterProps } from "./BoardDetail.types";
+import { getDate } from "../../../../commons/getDate";
 
-export default function BoardDetailPresenter(props: any) {
+export default function BoardDetailPresenter(
+  props: IBoardDetailPresenterProps
+) {
   return (
     <S.Wrapper>
       <S.NavWrapper ref={props.navRef}>
@@ -47,8 +51,10 @@ export default function BoardDetailPresenter(props: any) {
             {props.data?.fetchBoard.title}
           </S.Title>
           <S.CreatedAtAndViewCountWrapper>
-            <S.CreatedAt>2022년 7월 11일 19:31 작성</S.CreatedAt> ・
-            <S.View>조회수 {props.data?.fetchBoard.viewCount}</S.View> ・{" "}
+            <S.CreatedAt>
+              {getDate(props.data?.fetchBoard.createdAt)} 11:28 작성
+            </S.CreatedAt>{" "}
+            ・<S.View>조회수 {props.data?.fetchBoard.viewCount}</S.View> ・{" "}
             <S.Report>신고하기</S.Report>
           </S.CreatedAtAndViewCountWrapper>
           <S.Main>
@@ -119,7 +125,11 @@ export default function BoardDetailPresenter(props: any) {
                   lat={props.data?.fetchBoard.boardAddress.lat}
                   lng={props.data?.fetchBoard.boardAddress.lng}
                   eventName={props.data?.fetchBoard.eventName}
-                  address={props.data?.fetchBoard.address}
+                  address={
+                    props.data?.fetchBoard.eventCategory !== "일반"
+                      ? props.data?.fetchBoard.address
+                      : "동행위치"
+                  }
                 />
                 {props.roadView && (
                   <KaKaoRoadView
@@ -146,8 +156,8 @@ export default function BoardDetailPresenter(props: any) {
                   <S.AccompanyItems>
                     <S.AccompanyAmountIcon src="/icon/groups.png" />
                     <S.AccompanyAmountText>
-                      {/* 모집된인원-스케쥴드유저스가 작동안해서 일단 하드코딩 */}
-                      인원 {1}/{props.maxHeadCount}
+                      인원 {props.data?.scheduledUsers?.length}/
+                      {props.maxHeadCount}
                     </S.AccompanyAmountText>
                   </S.AccompanyItems>
                   <S.AccompanyItems>
@@ -173,13 +183,13 @@ export default function BoardDetailPresenter(props: any) {
                 {props.isCompleted ? (
                   <>
                     <S.AccompanyUserListWrapper>
-                      {/* 모집된인원-스케쥴드유저스가 작동안해서 일단 하드코딩 */}
-                      {["김성훈", "성혜린", "김은재", "한주연"].map((el) => (
-                        <S.AccompanyUser key={el}>{el}</S.AccompanyUser>
+                      {props.data?.scheduledUsers?.map((el: any) => (
+                        <S.AccompanyUser key={el.id}>{el.name}</S.AccompanyUser>
                       ))}
                     </S.AccompanyUserListWrapper>
                     <S.AccompanyRequestButton
                       isCompleted={props.isCompleted}
+                      isSendRequestUser={props.isSendRequestUser}
                       onClick={props.onClickChangeRecruitState("cancel")}
                     >
                       <S.AccompanyCompleteCancelIcon src="/icon/cancel.png" />
@@ -195,8 +205,8 @@ export default function BoardDetailPresenter(props: any) {
                 ) : (
                   <>
                     <S.AccompanyUserListWrapper>
-                      {["김성훈", "성혜린", "김은재", "한주연"].map((el) => (
-                        <S.AccompanyUser key={el}>{el}</S.AccompanyUser>
+                      {props.data?.scheduledUsers?.map((el: any) => (
+                        <S.AccompanyUser key={el.id}>{el.name}</S.AccompanyUser>
                       ))}
                     </S.AccompanyUserListWrapper>
                     <RequestUserList
@@ -210,6 +220,8 @@ export default function BoardDetailPresenter(props: any) {
                       isDetailPage={true}
                     />
                     <S.AccompanyRequestButton
+                      isCompleted={props.isCompleted}
+                      isSendRequestUser={props.isSendRequestUser}
                       onClick={props.onClickChangeRecruitState("complete")}
                     >
                       <S.AccompanyCompleteIcon src="/icon/done.png" />
@@ -242,6 +254,7 @@ export default function BoardDetailPresenter(props: any) {
                   <>
                     <S.AccompanyRequestButton
                       isSendRequestUser={props.isSendRequestUser}
+                      isCompleted={props.isCompleted}
                       onClick={props.onClickRequestAccompany("cancel")}
                     >
                       <S.AccompanyCancelText>
@@ -271,6 +284,8 @@ export default function BoardDetailPresenter(props: any) {
                 {!!props.userData && (
                   <>
                     <S.AccompanyRequestButton
+                      isSendRequestUser={props.isSendRequestUser}
+                      isCompleted={props.isCompleted}
                       onClick={props.onClickRequestAccompany("request")}
                     >
                       <S.AccompanyRequestText>
@@ -288,55 +303,58 @@ export default function BoardDetailPresenter(props: any) {
               </>
             ))}
         </S.AccompanyWrapper>
-        <S.EventInfoWrapper ref={props.eventRef}>
-          <S.EventInfoText>행사 정보</S.EventInfoText>
-          <S.EventInfo>
-            <S.EventImage src="/catGoodsMarketExample.jpeg" />
-            <S.EventInfoDetailWrapper>
-              <S.EventInfoDetail>
-                <S.EventInfoItem>
-                  <S.EventFestivalIcon />
-                  행사이름
-                </S.EventInfoItem>
-                <S.EventInfoContents>
-                  {props.data?.fetchBoard.eventName}
-                </S.EventInfoContents>
-              </S.EventInfoDetail>
-              <S.EventInfoDetail>
-                <S.EventInfoItem>
-                  <S.EventMapIcon />
-                  지역
-                </S.EventInfoItem>
-                {/* 이벤트어드레스가 없어서 일단 하드코딩으로 작성 */}
-                <S.EventInfoContents>{"서울시 어디어디"}</S.EventInfoContents>
-              </S.EventInfoDetail>
-              <S.EventInfoDetail>
-                <S.EventInfoItem>
-                  <S.EventDateRangeIcon />
-                  기간
-                </S.EventInfoItem>
-                <S.EventInfoContents>
-                  {props.data?.fetchBoard.eventStart
-                    .replace("-", "년 ")
-                    .replace("-", "월 ") + "일"}{" "}
-                  ~{" "}
-                  {props.data?.fetchBoard.eventEnd
-                    .replace("-", "년 ")
-                    .replace("-", "월 ") + "일"}
-                </S.EventInfoContents>
-              </S.EventInfoDetail>
-              <S.EventInfoDetail>
-                <S.EventInfoItem>
-                  <S.EventListIcon />
-                  카테고리
-                </S.EventInfoItem>
-                <S.EventInfoContents>
-                  {props.data?.fetchBoard.eventCategory}
-                </S.EventInfoContents>
-              </S.EventInfoDetail>
-            </S.EventInfoDetailWrapper>
-          </S.EventInfo>
-        </S.EventInfoWrapper>
+        {props.data?.fetchBoard.eventCategory !== "일반" && (
+          <S.EventInfoWrapper ref={props.eventRef}>
+            <S.EventInfoText>행사 정보</S.EventInfoText>
+            <S.EventInfo>
+              <S.EventImage src="/catGoodsMarketExample.jpeg" />
+              <S.EventInfoDetailWrapper>
+                <S.EventInfoDetail>
+                  <S.EventInfoItem>
+                    <S.EventFestivalIcon />
+                    행사이름
+                  </S.EventInfoItem>
+                  <S.EventInfoContents>
+                    {props.data?.fetchBoard.eventName}
+                  </S.EventInfoContents>
+                </S.EventInfoDetail>
+                <S.EventInfoDetail>
+                  <S.EventInfoItem>
+                    <S.EventMapIcon />
+                    지역
+                  </S.EventInfoItem>
+                  <S.EventInfoContents>
+                    {props.data?.fetchBoard.eventLocation}
+                  </S.EventInfoContents>
+                </S.EventInfoDetail>
+                <S.EventInfoDetail>
+                  <S.EventInfoItem>
+                    <S.EventDateRangeIcon />
+                    기간
+                  </S.EventInfoItem>
+                  <S.EventInfoContents>
+                    {props.data?.fetchBoard.eventStart
+                      .replace("-", "년 ")
+                      .replace("-", "월 ") + "일"}{" "}
+                    ~{" "}
+                    {props.data?.fetchBoard.eventEnd
+                      .replace("-", "년 ")
+                      .replace("-", "월 ") + "일"}
+                  </S.EventInfoContents>
+                </S.EventInfoDetail>
+                <S.EventInfoDetail>
+                  <S.EventInfoItem>
+                    <S.EventListIcon />
+                    카테고리
+                  </S.EventInfoItem>
+                  <S.EventInfoContents>
+                    {props.data?.fetchBoard.eventCategory}
+                  </S.EventInfoContents>
+                </S.EventInfoDetail>
+              </S.EventInfoDetailWrapper>
+            </S.EventInfo>
+          </S.EventInfoWrapper>
+        )}
         <S.ButtonWrapper>
           <S.GoListButton onClick={props.onClickMoveToPage("/boards")}>
             동행게시판으로
@@ -347,9 +365,15 @@ export default function BoardDetailPresenter(props: any) {
                 삭제하기
               </S.DeleteButton>
               <S.EditButton
-                onClick={props.onClickMoveToPage(
-                  `/boards/${props.data?.fetchBoard.id}/edit`
-                )}
+                onClick={
+                  props.data?.fetchBoard.eventCategory === "일반"
+                    ? props.onClickMoveToPage(
+                        `/boards/${props.data?.fetchBoard.id}/edit/general`
+                      )
+                    : props.onClickMoveToPage(
+                        `/boards/${props.data?.fetchBoard.id}/edit`
+                      )
+                }
               >
                 수정하기
               </S.EditButton>

@@ -5,6 +5,7 @@ import FestivalIcon from "@mui/icons-material/Festival";
 import MapIcon from "@mui/icons-material/Map";
 import ListIcon from "@mui/icons-material/List";
 import { breakPoints } from "../../../../../commons/styles/media";
+import { IAccompanyRequestButtonProps, ITitleProps } from "./BoardDetail.types";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -101,7 +102,7 @@ export const Body = styled.div`
 export const Title = styled.span`
   font-size: 2.5rem;
   font-weight: 700;
-  ${(props: any) => props.isCompleted && "background-color: #ffe69a;"}
+  ${(props: ITitleProps) => props.isCompleted && "background-color: #ffe69a;"}
   @media ${breakPoints.mobile} {
     font-size: 1.5rem;
   }
@@ -396,7 +397,7 @@ export const AccompanyRequestButton = styled.button`
   border: none;
   border-radius: 5px;
   outline: none;
-  ${(props: any) =>
+  ${(props: IAccompanyRequestButtonProps) =>
     props.isSendRequestUser || props.isCompleted
       ? "background-color: #FFD24C; color: white;"
       : "background-color: #15133c; color: white;"}

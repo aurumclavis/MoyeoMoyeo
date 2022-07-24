@@ -42,3 +42,7 @@ export const dibsProductIdState = atom({
   key: `dibsProductIdState/${v1()}`,
   default: "",
 });
+export const boardGeneralWriteState = atom({
+  key: "boardGeneralWriteState",
+  default: false,
+});

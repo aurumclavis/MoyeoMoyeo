@@ -14,7 +14,7 @@ const Map = styled.div`
 
 export default function MapBoxComponent() {
   // geoData 업데이트부분
-  const gu_event = [
+  const guEvent = [
     { 강동구: 1 },
     { 송파구: 3 },
     { 강남구: 0 },
@@ -42,7 +42,7 @@ export default function MapBoxComponent() {
     { 종로구: 18 },
   ];
   geoData.features.forEach((guItem: any) => {
-    gu_event.forEach((el) => {
+    guEvent.forEach((el) => {
       if (Object.keys(el)[0] === guItem.properties.name) {
         guItem.properties.eventCount = Object.values(el)[0];
       }
@@ -145,21 +145,6 @@ export default function MapBoxComponent() {
         return marker;
       });
       map.scrollZoom.disable();
-
-      // map.on("click", (el) => {
-      //   const result = map.queryRenderedFeatures(el.point, {
-      //     layers: ["seoul"],
-      //   });
-      //   if (result.length) {
-      //     const guName = result[0].properties.name;
-      //     const eventCount = result[0].properties.eventCount;
-      //     const popup = new mapboxgl.Popup({ closeButton: false });
-      //     popup
-      //       .setLngLat(el.lngLat)
-      //       .setHTML(`<h2>${guName}</h2><div>${eventCount}개의 행사</div>`)
-      //       .addTo(map);
-      //   }
-      // });
     };
   }, []);
 

@@ -7,14 +7,14 @@ export const FETCH_BOARDS = gql`
       isFull
       title
       contents
+      remark
       viewCount
       personCount
       dateStart
       dateEnd
-      #   eventImage {
-      #     src
-      #   }
-      #   커버이미지로 임시사용
+      writer {
+        id
+      }
       coverImage {
         src
       }

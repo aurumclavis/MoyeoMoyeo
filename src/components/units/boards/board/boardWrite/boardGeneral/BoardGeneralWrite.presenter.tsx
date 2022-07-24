@@ -1,12 +1,19 @@
-import * as S from "./BoardWrite.styles";
-import KaKaoMap from "../../KaKaoMap";
-import ToolTip from "../../../../commons/tooltip";
+import * as S from "./BoardGeneralWrite.styles";
+import ToolTip from "../../../../../commons/tooltip";
 import { v4 as uuidv4 } from "uuid";
-import DateRangePicker from "./dateRangePicker";
-import { getDate } from "../../../../commons/getDate";
-import { IBoardWritePresenterProps, Transportation } from "./BoardWrite.types";
+import DateRangePicker from "../dateRangePicker";
+import { getDate } from "../../../../../commons/getDate";
+import {
+  IBoardGeneralWritePresenterProps,
+  Transportation,
+} from "./BoardGeneralWrite.types";
+import { Modal } from "antd";
+import DaumPostcode from "react-daum-postcode";
+import KaKaoMap from "../../../KaKaoMap/KaKaoMapForGeneral";
 
-export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
+export default function BoardGeneralWritePresenter(
+  props: IBoardGeneralWritePresenterProps
+) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickSubmit)}>
       <S.CoverImageWrapper>
@@ -21,15 +28,10 @@ export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
             src={
               props.previewUrls[0]
                 ? props.previewUrls[0]
-                : props.editPageRandomCover
-                ? props.randomCoverUrl
                 : `https://storage.googleapis.com/${props.data?.fetchBoard.coverImage.src}`
             }
           />
         )}
-        <S.RandomCover onClick={props.onClickChangeRandomCover}>
-          다른 랜덤이미지로 변경
-        </S.RandomCover>
         <S.MyImageUpload onClick={props.onClickMyCoverImg}>
           커버 이미지 직접 등록
           <S.ImageInput
@@ -40,71 +42,12 @@ export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
         </S.MyImageUpload>
       </S.CoverImageWrapper>
       <S.UpperWrapper>
-        <S.EventWrapper>
-          <S.EventInfoWrapper>
-            <S.ImageWrapper>
-              {!props.isEdit ? (
-                <S.EventImage src={"/catGoodsMarketExample.jpeg"} />
-              ) : (
-                <S.EventImage
-                  src={`https://storage.googleapis.com/${props.data?.fetchBoard.eventImage.src}`}
-                />
-              )}
-            </S.ImageWrapper>
-            <S.EventInfo>
-              <S.EventInfoDetail>
-                <S.EventFestivalIcon />
-                <S.EventInfoItem>이벤트이름</S.EventInfoItem>
-                <S.EventInfoContents>
-                  {!props.isEdit
-                    ? props.postData?.fetchPost.title
-                    : props.data?.fetchBoard.eventName}
-                </S.EventInfoContents>
-              </S.EventInfoDetail>
-              <S.EventInfoDetail>
-                <S.EventMapIcon />
-                <S.EventInfoItem>지역</S.EventInfoItem>
-                <S.EventInfoContents>
-                  {!props.isEdit
-                    ? props.postData?.fetchPost.address
-                    : props.data?.fetchBoard.eventAddress}
-                </S.EventInfoContents>
-              </S.EventInfoDetail>
-              <S.EventInfoDetail>
-                <S.EventDateRangeIcon />
-                <S.EventInfoItem>기간</S.EventInfoItem>
-                <S.EventInfoContents>
-                  {!props.isEdit
-                    ? getDate(props.postData?.fetchPost.dateStart) +
-                      " ~ " +
-                      getDate(props.postData?.fetchPost.dateEnd)
-                    : getDate(props.data?.fetchBoard.eventStart) +
-                      " ~ " +
-                      getDate(props.data?.fetchBoard.eventEnd)}
-                </S.EventInfoContents>
-              </S.EventInfoDetail>
-              <S.EventInfoDetail>
-                <S.EventListIcon />
-                <S.EventInfoItem>카테고리</S.EventInfoItem>
-                <S.EventInfoContents>
-                  {!props.isEdit
-                    ? props.postData?.fetchPost.category
-                    : props.data?.fetchBoard.eventCategory}
-                </S.EventInfoContents>
-              </S.EventInfoDetail>
-            </S.EventInfo>
-          </S.EventInfoWrapper>
-          <S.EventSearchWrapper>
-            <S.MySearchIcon />
-            <S.EventSearchInput placeholder="행사를 검색해보세요!" />
-          </S.EventSearchWrapper>
-        </S.EventWrapper>
         <S.MainWrapper>
           <S.ItemsWrapper>
             <S.ItemText>모여글 제목</S.ItemText>
             <S.TitleInput
               defaultValue={props.data?.fetchBoard.title}
-              placeholder="제목을 입력해주세요.(100자 이내)"
+              placeholder="제목을 입력해주세요.(50자 이내)"
               {...props.register("title")}
             />
           </S.ItemsWrapper>
@@ -112,12 +55,6 @@ export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
             <S.DateWrapper>
               <S.ItemText>동행일자</S.ItemText>
               <S.AccompanyDateInputWrapper>
-                <ToolTip
-                  promptText={"행사일정이 노란색으로 표시됩니다."}
-                  placement={"bottom"}
-                >
-                  <S.MyHelpOutlineIcon />
-                </ToolTip>
                 <DateRangePicker
                   eventDate={
                     !props.isEdit
@@ -168,7 +105,7 @@ export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
         <S.ItemsWrapper>
           <S.ItemText>나의 한 줄 설명</S.ItemText>
           <S.RemarkInput
-            placeholder="행사나 나 자신에 대한 한 줄 설명을 적어주세요! 동행 게시글 목록에 노출됩니다."
+            placeholder="나 자신에 대한 한 줄 설명을 적어주세요! 동행 게시글 목록에 노출됩니다."
             {...props.register("remark")}
             defaultValue={props.data?.fetchBoard.remark}
           />
@@ -176,6 +113,15 @@ export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
         <S.EventLocationWrapper>
           <S.ItemText>모임 위치</S.ItemText>
           <S.MapWrapper>
+            {props.isOpen && (
+              <Modal
+                visible={true}
+                onOk={props.onCompleteAddressSearch}
+                onCancel={props.onClickAddressSearch}
+              >
+                <DaumPostcode onComplete={props.onCompleteAddressSearch} />
+              </Modal>
+            )}
             <S.TransportationWrapper>
               <S.TransportationSelect
                 onClick={props.onClickTransportSelect}
@@ -220,17 +166,18 @@ export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
             </S.TransportationWrapper>
             <KaKaoMap
               setValue={props.setValue}
-              postAddress={props.postData?.fetchPost.address}
+              address={props.address}
               setAddress={props.setAddress}
               isEdit={props.isEdit}
               isEditAddress={props.data?.fetchBoard.boardAddress}
+              rerender={props.data?.fetchBoard.boardAddress}
             />
             <S.AddressExplainWrapper>
               <S.ItemsWrapper>
                 <S.ItemText>주소</S.ItemText>
                 <S.AddressInput
                   readOnly
-                  placeholder="지도에서 선택하면 자동으로 입력됩니다."
+                  placeholder="검색이나 지도클릭시 자동 입력됩니다."
                   defaultValue={props.data?.fetchBoard.boardAddress.postal}
                   value={props.address}
                 />
@@ -245,6 +192,12 @@ export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
                   }
                 />
               </S.ItemsWrapper>
+              <S.SearchAddressButton
+                type="button"
+                onClick={props.onClickAddressSearch}
+              >
+                주소로 검색
+              </S.SearchAddressButton>
             </S.AddressExplainWrapper>
           </S.MapWrapper>
         </S.EventLocationWrapper>
