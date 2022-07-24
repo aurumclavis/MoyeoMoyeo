@@ -1,7 +1,6 @@
 import * as S from "../CommentList.styles";
 import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { getDate } from "../../../../../../commons/getDate";
 import {
@@ -10,8 +9,11 @@ import {
 } from "../../Write/CommentWrite.queries";
 import CommentChildrenWriteContainer from "./children/Write/CommentChildrenWrite.container";
 import CommentChildrenListContainer from "./children/List/commentChildrenList.container";
+import { ICommentListItemsContainerProps } from "../../Comment.types";
 
-export default function CommentListItemsContainer(props: any) {
+export default function CommentListItemsContainer(
+  props: ICommentListItemsContainerProps
+) {
   const [isReply, setIsReply] = useState(false);
   const { data: childCommentData } = useQuery(FETCH_COMMENT, {
     variables: { commentId: props.el.id },
@@ -66,7 +68,7 @@ export default function CommentListItemsContainer(props: any) {
       <CommentChildrenListContainer childCommentData={childCommentData} />
       {isReply && (
         <CommentChildrenWriteContainer
-          onClickReplyBoardComment={onClickReplyBoardComment}
+          setIsReply={setIsReply}
           parentId={props.el.id}
           refetch={props.refetch}
         />

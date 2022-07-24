@@ -11,8 +11,9 @@ import {
 import { FETCH_LOGIN_USER } from "../../../../../../boardDetail/BoardDetail.queries";
 import { useState } from "react";
 import CommentChildrenChildrenWriteContainer from "./CommentChildChildWrite.container";
+import { ICommentChildItemProps } from "../../../../../Comment.types";
 
-export default function CommentChildItem(props: any) {
+export default function CommentChildItem(props: ICommentChildItemProps) {
   const router = useRouter();
   const { data, refetch } = useQuery(FETCH_COMMENT, {
     variables: {
@@ -72,9 +73,9 @@ export default function CommentChildItem(props: any) {
       </S.CommentsWrapper>
       {isReplyChild && (
         <CommentChildrenChildrenWriteContainer
-          onClickReplyBoardComment={onClickReplyBoardComment}
           parentId={data?.fetchComment.parent.id}
           refetch={refetch}
+          setIsReplyChild={setIsReplyChild}
         />
       )}
     </S.Wrapper>

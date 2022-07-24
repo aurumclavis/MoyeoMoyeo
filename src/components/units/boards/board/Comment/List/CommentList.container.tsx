@@ -3,8 +3,11 @@ import CommentListItemsContainer from "./item/CommentListItem.container";
 import { FETCH_BOARD_COMMENTS } from "../Write/CommentWrite.queries";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { ICommentListContainerProps } from "../Comment.types";
 
-export default function CommentListContainer(props: any) {
+export default function CommentListContainer(
+  props: ICommentListContainerProps
+) {
   const router = useRouter();
   const { data, refetch } = useQuery(FETCH_BOARD_COMMENTS, {
     variables: {

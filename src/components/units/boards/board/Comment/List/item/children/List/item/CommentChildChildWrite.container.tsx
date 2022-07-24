@@ -2,13 +2,16 @@ import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { ICommentChildrenChildrenWriteContainer } from "../../../../../Comment.types";
 import {
   CREATE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
 } from "../../../../../Write/CommentWrite.queries";
 import * as S from "../../../../../Write/CommentWrite.styles";
 
-export default function CommentChildrenChildrenWriteContainer(props: any) {
+export default function CommentChildrenChildrenWriteContainer(
+  props: ICommentChildrenChildrenWriteContainer
+) {
   const router = useRouter();
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
   const { register, handleSubmit, setValue } = useForm({
@@ -37,7 +40,7 @@ export default function CommentChildrenChildrenWriteContainer(props: any) {
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
-    props.onClickReplyBoardComment();
+    props.setIsReplyChild((prev: boolean) => !prev);
   };
   return (
     <S.Wrapper onSubmit={handleSubmit(onClickCreateBoardComment)}>

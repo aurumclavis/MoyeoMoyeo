@@ -4,8 +4,11 @@ import { CREATE_BOARD_COMMENT } from "../../../../Write/CommentWrite.queries";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { Modal } from "antd";
+import { ICommentChildrenWriteContainerProps } from "../../../../Comment.types";
 
-export default function CommentChildrenWriteContainer(props: any) {
+export default function CommentChildrenWriteContainer(
+  props: ICommentChildrenWriteContainerProps
+) {
   const router = useRouter();
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
   const { register, handleSubmit, setValue } = useForm({
@@ -28,7 +31,7 @@ export default function CommentChildrenWriteContainer(props: any) {
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
-    props.onClickReplyBoardComment();
+    props.setIsReply((prev: boolean) => !prev);
   };
 
   return (

@@ -3,6 +3,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 import Reply from "@mui/icons-material/Reply";
 import { breakPoints } from "../../../../../../commons/styles/media";
+import { ICommentsWrapperProps } from "../Comment.types";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -19,7 +20,7 @@ export const CommentsWrapper = styled.div`
   padding: 0.5rem;
   border-top: 1px solid #f1eee9;
   border-bottom: 1px solid #f1eee9;
-  ${(props: any) => props.isChild && "width : 93%;"}
+  ${(props: ICommentsWrapperProps) => props.isChild && "width : 93%;"}
 `;
 export const UpperWrapper = styled.div`
   display: flex;
