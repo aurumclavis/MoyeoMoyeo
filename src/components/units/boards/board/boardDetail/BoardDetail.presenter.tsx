@@ -382,8 +382,8 @@ export default function BoardDetailPresenter(
         </S.ButtonWrapper>
         <S.CommentWrapper ref={props.commentRef}>
           <S.CommentText>댓글로 질문하기</S.CommentText>
-          <CommentWriteContainer />
-          <CommentListContainer />
+          <CommentWriteContainer userData={props.userData} />
+          <CommentListContainer userData={props.userData} />
         </S.CommentWrapper>
       </S.BodyWrapper>
       <BackTopAnt />

@@ -1,20 +1,23 @@
-import CommentListPresenter from "./CommentList.presenter";
+import * as S from "./CommentList.styles";
+import { v4 as uuidv4 } from "uuid";
+import CommentListItemsContainer from "./item/CommentListItem.container";
+import { FETCH_BOARD_COMMENTS } from "../Write/CommentWrite.queries";
+import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 
-export default function CommentListContainer() {
-  // 목업을 위한 패치코멘트
-  const comments = [
-    {
-      writer: "김성훈",
-      createdAt: "2022년 7월 11일 20:33",
-      contents:
-        "같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요.  ",
+export default function CommentListContainer(props: any) {
+  const router = useRouter();
+  const { data } = useQuery(FETCH_BOARD_COMMENTS, {
+    variables: {
+      boardId: router.query.boardId,
     },
-    {
-      writer: "김성훈",
-      createdAt: "2022년 7월 11일 20:33",
-      contents:
-        "같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요. 같이 가면 좋을 거 같아요. 같이 갈래요.  ",
-    },
-  ];
-  return <CommentListPresenter comments={comments} />;
+  });
+
+  return (
+    <S.Wrapper>
+      {data?.fetchBoardComments.map((el: any) => (
+        <CommentListItemsContainer key={uuidv4} el={el} />
+      ))}
+    </S.Wrapper>
+  );
 }

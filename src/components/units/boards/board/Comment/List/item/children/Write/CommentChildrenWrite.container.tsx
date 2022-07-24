@@ -1,14 +1,14 @@
-import CommentWritePresenter from "./CommentWrite.presenter";
+import CommentChildrenWritePresenter from "./CommentChildrenWrite.presenter";
 import { useForm } from "react-hook-form";
 import {
   CREATE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
-} from "./CommentWrite.queries";
+} from "../../../../Write/CommentWrite.queries";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { Modal } from "antd";
 
-export default function CommentWriteContainer(props: any) {
+export default function CommentChildrenWriteContainer(props: any) {
   const router = useRouter();
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
   const { register, handleSubmit, setValue } = useForm({
@@ -20,21 +20,21 @@ export default function CommentWriteContainer(props: any) {
       Modal.error({ content: "댓글을 등록하려면 로그인이 필요합니다!" });
     } else {
       try {
-        const result = await createBoardComment({
+        await createBoardComment({
           variables: {
             commentInput: {
               content: data.content,
+              parentId: props.id,
             },
             boardId: router.query.boardId,
           },
           refetchQueries: [
             {
               query: FETCH_BOARD_COMMENTS,
-              variables: { boardId: router.query.boardId },
+              variables: { boardId: props.id },
             },
           ],
         });
-        console.log("xxx", result);
         Modal.success({ content: "댓글이 등록되었습니다." });
         setValue("content", "");
       } catch (error) {
@@ -44,7 +44,7 @@ export default function CommentWriteContainer(props: any) {
   };
 
   return (
-    <CommentWritePresenter
+    <CommentChildrenWritePresenter
       register={register}
       handleSubmit={handleSubmit}
       onClickCreateBoardComment={onClickCreateBoardComment}
