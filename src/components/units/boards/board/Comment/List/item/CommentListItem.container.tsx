@@ -10,7 +10,7 @@ import {
   FETCH_BOARD_COMMENTS,
 } from "../../Write/CommentWrite.queries";
 import CommentChildrenWriteContainer from "./children/Write/CommentChildrenWrite.container";
-import CommentChildrenListContainer from "./children/List/commentChildrenList.container";
+import CommentChildrenListContainer from "./children/List/CommentChildrenList.container";
 
 export default function CommentListItemsContainer(props: any) {
   const router = useRouter();

@@ -127,7 +127,7 @@ export default function BoardDetailPresenter(
                   eventName={props.data?.fetchBoard.eventName}
                   address={
                     props.data?.fetchBoard.eventCategory !== "일반"
-                      ? props.data?.fetchBoard.address
+                      ? props.data?.fetchBoard.boardAddress.postal
                       : "동행위치"
                   }
                 />
@@ -156,8 +156,7 @@ export default function BoardDetailPresenter(
                   <S.AccompanyItems>
                     <S.AccompanyAmountIcon src="/icon/groups.png" />
                     <S.AccompanyAmountText>
-                      인원 {props.data?.scheduledUsers?.length}/
-                      {props.maxHeadCount}
+                      인원 {1} / {props.maxHeadCount}
                     </S.AccompanyAmountText>
                   </S.AccompanyItems>
                   <S.AccompanyItems>
@@ -307,7 +306,9 @@ export default function BoardDetailPresenter(
           <S.EventInfoWrapper ref={props.eventRef}>
             <S.EventInfoText>행사 정보</S.EventInfoText>
             <S.EventInfo>
-              <S.EventImage src="/catGoodsMarketExample.jpeg" />
+              <S.EventImage
+                src={`https://storage.googleapis.com/${props.data?.fetchBoard.eventImage.src}`}
+              />
               <S.EventInfoDetailWrapper>
                 <S.EventInfoDetail>
                   <S.EventInfoItem>

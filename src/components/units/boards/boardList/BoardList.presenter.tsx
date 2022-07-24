@@ -112,7 +112,6 @@ export default function BoardListPresenter(props: IBoardListPresenter) {
             모집중인 글만 보기
           </S.RecruitmentViewTypeButton>
         </S.DetailViewTypeWrapper>
-        {/* <InfiniteScroll pageStart={0} loadMore={props.loadFunc} hasMore={true}> */}
         <S.ListWrapper>
           {props.data.map((el: any) => (
             <S.Item key={uuidv4()}>
@@ -153,26 +152,30 @@ export default function BoardListPresenter(props: IBoardListPresenter) {
               {props.userData?.fetchLoginUser.id !== el.writer.id && (
                 <S.ItemRight
                   requested={
-                    props.userData &&
-                    props.userData?.fetchLoginUser.id ===
-                      el.accompanyRequests?.reqUser?.id
+                    props.userData?.fetchLoginUser.id &&
+                    props.requestedBoardList.includes(el.id)
                   }
                 >
-                  {props.userData &&
-                    (props.userData?.fetchLoginUser.id ===
-                    el.accompanyRequests?.reqUser?.id ? (
+                  {props.userData?.fetchLoginUser.id &&
+                    (props.requestedBoardList.includes(el.id) ? (
                       <>
-                        <S.PaperPlaneImage src="/icon/symbollogo_removebg.png" />
+                        <S.PaperPlaneImage
+                          src="/icon/symbollogo_removebg.png"
+                          onClick={props.onClickRequestAccompany("cancel")(
+                            el.id
+                          )}
+                        />
                         <S.ItemRightText>요청중</S.ItemRightText>
                       </>
                     ) : (
                       <>
-                        <S.PaperPlaneImage src="/icon/simbollogo.png" />
-                        <S.ItemRightText
-                          onClick={props.onClickRequestAccompany(el.id)}
-                        >
-                          동행신청
-                        </S.ItemRightText>
+                        <S.PaperPlaneImage
+                          src="/icon/simbollogo.png"
+                          onClick={props.onClickRequestAccompany("request")(
+                            el.id
+                          )}
+                        />
+                        <S.ItemRightText>동행신청</S.ItemRightText>
                       </>
                     ))}
                 </S.ItemRight>
@@ -180,7 +183,6 @@ export default function BoardListPresenter(props: IBoardListPresenter) {
             </S.Item>
           ))}
         </S.ListWrapper>
-        {/* </InfiniteScroll> */}
         <BackTopAnt />
       </S.Main>
     </S.Wrapper>

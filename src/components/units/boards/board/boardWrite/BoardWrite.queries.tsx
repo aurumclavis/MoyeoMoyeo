@@ -37,6 +37,9 @@ export const FETCH_POST = gql`
       dateStart
       dateEnd
       category
+      images {
+        src
+      }
     }
   }
 `;

@@ -34,12 +34,13 @@ export default function BoardDetailContainer() {
   const [isMyBoard, setIsMyBoard] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isSendRequestUser, setIsSendRequestUser] = useState(false);
-  console.log(
-    "a",
-    requestUserData?.fetchBoardRequest.filter(
-      (el: any) => el.reqUser.id === userData?.fetchLoginUser.id
-    ).length
-  );
+  useEffect(() => {
+    setIsSendRequestUser(
+      [...JSON.parse(localStorage.getItem("requested") || "[]")].includes(
+        router.query.boardId
+      )
+    );
+  }, []);
 
   useEffect(() => {
     const writerId = data?.fetchBoard.writer.id;
@@ -172,11 +173,11 @@ export default function BoardDetailContainer() {
       setMaxHeadCount((prev) => prev - 1);
   };
   // 모집완료/취소 부분
-  const [makeFull] = useMutation(MAKE_BOARD_FULL);
+  const [makeBoardFull] = useMutation(MAKE_BOARD_FULL);
   const onClickChangeRecruitState = (state: string) => async () => {
     if (state === "complete") {
       try {
-        await makeFull({ variables: { boardId: router.query.boardId } });
+        await makeBoardFull({ variables: { boardId: router.query.boardId } });
       } catch (error) {
         if (error instanceof Error) alert(error.message);
       }
@@ -188,17 +189,19 @@ export default function BoardDetailContainer() {
   // 요청하기/요청취소 부분 api 안된다......
   // const [requestAccompany] = useMutation(REQUEST_ACCOMPANY);
   const onClickRequestAccompany = (state: string) => async () => {
-    // if (state === "request") {
-    //   try {
-    //     await requestAccompany({
-    //       variables: { boardId: router.query.boardId },
-    //     });
-    //     setIsSendRequestUser(true);
-    //   } catch (error) {
-    //     if (error instanceof Error) alert(error.message);
-    //   }
-    // }
-
+    if (state === "request") {
+      const requested = [
+        ...JSON.parse(localStorage.getItem("requested") || "[]"),
+      ];
+      requested.push(data?.fetchBoard.id);
+      localStorage.setItem("requested", JSON.stringify(requested));
+    }
+    if (state === "cancel") {
+      const requested = [
+        ...JSON.parse(localStorage.getItem("requested") || "[]"),
+      ].filter((el) => el !== data?.fetchBoard.id);
+      localStorage.setItem("requested", JSON.stringify(requested));
+    }
     setIsSendRequestUser((prev) => !prev);
   };
 
@@ -221,6 +224,7 @@ export default function BoardDetailContainer() {
     });
     onClickMoveToPage("/boards");
   };
+
   return (
     <BoardDetailPresenter
       data={data}

@@ -34,7 +34,8 @@ export interface IBoardListPresenter {
   setSelectedCategoryName: Dispatch<SetStateAction<any>>;
   onClickRequestAccompany: (
     el: string
-  ) => (event: MouseEvent<HTMLDivElement>) => void;
+  ) => (el: string) => (event: MouseEvent<HTMLDivElement>) => void;
+  requestedBoardList: string[];
 }
 
 export interface ISubHeaderWrapperProps {
