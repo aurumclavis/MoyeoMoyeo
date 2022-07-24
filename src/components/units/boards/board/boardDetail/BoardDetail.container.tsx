@@ -6,7 +6,6 @@ import {
   FETCH_BOARD,
   FETCH_LOGIN_USER,
   FETCH_REQUEST_USERS,
-  // REQUEST_ACCOMPANY,
   DELETE_BOARD,
   MAKE_BOARD_FULL,
 } from "./BoardDetail.queries";
@@ -222,7 +221,7 @@ export default function BoardDetailContainer() {
         boardId: router.query.boardId,
       },
     });
-    onClickMoveToPage("/boards");
+    router.push("/boards");
   };
 
   return (

@@ -18,6 +18,7 @@ export const FETCH_BOARD_COMMENTS = gql`
       content
       writer {
         name
+        id
       }
       children {
         id
@@ -48,6 +49,7 @@ export const FETCH_COMMENT = gql`
       writer {
         name
         manager
+        id
       }
       parent {
         id
