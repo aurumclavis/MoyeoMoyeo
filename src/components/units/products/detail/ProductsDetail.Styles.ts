@@ -180,13 +180,16 @@ export const SellerContentsWrapper = styled.div`
 
 export const ImageItem = styled(Image)`
   width: 100%;
-  max-height: 300px;
+  // max-height: 300px;
 `;
 export const PreviewGroup = styled.div`
-  margin: 0.625rem 0;
+  /* margin: 0.625rem 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5px;
+  grid-gap: 5px; */
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 `;
 
 // 모바일 화면일 때 하단에 고정되는 바

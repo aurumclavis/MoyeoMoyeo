@@ -4,6 +4,7 @@ import { userInfoState } from "../../../../../commons/store";
 import { getDate } from "../../../../commons/getDate";
 import * as S from "../../listItem/MyPageListItem.Styles";
 import InfiniteScroll from "react-infinite-scroller";
+import NoDataFound from "../../noDataFound";
 
 const FETCH_PRODUCTS = gql`
   query fetchProducts($page: Float, $pageSize: Float) {
@@ -70,7 +71,7 @@ export default function MyPageStaffSell() {
         hasMore={true || false}
         useWindow={false}
       >
-        {SELLER_ARR ? (
+        {SELLER_ARR && SELLER_ARR.length !== 0 ? (
           SELLER_ARR?.map((el: any) => (
             <S.ItemWrapper key={el.id}>
               <S.ItemImageWrapper>
@@ -84,9 +85,9 @@ export default function MyPageStaffSell() {
               </S.ItemImageWrapper>
               <S.ItemContentsWrapper>
                 <S.ItemTitle>
-                  <S.ItemFinished isFinished={el.isSoldout}>
+                  <S.ItemIsFull isFull={el.isSoldout}>
                     {el.isSoldout ? "[판매완료]" : "[판매중]"}
-                  </S.ItemFinished>{" "}
+                  </S.ItemIsFull>{" "}
                   {el.name}
                 </S.ItemTitle>
                 <S.ItemRowWrapper>
@@ -107,7 +108,7 @@ export default function MyPageStaffSell() {
             </S.ItemWrapper>
           ))
         ) : (
-          <></>
+          <NoDataFound />
         )}
       </InfiniteScroll>
     </S.Wrapper>
