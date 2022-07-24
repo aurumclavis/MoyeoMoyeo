@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EventsWriteUI from "./EventsWrite.Presenter";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,6 +9,7 @@ import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { IEventsWriteProps, IUpdatePostInput } from "./EventsWrite.Type";
+import { ImageListType } from "react-images-uploading";
 
 const schema = yup.object({
   title: yup
@@ -30,9 +31,10 @@ export default function EventsWrite(props: IEventsWriteProps) {
   const [updatePost] = useMutation(UPDATE_POST);
   // 이미지
   const [uploadImages] = useMutation(UPLOAD_IMAGES);
-  const [mainFileUrls, setMainFileUrls] = useState([""]);
-  const [subFileUrls, setSubFileUrls] = useState([]);
-  const [fileUrls] = useState([...mainFileUrls, ...subFileUrls]);
+  const [imageList, setImageList] = useState([]);
+  // const [mainFileUrls, setMainFileUrls] = useState([]);
+  // const [subFileUrls, setSubFileUrls] = useState([]);
+  const [files, setFiles] = useState([]);
   // 스테이트 입력 값
   const [address, setAddress] = useState("");
   const [dateStart, setDateStart] = useState("");
@@ -40,10 +42,18 @@ export default function EventsWrite(props: IEventsWriteProps) {
   const [addressErorr, setAddressErorr] = useState("");
   const [dateStartErorr, setDateStartErorr] = useState("");
 
-  const { register, handleSubmit, formState, setValue, trigger } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-  });
+  const { register, handleSubmit, formState, setValue, trigger, reset } =
+    useForm({
+      resolver: yupResolver(schema),
+      mode: "onChange",
+    });
+  useEffect(() => {
+    reset({
+      title: props.data?.fetchPost.title,
+      contents: props.data?.fetchPost.description,
+      category: props.data?.fetchPost.category,
+    });
+  }, [props.data]);
 
   const onChangeContents = (value: string) => {
     setValue("contents", value === "<p><br></p>" ? "" : value);
@@ -63,9 +73,10 @@ export default function EventsWrite(props: IEventsWriteProps) {
       setDateStartErorr("정확한 일정을 선택해주세요");
       return;
     }
+    // setFiles([...mainFileUrls, ...subFileUrls]);
     const imageUpload = await uploadImages({
       variables: {
-        files: fileUrls,
+        files,
       },
     });
     try {
@@ -83,15 +94,22 @@ export default function EventsWrite(props: IEventsWriteProps) {
         },
       });
       Modal.success({ content: "행사 등록이 완료되었습니다." });
-      router.push(`/events${result.data.createPost.id}`);
+      router.push(`/events/${result.data.createPost.id}`);
     } catch (error: any) {
       Modal.error({ content: "행사 등록에 실패했습니다" });
     }
   };
 
   const onClickUpdate = async (data: any) => {
+    const imageUpload = await uploadImages({
+      variables: {
+        files,
+      },
+    });
     try {
-      const updatePostInput: IUpdatePostInput = {};
+      const updatePostInput: IUpdatePostInput = {
+        imgSrcs: imageUpload.data?.uploadImages,
+      };
       if (data.title) updatePostInput.title = data.title;
       if (data.contents) updatePostInput.description = data.contents;
       if (data.address) updatePostInput.address = data.address;
@@ -105,7 +123,7 @@ export default function EventsWrite(props: IEventsWriteProps) {
         },
       });
       Modal.success({ content: "게시글이 수정되었습니다." });
-      router.push(`/events/${router.query._id}`);
+      router.push(`/events`);
     } catch (error: any) {
       Modal.error({ content: error.message });
     }
@@ -115,15 +133,23 @@ export default function EventsWrite(props: IEventsWriteProps) {
   //   setMainFileUrls([fileUrl]);
   // };
 
-  const onChangeFilesMain = (fileUrl: string) => {
-    setMainFileUrls([fileUrl]);
+  const onChangeFiles = (imageList: ImageListType, addUpdateIndex: any) => {
+    setImageList(imageList);
+    const tempFiles = [...files];
+    tempFiles[addUpdateIndex] = imageList[addUpdateIndex]?.file;
+    setFiles(tempFiles);
+    console.log(files);
   };
+  // const onChangeFilesMain = (fileUrl: string) => {
+  //   setMainFileUrls([fileUrl]);
+  // };
 
-  const onChangeFilesSub = (fileUrl: string, index: number) => {
-    const newFileUrls = [...fileUrls];
-    newFileUrls[index] = fileUrl;
-    setSubFileUrls(newFileUrls);
-  };
+  // const onChangeFilesSub = (fileUrl: ImageListType, index: any) => {
+  //   setSubFileUrls(fileUrl);
+  //   const newFileUrls = [...mainFileUrls];
+  //   newFileUrls[index + 1] = fileUrl[index + 1]?.file;
+  //   setFiles(newFileUrls);
+  // };
 
   const onChangeDate = (e: any) => {
     const startMonth = e?.[0].month() + 1;
@@ -168,8 +194,7 @@ export default function EventsWrite(props: IEventsWriteProps) {
       onClickMoveToPage={onClickMoveToPage}
       onChangeDate={onChangeDate}
       onChangeContents={onChangeContents}
-      onChangeFilesMain={onChangeFilesMain}
-      onChangeFilesSub={onChangeFilesSub}
+      // onChangeFilesMain={onChangeFilesMain}
       onChangeCategory={onChangeCategory}
       onClickSubmit={onClickSubmit}
       onClickAddressSearch={onClickAddressSearch}
@@ -178,8 +203,10 @@ export default function EventsWrite(props: IEventsWriteProps) {
       onClickCancle={onClickCancle}
       addressErorr={addressErorr}
       dateStartErorr={dateStartErorr}
-      mainFileUrls={mainFileUrls}
-      subFileUrls={subFileUrls}
+      onChangeFiles={onChangeFiles}
+      imageList={imageList}
+      // mainFileUrls={mainFileUrls}
+      // subFileUrls={subFileUrls}
     />
   );
 }

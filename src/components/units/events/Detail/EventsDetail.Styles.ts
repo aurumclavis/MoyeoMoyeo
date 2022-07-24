@@ -50,7 +50,6 @@ export const CountWrapper = styled.div`
 export const CountIcon = styled(EyeOutlined)`
   margin-left: 0.4rem;
   font-size: 1rem;
-  cursor: pointer;
 `;
 
 export const MainWrapper = styled.div`
@@ -104,6 +103,7 @@ export const ContentImg = styled.img`
 `;
 export const ContetsText = styled.div`
   width: 60%;
+  height: auto;
   /* height: 20vh; */
   display: flex;
   flex-direction: column;
@@ -120,13 +120,14 @@ export const ContetsText = styled.div`
 
 export const MapWrapper = styled.div`
   width: 100%;
-  height: 800px;
+  height: au;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
+  /* justify-content: center; */
   align-items: center;
   margin: 2rem 0rem;
+  padding-top: 2rem;
+  border-top: 1px solid #d2d2d2;
 `;
 
 export const MapTitle = styled.div`
@@ -283,6 +284,7 @@ export const PickWraepper = styled.div`
   padding: 0 6%;
   border-radius: 10px;
   background-color: #ffe69a;
+  cursor: pointer;
   @media (max-width: 767px) {
     width: 40%;
     justify-content: center;
@@ -299,6 +301,7 @@ export const Linkraepper = styled.div`
   padding: 0 5%;
   border-radius: 10px;
   background-color: #ffe69a;
+  cursor: pointer;
   @media (max-width: 767px) {
     height: 85%;
     width: 40%;

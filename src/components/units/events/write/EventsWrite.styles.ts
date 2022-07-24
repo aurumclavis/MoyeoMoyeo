@@ -27,6 +27,7 @@ export const HeaderTitle = styled.div`
   font-weight: bold;
 `;
 export const RowWrapper = styled.div`
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

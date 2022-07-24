@@ -1,10 +1,11 @@
 import EventsListUI from "./EventsList.Prsenter";
 import { useState } from "react";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
-
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../../../../commons/store";
 export default function EventList() {
   const { onClickMoveToPage } = useMoveToPage();
-
+  const [userInfo] = useRecoilState(userInfoState);
   const [datePick, setDatePick] = useState(false);
   const [openEvents, setOpenEvents] = useState(false);
   const [ourEvents, setOurEvents] = useState(true);
@@ -37,6 +38,7 @@ export default function EventList() {
       datePick={datePick}
       openEvents={openEvents}
       ourEvents={ourEvents}
+      userInfo={userInfo}
     />
   );
 }

@@ -1,18 +1,20 @@
 import * as S from "./FestivalList.Styles";
-import InfiniteScroll from "react-infinite-scroller";
+// import InfiniteScroll from "react-infinite-scroller";
 import FestivalListUIAdd from "./FestivalList.PresenterAdd";
 import { IFestivalListUI } from "./FestivalList.Types";
 
 export default function FestivalListUI(props: IFestivalListUI) {
   return (
     <>
-      <S.Wrapper>
-        <S.Select>
-          <option>등록 순</option>
-          {/* <option>인기 순</option> */}
-          <option>날짜 순</option>
-        </S.Select>
-        <S.InsideWrapper>
+      {" "}
+      <S.InsideWrapper>
+        <S.Wrapper>
+          <S.Select>
+            <option>등록 순</option>
+            {/* <option>인기 순</option> */}
+            <option>날짜 순</option>
+          </S.Select>
+
           {/* <InfiniteScroll
             pageStart={0}
             loadMore={props.ToloadFunc}
@@ -22,8 +24,8 @@ export default function FestivalListUI(props: IFestivalListUI) {
             <FestivalListUIAdd key={el._id} el={el} />
           ))}
           {/* </InfiniteScroll> */}
-        </S.InsideWrapper>
-      </S.Wrapper>
+        </S.Wrapper>{" "}
+      </S.InsideWrapper>
     </>
   );
 }

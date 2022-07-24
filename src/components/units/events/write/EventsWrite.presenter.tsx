@@ -8,8 +8,9 @@ import { Upload, Button, Modal } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { IEventsWrite } from "./EventsWrite.Type";
 import { getDate } from "../../../commons/getDate";
+import CommonUpload from "../../../commons/upload";
 
-export default function EventsWriteUI(props: IEventsWrite) {
+export default function EventsWriteUI(props: any) {
   return (
     <>
       {props.isOpen && (
@@ -37,7 +38,7 @@ export default function EventsWriteUI(props: IEventsWrite) {
                   register={props.register("title")}
                   type="text"
                   placeholder="제목을 작성해주세요."
-                  defaultValue={props.postData?.fetchPost.title}
+                  // defaultValue={props.postData?.fetchPost.title}
                 />
                 <S.Error>{props.formState.errors.title?.message}</S.Error>
               </S.TitleWrapper>
@@ -78,13 +79,13 @@ export default function EventsWriteUI(props: IEventsWrite) {
             <S.SubTitle>상세 설명</S.SubTitle>
             <S.ContentQuill
               onChange={props.onChangeContents}
-              value={props.postData?.fetchPost.description}
+              // defaultValue={props.postData?.fetchPost.description}
               placeholder="축제에 대한 설명을 입력해주세요."
             />
             <S.RowWrapper>
               <S.ImageWrapper>
                 <S.SubTitle>대표 사진</S.SubTitle>
-                <Upload
+                {/* <Upload
                   listType="picture"
                   maxCount={1}
                   // onChange={props.onChangeFilesMain}
@@ -101,7 +102,11 @@ export default function EventsWriteUI(props: IEventsWrite) {
                   // onChange={props.onChangeFilesSub}
                 >
                   <Button icon={<UploadOutlined />}>사진등록</Button>
-                </Upload>
+                </Upload> */}
+                <CommonUpload
+                  imageList={props.imageList}
+                  onChangeFiles={props.onChangeFiles}
+                />
               </S.ImageWrapper>
               <S.TypeWrapper>
                 <S.SubTitle>행사 분류</S.SubTitle>

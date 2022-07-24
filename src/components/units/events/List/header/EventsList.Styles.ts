@@ -98,6 +98,7 @@ export const FestivalWrapper = styled.div`
 export const EventsWrapper = styled.div`
   width: 100%;
   display: ${(props: ITabProps) => (props.isActive ? "flex" : "none")};
+
   @media (max-width: 767px) {
   }
 `;

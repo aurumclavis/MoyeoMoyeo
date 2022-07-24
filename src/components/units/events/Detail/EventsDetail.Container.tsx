@@ -43,12 +43,12 @@ export default function EventsDetail() {
     try {
       await dibsPost({
         variables: { postId: router.query._id },
-        // refetchQueries: [
-        //   {
-        //     query: FETCH_POST,
-        //     variables: { postId: router.query._id },
-        //   },
-        // ],
+        refetchQueries: [
+          {
+            query: FETCH_POST,
+            variables: { postId: router.query.id },
+          },
+        ],
       });
       Modal.success({ content: "행사를 찜했습니다" });
     } catch (error) {

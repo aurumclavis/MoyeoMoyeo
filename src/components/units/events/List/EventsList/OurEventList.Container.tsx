@@ -1,32 +1,35 @@
 import OurEventListUI from "./OurEventList.Presenter";
-import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+
 import { FETCH_POSTS } from "./OurEventList.Queries";
 import { useQuery } from "@apollo/client";
 
 export default function OurEventList() {
-  const { data } = useQuery(FETCH_POSTS);
-  // const { data, refetch, fetchMore } = useQuery(FETCH_POST);
-  // const { data : dataPostsCount, refetch: refetchPostsCount } =
-  //   useQuery(FETCH_POST);
-  // const ToloadFunc = () => {
-  //   if (!data) return;
+  const PAGE_SIZE = 10;
+  const { data, fetchMore } = useQuery(FETCH_POSTS, {
+    variables: { pageSize: PAGE_SIZE, page: 1 },
+  });
 
-  //   fetchMore({
-  //     variables: { page: Math.ceil(data.fetchPosts.length / 10) + 1 },
-  //     updateQuery: (prev, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult?.fetchPosts)
-  //         return {
-  //           fetchPosts: [...prev.fetchPosts],
-  //         };
-  //       return {
-  //         fetchPosts: [...prev.fetchPosts, ...fetchMoreResult.fetchPosts],
-  //       };
-  //     },
-  //   });
-  // };
-  const { onClickMoveToPage } = useMoveToPage();
+  const ToloadFunc = () => {
+    if (!data) return;
+
+    fetchMore({
+      variables: {
+        page: Math.ceil(data.fetchPosts.length / 10) + 1,
+        pageSize: PAGE_SIZE,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchPosts)
+          return {
+            fetchPosts: [...prev.fetchPosts],
+          };
+        return {
+          fetchPosts: [...prev.fetchPosts, ...fetchMoreResult.fetchPosts],
+        };
+      },
+    });
+  };
 
   console.log(data);
 
-  return <OurEventListUI data={data} onClickMoveToPage={onClickMoveToPage} />;
+  return <OurEventListUI data={data} ToloadFunc={ToloadFunc} />;
 }

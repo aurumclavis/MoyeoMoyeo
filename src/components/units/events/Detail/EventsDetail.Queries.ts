@@ -3,20 +3,16 @@ import { gql } from "@apollo/client";
 export const FETCH_POST = gql`
   query fetchPost($postId: String!) {
     fetchPost(postId: $postId) {
-      id
       title
-      # writer {
-      #   id
-      #   manager
-      # }
       address
       description
       dateStart
       dateEnd
-      images
       category
+      images {
+        src
+      }
       viewCount
-      uploadedAt
       likedUsers {
         id
       }
