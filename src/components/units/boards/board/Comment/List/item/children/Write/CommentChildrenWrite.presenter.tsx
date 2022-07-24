@@ -1,12 +1,9 @@
-import * as S from "./CommentWrite.styles";
+import * as S from "../../../../Write/CommentWrite.styles";
 
 export default function CommentWritePresenter(props: any) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickCreateBoardComment)}>
-      <S.CommentInput
-        {...props.register("content")}
-        placeholder="댓글로 동행관련 질문을 시작해보세요!"
-      />
+      <S.CommentInput {...props.register("content")} />
       <S.SubmitButton type="submit">댓글 등록하기</S.SubmitButton>
     </S.Wrapper>
   );
