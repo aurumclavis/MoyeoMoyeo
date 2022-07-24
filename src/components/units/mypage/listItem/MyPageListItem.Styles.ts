@@ -3,8 +3,8 @@ import { People, Today } from "@mui/icons-material";
 import { breakPoints } from "../../../../commons/styles/media";
 
 // 마이페이지에 들어가는 리스트 컴포넌트 스타일
-interface ItemFinishedProps {
-  isFinished: boolean;
+interface ItemIsFullProps {
+  isFull: boolean;
 }
 interface MoreTextProps {
   type?: string;
@@ -69,11 +69,10 @@ export const ItemTitle = styled.h2`
   }
 `;
 
-export const ItemFinished = styled.span`
+export const ItemIsFull = styled.span`
   font-size: 1.25rem;
   font-weight: bold;
-  color: ${(props: ItemFinishedProps) =>
-    props.isFinished ? "#d2d2d2" : "#FFD24C"};
+  color: ${(props: ItemIsFullProps) => (props.isFull ? "#d2d2d2" : "#FFD24C")};
   margin: 0;
   @media ${breakPoints.mobile} {
     font-size: 1rem;

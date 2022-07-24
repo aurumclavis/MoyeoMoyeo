@@ -1,117 +1,134 @@
-import { gql } from "@apollo/client";
-import { useState } from "react";
-import RequestUserList from "../../../../commons/requestUserList";
+import { gql, useQuery } from "@apollo/client";
+import InfiniteScroll from "react-infinite-scroller";
+// import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../../../../commons/store";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+// import RequestUserList from "../../../../commons/requestUserList";
 import * as S from "../../listItem/MyPageListItem.Styles";
+import NoDataFound from "../../noDataFound";
 
-const FETCH_LOGIN_USER = gql`
-  query fetchLoginUser {
-    fetchLoginUser {
-      email
-      scheduledBoards {
-        board {
-          title
-        }
+const FETCH_BOARDS = gql`
+  query fetchBoards($page: Float, $pageSize: Float) {
+    fetchBoards(page: $page, pageSize: $pageSize) {
+      id
+      title
+      remark
+      createdAt
+      personCount
+      contents
+      isFull
+      writer {
+        email
       }
-      confirmedBoards {
-        title
+      dateStart
+      dateEnd
+      eventImage {
+        src
+      }
+      coverImage {
+        src
       }
     }
   }
 `;
 
 export default function MyPageUserBoards() {
-  const [requestAccepted, setRequestAccepted] = useState("");
-  const [requestRefused, setRequestRefused] = useState("");
-  const onClickAcceptRequest = (el: string) => () => {
-    setRequestAccepted(el);
+  const { onClickMoveToPage } = useMoveToPage();
+  const PAGE_SIZE = 3;
+  const { data, fetchMore } = useQuery(FETCH_BOARDS, {
+    variables: { pageSize: PAGE_SIZE, page: 1 },
+  });
+  const [userInfo] = useRecoilState(userInfoState);
+  const WRITER_ARR = data?.fetchBoards.filter(
+    (el: any) => el.writer.email === userInfo.email
+  );
+
+  const loadBoards = () => {
+    if (!data) return;
+    fetchMore({
+      variables: {
+        page: Math.ceil(WRITER_ARR.length / PAGE_SIZE) + 1,
+        pageSize: PAGE_SIZE,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult.fetchBoards)
+          return { fetchBoards: [...prev.fetchBoards] };
+        return {
+          fetchBoards: [...prev.fetchBoards, ...fetchMoreResult?.fetchBoards],
+        };
+      },
+    });
   };
-  const onClickRefuseRequest = (el: string) => () => {
-    setRequestRefused(el);
-  };
+  // const [requestAccepted, setRequestAccepted] = useState("");
+  // const [requestRefused, setRequestRefused] = useState("");
+  // const onClickAcceptRequest = (el: string) => () => {
+  //   setRequestAccepted(el);
+  // };
+  // const onClickRefuseRequest = (el: string) => () => {
+  //   setRequestRefused(el);
+  // };
 
   return (
     <S.Wrapper>
-      <S.ItemWrapper>
-        <S.ItemImageWrapper>
-          <S.ItemImage src="../../배너이미지_동행1.png" />
-        </S.ItemImageWrapper>
-        <S.ItemContentsWrapper>
-          <S.ItemTitle>
-            <S.ItemFinished isFinished={false}>[모집중]</S.ItemFinished>{" "}
-            음악페스티벌 하루 동행하실 분
-          </S.ItemTitle>
-          <S.ItemRowWrapper>
-            <S.IconWrapper>
-              <S.PeopleIcon />
-              <S.ItemText>1명</S.ItemText>
-            </S.IconWrapper>
-            <S.IconWrapper>
-              <S.CalendarIcon />
-              <S.ItemText>2022.07.28~2022.07.28</S.ItemText>
-            </S.IconWrapper>
-          </S.ItemRowWrapper>
-          <S.ItemText>
-            요약 내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다 요약
-            내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다 요약
-            내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다 요약
-            내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다 요약
-            내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다 요약
-            내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다
-          </S.ItemText>
-          <S.MoreText>게시글 더보기</S.MoreText>
-          <S.RequestUserWrapper>
-            <S.ItemText>동행 신청자</S.ItemText>
-            <RequestUserList
-              onClickAcceptRequest={onClickAcceptRequest}
-              onClickRefuseRequest={onClickRefuseRequest}
-              requestAccepted={requestAccepted}
-              requestRefused={requestRefused}
-              isDetailPage={false}
-            />
-          </S.RequestUserWrapper>
-        </S.ItemContentsWrapper>
-      </S.ItemWrapper>
-
-      <S.ItemWrapper>
-        <S.ItemImageWrapper>
-          <S.ItemImage src="../../배너이미지_동행2.png" />
-        </S.ItemImageWrapper>
-        <S.ItemContentsWrapper>
-          <S.ItemTitle>
-            <S.ItemFinished isFinished={true}>[모집완료]</S.ItemFinished>{" "}
-            음악페스티벌 하루 동행하실 분
-          </S.ItemTitle>
-          <S.ItemRowWrapper>
-            <S.IconWrapper>
-              <S.PeopleIcon />
-              <S.ItemText>1명</S.ItemText>
-            </S.IconWrapper>
-            <S.IconWrapper>
-              <S.CalendarIcon />
-              <S.ItemText>2022.07.28~2022.07.28</S.ItemText>
-            </S.IconWrapper>
-          </S.ItemRowWrapper>
-          <S.ItemText>
-            요약 내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다 요약
-            내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다 요약
-            내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다 요약
-            내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다 요약
-            내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다 요약
-            내용입니다 요약 내용입니다 요약 내용입니다 요약 내용입니다
-          </S.ItemText>
-          <S.MoreText>게시글 더보기</S.MoreText>
-          <S.RequestUserWrapper>
-            <S.ItemText>동행 신청자</S.ItemText>
-            <RequestUserList
-              onClickAcceptRequest={onClickAcceptRequest}
-              onClickRefuseRequest={onClickRefuseRequest}
-              requestAccepted={requestAccepted}
-              requestRefused={requestRefused}
-              isDetailPage={false}
-            />
-          </S.RequestUserWrapper>
-        </S.ItemContentsWrapper>
-      </S.ItemWrapper>
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={loadBoards}
+        hasMore={true || false}
+        useWindow={false}
+      >
+        {WRITER_ARR && WRITER_ARR.length !== 0 ? (
+          WRITER_ARR?.map((el: any) => (
+            <S.ItemWrapper key={el.id}>
+              <S.ItemImageWrapper>
+                <S.ItemImage
+                  onError={(event) => {
+                    if (event.target instanceof HTMLImageElement)
+                      event.target.src = "../../error-image.png";
+                  }}
+                  src={`https://storage.googleapis.com/${el.coverImage?.src}`}
+                />
+              </S.ItemImageWrapper>
+              <S.ItemContentsWrapper>
+                <S.ItemTitle>
+                  <S.ItemIsFull isFull={el.isFull}>
+                    {el.isFull ? "[모집완료]" : "[모집중]"}
+                  </S.ItemIsFull>{" "}
+                  {el.title}
+                </S.ItemTitle>
+                <S.ItemRowWrapper>
+                  <S.IconWrapper>
+                    <S.PeopleIcon />
+                    <S.ItemText>{el.personCount}명</S.ItemText>
+                  </S.IconWrapper>
+                  <S.IconWrapper>
+                    <S.CalendarIcon />
+                    <S.ItemText>
+                      {el.dateStart}~{el.dateEnd}
+                    </S.ItemText>
+                  </S.IconWrapper>
+                </S.ItemRowWrapper>
+                <S.ItemText>{el.remark}</S.ItemText>
+                <S.MoreText onClick={onClickMoveToPage(`/boards/${el.id}`)}>
+                  게시글 더보기
+                </S.MoreText>
+                <S.RequestUserWrapper>
+                  <S.ItemText>동행 신청자</S.ItemText>
+                  {/* <RequestUserList
+                  onClickAcceptRequest={onClickAcceptRequest}
+                  onClickRefuseRequest={onClickRefuseRequest}
+                  requestAccepted={requestAccepted}
+                  requestRefused={requestRefused}
+                  isDetailPage={false}
+                /> */}
+                </S.RequestUserWrapper>
+              </S.ItemContentsWrapper>
+            </S.ItemWrapper>
+          ))
+        ) : (
+          <NoDataFound />
+        )}
+      </InfiniteScroll>
     </S.Wrapper>
   );
 }
