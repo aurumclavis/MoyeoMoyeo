@@ -18,8 +18,8 @@ export default function KaKaoMap(props: IKaKaoMapProps) {
         const geocoder = new window.kakao.maps.services.Geocoder();
         if (!props.isEdit) {
           if (!props.address) {
-            const lat = 37.516;
-            const lng = 127.003;
+            const lat = 37.51;
+            const lng = 127.02;
             props.setValue("LatLng", {
               lat,
               lng,

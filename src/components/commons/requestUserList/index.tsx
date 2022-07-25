@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { IRequestUserListProps } from "../../units/boards/board/boardDetail/BoardDetail.types";
 import RequestUserItems from "./requestUserItems";
+
 export const RequestUserListWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -14,7 +15,7 @@ export const RequestUserListWrapper = styled.div`
 export default function RequestUserList(props: IRequestUserListProps) {
   return (
     <RequestUserListWrapper>
-      {props.requestUsers?.map((el: any) => (
+      {props.requestUsers.map((el: string) => (
         <RequestUserItems
           key={el}
           el={el}

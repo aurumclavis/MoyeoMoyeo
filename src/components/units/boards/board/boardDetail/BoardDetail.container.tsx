@@ -12,6 +12,7 @@ import {
 import { UPDATE_BOARD } from "../boardWrite/BoardWrite.queries";
 import { useMutation, useQuery } from "@apollo/client";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import { Modal } from "antd";
 
 export default function BoardDetailContainer() {
   const { onClickMoveToPage } = useMoveToPage();
@@ -138,8 +139,11 @@ export default function BoardDetailContainer() {
   // 요청수락/거절 부분
   const [requestAccepted, setRequestAccepted] = useState("");
   const [requestRefused, setRequestRefused] = useState("");
+  const [accompanyList, setAccompanyList] = useState([]);
+
   const onClickAcceptRequest = (el: string) => () => {
     setRequestAccepted(el);
+    setAccompanyList((prev: string[]) => [...prev, el]);
   };
   const onClickRefuseRequest = (el: string) => () => {
     setRequestRefused(el);
@@ -150,14 +154,22 @@ export default function BoardDetailContainer() {
     setIsModalVisible(true);
   };
   const handleOk = async () => {
-    await updateBoard({
-      variables: {
-        boardId: router.query.boardId,
-        updateBoardInput: {
-          personCount: maxHeadCount,
+    try {
+      await updateBoard({
+        variables: {
+          boardId: router.query.boardId,
+          updateBoardInput: {
+            personCount: maxHeadCount,
+            boardAddress: {
+              address_description:
+                data.fetchBoard.boardAddress.address_description,
+            },
+          },
         },
-      },
-    });
+      });
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message });
+    }
     setIsModalVisible(false);
   };
   const [maxHeadCount, setMaxHeadCount] = useState(0);
@@ -178,7 +190,7 @@ export default function BoardDetailContainer() {
       try {
         await makeBoardFull({ variables: { boardId: router.query.boardId } });
       } catch (error) {
-        if (error instanceof Error) alert(error.message);
+        if (error instanceof Error) Modal.error({ content: error.message });
       }
     }
     setIsCompleted((prev) => !prev);
@@ -221,6 +233,7 @@ export default function BoardDetailContainer() {
         boardId: router.query.boardId,
       },
     });
+    Modal.success({ content: "게시글이 삭제되었습니다." });
     router.push("/boards");
   };
 
@@ -257,6 +270,7 @@ export default function BoardDetailContainer() {
       requestRefused={requestRefused}
       onClickMoveToPage={onClickMoveToPage}
       onClickDelete={onClickDelete}
+      accompanyList={accompanyList}
     />
   );
 }

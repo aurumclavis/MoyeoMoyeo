@@ -388,7 +388,6 @@ export const AccompanyUser = styled.div`
 // 모집완료/완료취소버튼
 export const AccompanyRequestButton = styled.button`
   width: 90%;
-  align-self: center;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -12,6 +12,13 @@ export const Wrapper = styled.div`
   align-items: flex-end;
   gap: 0.2rem;
 `;
+export const WrapperForReverse = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 0.2rem;
+`;
 export const CommentsWrapper = styled.div`
   width: 100%;
   display: flex;

@@ -47,7 +47,7 @@ export default function CommentListItemsContainer(
   };
 
   return (
-    <>
+    <S.Wrapper>
       <S.CommentsWrapper isChild={false}>
         <S.UpperWrapper>
           <S.UpperLeft>
@@ -73,6 +73,6 @@ export default function CommentListItemsContainer(
           refetch={props.refetch}
         />
       )}
-    </>
+    </S.Wrapper>
   );
 }

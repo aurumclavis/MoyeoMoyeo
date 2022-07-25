@@ -15,7 +15,7 @@ export default function CommentListContainer(
     },
   });
   return (
-    <S.Wrapper>
+    <S.WrapperForReverse>
       {data?.fetchBoardComments.map((el: any) => (
         <CommentListItemsContainer
           key={el.id}
@@ -24,6 +24,6 @@ export default function CommentListContainer(
           refetch={refetch}
         />
       ))}
-    </S.Wrapper>
+    </S.WrapperForReverse>
   );
 }

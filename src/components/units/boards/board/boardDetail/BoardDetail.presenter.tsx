@@ -85,9 +85,7 @@ export default function BoardDetailPresenter(
                 </S.TransportationWrapper>
                 <S.HeadCountWrapper>
                   <S.ItemsText>모집인원</S.ItemsText>
-                  <S.MaxHeadCount>
-                    {props.data?.fetchBoard.personCount}명
-                  </S.MaxHeadCount>
+                  <S.MaxHeadCount>{props.maxHeadCount}명</S.MaxHeadCount>
                 </S.HeadCountWrapper>
               </S.InfoUpper>
               <S.InfoUnder>
@@ -181,9 +179,13 @@ export default function BoardDetailPresenter(
               <S.AccompanyUnderWrapper>
                 {props.isCompleted ? (
                   <>
+                    모집명단 :
                     <S.AccompanyUserListWrapper>
-                      {props.data?.scheduledUsers?.map((el: any) => (
-                        <S.AccompanyUser key={el.id}>{el.name}</S.AccompanyUser>
+                      {[
+                        props.userData?.fetchLoginUser.name,
+                        ...props.accompanyList,
+                      ].map((el: any) => (
+                        <S.AccompanyUser key={el}>{el}</S.AccompanyUser>
                       ))}
                     </S.AccompanyUserListWrapper>
                     <S.AccompanyRequestButton
@@ -204,14 +206,16 @@ export default function BoardDetailPresenter(
                 ) : (
                   <>
                     <S.AccompanyUserListWrapper>
-                      {props.data?.scheduledUsers?.map((el: any) => (
-                        <S.AccompanyUser key={el.id}>{el.name}</S.AccompanyUser>
+                      모집명단 :
+                      {[
+                        props.userData?.fetchLoginUser.name,
+                        ...props.accompanyList,
+                      ].map((el: any) => (
+                        <S.AccompanyUser key={el}>{el}</S.AccompanyUser>
                       ))}
                     </S.AccompanyUserListWrapper>
                     <RequestUserList
-                      requestUsers={props.requestUserData?.fetchBoardRequest.map(
-                        (el: any) => el.reqUser.name
-                      )}
+                      requestUsers={["김성훈", "한주연", "윤지원"]}
                       onClickAcceptRequest={props.onClickAcceptRequest}
                       onClickRefuseRequest={props.onClickRefuseRequest}
                       requestAccepted={props.requestAccepted}
