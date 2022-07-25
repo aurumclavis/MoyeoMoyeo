@@ -104,7 +104,7 @@ export default function MapBoxComponent() {
       const map = new mapboxgl.Map({
         container: "map",
         language: "it",
-        style: "mapbox://styles/disagreedd/cl5sy3s1g000614mu3p25897n",
+        style: "mapbox://styles/disagreedd/cl5qszyzt002h14mp8dx6kwdj",
         ...start,
         boxZoom: false,
         data: geoData,
