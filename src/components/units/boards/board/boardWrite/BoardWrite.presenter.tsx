@@ -44,7 +44,9 @@ export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
           <S.EventInfoWrapper>
             <S.ImageWrapper>
               {!props.isEdit ? (
-                <S.EventImage src={"/catGoodsMarketExample.jpeg"} />
+                <S.EventImage
+                  src={`https://storage.googleapis.com/${props.postData?.fetchPost.images[0].src}`}
+                />
               ) : (
                 <S.EventImage
                   src={`https://storage.googleapis.com/${props.data?.fetchBoard.eventImage.src}`}
@@ -250,7 +252,12 @@ export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
         </S.EventLocationWrapper>
       </S.UnderWrapper>
       <S.ButtonWrapper>
-        <S.CancelButton type="button">취소</S.CancelButton>
+        <S.CancelButton
+          type="button"
+          onClick={props.onClickMoveToPage("/boards")}
+        >
+          취소
+        </S.CancelButton>
         <S.SubmitButton type="submit">등록</S.SubmitButton>
       </S.ButtonWrapper>
     </S.Wrapper>

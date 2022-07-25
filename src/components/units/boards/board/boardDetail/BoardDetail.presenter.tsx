@@ -85,9 +85,7 @@ export default function BoardDetailPresenter(
                 </S.TransportationWrapper>
                 <S.HeadCountWrapper>
                   <S.ItemsText>모집인원</S.ItemsText>
-                  <S.MaxHeadCount>
-                    {props.data?.fetchBoard.personCount}명
-                  </S.MaxHeadCount>
+                  <S.MaxHeadCount>{props.maxHeadCount}명</S.MaxHeadCount>
                 </S.HeadCountWrapper>
               </S.InfoUpper>
               <S.InfoUnder>
@@ -127,7 +125,7 @@ export default function BoardDetailPresenter(
                   eventName={props.data?.fetchBoard.eventName}
                   address={
                     props.data?.fetchBoard.eventCategory !== "일반"
-                      ? props.data?.fetchBoard.address
+                      ? props.data?.fetchBoard.boardAddress.postal
                       : "동행위치"
                   }
                 />
@@ -156,8 +154,7 @@ export default function BoardDetailPresenter(
                   <S.AccompanyItems>
                     <S.AccompanyAmountIcon src="/icon/groups.png" />
                     <S.AccompanyAmountText>
-                      인원 {props.data?.scheduledUsers?.length}/
-                      {props.maxHeadCount}
+                      인원 {1} / {props.maxHeadCount}
                     </S.AccompanyAmountText>
                   </S.AccompanyItems>
                   <S.AccompanyItems>
@@ -182,9 +179,13 @@ export default function BoardDetailPresenter(
               <S.AccompanyUnderWrapper>
                 {props.isCompleted ? (
                   <>
+                    모집명단 :
                     <S.AccompanyUserListWrapper>
-                      {props.data?.scheduledUsers?.map((el: any) => (
-                        <S.AccompanyUser key={el.id}>{el.name}</S.AccompanyUser>
+                      {[
+                        props.userData?.fetchLoginUser.name,
+                        ...props.accompanyList,
+                      ].map((el: any) => (
+                        <S.AccompanyUser key={el}>{el}</S.AccompanyUser>
                       ))}
                     </S.AccompanyUserListWrapper>
                     <S.AccompanyRequestButton
@@ -205,14 +206,16 @@ export default function BoardDetailPresenter(
                 ) : (
                   <>
                     <S.AccompanyUserListWrapper>
-                      {props.data?.scheduledUsers?.map((el: any) => (
-                        <S.AccompanyUser key={el.id}>{el.name}</S.AccompanyUser>
+                      모집명단 :
+                      {[
+                        props.userData?.fetchLoginUser.name,
+                        ...props.accompanyList,
+                      ].map((el: any) => (
+                        <S.AccompanyUser key={el}>{el}</S.AccompanyUser>
                       ))}
                     </S.AccompanyUserListWrapper>
                     <RequestUserList
-                      requestUsers={props.requestUserData?.fetchBoardRequest.map(
-                        (el: any) => el.reqUser.name
-                      )}
+                      requestUsers={["김성훈", "한주연", "윤지원"]}
                       onClickAcceptRequest={props.onClickAcceptRequest}
                       onClickRefuseRequest={props.onClickRefuseRequest}
                       requestAccepted={props.requestAccepted}
@@ -307,7 +310,9 @@ export default function BoardDetailPresenter(
           <S.EventInfoWrapper ref={props.eventRef}>
             <S.EventInfoText>행사 정보</S.EventInfoText>
             <S.EventInfo>
-              <S.EventImage src="/catGoodsMarketExample.jpeg" />
+              <S.EventImage
+                src={`https://storage.googleapis.com/${props.data?.fetchBoard.eventImage.src}`}
+              />
               <S.EventInfoDetailWrapper>
                 <S.EventInfoDetail>
                   <S.EventInfoItem>

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useMemo } from "react";
 import {
   IAcceptButtonProps,
   IRefuseButtonProps,
@@ -12,9 +13,9 @@ export const RequestUserWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  animation-name: ${(props: any) => props.el};
+  animation-name: ${(props: IRequestUserWrapperProps) => props.el};
   animation-duration: 1.5s;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
   animation-iteration-count: 1;
   ${(props: IRequestUserWrapperProps) =>
     (props.requestAccepted === props.el || props.requestRefused === props.el) &&

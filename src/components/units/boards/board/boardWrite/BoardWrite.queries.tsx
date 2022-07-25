@@ -24,6 +24,9 @@ export const UPDATE_BOARD = gql`
       #   id
       #   name
       # }
+      boardAddress {
+        address_description
+      }
       personCount
     }
   }
@@ -37,6 +40,9 @@ export const FETCH_POST = gql`
       dateStart
       dateEnd
       category
+      images {
+        src
+      }
     }
   }
 `;

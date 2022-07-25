@@ -388,7 +388,6 @@ export const AccompanyUser = styled.div`
 // 모집완료/완료취소버튼
 export const AccompanyRequestButton = styled.button`
   width: 90%;
-  align-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -429,7 +428,7 @@ export const EventInfoWrapper = styled.div`
   flex-direction: column;
   gap: 2rem;
   margin-top: 1rem;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 3rem 1.5rem;
   border-radius: 5px;
   border: 1px solid #f1eee9;
   transition: 0.2s;

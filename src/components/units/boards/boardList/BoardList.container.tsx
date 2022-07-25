@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import BoardListPresenter from "./BoardList.presenter";
 import { useRouter } from "next/router";
-import { REQUEST_ACCOMPANY } from "./BoardList.queries";
 import _ from "lodash";
 import {
   defaultFromToMonthly,
@@ -12,7 +11,6 @@ import {
   weeklyMovePrev,
 } from "./dateFromTo";
 import { getDate } from "../../../commons/getDate";
-import { useMutation } from "@apollo/client";
 import { IBoardListContainerProps } from "./BoardList.types";
 
 export default function BoardListContainer(props: IBoardListContainerProps) {
@@ -110,10 +108,8 @@ export default function BoardListContainer(props: IBoardListContainerProps) {
     setSelectRequested(true);
     setIsUseDateChanger(false);
     setViewTypeData(
-      props.rawData.fetchBoards.filter(
-        (el: any) =>
-          props.userData?.fetchLoginUser.id ===
-          el.accompanyRequests?.reqUser?.id
+      props.rawData.fetchBoards.filter((el: any) =>
+        requestedBoardList.includes(el.id)
       )
     );
   };
@@ -180,33 +176,32 @@ export default function BoardListContainer(props: IBoardListContainerProps) {
     router.push(`/boards/${boardId}`);
   };
 
-  // 리스트 무한스크롤 부분
-  // const loadFunc = () => {
-  //   if (!data) return;
-  //   fetchMore({
-  //     variables: {
-  //       page: Math.ceil(data.fetchBoardComments.length / 10) + 1, // 현재페이지+다음페이지 구하는 공식
-  //     },
-  //     updateQuery: (prev, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult.fetchBoardComments)
-  //         return {
-  //           fetchBoardComments: [...prev.fetchBoardComments],
-  //         };
-  //       return {
-  //         fetchBoardComments: [
-  //           ...prev.fetchBoardComments,
-  //           ...fetchMoreResult.fetchBoardComments,
-  //         ],
-  //       };
-  //     },
-  //   });
-  // };
-
   // 동행요청하기 버튼 부분
-  const [requestAccompany] = useMutation(REQUEST_ACCOMPANY);
-  const onClickRequestAccompany = (boardId: string) => async () => {
-    await requestAccompany({ variables: { boardId } });
-  };
+  // const [requestAccompany] = useMutation(REQUEST_ACCOMPANY);
+  const [rerender, setRerender] = useState(false);
+  const onClickRequestAccompany =
+    (state: string) => (boardId: string) => () => {
+      if (state === "request") {
+        const requested = [
+          ...JSON.parse(localStorage.getItem("requested") || "[]"),
+        ];
+        requested.push(boardId);
+        localStorage.setItem("requested", JSON.stringify(requested));
+      }
+      if (state === "cancel") {
+        const requested = [
+          ...JSON.parse(localStorage.getItem("requested") || "[]"),
+        ].filter((el) => el !== boardId);
+        localStorage.setItem("requested", JSON.stringify(requested));
+      }
+      setRerender((prev) => !prev);
+    };
+  const [requestedBoardList, setRequestedBoardList] = useState([]);
+  useEffect(() => {
+    setRequestedBoardList([
+      ...JSON.parse(localStorage.getItem("requested") || "[]"),
+    ]);
+  }, [rerender]);
   return (
     <BoardListPresenter
       eventCategory={eventCategory}
@@ -236,6 +231,7 @@ export default function BoardListContainer(props: IBoardListContainerProps) {
       selectedCategoryName={selectedCategoryName}
       setSelectedCategoryName={setSelectedCategoryName}
       onClickRequestAccompany={onClickRequestAccompany}
+      requestedBoardList={requestedBoardList}
     />
   );
 }

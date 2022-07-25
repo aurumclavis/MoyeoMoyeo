@@ -45,7 +45,7 @@ export default function KaKaoMapFetch(props: IKaKaoMapFetchProps) {
         marker.setMap(map);
 
         const iwContent = `<div style="padding:5px; position: absolute; left:-25px; bottom: -25px;width : 250px;border: 1px solid #D2D2D2; background-color:white;border-radius:5px; "><div style="font-size:1.1rem; font-weight:500; padding-left:5px; margin-bottom:3px;">${props.eventName}</div>
-        <div style="padding-left:5px;">${props.address}</div><div style="padding-left:3px;"><a href="https://map.kakao.com/link/map/${props.eventName},${props.lat},${props.lng}" style="color:#FFD24C" target="_blank">카카오맵에서 큰지도보기</a></div></div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+        <div style="padding-left:5px;font-size:0.7rem">${props.address}</div><div style="padding-left:3px;"><a href="https://map.kakao.com/link/map/${props.eventName},${props.lat},${props.lng}" style="color:#FFD24C" target="_blank">카카오맵에서 큰지도보기</a></div></div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
         const iwPosition = new window.kakao.maps.LatLng(props.lat, props.lng); // 인포윈도우 표시 위치입니다
 
         // 인포윈도우를 생성합니다
@@ -58,7 +58,7 @@ export default function KaKaoMapFetch(props: IKaKaoMapFetchProps) {
         infowindow.open(map, marker);
       });
     };
-  }, [props.eventName]);
+  }, [props.eventName, props.address]);
 
   return (
     <>

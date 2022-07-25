@@ -47,6 +47,7 @@ export interface IBoardDetailPresenterProps {
     el: string
   ) => (event: MouseEvent<HTMLButtonElement>) => void;
   onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void;
+  accompanyList: string[];
 }
 
 export interface ITitleProps {

@@ -3,11 +3,20 @@ import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 import Reply from "@mui/icons-material/Reply";
 import { breakPoints } from "../../../../../../commons/styles/media";
+import { ICommentsWrapperProps } from "../Comment.types";
 
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+`;
+export const WrapperForReverse = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
   gap: 0.2rem;
 `;
 export const CommentsWrapper = styled.div`
@@ -18,6 +27,7 @@ export const CommentsWrapper = styled.div`
   padding: 0.5rem;
   border-top: 1px solid #f1eee9;
   border-bottom: 1px solid #f1eee9;
+  ${(props: ICommentsWrapperProps) => props.isChild && "width : 93%;"}
 `;
 export const UpperWrapper = styled.div`
   display: flex;
@@ -26,7 +36,7 @@ export const UpperWrapper = styled.div`
 `;
 export const UpperLeft = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
   gap: 0.5rem;
 `;
 export const CommentsWriter = styled.div`
@@ -55,6 +65,7 @@ export const MyReply = styled(Reply)`
 `;
 export const UnderWrapper = styled.div`
   margin-left: 1.2rem;
+  padding-bottom: 1rem;
 `;
 export const Contents = styled.div``;
 

@@ -1,19 +1,19 @@
 import * as S from "../CommentList.styles";
 import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { getDate } from "../../../../../../commons/getDate";
 import {
   DELETE_COMMENT,
   FETCH_COMMENT,
-  FETCH_BOARD_COMMENTS,
 } from "../../Write/CommentWrite.queries";
 import CommentChildrenWriteContainer from "./children/Write/CommentChildrenWrite.container";
 import CommentChildrenListContainer from "./children/List/commentChildrenList.container";
+import { ICommentListItemsContainerProps } from "../../Comment.types";
 
-export default function CommentListItemsContainer(props: any) {
-  const router = useRouter();
+export default function CommentListItemsContainer(
+  props: ICommentListItemsContainerProps
+) {
   const [isReply, setIsReply] = useState(false);
   const { data: childCommentData } = useQuery(FETCH_COMMENT, {
     variables: { commentId: props.el.id },
@@ -28,8 +28,8 @@ export default function CommentListItemsContainer(props: any) {
         },
         refetchQueries: [
           {
-            query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.boardId },
+            query: FETCH_COMMENT,
+            variables: { boardId: props.el.id },
           },
         ],
       });
@@ -39,12 +39,16 @@ export default function CommentListItemsContainer(props: any) {
     }
   };
   const onClickReplyBoardComment = () => {
+    if (!props.userData?.fetchLoginUser.id) {
+      Modal.error({ content: "댓글을 달려면 로그인이 필요합니다." });
+      return;
+    }
     setIsReply((prev) => !prev);
   };
-  // console.log("aaa", , props.el.createdAt);
+
   return (
-    <>
-      <S.CommentsWrapper>
+    <S.Wrapper>
+      <S.CommentsWrapper isChild={false}>
         <S.UpperWrapper>
           <S.UpperLeft>
             <S.CommentsWriter>{props.el.writer.name}</S.CommentsWriter>
@@ -52,7 +56,9 @@ export default function CommentListItemsContainer(props: any) {
           </S.UpperLeft>
           <S.UpperRight>
             <S.MyReply onClick={onClickReplyBoardComment} />
-            <S.MyDeleteIcon onClick={onClickDeleteComment} />
+            {props.userData?.fetchLoginUser.id === props.el.writer.id && (
+              <S.MyDeleteIcon onClick={onClickDeleteComment} />
+            )}
           </S.UpperRight>
         </S.UpperWrapper>
         <S.UnderWrapper>
@@ -62,10 +68,11 @@ export default function CommentListItemsContainer(props: any) {
       <CommentChildrenListContainer childCommentData={childCommentData} />
       {isReply && (
         <CommentChildrenWriteContainer
-          onClickReplyBoardComment={onClickReplyBoardComment}
-          id={props.el.id}
+          setIsReply={setIsReply}
+          parentId={props.el.id}
+          refetch={props.refetch}
         />
       )}
-    </>
+    </S.Wrapper>
   );
 }

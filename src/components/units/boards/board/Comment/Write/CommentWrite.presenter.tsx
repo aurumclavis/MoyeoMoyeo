@@ -1,6 +1,9 @@
+import { ICommentWritePresenterProps } from "../Comment.types";
 import * as S from "./CommentWrite.styles";
 
-export default function CommentWritePresenter(props: any) {
+export default function CommentWritePresenter(
+  props: ICommentWritePresenterProps
+) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickCreateBoardComment)}>
       <S.CommentInput
