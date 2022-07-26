@@ -48,6 +48,7 @@ export interface IBoardDetailPresenterProps {
   ) => (event: MouseEvent<HTMLButtonElement>) => void;
   onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void;
   accompanyList: string[];
+  animationPauseState: string;
 }
 
 export interface ITitleProps {
@@ -92,6 +93,7 @@ export interface IRequestUserListProps {
   onClickRefuseRequest: (
     el: string
   ) => (event: MouseEvent<HTMLButtonElement>) => void;
+  animationPauseState: string;
 }
 export interface IRequestUserItemsProps {
   el: string;
@@ -104,6 +106,7 @@ export interface IRequestUserItemsProps {
   onClickRefuseRequest: (
     el: string
   ) => (event: MouseEvent<HTMLButtonElement>) => void;
+  animationPauseState: string;
 }
 
 export interface IRequestUserWrapperProps {
@@ -111,6 +114,7 @@ export interface IRequestUserWrapperProps {
   requestAccepted: string;
   requestRefused: string;
   el: string;
+  animationPauseState: string;
 }
 export interface IAcceptButtonProps {
   requestAcceptedBoolean: boolean;

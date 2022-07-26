@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { useMemo } from "react";
 import {
   IAcceptButtonProps,
   IRefuseButtonProps,
@@ -17,9 +16,12 @@ export const RequestUserWrapper = styled.div`
   animation-duration: 1.5s;
   animation-fill-mode: both;
   animation-iteration-count: 1;
+  animation-play-state: paused;
   ${(props: IRequestUserWrapperProps) =>
     (props.requestAccepted === props.el || props.requestRefused === props.el) &&
-    `@keyframes ${props.el} {30%{opacity:1;}50%{opacity:0.5;}60%{opacity:1;}70%{opacity:0;visibility:hidden;width:90%;height:auto;}70.01%{opacity:0;visibility:hidden;width:0;height:0;}100%{opacity:0;visibility:hidden;width:0;height:0;}}`}
+    `animation-play-state: running; @keyframes ${props.el} {30%{opacity:1;}50%{opacity:0.5;}60%{opacity:1;}70%{opacity:0;visibility:hidden;width:90%;height:auto;}70.01%{opacity:0;visibility:hidden;width:0;height:0;}100%{opacity:0;visibility:hidden;width:0;height:0;}}`}
+  ${(props: IRequestUserWrapperProps) =>
+    props.animationPauseState === props.el && `animation-play-state: paused;`}
 `;
 export const RequestUserName = styled.div`
   width: 36%;
@@ -55,6 +57,7 @@ export default function RequestUserItems(props: IRequestUserItemsProps) {
       el={props.el}
       requestAccepted={props.requestAccepted}
       requestRefused={props.requestRefused}
+      animationPauseState={props.animationPauseState}
     >
       <RequestUserName>{props.el}</RequestUserName>
       <AcceptButton

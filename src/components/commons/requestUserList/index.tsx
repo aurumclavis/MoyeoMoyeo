@@ -24,6 +24,7 @@ export default function RequestUserList(props: IRequestUserListProps) {
           requestRefused={props.requestRefused}
           onClickAcceptRequest={props.onClickAcceptRequest}
           onClickRefuseRequest={props.onClickRefuseRequest}
+          animationPauseState={props.animationPauseState}
         />
       ))}
     </RequestUserListWrapper>

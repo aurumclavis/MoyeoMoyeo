@@ -140,12 +140,18 @@ export default function BoardDetailContainer() {
   const [requestAccepted, setRequestAccepted] = useState("");
   const [requestRefused, setRequestRefused] = useState("");
   const [accompanyList, setAccompanyList] = useState([]);
-
+  const [animationPauseState, setAnimationPauseState] = useState("");
   const onClickAcceptRequest = (el: string) => () => {
+    setTimeout(() => {
+      setAnimationPauseState(el);
+    }, 1510);
     setRequestAccepted(el);
     setAccompanyList((prev: string[]) => [...prev, el]);
   };
   const onClickRefuseRequest = (el: string) => () => {
+    setTimeout(() => {
+      setAnimationPauseState(el);
+    }, 1510);
     setRequestRefused(el);
   };
   // 인원 변경 모달 부분
@@ -271,6 +277,7 @@ export default function BoardDetailContainer() {
       onClickMoveToPage={onClickMoveToPage}
       onClickDelete={onClickDelete}
       accompanyList={accompanyList}
+      animationPauseState={animationPauseState}
     />
   );
 }

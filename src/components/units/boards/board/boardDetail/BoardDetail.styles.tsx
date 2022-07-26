@@ -374,6 +374,14 @@ export const AccompanyUnderWrapper = styled.div`
   }
 `;
 // 동행자리스트
+export const AccompanyUserListTitle = styled.div`
+  width: 25%;
+  align-self: flex-start;
+  text-align: center;
+  color: #323232;
+  background-color: #ffd24c;
+  border-radius: 10px;
+`;
 export const AccompanyUserListWrapper = styled.div`
   width: 100%;
   display: flex;
