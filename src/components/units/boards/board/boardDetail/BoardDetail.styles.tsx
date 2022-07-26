@@ -379,7 +379,7 @@ export const AccompanyUserListTitle = styled.div`
   align-self: flex-start;
   text-align: center;
   color: #323232;
-  background-color: #ffd24c;
+  background-color: #f1eee9;
   border-radius: 10px;
 `;
 export const AccompanyUserListWrapper = styled.div`
