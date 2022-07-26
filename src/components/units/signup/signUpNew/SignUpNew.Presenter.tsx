@@ -67,7 +67,6 @@ export default function SignUpNewPageUI(props: ISignUpNew) {
                 <S.AuthInput
                   placeholder="인증번호"
                   {...props.register("validateToken")}
-                  disabled={props.timer === false}
                 />
                 <Countdown
                   renderer={renderer}

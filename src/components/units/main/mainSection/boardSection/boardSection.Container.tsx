@@ -1,7 +1,32 @@
 import * as S from "./boardSection.Styles";
 import useScrollClipPath from "../../../../commons/hooks/useScrollClipPath";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import { gql } from "@apollo/client";
 
+export const FETCH_BOARDS = gql`
+  query fetchBoards($page: Float, $pageSize: Float) {
+    fetchBoards(page: $page, pageSize: $pageSize) {
+      id
+      isFull
+      title
+      contents
+      remark
+      personCount
+      dateStart
+      dateEnd
+      writer {
+        id
+      }
+      coverImage {
+        src
+      }
+      eventName
+      eventStart
+      eventEnd
+      eventCategory
+    }
+  }
+`;
 const BoardSection = () => {
   const animatedItem = useScrollClipPath();
   const { onClickMoveToPage } = useMoveToPage();

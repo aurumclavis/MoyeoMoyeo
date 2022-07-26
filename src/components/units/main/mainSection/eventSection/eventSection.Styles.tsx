@@ -105,6 +105,7 @@ export const EventsList = styled.div`
 
 export const EventsImages = styled.img`
   width: 100%;
+  height: 300px;
 `;
 export const InnderWrapper = styled.div`
   width: 100%;
@@ -114,6 +115,7 @@ export const InnderWrapper = styled.div`
 
 export const EventsName = styled.div`
   width: 100%;
+  margin-top: 20px;
   font-size: 0.875rem;
   text-align: center;
 `;

@@ -81,6 +81,7 @@ export const ProductList = styled.div`
 `;
 export const ProductImages = styled.img`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 10px;

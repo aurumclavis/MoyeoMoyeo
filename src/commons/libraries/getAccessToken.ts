@@ -5,9 +5,7 @@ import { gql } from "@apollo/client";
 
 const RESTORE_ACCESS_TOKEN = gql`
   mutation restoreAccessToken {
-    restoreAccessToken {
-      accessToken
-    }
+    restoreAccessToken
   }
 `;
 export async function GetAccessToken() {
@@ -17,7 +15,7 @@ export async function GetAccessToken() {
       { credentials: "include" }
     );
     const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
-    const newAccessToken = result.restoreAccessToken.accessToken;
+    const newAccessToken = result.restoreAccessToken;
     return newAccessToken;
   } catch (error) {
     // refresh Token 만료된 상태면 다시 로그인해야함

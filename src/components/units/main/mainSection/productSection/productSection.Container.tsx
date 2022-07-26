@@ -11,6 +11,13 @@ export const FETCH_PRODUCTS = gql`
       name
       price
       viewCount
+      images {
+        id
+        src
+      }
+      likedUsers {
+        id
+      }
     }
   }
 `;
@@ -41,7 +48,13 @@ const ProductSection = (props: any) => {
               key={v4(el.id)}
               onClick={onClickMoveToPage(`products/${el.id}`)}
             >
-              <S.ProductImages src="/example2.png" />
+              <S.ProductImages
+                onError={(event) => {
+                  if (event.target instanceof HTMLImageElement)
+                    event.target.src = "../../error-image.png";
+                }}
+                src={`https://storage.googleapis.com/${el.images[0]?.src}`}
+              />
               <S.ProductName>{el.name}</S.ProductName>
               <S.ProductUnderWapper>
                 <S.ProductPrice>{`${el.price.toLocaleString()}원`}</S.ProductPrice>

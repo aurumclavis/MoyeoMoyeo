@@ -40,7 +40,7 @@ export default function FindPwPage() {
   const [isActive] = useState(true);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
-  const { register, handleSubmit, formState, watch, setValue } = useForm({
+  const { register, handleSubmit, formState, watch } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -102,7 +102,6 @@ export default function FindPwPage() {
       register={register}
       watch={watch}
       handleSubmit={handleSubmit}
-      setValue={setValue}
       // email 인증
       isReadyForNum={isReadyForNum}
       isDone={isDone}

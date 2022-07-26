@@ -1,11 +1,35 @@
 import useScrollFadeIn from "../../../../commons/hooks/useScrollFadeIn";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import * as S from "./eventSection.Styles";
+import { gql, useQuery } from "@apollo/client";
+import { getDate } from "../../../../commons/getDate";
+
+export const FETCH_POSTS = gql`
+  query fetchPosts($page: Float, $pageSize: Float) {
+    fetchPosts(page: $page, pageSize: $pageSize) {
+      id
+      title
+      dateStart
+      dateEnd
+      images {
+        id
+        src
+      }
+      category
+      uploadedAt
+      viewCount
+      description
+      likedUsers {
+        id
+      }
+    }
+  }
+`;
 
 const EventSection = () => {
   const animatedItem = useScrollFadeIn();
   const { onClickMoveToPage } = useMoveToPage();
-
+  const { data } = useQuery(FETCH_POSTS);
   return (
     <S.OutWrapper>
       <S.TitleWrapper>
@@ -21,16 +45,29 @@ const EventSection = () => {
       </S.TitleRightWrapper>
       <S.Wrapper>
         <S.EventWrapper {...animatedItem}>
-          {new Array(5).fill(1).map((el: any, index: number) => (
-            <S.EventsList key={index}>
-              <S.EventsImages src="/eventmap.png" />
-              <S.InnderWrapper>
-                <S.EventsName>뮤지컬 아이다</S.EventsName>
-                <S.EventsPlaces>블루스퀘어 신한카드홀</S.EventsPlaces>
-                <S.EventsDate>2022.07.05~07.05</S.EventsDate>
-              </S.InnderWrapper>
-            </S.EventsList>
-          ))}
+          {data?.fetchPosts
+            .map((el: any, index: number) => (
+              <S.EventsList
+                onClick={onClickMoveToPage(`events/${el.id}`)}
+                key={index}
+              >
+                <S.EventsImages
+                  onError={(event) => {
+                    if (event.target instanceof HTMLImageElement)
+                      event.target.src = "../../error-image.png";
+                  }}
+                  src={`https://storage.googleapis.com/${el?.images[0]?.src}`}
+                />
+                <S.InnderWrapper>
+                  <S.EventsName>{el.title}</S.EventsName>
+                  {/* <S.EventsPlaces>{el.description}</S.EventsPlaces> */}
+                  <S.EventsDate>
+                    {getDate(el.dateStart)} ~ {getDate(el?.dateEnd)}
+                  </S.EventsDate>
+                </S.InnderWrapper>
+              </S.EventsList>
+            ))
+            .slice(0, 5)}
         </S.EventWrapper>
       </S.Wrapper>
     </S.OutWrapper>

@@ -9,7 +9,7 @@ export default function OurEventListUIAdd(props: IOurEventListUIAdd) {
   return (
     <S.ListWrapper>
       <S.ListImg
-        onError={event => {
+        onError={(event) => {
           if (event.target instanceof HTMLImageElement)
             event.target.src = "../../error-image.png";
         }}

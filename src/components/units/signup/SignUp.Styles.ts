@@ -30,10 +30,11 @@ export const HeaderTitle = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 5px;
 `;
 export const HeaderIcon = styled.img`
-  width: 2.438rem; // 39px
-  height: 1.938rem; // 31px
+  width: 25px;
+  height: 20px;
 `;
 
 // 바디
@@ -56,11 +57,11 @@ export const BodyCommonContainer = styled.div`
   border: 1px solid #bdbdbd;
   border-radius: 10px;
   margin: 15px;
-  padding: 30px;
+  padding: 40px;
   @media (max-width: 767px) {
     width: 100%;
     height: 20%;
-    padding: 10px 15px;
+    padding: 15px 20px;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -71,7 +72,7 @@ export const BodyCommonIcon = styled.img`
   border: 1px solid #bdbdbd;
   border-radius: 50%;
   @media (max-width: 767px) {
-    width: 25%;
+    width: 20%;
     height: 25%;
   }
 `;
@@ -106,7 +107,8 @@ export const BodyCommonSubTitle = styled.span`
   margin-bottom: 10px;
   @media (max-width: 767px) {
     display: flex;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-weight: 350;
   }
 `;
 export const BodyCommonButton = styled.button`
