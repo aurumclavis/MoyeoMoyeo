@@ -15,6 +15,7 @@ export default function EventsDetail() {
   const { data } = useQuery(FETCH_POST, {
     variables: { postId: router.query._id },
   });
+
   const [deletePost] = useMutation(DELETE_POST);
   const { onClickMoveToPage } = useMoveToPage();
   const [, setEventIdForBoard] = useRecoilState(eventIdForBoardState);
@@ -115,7 +116,7 @@ export default function EventsDetail() {
   const onClickLink = () => {
     alert("링크가 복사되었습니다");
   };
-  console.log(data);
+
   const onClickEdit = () => {
     router.push(`/events/${router.query._id}/edit`);
   };

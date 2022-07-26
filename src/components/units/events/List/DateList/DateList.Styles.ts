@@ -80,9 +80,13 @@ export const Select = styled.select`
 
 export const ListWrapper = styled.div`
   width: 90%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-gap: 0.63rem;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 0.63rem; */
   margin: 1rem auto;
 
   @media (max-width: 767px) {
@@ -95,12 +99,13 @@ export const ListWrapper = styled.div`
 `;
 export const List = styled.div`
   width: 150px;
-  height: 180px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-left: 1rem;
+  margin-bottom: 1rem;
   border: 1px solid #d2d2d2;
 
   transition: 0.2s;
@@ -114,27 +119,29 @@ export const List = styled.div`
 `;
 export const ListImg = styled.img`
   width: 150px;
-  height: 150px;
+  height: 200px;
+  border-bottom: 1px solid #d2d2d2;
   @media (max-width: 767px) {
   }
 `;
-export const FlexWrapper = styled.div`
-  width: 100%;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  @media (max-width: 767px) {
-  }
-`;
+// export const FlexWrapper = styled.div`
+//   width: 100%;
+//   height: 120px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   @media (max-width: 767px) {
+//   }
+// `;
 
 export const Title = styled.div`
   width: 100%;
-  height: 25px;
+  height: 100px;
   text-align: center;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
+
   @media (max-width: 767px) {
   }
 `;

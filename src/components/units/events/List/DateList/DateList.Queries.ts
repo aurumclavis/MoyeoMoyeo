@@ -14,13 +14,16 @@ export const FETCH_EVENTS = gql`
 `;
 
 export const FETCH_POSTS = gql`
-  query fetchPosts {
-    fetchPosts {
+  query fetchPosts($page: Float, $pageSize: Float) {
+    fetchPosts(page: $page, pageSize: $pageSize) {
       id
       title
       dateStart
       dateEnd
-      # images{id src }
+      images {
+        id
+        src
+      }
       category
       uploadedAt
       viewCount

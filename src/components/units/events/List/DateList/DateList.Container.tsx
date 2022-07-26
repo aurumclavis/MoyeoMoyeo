@@ -5,9 +5,12 @@ import { FETCH_EVENTS, FETCH_POSTS } from "./DateList.Queries";
 // import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 export default function CalenderPage() {
-  const { eventsData } = useQuery(FETCH_EVENTS);
-  const { postsData } = useQuery(FETCH_POSTS);
-  const [selected, setSelected] = useState("");
+  const fetchEvents = useQuery(FETCH_EVENTS);
+  const fetchPosts = useQuery(FETCH_POSTS, {
+    variables: { pageSize: 10, page: 1 },
+  });
+
+  const [selected, setSelected] = useState("posts");
   // const [isOpen, setIsOpen] = useState(true);
   // const onClickCalederOpen = () => {
   //   setIsOpen(prev => !prev);
@@ -20,8 +23,14 @@ export default function CalenderPage() {
 
   const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelected(e.target.value);
-    console.log(selected);
   };
 
-  return <CalenderPageUI onChangeSelect={onChangeSelect} />;
+  return (
+    <CalenderPageUI
+      onChangeSelect={onChangeSelect}
+      selected={selected}
+      fetchEvents={fetchEvents}
+      fetchPosts={fetchPosts}
+    />
+  );
 }
