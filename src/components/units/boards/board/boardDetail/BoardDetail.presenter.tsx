@@ -179,7 +179,9 @@ export default function BoardDetailPresenter(
               <S.AccompanyUnderWrapper>
                 {props.isCompleted ? (
                   <>
-                    모집명단 :
+                    <S.AccompanyUserListTitle>
+                      모집명단
+                    </S.AccompanyUserListTitle>
                     <S.AccompanyUserListWrapper>
                       {[
                         props.userData?.fetchLoginUser.name,
@@ -205,8 +207,10 @@ export default function BoardDetailPresenter(
                   </>
                 ) : (
                   <>
+                    <S.AccompanyUserListTitle>
+                      모집명단
+                    </S.AccompanyUserListTitle>
                     <S.AccompanyUserListWrapper>
-                      모집명단 :
                       {[
                         props.userData?.fetchLoginUser.name,
                         ...props.accompanyList,
@@ -221,6 +225,7 @@ export default function BoardDetailPresenter(
                       requestAccepted={props.requestAccepted}
                       requestRefused={props.requestRefused}
                       isDetailPage={true}
+                      animationPauseState={props.animationPauseState}
                     />
                     <S.AccompanyRequestButton
                       isCompleted={props.isCompleted}
@@ -362,7 +367,7 @@ export default function BoardDetailPresenter(
         )}
         <S.ButtonWrapper>
           <S.GoListButton onClick={props.onClickMoveToPage("/boards")}>
-            동행게시판으로
+            게시판으로
           </S.GoListButton>
           {props.isMyBoard && (
             <>
