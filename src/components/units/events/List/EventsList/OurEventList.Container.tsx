@@ -29,7 +29,5 @@ export default function OurEventList() {
     });
   };
 
-  console.log(data);
-
   return <OurEventListUI data={data} ToloadFunc={ToloadFunc} />;
 }

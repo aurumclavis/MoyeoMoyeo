@@ -12,8 +12,8 @@ export default function CalenderPageUI(props: any) {
           <S.InsideWrapper>
             <S.NavTitle>행사 타입</S.NavTitle>
             <S.Select onChange={props.onChangeSelect}>
-              <option value="events">행사 정보</option>
               <option value="posts">추천 행사</option>
+              <option value="events">행사 정보</option>
             </S.Select>
           </S.InsideWrapper>
           <S.InsideWrapper>
@@ -24,7 +24,12 @@ export default function CalenderPageUI(props: any) {
             ></S.DatePick>
           </S.InsideWrapper>
         </S.NavWrapper>
-        <CalederListUIAdd />
+        {props.selected === "posts" && (
+          <CalederListUIAdd dateData={props.fetchPosts?.data?.fetchPosts} />
+        )}
+        {props.selected === "events" && (
+          <CalederListUIAdd dateData={props.fetchEvents?.data?.fetchEvents} />
+        )}
       </S.Wrapper>
     </>
   );
