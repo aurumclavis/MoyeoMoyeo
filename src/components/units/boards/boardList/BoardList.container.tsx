@@ -100,7 +100,7 @@ export default function BoardListContainer(props: IBoardListContainerProps) {
     setSelectLatest(true);
     setSelectRequested(false);
     setIsUseDateChanger(false);
-    setViewTypeData(props.rawData.fetchBoards);
+    setViewTypeData(props.rawData?.fetchBoards);
   };
   const onClickViewRequested = () => {
     setSelectAccompanyDate(false);
@@ -108,7 +108,7 @@ export default function BoardListContainer(props: IBoardListContainerProps) {
     setSelectRequested(true);
     setIsUseDateChanger(false);
     setViewTypeData(
-      props.rawData.fetchBoards.filter((el: any) =>
+      props.rawData?.fetchBoards.filter((el: any) =>
         requestedBoardList.includes(el.id)
       )
     );
@@ -137,7 +137,7 @@ export default function BoardListContainer(props: IBoardListContainerProps) {
   const onClickViewRecruit = () => {
     selectViewRecruit
       ? setRecruitData(categoryData)
-      : setRecruitData(categoryData.filter((el: any) => !el.isFull));
+      : setRecruitData(categoryData?.filter((el: any) => !el.isFull));
     setSelectViewRecruit((prev) => !prev);
   };
 
