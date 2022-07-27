@@ -28,10 +28,15 @@ export default function ProductsPaymentUI(props: IProductsPaymentUIProps) {
         <S.Subtitle>상품 정보</S.Subtitle>
         <S.Line />
         <S.ProductInfoWrapper>
-          <S.ProductInfoImage src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDN8fGFydHxlbnwwfHx8fDE2NTcxMTM3Mjk&ixlib=rb-1.2.1&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450" />
+          <S.ProductInfoImage
+            onError={(event) => {
+              if (event.target instanceof HTMLImageElement)
+                event.target.src = "../../error-image.png";
+            }}
+            src={`https://storage.googleapis.com/${props.product_info.imageSrc}`}
+          />
           <S.ProductInfoTextWrapper>
             <S.Label>{props.product_info.name}</S.Label>
-
             <S.SmallLabel>{props.product_info.description}</S.SmallLabel>
           </S.ProductInfoTextWrapper>
         </S.ProductInfoWrapper>

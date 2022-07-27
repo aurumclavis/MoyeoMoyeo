@@ -47,7 +47,13 @@ export default function ProductsQuestionListItem(
         content: "문의가 삭제되었습니다.",
       });
     } catch (error) {
-      if (error instanceof Error) Modal.error({ content: error.message });
+      if (error instanceof Error) {
+        if (error.message === "Unauthorized") {
+          Modal.error({ content: "로그인이 필요합니다." });
+        } else {
+          Modal.error({ content: error.message });
+        }
+      }
     }
   };
   return (
