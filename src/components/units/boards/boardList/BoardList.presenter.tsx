@@ -113,7 +113,7 @@ export default function BoardListPresenter(props: IBoardListPresenter) {
           </S.RecruitmentViewTypeButton>
         </S.DetailViewTypeWrapper>
         <S.ListWrapper>
-          {props.data.map((el: any) => (
+          {props.data?.map((el: any) => (
             <S.Item key={uuidv4()}>
               <S.ItemLeft onClick={props.onClickGoDetail(el.id)}>
                 <S.EventImage
