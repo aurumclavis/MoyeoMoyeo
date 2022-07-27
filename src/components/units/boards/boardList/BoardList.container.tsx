@@ -22,7 +22,7 @@ export default function BoardListContainer(props: IBoardListContainerProps) {
   });
 
   // 동행리스트 페이지의 기본설정인 동행일오름차순으로 정렬을 위한 깊은복사 + 날짜필터링으로 데이터 추출
-  const sortedRawData = _.cloneDeep(props.rawData.fetchBoards).sort(
+  const sortedRawData = _.cloneDeep(props.rawData?.fetchBoards)?.sort(
     (a: any, b: any) => {
       return Number(a.dateStart.replaceAll("-", "")) <
         Number(b.dateStart.replaceAll("-", ""))
@@ -34,7 +34,7 @@ export default function BoardListContainer(props: IBoardListContainerProps) {
   // 단계별(보기타입별, 날짜선택별, 카테고리별) 검색필터 부분
   // 날짜별 data추출 검색필터
   const [sortedData, setSortedData] = useState(
-    sortedRawData.filter(
+    sortedRawData?.filter(
       (el: any) =>
         Number(fromToDate.from.replaceAll("-", "")) <=
           Number(el.dateStart.replaceAll("-", "")) &&
@@ -44,7 +44,7 @@ export default function BoardListContainer(props: IBoardListContainerProps) {
   );
   useEffect(() => {
     setSortedData(
-      sortedRawData.filter(
+      sortedRawData?.filter(
         (el: any) =>
           Number(fromToDate.from.replaceAll("-", "")) <=
             Number(el.dateStart.replaceAll("-", "")) &&
@@ -164,7 +164,7 @@ export default function BoardListContainer(props: IBoardListContainerProps) {
   });
 
   // 행사카테고리 중복제거 부분
-  const eventCategory = props.rawData.fetchBoards
+  const eventCategory = props.rawData?.fetchBoards
     .map((el: any) => el.eventCategory)
     .reduce(
       (acc: any, cur: any) => (acc.includes(cur) ? acc : [...acc, cur]),
