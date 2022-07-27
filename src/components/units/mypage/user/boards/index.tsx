@@ -112,16 +112,13 @@ export default function MyPageUserBoards() {
                 <S.MoreText onClick={onClickMoveToPage(`/boards/${el.id}`)}>
                   게시글 더보기
                 </S.MoreText>
-                <S.RequestUserWrapper>
-                  <S.ItemText>동행 신청자</S.ItemText>
-                  {/* <RequestUserList
+                {/* <RequestUserList
                   onClickAcceptRequest={onClickAcceptRequest}
                   onClickRefuseRequest={onClickRefuseRequest}
                   requestAccepted={requestAccepted}
                   requestRefused={requestRefused}
                   isDetailPage={false}
                 /> */}
-                </S.RequestUserWrapper>
               </S.ItemContentsWrapper>
             </S.ItemWrapper>
           ))

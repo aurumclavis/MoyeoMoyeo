@@ -17,9 +17,9 @@ import { useRecoilState } from "recoil";
 
 export default function ProductDetail() {
   const [activedTab, setActivedTab] = useState("detail");
-  const navRef = useRef<HTMLDivElement>(null);
-  const detailRef = useRef<HTMLHeadingElement>(null);
-  const qnaRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef(null);
+  const detailRef = useRef(null);
+  const qnaRef = useRef(null);
 
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();

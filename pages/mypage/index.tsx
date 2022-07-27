@@ -19,21 +19,24 @@ const Wrapper = styled.div`
     flex-direction: column;
   }
 `;
-const obj = {
+type objType = {
+  [key: number]: any;
+};
+const obj: objType = {
   0: <MyPageUserEvents />,
   1: <MyPageUserBoards />,
   2: <MyPageUserProducts />,
   3: <MyPageUserBuy />,
 };
 
-const staffObj = {
+const staffObj: objType = {
   0: <MyPageStaffSell />,
   1: <MyPageStaffEvents />,
 };
 
 export default function MyPageEventsPage() {
   const [userInfo] = useRecoilState(userInfoState);
-  const [activedIndex, setActivedIndex] = useState(0);
+  const [activedIndex, setActivedIndex] = useState<number>(0);
   return (
     <>
       {userInfo.name && (
