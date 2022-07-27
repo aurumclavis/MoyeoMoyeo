@@ -55,7 +55,7 @@ export default function LoginPage() {
         },
       });
 
-      setAccessToken(result.data?.login);
+      setAccessToken(Token);
       const userInfo = resultUserInfo.data?.fetchLoginUser;
       if (!userInfo.name) {
         Modal.info({

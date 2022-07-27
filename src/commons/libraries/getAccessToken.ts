@@ -10,10 +10,9 @@ const RESTORE_ACCESS_TOKEN = gql`
 `;
 export async function GetAccessToken() {
   try {
-    const graphQLClient = new GraphQLClient(
-      "http://34.64.202.27:3000/graphql",
-      { credentials: "include" }
-    );
+    const graphQLClient = new GraphQLClient("https://momoyeo.site/graphql", {
+      credentials: "include",
+    });
     const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
     const newAccessToken = result.restoreAccessToken;
     return newAccessToken;

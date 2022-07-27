@@ -22,7 +22,7 @@ export default function ApolloSetting(props: any) {
   }, []);
 
   const uploadLink = createUploadLink({
-    uri: "http://34.64.202.27:3000/graphql",
+    uri: "https://momoyeo.site/graphql",
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
@@ -47,7 +47,7 @@ export default function ApolloSetting(props: any) {
     }
   });
   const client = new ApolloClient({
-    uri: "http://34.64.202.27:3000/graphql",
+    // uri: "https://momoyeo.site/graphql",
     link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
     connectToDevTools: true,
