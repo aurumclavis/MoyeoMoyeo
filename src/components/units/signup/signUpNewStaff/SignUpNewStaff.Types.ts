@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import {
   UseFormRegister,
   UseFormHandleSubmit,
@@ -17,4 +18,6 @@ export interface ISignUpNewStaffUI {
   isDone?: boolean;
   isReadyForNum?: boolean;
   isActive?: boolean;
+  setChecked?: Dispatch<SetStateAction<boolean>>;
+  setSecondChecked?: Dispatch<SetStateAction<boolean>>;
 }

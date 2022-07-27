@@ -6,12 +6,11 @@ import Checkbox from "../../../commons/checkbox";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import { ISignUpNew } from "./SignUpNew.Types";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 export default function SignUpNewPageUI(props: ISignUpNew) {
   const { onClickMoveToPage } = useMoveToPage();
   const startDate = useRef(Date.now());
-
   const renderer = ({ minutes, seconds }: any) => {
     return (
       <S.Timer>

@@ -6,9 +6,11 @@ import Countdown from "react-countdown";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { ISignUpNewStaffUI } from "./SignUpNewStaff.Types";
+import { useRef } from "react";
 
 export default function SignUpNewStaffPageUI(props: ISignUpNewStaffUI) {
   const { onClickMoveToPage } = useMoveToPage();
+  const startDate = useRef(Date.now());
   const renderer = ({ minutes, seconds }: any) => {
     return (
       <S.Timer>
@@ -53,7 +55,7 @@ export default function SignUpNewStaffPageUI(props: ISignUpNewStaffUI) {
         />
         <S.Error>{props.formState.errors.manager?.message}</S.Error>
         <S.MobileInfo>
-          <S.CommonSubTitle>담당자 휴대폰 인증</S.CommonSubTitle>
+          <S.CommonSubTitle>담당자(소속회사) 휴대폰 인증</S.CommonSubTitle>
           <S.NumberInputs>
             <CommonMobileInput defaultValue={"010"} />
             <CommonMobileInput register={props.register("phoneNumber")} />
@@ -68,7 +70,10 @@ export default function SignUpNewStaffPageUI(props: ISignUpNewStaffUI) {
                   placeholder="인증번호"
                   {...props.register("validateToken")}
                 />
-                <Countdown renderer={renderer} date={Date.now() + 180000} />
+                <Countdown
+                  renderer={renderer}
+                  date={startDate.current + 180000}
+                />
                 <S.MobileGetNumAgainBtn onClick={props.onClickGetNumber}>
                   인증번호 재요청
                 </S.MobileGetNumAgainBtn>
@@ -83,20 +88,24 @@ export default function SignUpNewStaffPageUI(props: ISignUpNewStaffUI) {
                   /[0-9]$/.test(props.watch("phoneNumber")) &&
                   /[0-9]$/.test(props.watch("phoneNumber2"))
                 }
-                disabled={!props.watch("phoneNumber" && "phoneNumber2")}
+                disabled={
+                  !/[0-9]$/.test(props.watch("phoneNumber")) &&
+                  !/[0-9]$/.test(props.watch("phoneNumber2"))
+                }
                 onClick={props.onClickGetNumber}
               >
                 인증번호 요청
               </S.MobileAuthBtn>
             )
           ) : (
-            <S.MobileAuthBtn disabled={true} type="button">
-              인증됨
-            </S.MobileAuthBtn>
+            <S.MobileAuthBtn disabled={true}>인증됨</S.MobileAuthBtn>
           )}
         </S.MobileInfo>
 
-        <Checkbox />
+        <Checkbox
+          setChecked={props.setChecked}
+          setSecondChecked={props.setSecondChecked}
+        />
         <S.ButtonWrapper>
           <ButtonSubmit
             fontSize="1.25rem"

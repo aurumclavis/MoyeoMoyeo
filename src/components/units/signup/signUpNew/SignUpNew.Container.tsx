@@ -15,26 +15,26 @@ const schema = yup.object({
     .max(5, "이름은 최대 5자리로 입력해주세요"),
   email: yup
     .string()
-    .email("이메일 형식이 적합하지 않습니다")
+    .email("이메일 형식에 적합하지 않습니다")
     .required("이메일은 필수 입력사항입니다."),
   password: yup
     .string()
-    .required("비밀번호는필수 입력 사항입니다.")
+    .required("비밀번호는 필수 입력사항입니다.")
     .matches(
       /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W))(?=.*[!@#$%^*+=-]).{8,16}$/,
       "비밀번호는 영문, 숫자, 특수문자를 포함한 8~16자리로 입력바랍니다."
     ),
   passwordCheck: yup
     .string()
-    .required("비밀번호는 확인은 필수 입력 사항입니다.")
+    .required("비밀번호 재입력은 필수 입력사항입니다.")
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다."),
   phoneNumber: yup
     .number()
-    .required("핸드폰 번호는 필수 입력 사항입니다.")
+    .required("핸드폰 번호는 필수 입력사항입니다.")
     .typeError("숫자만 입력가능합니다."),
   phoneNumber2: yup
     .number()
-    .required("핸드폰 번호는 필수 입력 사항입니다.")
+    .required("핸드폰 번호는 필수 입력사항입니다.")
     .typeError("숫자만 입력가능합니다."),
   validateToken: yup
     .number()
@@ -44,15 +44,14 @@ const schema = yup.object({
 
 export default function SignUpNewPage() {
   const router = useRouter();
-
   const [createUser] = useMutation(CREATE_USER);
   const [sendSMS] = useMutation(SEND_SMS);
   const [validatePhone] = useMutation(VALIDATE_PHONE);
-
+  // moblie
   const [isActive] = useState(true);
   const [isReadyForNum, setIsReadyForNum] = useState(false);
   const [isDone, setIsDone] = useState(false);
-
+  // checkbox
   const [checked, setChecked] = useState(false);
   const [secondChecked, setSecondChecked] = useState(false);
 
@@ -92,11 +91,8 @@ export default function SignUpNewPage() {
       Modal.error({ content: "인증번호를 다시 확인 바랍니다." });
     }
   };
-
   // 회원가입
   const onClickCreateUser = async (data: any) => {
-    console.log(checked);
-    console.log(secondChecked);
     if (!checked) {
       return Modal.info({ content: "개인정보 취급방침을 확인바랍니다." });
     }
@@ -137,7 +133,6 @@ export default function SignUpNewPage() {
       onClickConfirm={onClickConfirm}
       // signup
       onClickCreateUser={onClickCreateUser}
-      // login
       setChecked={setChecked}
       setSecondChecked={setSecondChecked}
     />
