@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { boolean } from "yup/lib/locale";
 
 import * as S from "./Kakaomap.Styles";
 declare const window: typeof globalThis & {

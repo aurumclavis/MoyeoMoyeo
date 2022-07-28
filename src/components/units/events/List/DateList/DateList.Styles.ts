@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { DatePicker } from "antd";
-interface ITabProps {
-  isActive: boolean;
-}
+// interface ITabProps {
+//   isActive: boolean;
+// }
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
