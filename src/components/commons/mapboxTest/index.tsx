@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import styled from "@emotion/styled";
 import geoData from "./geoData.json";
@@ -74,6 +74,7 @@ export default function MapBoxComponent() {
       guItem.properties.height = myLayers[4][2];
     }
   });
+  const mapContainer = useRef<any>(null);
 
   // mapBox랜더링부분
   useEffect(() => {
@@ -102,7 +103,7 @@ export default function MapBoxComponent() {
         bearing: -15,
       };
       const map = new mapboxgl.Map({
-        container: "map",
+        container: mapContainer.current,
         language: "it",
         style: "mapbox://styles/disagreedd/cl5qszyzt002h14mp8dx6kwdj",
         ...start,
@@ -150,7 +151,7 @@ export default function MapBoxComponent() {
 
   return (
     <>
-      <Map id="map"></Map>
+      <Map ref={mapContainer}></Map>
     </>
   );
 }
