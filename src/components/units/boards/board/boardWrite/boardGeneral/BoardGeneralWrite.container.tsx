@@ -103,7 +103,6 @@ export default function BoardGeneralWriteContainer(
       if (!props.isEdit) {
         if (files[0] === undefined) {
           await convertURLtoFile(randomCoverUrl);
-          console.log("bbb", coverImageFile);
           const uploadResults = await uploadImages({
             variables: {
               files: coverImageFile,
@@ -118,7 +117,6 @@ export default function BoardGeneralWriteContainer(
           });
           uploadResultsImage = uploadResults.data.uploadImages[0];
         }
-        console.log("ccc", uploadResultsImage);
         const result = await createBoard({
           variables: {
             createBoardInput: {
@@ -221,7 +219,6 @@ export default function BoardGeneralWriteContainer(
         }
       };
     };
-  console.log("aaa", randomCoverUrl);
   const onClickMyCoverImg = () => {
     coverImgRef.current.click();
   };
