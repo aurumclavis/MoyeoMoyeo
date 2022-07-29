@@ -170,7 +170,6 @@ export default function BoardGeneralWritePresenter(
               setAddress={props.setAddress}
               isEdit={props.isEdit}
               isEditAddress={props.data?.fetchBoard.boardAddress}
-              rerender={props.data?.fetchBoard.boardAddress}
             />
             <S.AddressExplainWrapper>
               <S.ItemsWrapper>

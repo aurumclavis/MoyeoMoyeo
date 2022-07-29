@@ -15,6 +15,7 @@ export interface Transportation {
   src: string;
 }
 export interface IBoardGeneralWritePresenterProps {
+  postData?: any;
   isOpen: boolean;
   onClickAddressSearch: (event: MouseEvent<HTMLElement>) => void;
   onCompleteAddressSearch: (event: any) => void;
@@ -72,5 +73,4 @@ export interface IKaKaoMapProps {
   setAddress: Dispatch<SetStateAction<string>>;
   isEditAddress: any;
   address: string;
-  rerender: any;
 }
