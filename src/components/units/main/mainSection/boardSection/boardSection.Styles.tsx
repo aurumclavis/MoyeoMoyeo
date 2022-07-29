@@ -3,7 +3,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import { breakPoints } from "../../../../../commons/styles/media";
-
+import GroupsIcon from "@mui/icons-material/Groups";
+import DateRangeIcon from "@mui/icons-material/DateRange";
 export const OutWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -144,6 +145,10 @@ export const BoardEvents = styled.div`
   font-size: 0.825rem;
   margin-right: 10px;
 `;
+export const MaxHeadCountIcon = styled(GroupsIcon)`
+  width: 1rem;
+  margin-right: 5px;
+`;
 export const BoardPeople = styled.div`
   text-align: center;
   font-size: 0.825rem;
@@ -153,6 +158,10 @@ export const BoardDate = styled.div`
   text-align: center;
   font-size: 0.825rem;
   margin-right: 10px;
+`;
+export const CalendarIcon = styled(DateRangeIcon)`
+  width: 1rem;
+  margin-right: 5px;
 `;
 export const Icon = styled.img`
   width: 20px;

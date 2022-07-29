@@ -8,7 +8,6 @@ import { useRecoilState } from "recoil";
 import { accessTokenState, userInfoState } from "../../../commons/store";
 import { LOGIN, FETCH_LOGIN_USER } from "./Login.Queries";
 import { Modal } from "antd";
-
 const schema = yup.object({
   email: yup
     .string()
@@ -35,7 +34,6 @@ export default function LoginPage() {
 
   // 로그인
   const onClickToLogin = async (data: any) => {
-    console.log(data);
     try {
       const result = await login({
         variables: {
@@ -43,8 +41,6 @@ export default function LoginPage() {
           password: data.password,
         },
       });
-
-      console.log(result.data.login);
       const Token = result.data.login; // accessToken
       const resultUserInfo = await client.query({
         query: FETCH_LOGIN_USER,
@@ -54,7 +50,6 @@ export default function LoginPage() {
           },
         },
       });
-
       setAccessToken(Token);
       const userInfo = resultUserInfo.data?.fetchLoginUser;
       if (!userInfo.name) {

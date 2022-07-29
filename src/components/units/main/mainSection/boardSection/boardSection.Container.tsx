@@ -1,7 +1,7 @@
 import * as S from "./boardSection.Styles";
 import useScrollClipPath from "../../../../commons/hooks/useScrollClipPath";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 
 export const FETCH_BOARDS = gql`
   query fetchBoards($page: Float, $pageSize: Float) {
@@ -28,6 +28,7 @@ export const FETCH_BOARDS = gql`
   }
 `;
 const BoardSection = () => {
+  const { data } = useQuery(FETCH_BOARDS);
   const animatedItem = useScrollClipPath();
   const { onClickMoveToPage } = useMoveToPage();
   const settings = {

@@ -18,7 +18,6 @@ export default function ApolloSetting(props: any) {
     GetAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
-    setAccessToken(accessToken);
   }, []);
 
   const uploadLink = createUploadLink({
@@ -34,9 +33,10 @@ export default function ApolloSetting(props: any) {
       for (const err of graphQLErrors) {
         if (err.extensions.code === "UNAUTHENTICATED") {
           GetAccessToken().then((newAccessToken) => {
+            setAccessToken(newAccessToken);
             operation.setContext({
-              ...operation.getContext().headers,
               headers: {
+                ...operation.getContext().headers,
                 Authorization: `Bearer ${newAccessToken}`,
               },
             });

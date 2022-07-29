@@ -15,9 +15,10 @@ export async function GetAccessToken() {
     });
     const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
     const newAccessToken = result.restoreAccessToken;
+    console.log(result, newAccessToken);
     return newAccessToken;
   } catch (error) {
     // refresh Token 만료된 상태면 다시 로그인해야함
-    console.log(error.message);
+    console.log(error.message, "에러");
   }
 }

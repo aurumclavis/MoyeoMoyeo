@@ -22,7 +22,7 @@ export const FETCH_PRODUCTS = gql`
   }
 `;
 
-const ProductSection = (props: any) => {
+const ProductSection = () => {
   const animatedItem = useScrollFadeIn();
 
   const { data } = useQuery(FETCH_PRODUCTS);
