@@ -25,7 +25,7 @@ export default function ProductsListUI(props: IProductsListUIProps) {
     <S.Wrapper>
       <S.SearchWrapper>
         <S.SelectBtnWrapper>
-          {!userInfo.name && (
+          {userInfo.manager && (
             <S.CreateBtnWrapper>
               <S.CreateBtn onClick={onClickMoveToPage("products/new")}>
                 상품 등록
@@ -66,12 +66,6 @@ export default function ProductsListUI(props: IProductsListUIProps) {
           <></>
         )}
       </InfiniteScroll>
-
-      {/* 페이지네이션 */}
-      {/* <Pagination01
-        refetch={props.refetch}
-        count={props.data?.fetchProducts.length || 0}
-      /> */}
     </S.Wrapper>
   );
 }

@@ -1,10 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import InfiniteScroll from "react-infinite-scroller";
-// import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../../../commons/store";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
-// import RequestUserList from "../../../../commons/requestUserList";
 import * as S from "../../listItem/MyPageListItem.Styles";
 import NoDataFound from "../../noDataFound";
 
@@ -60,14 +58,6 @@ export default function MyPageUserBoards() {
       },
     });
   };
-  // const [requestAccepted, setRequestAccepted] = useState("");
-  // const [requestRefused, setRequestRefused] = useState("");
-  // const onClickAcceptRequest = (el: string) => () => {
-  //   setRequestAccepted(el);
-  // };
-  // const onClickRefuseRequest = (el: string) => () => {
-  //   setRequestRefused(el);
-  // };
 
   return (
     <S.Wrapper>
