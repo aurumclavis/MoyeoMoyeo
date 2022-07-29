@@ -8,7 +8,7 @@ const RESTORE_ACCESS_TOKEN = gql`
     restoreAccessToken
   }
 `;
-export async function GetAccessTokend() {
+export async function GetAccessToken() {
   try {
     const graphQLClient = new GraphQLClient("https://momoyeo.site/graphql", {
       credentials: "include",
