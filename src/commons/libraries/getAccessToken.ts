@@ -8,7 +8,7 @@ const RESTORE_ACCESS_TOKEN = gql`
     restoreAccessToken
   }
 `;
-export async function GetAccessToken() {
+export async function GetAccessTokend() {
   try {
     const graphQLClient = new GraphQLClient("https://momoyeo.site/graphql", {
       credentials: "include",
@@ -17,7 +17,7 @@ export async function GetAccessToken() {
     const newAccessToken = result.restoreAccessToken;
     console.log(result, newAccessToken);
     return newAccessToken;
-  } catch (error) {
+  } catch (error: any) {
     // refresh Token 만료된 상태면 다시 로그인해야함
     console.log(error.message, "에러");
   }

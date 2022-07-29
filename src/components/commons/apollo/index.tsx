@@ -47,7 +47,6 @@ export default function ApolloSetting(props: any) {
     }
   });
   const client = new ApolloClient({
-    // uri: "https://momoyeo.site/graphql",
     link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
     connectToDevTools: true,
