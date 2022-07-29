@@ -1,6 +1,6 @@
 import * as S from "./EventsDetail.Styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import KakakomapPage from "./kakaomap/kakaomap.Container";
+import KakakomapPage from "../../../commons/kakaomap/kakaomap.Container";
 import BackTopAnt from "../../../commons/backTop";
 import { getDate } from "../../../commons/getDate";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";

@@ -4,6 +4,7 @@ import {
   FormState,
   FieldValues,
 } from "react-hook-form";
+import { ImageListType } from "react-images-uploading";
 // import { ChangeEvent } from "react";
 
 export interface IEventsWrite {
@@ -19,7 +20,10 @@ export interface IEventsWrite {
   dateStartErorr: string;
   addressErorr: string;
   onClickMoveToPage: (path: any) => void;
-
+  onChangeFiles: (
+    value: ImageListType,
+    addUpdateIndex?: number | undefined
+  ) => void;
   onChangeDate: (e: any) => void;
   onChangeContents: (value: string) => void;
   onChangeCategory: (value: string) => void;
@@ -28,10 +32,12 @@ export interface IEventsWrite {
   onCompleteAddressSearch: (data: any) => void;
   onClickUpdate: (data: any) => void;
   onClickCancle: () => void;
-  onChangeFilesMain: (fileUrl: string) => void;
-  onChangeFilesSub: (fileUrl: string, index: number) => void;
+  onChangeFilesMain?: (fileUrl: string) => void;
+  onChangeFilesSub?: (fileUrl: string, index: number) => void;
   mainFileUrls: string[];
   subFileUrls: string[];
+  imageList: Array<any>;
+  imgSrcs?: Array<any>;
 }
 
 export interface ICompleteAddress {
@@ -46,7 +52,8 @@ export interface IUpdatePostInput {
   category?: string;
   dateStart?: string;
   dateEnd?: string;
-  imgsrc?: Array<string>;
+  imgsrc?: Array<any>;
+  // imgsrc?: Array<string>;
 }
 
 export interface IEventsWriteProps {
