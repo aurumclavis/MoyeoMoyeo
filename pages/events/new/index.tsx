@@ -1,4 +1,4 @@
-import EventsWrite from "../../../src/components/units/events/write/EventsWrite.container";
+import EventsWrite from "../../../src/components/units/events/write/EventsWrite.Container";
 
 export default function EventsWritePage() {
   return (
