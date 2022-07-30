@@ -9,6 +9,7 @@ import { Modal } from "antd";
 import { IEventsWrite } from "./EventsWrite.Type";
 // import { getDate } from "../../../commons/getDate";
 import CommonUpload from "../../../commons/upload";
+import { getDate } from "../../../commons/getDate";
 
 export default function EventsWriteUI(props: IEventsWrite) {
   return (
@@ -48,8 +49,8 @@ export default function EventsWriteUI(props: IEventsWrite) {
                   placeholder={
                     props.postData
                       ? [
-                          props.postData?.fetchPost.dateStart,
-                          props.postData?.fetchPost.dateEnd,
+                          getDate(props.postData?.fetchPost.dateStart),
+                          getDate(props.postData?.fetchPost.dateEnd),
                         ]
                       : ["축제 시작일", "축제 종료일"]
                   }

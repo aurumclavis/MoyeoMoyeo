@@ -97,6 +97,7 @@ export default function EventsWrite(props: IEventsWriteProps) {
       router.push(`/events/${result.data.createPost.id}`);
     } catch (error: any) {
       Modal.error({ content: "행사 등록에 실패했습니다" });
+      console.log(error);
     }
   };
 
@@ -106,19 +107,19 @@ export default function EventsWrite(props: IEventsWriteProps) {
         files,
       },
     });
+    const updatePostInput: IUpdatePostInput = {
+      imgSrcs: imageUpload.data?.uploadImages,
+    };
+    if (data.title) updatePostInput.title = data.title;
+    if (data.contents) updatePostInput.description = data.contents;
+    if (address) updatePostInput.address = address;
+    if (data.category) updatePostInput.category = data.category;
+    if (dateStart) updatePostInput.title = dateStart;
+    if (dateEnd) updatePostInput.dateEnd = dateEnd;
     try {
-      const updatePostInput: IUpdatePostInput = {
-        imgSrcs: imageUpload.data?.uploadImages,
-      };
-      if (data.title) updatePostInput.title = data.title;
-      if (data.contents) updatePostInput.description = data.contents;
-      if (data.address) updatePostInput.address = data.address;
-      if (data.category) updatePostInput.category = data.category;
-      if (dateStart) updatePostInput.title = dateStart;
-      if (dateEnd) updatePostInput.dateEnd = dateEnd;
       await updatePost({
         variables: {
-          postId: router.query.id,
+          postId: props.data?.fetchPost.id,
           updatePostInput,
         },
       });
@@ -129,27 +130,12 @@ export default function EventsWrite(props: IEventsWriteProps) {
     }
   };
 
-  // const onChangeFilesMain = (fileUrl: string) => () => {
-  //   setMainFileUrls([fileUrl]);
-  // };
-
   const onChangeFiles = (imageList: ImageListType, addUpdateIndex: any) => {
     setImageList(imageList);
     const tempFiles = [...files];
     tempFiles[addUpdateIndex] = imageList[addUpdateIndex]?.file;
     setFiles(tempFiles);
-    console.log(files);
   };
-  // const onChangeFilesMain = (fileUrl: string) => {
-  //   setMainFileUrls([fileUrl]);
-  // };
-
-  // const onChangeFilesSub = (fileUrl: ImageListType, index: any) => {
-  //   setSubFileUrls(fileUrl);
-  //   const newFileUrls = [...mainFileUrls];
-  //   newFileUrls[index + 1] = fileUrl[index + 1]?.file;
-  //   setFiles(newFileUrls);
-  // };
 
   const onChangeDate = (e: any) => {
     const startMonth = e?.[0].month() + 1;
