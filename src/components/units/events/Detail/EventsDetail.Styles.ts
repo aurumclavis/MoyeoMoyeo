@@ -11,6 +11,7 @@ interface IMenuProps {
 
 export const Wrapper = styled.div`
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   border-radius: 1.25rem;
@@ -82,14 +83,18 @@ export const MainContents = styled.div`
 
 export const ContentsWrapper = styled.div`
   width: 100%;
+  height: auto;
   /* height: 47.5rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 2rem 0;
+  padding-top: 3rem;
+  border-top: 1px solid #d2d2d2;
 `;
 export const ContentsTitle = styled.div`
+  height: 100%;
   margin-bottom: 2rem;
   font-size: 1.25rem;
   font-weight: 600;
@@ -120,7 +125,7 @@ export const ContetsText = styled.div`
 
 export const MapWrapper = styled.div`
   width: 100%;
-  height: au;
+  height: auto;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -139,12 +144,14 @@ export const MapTitle = styled.div`
 
 export const Footer = styled.div`
   width: 100%;
-  height: 9.375rem;
+  height: auto;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
   @media (max-width: 767px) {
     width: 80%;
   }
@@ -152,12 +159,15 @@ export const Footer = styled.div`
 
 export const EditWrapper = styled.div`
   width: 100%;
-  height: 60px;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
   padding-right: 1rem;
+  padding-bottom: 3rem;
+
+  border-bottom: 1px solid #d2d2d2;
 `;
 
 export const EditBtn = styled.div`

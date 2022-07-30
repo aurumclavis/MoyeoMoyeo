@@ -11,7 +11,7 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
   return (
     <>
       <S.Wrapper>
-        <S.MainHost>{props.data?.fetchPost?.writer} 주최</S.MainHost>
+        <S.MainHost>{props.data?.fetchPost?.writer.manager} 주최</S.MainHost>
         <S.HeaderTitle>{props.data?.fetchPost?.title}</S.HeaderTitle>
         <S.HeaderCalendar>
           {getDate(props.data?.fetchPost?.dateStart)} -
@@ -63,9 +63,7 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
         <S.MainTitle ref={props.markerRef}>
           {props.data?.fetchPost?.category} 요약
         </S.MainTitle>
-        <S.MainImg
-          src={`https://storage.googleapis.com/${props.data?.fetchPost?.images[0].src}`}
-        />
+
         {typeof window !== "undefined" && (
           <S.ContetsText
             dangerouslySetInnerHTML={{
@@ -73,13 +71,13 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
             }}
           />
         )}
-        {/* <S.LineDiv /> */}
+
         <S.MapWrapper ref={props.mapsRef}>
           <S.MapTitle>행사 위치</S.MapTitle>
           <S.ContetsText>{props.data?.fetchPost?.address}</S.ContetsText>
           <KakakomapPage address={props.data?.fetchPost?.address} />
         </S.MapWrapper>
-        <S.LineDiv />
+
         <S.ContentsWrapper ref={props.contentsRef}>
           <S.ContentsTitle>상세 이미지</S.ContentsTitle>
           {/* <S.ContentImg src="/배너이미지_행사1.png" />
@@ -111,7 +109,6 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
             삭제
           </S.EditBtn>
         </S.EditWrapper>
-        <S.LineDiv />
 
         <S.Footer>
           {/* <S.BtnRouter>관련 사이트 보러가기</S.BtnRouter> */}

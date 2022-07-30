@@ -13,7 +13,7 @@ export default function FestivalListUIAdd(props: IFestivalListUIAdd) {
           <S.ContentsWrapper>{props.el?.description}</S.ContentsWrapper>
           <S.MobileWrapper>
             <S.Period>{getDate(props.el?.date)}</S.Period>
-            <S.Btn> 페이지로</S.Btn>
+            <S.Btn href={`${props.el?.urlRedirect}`}>페이지로</S.Btn>
           </S.MobileWrapper>
         </S.FlexWrapper>
       </S.ListWrapper>

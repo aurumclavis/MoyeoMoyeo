@@ -4,31 +4,31 @@ import { FETCH_EVENTS } from "./FestivalList.Queries";
 // import { IFestivalList } from "./FestivalList.Types";
 
 export default function FestivalList() {
-  const { data, refetch, fetchMore } = useQuery(FETCH_EVENTS);
+  const { data } = useQuery(FETCH_EVENTS);
+  console.log(data);
+  // const ToloadFunc = () => {
+  //   if (!data) return;
 
-  const ToloadFunc = () => {
-    if (!data) return;
-
-    fetchMore({
-      variables: { page: Math.ceil(data.fetchEvents.length / 10) + 1 },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult?.fetchEvents)
-          return {
-            fetchEvents: [...prev.fetchEvents],
-          };
-        return {
-          fetchEvents: [...prev.fetchEvents, ...fetchMoreResult.fetchEvents],
-        };
-      },
-    });
-  };
+  //   fetchMore({
+  //     variables: { page: Math.ceil(data.fetchEvents.length / 10) + 1 },
+  //     updateQuery: (prev, { fetchMoreResult }) => {
+  //       if (!fetchMoreResult?.fetchEvents)
+  //         return {
+  //           fetchEvents: [...prev.fetchEvents],
+  //         };
+  //       return {
+  //         fetchEvents: [...prev.fetchEvents, ...fetchMoreResult.fetchEvents],
+  //       };
+  //     },
+  //   });
+  // };
   // const onCickUrl = (e: string) => {
   //   window.open(`${e}`, _blank);
   // };
 
   return (
     <>
-      <FestivalListUI data={data} ToloadFunc={ToloadFunc} refetch={refetch} />
+      <FestivalListUI data={data} />
     </>
   );
 }

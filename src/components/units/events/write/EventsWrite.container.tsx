@@ -194,7 +194,6 @@ export default function EventsWrite(props: IEventsWriteProps) {
       onClickMoveToPage={onClickMoveToPage}
       onChangeDate={onChangeDate}
       onChangeContents={onChangeContents}
-      // onChangeFilesMain={onChangeFilesMain}
       onChangeCategory={onChangeCategory}
       onClickSubmit={onClickSubmit}
       onClickAddressSearch={onClickAddressSearch}
@@ -205,8 +204,6 @@ export default function EventsWrite(props: IEventsWriteProps) {
       dateStartErorr={dateStartErorr}
       onChangeFiles={onChangeFiles}
       imageList={imageList}
-      // mainFileUrls={mainFileUrls}
-      // subFileUrls={subFileUrls}
     />
   );
 }

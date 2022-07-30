@@ -77,6 +77,7 @@ export default function EventsWriteUI(props: IEventsWrite) {
             <S.Error>{props.addressErorr}</S.Error>
 
             <S.SubTitle>상세 설명</S.SubTitle>
+            <S.Error>{props.formState.errors.contents?.message}</S.Error>
             <S.ContentQuill
               onChange={props.onChangeContents}
               // defaultValue={props.postData?.fetchPost.description}
@@ -85,24 +86,7 @@ export default function EventsWriteUI(props: IEventsWrite) {
             <S.RowWrapper>
               <S.ImageWrapper>
                 <S.SubTitle>대표 사진</S.SubTitle>
-                {/* <Upload
-                  listType="picture"
-                  maxCount={1}
-                  // onChange={props.onChangeFilesMain}
-                >
-                  <Button icon={<UploadOutlined />}>사진등록</Button>
-                </Upload>
-              </S.ImageWrapper>
-              <S.ImageWrapper>
-                <S.SubTitle>전체 사진</S.SubTitle>
-                <Upload
-                  listType="picture"
-                  maxCount={4}
-                  multiple
-                  // onChange={props.onChangeFilesSub}
-                >
-                  <Button icon={<UploadOutlined />}>사진등록</Button>
-                </Upload> */}
+
                 <CommonUpload
                   imageList={props.imageList}
                   onChangeFiles={props.onChangeFiles}
@@ -111,7 +95,7 @@ export default function EventsWriteUI(props: IEventsWrite) {
               <S.TypeWrapper>
                 <S.SubTitle>행사 분류</S.SubTitle>
                 <S.TypeSelect {...props.register("category")}>
-                  {/* <option selected>선택</option> */}
+                  <option value="">선택</option>
                   <option value={"플리마켓"}>플리마켓</option>
                   <option value={"축제"}>축제</option>
                   <option value={"문화"}>문화</option>
@@ -130,11 +114,9 @@ export default function EventsWriteUI(props: IEventsWrite) {
             <S.ButtonWrapper>
               <ButtonSubmit
                 fontSize="1.25rem"
-                // isActive={props.formState.isValid}
                 isActive={true}
                 title="등록하기"
               />
-              {/* <button>버튼</button> */}
             </S.ButtonWrapper>
             <S.CancleBtn onClick={props.onClickCancle}>취소</S.CancleBtn>
           </S.ButtonOutWrapper>

@@ -3,10 +3,10 @@ export interface IFestivalList {
 }
 
 export interface IFestivalListUI {
-  ToloadFunc: () => void;
+  // ToloadFunc: () => void;
 
   data: any;
-  refetch: any;
+  // refetch: any;
 }
 
 export interface IFestivalListUIAdd {

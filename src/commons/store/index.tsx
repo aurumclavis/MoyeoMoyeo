@@ -46,3 +46,7 @@ export const boardGeneralWriteState = atom({
   key: "boardGeneralWriteState",
   default: false,
 });
+export const dibsPostState = atom({
+  key: `dibsPostState/${v1()}`,
+  default: "",
+});

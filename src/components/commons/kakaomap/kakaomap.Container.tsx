@@ -123,7 +123,7 @@ export default function KakakomapPage(props: any) {
         }
 
         // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-        function placesSearchCB(data: any, status: any, pagination: any) {
+        function placesSearchCB(data: any, status: any) {
           if (status === window.kakao.maps.services.Status.OK) {
             // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
             displayPlaces(data);
@@ -160,7 +160,7 @@ export default function KakakomapPage(props: any) {
         }
 
         // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-        function addMarker(position, order) {
+        function addMarker(position: any, order: any) {
           const imageSrc =
             "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png"; // 마커 이미지 url, 스프라이트 이미지를 씁니다
           const imageSize = new window.kakao.maps.Size(27, 28); // 마커 이미지의 크기
