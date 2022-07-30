@@ -30,6 +30,7 @@ export const CategoryBtn = styled.div`
   height: 2rem;
   margin: 1rem auto 1rem auto;
   /* padding-bottom: 3rem; */
+  text-align: center;
   cursor: pointer;
   border-bottom: 3px solid #ffe69a;
 `;
