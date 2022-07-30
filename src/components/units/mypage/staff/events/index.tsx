@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import NoDataFound from "../../noDataFound";
 import { getDate } from "../../../../commons/getDate";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import DOMPurify from "dompurify";
 
 const FETCH_POSTS = gql`
   query fetchPosts($page: Float, $pageSize: Float) {
@@ -67,13 +68,17 @@ export default function MyPageStaffEvents() {
           WRITER_ARR?.map((el: any) => (
             <S.ItemWrapper key={el.id}>
               <S.ItemImageWrapper>
-                <S.ItemImage
-                  onError={(event) => {
-                    if (event.target instanceof HTMLImageElement)
-                      event.target.src = "../../error-image.png";
-                  }}
-                  src={`https://storage.googleapis.com/${el.images[0]?.src}`}
-                />
+                {el.images[0]?.src ? (
+                  <S.ItemImage
+                    onError={(event) => {
+                      if (event.target instanceof HTMLImageElement)
+                        event.target.src = "../../error-image.png";
+                    }}
+                    src={`https://storage.googleapis.com/${el.images[0]?.src}`}
+                  />
+                ) : (
+                  <S.ItemImage src="../../error-image.png" />
+                )}
               </S.ItemImageWrapper>
               <S.ItemContentsWrapper>
                 <S.ItemTitle>
@@ -87,7 +92,11 @@ export default function MyPageStaffEvents() {
                     </S.ItemText>
                   </S.IconWrapper>
                 </S.ItemRowWrapper>
-                <S.ItemText>{el.description}</S.ItemText>
+                <S.ItemText
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(el.description),
+                  }}
+                />
                 <S.MoreText onClick={onClickMoveToPage(`/events/${el.id}`)}>
                   행사 정보 더 보기
                 </S.MoreText>

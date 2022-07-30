@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { v1 } from "uuid";
 import { getDate } from "../../../../commons/getDate";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import * as S from "../../listItem/MyPageListItem.Styles";
@@ -28,7 +29,7 @@ export default function MyPageUserProducts() {
   return (
     <S.Wrapper>
       {data?.fetchLoginUser.dibsProducts.map((el: any) => (
-        <S.ItemWrapper key={el.id}>
+        <S.ItemWrapper key={v1()}>
           <S.ItemImageWrapper>
             {el.images === null ? (
               <S.ItemImage src="../../error-image.png" />

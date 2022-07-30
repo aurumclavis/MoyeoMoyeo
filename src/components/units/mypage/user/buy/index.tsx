@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import InfiniteScroll from "react-infinite-scroller";
+import { v1 } from "uuid";
 import * as S from "../../listItem/MyPageListItem.Styles";
 import NoDataFound from "../../noDataFound";
 
@@ -51,7 +52,7 @@ export default function MyPageUserBuy() {
       >
         {data?.fetchLoginPayments && data?.fetchLoginPayments.length !== 0 ? (
           data?.fetchLoginPayments.map((el: any, index: number) => (
-            <S.ItemWrapper key={index}>
+            <S.ItemWrapper key={v1()}>
               <S.ItemContentsWrapper>
                 <S.ItemTitle>
                   [{el.status === "PAYMENT" ? "결제완료" : "결제취소"}]{" "}

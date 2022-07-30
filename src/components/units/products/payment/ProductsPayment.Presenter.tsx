@@ -10,6 +10,7 @@ import { IProductsPaymentUIProps } from "./ProductsPayment.Types";
 export default function ProductsPaymentUI(props: IProductsPaymentUIProps) {
   const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
+
   return (
     <S.FormWrapper onSubmit={props.handleSubmit(props.onClickPayment)}>
       {/* jQuery : iamport payment */}
@@ -28,13 +29,18 @@ export default function ProductsPaymentUI(props: IProductsPaymentUIProps) {
         <S.Subtitle>상품 정보</S.Subtitle>
         <S.Line />
         <S.ProductInfoWrapper>
-          <S.ProductInfoImage
-            onError={(event) => {
-              if (event.target instanceof HTMLImageElement)
-                event.target.src = "../../error-image.png";
-            }}
-            src={`https://storage.googleapis.com/${props.product_info.imageSrc}`}
-          />
+          {props.product_info.imageSrc ? (
+            <S.ProductInfoImage
+              onError={(event) => {
+                if (event.target instanceof HTMLImageElement)
+                  event.target.src = "../../error-image.png";
+              }}
+              src={`https://storage.googleapis.com/${props.product_info.imageSrc}`}
+            />
+          ) : (
+            <S.ProductInfoImage src="../../../error-image.png" />
+          )}
+
           <S.ProductInfoTextWrapper>
             <S.Label>{props.product_info.name}</S.Label>
             <S.SmallLabel>{props.product_info.description}</S.SmallLabel>

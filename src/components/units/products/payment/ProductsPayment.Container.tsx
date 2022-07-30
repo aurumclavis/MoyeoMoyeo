@@ -38,7 +38,7 @@ export default function ProductsPayment() {
     name: data?.fetchProduct.name,
     description: data?.fetchProduct.description,
     price: data?.fetchProduct.price,
-    imageSrc: data?.fetchProduct.images[0].src,
+    imageSrc: data?.fetchProduct.images[0]?.src,
   };
 
   const onClickSearchAddress = () => {
