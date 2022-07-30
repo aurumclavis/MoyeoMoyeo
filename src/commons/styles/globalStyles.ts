@@ -16,4 +16,12 @@ export const globalStyles = css`
       font-size: 14px;
     }
   }
+  @font-face {
+    font-family: "Yoony"; // 이름 선언
+    src: url("/font/EF_YOONY.ttf"); // 내가 저장한 경로!
+  }
+  @font-face {
+    font-family: "Leferi";
+    src: url("/font/LeferiPointWhiteOblique.ttf"); // 내가 저장한 경로!
+  }
 `;

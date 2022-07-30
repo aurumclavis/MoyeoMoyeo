@@ -19,6 +19,7 @@ const Wrapper = styled.div`
 `;
 const MainTitle = styled.h1`
   margin-bottom: 30px;
+  /* font-family: "Leferi"; */
   @media ${breakPoints.mobile} {
     font-size: 1.25rem;
     margin-bottom: 15px;
@@ -97,7 +98,7 @@ const FIGURE_ITEMS = [
 ];
 
 const CountSection = () => {
-  const countItem = {
+  const countItem: { [key: string]: any } = {
     0: useScrollCount(62),
     1: useScrollCount(120),
     2: useScrollCount(92),
