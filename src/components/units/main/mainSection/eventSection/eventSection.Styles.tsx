@@ -45,10 +45,10 @@ export const TitleRightWrapper = styled.div`
 export const MoreBox = styled.div`
   width: 60px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 export const More = styled.span`
-  width: 45px;
+  width: 40px;
   cursor: pointer;
   :hover {
     text-decoration: underline;
@@ -61,10 +61,7 @@ export const More = styled.span`
 export const ArrowIcon = styled.img`
   width: 10px;
   height: 11px;
-  margin-top: 7px;
-  @media ${breakPoints.mobile} {
-    margin-top: 6px;
-  }
+  margin-top: 5px;
 `;
 
 export const Wrapper = styled.div`
