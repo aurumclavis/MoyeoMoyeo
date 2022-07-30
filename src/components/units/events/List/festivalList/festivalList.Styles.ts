@@ -117,7 +117,7 @@ export const Period = styled.div`
   @media (max-width: 767px) {
   }
 `;
-export const Btn = styled.div`
+export const Btn = styled.a`
   width: 100%;
   display: flex;
   justify-content: flex-end;

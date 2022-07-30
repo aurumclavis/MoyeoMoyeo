@@ -34,8 +34,7 @@ export interface IEventsWrite {
   onClickCancle: () => void;
   onChangeFilesMain?: (fileUrl: string) => void;
   onChangeFilesSub?: (fileUrl: string, index: number) => void;
-  mainFileUrls: string[];
-  subFileUrls: string[];
+
   imageList: Array<any>;
   imgSrcs?: Array<any>;
 }
@@ -52,7 +51,7 @@ export interface IUpdatePostInput {
   category?: string;
   dateStart?: string;
   dateEnd?: string;
-  imgsrc?: Array<any>;
+  imgSrcs?: Array<any>;
   // imgsrc?: Array<string>;
 }
 

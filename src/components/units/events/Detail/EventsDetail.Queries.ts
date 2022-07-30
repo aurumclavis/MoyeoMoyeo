@@ -16,6 +16,11 @@ export const FETCH_POST = gql`
       likedUsers {
         id
       }
+      writer {
+        id
+        manager
+        email
+      }
     }
   }
 `;
