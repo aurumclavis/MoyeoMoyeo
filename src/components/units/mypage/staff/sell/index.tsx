@@ -75,13 +75,17 @@ export default function MyPageStaffSell() {
           SELLER_ARR?.map((el: any) => (
             <S.ItemWrapper key={el.id}>
               <S.ItemImageWrapper>
-                <S.ItemImage
-                  onError={(event) => {
-                    if (event.target instanceof HTMLImageElement)
-                      event.target.src = "../../error-image.png";
-                  }}
-                  src={`https://storage.googleapis.com/${el.images[0]?.src}`}
-                />
+                {el.images[0]?.src ? (
+                  <S.ItemImage
+                    onError={(event) => {
+                      if (event.target instanceof HTMLImageElement)
+                        event.target.src = "../../error-image.png";
+                    }}
+                    src={`https://storage.googleapis.com/${el.images[0]?.src}`}
+                  />
+                ) : (
+                  <S.ItemImage src="../../error-image.png" />
+                )}
               </S.ItemImageWrapper>
               <S.ItemContentsWrapper>
                 <S.ItemTitle>

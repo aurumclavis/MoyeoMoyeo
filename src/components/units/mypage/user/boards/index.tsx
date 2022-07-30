@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import InfiniteScroll from "react-infinite-scroller";
 import { useRecoilState } from "recoil";
+import { v1 } from "uuid";
 import { userInfoState } from "../../../../../commons/store";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import * as S from "../../listItem/MyPageListItem.Styles";
@@ -69,7 +70,7 @@ export default function MyPageUserBoards() {
       >
         {WRITER_ARR && WRITER_ARR.length !== 0 ? (
           WRITER_ARR?.map((el: any) => (
-            <S.ItemWrapper key={el.id}>
+            <S.ItemWrapper key={v1()}>
               <S.ItemImageWrapper>
                 <S.ItemImage
                   onError={(event) => {

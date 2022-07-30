@@ -10,13 +10,17 @@ export default function ProductsListItem(props: IProductsListItemProps) {
       key={props.el.id}
     >
       <S.ImageWrapper>
-        <S.Image
-          onError={(event) => {
-            if (event.target instanceof HTMLImageElement)
-              event.target.src = "../../error-image.png";
-          }}
-          src={`https://storage.googleapis.com/${props.el.images[0]?.src}`}
-        />
+        {props.el.images[0]?.src ? (
+          <S.Image
+            onError={(event) => {
+              if (event.target instanceof HTMLImageElement)
+                event.target.src = "../../error-image.png";
+            }}
+            src={`https://storage.googleapis.com/${props.el.images[0]?.src}`}
+          />
+        ) : (
+          <S.Image src="../../error-image.png" />
+        )}
       </S.ImageWrapper>
       <S.TextWrapper>
         <S.Text>{props.el.name}</S.Text>
