@@ -71,28 +71,36 @@ const BoardSection = () => {
         <S.BoardsImage src="/main/boards.png" {...animatedItem} />
         <S.CarouselWrapper>
           <S.MySlider {...settings}>
-            {new Array(6).fill(1).map((el: any, index: number) => (
-              <S.BoardList key={index}>
-                <S.BoardTitleWrapper>
-                  <S.BoardCategory>[모집중]</S.BoardCategory>
-                  <S.BoardTitle>
-                    이번 주 금요일에 하는 지브리전시회 동행구해요~~!!
-                  </S.BoardTitle>
-                </S.BoardTitleWrapper>
-                <S.BoardContents>
-                  20대 대학생이구요. 총 2~3명이 좋아요 전시회 보고 같이 밥도
-                  드실분 연락주세요! 남녀 상관 없습니다.{" "}
-                </S.BoardContents>
-                <S.BoardInfo>
-                  <S.Icon src="/example3.png" />
-                  <S.BoardEvents>지브리전시회</S.BoardEvents>
-                  <S.Icon src="/example4.png" />
-                  <S.BoardPeople>2~3명</S.BoardPeople>
-                  <S.Icon src="/example5.png" />
-                  <S.BoardDate>2022.07.06~2022.07.06</S.BoardDate>
-                </S.BoardInfo>
-              </S.BoardList>
-            ))}
+            {data?.fetchBoards
+              .map((el: any, index: number) => (
+                <S.BoardList key={index}>
+                  <S.BoardTitleWrapper>
+                    <S.BoardCategory>
+                      {el.isFull ? "[모집완료]" : "[모집중]"}
+                    </S.BoardCategory>
+                    <S.BoardTitle>{el.title}</S.BoardTitle>
+                  </S.BoardTitleWrapper>
+                  <S.BoardContents>{el.remark}</S.BoardContents>
+                  <S.BoardInfo>
+                    {el.eventCategory !== "일반" && (
+                      <>
+                        <S.EventIcon />
+                        <S.BoardEvents>{el.eventName}</S.BoardEvents>
+                      </>
+                    )}
+                    <S.CategoryIcon />
+                    <S.BoardPeople>{el.eventCategory}</S.BoardPeople>
+                    <S.MaxHeadCountIcon />
+                    <S.BoardPeople>{el.personCount}명</S.BoardPeople>
+                    <S.CalendarIcon />
+                    <S.BoardDate>
+                      {" "}
+                      {el.dateStart} ~ {el.dateEnd}
+                    </S.BoardDate>
+                  </S.BoardInfo>
+                </S.BoardList>
+              ))
+              .slice(0, 8)}
           </S.MySlider>
         </S.CarouselWrapper>
       </S.Wrapper>

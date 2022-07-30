@@ -5,6 +5,9 @@ import styled from "@emotion/styled";
 import { breakPoints } from "../../../../../commons/styles/media";
 import GroupsIcon from "@mui/icons-material/Groups";
 import DateRangeIcon from "@mui/icons-material/DateRange";
+import ListIcon from "@mui/icons-material/List";
+
+import FestivalIcon from "@mui/icons-material/Festival";
 export const OutWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -43,15 +46,14 @@ export const TitleRightWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  gap: 5px;
 `;
 export const MoreBox = styled.div`
-  width: 60px;
+  width: 55px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 export const More = styled.span`
-  width: 45px;
+  width: 40px;
   cursor: pointer;
   :hover {
     text-decoration: underline;
@@ -61,10 +63,7 @@ export const More = styled.span`
 export const ArrowIcon = styled.img`
   width: 10px;
   height: 11px;
-  margin-top: 7px;
-  @media ${breakPoints.mobile} {
-    margin-top: 6px;
-  }
+  margin-top: 5px;
 `;
 export const Wrapper = styled.div`
   width: 100%;
@@ -110,6 +109,8 @@ export const BoardList = styled.div`
   border-radius: 5px;
   margin: 15px 0px;
   transition: 0.2s;
+  padding: 10px;
+  border: 1px solid #00000033;
   box-shadow: 0px 3px 1px 0px #00000033;
   :hover {
     box-shadow: 0px 5px 1px 0px #ffd24c;
@@ -125,6 +126,7 @@ export const BoardTitleWrapper = styled.div`
 export const BoardCategory = styled.div`
   text-align: center;
   color: green;
+  margin-right: 10px;
 `;
 export const BoardTitle = styled.div`
   text-align: center;
@@ -144,6 +146,10 @@ export const BoardEvents = styled.div`
   text-align: center;
   font-size: 0.825rem;
   margin-right: 10px;
+`;
+export const EventIcon = styled(FestivalIcon)`
+  width: 1rem;
+  margin-right: 5px;
 `;
 export const MaxHeadCountIcon = styled(GroupsIcon)`
   width: 1rem;
@@ -168,4 +174,9 @@ export const Icon = styled.img`
   height: 20px;
   display: flex;
   align-items: center;
+`;
+
+export const CategoryIcon = styled(ListIcon)`
+  width: 1rem;
+  margin-right: 5px;
 `;
