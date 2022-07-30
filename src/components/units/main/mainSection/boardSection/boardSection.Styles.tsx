@@ -109,6 +109,8 @@ export const BoardList = styled.div`
   border-radius: 5px;
   margin: 15px 0px;
   transition: 0.2s;
+  padding: 10px;
+  border: 1px solid #00000033;
   box-shadow: 0px 3px 1px 0px #00000033;
   :hover {
     box-shadow: 0px 5px 1px 0px #ffd24c;
