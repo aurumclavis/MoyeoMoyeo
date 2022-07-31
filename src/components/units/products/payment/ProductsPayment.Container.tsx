@@ -52,7 +52,6 @@ export default function ProductsPayment() {
   };
 
   const onClickPayment = async (data: any) => {
-    console.log(data);
     const IMP = window.IMP;
     IMP.init("imp01312583");
     IMP.request_pay(
@@ -70,7 +69,6 @@ export default function ProductsPayment() {
       },
       async (rsp: any) => {
         if (rsp.success) {
-          console.log(rsp);
           try {
             await createPayment({
               variables: {
@@ -82,6 +80,7 @@ export default function ProductsPayment() {
             Modal.success({
               content: "결제가 완료되었습니다.",
             });
+            router.push(`/mypage`);
           } catch (error) {
             if (error instanceof Error) Modal.error({ content: error.message });
           }

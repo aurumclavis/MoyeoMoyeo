@@ -18,6 +18,7 @@ export const Wrapper = styled.div`
   background-color: ${(props: IProps) =>
     props.isStaff ? "#73777B" : "#ffffff"};
   color: ${(props: IProps) => (props.isStaff ? "#ffffff" : "black")};
+  font-family: "Yoony";
   @media (max-width: 767px) {
     height: 3.4rem;
     position: sticky;
@@ -56,7 +57,7 @@ export const LogoImg = styled.img`
 `;
 
 export const NavBarWrapper = styled.div`
-  width: 320px;
+  width: 360px;
   height: 3.75rem;
   display: flex;
   justify-content: flex-start;
@@ -149,6 +150,7 @@ export const MobileMenuWrapper = styled.div`
   background-color: #ffe69a;
   margin-right: auto;
   z-index: 100;
+  font-family: "Yoony";
   @media (max-width: 767px) {
     display: ${(props: IMenuProps) => (props.isActive ? "flex" : "none")};
     flex-direction: column;

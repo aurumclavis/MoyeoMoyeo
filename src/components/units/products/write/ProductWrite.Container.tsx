@@ -81,7 +81,6 @@ export default function ProductWrite(props: IProductWriteProps) {
           },
         },
       });
-      console.log(result);
       Modal.success({
         content: "상품이 성공적으로 등록되었습니다.",
       });
@@ -128,7 +127,6 @@ export default function ProductWrite(props: IProductWriteProps) {
     const tempFiles = [...files];
     tempFiles[addUpdateIndex] = imageList[addUpdateIndex]?.file;
     setFiles(tempFiles);
-    console.log(files);
   };
 
   return (

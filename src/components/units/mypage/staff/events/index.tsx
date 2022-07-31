@@ -88,7 +88,7 @@ export default function MyPageStaffEvents() {
                   <S.IconWrapper>
                     <S.CalendarIcon />
                     <S.ItemText>
-                      {getDate(el.dataStart)}~{getDate(el.dateEnd)}
+                      {getDate(el.dateStart)}~{getDate(el.dateEnd)}
                     </S.ItemText>
                   </S.IconWrapper>
                 </S.ItemRowWrapper>
