@@ -148,8 +148,8 @@ export const ActiveBtn = styled.button`
   padding: 0.625rem;
   border: none;
   border-radius: 10px;
-  color: #000000;
-  background-color: #ffd24c;
+  color: ${(props) => (props.disabled ? "#d2d2d2" : "#000000")};
+  background-color: ${(props) => props.disabled || "#ffd24c"};
   font-size: 1.25rem;
   cursor: pointer;
 `;

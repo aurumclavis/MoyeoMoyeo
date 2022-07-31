@@ -126,8 +126,9 @@ export default function ProductDetailUI(props: IProductDetailUIProps) {
                   onClick={onClickMoveToPage(
                     `/products/${router.query.productId}/payment`
                   )}
+                  disabled={props.data?.fetchProduct.isSoldout}
                 >
-                  구매하기
+                  {props.data?.fetchProduct.isSoldout ? "판매완료" : "구매하기"}
                 </S.ActiveBtn>
                 {dibsId && (
                   <S.WhiteBtn onClick={props.onClickDibsProduct}>
@@ -186,8 +187,9 @@ export default function ProductDetailUI(props: IProductDetailUIProps) {
               onClick={onClickMoveToPage(
                 `/products/${router.query.productId}/payment`
               )}
+              disabled={props.data?.fetchProduct.isSoldout}
             >
-              구매하기
+              {props.data?.fetchProduct.isSoldout ? "판매완료" : "구매하기"}
             </S.ActiveBtn>
           </>
         )}
