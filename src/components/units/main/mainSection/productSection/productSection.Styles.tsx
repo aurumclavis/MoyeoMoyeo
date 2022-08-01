@@ -48,7 +48,7 @@ export const MoreBox = styled.div`
   justify-content: center;
 `;
 export const More = styled.span`
-  width: 40px;
+  width: auto;
   cursor: pointer;
   :hover {
     text-decoration: underline;
