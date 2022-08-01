@@ -2,7 +2,7 @@ import moment from "moment";
 
 // 월 단위 이동으로 변경할 때 from주가 포함된 월을 기준으로 세팅하는 함수
 // 오늘이 속한 달의 시작과 끝 날짜를 객체로 리턴
-export const defaultFromToMonthly = (currentFrom) => {
+export const defaultFromToMonthly = (currentFrom: string) => {
   const monthlyFrom = moment(currentFrom).startOf("month").format("YYYY-MM-DD");
   const monthlyTo = moment(currentFrom).endOf("month").format("YYYY-MM-DD");
   const result = { from: monthlyFrom, to: monthlyTo };
@@ -10,7 +10,7 @@ export const defaultFromToMonthly = (currentFrom) => {
 };
 
 // 월 단위로 이동할 때 지난 달, 다음 달 구하는 함수
-export const MonthlyMovePrev = (currentFrom) => {
+export const MonthlyMovePrev = (currentFrom: string) => {
   const prevFrom = moment(currentFrom)
     .clone()
     .subtract(1, "month")
@@ -27,7 +27,7 @@ export const MonthlyMovePrev = (currentFrom) => {
   };
   return result;
 };
-export const MonthlyMoveNext = (currentFrom) => {
+export const MonthlyMoveNext = (currentFrom: string) => {
   const nextFrom = moment(currentFrom)
     .clone()
     .add(1, "month")
@@ -46,7 +46,7 @@ export const MonthlyMoveNext = (currentFrom) => {
 };
 
 // 주 단위로 이동할 때 지난 주, 다음 주 구하는 함수
-export const weeklyMovePrev = (currentFrom, currentTo) => {
+export const weeklyMovePrev = (currentFrom: string, currentTo: string) => {
   const prevFrom = moment(currentFrom)
     .clone()
     .subtract(7, "days")
@@ -61,7 +61,7 @@ export const weeklyMovePrev = (currentFrom, currentTo) => {
   };
   return result;
 };
-export const weeklyMoveNext = (currentFrom, currentTo) => {
+export const weeklyMoveNext = (currentFrom: string, currentTo: string) => {
   const nextFrom = moment(currentFrom)
     .clone()
     .add(7, "days")
@@ -75,7 +75,7 @@ export const weeklyMoveNext = (currentFrom, currentTo) => {
 };
 
 // 주 단위 이동으로 변경했을 때 함수
-export const changeFromToWeekly = (currentFrom) => {
+export const changeFromToWeekly = (currentFrom: string) => {
   const from = moment(currentFrom).startOf("week").format("YYYY-MM-DD");
   const to = moment(currentFrom).endOf("week").format("YYYY-MM-DD");
   const result = { from, to };

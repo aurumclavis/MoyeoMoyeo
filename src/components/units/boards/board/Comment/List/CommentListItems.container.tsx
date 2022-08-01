@@ -2,7 +2,7 @@ import * as S from "./CommentList.styles";
 
 export default function CommentListItemsContainer(props: any) {
   return (
-    <S.CommentsWrapper>
+    <S.CommentsWrapper isChild={false}>
       <S.UpperWrapper>
         <S.UpperLeft>
           <S.CommentsWriter>{props.el.writer}</S.CommentsWriter>
