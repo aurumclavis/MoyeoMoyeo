@@ -99,7 +99,6 @@ export default function SignUpNewPage() {
     if (!secondChecked) {
       return Modal.info({ content: "이용약관을 확인바랍니다." });
     }
-    console.log(data);
     try {
       await createUser({
         variables: {

@@ -69,7 +69,6 @@ export default function SignUpNewEventPage() {
   const phone = "010" + watch("phoneNumber") + watch("phoneNumber2");
   const tokenInput = watch("validateToken");
   const onClickGetNumber = async () => {
-    console.log(phone);
     setIsReadyForNum(true);
     try {
       await sendSMS({

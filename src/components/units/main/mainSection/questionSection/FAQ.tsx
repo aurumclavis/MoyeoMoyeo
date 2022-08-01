@@ -8,9 +8,7 @@ const text = `
       이것은 임의로 답변하는 답변창입니다. 추후에 추가데이터를 넣을 예정입니다.
     `;
 export default function FAQ() {
-  const onChange = (key: any) => {
-    console.log(key);
-  };
+  const onChange = (key: any) => {};
 
   return (
     <OutWrapper>
@@ -68,7 +66,6 @@ const OutWrapper = styled.div`
 `;
 const InnerWrapper = styled.div`
   width: 50%;
-  /* height: 450px; */
   display: flex;
   flex-direction: column;
   margin-right: 10px;
@@ -83,7 +80,6 @@ const TitleWrapper = styled.div`
   justify-content: flex-start;
 `;
 const MainTitle = styled.h2`
-  /* width: 100%; */
   text-align: left;
   margin-bottom: 20px;
   position: relative;
@@ -97,19 +93,16 @@ const TitleImage = styled.img`
 `;
 const Wrapper = styled(Collapse)`
   width: 100%;
-  /* border: 1px solid #bdbdbd; */
   border-radius: 7px;
   border: none;
 `;
 const Title = styled(Panel)`
   width: 100%;
-  /* border: 1px solid #bdbdbd; */
   border-radius: 7px;
   background-color: #ffe69a;
 `;
 const Titles = styled(Panel)`
   width: 100%;
-  /* border: 1px solid #bdbdbd; */
   border-radius: 7px;
   background-color: lavender;
   color: white;

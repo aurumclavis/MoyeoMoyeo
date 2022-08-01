@@ -289,7 +289,7 @@ export default function KakakomapPage(props: any) {
   }, [props.address]);
   const [tapOpen, setTapOpen] = useState<boolean>(false);
   const onClickTap = () => {
-    setTapOpen(prev => !prev);
+    setTapOpen((prev) => !prev);
   };
   return (
     <S.Wrapper>

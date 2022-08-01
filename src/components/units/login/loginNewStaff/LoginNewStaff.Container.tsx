@@ -34,7 +34,6 @@ export default function LoginNewStaffPage() {
 
   // 로그인
   const onClickToLogin = async (data: any) => {
-    console.log(data);
     try {
       const result = await login({
         variables: {
@@ -59,7 +58,6 @@ export default function LoginNewStaffPage() {
         });
         return router.push("/login");
       }
-      console.log(userInfo);
       setUserInfo(userInfo);
       Modal.success({
         content: `${userInfo.institution}의 ${userInfo.manager}님 어서오세요!`,

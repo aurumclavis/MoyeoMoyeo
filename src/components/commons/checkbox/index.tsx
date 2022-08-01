@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Dispatch, memo, SetStateAction, useState } from "react";
-import PrivacyPolicy from "../../units/signup/signUpNew/ PrivacyPolicy/PrivacyPolicy.Container";
+import PrivacyPolicy from "../../units/signup/signUpNew/PrivacyPolicy/PrivacyPolicy.Container";
 import Policy from "../../units/signup/signUpNew/policy/policy.Container";
 
 interface ICheckBoxProps {

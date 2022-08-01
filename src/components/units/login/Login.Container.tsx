@@ -59,7 +59,6 @@ export default function LoginPage() {
         return router.push("/login/newStaff");
       }
       setUserInfo(userInfo);
-      console.log(userInfo);
       Modal.success({
         content: `${userInfo.name}님 어서오세요!`,
       });
