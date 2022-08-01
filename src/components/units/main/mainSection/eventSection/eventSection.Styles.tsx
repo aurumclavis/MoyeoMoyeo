@@ -87,6 +87,7 @@ export const EventWrapper = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     padding-right: 2px;
   }
+  cursor: pointer;
 `;
 
 export const EventsList = styled.div`
@@ -104,7 +105,7 @@ export const EventsImages = styled.img`
   width: 100%;
   height: 300px;
   @media ${breakPoints.mobile} {
-    height: 270px;
+    height: 200px;
   }
 `;
 export const InnderWrapper = styled.div`

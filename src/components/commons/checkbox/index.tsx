@@ -61,8 +61,12 @@ const Checkbox = memo((props: ICheckBoxProps) => {
   const onClickCheckAll = () => {
     if (checkList.length !== dataList.length) {
       setCheckList(dataList);
+      props.setChecked(true);
+      props.setSecondChecked(true);
     } else {
       setCheckList([]);
+      props.setChecked(false);
+      props.setSecondChecked(false);
     }
   };
 
