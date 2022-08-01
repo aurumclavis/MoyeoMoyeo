@@ -17,4 +17,5 @@ export interface IFindPw {
   isReadyForNum?: boolean;
   onClickToUpdatePW: (data: any) => void;
   onClickConfirm: () => void;
+  onClickMoveToBack: () => void;
 }

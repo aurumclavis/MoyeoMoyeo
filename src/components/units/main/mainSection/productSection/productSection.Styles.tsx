@@ -43,7 +43,7 @@ export const TitleRightWrapper = styled.div`
   gap: 5px;
 `;
 export const MoreBox = styled.div`
-  width: 60px;
+  width: 55px;
   display: flex;
   justify-content: center;
 `;

@@ -4,10 +4,7 @@ import Countdown from "react-countdown";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import { IFindPw } from "./FindPassword.Types";
 import { useRef } from "react";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-
 export default function FindPwPageUI(props: IFindPw) {
-  const { onClickMoveToPage } = useMoveToPage();
   const startDate = useRef(Date.now());
   const renderer = ({ minutes, seconds }: any) => {
     return (
@@ -90,7 +87,7 @@ export default function FindPwPageUI(props: IFindPw) {
         </form>
         <S.FooterWrapper>
           <S.FooterTitle>앗! 비밀번호가 갑자기 생각나셨나요?</S.FooterTitle>
-          <S.FooterBtn onClick={onClickMoveToPage("/login")}>
+          <S.FooterBtn onClick={props.onClickMoveToBack}>
             로그인으로 돌아가기
           </S.FooterBtn>
         </S.FooterWrapper>

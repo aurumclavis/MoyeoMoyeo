@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 `;
 const MainTitle = styled.h1`
   margin-bottom: 30px;
-  /* font-family: "Leferi"; */
+  font-family: "Leferi";
   @media ${breakPoints.mobile} {
     font-size: 1.25rem;
     margin-bottom: 15px;
@@ -106,7 +106,7 @@ const CountSection = () => {
 
   return (
     <Wrapper>
-      <MainTitle>Welcome To 모여?모여!</MainTitle>
+      <MainTitle>WELCOME TO 모여?모여!</MainTitle>
       <List>
         {FIGURE_ITEMS.map((item, index: any) => (
           <ListItem key={item.title}>

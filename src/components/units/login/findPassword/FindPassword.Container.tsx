@@ -95,6 +95,10 @@ export default function FindPwPage() {
       Modal.error({ content: "비밀번호 업데이트 실패" });
     }
   };
+
+  const onClickMoveToBack = () => {
+    window.history.back();
+  };
   return (
     <FindPwPageUI
       // hook-form
@@ -109,6 +113,7 @@ export default function FindPwPage() {
       onClickGetNumber={onClickGetNumber}
       onClickToUpdatePW={onClickToUpdatePW}
       onClickConfirm={onClickConfirm}
+      onClickMoveToBack={onClickMoveToBack}
     />
   );
 }
