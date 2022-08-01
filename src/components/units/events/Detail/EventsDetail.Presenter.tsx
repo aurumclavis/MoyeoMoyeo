@@ -4,7 +4,7 @@ import KakakomapPage from "../../../commons/kakaomap/kakaomap.Container";
 import BackTopAnt from "../../../commons/backTop";
 import { getDate } from "../../../commons/getDate";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { IEventsDetailUI } from "./EventsDetail.Type";
+import { IEventsDetailUI } from "./EventsDetail.type";
 import DOMPurify from "dompurify";
 
 export default function EventsDetailUI(props: IEventsDetailUI) {
@@ -88,7 +88,7 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
               <>
                 <S.ContentImg
                   key={el.id}
-                  onError={event => {
+                  onError={(event) => {
                     if (event.target instanceof HTMLImageElement)
                       event.target.src = "../../error-image.png";
                   }}
