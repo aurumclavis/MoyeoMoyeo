@@ -89,7 +89,7 @@ export default function ProductDetailUI(props: IProductDetailUIProps) {
         {/* 판매자 정보 */}
         <S.SellerContentsWrapper>
           <S.Label>{props.data?.fetchProduct.seller?.manager}</S.Label>
-          <S.Label>{props.data?.fetchProduct.seller?.phone}</S.Label>
+          <S.Label>{props.data?.fetchProduct.seller?.email}</S.Label>
         </S.SellerContentsWrapper>
         <S.Line />
 

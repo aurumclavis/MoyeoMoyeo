@@ -33,6 +33,7 @@ export const ItemWrapper = styled.div`
   margin-bottom: 1.25rem;
 `;
 export const ItemImageWrapper = styled.div`
+  min-width: 7.5rem;
   max-width: 7.5rem;
   max-height: 7.5rem;
   margin-right: 3%;
