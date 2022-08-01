@@ -17,6 +17,7 @@
     "@hookform/resolvers": "^2.9.0",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.6.4",
+    "@types/geojson": "^7946.0.10",
     "@types/react-copy-to-clipboard": "^5.0.3",
     "antd": "^4.20.3",
     "apollo-upload-client": "^17.0.0",
