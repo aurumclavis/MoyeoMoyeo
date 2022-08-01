@@ -337,6 +337,9 @@ export const RecruitmentViewTypeButton = styled.button`
   margin-right: 1.5rem;
   border: 2px solid gray;
   border-radius: 15px;
+  overflow: hidden; // 을 사용해 영역을 감출 것
+  text-overflow: ellipsis; // 로 ... 을 만들기
+  white-space: nowrap;
   font-weight: 600;
   transition: 0.5s;
   ${(props: IRecruitmentViewTypeButtonProps) =>
