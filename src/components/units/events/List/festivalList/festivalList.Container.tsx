@@ -5,7 +5,7 @@ import { FETCH_EVENTS } from "./FestivalList.Queries";
 
 export default function FestivalList() {
   const { data } = useQuery(FETCH_EVENTS);
-  console.log(data);
+
   // const ToloadFunc = () => {
   //   if (!data) return;
 

@@ -20,7 +20,6 @@ export default function EventsDetail() {
   const { data } = useQuery(FETCH_POST, {
     variables: { postId: router.query._id },
   });
-  console.log(data);
 
   const [deletePost] = useMutation(DELETE_POST);
   const { onClickMoveToPage } = useMoveToPage();
@@ -160,7 +159,6 @@ export default function EventsDetail() {
       Modal.success({ content: "행사가 삭제되었습니다" });
     } catch (error) {
       Modal.error({ content: "행사 삭제가 실패했습니다" });
-      console.log(error);
     }
   };
   const onClickShowConfirm = () => {

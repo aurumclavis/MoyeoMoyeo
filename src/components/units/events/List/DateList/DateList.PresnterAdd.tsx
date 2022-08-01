@@ -2,7 +2,6 @@ import * as S from "./DateList.Styles";
 // import { ICalederListUIAdd } from "./DateList.Types";
 
 export default function CalederListUIAdd(props: any) {
-  console.log(props.dateData);
   return (
     <>
       <S.ListWrapper>

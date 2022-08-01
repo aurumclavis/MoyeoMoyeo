@@ -97,7 +97,6 @@ export default function EventsWrite(props: IEventsWriteProps) {
       router.push(`/events/${result.data.createPost.id}`);
     } catch (error: any) {
       Modal.error({ content: "행사 등록에 실패했습니다" });
-      console.log(error);
     }
   };
 
