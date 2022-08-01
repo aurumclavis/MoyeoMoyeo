@@ -3,6 +3,7 @@ import mapboxgl from "mapbox-gl";
 import styled from "@emotion/styled";
 import geoData from "./geoData.json";
 import { breakPoints } from "../../../commons/styles/media";
+import { GeoJsonTypes } from "geojson";
 
 const Map = styled.div`
   width: 100%;
@@ -90,29 +91,33 @@ export default function MapBoxComponent() {
     script.onload = () => {
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZGlzYWdyZWVkZCIsImEiOiJjbDVxbWlyb2swY3d0M3BsZjl5ODM2NDgyIn0.cbwt1AK2rjUoUvsQVlii_Q";
-      const start = {
+      // const start = {
+      //   center: [127.003, 37.516],
+      //   zoom: 9.8,
+      //   pitch: 55,
+      //   bearing: 0,
+      // };
+      // const end = {
+      //   center: [127.003, 37.516],
+      //   zoom: 10.8,
+      //   pitch: 45,
+      //   bearing: -15,
+      // };
+      const map = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: "mapbox://styles/disagreedd/cl5qszyzt002h14mp8dx6kwdj",
+        // ...start,
         center: [127.003, 37.516],
         zoom: 9.8,
         pitch: 55,
         bearing: 0,
-      };
-      const end = {
-        center: [127.003, 37.516],
-        zoom: 10.8,
-        pitch: 45,
-        bearing: -15,
-      };
-      const map = new mapboxgl.Map({
-        container: mapContainer.current,
-        style: "mapbox://styles/disagreedd/cl5qszyzt002h14mp8dx6kwdj",
-        ...start,
         boxZoom: false,
-        data: geoData,
+        // data: geoData,
       });
       map.on("load", () => {
         map.addSource("seoul", {
           type: "geojson",
-          data: geoData,
+          data: geoData as unknown as GeoJsonTypes,
         });
         map.addLayer({
           id: "seoul",
@@ -125,7 +130,11 @@ export default function MapBoxComponent() {
           },
         });
         map.flyTo({
-          ...end,
+          // ...end,
+          center: [127.003, 37.516],
+          zoom: 10.8,
+          pitch: 45,
+          bearing: -15,
           duration: 3000,
           essential: true,
         });
@@ -135,7 +144,7 @@ export default function MapBoxComponent() {
           color: "#FFE69A",
           scale: 0.7,
         })
-          .setLngLat(el.properties.centerCrd)
+          .setLngLat(el.properties.centerCrd as [number, number])
           .setPopup(
             new mapboxgl.Popup({ closeButton: false }).setHTML(
               `<h2>${el.properties.name}</h2><div style="color:#FFD24C">${el.properties.eventCount}개의 이벤트</div>`
