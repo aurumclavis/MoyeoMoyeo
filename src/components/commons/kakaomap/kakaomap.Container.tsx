@@ -194,7 +194,7 @@ export default function KakakomapPage(props: any) {
         }
 
         // 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
-        function displayPlaceInfo(place) {
+        function displayPlaceInfo(place: any) {
           let content =
             '<div class="placeinfo">' +
             '   <a class="title" href="' +
@@ -241,9 +241,9 @@ export default function KakakomapPage(props: any) {
         }
 
         // 각 카테고리에 클릭 이벤트를 등록합니다
-        function addCategoryClickEvent(event) {
+        function addCategoryClickEvent() {
           const category = document.getElementById("category");
-          const children = category.children;
+          const children: any = category.children;
 
           for (let i = 0; i < children.length; i++) {
             children[i].onclick = onClickCategory;
@@ -251,7 +251,7 @@ export default function KakakomapPage(props: any) {
         }
 
         // 카테고리를 클릭했을 때 호출되는 함수입니다
-        function onClickCategory() {
+        function onClickCategory(this: { id: any; className: any }) {
           const id = this.id;
           const className = this.className;
 
