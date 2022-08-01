@@ -34,17 +34,17 @@ export default function LoginPageUI(props: ILoginNew) {
         </S.findPassword>
         <S.CommonTitle>소셜 계정으로 1초만에 로그인</S.CommonTitle>
         <S.SnsWrapper>
-          <Link href="http://34.64.202.27:3000/login/kakao">
+          <Link href="https://momoyeo.site/login/kakao">
             <a>
               <S.SnsLogo src="/signUp/kakao.png" />
             </a>
           </Link>
-          <Link href="http://34.64.202.27:3000/login/naver">
+          <Link href="https://momoyeo.site/login/naver">
             <a>
               <S.SnsLogo src="/signUp/naver.png" />
             </a>
           </Link>
-          <Link href="http://34.64.202.27:3000/login/google">
+          <Link href="https://momoyeo.site/login/google">
             <a>
               <S.SnsLogo src="/signUp/ico-google.svg" />
             </a>

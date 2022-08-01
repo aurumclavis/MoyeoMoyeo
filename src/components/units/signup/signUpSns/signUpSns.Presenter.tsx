@@ -9,7 +9,7 @@ export default function SignUpSnsPageUI() {
       <S.Wrapper>
         <S.HeaderTitle>SNS 회원가입</S.HeaderTitle>
 
-        <Link href="http://localhost:3000/signup/kakao">
+        <Link href="https://momoyeo.site/login/kakao">
           <a>
             <S.KakaoWrapper>
               <S.SnsIcon src="/signUp/ico-kakaotalk.svg" />
@@ -17,7 +17,7 @@ export default function SignUpSnsPageUI() {
             </S.KakaoWrapper>
           </a>
         </Link>
-        <Link href="http://localhost:3000/signup/naver">
+        <Link href="https://momoyeo.site/login/naver">
           <a>
             <S.NaverWrapper>
               <S.SnsIcon src="/signUp/ico-naver.svg" />
@@ -25,7 +25,7 @@ export default function SignUpSnsPageUI() {
             </S.NaverWrapper>
           </a>
         </Link>
-        <Link href="http://localhost:3000/signup/google">
+        <Link href="https://momoyeo.site/login/google">
           <a>
             <S.GoogleWrapper>
               <S.SnsIcon src="/signUp/ico-google.svg" />
