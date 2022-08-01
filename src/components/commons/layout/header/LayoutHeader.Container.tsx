@@ -24,7 +24,7 @@ export default function LayoutHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickMobileMenu = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen((prev) => !prev);
   };
   const onClickMobileLogo = () => {
     setIsOpen(false);
@@ -48,7 +48,7 @@ export default function LayoutHeader() {
 
   const onClickLogout = () => {
     logout();
-    localStorage.removeItem("refreshToken");
+    // localStorage.removeItem("refreshToken");
     setAccessToken("");
   };
   return (

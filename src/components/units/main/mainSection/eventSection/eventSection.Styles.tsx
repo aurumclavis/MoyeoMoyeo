@@ -102,9 +102,9 @@ export const EventsList = styled.div`
 
 export const EventsImages = styled.img`
   width: 100%;
-  height: 250px;
+  height: 300px;
   @media ${breakPoints.mobile} {
-    height: 180px;
+    height: 270px;
   }
 `;
 export const InnderWrapper = styled.div`
