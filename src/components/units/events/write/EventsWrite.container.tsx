@@ -22,8 +22,8 @@ const schema = yup.object({
 });
 
 export default function EventsWrite(props: IEventsWriteProps) {
-  const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   // 날짜 선택
