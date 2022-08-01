@@ -8,7 +8,7 @@ import {
   FETCH_COMMENT,
 } from "../../Write/CommentWrite.queries";
 import CommentChildrenWriteContainer from "./children/Write/CommentChildrenWrite.container";
-import CommentChildrenListContainer from "./children/List/commentChildrenList.container";
+import CommentChildrenListContainer from "./children/List/CommentChildrenList.container";
 import { ICommentListItemsContainerProps } from "../../Comment.types";
 
 export default function CommentListItemsContainer(

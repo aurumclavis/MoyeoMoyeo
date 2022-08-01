@@ -26,7 +26,7 @@ export interface IBoardDetailPresenterProps {
   isModalVisible: boolean;
   setIsModalVisible: Dispatch<SetStateAction<boolean>>;
   onClickChangeMaxCount: (event: MouseEvent<HTMLImageElement>) => void;
-  handleOk: (event: MouseEvent<HTMLButtonElement>) => void;
+  handleOk: (event: MouseEvent<HTMLElement>) => void;
   maxHeadCount: number;
   onClickCount: (event: MouseEvent<HTMLDivElement>) => void;
   onClickChangeRecruitState: (
@@ -61,7 +61,7 @@ export interface IAccompanyRequestButtonProps {
 
 export interface IMaxHeadCountChangeModalProps {
   setIsModalVisible: Dispatch<SetStateAction<boolean>>;
-  handleOk: (event: MouseEvent<HTMLButtonElement>) => void;
+  handleOk: (event: MouseEvent<HTMLElement>) => void;
   onClickCount: (event: MouseEvent<HTMLDivElement>) => void;
   maxHeadCount: number;
 }
