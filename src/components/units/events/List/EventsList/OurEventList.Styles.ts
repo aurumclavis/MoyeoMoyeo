@@ -53,7 +53,8 @@ export const ListWrapper = styled.div`
     transform: translateY(-5px);
   }
   @media (max-width: 767px) {
-    width: 365px;
+    width: 400px;
+    max-width: 100%;
     height: 150px;
     padding: 0.4rem;
     border-radius: 0.4rem;
@@ -64,7 +65,7 @@ export const ListImg = styled.img`
   height: 100%;
   @media (max-width: 767px) {
     width: 70px;
-    height: 100px;
+    height: 100%;
   }
 `;
 export const FlexWrapper = styled.div`
@@ -98,9 +99,10 @@ export const Title = styled.div`
   overflow: hidden;
   @media (max-width: 767px) {
     width: 100%;
-    height: 20%;
-    padding-top: 9px;
+
     font-size: 1rem;
+    display: flex;
+    align-items: flex-start;
   }
 `;
 
