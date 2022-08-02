@@ -38,7 +38,7 @@ export const Date = styled.span`
 export const Contents = styled.p`
   flex-grow: 1;
   margin: 0.313rem 0;
-  overflow: scroll;
+  overflow: auto;
 `;
 export const IconWrapper = styled.div`
   width: 5%;
