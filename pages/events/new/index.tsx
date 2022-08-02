@@ -1,9 +1,12 @@
+import { WithAuth } from "../../../src/components/commons/hocs/withAuth";
 import EventsWrite from "../../../src/components/units/events/write/EventsWrite.container";
 
-export default function EventsWritePage() {
+function EventsWritePage() {
   return (
     <>
       <EventsWrite isEdit={false} />
     </>
   );
 }
+
+export default WithAuth(EventsWritePage);
