@@ -22,7 +22,7 @@ export default function EventsListUI(props: IEventsListUIProps) {
           <S.Tab onClick={props.onClickOurEventTap} isActive={props.ourEvents}>
             추천 행사
           </S.Tab>
-          {!props.userInfo.name && (
+          {props.userInfo.manager && (
             <S.EventWriteBtn onClick={props.onClickNew}>
               행사 등록
             </S.EventWriteBtn>

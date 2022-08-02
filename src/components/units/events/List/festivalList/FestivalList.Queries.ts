@@ -21,3 +21,8 @@ export const FETCH_EVENTS = gql`
     }
   }
 `;
+export const LOAD_EVENTS = gql`
+  query loadEvents($pageIndex: String!, $loadSize: String!) {
+    loadEvents(pageIndex: $pageIndex, loadSize: $loadSize)
+  }
+`;

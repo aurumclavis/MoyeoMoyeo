@@ -88,7 +88,7 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
               <>
                 <S.ContentImg
                   key={el.id}
-                  onError={(event) => {
+                  onError={event => {
                     if (event.target instanceof HTMLImageElement)
                       event.target.src = "../../error-image.png";
                   }}
@@ -98,17 +98,18 @@ export default function EventsDetailUI(props: IEventsDetailUI) {
             );
           })}
         </S.ContentsWrapper>
-
-        <S.EditWrapper>
-          <S.EditBtn onClick={props.onClickEdit}>
-            <EditOutlined />
-            수정
-          </S.EditBtn>
-          <S.EditBtn onClick={props.onClickShowConfirm}>
-            <DeleteOutlined />
-            삭제
-          </S.EditBtn>
-        </S.EditWrapper>
+        {props.userInfo.manager && (
+          <S.EditWrapper>
+            <S.EditBtn onClick={props.onClickEdit}>
+              <EditOutlined />
+              수정
+            </S.EditBtn>
+            <S.EditBtn onClick={props.onClickShowConfirm}>
+              <DeleteOutlined />
+              삭제
+            </S.EditBtn>
+          </S.EditWrapper>
+        )}
 
         <S.Footer>
           {/* <S.BtnRouter>관련 사이트 보러가기</S.BtnRouter> */}

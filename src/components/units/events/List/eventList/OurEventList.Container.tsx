@@ -2,13 +2,14 @@ import OurEventListUI from "./OurEventList.Presenter";
 
 import { FETCH_POSTS } from "./OurEventList.Queries";
 import { useQuery } from "@apollo/client";
+// import { useEffect } from "react";
 
 export default function OurEventList() {
   const PAGE_SIZE = 10;
   const { data, fetchMore } = useQuery(FETCH_POSTS, {
     variables: { pageSize: PAGE_SIZE, page: 1 },
   });
-  console.log(data);
+
   const ToloadFunc = () => {
     if (!data) return;
 

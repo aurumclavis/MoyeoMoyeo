@@ -4,7 +4,11 @@ import { useEffect, useRef, useState, MouseEvent } from "react";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import _, { throttle } from "lodash";
 import { useRecoilState } from "recoil";
-import { dibsPostState, eventIdForBoardState } from "../../../../commons/store";
+import {
+  dibsPostState,
+  eventIdForBoardState,
+  userInfoState,
+} from "../../../../commons/store";
 import { useMutation, useQuery } from "@apollo/client";
 import {
   DELETE_POST,
@@ -20,6 +24,7 @@ export default function EventsDetail() {
   const { data } = useQuery(FETCH_POST, {
     variables: { postId: router.query._id },
   });
+  const [userInfo] = useRecoilState(userInfoState);
 
   const [deletePost] = useMutation(DELETE_POST);
   const { onClickMoveToPage } = useMoveToPage();
@@ -177,6 +182,7 @@ export default function EventsDetail() {
     <>
       <EventsDetailUI
         data={data}
+        userInfo={userInfo}
         currentUrl={currentUrl}
         activedTab={activedTab}
         navRef={navRef}

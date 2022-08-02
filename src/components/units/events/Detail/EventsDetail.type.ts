@@ -2,6 +2,7 @@ import { MouseEvent, MutableRefObject } from "react";
 
 export interface IEventsDetailUI {
   data: any;
+  userInfo: any;
   currentUrl: string;
   activedTab: string;
   navRef: MutableRefObject<HTMLDivElement>;

@@ -21,9 +21,3 @@ export const FETCH_POSTS = gql`
     }
   }
 `;
-
-export const LOAD_EVENTS = gql`
-  query loadEvents($pageIndex: String!, $loadSize: String!) {
-    loadEvents(pageIndex: $pageIndex, loadSize: $loadSize)
-  }
-`;

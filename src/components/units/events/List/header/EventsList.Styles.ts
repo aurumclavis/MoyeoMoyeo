@@ -55,7 +55,7 @@ export const TabWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   background-color: white;
   position: sticky;
@@ -123,6 +123,7 @@ export const EventWriteBtn = styled.div`
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  margin-left: auto;
   @media (max-width: 767px) {
     width: 60px;
     height: 30px;
