@@ -30,7 +30,7 @@ export const Date = styled.span`
 export const Contents = styled.p`
   flex-grow: 1;
   margin: 0.313rem 0;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 // 답글, 삭제 아이콘
