@@ -1,5 +1,5 @@
 import DaumPostcode from "react-daum-postcode";
-import * as S from "./EventsWrite.Styles";
+import * as S from "./EventsWrite.styles";
 // import { v4 as uuidv4 } from "uuid";
 import ButtonSubmit from "../../../commons/buttons/submit";
 import CommonInput from "../../../commons/inputs/infoInputs";
