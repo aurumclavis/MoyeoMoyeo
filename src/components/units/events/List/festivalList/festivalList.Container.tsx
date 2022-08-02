@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import FestivalListUI from "./FestivalList.Presenter";
+import FestivalListUI from "./festivalList.Presenter";
 import { FETCH_EVENTS } from "./FestivalList.Queries";
 // import { IFestivalList } from "./FestivalList.Types";
 

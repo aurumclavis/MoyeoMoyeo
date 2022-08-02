@@ -1,4 +1,4 @@
-import * as S from "./FestivalList.Styles";
+import * as S from "./festivalList.Styles";
 // import InfiniteScroll from "react-infinite-scroller";
 import FestivalListUIAdd from "./FestivalList.PresenterAdd";
 import { IFestivalListUI } from "./FestivalList.Types";

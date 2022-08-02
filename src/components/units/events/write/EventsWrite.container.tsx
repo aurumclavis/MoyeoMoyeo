@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import EventsWriteUI from "./EventsWrite.Presenter";
+import EventsWriteUI from "./EventsWrite.presenter";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { CREATE_POST, UPDATE_POST, UPLOAD_IMAGES } from "./EventsWrite.Queries";
+import { CREATE_POST, UPDATE_POST, UPLOAD_IMAGES } from "./EventsWrite.queries";
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
@@ -156,7 +156,7 @@ export default function EventsWrite(props: IEventsWriteProps) {
   };
 
   const onClickAddressSearch = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen((prev) => !prev);
   };
 
   const onCompleteAddressSearch = (data: any) => {
