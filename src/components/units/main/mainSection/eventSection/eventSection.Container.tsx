@@ -62,7 +62,7 @@ const EventSection = () => {
                   <S.EventsName>{el.title}</S.EventsName>
                   {/* <S.EventsPlaces>{el.description}</S.EventsPlaces> */}
                   <S.EventsDate>
-                    {getDate(el.dateStart)} ~ {getDate(el?.dateEnd)}
+                    {getDate(el.dateStart)} ~ <br /> {getDate(el?.dateEnd)}
                   </S.EventsDate>
                 </S.InnderWrapper>
               </S.EventsList>

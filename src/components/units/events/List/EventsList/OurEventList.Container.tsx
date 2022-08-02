@@ -8,7 +8,7 @@ export default function OurEventList() {
   const { data, fetchMore } = useQuery(FETCH_POSTS, {
     variables: { pageSize: PAGE_SIZE, page: 1 },
   });
-
+  console.log(data);
   const ToloadFunc = () => {
     if (!data) return;
 

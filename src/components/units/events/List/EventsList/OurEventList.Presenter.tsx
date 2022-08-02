@@ -9,15 +9,15 @@ export default function OurEventListUI(props: IOurEventListUI) {
       <S.Wrapper>
         <S.Select>
           <option>등록 순</option>
-          <option>인기 순</option>
-          <option>날짜 순</option>
+          <option>예정된 행사</option>
+          <option>종료된 행사</option>
         </S.Select>
 
         <InfiniteScroll
           pageStart={0}
           loadMore={props.ToloadFunc}
           hasMore={true}
-          // useWindow={true}
+          useWindow={true}
         >
           <S.InsideWrapper>
             {props.data?.fetchPosts?.map((el: any) => (

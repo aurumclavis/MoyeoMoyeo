@@ -53,7 +53,7 @@ export const MoreBox = styled.div`
   justify-content: center;
 `;
 export const More = styled.span`
-  width: 40px;
+  width: auto;
   cursor: pointer;
   :hover {
     text-decoration: underline;
@@ -115,6 +115,7 @@ export const BoardList = styled.div`
   :hover {
     box-shadow: 0px 5px 1px 0px #ffd24c;
     transform: translateY(-5px);
+    cursor: pointer;
   }
 `;
 export const BoardTitleWrapper = styled.div`

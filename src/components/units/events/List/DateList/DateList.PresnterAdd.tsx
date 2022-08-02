@@ -16,7 +16,6 @@ export default function CalederListUIAdd(props: any) {
                       event.target.src = "../../error-image.png";
                   }}
                   src={`https://storage.googleapis.com/${el.images[0]?.src}`}
-                  // src={`https://storage.googleapis.com/${el.images[0]?.src}`}
                 />
                 <S.Title>{el.title}</S.Title>
               </S.List>

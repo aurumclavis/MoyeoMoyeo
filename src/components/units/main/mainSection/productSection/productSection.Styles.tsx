@@ -48,7 +48,7 @@ export const MoreBox = styled.div`
   justify-content: center;
 `;
 export const More = styled.span`
-  width: 40px;
+  width: auto;
   cursor: pointer;
   :hover {
     text-decoration: underline;
@@ -75,13 +75,22 @@ export const ProductList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+`;
+export const ProductImageWrapper = styled.div`
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  ::after {
+    display: block;
+    content: "";
+    padding-bottom: 100%;
+  }
 `;
 export const ProductImages = styled.img`
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+  position: absolute;
 `;
 export const ProductName = styled.div`
   width: 100%;

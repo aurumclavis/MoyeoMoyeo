@@ -48,13 +48,15 @@ const ProductSection = () => {
               key={v4(el.id)}
               onClick={onClickMoveToPage(`products/${el.id}`)}
             >
-              <S.ProductImages
-                onError={(event) => {
-                  if (event.target instanceof HTMLImageElement)
-                    event.target.src = "../../error-image.png";
-                }}
-                src={`https://storage.googleapis.com/${el.images[0]?.src}`}
-              />
+              <S.ProductImageWrapper>
+                <S.ProductImages
+                  onError={(event) => {
+                    if (event.target instanceof HTMLImageElement)
+                      event.target.src = "../../error-image.png";
+                  }}
+                  src={`https://storage.googleapis.com/${el.images[0]?.src}`}
+                />
+              </S.ProductImageWrapper>
               <S.ProductName>{el.name}</S.ProductName>
               <S.ProductUnderWapper>
                 <S.ProductPrice>{`${el.price.toLocaleString()}원`}</S.ProductPrice>

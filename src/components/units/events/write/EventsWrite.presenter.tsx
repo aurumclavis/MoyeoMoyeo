@@ -97,7 +97,6 @@ export default function EventsWriteUI(props: IEventsWrite) {
                 <S.SubTitle>행사 분류</S.SubTitle>
                 <S.TypeSelect {...props.register("category")}>
                   <option value="">선택</option>
-                  <option value={"플리마켓"}>플리마켓</option>
                   <option value={"축제"}>축제</option>
                   <option value={"문화"}>문화</option>
                   <option value={"공연"}>공연</option>
@@ -105,6 +104,7 @@ export default function EventsWriteUI(props: IEventsWrite) {
                   <option value={"뮤지컬"}>뮤지컬</option>
                   <option value={"클래식"}>클래식</option>
                   <option value={"전시"}>전시</option>
+                  <option value={"플리마켓"}>플리마켓</option>
                   <option value={"기타"}>기타</option>
                 </S.TypeSelect>
                 <S.Error>{props.formState.errors.category?.message}</S.Error>
