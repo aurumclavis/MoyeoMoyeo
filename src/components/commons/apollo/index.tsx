@@ -17,11 +17,6 @@ import { onError } from "@apollo/client/link/error";
 export default function ApolloSetting(props: any) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const Loadable = useRecoilValueLoadable(restoreAccessTokenLoadable);
-  // useEffect(() => {
-  //   GetAccessToken().then((newAccessToken) => {
-  //     setAccessToken(newAccessToken);
-  //   });
-  // }, []);
 
   useEffect(() => {
     Loadable.toPromise().then((newAccessToken: any) => {
