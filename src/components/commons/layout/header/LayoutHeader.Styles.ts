@@ -16,9 +16,9 @@ export const Wrapper = styled.div`
   align-items: center;
   border-bottom: 0.063rem solid #cccccc;
   background-color: ${(props: IProps) =>
-    props.isStaff ? "#73777B" : "#ffffff"};
+    props.isStaff ? "#15133C" : "#ffffff"};
   color: ${(props: IProps) => (props.isStaff ? "#ffffff" : "black")};
-  font-family: "Yoony";
+
   @media (max-width: 767px) {
     height: 3.4rem;
     position: sticky;
@@ -81,6 +81,7 @@ export const Menu = styled.div`
   align-items: center;
   margin-top: auto;
   margin-left: 5%;
+  font-family: "Yoony";
   font-weight: ${(props: IMenuProps) => (props.isActive ? "700" : "500")};
   /* color: ${(props: IMenuProps) =>
     props.isActive ? "#ffe69a" : "#000000"}; */

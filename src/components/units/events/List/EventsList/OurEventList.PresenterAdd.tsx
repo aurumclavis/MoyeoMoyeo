@@ -17,7 +17,6 @@ export default function OurEventListUIAdd(props: IOurEventListUIAdd) {
       />
       <S.FlexWrapper>
         <S.TItlePeriodWrapper>
-          {" "}
           <S.Title>{props.el?.title}</S.Title>
           <S.Period>
             {getDate(props.el?.dateStart)} ~ {getDate(props.el?.dateEnd)}

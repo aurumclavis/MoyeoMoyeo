@@ -85,21 +85,20 @@ export const FlexWrapper = styled.div`
 `;
 export const TItlePeriodWrapper = styled.div`
   width: 100%;
-  height: 3rem;
+  height: 3.2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 `;
 export const Title = styled.div`
   width: 100%;
   height: 1.7rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
   overflow: hidden;
   @media (max-width: 767px) {
     width: 100%;
-
     font-size: 1rem;
     display: flex;
     align-items: flex-start;
@@ -108,9 +107,17 @@ export const Title = styled.div`
 
 export const ContentsWrapper = styled.div`
   width: 100%;
-  height: auto;
-  overflow: hidden;
+  /* height: auto; */
+  height: 100%;
   font-size: 0.8rem;
+  white-space: normal;
+  line-height: 1;
+  overflow: hidden;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
   @media (max-width: 767px) {
     height: 95%;
     font-size: 0.4rem;
@@ -147,6 +154,7 @@ export const CounterWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: flex-end;
   margin-right: auto;
   font-size: 1rem;
   @media (max-width: 767px) {
@@ -192,6 +200,7 @@ export const Btn = styled.div`
   }
   @media (max-width: 767px) {
     width: 30%;
+    height: 100%;
     font-size: 1rem;
   }
 `;

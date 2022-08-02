@@ -5,7 +5,7 @@ import { FETCH_EVENTS } from "./FestivalList.Queries";
 
 export default function FestivalList() {
   const { data } = useQuery(FETCH_EVENTS);
-
+  console.log(data);
   // const ToloadFunc = () => {
   //   if (!data) return;
 
@@ -25,7 +25,12 @@ export default function FestivalList() {
   // const onCickUrl = (e: string) => {
   //   window.open(`${e}`, _blank);
   // };
-
+  // const loadEvents = useQuery(LOAD_EVENTS, {
+  //   variables: { page: " 1", pageSize: "20" },
+  // });
+  // useEffect(() => {
+  //   // loadEvents();
+  // }, []);
   return (
     <>
       <FestivalListUI data={data} />

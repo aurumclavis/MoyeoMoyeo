@@ -76,6 +76,7 @@ export const FlexWrapper = styled.div`
   justify-content: space-between;
   padding-left: 1rem;
   @media (max-width: 767px) {
+    align-items: flex-start;
   }
 `;
 
@@ -86,7 +87,7 @@ export const Title = styled.div`
   font-weight: 700;
   overflow: hidden;
   @media (max-width: 767px) {
-    height: 1rem;
+    height: 1.2rem;
     font-size: 0.8rem;
   }
 `;

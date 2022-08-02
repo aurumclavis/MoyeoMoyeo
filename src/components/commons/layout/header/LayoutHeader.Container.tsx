@@ -5,14 +5,17 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { LOGOUT } from "./LayoutHeader.Queries";
 import { useMutation } from "@apollo/client";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../../commons/store";
+import { accessTokenState, userInfoState } from "../../../../commons/store";
+import { Modal } from "antd";
+
 // import { accessTokenState, userInfoState } from "../../../../commons/store";
 
 export default function LayoutHeader() {
   const router = useRouter();
-
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const { onClickMoveToPage } = useMoveToPage();
   const [activedTab, setActivedTab] = useState<string | null>(null);
+  const [isStaff, setIstStaff] = useState<boolean | undefined>();
 
   const [logout] = useMutation(LOGOUT);
 
@@ -24,7 +27,7 @@ export default function LayoutHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickMobileMenu = () => {
-    setIsOpen((prev) => !prev);
+    setIsOpen(prev => !prev);
   };
   const onClickMobileLogo = () => {
     setIsOpen(false);
@@ -34,7 +37,7 @@ export default function LayoutHeader() {
     setIsOpen(false);
     onClickMoveToPage(e.currentTarget.id)();
   };
-  // const [userInfo] = useRecoilState(userInfoState);
+
   // const resultUserInfo = useQuery(FETCH_LOGIN_USER);
   // localStorage.setItem("refreshToken", "true");
 
@@ -43,13 +46,27 @@ export default function LayoutHeader() {
     // if (resultUserInfo.data?.manager) {
     //   setIstStaff(true);
     // }
+    if (userInfo.manager) {
+      setIstStaff(true);
+    } else {
+      setIstStaff(false);
+    }
   });
-  const [isStaff] = useState<boolean | undefined>();
 
   const onClickLogout = () => {
-    logout();
     // localStorage.removeItem("refreshToken");
     setAccessToken("");
+    setUserInfo({
+      email: "",
+      name: "",
+      company: "",
+      pm: "",
+      manager: "",
+    });
+    logout();
+    Modal.success({
+      content: "로그아웃 되셨습니다",
+    });
   };
   return (
     <LayoutHeaderUI
