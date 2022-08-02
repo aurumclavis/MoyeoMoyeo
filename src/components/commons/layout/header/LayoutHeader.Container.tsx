@@ -27,7 +27,7 @@ export default function LayoutHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickMobileMenu = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen((prev) => !prev);
   };
   const onClickMobileLogo = () => {
     setIsOpen(false);
@@ -54,7 +54,6 @@ export default function LayoutHeader() {
   });
 
   const onClickLogout = () => {
-<<<<<<< HEAD
     // localStorage.removeItem("refreshToken");
     setAccessToken("");
     setUserInfo({
@@ -68,11 +67,6 @@ export default function LayoutHeader() {
     Modal.success({
       content: "로그아웃 되셨습니다",
     });
-=======
-    setAccessToken("");
-    logout();
-    // localStorage.removeItem("refreshToken");
->>>>>>> a0730a2 (update)
   };
   return (
     <LayoutHeaderUI

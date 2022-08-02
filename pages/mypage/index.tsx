@@ -10,6 +10,7 @@ import MyPageStaffSell from "../../src/components/units/mypage/staff/sell";
 import MyPageStaffEvents from "../../src/components/units/mypage/staff/events";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../src/commons/store";
+import { WithAuth } from "../../src/components/commons/hocs/withAuth";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -34,7 +35,7 @@ const staffObj: objType = {
   1: <MyPageStaffEvents />,
 };
 
-export default function MyPageEventsPage() {
+function MyPageEventsPage() {
   const [userInfo] = useRecoilState(userInfoState);
   const [activedIndex, setActivedIndex] = useState<number>(0);
   return (
@@ -60,3 +61,4 @@ export default function MyPageEventsPage() {
     </>
   );
 }
+export default WithAuth(MyPageEventsPage);
