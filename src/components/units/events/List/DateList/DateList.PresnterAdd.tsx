@@ -2,6 +2,7 @@ import * as S from "./DateList.Styles";
 // import { ICalederListUIAdd } from "./DateList.Types";
 
 export default function CalederListUIAdd(props: any) {
+  console.log(props.dateData);
   return (
     <>
       <S.ListWrapper>
@@ -15,9 +16,8 @@ export default function CalederListUIAdd(props: any) {
                       event.target.src = "../../error-image.png";
                   }}
                   src={`https://storage.googleapis.com/${el.images[0]?.src}`}
-                  // src={`https://storage.googleapis.com/${el.images[0]?.src}`}
                 />
-                <S.Title>{el.title} </S.Title>
+                <S.Title>{el.title}</S.Title>
               </S.List>
             ))
           : props.dateData?.map((el: any) => (
