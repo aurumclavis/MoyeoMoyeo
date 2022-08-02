@@ -159,7 +159,7 @@ export const Address = styled.input`
 `;
 
 export const ImageWrapper = styled.div`
-  width: 33%;
+  width: 40%;
 `;
 
 export const TypeWrapper = styled.div`

@@ -57,7 +57,7 @@ export const LogoImg = styled.img`
 `;
 
 export const NavBarWrapper = styled.div`
-  width: 360px;
+  width: 400px;
   height: 3.75rem;
   display: flex;
   justify-content: flex-start;

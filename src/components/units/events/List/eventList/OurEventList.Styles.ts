@@ -53,7 +53,8 @@ export const ListWrapper = styled.div`
     transform: translateY(-5px);
   }
   @media (max-width: 767px) {
-    width: 365px;
+    width: 400px;
+    max-width: 100%;
     height: 150px;
     padding: 0.4rem;
     border-radius: 0.4rem;
@@ -64,7 +65,7 @@ export const ListImg = styled.img`
   height: 100%;
   @media (max-width: 767px) {
     width: 70px;
-    height: 100px;
+    height: 100%;
   }
 `;
 export const FlexWrapper = styled.div`
@@ -98,9 +99,10 @@ export const Title = styled.div`
   overflow: hidden;
   @media (max-width: 767px) {
     width: 100%;
-    height: 20%;
-    padding-top: 9px;
+
     font-size: 1rem;
+    display: flex;
+    align-items: flex-start;
   }
 `;
 
@@ -110,7 +112,7 @@ export const ContentsWrapper = styled.div`
   overflow: hidden;
   font-size: 0.8rem;
   @media (max-width: 767px) {
-    height: 30px;
+    height: 95%;
     font-size: 0.4rem;
   }
 `;
@@ -134,9 +136,8 @@ export const FooterWrapper = styled.div`
   align-items: flex-end;
   justify-content: flex-end;
   @media (max-width: 767px) {
-    height: 30%;
-    flex-direction: column;
-    justify-content: center;
+    height: 20%;
+    justify-content: flex-start;
   }
 `;
 
@@ -149,9 +150,9 @@ export const CounterWrapper = styled.div`
   margin-right: auto;
   font-size: 1rem;
   @media (max-width: 767px) {
+    width: 70%;
+    height: 100%;
     justify-content: flex-start;
-    width: 100%;
-    height: 40%;
   }
 `;
 
@@ -170,7 +171,7 @@ export const Counter = styled.div`
   color: #d2d2d2;
   font-size: 10px;
   @media (max-width: 767px) {
-    width: 30%;
+    width: 50%;
     font-size: 3px;
   }
 `;
@@ -190,9 +191,7 @@ export const Btn = styled.div`
     border: 1px solid #ffffff;
   }
   @media (max-width: 767px) {
-    width: 100%;
-    height: 50%;
-    /* padding-right: 1rem; */
+    width: 30%;
     font-size: 1rem;
   }
 `;

@@ -11,8 +11,8 @@ export default function FestivalListUI(props: IFestivalListUI) {
         <S.Wrapper>
           <S.Select>
             <option>등록 순</option>
-            {/* <option>인기 순</option> */}
-            <option>날짜 순</option>
+            <option>예정된 행사</option>
+            <option>종료된 행사</option>
           </S.Select>
 
           {/* <InfiniteScroll
