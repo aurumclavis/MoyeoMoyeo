@@ -5,8 +5,8 @@ export const FETCH_EVENTS = gql`
     fetchEvents {
       id
       name
-      description
-      date
+      # description
+      # date
       areaCode
       imgSrc
     }
