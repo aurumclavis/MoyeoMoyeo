@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import DOMPurify from "dompurify";
 import { v1 } from "uuid";
 import { getDate } from "../../../../commons/getDate";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
@@ -56,7 +57,11 @@ export default function MyPageUserEvents() {
                 </S.ItemText>
               </S.IconWrapper>
             </S.ItemRowWrapper>
-            <S.ItemText>{el.description}</S.ItemText>
+            <S.ItemText
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(el.description),
+              }}
+            />
             <S.MoreText onClick={onClickMoveToPage(`/events/${el.id}`)}>
               행사 정보 더 보기
             </S.MoreText>

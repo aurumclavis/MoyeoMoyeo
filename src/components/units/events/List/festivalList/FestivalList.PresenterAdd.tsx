@@ -1,4 +1,4 @@
-import * as S from "./FestivalList.Styles";
+import * as S from "./festivalList.Styles";
 import { IFestivalListUIAdd } from "./FestivalList.Types";
 import { getDate } from "../../../../commons/getDate";
 

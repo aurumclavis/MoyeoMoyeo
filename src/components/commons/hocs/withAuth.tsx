@@ -5,7 +5,6 @@ import { restoreAccessTokenLoadable } from "../../../commons/store";
 
 export const WithAuth = (Component: any) => (props: any) => {
   const Loadable = useRecoilValueLoadable(restoreAccessTokenLoadable);
-
   const router = useRouter();
 
   useEffect(() => {

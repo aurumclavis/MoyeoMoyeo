@@ -67,6 +67,7 @@ export const ArrowIcon = styled.img`
 `;
 export const Wrapper = styled.div`
   width: 100%;
+  height: 400px;
   display: flex;
   justify-content: space-between;
   @media ${breakPoints.mobile} {
@@ -94,12 +95,15 @@ export const CarouselWrapper = styled.div`
 
 export const MySlider = styled(Slider)`
   width: 100%;
+  height: 400px;
   display: flex;
   margin-top: 40px;
   @media ${breakPoints.mobile} {
     width: 100%;
     margin-top: 0px;
   }
+  /* overflow-x: hidden;
+  overflow-y: hidden; */
 `;
 export const BoardList = styled.div`
   display: flex;

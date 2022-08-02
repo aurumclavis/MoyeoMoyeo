@@ -3,7 +3,6 @@ import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../../../commons/store";
 import { getDate } from "../../../../commons/getDate";
 import * as S from "../../listItem/MyPageListItem.Styles";
-import InfiniteScroll from "react-infinite-scroller";
 import NoDataFound from "../../noDataFound";
 
 const FETCH_PRODUCTS = gql`
@@ -34,87 +33,57 @@ const FETCH_PRODUCTS = gql`
 `;
 
 export default function MyPageStaffSell() {
-  const PAGE_SIZE = 3;
-  const { data, fetchMore } = useQuery(FETCH_PRODUCTS, {
-    variables: { pageSize: PAGE_SIZE, page: 1 },
-  });
+  const { data } = useQuery(FETCH_PRODUCTS);
   const [userInfo] = useRecoilState(userInfoState);
   const SELLER_ARR = data?.fetchProducts.filter(
     (el: any) => el.seller.email === userInfo.email
   );
 
-  const loadProducts = () => {
-    if (!data) return;
-    fetchMore({
-      variables: {
-        page: Math.ceil(SELLER_ARR.length / PAGE_SIZE) + 1,
-        pageSize: PAGE_SIZE,
-      },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult.fetchProducts)
-          return { fetchProducts: [...prev.fetchProducts] };
-        return {
-          fetchProducts: [
-            ...prev.fetchProducts,
-            ...fetchMoreResult?.fetchProducts,
-          ],
-        };
-      },
-    });
-  };
-
   return (
     <S.Wrapper>
-      <InfiniteScroll
-        pageStart={0}
-        loadMore={loadProducts}
-        hasMore={true || false}
-        useWindow={false}
-      >
-        {SELLER_ARR && SELLER_ARR.length !== 0 ? (
-          SELLER_ARR?.map((el: any) => (
-            <S.ItemWrapper key={el.id}>
-              <S.ItemImageWrapper>
-                {el.images[0]?.src ? (
-                  <S.ItemImage
-                    onError={(event) => {
-                      if (event.target instanceof HTMLImageElement)
-                        event.target.src = "../../error-image.png";
-                    }}
-                    src={`https://storage.googleapis.com/${el.images[0]?.src}`}
-                  />
-                ) : (
-                  <S.ItemImage src="../../error-image.png" />
-                )}
-              </S.ItemImageWrapper>
-              <S.ItemContentsWrapper>
-                <S.ItemTitle>
-                  <S.ItemIsFull isFull={el.isSoldout}>
-                    {el.isSoldout ? "[판매완료]" : "[판매중]"}
-                  </S.ItemIsFull>{" "}
-                  {el.name}
-                </S.ItemTitle>
-                <S.ItemRowWrapper>
-                  <S.ItemText>{el.price}원</S.ItemText>
-                  <S.ItemText>{getDate(el.createdAt)}</S.ItemText>
-                </S.ItemRowWrapper>
-                {el.isSoldout && (
-                  <>
-                    <S.ItemText>
-                      거래 날짜 : {getDate(el.transaction.transactAt)}
-                    </S.ItemText>
-                    <S.ItemText>
-                      구매자 주소 : {el.transaction.retrieveAddress}
-                    </S.ItemText>
-                  </>
-                )}
-              </S.ItemContentsWrapper>
-            </S.ItemWrapper>
-          ))
-        ) : (
-          <NoDataFound />
-        )}
-      </InfiniteScroll>
+      {SELLER_ARR && SELLER_ARR.length !== 0 ? (
+        SELLER_ARR?.map((el: any) => (
+          <S.ItemWrapper key={el.id}>
+            <S.ItemImageWrapper>
+              {el.images[0]?.src ? (
+                <S.ItemImage
+                  onError={(event) => {
+                    if (event.target instanceof HTMLImageElement)
+                      event.target.src = "../../error-image.png";
+                  }}
+                  src={`https://storage.googleapis.com/${el.images[0]?.src}`}
+                />
+              ) : (
+                <S.ItemImage src="../../error-image.png" />
+              )}
+            </S.ItemImageWrapper>
+            <S.ItemContentsWrapper>
+              <S.ItemTitle>
+                <S.ItemIsFull isFull={el.isSoldout}>
+                  {el.isSoldout ? "[판매완료]" : "[판매중]"}
+                </S.ItemIsFull>{" "}
+                {el.name}
+              </S.ItemTitle>
+              <S.ItemRowWrapper>
+                <S.ItemText>{el.price}원</S.ItemText>
+                <S.ItemText>{getDate(el.createdAt)}</S.ItemText>
+              </S.ItemRowWrapper>
+              {el.isSoldout && (
+                <>
+                  <S.ItemText>
+                    거래 날짜 : {getDate(el.transaction.transactAt)}
+                  </S.ItemText>
+                  <S.ItemText>
+                    구매자 주소 : {el.transaction.retrieveAddress}
+                  </S.ItemText>
+                </>
+              )}
+            </S.ItemContentsWrapper>
+          </S.ItemWrapper>
+        ))
+      ) : (
+        <NoDataFound />
+      )}
     </S.Wrapper>
   );
 }

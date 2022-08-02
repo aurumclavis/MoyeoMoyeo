@@ -1,4 +1,4 @@
-import EventsWrite from "../../../../src/components/units/events/write/EventsWrite.Container";
+import EventsWrite from "../../../../src/components/units/events/write/EventsWrite.container";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
