@@ -40,7 +40,7 @@ export default function MapBoxComponent() {
     { 성동구: 14 },
     { 용산구: 10 },
     { 중구: 6 },
-    { 종로구: 18 },
+    { 종로구: 4 },
   ];
   geoData.features.forEach((guItem: any) => {
     guEvent.forEach((el) => {
