@@ -86,11 +86,16 @@ export const ProductImageWrapper = styled.div`
     content: "";
     padding-bottom: 100%;
   }
+  overflow: hidden;
 `;
 export const ProductImages = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
+
+  :hover {
+    transform: scale(1.1);
+  }
 `;
 export const ProductName = styled.div`
   width: 100%;
