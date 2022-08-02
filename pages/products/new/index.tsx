@@ -1,5 +1,7 @@
+import { WithAuth } from "../../../src/components/commons/hocs/withAuth";
 import ProductWrite from "../../../src/components/units/products/write/ProductWrite.Container";
 
-export default function ProductsNewPage() {
+function ProductsNewPage() {
   return <ProductWrite />;
 }
+export default WithAuth(ProductsNewPage);
