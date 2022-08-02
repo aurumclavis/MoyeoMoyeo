@@ -32,13 +32,13 @@ const BoardSection = () => {
   const animatedItem = useScrollClipPath();
   const { onClickMoveToPage } = useMoveToPage();
   const settings = {
+    slidesToScroll: 2,
     infinite: true,
     vertical: true,
     slidesToShow: 2,
-    slidesToScroll: 2,
     initialSlide: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     pauseOnHover: true,
     arrows: false,
     dots: true,
@@ -73,7 +73,10 @@ const BoardSection = () => {
           <S.MySlider {...settings}>
             {data?.fetchBoards
               .map((el: any, index: number) => (
-                <S.BoardList key={index}>
+                <S.BoardList
+                  key={index}
+                  onClick={onClickMoveToPage(`boards/${el.id}`)}
+                >
                   <S.BoardTitleWrapper>
                     <S.BoardCategory>
                       {el.isFull ? "[모집완료]" : "[모집중]"}
@@ -82,12 +85,12 @@ const BoardSection = () => {
                   </S.BoardTitleWrapper>
                   <S.BoardContents>{el.remark}</S.BoardContents>
                   <S.BoardInfo>
-                    {el.eventCategory !== "일반" && (
+                    {/* {el.eventCategory !== "일반" && (
                       <>
                         <S.EventIcon />
                         <S.BoardEvents>{el.eventName}</S.BoardEvents>
                       </>
-                    )}
+                    )} */}
                     <S.CategoryIcon />
                     <S.BoardPeople>{el.eventCategory}</S.BoardPeople>
                     <S.MaxHeadCountIcon />
@@ -100,7 +103,7 @@ const BoardSection = () => {
                   </S.BoardInfo>
                 </S.BoardList>
               ))
-              .slice(0, 8)}
+              .slice(0, 6)}
           </S.MySlider>
         </S.CarouselWrapper>
       </S.Wrapper>

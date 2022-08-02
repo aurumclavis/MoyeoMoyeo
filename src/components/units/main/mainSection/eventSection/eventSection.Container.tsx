@@ -67,7 +67,7 @@ const EventSection = () => {
                 </S.InnderWrapper>
               </S.EventsList>
             ))
-            .slice(0, 5)}
+            .slice(0, 6)}
         </S.EventWrapper>
       </S.Wrapper>
     </S.OutWrapper>

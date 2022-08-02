@@ -87,7 +87,6 @@ export const EventWrapper = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     padding-right: 2px;
   }
-  cursor: pointer;
 `;
 
 export const EventsList = styled.div`
@@ -99,6 +98,7 @@ export const EventsList = styled.div`
     transform: translateY(-5px);
     border-radius: 5px;
   }
+  cursor: pointer;
 `;
 
 export const EventsImages = styled.img`
