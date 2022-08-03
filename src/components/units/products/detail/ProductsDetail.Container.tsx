@@ -113,6 +113,12 @@ export default function ProductDetail() {
           variables: {
             productId: router.query.productId,
           },
+          refetchQueries: [
+            {
+              query: FETCH_PRODUCT,
+              variables: { productId: router.query.productId },
+            },
+          ],
         });
         Modal.success({
           content: "관심 상품 목록에 담았습니다.",
@@ -127,6 +133,12 @@ export default function ProductDetail() {
           variables: {
             productId: router.query.productId,
           },
+          refetchQueries: [
+            {
+              query: FETCH_PRODUCT,
+              variables: { productId: router.query.productId },
+            },
+          ],
         });
         setDibsId("");
         Modal.success({
