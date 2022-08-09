@@ -27,7 +27,7 @@ export default function LayoutHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickMobileMenu = () => {
-    setIsOpen((prev) => !prev);
+    setIsOpen(prev => !prev);
   };
   const onClickMobileLogo = () => {
     setIsOpen(false);
