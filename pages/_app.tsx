@@ -6,11 +6,14 @@ import "antd/dist/antd.css";
 import ApolloSetting from "../src/components/commons/apollo";
 import { RecoilRoot } from "recoil";
 import Head from "next/head";
-<Head>
-  <meta property="og:title" content="내사이트" />
-  <meta property="og:description" content="환영합니다." />
-</Head>;
 function MyApp({ Component, pageProps }: AppProps) {
+  <Head>
+    <meta property="og:title" content="여기 모여? 모여!" />
+    <meta
+      property="og:description"
+      content="안녕하세요 함께 모여 만드는 모여모여입니다!"
+    />
+  </Head>;
   return (
     <RecoilRoot>
       <ApolloSetting>
