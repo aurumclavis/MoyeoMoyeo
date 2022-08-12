@@ -47,6 +47,7 @@ export default function OurEventListUI(props: IOurEventListUI) {
               ListBefore?.map((el: any) => (
                 <OurEventListUIAdd key={el.id} el={el} />
               ))}
+            ``{" "}
           </S.InsideWrapper>
         </InfiniteScroll>
       </S.Wrapper>

@@ -35,7 +35,7 @@ export default function EventsDetail() {
   const [dibsId, setDibsId] = useRecoilState(dibsPostState);
 
   const [activedTab, setActivedTab] = useState("marker");
-  const currentUrl = `localhost:3000/events/${router.query._id}`;
+  const currentUrl = `moyeomoyeo.site/events/${router.query._id}`;
   const navRef = useRef<HTMLDivElement>(null);
   const markerRef = useRef<HTMLDivElement>(null);
   const contentsRef = useRef<HTMLDivElement>(null);
