@@ -99,7 +99,7 @@ export const ListWrapper = styled.div`
 `;
 export const List = styled.div`
   width: 150px;
-  height: 300px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -121,6 +121,7 @@ export const ListImg = styled.img`
   width: 150px;
   height: 200px;
   border-bottom: 1px solid #d2d2d2;
+  overflow: hidden;
   @media (max-width: 767px) {
   }
 `;
@@ -137,10 +138,13 @@ export const ListImg = styled.img`
 
 export const Title = styled.div`
   width: 100%;
-  height: 100px;
+  height: 50px;
+  padding: 3px 2px 0px 2px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 600;
+  overflow: hidden;
+  color: black;
 
   @media (max-width: 767px) {
   }
@@ -172,3 +176,5 @@ export const Btn = styled.div`
   @media (max-width: 767px) {
   }
 `;
+
+export const Link = styled.a``;

@@ -2,6 +2,7 @@ import OurEventListUI from "./OurEventList.Presenter";
 
 import { FETCH_POSTS } from "./OurEventList.Queries";
 import { useQuery } from "@apollo/client";
+
 // import { useEffect } from "react";
 
 export default function OurEventList() {
